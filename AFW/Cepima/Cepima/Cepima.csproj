@@ -298,6 +298,12 @@
     <Compile Include="MesForms\Personnel\Liste_presence.Designer.cs">
       <DependentUpon>Liste_presence.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Personnel\Presence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Presence.Designer.cs">
+      <DependentUpon>Presence.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Pharmacie\Form_prescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -976,6 +982,9 @@
     <EmbeddedResource Include="MesForms\Personnel\Liste_presence.rdlc" />
     <EmbeddedResource Include="MesForms\Personnel\Liste_presence.resx">
       <DependentUpon>Liste_presence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Presence.resx">
+      <DependentUpon>Presence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Update_personnel.resx">
       <DependentUpon>Update_personnel.cs</DependentUpon>

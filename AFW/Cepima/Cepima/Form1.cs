@@ -40,6 +40,16 @@ namespace Cepima
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
 
+            DateTime date = new DateTime();
+
+            date = DateTime.Now.Date;
+
+            string hour = date.ToString("H:m");
+
+            
+            Cepima.MesForms.Personnel.Presence pres = new MesForms.Personnel.Presence("Muhindo Kavunga", date, hour);
+            pres.ShowDialog();
+
         }
 
         /// <summary>
