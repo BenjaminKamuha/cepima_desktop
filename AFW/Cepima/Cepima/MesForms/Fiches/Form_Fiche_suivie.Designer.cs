@@ -30,13 +30,11 @@
         {
             this.flowSections = new System.Windows.Forms.FlowLayoutPanel();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.sectionDocument = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionNoteClinique = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionPrescription = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionEEG = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionConsultation = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionPsychiatrique = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionAdministratif = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.section_info_patient = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.section_motif = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.section_antecedents = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.section_examens = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.section_autre = new Cepima.MesForms.Fiches.SectionRepliable();
             this.flowSections.SuspendLayout();
             this.panelPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -44,18 +42,16 @@
             // flowSections
             // 
             this.flowSections.AutoScroll = true;
-            this.flowSections.Controls.Add(this.sectionAdministratif);
-            this.flowSections.Controls.Add(this.sectionPsychiatrique);
-            this.flowSections.Controls.Add(this.sectionConsultation);
-            this.flowSections.Controls.Add(this.sectionEEG);
-            this.flowSections.Controls.Add(this.sectionPrescription);
-            this.flowSections.Controls.Add(this.sectionNoteClinique);
-            this.flowSections.Controls.Add(this.sectionDocument);
+            this.flowSections.Controls.Add(this.section_info_patient);
+            this.flowSections.Controls.Add(this.section_motif);
+            this.flowSections.Controls.Add(this.section_antecedents);
+            this.flowSections.Controls.Add(this.section_examens);
+            this.flowSections.Controls.Add(this.section_autre);
             this.flowSections.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowSections.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowSections.Location = new System.Drawing.Point(0, 0);
             this.flowSections.Name = "flowSections";
-            this.flowSections.Size = new System.Drawing.Size(825, 739);
+            this.flowSections.Size = new System.Drawing.Size(1039, 881);
             this.flowSections.TabIndex = 1;
             this.flowSections.WrapContents = false;
             // 
@@ -66,85 +62,65 @@
             this.panelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPrincipal.Location = new System.Drawing.Point(0, 0);
             this.panelPrincipal.Name = "panelPrincipal";
-            this.panelPrincipal.Size = new System.Drawing.Size(825, 739);
+            this.panelPrincipal.Size = new System.Drawing.Size(1039, 881);
             this.panelPrincipal.TabIndex = 0;
             // 
-            // sectionDocument
+            // section_info_patient
             // 
-            this.sectionDocument.BackColor = System.Drawing.Color.White;
-            this.sectionDocument.Location = new System.Drawing.Point(3, 1422);
-            this.sectionDocument.Name = "sectionDocument";
-            this.sectionDocument.Size = new System.Drawing.Size(796, 215);
-            this.sectionDocument.TabIndex = 5;
-            this.sectionDocument.Titre = "Documents";
+            this.section_info_patient.BackColor = System.Drawing.Color.White;
+            this.section_info_patient.Location = new System.Drawing.Point(3, 3);
+            this.section_info_patient.Name = "section_info_patient";
+            this.section_info_patient.Size = new System.Drawing.Size(1014, 671);
+            this.section_info_patient.TabIndex = 0;
+            this.section_info_patient.Titre = "I.Informations  du patient";
             // 
-            // sectionNoteClinique
+            // section_motif
             // 
-            this.sectionNoteClinique.BackColor = System.Drawing.Color.White;
-            this.sectionNoteClinique.Location = new System.Drawing.Point(3, 1201);
-            this.sectionNoteClinique.Name = "sectionNoteClinique";
-            this.sectionNoteClinique.Size = new System.Drawing.Size(796, 215);
-            this.sectionNoteClinique.TabIndex = 1;
-            this.sectionNoteClinique.Titre = "Notes Cliniques";
+            this.section_motif.BackColor = System.Drawing.Color.White;
+            this.section_motif.Location = new System.Drawing.Point(3, 680);
+            this.section_motif.Name = "section_motif";
+            this.section_motif.Size = new System.Drawing.Size(1014, 345);
+            this.section_motif.TabIndex = 1;
+            this.section_motif.Titre = " Motif et historique de la maladie";
             // 
-            // sectionPrescription
+            // section_antecedents
             // 
-            this.sectionPrescription.BackColor = System.Drawing.Color.White;
-            this.sectionPrescription.Location = new System.Drawing.Point(3, 980);
-            this.sectionPrescription.Name = "sectionPrescription";
-            this.sectionPrescription.Size = new System.Drawing.Size(796, 215);
-            this.sectionPrescription.TabIndex = 4;
-            this.sectionPrescription.Titre = "Préscription";
+            this.section_antecedents.BackColor = System.Drawing.Color.White;
+            this.section_antecedents.Location = new System.Drawing.Point(3, 1031);
+            this.section_antecedents.Name = "section_antecedents";
+            this.section_antecedents.Size = new System.Drawing.Size(1014, 420);
+            this.section_antecedents.TabIndex = 4;
+            this.section_antecedents.Titre = "IV. Antecédents";
             // 
-            // sectionEEG
+            // section_examens
             // 
-            this.sectionEEG.AutoScroll = true;
-            this.sectionEEG.BackColor = System.Drawing.Color.White;
-            this.sectionEEG.Location = new System.Drawing.Point(3, 674);
-            this.sectionEEG.Name = "sectionEEG";
-            this.sectionEEG.Size = new System.Drawing.Size(796, 300);
-            this.sectionEEG.TabIndex = 3;
-            this.sectionEEG.Titre = "EEG";
+            this.section_examens.BackColor = System.Drawing.Color.White;
+            this.section_examens.Location = new System.Drawing.Point(3, 1457);
+            this.section_examens.Name = "section_examens";
+            this.section_examens.Size = new System.Drawing.Size(1014, 1171);
+            this.section_examens.TabIndex = 3;
+            this.section_examens.Titre = "Tous les examens";
             // 
-            // sectionConsultation
+            // section_autre
             // 
-            this.sectionConsultation.BackColor = System.Drawing.Color.White;
-            this.sectionConsultation.Location = new System.Drawing.Point(3, 453);
-            this.sectionConsultation.Name = "sectionConsultation";
-            this.sectionConsultation.Size = new System.Drawing.Size(796, 215);
-            this.sectionConsultation.TabIndex = 2;
-            this.sectionConsultation.Titre = "Consultation";
-            // 
-            // sectionPsychiatrique
-            // 
-            this.sectionPsychiatrique.BackColor = System.Drawing.Color.White;
-            this.sectionPsychiatrique.Location = new System.Drawing.Point(5, 230);
-            this.sectionPsychiatrique.Margin = new System.Windows.Forms.Padding(5);
-            this.sectionPsychiatrique.Name = "sectionPsychiatrique";
-            this.sectionPsychiatrique.Size = new System.Drawing.Size(796, 215);
-            this.sectionPsychiatrique.TabIndex = 1;
-            this.sectionPsychiatrique.Titre = "Dossier Psychiatrique";
-            // 
-            // sectionAdministratif
-            // 
-            this.sectionAdministratif.BackColor = System.Drawing.Color.White;
-            this.sectionAdministratif.Location = new System.Drawing.Point(5, 5);
-            this.sectionAdministratif.Margin = new System.Windows.Forms.Padding(5);
-            this.sectionAdministratif.Name = "sectionAdministratif";
-            this.sectionAdministratif.Size = new System.Drawing.Size(796, 215);
-            this.sectionAdministratif.TabIndex = 0;
-            this.sectionAdministratif.Titre = "Informations administratives";
+            this.section_autre.BackColor = System.Drawing.Color.White;
+            this.section_autre.Location = new System.Drawing.Point(3, 2634);
+            this.section_autre.Name = "section_autre";
+            this.section_autre.Size = new System.Drawing.Size(1012, 616);
+            this.section_autre.TabIndex = 2;
+            this.section_autre.Titre = "Autres";
             // 
             // Form_Fiche_suivie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(825, 739);
+            this.ClientSize = new System.Drawing.Size(1039, 881);
             this.Controls.Add(this.panelPrincipal);
             this.Name = "Form_Fiche_suivie";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fiche de suivie du patient";
+            this.Load += new System.EventHandler(this.Form_Fiche_suivie_Load);
             this.flowSections.ResumeLayout(false);
             this.panelPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -155,13 +131,11 @@
 
         private System.Windows.Forms.FlowLayoutPanel flowSections;
         private System.Windows.Forms.Panel panelPrincipal;
-        private Fiches.SectionRepliable sectionAdministratif;
-        private Fiches.SectionRepliable sectionPsychiatrique;
-        private Fiches.SectionRepliable sectionConsultation;
-        private Fiches.SectionRepliable sectionEEG;
-        private Fiches.SectionRepliable sectionPrescription;
-        private Fiches.SectionRepliable sectionNoteClinique;
-        private Fiches.SectionRepliable sectionDocument;
+        private Fiches.SectionRepliable section_info_patient;
+        private Fiches.SectionRepliable section_motif;
+        private Fiches.SectionRepliable section_autre;
+        private Fiches.SectionRepliable section_antecedents;
+        private Fiches.SectionRepliable section_examens;
 
 
     }

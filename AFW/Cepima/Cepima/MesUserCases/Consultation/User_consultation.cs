@@ -17,6 +17,7 @@ namespace Cepima.MesUserCases
         int ID_PATIENT;
         int ID_DEMANDE;
         int id_diagnostic;
+        int idConsultation;
         string Type_consultation = "";
 
         public User_consultation(int Patient_Id, int Demande_Id)
@@ -230,7 +231,7 @@ namespace Cepima.MesUserCases
                                 patient_id,
                                 id_demande,
                                 type_consultation,
-                                motif,
+                                motif,historique_maladie,diagnostic;
                                 symptomes_depuis,
                                 symptome_insomnie,
                                 symptome_anxiete,
@@ -256,7 +257,7 @@ namespace Cepima.MesUserCases
                                 @patient,
                                 @id_demande,
                                 @type,
-                                @motif,
+                                @motif,@historique,@dia,
                                 @depuis,
                                 @insomnie,
                                 @anxiete,
@@ -320,6 +321,9 @@ namespace Cepima.MesUserCases
                                 MySqlDbType.Text).Value =
                                 tb_motif.Text;
 
+                            cmd.Parameters.AddWithValue("@hostorique",ric_hostorique.Text);
+
+                            cmd.Parameters.AddWithValue("@hdia", rich_diagnostic_prese.Text);
                             // =============================================
                             // SYMPTOMES DEPUIS
                             // =============================================
@@ -454,8 +458,7 @@ namespace Cepima.MesUserCases
 
                             // =============================================
 
-                            long idConsultation =
-                                cmd.LastInsertedId;
+                             idConsultation = Convert.ToInt32(cmd.LastInsertedId);
                         }
 
                         // =================================================
@@ -506,6 +509,10 @@ namespace Cepima.MesUserCases
                             "Enregistrement",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
+
+                        // Lancer le formulaire des antécédents
+                        MesUserCases.Consultation.FormAntecedents ant = new Consultation.FormAntecedents(ID_PATIENT,idConsultation);
+                        ant.ShowDialog();
                     }
                     catch (Exception ex)
                     {
@@ -575,6 +582,11 @@ namespace Cepima.MesUserCases
                 Type_consultation =
                     "Consultation d'urgence";
             }
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -357,6 +357,12 @@
     <Compile Include="MesUserCases\Comptabilité\Livre_Caisse.Designer.cs">
       <DependentUpon>Livre_Caisse.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Consultation\FormAntecedents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Consultation\FormAntecedents.Designer.cs">
+      <DependentUpon>FormAntecedents.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Consultation\UC_cons_demande.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -477,23 +483,23 @@
     <Compile Include="MesForms\Fiches\User_consultation.Designer.cs">
       <DependentUpon>User_consultation.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Fiches\User_EEG_fiche.cs">
+    <Compile Include="MesForms\Fiches\User_antecedant.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MesForms\Fiches\User_EEG_fiche.Designer.cs">
-      <DependentUpon>User_EEG_fiche.cs</DependentUpon>
+    <Compile Include="MesForms\Fiches\User_antecedant.Designer.cs">
+      <DependentUpon>User_antecedant.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Fiches\User_note_clinique.cs">
+    <Compile Include="MesForms\Fiches\User_examens.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MesForms\Fiches\User_note_clinique.Designer.cs">
-      <DependentUpon>User_note_clinique.cs</DependentUpon>
+    <Compile Include="MesForms\Fiches\User_examens.Designer.cs">
+      <DependentUpon>User_examens.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Fiches\User_prescription.cs">
+    <Compile Include="MesForms\Fiches\User_Other.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MesForms\Fiches\User_prescription.Designer.cs">
-      <DependentUpon>User_prescription.cs</DependentUpon>
+    <Compile Include="MesForms\Fiches\User_Other.Designer.cs">
+      <DependentUpon>User_Other.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\FormConnexion.cs">
       <SubType>Form</SubType>
@@ -895,14 +901,14 @@
     <EmbeddedResource Include="MesForms\Fiches\User_consultation.resx">
       <DependentUpon>User_consultation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Fiches\User_EEG_fiche.resx">
-      <DependentUpon>User_EEG_fiche.cs</DependentUpon>
+    <EmbeddedResource Include="MesForms\Fiches\User_antecedant.resx">
+      <DependentUpon>User_antecedant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Fiches\User_note_clinique.resx">
-      <DependentUpon>User_note_clinique.cs</DependentUpon>
+    <EmbeddedResource Include="MesForms\Fiches\User_examens.resx">
+      <DependentUpon>User_examens.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Fiches\User_prescription.resx">
-      <DependentUpon>User_prescription.cs</DependentUpon>
+    <EmbeddedResource Include="MesForms\Fiches\User_Other.resx">
+      <DependentUpon>User_Other.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormConnexion.resx">
       <DependentUpon>FormConnexion.cs</DependentUpon>
@@ -1027,6 +1033,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Comptabilité\Livre_Caisse.resx">
       <DependentUpon>Livre_Caisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Consultation\FormAntecedents.resx">
+      <DependentUpon>FormAntecedents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Consultation\UC_cons_demande.resx">
       <DependentUpon>UC_cons_demande.cs</DependentUpon>

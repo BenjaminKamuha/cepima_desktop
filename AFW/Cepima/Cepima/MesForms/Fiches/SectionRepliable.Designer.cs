@@ -50,7 +50,7 @@
             this.panelSection.Name = "panelSection";
             this.panelSection.ShadowColor = System.Drawing.Color.Gray;
             this.panelSection.ShadowDepth = 5;
-            this.panelSection.Size = new System.Drawing.Size(796, 300);
+            this.panelSection.Size = new System.Drawing.Size(991, 671);
             this.panelSection.TabIndex = 2;
             // 
             // panelContent
@@ -63,7 +63,7 @@
             this.panelContent.Name = "panelContent";
             this.panelContent.ShadowColor = System.Drawing.Color.Gray;
             this.panelContent.ShadowDepth = 10;
-            this.panelContent.Size = new System.Drawing.Size(796, 255);
+            this.panelContent.Size = new System.Drawing.Size(991, 626);
             this.panelContent.TabIndex = 1;
             // 
             // panelHeader
@@ -78,7 +78,7 @@
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.ShadowColor = System.Drawing.Color.Gray;
             this.panelHeader.ShadowDepth = 10;
-            this.panelHeader.Size = new System.Drawing.Size(796, 45);
+            this.panelHeader.Size = new System.Drawing.Size(991, 45);
             this.panelHeader.TabIndex = 1;
             // 
             // btnToggle
@@ -87,7 +87,7 @@
             this.btnToggle.FlatAppearance.BorderSize = 0;
             this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnToggle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnToggle.Location = new System.Drawing.Point(757, 7);
+            this.btnToggle.Location = new System.Drawing.Point(952, 7);
             this.btnToggle.Name = "btnToggle";
             this.btnToggle.Size = new System.Drawing.Size(26, 33);
             this.btnToggle.TabIndex = 1;
@@ -112,7 +112,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panelSection);
             this.Name = "SectionRepliable";
-            this.Size = new System.Drawing.Size(796, 300);
+            this.Size = new System.Drawing.Size(991, 671);
             this.panelSection.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

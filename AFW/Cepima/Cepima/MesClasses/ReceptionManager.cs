@@ -112,14 +112,14 @@ namespace Cepima.MesClasses
         }
 
         //================================ Save signes vitaux =======================================================
-        public static void SaveSigneVitaux(string patient_id, decimal temperature, string tension, string frequence, decimal poids, decimal taille)
+        public static void SaveSigneVitaux(string patient_id, decimal temperature, string tension, string frequence, decimal poids, decimal taille,string etat)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string query = "INSERT INTO signes_vitaux(id_patient,temperature,tension,frequence_cardiaque,poids,taille,date_prise)VALUES(@patient,@temp,@tension,@frequency,@poids,@taille,CURDATE())";
+                    string query = "INSERT INTO signes_vitaux(id_patient,temperature,tension,frequence_cardiaque,poids,taille,etat,date_prise)VALUES(@patient,@temp,@tension,@frequency,@poids,@taille,@etat,CURDATE())";
                     ManagerClasse.request_params.Clear();
                     ManagerClasse.request_params.Add("@patient", patient_id);
                     ManagerClasse.request_params.Add("@temp", temperature.ToString());
@@ -127,6 +127,7 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@frequency", frequence.ToString());
                     ManagerClasse.request_params.Add("@poids", poids.ToString());
                     ManagerClasse.request_params.Add("@taille", taille.ToString());
+                    ManagerClasse.request_params.Add("@etat", etat.ToString());
                     ManagerClasse.CRUD(query, ManagerClasse.request_params);
 
                     // Initialisation facture
