@@ -26,8 +26,8 @@ namespace Cepima.MesForms
                 Application.StartupPath,
                 "session.dat");
 
-            tb_username.Text = "richard";
-            tb_password.Text = "richard";
+            tb_username.Text = "cepima";
+            tb_password.Text = "admin12";
 
             DisplayNotice();
         }
