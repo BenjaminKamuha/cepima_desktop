@@ -1,0 +1,44 @@
+# Systèmes d'exploitation
+*.DS_Store
+Thumbs.db
+
+# Fichiers générés par Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build et binaires
+bin/
+obj/
+[Bb]uild/
+*.dll
+*.exe
+*.app
+*.log
+*.pdb
+*.py
+
+# Packages NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+
+# Configuration utilisateur
+*.env
+appsettings*.json
+
+# Autres fichiers générés
+*.bak
+*.swp
+*.tmp
+*.cache
+*.class
+# Fichiers ReSharper et autres outils de l'IDE
+_ReSharper*/
+*.DotSettings.user
+
+# Logs
+*.log
+*.tlog
