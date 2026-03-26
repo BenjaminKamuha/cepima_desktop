@@ -1,0 +1,27 @@
+﻿using System;
+
+namespace AfridaLicenseManager.Security
+{
+    public static class RsaKeyStore
+    {
+        // 🔐 CLÉ PUBLIQUE (utilisée côté client)
+        public const string PublicKey =
+@"<RSAKeyValue>
+<Modulus>5dBnKtA5Ay0sd51EAyDvomUqjoMtJzEk0xgioDOjgyXll2MRlZMGrQBXnJypmgNXoYLd6e6umABKgfV1I+Kt/Yj3kRxSfjxGvU/bmGqI5i0c5txOTQVhKzAezaWQYMkRvA38wLX/haFjpm3bEllKk2pCvsPFsTelobODlyxbXOtgi35IUdIcQWZQs/W/s7Wpbxwtba1NkhMDdSJXs6X7Gna1HZ6xzCxBHKGfRcB05hCYHTjGBEOe6o3A+IxHaEwZhO27sBjqz6/FBvyk9ewm5y0JxX8w+5NB3b+zLdFRPSVg9jKBVIH3evLeBmMHfViuIHiTpdUn/K3aWyY8adEKTQ==</Modulus>
+<Exponent>AQAB</Exponent>
+</RSAKeyValue>";
+
+        // 🔒 CLÉ PRIVÉE (utilisée UNIQUEMENT pour générer)
+        public const string PrivateKey =
+@"<RSAKeyValue>
+<Modulus>5dBnKtA5Ay0sd51EAyDvomUqjoMtJzEk0xgioDOjgyXll2MRlZMGrQBXnJypmgNXoYLd6e6umABKgfV1I+Kt/Yj3kRxSfjxGvU/bmGqI5i0c5txOTQVhKzAezaWQYMkRvA38wLX/haFjpm3bEllKk2pCvsPFsTelobODlyxbXOtgi35IUdIcQWZQs/W/s7Wpbxwtba1NkhMDdSJXs6X7Gna1HZ6xzCxBHKGfRcB05hCYHTjGBEOe6o3A+IxHaEwZhO27sBjqz6/FBvyk9ewm5y0JxX8w+5NB3b+zLdFRPSVg9jKBVIH3evLeBmMHfViuIHiTpdUn/K3aWyY8adEKTQ==</Modulus>
+<Exponent>AQAB</Exponent>
+<P>6g8dgjy7C1oQRqO2PnSsFp9MhjiYhXymLk87hAfsdTGClg5RXVZ/8NjTtQUvCKg449Zz0ktZBYhyY/2KqSKVWXhgBjmRS3jjElUmJ5FJxWyGSzNJhruaIdp3RpLArX2mCSOcnb5UvIP640RFqQJU7YNfWpRDjfnEh8KaTSbHefM=</P>
+<Q>+1trCReI8IeX6e79iJcS2YzfqW2vGn9HEWM7upe0pNvGX0FmYz2uwjVYFgWztmAXCsoAZkFBKxYunfRQUkMRWu4W+iR3EcoAUGpXLIo2nLkhrNjzG9qIssNjmUn57FVf27ocDJPxR6fPqaWHTMLt7DnX4qbArVYii9rbZGw0Or8=</Q>
+<DP>3PkyQc/2Qwxfi2FqYGKkSaNRivKJxJTfC5+QL+GPM0Fv6R1RYc6VcZwzm5ZuRj0ToL7JkEPEov2kCZTIQVA+Mj78YUQeUWOq9ZbgM8DuJe6EhyC/jO024jkwHLfWIrUaeUxew2p685Oi3MeLALoL1kUOVCTf9n1VN1rZdHdlIlM=</DP>
+<DQ>vQJ8VUTmS4CawmVdLtXzbbXaBeydrH4i8bc+Fcy4IPPGkqB6HowmmpFEYKL/BVfyW8GUVVAicgTnHw21THZ0WX0JuCWth6nvXIjqbmqsMGOiJ/inrr1A57O3dHBFR+rW/0JOj0K8P5a3uCjpudYm1OiWJzAfWPiZV7NGIJihGb8=</DQ>
+<InverseQ>Og8glVUsWyPCYKY8OESQXKexWDRlWQhIUNpRahcsQTr9voFemG/mMVXjf7XXrV4dLdSGbTnM6Htbrdt0RnGCq9ENceE1a3SlTK3rERdM85FmFBUQsTeGLm076ACHM57qsWI7xI3MQb0EVb1vZEJS3TBsptipjQDZRnTBX+4skq4=</InverseQ>
+<D>JxhuBJWJrWWo8+xYHqQiwCCvvbDJJKqylgq8ET7XqT7wMPHUkvqBHzs4rFbmb2H0LXDC6cIGB6u9ASDNvb4ZVVFQtGn6CqmcayZDuEkfYvD3wrplw6qPnjZAd0GcLyrljnVeszYC8yvCdRSpORThn/RqyGMrpXtO/RQ55aTRIhxCKxhC/2uHTGJeuumrMH/DgoSrSpmcjzd7dwl+aa5uzrwirheEn77NxN38rcr73m6hJq2VV28GaXosASp2QNj8O9N9CHfybKp0aa9aBN5iiX1mx3pwGQeoPj9iR6AysaYLiWpozmN+f8/fBJrvBr8H856w4dkK+lWSh8CZzfRa7Q==</D>
+</RSAKeyValue>";
+    }
+}

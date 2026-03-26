@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIFramework", "UIFramework\UIFramework.csproj", "{CCC43331-D3E0-46DB-98D9-96892205D586}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfridaLicenseManager", "AfridaLicenseManager\AfridaLicenseManager.csproj", "{4C38BDFD-13F5-41A5-A615-F8465CBFC1DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyProject", "MyProject\MyProject.csproj", "{76243912-E1C8-42BC-9299-0F08CEE50DBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfridaLicenseOnline", "AfridaLicenseOnline\AfridaLicenseOnline.csproj", "{C5041414-E519-448E-B604-5052D3DA502B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateLicenceAfrida", "GenerateLicenceAfrida\GenerateLicenceAfrida.csproj", "{5C85CDCD-8802-4ECE-AF88-79EEE37DF437}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nz_Shop", "nz-shop\Nz_Shop\Nz_Shop.csproj", "{BDA535D0-2F70-4491-8CA2-720173211B42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCC43331-D3E0-46DB-98D9-96892205D586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCC43331-D3E0-46DB-98D9-96892205D586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCC43331-D3E0-46DB-98D9-96892205D586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCC43331-D3E0-46DB-98D9-96892205D586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C38BDFD-13F5-41A5-A615-F8465CBFC1DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C38BDFD-13F5-41A5-A615-F8465CBFC1DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C38BDFD-13F5-41A5-A615-F8465CBFC1DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C38BDFD-13F5-41A5-A615-F8465CBFC1DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76243912-E1C8-42BC-9299-0F08CEE50DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76243912-E1C8-42BC-9299-0F08CEE50DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76243912-E1C8-42BC-9299-0F08CEE50DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76243912-E1C8-42BC-9299-0F08CEE50DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5041414-E519-448E-B604-5052D3DA502B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5041414-E519-448E-B604-5052D3DA502B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5041414-E519-448E-B604-5052D3DA502B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5041414-E519-448E-B604-5052D3DA502B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C85CDCD-8802-4ECE-AF88-79EEE37DF437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C85CDCD-8802-4ECE-AF88-79EEE37DF437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C85CDCD-8802-4ECE-AF88-79EEE37DF437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C85CDCD-8802-4ECE-AF88-79EEE37DF437}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA535D0-2F70-4491-8CA2-720173211B42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA535D0-2F70-4491-8CA2-720173211B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA535D0-2F70-4491-8CA2-720173211B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA535D0-2F70-4491-8CA2-720173211B42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
