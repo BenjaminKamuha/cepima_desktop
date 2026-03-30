@@ -60,6 +60,7 @@
     <Compile Include="Controls\BarChartControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Bunifu_rounded.cs" />
     <Compile Include="Controls\ButtonEx.cs">
       <SubType>UserControl</SubType>
     </Compile>

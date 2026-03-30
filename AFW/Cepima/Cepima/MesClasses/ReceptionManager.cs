@@ -1,0 +1,94 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+namespace Cepima.MesClasses
+{
+    class ReceptionManager
+    {
+        // Enregistrement du patient
+        public static void ServiceCepima(string centre_id, string name_centre, string description)
+        {
+            using (MySqlConnection con = ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+                try
+                {
+                    string queryService = "INSERT INTO services(id_centre,nom_centre,description)VALUES(@id,@name,@desc)";
+                    ManagerClasse.request_params.Clear();
+                    ManagerClasse.request_params.Add("@id", centre_id);
+                    ManagerClasse.request_params.Add("@name", name_centre);
+                    ManagerClasse.request_params.Add("@desc", description);
+                    ManagerClasse.CRUD(queryService, ManagerClasse.request_params);
+                    tr.Commit();
+                    MessageBox.Show("Service ajouté avec succès !!");
+                }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur d'ajout du service " + ex.Message);
+                }
+            }
+        }
+
+        //===============================Enregistrement du patient ===============================
+        public void SavePatient(int numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse)
+        {
+            using (MySqlConnection con = ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+                try
+                {
+                    string queryInsertPatient = "INSERT INTO patient(numero_fiche,nom,post_nom,prenom,sexe,date_naissance,telephone,adresse,date_creation)VALUES(@numero,@nom,@post,@prenom,@sexe,@naissance,@phone,@adresse,CURDATE())";
+                    ManagerClasse.request_params.Clear();
+                    ManagerClasse.request_params.Add("@numero", numeroFiche.ToString());
+                    ManagerClasse.request_params.Add("@nom", nom);
+                    ManagerClasse.request_params.Add("@post", postnom);
+                    ManagerClasse.request_params.Add("@prenom", prenom);
+                    ManagerClasse.request_params.Add("@sexe", genre);
+                    ManagerClasse.request_params.Add("@naissance", dateNaissance.ToString("yyyy-MM-dd"));
+                    ManagerClasse.request_params.Add("@phone", phoneNumber);
+                    ManagerClasse.request_params.Add("@adresse", adresse);
+                    ManagerClasse.CRUD(queryInsertPatient, ManagerClasse.request_params);
+                    tr.Commit();
+                    MessageBox.Show("Patient enregistré avec succès !!", "Enregistrement du patient");
+                }
+                catch (MySqlException ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur d'ajout du patient :" + ex.Message);
+                }
+            }
+        }
+
+        // ==============================Enregistrer la consultation =====================================
+        public void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string motif, string diagnostic)
+        {
+            using (MySqlConnection con = ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+                try
+                {
+                    string queryConsultation = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,motid,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@motif,@diagnostic)";
+                    ManagerClasse.request_params.Clear();
+                    ManagerClasse.request_params.Add("@patient",patient_id);
+                    ManagerClasse.request_params.Add("@centre",centre_id);
+                    ManagerClasse.request_params.Add("@personnel",personnel_id);
+                    ManagerClasse.request_params.Add("@motif",motif);
+                    ManagerClasse.request_params.Add("@diagnostic",diagnostic);
+                    ManagerClasse.CRUD(queryConsultation,ManagerClasse.request_params);
+                    tr.Commit();
+                    MessageBox.Show("Consultation ajoutée avec succès !!","Consultation");
+                }
+                catch (MySqlException ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur d'ajout de la consultation : " + ex.Message);
+                }
+            }
+        }
+    }
+}
