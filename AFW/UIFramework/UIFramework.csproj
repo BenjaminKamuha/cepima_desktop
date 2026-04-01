@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -60,7 +61,9 @@
     <Compile Include="Controls\BarChartControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Bunifu_rounded.cs" />
+    <Compile Include="Controls\Bunifu_rounded.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ButtonEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +85,12 @@
     </Compile>
     <Compile Include="Controls\RoundedPanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Rounded_button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Rounded_TextBox.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\SideBarMenu.cs">
       <SubType>Component</SubType>
