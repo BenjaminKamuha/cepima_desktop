@@ -35,16 +35,16 @@ namespace Cepima.MesClasses
         }
 
         //===============================Enregistrement du patient ===============================
-        public void SavePatient(int numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse)
+        public  static void SavePatient(string numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string queryInsertPatient = "INSERT INTO patient(numero_fiche,nom,post_nom,prenom,sexe,date_naissance,telephone,adresse,date_creation)VALUES(@numero,@nom,@post,@prenom,@sexe,@naissance,@phone,@adresse,CURDATE())";
+                    string queryInsertPatient = "INSERT INTO patients(numero_fiche,nom,post_nom,prenom,sexe,date_naissance,telephone,adresse,date_creation)VALUES(@numero,@nom,@post,@prenom,@sexe,@naissance,@phone,@adresse,CURDATE())";
                     ManagerClasse.request_params.Clear();
-                    ManagerClasse.request_params.Add("@numero", numeroFiche.ToString());
+                    ManagerClasse.request_params.Add("@numero", numeroFiche);
                     ManagerClasse.request_params.Add("@nom", nom);
                     ManagerClasse.request_params.Add("@post", postnom);
                     ManagerClasse.request_params.Add("@prenom", prenom);
@@ -65,7 +65,7 @@ namespace Cepima.MesClasses
         }
 
         // ==============================Enregistrer la consultation =====================================
-        public void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string motif, string diagnostic)
+        public static void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string motif, string diagnostic)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
@@ -89,6 +89,59 @@ namespace Cepima.MesClasses
                     MessageBox.Show("Erreur d'ajout de la consultation : " + ex.Message);
                 }
             }
+        }
+
+        //================================ Save signes vitaux =======================================================
+        public static void SaveSigneVitaux(string patient_id,decimal temperature,string tension,int frequence,decimal poids,decimal taille)
+        {
+            using (MySqlConnection con = ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+                try
+                {
+                    string query = "INSERT INTO signes_vitaux(id_patient,temperature,tension,frequence,poids,taille,date_prise)VALUES(@patient,@temp,@tension,@frequency,@poids,@taille,CURDATE())";
+                    ManagerClasse.request_params.Clear();
+                    ManagerClasse.request_params.Add("@patient", patient_id);
+                    ManagerClasse.request_params.Add("@temp", temperature.ToString());
+                    ManagerClasse.request_params.Add("@tension", tension);
+                    ManagerClasse.request_params.Add("@frequency", frequence.ToString());
+                    ManagerClasse.request_params.Add("@poids", poids.ToString());
+                    ManagerClasse.request_params.Add("@taille", taille.ToString());
+                    tr.Commit();
+                    MessageBox.Show("Les signes vitaux ont été ajoutés","Enregistrement");
+                }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur d'ajout des signes vitaux : "+ex.Message);
+                }
+               
+            }
+        }
+
+        // ======================================= move the label =================================
+        public static void MoveLabel(Label lbMove, Panel panelMove,int vitesse = 2)
+        {
+            Timer existingTimer = lbMove.Tag as Timer;
+            if (existingTimer != null)
+            {
+                existingTimer.Stop();
+            }
+
+            Timer timer = new Timer();
+            timer.Interval = 30;
+
+            timer.Tick += (s, e) =>
+            {
+                lbMove.Left -= vitesse;
+
+                if (lbMove.Right < 0)
+                {
+                    lbMove.Left = panelMove.Width;
+                }
+            };
+            lbMove.Tag = timer;
+            timer.Start();
         }
     }
 }

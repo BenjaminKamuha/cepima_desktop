@@ -35,6 +35,7 @@
     <Reference Include="Microsoft.TeamFoundation.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.TeamFoundation.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.TeamFoundation.Diff, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -62,10 +63,59 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesClasses\HospitalisationManager.cs" />
+    <Compile Include="MesClasses\ManagerClasse.cs" />
+    <Compile Include="MesClasses\Progressive.cs" />
+    <Compile Include="MesClasses\ReceptionManager.cs" />
+    <Compile Include="MesUserCases\User_consultation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_consultation.Designer.cs">
+      <DependentUpon>User_consultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_detail_patient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_detail_patient.Designer.cs">
+      <DependentUpon>User_detail_patient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_display_patients.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_display_patients.Designer.cs">
+      <DependentUpon>User_display_patients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_patient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_patient.Designer.cs">
+      <DependentUpon>User_patient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_signes_vitaux.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_signes_vitaux.Designer.cs">
+      <DependentUpon>User_signes_vitaux.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_consultation.resx">
+      <DependentUpon>User_consultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_detail_patient.resx">
+      <DependentUpon>User_detail_patient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_display_patients.resx">
+      <DependentUpon>User_display_patients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_patient.resx">
+      <DependentUpon>User_patient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
+      <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +125,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -94,6 +145,84 @@
       <Project>{CCC43331-D3E0-46DB-98D9-96892205D586}</Project>
       <Name>UIFramework</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cepima_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\homework_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\group_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stethoscope_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brain_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dot_point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_rounded.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contacts_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wi-fi_off_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_user_male_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stethoscope_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counselor_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male_user_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_noir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_noir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_property_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trasch_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_property_20px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing;
 namespace Cepima.MesClasses
 {
     class ManagerClasse
@@ -122,6 +123,156 @@ namespace Cepima.MesClasses
                 cmd.ExecuteNonQuery();
             }
             return null;
+        }
+
+        // Centrer les éléments
+        public static Control CenterObject(Control childControl, Control parentControl)
+        {
+            parentControl.Controls.Add(childControl);
+
+            int x = (parentControl.ClientSize.Width - childControl.Width) / 2;
+            int y = (parentControl.ClientSize.Height - childControl.Height) / 2;
+
+            childControl.Location = new Point(Math.Max(0, x), Math.Max(0, y));
+
+            parentControl.Resize += (s, e) =>
+            {
+                int newX = (parentControl.ClientSize.Width - childControl.Width) / 2;
+                int newY = (parentControl.ClientSize.Height - childControl.Height) / 2;
+                childControl.Location = new Point(Math.Max(0, newX), Math.Max(0, newY));
+            };
+
+            return childControl;
+        }
+        // Variables positionnement pour la methode (Addcontrol)
+        public static Control last_added = null;
+        public static int parentWidthRestant = 0;
+        public static int parentHeight_restant = 0;
+        public static void AddControl(Control parent, Control child, int constanteX = 20, int ConstateY = 20, int decalageX = 3, int decalageY = 3, bool scrolling = false)
+        {
+
+            child.Visible = false;
+            // Récupération de la taille du control parent
+            int parentWidth = parent.Width;
+            int parentHeight = parent.Height;
+
+            Control Control_precedent_X = null;
+            Control Control_precedent_Y = null;
+
+            // Vérifier s'il y a d'autre controle enfant
+            List<Control> autres_controls = new List<Control>();
+            List<Int32> position_X = new List<Int32>();
+            List<Int32> position_Y = new List<Int32>();
+            List<Int32> width_X = new List<Int32>();
+
+
+            foreach (Control autre_control in parent.Controls)
+            {
+                autres_controls.Add(autre_control);
+            }
+
+            // S'il y'a des controls dans parent, on récupère les positions
+            if (autres_controls.Count() == 0)
+            {
+                child.Location = new Point(constanteX, ConstateY);
+                parent.Controls.Add(child);
+                last_added = child;
+                parentWidthRestant = parentWidth - (last_added.Width + last_added.Location.X + constanteX);
+            }
+
+            else
+            {
+                // on récupère max_X et max_Y
+
+                last_added = autres_controls.Last();
+
+                foreach (Control autre_control in autres_controls)
+                {
+                    position_X.Add(autre_control.Location.X);
+                    position_Y.Add(autre_control.Location.Y);
+
+                }
+
+                // Récupération de la taille restante du control parent
+
+                if (parentWidthRestant > child.Size.Width)
+                {
+                    child.Location = new Point(last_added.Width + last_added.Location.X + (constanteX * decalageX), last_added.Location.Y);
+                    parent.Controls.Add(child);
+                    last_added = child;
+                    parentWidthRestant = parentWidth - (last_added.Width + constanteX + last_added.Location.X);
+
+                }
+                else
+                {
+                    child.Location = new Point(constanteX, last_added.Height + last_added.Location.Y + (ConstateY * decalageY));
+                    parent.Controls.Add(child);
+                    last_added = child;
+                    parentWidthRestant = parentWidth - (last_added.Width + last_added.Location.X + constanteX);
+
+                }
+            }
+        }
+        public static void focused_child(Control parent, Control child, Color? child_color = null, Color? others_controls_color = null)
+        {
+            foreach (Control ctr in parent.Controls)
+            {
+                if (ctr is Button)
+                {
+                    ctr.BackColor = others_controls_color ?? ColorTranslator.FromHtml("#F7FAFC");
+                    ctr.Font = new Font("Calibri", 8, FontStyle.Regular);
+                    ctr.ForeColor = Color.Black;
+                }
+                child.BackColor = child_color ?? ColorTranslator.FromHtml("#F0434F63");
+                child.Font = new Font("Calibri ", 9, FontStyle.Bold);
+                child.ForeColor = Color.White;
+
+            }
+        }
+        // Fonction pour Ajouter un label 
+        public static Label CustomLabel(string text = "Custom Label", Point? location = null, int font_size = 8, FontStyle? font_style = null)
+        {
+            Label label = new Label
+            {
+                Text = text,
+                Location = location ?? new Point(20, 20),
+                AutoSize = true,
+                Font = new Font("Segoe UI", font_size, font_style ?? FontStyle.Regular),
+                ForeColor = Color.FromArgb(69, 64, 50),
+                Margin = new Padding(20, 10, 20, 10),
+            };
+
+            return label;
+        }
+
+        // Fonction pour ajouter l'image
+        public static PictureBox AddPicture(Image img, Point location, Size size)
+        {
+            PictureBox picture = new PictureBox
+            {
+                Image = img,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Location = location,
+                Size = size
+            };
+
+            return picture;
+        }
+        // Fonction pour ajouter un bouton
+        public static RoundedButton Rbutton(string text = "Button", Point? location = null, Size? size = null, Color? bgc = null, Color? fgc = null)
+        {
+            RoundedButton btn = new RoundedButton();
+            btn.Location = location ?? new Point(20, 20);
+            btn.Size = size ?? new Size(100, 40);
+            btn.AutoSize = true;
+            btn.ButtonText = text;
+            btn.DefaultBackColor = bgc ?? Color.SkyBlue;
+            btn.ForeColor = fgc ?? Color.Black;
+            btn.BorderRadius = 10;
+            btn.BorderSize = 0;
+            btn.Font = new Font("Verdana", 8, FontStyle.Bold);
+
+            return btn;
         }
     }
     //class session
