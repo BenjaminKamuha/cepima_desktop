@@ -65,12 +65,25 @@
     </Compile>
     <Compile Include="MesClasses\HospitalisationManager.cs" />
     <Compile Include="MesClasses\ManagerClasse.cs" />
+    <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
     <Compile Include="MesUserCases\User_consultation.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\User_consultation.Designer.cs">
       <DependentUpon>User_consultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_detail_patient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_detail_patient.Designer.cs">
+      <DependentUpon>User_detail_patient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_display_patients.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_display_patients.Designer.cs">
+      <DependentUpon>User_display_patients.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_patient.cs">
       <SubType>UserControl</SubType>
@@ -91,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_consultation.resx">
       <DependentUpon>User_consultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_detail_patient.resx">
+      <DependentUpon>User_detail_patient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_display_patients.resx">
+      <DependentUpon>User_display_patients.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_patient.resx">
       <DependentUpon>User_patient.cs</DependentUpon>
@@ -165,6 +184,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\steto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counselor_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male_user_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_noir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_noir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_property_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trasch_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_property_20px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

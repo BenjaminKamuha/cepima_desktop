@@ -57,5 +57,79 @@ namespace Cepima.MesUserCases
                 }
             }
         }
+
+        private bool VerifierChampsSignesVitaux()
+        {
+            // comboBox_patients
+            if (cbx_patient_signes.SelectedIndex == -1)
+            {
+                User_patient.erreur.SetError(cbx_patient_signes, "Vous devez sélectionner un patient");
+                return false;
+            }
+            else
+            {
+                User_patient.erreur.SetError(cbx_patient_signes, "");
+            }
+
+            // tb_temperature
+            if (tb_temperature.Text.Trim() == "")
+            {
+                User_patient.erreur.SetError(tb_temperature, "Ce champ est obligatoire");
+                tb_temperature.Focus();
+                return false;
+            }
+            else
+            {
+                User_patient.erreur.SetError(tb_temperature, "");
+            }
+
+            // tb_tension
+            if (tb_tension.Text.Trim() == "")
+            {
+                User_patient.erreur.SetError(tb_tension, "Ce champ est obligatoire");
+                tb_tension.Focus();
+                return false;
+            }
+            else
+            {
+                User_patient.erreur.SetError(tb_tension, "");
+            }
+
+            //  tb_fréquence
+            if (tb_frequence.Text.Trim() == "")
+            {
+                User_patient.erreur.SetError(tb_frequence, "Ce champ est obligatoire");
+                tb_frequence.Focus();
+                return false;
+            }
+            else
+            {
+                User_patient.erreur.SetError(tb_frequence, "");
+            }
+
+            //  tb_ poids
+            if (tb_poids.Text.Trim() == "")
+            {
+                User_patient.erreur.SetError(tb_poids, "Ce champ est obligatoire");
+                tb_poids.Focus();
+                return false;
+            }
+            else
+            {
+                User_patient.erreur.SetError(tb_poids, "");
+            }
+
+            // tb_ taille
+            if (tb_taille.Text.Trim() == string.Empty)
+            {
+                User_patient.erreur.SetError(tb_taille, "Ce champs est obligatoire");
+                return false;
+            }
+            else
+            {
+                User_patient.erreur.SetError(tb_taille, "");
+            }
+            return true;
+        }
     }
 }

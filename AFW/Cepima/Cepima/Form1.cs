@@ -12,9 +12,11 @@ namespace Cepima
 {
     public partial class Form1 : Form
     {
+        public static Panel GlobalPanel_main { get; set; }
         public Form1()
         {
             InitializeComponent();
+            GlobalPanel_main = panel_center_main;
         }
 
         private void bt_close_Click(object sender, EventArgs e)
@@ -33,14 +35,25 @@ namespace Cepima
             patient.Dock = DockStyle.Fill;
             panel_center_main.Controls.Clear();
             panel_center_main.Controls.Add(patient);
+            GlobalPanel_main = panel_center_main;
         }
 
         private void bt_signe_vitaux_Click(object sender, EventArgs e)
         {
+            GlobalPanel_main = panel_center_main;
             MesUserCases.User_signes_vitaux signes = new MesUserCases.User_signes_vitaux();
             signes.Dock = DockStyle.Fill;
             panel_center_main.Controls.Clear();
             panel_center_main.Controls.Add(signes);
+        }
+
+        private void bt_consultation_Click(object sender, EventArgs e)
+        {
+            GlobalPanel_main = panel_center_main;
+            MesUserCases.User_consultation consultation = new MesUserCases.User_consultation();
+            consultation.Dock = new DockStyle();
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(consultation);
         }
 
     }

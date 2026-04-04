@@ -74,6 +74,7 @@
     <Compile Include="Controls\Control.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\CustomRoundedButton.cs" />
     <Compile Include="Controls\DonutChartControl.cs">
       <SubType>Component</SubType>
     </Compile>

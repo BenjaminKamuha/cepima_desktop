@@ -12,7 +12,7 @@ namespace Cepima.MesUserCases
 {
     public partial class User_patient : UserControl
     {
-        ErrorProvider erreur = new ErrorProvider();
+         public static ErrorProvider erreur = new ErrorProvider();
         public User_patient()
         {
             InitializeComponent();
@@ -153,6 +153,19 @@ namespace Cepima.MesUserCases
             }
 
             return true;
+        }
+
+        private void bt_display_patients(object sender, EventArgs e)
+        {
+            MesUserCases.User_display_patients patients = new User_display_patients();
+            patients.Dock = DockStyle.Fill;
+            Form1.GlobalPanel_main.Controls.Clear();
+            Form1.GlobalPanel_main.Controls.Add(patients);
+        }
+
+        private void tb_adresse_TextChanged(object sender, EventArgs e)
+        {
+            erreur.SetError(tb_adresse,"");
         }
     }
 }

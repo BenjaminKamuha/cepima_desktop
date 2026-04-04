@@ -30,14 +30,21 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.tb_phone_number = new System.Windows.Forms.TextBox();
+            this.tb_adresse = new System.Windows.Forms.TextBox();
+            this.tb_prenom = new System.Windows.Forms.TextBox();
+            this.tb_post_nom = new System.Windows.Forms.TextBox();
+            this.tb_name_patient = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.bt_save_continuous = new test_arrondissement2012.PerfectRoundedButton();
             this.bt_save = new test_arrondissement2012.PerfectRoundedButton();
             this.bt_cancel = new test_arrondissement2012.PerfectRoundedButton();
             this.dt_naissance = new System.Windows.Forms.DateTimePicker();
             this.cbx_genre = new System.Windows.Forms.ComboBox();
+            this.myRoundedTextBox4 = new MyRoundedTextBox();
             this.myRoundedTextBox5 = new MyRoundedTextBox();
+            this.label = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,17 +54,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.myRoundedTextBox1 = new MyRoundedTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tb_name_patient = new System.Windows.Forms.TextBox();
-            this.tb_post_nom = new System.Windows.Forms.TextBox();
-            this.tb_prenom = new System.Windows.Forms.TextBox();
-            this.tb_adresse = new System.Windows.Forms.TextBox();
-            this.label = new System.Windows.Forms.Label();
-            this.myRoundedTextBox4 = new MyRoundedTextBox();
-            this.tb_phone_number = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bt_detail_patient = new test_arrondissement2012.PerfectRoundedButton();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -79,16 +80,6 @@
             this.label1.Size = new System.Drawing.Size(210, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Nouvelle fiche du patient";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.add_user_male_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(41, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 154);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // customRoundedPanel1
             // 
@@ -125,6 +116,72 @@
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(629, 391);
             this.customRoundedPanel1.TabIndex = 1;
+            // 
+            // tb_phone_number
+            // 
+            this.tb_phone_number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_phone_number.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_phone_number.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_phone_number.Location = new System.Drawing.Point(227, 245);
+            this.tb_phone_number.Multiline = true;
+            this.tb_phone_number.Name = "tb_phone_number";
+            this.tb_phone_number.Size = new System.Drawing.Size(280, 23);
+            this.tb_phone_number.TabIndex = 6;
+            // 
+            // tb_adresse
+            // 
+            this.tb_adresse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_adresse.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_adresse.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_adresse.Location = new System.Drawing.Point(227, 289);
+            this.tb_adresse.Multiline = true;
+            this.tb_adresse.Name = "tb_adresse";
+            this.tb_adresse.Size = new System.Drawing.Size(280, 23);
+            this.tb_adresse.TabIndex = 7;
+            this.tb_adresse.TextChanged += new System.EventHandler(this.tb_adresse_TextChanged);
+            // 
+            // tb_prenom
+            // 
+            this.tb_prenom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_prenom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_prenom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_prenom.Location = new System.Drawing.Point(228, 112);
+            this.tb_prenom.Multiline = true;
+            this.tb_prenom.Name = "tb_prenom";
+            this.tb_prenom.Size = new System.Drawing.Size(280, 23);
+            this.tb_prenom.TabIndex = 3;
+            // 
+            // tb_post_nom
+            // 
+            this.tb_post_nom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_post_nom.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_post_nom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_post_nom.Location = new System.Drawing.Point(229, 63);
+            this.tb_post_nom.Multiline = true;
+            this.tb_post_nom.Name = "tb_post_nom";
+            this.tb_post_nom.Size = new System.Drawing.Size(280, 23);
+            this.tb_post_nom.TabIndex = 2;
+            // 
+            // tb_name_patient
+            // 
+            this.tb_name_patient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_name_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_name_patient.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_name_patient.Location = new System.Drawing.Point(227, 18);
+            this.tb_name_patient.Multiline = true;
+            this.tb_name_patient.Name = "tb_name_patient";
+            this.tb_name_patient.Size = new System.Drawing.Size(280, 23);
+            this.tb_name_patient.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(227, 18);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(280, 23);
+            this.textBox1.TabIndex = 2;
             // 
             // bt_save_continuous
             // 
@@ -195,6 +252,22 @@
             this.cbx_genre.Size = new System.Drawing.Size(288, 23);
             this.cbx_genre.TabIndex = 4;
             // 
+            // myRoundedTextBox4
+            // 
+            this.myRoundedTextBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox4.BorderRadius = 4;
+            this.myRoundedTextBox4.BorderSize = 1;
+            this.myRoundedTextBox4.Enabled = false;
+            this.myRoundedTextBox4.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox4.Location = new System.Drawing.Point(223, 244);
+            this.myRoundedTextBox4.Name = "myRoundedTextBox4";
+            this.myRoundedTextBox4.PasswordChar = '\0';
+            this.myRoundedTextBox4.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox4.PlaceholderText = "";
+            this.myRoundedTextBox4.Size = new System.Drawing.Size(288, 27);
+            this.myRoundedTextBox4.TabIndex = 6;
+            this.myRoundedTextBox4.UseSystemPasswordChar = false;
+            // 
             // myRoundedTextBox5
             // 
             this.myRoundedTextBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -210,6 +283,16 @@
             this.myRoundedTextBox5.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox5.TabIndex = 6;
             this.myRoundedTextBox5.UseSystemPasswordChar = false;
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(85, 254);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(69, 14);
+            this.label.TabIndex = 0;
+            this.label.Text = "Téléphone  : ";
             // 
             // label6
             // 
@@ -318,96 +401,31 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom  : ";
             // 
-            // textBox1
+            // pictureBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(227, 18);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(280, 23);
-            this.textBox1.TabIndex = 2;
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.add_user_male_100px;
+            this.pictureBox1.Location = new System.Drawing.Point(41, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(194, 154);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
-            // tb_name_patient
+            // bt_detail_patient
             // 
-            this.tb_name_patient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.tb_name_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_name_patient.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_name_patient.Location = new System.Drawing.Point(227, 18);
-            this.tb_name_patient.Multiline = true;
-            this.tb_name_patient.Name = "tb_name_patient";
-            this.tb_name_patient.Size = new System.Drawing.Size(280, 23);
-            this.tb_name_patient.TabIndex = 1;
-            // 
-            // tb_post_nom
-            // 
-            this.tb_post_nom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.tb_post_nom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_post_nom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_post_nom.Location = new System.Drawing.Point(229, 63);
-            this.tb_post_nom.Multiline = true;
-            this.tb_post_nom.Name = "tb_post_nom";
-            this.tb_post_nom.Size = new System.Drawing.Size(280, 23);
-            this.tb_post_nom.TabIndex = 2;
-            // 
-            // tb_prenom
-            // 
-            this.tb_prenom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.tb_prenom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_prenom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_prenom.Location = new System.Drawing.Point(228, 112);
-            this.tb_prenom.Multiline = true;
-            this.tb_prenom.Name = "tb_prenom";
-            this.tb_prenom.Size = new System.Drawing.Size(280, 23);
-            this.tb_prenom.TabIndex = 3;
-            // 
-            // tb_adresse
-            // 
-            this.tb_adresse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.tb_adresse.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_adresse.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_adresse.Location = new System.Drawing.Point(227, 289);
-            this.tb_adresse.Multiline = true;
-            this.tb_adresse.Name = "tb_adresse";
-            this.tb_adresse.Size = new System.Drawing.Size(280, 23);
-            this.tb_adresse.TabIndex = 7;
-            // 
-            // label
-            // 
-            this.label.AutoSize = true;
-            this.label.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(85, 254);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(69, 14);
-            this.label.TabIndex = 0;
-            this.label.Text = "Téléphone  : ";
-            // 
-            // myRoundedTextBox4
-            // 
-            this.myRoundedTextBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox4.BorderRadius = 4;
-            this.myRoundedTextBox4.BorderSize = 1;
-            this.myRoundedTextBox4.Enabled = false;
-            this.myRoundedTextBox4.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox4.Location = new System.Drawing.Point(223, 244);
-            this.myRoundedTextBox4.Name = "myRoundedTextBox4";
-            this.myRoundedTextBox4.PasswordChar = '\0';
-            this.myRoundedTextBox4.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox4.PlaceholderText = "";
-            this.myRoundedTextBox4.Size = new System.Drawing.Size(288, 27);
-            this.myRoundedTextBox4.TabIndex = 6;
-            this.myRoundedTextBox4.UseSystemPasswordChar = false;
-            // 
-            // tb_phone_number
-            // 
-            this.tb_phone_number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.tb_phone_number.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_phone_number.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_phone_number.Location = new System.Drawing.Point(227, 245);
-            this.tb_phone_number.Multiline = true;
-            this.tb_phone_number.Name = "tb_phone_number";
-            this.tb_phone_number.Size = new System.Drawing.Size(280, 23);
-            this.tb_phone_number.TabIndex = 6;
+            this.bt_detail_patient.BackColor = System.Drawing.Color.Transparent;
+            this.bt_detail_patient.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_detail_patient.BorderRadius = 5;
+            this.bt_detail_patient.BorderSize = 0;
+            this.bt_detail_patient.ButtonText = "Afficher tous les patients";
+            this.bt_detail_patient.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_detail_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_detail_patient.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_detail_patient.Location = new System.Drawing.Point(43, 363);
+            this.bt_detail_patient.Name = "bt_detail_patient";
+            this.bt_detail_patient.Size = new System.Drawing.Size(158, 30);
+            this.bt_detail_patient.TabIndex = 2;
+            this.bt_detail_patient.Click += new System.EventHandler(this.bt_display_patients);
             // 
             // User_patient
             // 
@@ -416,13 +434,14 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.bt_detail_patient);
             this.Name = "User_patient";
             this.Size = new System.Drawing.Size(961, 424);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -456,5 +475,6 @@
         private System.Windows.Forms.TextBox tb_phone_number;
         private MyRoundedTextBox myRoundedTextBox4;
         private System.Windows.Forms.Label label;
+        private test_arrondissement2012.PerfectRoundedButton bt_detail_patient;
     }
 }

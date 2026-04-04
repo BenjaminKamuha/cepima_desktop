@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 28 Mars 2026 à 12:35
+-- Généré le: Sam 04 Avril 2026 à 14:45
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -357,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `medicament` (
   `id_medicament` int(11) NOT NULL AUTO_INCREMENT,
   `nom_medicament` varchar(50) DEFAULT NULL,
   `categorie` varchar(20) DEFAULT NULL,
-  `unite` int(10) DEFAULT NULL,
+  `unite` varchar(50) DEFAULT NULL,
   `prix_achat` decimal(12,2) DEFAULT NULL,
   `prix_vente` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_medicament`)
@@ -391,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `paiement` (
 
 CREATE TABLE IF NOT EXISTS `patients` (
   `id_patient` int(11) NOT NULL AUTO_INCREMENT,
-  `numero_fiche` int(11) DEFAULT NULL,
+  `numero_fiche` varchar(20) DEFAULT NULL,
   `nom` varchar(100) DEFAULT NULL,
   `post_nom` varchar(100) DEFAULT NULL,
   `prenom` varchar(100) DEFAULT NULL,
@@ -402,7 +402,15 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `date_creation` date DEFAULT NULL,
   PRIMARY KEY (`id_patient`),
   UNIQUE KEY `numero_fiche` (`numero_fiche`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `patients`
+--
+
+INSERT INTO `patients` (`id_patient`, `numero_fiche`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `telephone`, `adresse`, `date_creation`) VALUES
+(1, 'CEP-001', 'Kakule', 'Mwendapole', 'Jean-Bosco', 'Homme', '1995-07-14', '+243 985 325 655', 'Kyondo / Katwa', '2026-04-01'),
+(2, 'CEP-002', 'Kasoki', 'Kataghanza', 'Emmanuella', 'Femme', '2026-04-10', '+243 874 126 589', 'kavanda', '2026-04-04');
 
 -- --------------------------------------------------------
 
@@ -509,6 +517,25 @@ CREATE TABLE IF NOT EXISTS `services` (
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_service`),
   KEY `id_centre` (`id_centre`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `signes_vitaux`
+--
+
+CREATE TABLE IF NOT EXISTS `signes_vitaux` (
+  `id_signe` int(11) NOT NULL AUTO_INCREMENT,
+  `id_patient` int(11) DEFAULT NULL,
+  `temperature` decimal(4,2) DEFAULT NULL,
+  `tension` varchar(10) DEFAULT NULL,
+  `frequence_cardiaque` int(11) DEFAULT NULL,
+  `poids` decimal(5,2) DEFAULT NULL,
+  `taille` decimal(5,2) DEFAULT NULL,
+  `date_prise` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_signe`),
+  KEY `id_patient` (`id_patient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -786,6 +813,12 @@ ALTER TABLE `salaires`
 --
 ALTER TABLE `services`
   ADD CONSTRAINT `fk_service_centre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `signes_vitaux`
+--
+ALTER TABLE `signes_vitaux`
+  ADD CONSTRAINT `signes_vitaux_ibfk_1` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`);
 
 --
 -- Contraintes pour la table `sorties_stock`
