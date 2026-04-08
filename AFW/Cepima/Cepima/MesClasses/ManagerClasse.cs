@@ -274,6 +274,7 @@ namespace Cepima.MesClasses
 
             return btn;
         }
+
     }
     //class session
     public static class SessionUtilisateur

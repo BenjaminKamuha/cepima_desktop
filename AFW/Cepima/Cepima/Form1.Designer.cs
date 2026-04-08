@@ -37,7 +37,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lb_version = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,11 +46,23 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel_center_main = new System.Windows.Forms.Panel();
+            this.pan = new System.Windows.Forms.Panel();
+            this.panel_sous_menu = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lb_sous_menu = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.picture_image_menu = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.bt_consultation = new System.Windows.Forms.Button();
-            this.bt_signe_vitaux = new System.Windows.Forms.Button();
-            this.bt_add_patient = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bt_setting = new System.Windows.Forms.Button();
+            this.bt_personnel = new System.Windows.Forms.Button();
+            this.bt_comptability = new System.Windows.Forms.Button();
+            this.bt_EEG = new System.Windows.Forms.Button();
+            this.bt_soin = new System.Windows.Forms.Button();
+            this.bt_pharmacie = new System.Windows.Forms.Button();
+            this.bt_reception = new System.Windows.Forms.Button();
+            this.bt_acceuil = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.bt_close = new System.Windows.Forms.Button();
             this.bt_minus = new System.Windows.Forms.Button();
             this.picture_statut = new System.Windows.Forms.PictureBox();
@@ -59,9 +70,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.pan.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_image_menu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_statut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,6 +84,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -166,19 +181,6 @@
             this.panel3.Size = new System.Drawing.Size(5, 73);
             this.panel3.TabIndex = 1;
             // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.panel8.Controls.Add(this.bt_consultation);
-            this.panel8.Controls.Add(this.bt_signe_vitaux);
-            this.panel8.Controls.Add(this.bt_add_patient);
-            this.panel8.Controls.Add(this.button1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel8.Location = new System.Drawing.Point(0, 73);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(89, 477);
-            this.panel8.TabIndex = 2;
-            // 
             // panel5
             // 
             this.panel5.Controls.Add(this.lb_version);
@@ -270,10 +272,88 @@
             // panel_center_main
             // 
             this.panel_center_main.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel_center_main.Location = new System.Drawing.Point(91, 79);
+            this.panel_center_main.Location = new System.Drawing.Point(262, 79);
             this.panel_center_main.Name = "panel_center_main";
-            this.panel_center_main.Size = new System.Drawing.Size(961, 424);
+            this.panel_center_main.Size = new System.Drawing.Size(786, 424);
             this.panel_center_main.TabIndex = 4;
+            // 
+            // pan
+            // 
+            this.pan.Controls.Add(this.panel_sous_menu);
+            this.pan.Controls.Add(this.panel11);
+            this.pan.Controls.Add(this.lb_sous_menu);
+            this.pan.Controls.Add(this.picture_image_menu);
+            this.pan.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pan.Location = new System.Drawing.Point(89, 73);
+            this.pan.Name = "pan";
+            this.pan.Size = new System.Drawing.Size(161, 436);
+            this.pan.TabIndex = 5;
+            // 
+            // panel_sous_menu
+            // 
+            this.panel_sous_menu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_sous_menu.Location = new System.Drawing.Point(6, 155);
+            this.panel_sous_menu.Name = "panel_sous_menu";
+            this.panel_sous_menu.Size = new System.Drawing.Size(152, 278);
+            this.panel_sous_menu.TabIndex = 0;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.panel11.Location = new System.Drawing.Point(4, 144);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(151, 5);
+            this.panel11.TabIndex = 0;
+            this.panel11.Visible = false;
+            // 
+            // lb_sous_menu
+            // 
+            this.lb_sous_menu.AutoSize = true;
+            this.lb_sous_menu.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_sous_menu.Location = new System.Drawing.Point(24, 115);
+            this.lb_sous_menu.Name = "lb_sous_menu";
+            this.lb_sous_menu.Size = new System.Drawing.Size(83, 23);
+            this.lb_sous_menu.TabIndex = 1;
+            this.lb_sous_menu.Text = "Contexte";
+            this.lb_sous_menu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb_sous_menu.Visible = false;
+            // 
+            // panel10
+            // 
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel10.Location = new System.Drawing.Point(250, 73);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(4, 436);
+            this.panel10.TabIndex = 0;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.panel8.Controls.Add(this.bt_setting);
+            this.panel8.Controls.Add(this.bt_personnel);
+            this.panel8.Controls.Add(this.bt_comptability);
+            this.panel8.Controls.Add(this.bt_EEG);
+            this.panel8.Controls.Add(this.bt_soin);
+            this.panel8.Controls.Add(this.bt_pharmacie);
+            this.panel8.Controls.Add(this.bt_reception);
+            this.panel8.Controls.Add(this.bt_acceuil);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel8.Location = new System.Drawing.Point(0, 73);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(89, 477);
+            this.panel8.TabIndex = 2;
+            // 
+            // picture_image_menu
+            // 
+            this.picture_image_menu.Location = new System.Drawing.Point(11, 6);
+            this.picture_image_menu.Name = "picture_image_menu";
+            this.picture_image_menu.Size = new System.Drawing.Size(139, 106);
+            this.picture_image_menu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picture_image_menu.TabIndex = 0;
+            this.picture_image_menu.TabStop = false;
             // 
             // pictureBox3
             // 
@@ -285,52 +365,112 @@
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
-            // bt_consultation
+            // bt_setting
             // 
-            this.bt_consultation.FlatAppearance.BorderSize = 0;
-            this.bt_consultation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_consultation.Image = global::Cepima.Properties.Resources.brain_40px;
-            this.bt_consultation.Location = new System.Drawing.Point(3, 222);
-            this.bt_consultation.Name = "bt_consultation";
-            this.bt_consultation.Size = new System.Drawing.Size(82, 47);
-            this.bt_consultation.TabIndex = 0;
-            this.bt_consultation.UseVisualStyleBackColor = true;
-            this.bt_consultation.Click += new System.EventHandler(this.bt_consultation_Click);
+            this.bt_setting.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.bt_setting.FlatAppearance.BorderSize = 0;
+            this.bt_setting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_setting.Image = global::Cepima.Properties.Resources.settings_40px;
+            this.bt_setting.Location = new System.Drawing.Point(6, 427);
+            this.bt_setting.Name = "bt_setting";
+            this.bt_setting.Size = new System.Drawing.Size(77, 47);
+            this.bt_setting.TabIndex = 0;
+            this.bt_setting.UseVisualStyleBackColor = true;
+            this.bt_setting.Click += new System.EventHandler(this.bt_setting_Click);
             // 
-            // bt_signe_vitaux
+            // bt_personnel
             // 
-            this.bt_signe_vitaux.FlatAppearance.BorderSize = 0;
-            this.bt_signe_vitaux.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_signe_vitaux.Image = global::Cepima.Properties.Resources.stethoscope_40px;
-            this.bt_signe_vitaux.Location = new System.Drawing.Point(3, 150);
-            this.bt_signe_vitaux.Name = "bt_signe_vitaux";
-            this.bt_signe_vitaux.Size = new System.Drawing.Size(82, 47);
-            this.bt_signe_vitaux.TabIndex = 0;
-            this.bt_signe_vitaux.UseVisualStyleBackColor = true;
-            this.bt_signe_vitaux.Click += new System.EventHandler(this.bt_signe_vitaux_Click);
+            this.bt_personnel.FlatAppearance.BorderSize = 0;
+            this.bt_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_personnel.Image = global::Cepima.Properties.Resources.staff_40px;
+            this.bt_personnel.Location = new System.Drawing.Point(3, 419);
+            this.bt_personnel.Name = "bt_personnel";
+            this.bt_personnel.Size = new System.Drawing.Size(79, 47);
+            this.bt_personnel.TabIndex = 0;
+            this.bt_personnel.UseVisualStyleBackColor = true;
             // 
-            // bt_add_patient
+            // bt_comptability
             // 
-            this.bt_add_patient.FlatAppearance.BorderSize = 0;
-            this.bt_add_patient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_add_patient.Image = global::Cepima.Properties.Resources.group_40px;
-            this.bt_add_patient.Location = new System.Drawing.Point(4, 78);
-            this.bt_add_patient.Name = "bt_add_patient";
-            this.bt_add_patient.Size = new System.Drawing.Size(82, 47);
-            this.bt_add_patient.TabIndex = 0;
-            this.bt_add_patient.UseVisualStyleBackColor = true;
-            this.bt_add_patient.Click += new System.EventHandler(this.bt_add_patient_Click);
+            this.bt_comptability.FlatAppearance.BorderSize = 0;
+            this.bt_comptability.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_comptability.Image = global::Cepima.Properties.Resources.paycheque_40px;
+            this.bt_comptability.Location = new System.Drawing.Point(3, 355);
+            this.bt_comptability.Name = "bt_comptability";
+            this.bt_comptability.Size = new System.Drawing.Size(86, 47);
+            this.bt_comptability.TabIndex = 0;
+            this.bt_comptability.UseVisualStyleBackColor = true;
+            this.bt_comptability.Click += new System.EventHandler(this.bt_comptability_Click);
             // 
-            // button1
+            // bt_EEG
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::Cepima.Properties.Resources.homework_40px;
-            this.button1.Location = new System.Drawing.Point(3, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(82, 47);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.bt_EEG.FlatAppearance.BorderSize = 0;
+            this.bt_EEG.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_EEG.Image = global::Cepima.Properties.Resources.brain_40px;
+            this.bt_EEG.Location = new System.Drawing.Point(3, 221);
+            this.bt_EEG.Name = "bt_EEG";
+            this.bt_EEG.Size = new System.Drawing.Size(86, 47);
+            this.bt_EEG.TabIndex = 0;
+            this.bt_EEG.UseVisualStyleBackColor = true;
+            this.bt_EEG.Click += new System.EventHandler(this.bt_EEG_Click);
+            // 
+            // bt_soin
+            // 
+            this.bt_soin.FlatAppearance.BorderSize = 0;
+            this.bt_soin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_soin.Image = global::Cepima.Properties.Resources.health_checkup_40px;
+            this.bt_soin.Location = new System.Drawing.Point(3, 291);
+            this.bt_soin.Name = "bt_soin";
+            this.bt_soin.Size = new System.Drawing.Size(86, 47);
+            this.bt_soin.TabIndex = 0;
+            this.bt_soin.UseVisualStyleBackColor = true;
+            this.bt_soin.Click += new System.EventHandler(this.bt_soin_Click);
+            // 
+            // bt_pharmacie
+            // 
+            this.bt_pharmacie.FlatAppearance.BorderSize = 0;
+            this.bt_pharmacie.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_pharmacie.Image = global::Cepima.Properties.Resources.doctors_bag_40px;
+            this.bt_pharmacie.Location = new System.Drawing.Point(3, 151);
+            this.bt_pharmacie.Name = "bt_pharmacie";
+            this.bt_pharmacie.Size = new System.Drawing.Size(86, 47);
+            this.bt_pharmacie.TabIndex = 0;
+            this.bt_pharmacie.UseVisualStyleBackColor = true;
+            this.bt_pharmacie.Click += new System.EventHandler(this.bt_pharmacie_Click);
+            // 
+            // bt_reception
+            // 
+            this.bt_reception.FlatAppearance.BorderSize = 0;
+            this.bt_reception.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_reception.Image = global::Cepima.Properties.Resources.reception_40px;
+            this.bt_reception.Location = new System.Drawing.Point(3, 81);
+            this.bt_reception.Name = "bt_reception";
+            this.bt_reception.Size = new System.Drawing.Size(86, 47);
+            this.bt_reception.TabIndex = 0;
+            this.bt_reception.UseVisualStyleBackColor = true;
+            this.bt_reception.Click += new System.EventHandler(this.bt_reception_Click);
+            // 
+            // bt_acceuil
+            // 
+            this.bt_acceuil.FlatAppearance.BorderSize = 0;
+            this.bt_acceuil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_acceuil.Image = global::Cepima.Properties.Resources.homework_40px;
+            this.bt_acceuil.Location = new System.Drawing.Point(3, 11);
+            this.bt_acceuil.Name = "bt_acceuil";
+            this.bt_acceuil.Size = new System.Drawing.Size(83, 47);
+            this.bt_acceuil.TabIndex = 0;
+            this.bt_acceuil.UseVisualStyleBackColor = true;
+            this.bt_acceuil.Click += new System.EventHandler(this.bt_acceuil_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.maintenance_20px;
+            this.pictureBox4.Location = new System.Drawing.Point(250, 13);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 4;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Visible = false;
             // 
             // bt_close
             // 
@@ -381,7 +521,7 @@
             this.pictureBox1.Image = global::Cepima.Properties.Resources.cepima_logo;
             this.pictureBox1.Location = new System.Drawing.Point(5, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(185, 67);
+            this.pictureBox1.Size = new System.Drawing.Size(187, 67);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -392,6 +532,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1055, 550);
+            this.Controls.Add(this.panel10);
+            this.Controls.Add(this.pan);
             this.Controls.Add(this.panel_center_main);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel8);
@@ -404,10 +546,14 @@
             this.panel1.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.panel8.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.pan.ResumeLayout(false);
+            this.pan.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picture_image_menu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picture_statut)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -422,11 +568,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button bt_consultation;
-        private System.Windows.Forms.Button bt_signe_vitaux;
-        private System.Windows.Forms.Button bt_add_patient;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.PictureBox pictureBox2;
@@ -446,6 +587,22 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel_center_main;
+        private System.Windows.Forms.Label lb_sous_menu;
+        private System.Windows.Forms.PictureBox picture_image_menu;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel pan;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel_sous_menu;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button bt_setting;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button bt_personnel;
+        private System.Windows.Forms.Button bt_comptability;
+        private System.Windows.Forms.Button bt_EEG;
+        private System.Windows.Forms.Button bt_soin;
+        private System.Windows.Forms.Button bt_pharmacie;
+        private System.Windows.Forms.Button bt_reception;
+        private System.Windows.Forms.Button bt_acceuil;
 
     }
 }

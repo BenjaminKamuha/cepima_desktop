@@ -19,7 +19,6 @@ namespace Cepima.MesUserCases
             _patientId = id_patient;
             ChargerDetails();
         }
-
         // ============================= Charger les détails du patients sur le control ===================
         public void ChargerDetails()
         {

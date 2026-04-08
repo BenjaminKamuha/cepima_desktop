@@ -97,6 +97,12 @@
     <Compile Include="MesUserCases\User_signes_vitaux.Designer.cs">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_test_sous_menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_test_sous_menu.Designer.cs">
+      <DependentUpon>User_test_sous_menu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_test_sous_menu.resx">
+      <DependentUpon>User_test_sous_menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -223,6 +232,117 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\edit_property_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reception_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reception_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\homework_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\medical_bag_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\health_checkup_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paycheque_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staff_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rod_of_asclepius_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctors_bag_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brain_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctors_bag_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\health_checkup_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paycheque_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brain_90px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctors_bag_90px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\health_checkup_90px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paycheque_90px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staff_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_user_male_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\being_sick_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_bed_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\send_hot_list_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_property_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\location_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_property_20px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_monitor_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart_monitor_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_list_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pill_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_file_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_checked_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maintenance_20px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
