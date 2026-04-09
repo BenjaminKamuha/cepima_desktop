@@ -64,6 +64,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MesClasses\HospitalisationManager.cs" />
+    <Compile Include="MesClasses\ImageHelper.cs" />
     <Compile Include="MesClasses\ManagerClasse.cs" />
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
@@ -84,6 +85,12 @@
     </Compile>
     <Compile Include="MesUserCases\User_display_patients.Designer.cs">
       <DependentUpon>User_display_patients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_medicament.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_medicament.designer.cs">
+      <DependentUpon>User_medicament.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_patient.cs">
       <SubType>UserControl</SubType>
@@ -116,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_display_patients.resx">
       <DependentUpon>User_display_patients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_medicament.resx">
+      <DependentUpon>User_medicament.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_patient.resx">
       <DependentUpon>User_patient.cs</DependentUpon>
@@ -343,6 +353,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\maintenance_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capsules_100px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

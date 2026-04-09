@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using Cepima.MesClasses;
+
 namespace Cepima.MesClasses
 {
     class ReceptionManager
     {
+        
         // Enregistrement du patient
         public static void ServiceCepima(string centre_id, string name_centre, string description)
         {

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using Cepima.MesClasses;
+
 namespace Cepima
 {
     public partial class Form1 : Form
@@ -18,6 +20,10 @@ namespace Cepima
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
             bt_personnel.Click += bt_personnel_Click;
+
+
+
+            
         }
         private void bt_close_Click(object sender, EventArgs e)
         {
@@ -130,7 +136,14 @@ namespace Cepima
             var items = new List<MenuItem>()
             {
                 new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) => {}),
-                new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) => {}),
+                new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) => {
+
+                    MesUserCases.User_medicament user_med = new MesUserCases.User_medicament();
+                    panel_center_main.Controls.Clear();
+                    user_med.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(user_med);
+                
+                }),
                 new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => {}),
                 new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {})
             };

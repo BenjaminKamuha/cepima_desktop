@@ -143,6 +143,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap capsules_100px {
+            get {
+                object obj = ResourceManager.GetObject("capsules_100px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cepima_logo {
             get {
                 object obj = ResourceManager.GetObject("cepima_logo", resourceCulture);
