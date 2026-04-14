@@ -49,8 +49,6 @@ namespace Cepima.MesClasses  // <-- ici le namespace du sous-dossier
         {
             using (MySqlConnection conn = ManagerClasse.GetConnexion())
             {
-
-
                 string query = "SELECT " + columnName + " FROM " + tableName + " WHERE " + id_columnName + "=@id";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))

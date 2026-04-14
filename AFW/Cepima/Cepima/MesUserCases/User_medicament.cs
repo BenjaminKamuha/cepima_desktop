@@ -15,9 +15,11 @@ namespace Cepima.MesUserCases
 {
     public partial class User_medicament : UserControl
     {
+            
         public User_medicament()
         {
             InitializeComponent();
+
             loadMed();
         }
 
@@ -33,10 +35,8 @@ namespace Cepima.MesUserCases
             // Chargement de l'image
             Image img_med = ImageHelper.LoadImageFromDatabase(id, "id_medicament", "medicament", "photo");
 
-
             Panel pan_med = new Panel();
-
-            pan_med.Width = 100;
+            pan_med.Width = 150;
             pan_med.Height = 140;
 
             AvatarControl avatar = new AvatarControl();
@@ -45,30 +45,50 @@ namespace Cepima.MesUserCases
 
             avatar.Top = 5;
             avatar.Left = 10;
-
+            avatar.Enabled = false;
             avatar.Avatar = img_med;
+            pan_med.Controls.Add(avatar);
+            avatar.Left = (avatar.Parent.ClientSize.Width - avatar.Width) / 2;
+           
+            // Panel pour les actions 
+            
+
+
+            // Boutons Actions
+            RoundedButton btn_distribuer = new RoundedButton();
+            btn_distribuer.ButtonText = "Distribuer";
+            btn_distribuer.BorderColor = Color.Transparent;
+            btn_distribuer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            btn_distribuer.BorderRadius = 5;
+            btn_distribuer.Size = new Size(72, 24);
+            btn_distribuer.Location = new Point(2, 2);
+
+
+            RoundedButton btn_update = new RoundedButton();
+            btn_update.ButtonText = "Mettre à jour";
+            btn_update.BorderColor = Color.Transparent;
+            btn_update.BorderStyle = System.Windows.Forms.BorderStyle.None;
+ 
+            btn_update.BorderRadius = 5;
+            btn_update.Size = new Size(72, 24);
+            btn_update.Location = new Point(75, 2);
+
+            Panel panel_action = new Panel();
+            panel_action.Size = new Size(311, 60);
+            panel_action.Location = new Point(0, 110);
+
+            panel_action.Controls.Add(btn_distribuer);
+            panel_action.Controls.Add(btn_update);
+            pan_med.Controls.Add(panel_action);
 
             Label lbl = new Label();
-
             lbl.Text = name;
             lbl.Top = 85;
             lbl.Left = 10;
             lbl.Width = 80;
-
-            Button btn = new Button();
-
-            btn.Text = "Photo";
-            btn.Width = 80;
-            btn.Top = 105;
-            btn.Left = 10;
-
-            btn.Tag = id;
-
-            btn.Click += Btn_Click;
-
-            pan_med.Controls.Add(avatar);
-            pan_med.Controls.Add(lbl);
-            pan_med.Controls.Add(btn);
+            lbl.Tag = id;
+            pan_med.Controls.Add(lbl);            
+            lbl.Left = (lbl.Parent.ClientSize.Width - lbl.Width) / 2;
 
             return pan_med;
         }
@@ -103,6 +123,9 @@ namespace Cepima.MesUserCases
                             //pan_med.BorderStyle = BorderStyle.FixedSingle;
 
                             Panel pan_med = Pan_med(int.Parse(med_id), med_name);
+                            pan_med.Tag = med_id;
+                            //pan_med.BackColor = Color.Tomato;
+                            
 
                             MesClasses.ManagerClasse.AddControl(fl_med, pan_med, 15, 10);
 
@@ -125,7 +148,6 @@ namespace Cepima.MesUserCases
                         Label lb_no_med = new Label();
                         lb_no_med.Text = "Aucun produit en stock";
                         lb_no_med.Anchor = AnchorStyles.None;
-
                         fl_med.Controls.Add(lb_no_med);
                     }
                 }
@@ -134,9 +156,111 @@ namespace Cepima.MesUserCases
             {
                 MessageBox.Show("Erreur : " + ex.Message);
             }
-
         }
 
+        void pan_med_MouseLeave(object sender, EventArgs e)
+        {
+            Panel pnl = sender as Panel;
+            try
+            {
+                if (pnl.Tag != null)
+                {
+                    foreach (Control control in pnl.Controls)
+                    {
+                        if (control is Panel)
+                        {
+                            control.Visible = false;
+                        }
+                    }
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Label lbl = sender as Label;
+                if (lbl.Tag != null)
+                {
+                    foreach (Control control in lbl.Parent.Controls)
+                    {
+                        if (control is Panel)
+                        {
+                            control.Visible = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        void pan_med_MouseHover(object sender, EventArgs e)
+        {
+            Panel pnl = sender as Panel;
+            try
+            {
+                if (pnl.Tag != null)
+                {
+                    foreach (Control control in pnl.Controls)
+                    {
+                        if (control is Panel)
+                        {
+                            control.Visible = true;
+
+                            foreach (Control btn in control.Controls)
+                            {
+                                btn.Tag += (string)pnl.Tag;
+                                if (btn.Tag.ToString().Split('_')[0] == "D")
+                                {
+                                    btn.Click += distribuer_med;
+                                }
+
+                                else
+                                {
+                                    btn.Click += update_med;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (NullReferenceException)
+            {
+                Label lbl = sender as Label;
+                if (lbl.Tag != null)
+                {
+                    foreach (Control control in lbl.Parent.Controls)
+                    {
+                        if (control is Panel)
+                        {
+                            control.Visible = true;
+
+                            foreach (Control btn in control.Controls)
+                            {
+                                btn.Tag += (string)lbl.Tag;
+                                if (btn.Tag.ToString().Split('_')[0] == "D")
+                                {
+                                    btn.Click += distribuer_med;
+                                }
+
+                                else
+                                {
+                                    btn.Click += update_med;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        void distribuer_med(object sender, EventArgs e)
+        {
+            //
+        }
+
+
+        void update_med(object sender, EventArgs e)
+        {
+            //
+        }
 
     }
 }
