@@ -40,6 +40,8 @@ namespace Cepima.MesUserCases
             pan_med.Height = 140;
 
             AvatarControl avatar = new AvatarControl();
+            avatar.BorderSize = 2;
+            avatar.BorderColor = Color.SkyBlue;
 
             avatar.Top = 5;
             avatar.Left = 10;
