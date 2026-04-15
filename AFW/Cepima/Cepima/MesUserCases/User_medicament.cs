@@ -15,7 +15,8 @@ namespace Cepima.MesUserCases
 {
     public partial class User_medicament : UserControl
     {
-            
+        public static string SELECTEDMED_ID {get; set;}
+
         public User_medicament()
         {
             InitializeComponent();
@@ -62,21 +63,22 @@ namespace Cepima.MesUserCases
             btn_distribuer.BorderRadius = 5;
             btn_distribuer.Size = new Size(72, 24);
             btn_distribuer.Location = new Point(2, 2);
+            btn_distribuer.Tag = id;
+            btn_distribuer.Click += btn_distribuer_Click;
 
 
             RoundedButton btn_update = new RoundedButton();
             btn_update.ButtonText = "Mettre à jour";
             btn_update.BorderColor = Color.Transparent;
             btn_update.BorderStyle = System.Windows.Forms.BorderStyle.None;
- 
             btn_update.BorderRadius = 5;
             btn_update.Size = new Size(72, 24);
             btn_update.Location = new Point(75, 2);
+            btn_update.Tag = id;
 
             Panel panel_action = new Panel();
             panel_action.Size = new Size(311, 60);
             panel_action.Location = new Point(0, 110);
-
             panel_action.Controls.Add(btn_distribuer);
             panel_action.Controls.Add(btn_update);
             pan_med.Controls.Add(panel_action);
@@ -93,6 +95,19 @@ namespace Cepima.MesUserCases
             return pan_med;
         }
 
+        void btn_distribuer_Click(object sender, EventArgs e)
+        {
+            RoundedButton btn = sender as RoundedButton;
+            if (btn.Tag != null) 
+            {
+                SELECTEDMED_ID = btn.Tag.ToString(); 
+            }
+            User_sortie_pharmacie sortie = new User_sortie_pharmacie();
+            sortie.Dock = DockStyle.Fill;
+            Form1.GlobalPanel_main.Controls.Clear();
+            Form1.GlobalPanel_main.Controls.Add(sortie);
+        }
+
         private void Btn_Click(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -105,57 +120,123 @@ namespace Cepima.MesUserCases
 
         
 
-        private void loadMed()
+        private void loadMed(params string [] args)
         {
-            try
+            if (args.Length != 0)
             {
-                string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament ORDER BY nom_medicament ASC";
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true))
-                {
-                    if (reader.HasRows)
+                //try
+                //{
+                    string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament WHERE nom_medicament LIKE @searchText ORDER BY nom_medicament ASC";
+                    Dictionary<string, string> request_params = MesClasses.ManagerClasse.request_params;
+                    request_params.Clear();
+                    request_params.Add("searchText", "%" + args[0] + "%");
+                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, request_params, true))
                     {
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            string med_id = reader["id_medicament"].ToString();
-                            string med_name = reader["nom_medicament"].ToString();
-                            //Panel pan_med = new Panel();
-                            //pan_med.Size = new Size(140, 130);
-                            //pan_med.BorderStyle = BorderStyle.FixedSingle;
+                            fl_med.Controls.Clear();
 
-                            Panel pan_med = Pan_med(int.Parse(med_id), med_name);
-                            pan_med.Tag = med_id;
-                            //pan_med.BackColor = Color.Tomato;
-                            
+                            while (reader.Read())
+                            {
+                                string med_id = reader["id_medicament"].ToString();
+                                string med_name = reader["nom_medicament"].ToString();
+                                //Panel pan_med = new Panel();
+                                //pan_med.Size = new Size(140, 130);
+                                //pan_med.BorderStyle = BorderStyle.FixedSingle;
 
-                            MesClasses.ManagerClasse.AddControl(fl_med, pan_med, 15, 10);
+                                Panel pan_med = Pan_med(int.Parse(med_id), med_name);
+                                pan_med.Tag = med_id;
+                                //pan_med.BackColor = Color.Tomato;
 
-                            //PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.capsules_100px, new Point(30, 2),
-                            //new Size(80, 80));
-                            //pan_med.Controls.Add(picture);
 
-                            //Label lbNom = MesClasses.ManagerClasse.CustomLabel(med_name, new Point(20, 85));
-                            //lbNom.AutoSize = true;
-                            //lbNom.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
-                            //pan_med.Controls.Add(lbNom);
+                                MesClasses.ManagerClasse.AddControl(fl_med, pan_med, 15, 10);
+
+                                //PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.capsules_100px, new Point(30, 2),
+                                //new Size(80, 80));
+                                //pan_med.Controls.Add(picture);
+
+                                //Label lbNom = MesClasses.ManagerClasse.CustomLabel(med_name, new Point(20, 85));
+                                //lbNom.AutoSize = true;
+                                //lbNom.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                                //pan_med.Controls.Add(lbNom);
+                            }
+                            reader.Close();
+                            ProgressiveDisplay pd = new ProgressiveDisplay(fl_med, 100);
+                            pd.Start();
                         }
-                        reader.Close();
-                        ProgressiveDisplay pd = new ProgressiveDisplay(fl_med, 100);
-                        pd.Start();
-                    }
+                        else
+                        {
+                            fl_med.Controls.Clear();
+                            fl_med.Controls.Add(pnl_info);
+                            pnl_info.Left = (pnl_info.Parent.ClientSize.Width - pnl_info.Width) / 2;
+                            pnl_info.Top = (pnl_info.Parent.ClientSize.Height - pnl_info.Height) / 2;
+                            pnl_info.Visible = true;
 
-                    else
+
+                        }
+                    }
+                //}
+                //catch (MySqlException ex)
+                //{
+                //    MessageBox.Show("Erreur : " + ex.Message);
+                //}
+            }
+
+            else
+            {
+                try
+                {
+                    string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament ORDER BY nom_medicament ASC";
+                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true))
                     {
-                        Label lb_no_med = new Label();
-                        lb_no_med.Text = "Aucun produit en stock";
-                        lb_no_med.Anchor = AnchorStyles.None;
-                        fl_med.Controls.Add(lb_no_med);
+                        if (reader.HasRows)
+                        {
+                            fl_med.Controls.Clear();
+                            while (reader.Read())
+                            {
+                                string med_id = reader["id_medicament"].ToString();
+                                string med_name = reader["nom_medicament"].ToString();
+                                //Panel pan_med = new Panel();
+                                //pan_med.Size = new Size(140, 130);
+                                //pan_med.BorderStyle = BorderStyle.FixedSingle;
+
+                                Panel pan_med = Pan_med(int.Parse(med_id), med_name);
+                                pan_med.Tag = med_id;
+                                //pan_med.BackColor = Color.Tomato;
+
+
+                                MesClasses.ManagerClasse.AddControl(fl_med, pan_med, 15, 10);
+
+                                //PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.capsules_100px, new Point(30, 2),
+                                //new Size(80, 80));
+                                //pan_med.Controls.Add(picture);
+
+                                //Label lbNom = MesClasses.ManagerClasse.CustomLabel(med_name, new Point(20, 85));
+                                //lbNom.AutoSize = true;
+                                //lbNom.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                                //pan_med.Controls.Add(lbNom);
+                            }
+                            reader.Close();
+                            ProgressiveDisplay pd = new ProgressiveDisplay(fl_med, 100);
+                            pd.Start();
+                        }
+
+                        else
+                        {
+                            fl_med.Controls.Clear();
+                            fl_med.Controls.Add(pnl_no_entry);
+                            pnl_no_entry.Left = (pnl_no_entry.Parent.ClientSize.Width - pnl_no_entry.Width) / 2;
+                            pnl_no_entry.Top = (pnl_no_entry.Parent.ClientSize.Height - pnl_no_entry.Height) / 2;
+                            pnl_no_entry.Visible = true;
+                        }
                     }
                 }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message);
+                }
             }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Erreur : " + ex.Message);
-            }
+           
         }
 
         void pan_med_MouseLeave(object sender, EventArgs e)
@@ -260,6 +341,16 @@ namespace Cepima.MesUserCases
         void update_med(object sender, EventArgs e)
         {
             //
+        }
+
+        private void tb_search_med_TextChanged(object sender, EventArgs e)
+        {
+            loadMed(tb_search_med.Text); 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

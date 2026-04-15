@@ -104,6 +104,12 @@
     <Compile Include="MesUserCases\User_signes_vitaux.Designer.cs">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_sortie_pharmacie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_sortie_pharmacie.Designer.cs">
+      <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_test_sous_menu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -132,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_sortie_pharmacie.resx">
+      <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_test_sous_menu.resx">
       <DependentUpon>User_test_sous_menu.cs</DependentUpon>
@@ -359,6 +368,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_entry_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_entry_100px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand_with_a_pill_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand_with_a_pill_100px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capsules_100px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand_with_a_pill_100px2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

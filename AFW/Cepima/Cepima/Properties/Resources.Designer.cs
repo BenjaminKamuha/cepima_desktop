@@ -153,6 +153,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap capsules_100px1 {
+            get {
+                object obj = ResourceManager.GetObject("capsules_100px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cepima_logo {
             get {
                 object obj = ResourceManager.GetObject("cepima_logo", resourceCulture);
@@ -286,6 +296,36 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap group_40px {
             get {
                 object obj = ResourceManager.GetObject("group_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hand_with_a_pill_100px {
+            get {
+                object obj = ResourceManager.GetObject("hand_with_a_pill_100px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hand_with_a_pill_100px1 {
+            get {
+                object obj = ResourceManager.GetObject("hand_with_a_pill_100px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hand_with_a_pill_100px2 {
+            get {
+                object obj = ResourceManager.GetObject("hand_with_a_pill_100px2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -476,6 +516,36 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap minus_30px {
             get {
                 object obj = ResourceManager.GetObject("minus_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_100px {
+            get {
+                object obj = ResourceManager.GetObject("no_100px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_entry_100px {
+            get {
+                object obj = ResourceManager.GetObject("no_entry_100px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap no_entry_100px1 {
+            get {
+                object obj = ResourceManager.GetObject("no_entry_100px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
