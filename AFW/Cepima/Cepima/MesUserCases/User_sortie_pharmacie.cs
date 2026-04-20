@@ -32,7 +32,6 @@ namespace Cepima.MesUserCases
                 {
                     // Traitement de l'image
                     Image img_med = ImageHelper.LoadImageFromDatabase(int.Parse(id_med), "id_medicament", "medicament", "photo");
-
                     picture_med_img.Image = img_med;
                 }
             }
