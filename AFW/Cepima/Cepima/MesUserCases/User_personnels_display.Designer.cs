@@ -33,11 +33,8 @@
             // 
             // panel_personnel_display
             // 
-            this.panel_personnel_display.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_personnel_display.AutoScroll = true;
-            this.panel_personnel_display.BackColor = System.Drawing.Color.Coral;
+            this.panel_personnel_display.BackColor = System.Drawing.Color.Snow;
             this.panel_personnel_display.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_personnel_display.Location = new System.Drawing.Point(0, 0);
             this.panel_personnel_display.Name = "panel_personnel_display";

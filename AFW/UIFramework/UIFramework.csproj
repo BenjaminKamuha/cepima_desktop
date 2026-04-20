@@ -84,6 +84,12 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ChartPoint.cs" />
+    <Compile Include="Controls\Component1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Component1.Designer.cs">
+      <DependentUpon>Component1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Control.cs">
       <SubType>Component</SubType>
     </Compile>

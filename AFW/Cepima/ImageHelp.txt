@@ -1,0 +1,170 @@
+   private void ChargerUtilisateurs()
+        {
+            using (MySqlConnection conn = ManagerClasse.GetConnexion())
+            {
+                conn.Open();
+
+                string query = "SELECT id_medicament, nom_medicament FROM medicament";
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader =
+                        cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id =
+                                reader.GetInt32("id_medicament");
+
+                            string name =
+                                reader.GetString("nom_medicament");
+
+                            AjouterUtilisateur(id, name);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AjouterUtilisateur(int id, string name)
+        {
+            Panel userPanel = new Panel();
+
+            userPanel.Width = 100;
+            userPanel.Height = 140;
+
+            AvatarControl avatar = new AvatarControl();
+
+            avatar.Top = 5;
+            avatar.Left = 10;
+
+            avatar.Avatar = ChargerImageDepuisDB(id);
+
+            Label lbl = new Label();
+
+            lbl.Text = name;
+            lbl.Top = 85;
+            lbl.Left = 10;
+            lbl.Width = 80;
+
+            Button btn = new Button();
+
+            btn.Text = "Photo";
+            btn.Width = 80;
+            btn.Top = 105;
+            btn.Left = 10;
+
+            btn.Tag = id;
+
+            btn.Click += Btn_Click;
+
+            userPanel.Controls.Add(avatar);
+            userPanel.Controls.Add(lbl);
+            userPanel.Controls.Add(btn);
+
+            fl_med.Controls.Add(userPanel);
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            int userId = Convert.ToInt32(btn.Tag);
+
+            ChoisirImage(userId, btn);
+        }
+
+        
+
+        private byte[] ImageToBytes(
+            Image img)
+        {
+            using (MemoryStream ms =
+                new MemoryStream())
+            {
+                img.Save(
+                    ms,
+                    System.Drawing.Imaging
+                    .ImageFormat.Png);
+
+                return ms.ToArray();
+            }
+        }
+
+        private Image BytesToImage(
+            byte[] bytes)
+        {
+            using (MemoryStream ms =
+                new MemoryStream(bytes))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
+        private void EnregistrerImageDB(
+            int userId,
+            byte[] bytes)
+        {
+            using (MySqlConnection conn =
+                new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                string query =
+                    "UPDATE medicament " +
+                    "SET photo=@photo " +
+                    "WHERE id_medicament=@id";
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue(
+                        "@photo",
+                        bytes);
+
+                    cmd.Parameters.AddWithValue(
+                        "@id",
+                        userId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private Image ChargerImageDepuisDB(
+            int userId)
+        {
+            using (MySqlConnection conn =
+                new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                string query =
+                    "SELECT photo " +
+                    "FROM medicament " +
+                    "WHERE id_medicament=@id";
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue(
+                        "@id",
+                        userId);
+
+                    object result =
+                        cmd.ExecuteScalar();
+
+                    if (result != DBNull.Value
+                        && result != null)
+                    {
+                        byte[] bytes =
+                            (byte[])result;
+
+                        return BytesToImage(bytes);
+                    }
+                }
+            }
+
+            return null;
+        }

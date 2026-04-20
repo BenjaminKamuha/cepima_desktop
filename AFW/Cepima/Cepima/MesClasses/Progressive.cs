@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
+using UIFramework.Controls;
+using Cepima.MesClasses;
 
  class ProgressiveDisplay
 {
@@ -13,6 +15,10 @@ using System.Windows.Forms;
         timer = new Timer();
         timer.Interval = interval; // délai en millisecondes
         timer.Tick += Timer_Tick;
+
+
+
+        
     }
 
     public void Start()

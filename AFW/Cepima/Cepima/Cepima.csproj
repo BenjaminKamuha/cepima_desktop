@@ -64,6 +64,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="MesClasses\HospitalisationManager.cs" />
+    <Compile Include="MesClasses\ImageHelper.cs" />
     <Compile Include="MesClasses\ManagerClasse.cs" />
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
@@ -116,6 +117,12 @@
     <Compile Include="MesUserCases\User_horaires.Designer.cs">
       <DependentUpon>User_horaires.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_medicament.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_medicament.designer.cs">
+      <DependentUpon>User_medicament.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_patient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -152,6 +159,12 @@
     <Compile Include="MesUserCases\User_signes_vitaux.Designer.cs">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_sortie_pharmacie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_sortie_pharmacie.Designer.cs">
+      <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_test_sous_menu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +200,9 @@
     <EmbeddedResource Include="MesUserCases\User_horaires.resx">
       <DependentUpon>User_horaires.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_medicament.resx">
+      <DependentUpon>User_medicament.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_patient.resx">
       <DependentUpon>User_patient.cs</DependentUpon>
     </EmbeddedResource>
@@ -205,23 +221,26 @@
     <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_sortie_pharmacie.resx">
+      <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_test_sous_menu.resx">
       <DependentUpon>User_test_sous_menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -449,6 +468,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\planner_20px.png" />
+    <None Include="Resources\capsules_100px.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search1.png" />
@@ -476,6 +496,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\calendar_minus_90px.png" />
+    <None Include="Resources\no_entry_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_entry_100px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand_with_a_pill_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand_with_a_pill_100px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capsules_100px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hand_with_a_pill_100px2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
