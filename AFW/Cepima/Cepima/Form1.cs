@@ -28,6 +28,7 @@ namespace Cepima
         {
             this.WindowState = FormWindowState.Minimized;
         }
+      
         //méthode pour creer un sous menu
         private void Create_sous_menu(List<MenuItem> items)
         {
@@ -56,7 +57,9 @@ namespace Cepima
 
                 //Event
                 if (item.ClickEvent != null)
+                {
                     bt.Click += item.ClickEvent;
+                }
 
                 MesClasses.ManagerClasse.AddControl(panel_sous_menu,bt,2,top);
 
@@ -98,10 +101,18 @@ namespace Cepima
                 new MenuItem("    Patients",Properties.Resources.being_sick_20px,(s,ev) =>
                 {
                     //instructions
+                    MesUserCases.User_display_patients display = new MesUserCases.User_display_patients();
+                    display.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(display);
                 }),
                 new MenuItem("    Ajouter patient",Properties.Resources.add_user_male_20px,(s,ev) =>
                 {
                     //instructions
+                    MesUserCases.User_patient patient = new MesUserCases.User_patient();
+                    patient.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(patient);
                 }),
                 new MenuItem("    Signes vitaux",Properties.Resources.heart_monitor_20px,(s,ev) => 
                 {
@@ -129,10 +140,25 @@ namespace Cepima
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) => {}),
-                new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) => {}),
-                new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => {}),
-                new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {})
+                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                {
+                    MesUserCases.User_DashBord_pharmacie dashbord_ph = new MesUserCases.User_DashBord_pharmacie();
+                    dashbord_ph.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(dashbord_ph);
+                }),
+                new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) =>
+                {
+                    //autres instructions
+                }),
+                new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => 
+                {
+
+                }),
+                new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => 
+                {
+
+                })
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -147,7 +173,15 @@ namespace Cepima
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) => MessageBox.Show("Acceuil")),
+                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                {
+
+                }),
+                new MenuItem("    Examens EEG",Properties.Resources.brain_20px, (s,ev) =>
+                {
+
+                })
+
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -192,7 +226,78 @@ namespace Cepima
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) => MessageBox.Show("Acceuil")),
+                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                    {
+                        //control acceuil du personnel
+                        MesUserCases.User_Dashboard_RH acceuil_rh = new MesUserCases.User_Dashboard_RH();
+                        acceuil_rh.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(acceuil_rh);
+                    }),
+                new MenuItem("    Liste personnel",Properties.Resources.add_file_20px,(s,ev) =>
+                    {
+                        //control autre
+                        MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
+                        personnel.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(personnel);
+                    }),
+                new MenuItem("    Présences",Properties.Resources.clock_20px,(s,ev) =>
+                    {
+                        //instructions
+                        MesUserCases.User_presences presences = new MesUserCases.User_presences();
+                        presences.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(presences);
+                    }),
+                new MenuItem("    Horaires",Properties.Resources.planner_20px,(s,ev) =>
+                    {
+                        //instructions
+                        MesUserCases.User_horaires horaire = new MesUserCases.User_horaires();
+                        horaire.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(horaire);
+                    }),
+                new MenuItem("    Salaires",Properties.Resources.us_dollar_20px,(s,ev) =>
+                    {
+                       //instructions
+                        MesUserCases.User_add_salaire salaire = new MesUserCases.User_add_salaire();
+                        salaire.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(salaire);
+                    }),
+                    new MenuItem("    Avance salaire",Properties.Resources.avance_salaire,(s,ev) =>
+                    {
+                        //instructions
+                        MesUserCases.User_avance avance = new MesUserCases.User_avance();
+                        avance.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(avance);
+                        
+                    }),
+                new MenuItem("    Primes de risque",Properties.Resources.increase_20px,(s,ev) =>
+                    {
+                        //instructions
+                        MesUserCases.User_prime prime = new MesUserCases.User_prime();
+                        prime.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(prime);
+
+                    }),
+                new MenuItem("    Retenu",Properties.Resources.decrease_20px,(s,ev) =>
+                    {
+                       //instructions
+                        MesUserCases.User_retenue retenue = new MesUserCases.User_retenue();
+                        retenue.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(retenue);
+                     
+                    }),
+                     new MenuItem("    Empreintes",Properties.Resources.fingerprint_20px,(s,ev) =>
+                    {
+                       //instructions
+                    }),
+
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

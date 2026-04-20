@@ -5,19 +5,14 @@ using System.Windows.Forms;
 public class StatCard : UserControl
 {
     public string Title { get; set; }
-    public string Value_one { get; set; }
-    public string Subtitle_one { get; set; }
-    public string Value_two { get; set; }
-    public string Subtitle_two { get; set; }
+    public string Value { get; set; }
+    public string Subtitle { get; set; }
 
     public StatCard()
     {
         Title = "Title";
-        Value_one = "0";
-        Subtitle_one = "Subtitle";
-
-        Value_two = "0";
-        Subtitle_two = "Subtitle";
+        Value = "0";
+        Subtitle = "Subtitle";
 
         this.SetStyle(ControlStyles.SupportsTransparentBackColor |
                       ControlStyles.OptimizedDoubleBuffer |
@@ -37,11 +32,9 @@ public class StatCard : UserControl
         using (Brush white = new SolidBrush(Color.White))
         {
             g.DrawString(Title, new Font(this.Font.FontFamily,9,FontStyle.Bold), white, new PointF(20, 10));
-            g.DrawString(Value_one, new Font(this.Font.FontFamily, 14, FontStyle.Bold), white, new PointF(10, 35));
-            g.DrawString(Subtitle_one, new Font(this.Font.FontFamily,9,FontStyle.Bold), white, new PointF(10, 60));
+            g.DrawString(Value, new Font(this.Font.FontFamily, 14, FontStyle.Bold), white, new PointF(10, 35));
+            g.DrawString(Subtitle, new Font(this.Font.FontFamily,9,FontStyle.Bold), white, new PointF(10, 60));
 
-            g.DrawString(Value_two,new Font(this.Font.FontFamily,14,FontStyle.Bold),white,new PointF(155,35));
-            g.DrawString(Subtitle_two,new Font(this.Font.FontFamily,9,FontStyle.Bold),white,new PointF(155,60));
         }
     }
 }

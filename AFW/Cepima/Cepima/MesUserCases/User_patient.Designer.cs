@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.tb_phone_number = new System.Windows.Forms.TextBox();
             this.tb_adresse = new System.Windows.Forms.TextBox();
@@ -54,11 +55,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.myRoundedTextBox1 = new MyRoundedTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bt_detail_patient = new test_arrondissement2012.PerfectRoundedButton();
             this.panel1.SuspendLayout();
-            this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -67,19 +67,29 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(2, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(289, 261);
+            this.panel1.Size = new System.Drawing.Size(199, 231);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(31, 234);
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1, 187);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 23);
+            this.label1.Size = new System.Drawing.Size(182, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Nouvelle fiche du patient";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.add_user_male_100px;
+            this.pictureBox1.Location = new System.Drawing.Point(20, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(159, 154);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // customRoundedPanel1
             // 
@@ -112,9 +122,9 @@
             this.customRoundedPanel1.Controls.Add(this.label2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(295, 21);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(208, 21);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(629, 391);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(557, 391);
             this.customRoundedPanel1.TabIndex = 1;
             // 
             // tb_phone_number
@@ -122,7 +132,7 @@
             this.tb_phone_number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_phone_number.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_phone_number.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_phone_number.Location = new System.Drawing.Point(227, 245);
+            this.tb_phone_number.Location = new System.Drawing.Point(174, 244);
             this.tb_phone_number.Multiline = true;
             this.tb_phone_number.Name = "tb_phone_number";
             this.tb_phone_number.Size = new System.Drawing.Size(280, 23);
@@ -133,7 +143,7 @@
             this.tb_adresse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_adresse.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_adresse.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_adresse.Location = new System.Drawing.Point(227, 289);
+            this.tb_adresse.Location = new System.Drawing.Point(174, 288);
             this.tb_adresse.Multiline = true;
             this.tb_adresse.Name = "tb_adresse";
             this.tb_adresse.Size = new System.Drawing.Size(280, 23);
@@ -145,7 +155,7 @@
             this.tb_prenom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_prenom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_prenom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_prenom.Location = new System.Drawing.Point(228, 112);
+            this.tb_prenom.Location = new System.Drawing.Point(175, 111);
             this.tb_prenom.Multiline = true;
             this.tb_prenom.Name = "tb_prenom";
             this.tb_prenom.Size = new System.Drawing.Size(280, 23);
@@ -156,7 +166,7 @@
             this.tb_post_nom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_post_nom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_post_nom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_post_nom.Location = new System.Drawing.Point(229, 63);
+            this.tb_post_nom.Location = new System.Drawing.Point(176, 62);
             this.tb_post_nom.Multiline = true;
             this.tb_post_nom.Name = "tb_post_nom";
             this.tb_post_nom.Size = new System.Drawing.Size(280, 23);
@@ -167,7 +177,7 @@
             this.tb_name_patient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_name_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_name_patient.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_name_patient.Location = new System.Drawing.Point(227, 18);
+            this.tb_name_patient.Location = new System.Drawing.Point(174, 17);
             this.tb_name_patient.Multiline = true;
             this.tb_name_patient.Name = "tb_name_patient";
             this.tb_name_patient.Size = new System.Drawing.Size(280, 23);
@@ -177,7 +187,7 @@
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(227, 18);
+            this.textBox1.Location = new System.Drawing.Point(174, 17);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(280, 23);
@@ -193,7 +203,7 @@
             this.bt_save_continuous.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_save_continuous.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save_continuous.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_continuous.Location = new System.Drawing.Point(433, 342);
+            this.bt_save_continuous.Location = new System.Drawing.Point(375, 342);
             this.bt_save_continuous.Name = "bt_save_continuous";
             this.bt_save_continuous.Size = new System.Drawing.Size(166, 30);
             this.bt_save_continuous.TabIndex = 2;
@@ -208,7 +218,7 @@
             this.bt_save.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save.Location = new System.Drawing.Point(224, 342);
+            this.bt_save.Location = new System.Drawing.Point(195, 342);
             this.bt_save.Name = "bt_save";
             this.bt_save.Size = new System.Drawing.Size(124, 30);
             this.bt_save.TabIndex = 2;
@@ -234,7 +244,7 @@
             // 
             this.dt_naissance.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_naissance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_naissance.Location = new System.Drawing.Point(223, 203);
+            this.dt_naissance.Location = new System.Drawing.Point(170, 202);
             this.dt_naissance.Name = "dt_naissance";
             this.dt_naissance.Size = new System.Drawing.Size(288, 23);
             this.dt_naissance.TabIndex = 5;
@@ -247,7 +257,7 @@
             this.cbx_genre.Items.AddRange(new object[] {
             "Homme",
             "Femme"});
-            this.cbx_genre.Location = new System.Drawing.Point(223, 159);
+            this.cbx_genre.Location = new System.Drawing.Point(170, 158);
             this.cbx_genre.Name = "cbx_genre";
             this.cbx_genre.Size = new System.Drawing.Size(288, 23);
             this.cbx_genre.TabIndex = 4;
@@ -259,7 +269,7 @@
             this.myRoundedTextBox4.BorderSize = 1;
             this.myRoundedTextBox4.Enabled = false;
             this.myRoundedTextBox4.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox4.Location = new System.Drawing.Point(223, 244);
+            this.myRoundedTextBox4.Location = new System.Drawing.Point(170, 243);
             this.myRoundedTextBox4.Name = "myRoundedTextBox4";
             this.myRoundedTextBox4.PasswordChar = '\0';
             this.myRoundedTextBox4.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -275,7 +285,7 @@
             this.myRoundedTextBox5.BorderSize = 1;
             this.myRoundedTextBox5.Enabled = false;
             this.myRoundedTextBox5.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox5.Location = new System.Drawing.Point(223, 288);
+            this.myRoundedTextBox5.Location = new System.Drawing.Point(170, 287);
             this.myRoundedTextBox5.Name = "myRoundedTextBox5";
             this.myRoundedTextBox5.PasswordChar = '\0';
             this.myRoundedTextBox5.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -288,7 +298,7 @@
             // 
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(85, 254);
+            this.label.Location = new System.Drawing.Point(32, 253);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(69, 14);
             this.label.TabIndex = 0;
@@ -298,7 +308,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(85, 298);
+            this.label6.Location = new System.Drawing.Point(32, 297);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 14);
             this.label6.TabIndex = 0;
@@ -308,7 +318,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(85, 209);
+            this.label7.Location = new System.Drawing.Point(32, 208);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(111, 14);
             this.label7.TabIndex = 0;
@@ -318,7 +328,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(85, 162);
+            this.label5.Location = new System.Drawing.Point(32, 161);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 14);
             this.label5.TabIndex = 0;
@@ -330,7 +340,7 @@
             this.myRoundedTextBox3.BorderRadius = 4;
             this.myRoundedTextBox3.BorderSize = 1;
             this.myRoundedTextBox3.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox3.Location = new System.Drawing.Point(224, 109);
+            this.myRoundedTextBox3.Location = new System.Drawing.Point(171, 108);
             this.myRoundedTextBox3.Name = "myRoundedTextBox3";
             this.myRoundedTextBox3.PasswordChar = '\0';
             this.myRoundedTextBox3.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -343,7 +353,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(85, 115);
+            this.label4.Location = new System.Drawing.Point(32, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 14);
             this.label4.TabIndex = 0;
@@ -356,7 +366,7 @@
             this.myRoundedTextBox2.BorderSize = 1;
             this.myRoundedTextBox2.Enabled = false;
             this.myRoundedTextBox2.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox2.Location = new System.Drawing.Point(224, 62);
+            this.myRoundedTextBox2.Location = new System.Drawing.Point(171, 61);
             this.myRoundedTextBox2.Name = "myRoundedTextBox2";
             this.myRoundedTextBox2.PasswordChar = '\0';
             this.myRoundedTextBox2.PlaceholderColor = System.Drawing.Color.Gray;
@@ -369,7 +379,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(85, 71);
+            this.label3.Location = new System.Drawing.Point(32, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 14);
             this.label3.TabIndex = 0;
@@ -382,7 +392,7 @@
             this.myRoundedTextBox1.BorderSize = 1;
             this.myRoundedTextBox1.Enabled = false;
             this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(223, 16);
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(170, 15);
             this.myRoundedTextBox1.Name = "myRoundedTextBox1";
             this.myRoundedTextBox1.PasswordChar = '\0';
             this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
@@ -395,21 +405,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(85, 28);
+            this.label2.Location = new System.Drawing.Point(32, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 14);
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom  : ";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.add_user_male_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(41, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 154);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // bt_detail_patient
             // 
@@ -421,7 +421,7 @@
             this.bt_detail_patient.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_detail_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_detail_patient.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_detail_patient.Location = new System.Drawing.Point(43, 363);
+            this.bt_detail_patient.Location = new System.Drawing.Point(22, 363);
             this.bt_detail_patient.Name = "bt_detail_patient";
             this.bt_detail_patient.Size = new System.Drawing.Size(158, 30);
             this.bt_detail_patient.TabIndex = 2;
@@ -436,12 +436,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.bt_detail_patient);
             this.Name = "User_patient";
-            this.Size = new System.Drawing.Size(961, 424);
+            this.Size = new System.Drawing.Size(786, 424);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -35,14 +35,14 @@ namespace Cepima.MesClasses
         }
 
         //===============================Enregistrement du patient ===============================
-        public  static void SavePatient(string numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse)
+        public  static void SavePatient(string numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse,string idCentre)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string queryInsertPatient = "INSERT INTO patients(numero_fiche,nom,post_nom,prenom,sexe,date_naissance,telephone,adresse,date_creation)VALUES(@numero,@nom,@post,@prenom,@sexe,@naissance,@phone,@adresse,CURDATE())";
+                    string queryInsertPatient = "INSERT INTO patients(numero_fiche,nom,post_nom,prenom,sexe,date_naissance,telephone,adresse,date_creation,id_centre)VALUES(@numero,@nom,@post,@prenom,@sexe,@naissance,@phone,@adresse,CURDATE(),@centre)";
                     ManagerClasse.request_params.Clear();
                     ManagerClasse.request_params.Add("@numero", numeroFiche);
                     ManagerClasse.request_params.Add("@nom", nom);
@@ -52,6 +52,7 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@naissance", dateNaissance.ToString("yyyy-MM-dd"));
                     ManagerClasse.request_params.Add("@phone", phoneNumber);
                     ManagerClasse.request_params.Add("@adresse", adresse);
+                    ManagerClasse.request_params.Add("@centre",idCentre);
                     ManagerClasse.CRUD(queryInsertPatient, ManagerClasse.request_params);
                     tr.Commit();
                     MessageBox.Show("Patient enregistré avec succès !!", "Enregistrement du patient");
@@ -143,5 +144,6 @@ namespace Cepima.MesClasses
             lbMove.Tag = timer;
             timer.Start();
         }
+
     }
 }

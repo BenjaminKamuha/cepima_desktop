@@ -59,6 +59,18 @@ namespace Cepima.MesUserCases
                 DateTime dateNaissance = dt_naissance.Value;
                 string numeroPhone = tb_phone_number.Text;
                 string adressePatient = tb_adresse.Text;
+
+                //récuperer d'abord le centre
+                string idCentre = "";
+                string query = "SELECT id_centre FROM centres ORDER BY id_centre DESC LIMIT 1";
+                MySqlConnection con = MesClasses.ManagerClasse.GetConnexion();
+                MySqlCommand cmd = new MySqlCommand(query,con);
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    idCentre = result.ToString();
+                }
+                MessageBox.Show("L'id du centre est le suivant : "+idCentre);
                 //=====================Appel de la méthode dans sa class respective =====================
                 MesClasses.ReceptionManager.SavePatient
                     (
@@ -69,7 +81,8 @@ namespace Cepima.MesUserCases
                     Sexe,
                     dateNaissance,
                     numeroPhone,
-                    adressePatient
+                    adressePatient,
+                    idCentre
                     );
             }
             else

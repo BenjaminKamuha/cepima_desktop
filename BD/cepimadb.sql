@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 04 Avril 2026 à 14:45
+-- Généré le: Lun 20 Avril 2026 à 12:28
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -47,12 +47,12 @@ CREATE TABLE IF NOT EXISTS `affectaton_chambre` (
 
 CREATE TABLE IF NOT EXISTS `avances_salaire` (
   `id_avance` int(11) NOT NULL AUTO_INCREMENT,
-  `id_personnel` int(11) DEFAULT NULL,
+  `id_salaire` int(11) DEFAULT NULL,
   `date_avance` date DEFAULT NULL,
   `montant` decimal(12,2) DEFAULT NULL,
   `reste` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_avance`),
-  KEY `id_personnel` (`id_personnel`)
+  KEY `id_personnel` (`id_salaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -70,7 +70,14 @@ CREATE TABLE IF NOT EXISTS `centres` (
   `date_creation` date DEFAULT NULL,
   `actif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_centre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `centres`
+--
+
+INSERT INTO `centres` (`id_centre`, `nom_centre`, `adresse`, `telephone`, `email`, `date_creation`, `actif`) VALUES
+(1, 'CEPIMA-Centre Ukandilama', 'Butembo/Avenue Talia', '+243 985 896 563', 'cepima@gmail.com', '2026-04-07', 1);
 
 -- --------------------------------------------------------
 
@@ -306,8 +313,17 @@ CREATE TABLE IF NOT EXISTS `horaire` (
   `heure_entree_normal` time DEFAULT NULL,
   `heure_sortie_normal` time DEFAULT NULL,
   `jour_travail` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id_horaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `id_personnel` int(11) NOT NULL,
+  PRIMARY KEY (`id_horaire`),
+  KEY `id_personnel` (`id_personnel`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `horaire`
+--
+
+INSERT INTO `horaire` (`id_horaire`, `heure_entree_normal`, `heure_sortie_normal`, `jour_travail`, `id_personnel`) VALUES
+(1, '16:21:45', '16:21:45', 'Samedi', 8);
 
 -- --------------------------------------------------------
 
@@ -400,17 +416,19 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `telephone` varchar(20) DEFAULT NULL,
   `adresse` varchar(100) DEFAULT NULL,
   `date_creation` date DEFAULT NULL,
+  `id_centre` int(11) NOT NULL,
   PRIMARY KEY (`id_patient`),
-  UNIQUE KEY `numero_fiche` (`numero_fiche`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  UNIQUE KEY `numero_fiche` (`numero_fiche`),
+  KEY `id_centre` (`id_centre`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `patients`
 --
 
-INSERT INTO `patients` (`id_patient`, `numero_fiche`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `telephone`, `adresse`, `date_creation`) VALUES
-(1, 'CEP-001', 'Kakule', 'Mwendapole', 'Jean-Bosco', 'Homme', '1995-07-14', '+243 985 325 655', 'Kyondo / Katwa', '2026-04-01'),
-(2, 'CEP-002', 'Kasoki', 'Kataghanza', 'Emmanuella', 'Femme', '2026-04-10', '+243 874 126 589', 'kavanda', '2026-04-04');
+INSERT INTO `patients` (`id_patient`, `numero_fiche`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `telephone`, `adresse`, `date_creation`, `id_centre`) VALUES
+(2, 'CEP-001', 'Kambale', 'Mukama', 'Mafungula', 'Homme', '1994-06-09', '+243 245 985 633', 'Butembo/Katwa/kyambuli', '2026-04-09', 1),
+(3, 'CEP-003', 'bvcbn', 'ghjkl', 'jhgh', 'Homme', '2026-04-09', 'jhgfhj', 'lkjjghjklm', '2026-04-09', 1);
 
 -- --------------------------------------------------------
 
@@ -421,7 +439,6 @@ INSERT INTO `patients` (`id_patient`, `numero_fiche`, `nom`, `post_nom`, `prenom
 CREATE TABLE IF NOT EXISTS `personnels` (
   `id_personnel` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
-  `id_horaire` int(11) DEFAULT NULL,
   `nom` varchar(50) DEFAULT NULL,
   `post_nom` varchar(50) DEFAULT NULL,
   `prenom` varchar(50) DEFAULT NULL,
@@ -435,7 +452,23 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   `actif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_personnel`),
   KEY `id_centre` (`id_centre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Contenu de la table `personnels`
+--
+
+INSERT INTO `personnels` (`id_personnel`, `id_centre`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `date_embauche`, `fonction`, `telephone`, `adresse`, `salaire_base`, `actif`) VALUES
+(1, 1, 'KABAMBA', 'MWILU', 'Jean', 'M', '1985-03-12', '2020-01-15', 'Psychiatre', '0991000001', 'Goma', '1200.00', NULL),
+(2, 1, 'MUKENDI', 'LUBOYA', 'Aline', 'F', '1990-07-22', '2021-05-10', 'Psychologue', '0991000002', 'Goma', '900.00', NULL),
+(3, 1, 'KALONJI', 'MUKUNA', 'David', 'M', '1988-11-05', '2019-09-01', 'Infirmier psychiatrique', '0991000003', 'Goma', '600.00', NULL),
+(4, 1, 'NSIMBA', 'KABUYA', 'Sarah', 'F', '1992-02-18', '2022-03-20', 'Assistante sociale', '0991000004', 'Goma', '700.00', NULL),
+(5, 1, 'MBUYI', 'TSHIBANGU', 'Patrick', 'M', '1980-06-30', '2018-07-12', 'Médecin généraliste', '0991000005', 'Goma', '1100.00', NULL),
+(6, 1, 'KASONGO', 'MULUMBA', 'Grace', 'F', '1995-09-14', '2023-01-05', 'Psychologue', '0991000006', 'Goma', '850.00', NULL),
+(7, 1, 'ILUNGA', 'KABEYA', 'Michel', 'M', '1983-12-01', '2017-11-23', 'Technicien de laboratoire', '0991000007', 'Goma', '650.00', NULL),
+(8, 1, 'KABONGO', 'MWANA', 'Chantal', 'F', '1991-04-09', '2020-06-18', 'Infirmière', '0991000008', 'Goma', '580.00', NULL),
+(9, 1, 'MULANGA', 'KATUMBA', 'Eric', 'M', '1987-08-25', '2019-02-14', 'Agent administratif', '0991000009', 'Goma', '500.00', NULL),
+(10, 1, 'SHABANI', 'NGOYI', 'Lucie', 'F', '1993-10-11', '2021-12-01', 'Secrétaire médicale', '0991000010', 'Goma', '550.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -452,7 +485,14 @@ CREATE TABLE IF NOT EXISTS `presences` (
   `statut` enum('Présent','Absent','Retard') DEFAULT NULL,
   PRIMARY KEY (`id_presence`),
   KEY `id_personnel` (`id_personnel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `presences`
+--
+
+INSERT INTO `presences` (`id_presence`, `id_personnel`, `date_presence`, `heure_entree`, `heure_sortie`, `statut`) VALUES
+(1, 1, '2026-04-15', '13:10:23', '13:10:23', 'Présent');
 
 -- --------------------------------------------------------
 
@@ -462,12 +502,12 @@ CREATE TABLE IF NOT EXISTS `presences` (
 
 CREATE TABLE IF NOT EXISTS `prime` (
   `id_prime` int(11) NOT NULL AUTO_INCREMENT,
-  `id_personnel` int(11) DEFAULT NULL,
+  `id_salaire` int(11) DEFAULT NULL,
   `date_prime` date DEFAULT NULL,
   `motif` varchar(100) DEFAULT NULL,
   `montant` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_prime`),
-  KEY `id_personnel` (`id_personnel`)
+  KEY `id_personnel` (`id_salaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -478,13 +518,20 @@ CREATE TABLE IF NOT EXISTS `prime` (
 
 CREATE TABLE IF NOT EXISTS `retenue` (
   `id_retenue` int(11) NOT NULL AUTO_INCREMENT,
-  `id_personnel` int(11) DEFAULT NULL,
+  `id_salaire` int(11) DEFAULT NULL,
   `date_retenue` date DEFAULT NULL,
   `motif` varchar(50) DEFAULT NULL,
   `montant` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_retenue`),
-  KEY `id_personnel` (`id_personnel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  KEY `id_personnel` (`id_salaire`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `retenue`
+--
+
+INSERT INTO `retenue` (`id_retenue`, `id_salaire`, `date_retenue`, `motif`, `montant`) VALUES
+(1, 1, '2026-04-18', 'retard', '30.00');
 
 -- --------------------------------------------------------
 
@@ -495,14 +542,20 @@ CREATE TABLE IF NOT EXISTS `retenue` (
 CREATE TABLE IF NOT EXISTS `salaires` (
   `id_salaire` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
-  `periode` varchar(50) DEFAULT NULL,
-  `montant` decimal(12,2) DEFAULT NULL,
-  `date_paiement` date DEFAULT NULL,
-  `mode_paiement` varchar(50) DEFAULT NULL,
-  `observation` varchar(50) DEFAULT NULL,
+  `mois` varchar(50) NOT NULL,
+  `salaire_base` decimal(12,2) NOT NULL,
+  `date_paiement` date NOT NULL,
+  `statut` enum('Payé','Nom payé','En attente') NOT NULL,
   PRIMARY KEY (`id_salaire`),
   KEY `id_personnel` (`id_personnel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `salaires`
+--
+
+INSERT INTO `salaires` (`id_salaire`, `id_personnel`, `mois`, `salaire_base`, `date_paiement`, `statut`) VALUES
+(1, 1, 'Janvier', '200.00', '2026-04-18', 'Payé');
 
 -- --------------------------------------------------------
 
@@ -670,7 +723,7 @@ ALTER TABLE `affectaton_chambre`
 -- Contraintes pour la table `avances_salaire`
 --
 ALTER TABLE `avances_salaire`
-  ADD CONSTRAINT `fk_avance_id_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_avance_salaire` FOREIGN KEY (`id_salaire`) REFERENCES `salaires` (`id_salaire`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `chambre`
@@ -759,6 +812,12 @@ ALTER TABLE `facture`
   ADD CONSTRAINT `patient_fk_facture` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Contraintes pour la table `horaire`
+--
+ALTER TABLE `horaire`
+  ADD CONSTRAINT `fk_personnel_horaire` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `hospitalisation`
 --
 ALTER TABLE `hospitalisation`
@@ -779,6 +838,12 @@ ALTER TABLE `paiement`
   ADD CONSTRAINT `facture_fk` FOREIGN KEY (`id_facture`) REFERENCES `facture` (`id_facture`) ON DELETE CASCADE;
 
 --
+-- Contraintes pour la table `patients`
+--
+ALTER TABLE `patients`
+  ADD CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `personnels`
 --
 ALTER TABLE `personnels`
@@ -794,13 +859,13 @@ ALTER TABLE `presences`
 -- Contraintes pour la table `prime`
 --
 ALTER TABLE `prime`
-  ADD CONSTRAINT `fk_prime_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_prime_salaire` FOREIGN KEY (`id_salaire`) REFERENCES `salaires` (`id_salaire`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `retenue`
 --
 ALTER TABLE `retenue`
-  ADD CONSTRAINT `fk_retenue_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_retenue_salaire` FOREIGN KEY (`id_salaire`) REFERENCES `salaires` (`id_salaire`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `salaires`

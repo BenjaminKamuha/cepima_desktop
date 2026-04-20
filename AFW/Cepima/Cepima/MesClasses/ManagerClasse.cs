@@ -213,22 +213,6 @@ namespace Cepima.MesClasses
                 }
             }
         }
-        public static void focused_child(Control parent, Control child, Color? child_color = null, Color? others_controls_color = null)
-        {
-            foreach (Control ctr in parent.Controls)
-            {
-                if (ctr is Button)
-                {
-                    ctr.BackColor = others_controls_color ?? ColorTranslator.FromHtml("#F7FAFC");
-                    ctr.Font = new Font("Calibri", 8, FontStyle.Regular);
-                    ctr.ForeColor = Color.Black;
-                }
-                child.BackColor = child_color ?? ColorTranslator.FromHtml("#F0434F63");
-                child.Font = new Font("Calibri ", 9, FontStyle.Bold);
-                child.ForeColor = Color.White;
-
-            }
-        }
         // Fonction pour Ajouter un label 
         public static Label CustomLabel(string text = "Custom Label", Point? location = null, int font_size = 8, FontStyle? font_style = null)
         {
@@ -244,7 +228,26 @@ namespace Cepima.MesClasses
 
             return label;
         }
+        public static void focused_child(Control parent, Control child, Color? child_color = null, Color? others_controls_color = null)
+        {
+            foreach (Control ctr in parent.Controls)
+            {
+                if (ctr is Button)
+                {
+                    ctr.BackColor = others_controls_color ?? ColorTranslator.FromHtml("#F7FAFC");
+                    ctr.Font = new Font("Calibri", 8, FontStyle.Regular);
+                    ctr.ForeColor = Color.Black;
+                }
+            }
 
+            // appliquer le focus UNE SEULE FOIS
+            if (child is Button)
+            {
+                child.BackColor = child_color ?? ColorTranslator.FromHtml("#434F63");
+                child.Font = new Font("Calibri", 9, FontStyle.Bold);
+                child.ForeColor = Color.White;
+            }
+        }
         // Fonction pour ajouter l'image
         public static PictureBox AddPicture(Image img, Point location, Size size)
         {
@@ -274,12 +277,33 @@ namespace Cepima.MesClasses
 
             return btn;
         }
+        public static CustomRoundedPanel Rpanel(Point? location = null, Size? size = null, DockStyle dock = DockStyle.None)
+        {
+            CustomRoundedPanel panel = new CustomRoundedPanel();
+            //CustomRoundedPanel panel = new CustomRoundedPanel();
+            panel.Location = location ?? new Point(300, 150);
+            panel.Size = size ?? panel.Size;
+            //panel.Size = size.Value;
+            //panel.AutoSize = true;
+            panel.BorderSize = 1;
+            panel.BorderRadius = 15;
+            //panel.ShadowColor = Color.FromArgb(113, 128, 150);
+            //panel.ShadowDepth = 1;
+            panel.Margin = new Padding(10);
+            //panel.ShadowColor = Color.FromArgb(113, 128, 150);
+            panel.Dock = dock;
+            //panel.BackColor = Color.Blue;
+
+            // Animation
+            return panel;
+        }
 
     }
     //class session
     public static class SessionUtilisateur
     {
         public static int idUser { get; set; }
+        public static int id_personnel { get; set; }
         public static string Nom { get; set; }
         public static string mail { get; set; }
         public static string Role { get; set; }
