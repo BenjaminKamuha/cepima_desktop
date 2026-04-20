@@ -154,20 +154,7 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(dashbord_ph);
                 }),
-                new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) =>
-                {
-                    //autres instructions
-                }),
-                new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => 
-                {
-
-                }),
-                new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => 
-                {
-
-                }),
-
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) => {}),
+              
                 new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) => {
 
                     MesUserCases.User_medicament user_med = new MesUserCases.User_medicament();
