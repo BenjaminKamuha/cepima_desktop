@@ -17,20 +17,23 @@ namespace Cepima.MesUserCases
         public User_sortie_pharmacie()
         {
             InitializeComponent();
+            controlPosition();
             loadMed();
-
-
-            data_grid_med.Rows.Add(); // crée une ligne vide
-
-            int rowIndex = data_grid_med.Rows.Count - 1;
-
-            // colonne par index
-            data_grid_med.Rows[rowIndex].Cells[0].Value = "Paracétamol";
-            data_grid_med.Rows[rowIndex].Cells[1].Value = 25;
-            data_grid_med.Rows[rowIndex].Cells[2].Value = true;
+            loadQues();
 
         }
 
+        private void loadQues()
+        {
+            string query = "SELECT diagnostic, 
+        }
+
+        private void controlPosition()
+        {
+            lb_title.Left = (lb_title.Parent.ClientSize.Width - lb_title.Width) / 2;
+            pnl_radio_mode.Left = (pnl_radio_mode.Parent.ClientSize.Width - lb_title.Width) / 2;
+            pnl_responsable.Left = (pnl_responsable.Parent.ClientSize.Width - pnl_responsable.Width) / 2;
+        }
 
         private Panel Pan_med(int id, string name)
         {
@@ -233,6 +236,16 @@ namespace Cepima.MesUserCases
         private void data_grid_med_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void fl_stock_med_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
