@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            //this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.bt_close = new System.Windows.Forms.Button();
             this.bt_minus = new System.Windows.Forms.Button();
@@ -69,7 +69,9 @@
             this.bt_reception = new System.Windows.Forms.Button();
             this.bt_acceuil = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+
+            //((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture_statut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -84,7 +86,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -98,15 +99,15 @@
             this.panel1.TabIndex = 0;
             // 
             // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Cepima.Properties.Resources.maintenance_20px;
-            this.pictureBox4.Location = new System.Drawing.Point(250, 13);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(100, 50);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 4;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Visible = false;
+            //// 
+            //this.pictureBox4.Image = global::Cepima.Properties.Resources.maintenance_20px;
+            //this.pictureBox4.Location = new System.Drawing.Point(250, 13);
+            //this.pictureBox4.Name = "pictureBox4";
+            //this.pictureBox4.Size = new System.Drawing.Size(100, 50);
+            //this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            //this.pictureBox4.TabIndex = 4;
+            //this.pictureBox4.TabStop = false;
+            //this.pictureBox4.Visible = false;
             // 
             // panel9
             // 
@@ -349,7 +350,11 @@
             this.panel_center_main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+
+            this.panel_center_main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+
             this.panel_center_main.BackColor = System.Drawing.Color.Transparent;
+
             this.panel_center_main.Location = new System.Drawing.Point(262, 79);
             this.panel_center_main.Name = "panel_center_main";
             this.panel_center_main.Size = new System.Drawing.Size(786, 424);
@@ -372,6 +377,7 @@
             this.panel_sous_menu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel_sous_menu.AutoScroll = true;
             this.panel_sous_menu.Location = new System.Drawing.Point(6, 155);
             this.panel_sous_menu.Name = "panel_sous_menu";
             this.panel_sous_menu.Size = new System.Drawing.Size(152, 278);
@@ -409,7 +415,7 @@
             // 
             // panel10
             // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel10.Location = new System.Drawing.Point(250, 73);
             this.panel10.Name = "panel10";
@@ -548,7 +554,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture_statut)).EndInit();
@@ -597,7 +603,6 @@
         private System.Windows.Forms.Panel pan;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel_sous_menu;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button bt_setting;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button bt_personnel;

@@ -68,11 +68,36 @@
     <Compile Include="MesClasses\ManagerClasse.cs" />
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
+    <Compile Include="MesClasses\RH_manager.cs" />
+    <Compile Include="MesUserCases\User_add_salaire.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_add_salaire.Designer.cs">
+      <DependentUpon>User_add_salaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_avance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_avance.Designer.cs">
+      <DependentUpon>User_avance.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_consultation.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\User_consultation.Designer.cs">
       <DependentUpon>User_consultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_Dashboard_RH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_Dashboard_RH.Designer.cs">
+      <DependentUpon>User_Dashboard_RH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_DashBord_pharmacie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_DashBord_pharmacie.Designer.cs">
+      <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_detail_patient.cs">
       <SubType>UserControl</SubType>
@@ -86,6 +111,12 @@
     <Compile Include="MesUserCases\User_display_patients.Designer.cs">
       <DependentUpon>User_display_patients.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_horaires.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_horaires.Designer.cs">
+      <DependentUpon>User_horaires.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_medicament.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +128,30 @@
     </Compile>
     <Compile Include="MesUserCases\User_patient.Designer.cs">
       <DependentUpon>User_patient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_personnels_display.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_personnels_display.Designer.cs">
+      <DependentUpon>User_personnels_display.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_presences.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_presences.Designer.cs">
+      <DependentUpon>User_presences.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_prime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_prime.Designer.cs">
+      <DependentUpon>User_prime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_retenue.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_retenue.Designer.cs">
+      <DependentUpon>User_retenue.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_signes_vitaux.cs">
       <SubType>UserControl</SubType>
@@ -121,8 +176,20 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_add_salaire.resx">
+      <DependentUpon>User_add_salaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_avance.resx">
+      <DependentUpon>User_avance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_consultation.resx">
       <DependentUpon>User_consultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_Dashboard_RH.resx">
+      <DependentUpon>User_Dashboard_RH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_DashBord_pharmacie.resx">
+      <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_detail_patient.resx">
       <DependentUpon>User_detail_patient.cs</DependentUpon>
@@ -130,11 +197,26 @@
     <EmbeddedResource Include="MesUserCases\User_display_patients.resx">
       <DependentUpon>User_display_patients.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_horaires.resx">
+      <DependentUpon>User_horaires.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_medicament.resx">
       <DependentUpon>User_medicament.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_patient.resx">
       <DependentUpon>User_patient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_personnels_display.resx">
+      <DependentUpon>User_personnels_display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_presences.resx">
+      <DependentUpon>User_presences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_prime.resx">
+      <DependentUpon>User_prime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_retenue.resx">
+      <DependentUpon>User_retenue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
@@ -147,18 +229,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -364,12 +446,56 @@
     <None Include="Resources\maintenance_20px.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\avance_salaire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\decrease_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fingerprint_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\increase_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list_personnel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\us_dollar_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\planner_20px.png" />
     <None Include="Resources\capsules_100px.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\search1.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\brain_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brain_20px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cheap_2_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refund_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_money_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash_and_credit_card_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar_minus_90px.png" />
     <None Include="Resources\no_entry_100px.png" />
   </ItemGroup>
   <ItemGroup>

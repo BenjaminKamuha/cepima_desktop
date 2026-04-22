@@ -24,7 +24,7 @@ namespace Cepima.MesUserCases
         {
             try
             {
-                string querySelect = "SELECT id_patient,nom,post_nom,prenom,sexe,date_naissance,adresse,telephone FROM patients WHERE id_patient = @id";
+                string querySelect = "SELECT id_patient,nom,post_nom,prenom,sexe,date_naissance,patients.adresse,patients.telephone,nom_centre FROM patients JOIN centres  ON centres.id_centre = patients.id_centre WHERE id_patient = @id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",_patientId);
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(querySelect,MesClasses.ManagerClasse.request_params,true))
@@ -45,6 +45,7 @@ namespace Cepima.MesUserCases
                         tb_mod_adresse.Text = reader["adresse"].ToString();
                         lb_phone.Text = reader["telephone"].ToString();
                         tb_mod_phone.Text = reader["telephone"].ToString();
+                        lb_centre.Text = reader["nom_centre"].ToString();
                     }
                     reader.Close();
                 }
