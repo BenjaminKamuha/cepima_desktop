@@ -71,6 +71,15 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ChartPoint.cs" />
+    <Compile Include="Controls\Columns\DataGridViewControlColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Columns\DataGridViewDynamicComboBoxColumn.cs" />
+    <Compile Include="Controls\Columns\DataGridViewNumericUpDownColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Columns\DataGridViewProgressBarColumn.cs" />
+    <Compile Include="Controls\Columns\DataGridViewToggleColumn.cs" />
     <Compile Include="Controls\Component1.cs">
       <SubType>Component</SubType>
     </Compile>
