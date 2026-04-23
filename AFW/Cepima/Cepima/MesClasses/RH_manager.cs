@@ -183,7 +183,6 @@ namespace Cepima.MesClasses
 
          // ........................................ fin pour les avances .....................................
 
-
          // ============================================= Gestion de primes ===================================
          public  static void ChargerPrimes(DataGridView dgv)
          {

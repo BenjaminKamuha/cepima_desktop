@@ -63,23 +63,46 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesClasses\HospitalisationManager.cs" />
     <Compile Include="MesClasses\ImageHelper.cs" />
     <Compile Include="MesClasses\ManagerClasse.cs" />
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
     <Compile Include="MesClasses\RH_manager.cs" />
+    <Compile Include="MesForms\FormConnexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\FormConnexion.Designer.cs">
+      <DependentUpon>FormConnexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\UC_detail_personnel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\UC_detail_personnel.Designer.cs">
+      <DependentUpon>UC_detail_personnel.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_add_salaire.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\User_add_salaire.Designer.cs">
       <DependentUpon>User_add_salaire.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_affectation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_affectation.Designer.cs">
+      <DependentUpon>User_affectation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_avance.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\User_avance.Designer.cs">
       <DependentUpon>User_avance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_chambres.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_chambres.Designer.cs">
+      <DependentUpon>User_chambres.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_consultation.cs">
       <SubType>UserControl</SubType>
@@ -117,6 +140,12 @@
     <Compile Include="MesUserCases\User_horaires.Designer.cs">
       <DependentUpon>User_horaires.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_hospitalisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_hospitalisation.Designer.cs">
+      <DependentUpon>User_hospitalisation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_medicament.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,6 +182,12 @@
     <Compile Include="MesUserCases\User_retenue.Designer.cs">
       <DependentUpon>User_retenue.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_service.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_service.Designer.cs">
+      <DependentUpon>User_service.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_signes_vitaux.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -176,11 +211,23 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\FormConnexion.resx">
+      <DependentUpon>FormConnexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\UC_detail_personnel.resx">
+      <DependentUpon>UC_detail_personnel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_salaire.resx">
       <DependentUpon>User_add_salaire.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_affectation.resx">
+      <DependentUpon>User_affectation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_avance.resx">
       <DependentUpon>User_avance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_chambres.resx">
+      <DependentUpon>User_chambres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_consultation.resx">
       <DependentUpon>User_consultation.cs</DependentUpon>
@@ -200,6 +247,9 @@
     <EmbeddedResource Include="MesUserCases\User_horaires.resx">
       <DependentUpon>User_horaires.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_hospitalisation.resx">
+      <DependentUpon>User_hospitalisation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_medicament.resx">
       <DependentUpon>User_medicament.cs</DependentUpon>
     </EmbeddedResource>
@@ -217,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_retenue.resx">
       <DependentUpon>User_retenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_service.resx">
+      <DependentUpon>User_service.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
       <DependentUpon>User_signes_vitaux.cs</DependentUpon>
@@ -515,6 +568,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hand_with_a_pill_100px2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\being_sick_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_male_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\round_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male_user_60px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\male_user_100px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\round_user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\batch_assign_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unit_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room_90px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unit_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\room_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_bed_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\waiting_room_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unit_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hospital_bed_with_iv_machine_90px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

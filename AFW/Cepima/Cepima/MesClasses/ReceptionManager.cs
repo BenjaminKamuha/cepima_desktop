@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-using Cepima.MesClasses;
-
+using MySql.Data.MySqlClient;
 namespace Cepima.MesClasses
 {
     class ReceptionManager
@@ -20,7 +21,7 @@ namespace Cepima.MesClasses
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string queryService = "INSERT INTO services(id_centre,nom_centre,description)VALUES(@id,@name,@desc)";
+                    string queryService = "INSERT INTO services(id_centre,nom_service,description)VALUES(@id,@name,@desc)";
                     ManagerClasse.request_params.Clear();
                     ManagerClasse.request_params.Add("@id", centre_id);
                     ManagerClasse.request_params.Add("@name", name_centre);
@@ -146,6 +147,54 @@ namespace Cepima.MesClasses
             };
             lbMove.Tag = timer;
             timer.Start();
+        }
+
+        // Charger les services dans le datagaridview
+        public static void ChargerServicesInDatagridview(DataGridView dgv)
+        { 
+            try
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    string query = "SELECT s.id_service,s.nom_service AS Service,c.nom_centre AS Centre FROM services s JOIN centres c ON s.id_centre = c.id_centre";
+                    MySqlDataAdapter da = new MySqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgv.DataSource = dt;
+                    dgv.Columns["id_service"].Visible = false;
+                    //Ajuster les cellules par rapport aux données
+                    dgv.EnableHeadersVisualStyles = false;
+                    dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(44, 123, 229);  //7, 51, 131
+                    dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(247, 252, 250);
+                    dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Calibri", 10, FontStyle.Bold);
+                    dgv.DefaultCellStyle.Font = new Font("Calibri", 9, FontStyle.Bold);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Erreur de chargement de données : "+ex.Message);
+            }
+        }
+
+        // ======================= modifier un service =========================================
+        public static void UpdateService(int id_service, string service)
+        {
+            string queryUpdate = "UPDATE services SET nom_service =@name WHERE id_service =@id";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@name",service);
+            MesClasses.ManagerClasse.request_params.Add("@id",id_service.ToString());
+            MesClasses.ManagerClasse.CRUD(queryUpdate,MesClasses.ManagerClasse.request_params);
+            MessageBox.Show("Modificatio réussie !!");
+        }
+
+        // ======================== supprimer un service =========================================
+        public static void DeleteService(int id_service)
+        {
+            string queryDelete = "DELETE FROM services WHERE id_service =@id";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@id",id_service.ToString());
+            MesClasses.ManagerClasse.CRUD(queryDelete,MesClasses.ManagerClasse.request_params);
+            MessageBox.Show("Service supprimé avc succès !!");
         }
 
     }

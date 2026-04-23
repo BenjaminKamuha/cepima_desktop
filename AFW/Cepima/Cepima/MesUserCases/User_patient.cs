@@ -59,30 +59,8 @@ namespace Cepima.MesUserCases
                 DateTime dateNaissance = dt_naissance.Value;
                 string numeroPhone = tb_phone_number.Text;
                 string adressePatient = tb_adresse.Text;
-
-                //récuperer d'abord le centre
-                string idCentre = "";
-                string query = "SELECT id_centre FROM centres ORDER BY id_centre DESC LIMIT 1";
-                MySqlConnection con = MesClasses.ManagerClasse.GetConnexion();
-                MySqlCommand cmd = new MySqlCommand(query,con);
-                object result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    idCentre = result.ToString();
-                }
-                MessageBox.Show("L'id du centre est le suivant : "+idCentre);
                 //=====================Appel de la méthode dans sa class respective =====================
-                MesClasses.ReceptionManager.SavePatient
-                    (
-                    numeroFiche,
-                    nomPatient,
-                    postnomPatient,
-                    prename,
-                    Sexe,
-                    dateNaissance,
-                    numeroPhone,
-                    adressePatient,
-                    idCentre
+                MesClasses.ReceptionManager.SavePatient(numeroFiche,nomPatient,postnomPatient,prename,Sexe,dateNaissance,numeroPhone,adressePatient,MesForms.SessionUtilisateur.idCentre.ToString()
                     );
             }
             else
@@ -166,14 +144,6 @@ namespace Cepima.MesUserCases
             }
 
             return true;
-        }
-
-        private void bt_display_patients(object sender, EventArgs e)
-        {
-            MesUserCases.User_display_patients patients = new User_display_patients();
-            patients.Dock = DockStyle.Fill;
-            Form1.GlobalPanel_main.Controls.Clear();
-            Form1.GlobalPanel_main.Controls.Add(patients);
         }
 
         private void tb_adresse_TextChanged(object sender, EventArgs e)

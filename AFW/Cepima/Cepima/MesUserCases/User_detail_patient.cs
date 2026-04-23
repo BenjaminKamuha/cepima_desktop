@@ -76,7 +76,6 @@ namespace Cepima.MesUserCases
             Form1.GlobalPanel_main.Controls.Clear();
             Form1.GlobalPanel_main.Controls.Add(pt);
         }
-
         private void bt_mod_nom_Click(object sender, EventArgs e)
         {
             tb_mod_nom.Visible = true;
@@ -177,7 +176,7 @@ namespace Cepima.MesUserCases
                 MesClasses.ManagerClasse.request_params.Add("@id",_patientId);
                 MesClasses.ManagerClasse.CRUD(query_delete,MesClasses.ManagerClasse.request_params);
                 MessageBox.Show("Patient supprimé avec succès !");
-                ChargerDetails();
+                bt_return.PerformClick();
             }
         }
 

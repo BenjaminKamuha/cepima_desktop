@@ -33,7 +33,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.bt_save_salaire = new test_arrondissement2012.PerfectRoundedButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.dgv_salaire = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
+            this.bt_save_salaire = new test_arrondissement2012.PerfectRoundedButton();
             this.customRoundedPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -117,22 +117,6 @@
             this.label4.Size = new System.Drawing.Size(113, 17);
             this.label4.TabIndex = 2;
             this.label4.Text = "Ajouter un salaire";
-            // 
-            // bt_save_salaire
-            // 
-            this.bt_save_salaire.BackColor = System.Drawing.Color.Transparent;
-            this.bt_save_salaire.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_salaire.BorderRadius = 5;
-            this.bt_save_salaire.BorderSize = 0;
-            this.bt_save_salaire.ButtonText = "Enregistrer un salaire";
-            this.bt_save_salaire.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_save_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_save_salaire.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_salaire.Location = new System.Drawing.Point(330, 164);
-            this.bt_save_salaire.Name = "bt_save_salaire";
-            this.bt_save_salaire.Size = new System.Drawing.Size(144, 25);
-            this.bt_save_salaire.TabIndex = 4;
-            this.bt_save_salaire.Click += new System.EventHandler(this.bt_save_salaire_Click);
             // 
             // label5
             // 
@@ -276,6 +260,22 @@
             this.label7.TabIndex = 2;
             this.label7.Text = "Liste de salaires";
             // 
+            // bt_save_salaire
+            // 
+            this.bt_save_salaire.BackColor = System.Drawing.Color.Transparent;
+            this.bt_save_salaire.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_save_salaire.BorderRadius = 5;
+            this.bt_save_salaire.BorderSize = 0;
+            this.bt_save_salaire.ButtonText = "Enregistrer un salaire";
+            this.bt_save_salaire.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_save_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_save_salaire.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_save_salaire.Location = new System.Drawing.Point(330, 164);
+            this.bt_save_salaire.Name = "bt_save_salaire";
+            this.bt_save_salaire.Size = new System.Drawing.Size(144, 25);
+            this.bt_save_salaire.TabIndex = 4;
+            this.bt_save_salaire.Click += new System.EventHandler(this.bt_save_salaire_Click);
+            // 
             // User_add_salaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,7 +307,6 @@
         private System.Windows.Forms.ComboBox combo_mois;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckedListBox list_box_personnel;
-        private test_arrondissement2012.PerfectRoundedButton bt_save_salaire;
         private CustomRoundedPanel customRoundedPanel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
@@ -320,6 +319,7 @@
         private System.Windows.Forms.TextBox tb_salaire_base;
         private System.Windows.Forms.Label label5;
         private MyRoundedTextBox myRoundedTextBox1;
+        private test_arrondissement2012.PerfectRoundedButton bt_save_salaire;
 
 
 

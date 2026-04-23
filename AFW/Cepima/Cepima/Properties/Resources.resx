@@ -127,32 +127,27 @@
   <data name="group_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\group_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
   <data name="add_money_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_money_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="increase_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\increase_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
   <data name="homework_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\homework_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add_list_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_list_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="left_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\left_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="male_user_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\male_user_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="no_entry_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\no_entry_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
   </data>
   <data name="eye_checked_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye_checked_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
   <data name="brain_20px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brain_20px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -162,11 +157,11 @@
   <data name="search1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="trash_noir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trash_noir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="no_entry_100px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no_entry_100px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="brain_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\brain_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="batch_assign_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\batch_assign_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="heart_monitor_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\heart_monitor_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -195,66 +190,26 @@
   <data name="edit_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cheap_2_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cheap_2_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="edit_property_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_property_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="export_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="search1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
+  <data name="wi-fi_off_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wi-fi_off_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="no_entry_100px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\no_entry_100px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-
   <data name="homework_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\homework_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-    
+  <data name="room_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\room_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="us_dollar_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\us_dollar_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-    
-  <data name="brain_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\brain_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="heart_monitor_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\heart_monitor_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="paycheque_90px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\paycheque_90px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="hospital_bed_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hospital_bed_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="counselor_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\counselor_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="send_hot_list_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\send_hot_list_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="medical_bag_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\medical_bag_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="doctors_bag_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\doctors_bag_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="export_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="homework_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\homework_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="add_file_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_file_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="unit_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unit_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="add_user_male_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_user_male_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -271,36 +226,29 @@
   <data name="doctors_bag_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\doctors_bag_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="staff_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\staff_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit_property_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit_property_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
-  </data>
   <data name="edit_property_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\edit_property_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="stethoscope_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stethoscope_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="decrease_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\decrease_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\close_black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hospital_bed_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hospital_bed_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fingerprint_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fingerprint_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="brain_90px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\brain_90px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stethoscope_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stethoscope_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steto" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
+  <data name="unit_25px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unit_25px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stethoscope_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stethoscope_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="calendar_minus_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\calendar_minus_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="health_checkup_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\health_checkup_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -311,30 +259,29 @@
   <data name="health_checkup_90px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\health_checkup_90px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="stethoscope_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stethoscope_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="minus_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minus_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="left_blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left_blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
   </data>
   <data name="clock_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
   </data>
   <data name="add_user_male_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\add_user_male_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="refund_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\refund_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="lock_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lock_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="capsules_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\capsules_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="staff_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\staff_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
   </data>
   <data name="health_checkup_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\health_checkup_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -342,58 +289,62 @@
   <data name="maintenance_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maintenance_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="decrease_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\decrease_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="capsules_100px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\capsules_100px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
+  </data>
+  <data name="room_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\room_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="cepima_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cepima_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
+  <data name="reception_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reception_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="brain_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brain_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="doctors_bag_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\doctors_bag_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="edit_property_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit_property_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="being_sick_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\being_sick_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash_noir" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trash_noir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="waiting_room_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\waiting_room_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="avance_salaire" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\avance_salaire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="trash_noir" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\trash_noir.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
-  </data>
   <data name="left_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
   <data name="clock_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
+  <data name="round_user1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_user1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="being_sick_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\being_sick_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="paycheque_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\paycheque_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
+  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="list_personnel" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\list_personnel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="brain_90px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brain_90px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="planner_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\planner_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
   </data>
   <data name="search_property_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_property_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -404,16 +355,23 @@
   <data name="reception_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reception_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
   <data name="hand_with_a_pill_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hand_with_a_pill_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
   <data name="lock_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lock_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="staff_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\staff_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="unit_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\unit_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="refund_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refund_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cheap_2_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cheap_2_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_male_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_male_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_property_20px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_property_20px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -430,27 +388,29 @@
   <data name="brain_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brain_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="brain_90px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\brain_90px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="round_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\round_user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="left_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\left_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
   </data>
   <data name="pill_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pill_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="reception_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reception_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="hand_with_a_pill_100px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hand_with_a_pill_100px2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="add_file_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\add_file_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="staff_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\staff_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="no_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\no_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
+  </data>
+  <data name="add_file_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\add_file_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="male_user_60px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\male_user_60px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="settings_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\settings_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -458,23 +418,11 @@
   <data name="heart_monitor_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\heart_monitor_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-
-  <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="wi-fi_off_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wi-fi_off_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
+  <data name="brain_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\brain_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="location_20px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\location_20px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-
-  <data name="male_user_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\male_user_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="calendar_minus_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\calendar_minus_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="hand_with_a_pill_100px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hand_with_a_pill_100px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -482,9 +430,7 @@
   <data name="male_user_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\male_user_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hand_with_a_pill_100px2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hand_with_a_pill_100px2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-
+  <data name="hospital_bed_with_iv_machine_90px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hospital_bed_with_iv_machine_90px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  
 </root>
