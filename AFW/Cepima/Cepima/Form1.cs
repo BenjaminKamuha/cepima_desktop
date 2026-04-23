@@ -20,9 +20,6 @@ namespace Cepima
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
             bt_personnel.Click += bt_personnel_Click;
-
-
-
             
         }
         private void bt_close_Click(object sender, EventArgs e)
@@ -123,14 +120,42 @@ namespace Cepima
                 new MenuItem("    Signes vitaux",Properties.Resources.heart_monitor_20px,(s,ev) => 
                 {
                     //instructions
+                    MesUserCases.User_signes_vitaux signes = new MesUserCases.User_signes_vitaux();
+                    signes.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(signes);
                 }),
                 new MenuItem("    Affectation",Properties.Resources.send_hot_list_20px,(s,ev) =>
                 {
                     //Instructions
+                    MesUserCases.User_affectation affectation = new MesUserCases.User_affectation();
+                    affectation.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(affectation);
                 }),
-                new MenuItem("    Hospitalisation",Properties.Resources.hospital_bed_20px,(s,ev) =>
+                 new MenuItem("    Services",Properties.Resources.unit_20px,(s,ev) =>
                 {
-                    //instructions (ex appel d'un control)
+                    //Instructions
+                    MesUserCases.User_service service = new MesUserCases.User_service();
+                    service.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(service);
+                }),
+                 new MenuItem("    Chambres",Properties.Resources.waiting_room_20px,(s,ev) =>
+                {
+                    //Instructions
+                    MesUserCases.User_chambres chambre = new MesUserCases.User_chambres();
+                    chambre.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(chambre);
+                }),
+                
+                new MenuItem("    Hospitalisation",Properties.Resources.hospital_bed_25px,(s,ev) =>
+                {
+                    MesUserCases.User_hospitalisation hospitalisation = new MesUserCases.User_hospitalisation();
+                    hospitalisation.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(hospitalisation);
                 })
             };
             Create_sous_menu(items);

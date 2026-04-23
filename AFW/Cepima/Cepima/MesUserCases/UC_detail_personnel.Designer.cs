@@ -1,6 +1,6 @@
 ﻿namespace Cepima.MesUserCases
 {
-    partial class User_detail_patient
+    partial class UC_detail_personnel
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -28,19 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(User_detail_patient));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_detail_personnel));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.bt_mod_genre = new System.Windows.Forms.Button();
             this.bt_mod_prenom = new System.Windows.Forms.Button();
             this.bt_mod_postnom = new System.Windows.Forms.Button();
             this.bt_mod_adresse = new System.Windows.Forms.Button();
             this.bt_mod_phone = new System.Windows.Forms.Button();
             this.bt_mod_nom = new System.Windows.Forms.Button();
-            this.bt_save_update = new RoundedButton();
-            this.bt_cancel = new RoundedButton();
-            this.bt_delete_patient = new System.Windows.Forms.Button();
-            this.bt_return = new System.Windows.Forms.Button();
             this.tb_mod_postnom = new System.Windows.Forms.TextBox();
             this.tb_mod_adresse = new System.Windows.Forms.TextBox();
             this.tb_mod_phone = new System.Windows.Forms.TextBox();
@@ -63,8 +60,20 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lb_fonction = new System.Windows.Forms.Label();
+            this.tb_mod_fonction = new System.Windows.Forms.TextBox();
+            this.bt_mod_fonction = new System.Windows.Forms.Button();
+            this.lb_date_embauche = new System.Windows.Forms.Label();
+            this.dt_date_embauche = new System.Windows.Forms.DateTimePicker();
+            this.bt_mod_date_embauche = new System.Windows.Forms.Button();
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.panel1.SuspendLayout();
+            this.bt_save_update = new RoundedButton();
+            this.bt_cancel = new RoundedButton();
+            this.bt_delete_personnel = new System.Windows.Forms.Button();
+            this.bt_return = new System.Windows.Forms.Button();
+            this.panel2.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,46 +81,62 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 7);
+            this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 19);
+            this.label1.Size = new System.Drawing.Size(143, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Détails du patient";
+            this.label1.Text = "Détail du personnel";
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.bt_mod_genre);
-            this.panel1.Controls.Add(this.bt_mod_prenom);
-            this.panel1.Controls.Add(this.bt_mod_postnom);
-            this.panel1.Controls.Add(this.bt_mod_adresse);
-            this.panel1.Controls.Add(this.bt_mod_phone);
-            this.panel1.Controls.Add(this.bt_mod_nom);
-            this.panel1.Controls.Add(this.tb_mod_postnom);
-            this.panel1.Controls.Add(this.tb_mod_adresse);
-            this.panel1.Controls.Add(this.tb_mod_phone);
-            this.panel1.Controls.Add(this.tb_mod_genre);
-            this.panel1.Controls.Add(this.tb_mod_prenom);
-            this.panel1.Controls.Add(this.tb_mod_nom);
-            this.panel1.Controls.Add(this.lb_genre);
-            this.panel1.Controls.Add(this.lb_adresse);
-            this.panel1.Controls.Add(this.lb_phone);
-            this.panel1.Controls.Add(this.lb_prenom);
-            this.panel1.Controls.Add(this.lb_centre);
-            this.panel1.Controls.Add(this.lb_date);
-            this.panel1.Controls.Add(this.lb_postnom);
-            this.panel1.Controls.Add(this.lb_nom);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(7, 62);
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.panel1.Location = new System.Drawing.Point(4, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(712, 267);
-            this.panel1.TabIndex = 3;
+            this.panel1.Size = new System.Drawing.Size(150, 4);
+            this.panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dt_date_embauche);
+            this.panel2.Controls.Add(this.lb_date_embauche);
+            this.panel2.Controls.Add(this.bt_mod_fonction);
+            this.panel2.Controls.Add(this.bt_mod_genre);
+            this.panel2.Controls.Add(this.bt_mod_prenom);
+            this.panel2.Controls.Add(this.bt_mod_postnom);
+            this.panel2.Controls.Add(this.bt_mod_adresse);
+            this.panel2.Controls.Add(this.bt_mod_date_embauche);
+            this.panel2.Controls.Add(this.bt_mod_phone);
+            this.panel2.Controls.Add(this.bt_mod_nom);
+            this.panel2.Controls.Add(this.tb_mod_postnom);
+            this.panel2.Controls.Add(this.tb_mod_adresse);
+            this.panel2.Controls.Add(this.tb_mod_fonction);
+            this.panel2.Controls.Add(this.tb_mod_phone);
+            this.panel2.Controls.Add(this.tb_mod_genre);
+            this.panel2.Controls.Add(this.tb_mod_prenom);
+            this.panel2.Controls.Add(this.lb_fonction);
+            this.panel2.Controls.Add(this.tb_mod_nom);
+            this.panel2.Controls.Add(this.lb_genre);
+            this.panel2.Controls.Add(this.lb_adresse);
+            this.panel2.Controls.Add(this.lb_phone);
+            this.panel2.Controls.Add(this.lb_prenom);
+            this.panel2.Controls.Add(this.lb_centre);
+            this.panel2.Controls.Add(this.lb_date);
+            this.panel2.Controls.Add(this.lb_postnom);
+            this.panel2.Controls.Add(this.lb_nom);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Location = new System.Drawing.Point(7, 50);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(733, 296);
+            this.panel2.TabIndex = 4;
             // 
             // bt_mod_genre
             // 
@@ -154,7 +179,7 @@
             this.bt_mod_adresse.FlatAppearance.BorderSize = 0;
             this.bt_mod_adresse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_mod_adresse.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_adresse.Image")));
-            this.bt_mod_adresse.Location = new System.Drawing.Point(659, 126);
+            this.bt_mod_adresse.Location = new System.Drawing.Point(694, 125);
             this.bt_mod_adresse.Name = "bt_mod_adresse";
             this.bt_mod_adresse.Size = new System.Drawing.Size(25, 25);
             this.bt_mod_adresse.TabIndex = 12;
@@ -166,7 +191,7 @@
             this.bt_mod_phone.FlatAppearance.BorderSize = 0;
             this.bt_mod_phone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_mod_phone.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_phone.Image")));
-            this.bt_mod_phone.Location = new System.Drawing.Point(659, 74);
+            this.bt_mod_phone.Location = new System.Drawing.Point(694, 73);
             this.bt_mod_phone.Name = "bt_mod_phone";
             this.bt_mod_phone.Size = new System.Drawing.Size(25, 25);
             this.bt_mod_phone.TabIndex = 12;
@@ -185,63 +210,6 @@
             this.bt_mod_nom.UseVisualStyleBackColor = true;
             this.bt_mod_nom.Click += new System.EventHandler(this.bt_mod_nom_Click);
             // 
-            // bt_save_update
-            // 
-            this.bt_save_update.BackColor = System.Drawing.Color.Transparent;
-            this.bt_save_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_save_update.BorderRadius = 4;
-            this.bt_save_update.BorderSize = 0;
-            this.bt_save_update.ButtonText = "Enregister ";
-            this.bt_save_update.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_save_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.bt_save_update.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_update.Location = new System.Drawing.Point(455, 15);
-            this.bt_save_update.Name = "bt_save_update";
-            this.bt_save_update.Size = new System.Drawing.Size(80, 25);
-            this.bt_save_update.TabIndex = 11;
-            this.bt_save_update.Click += new System.EventHandler(this.bt_save_update_Click);
-            // 
-            // bt_cancel
-            // 
-            this.bt_cancel.BackColor = System.Drawing.Color.Transparent;
-            this.bt_cancel.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_cancel.BorderRadius = 4;
-            this.bt_cancel.BorderSize = 0;
-            this.bt_cancel.ButtonText = "Annuler";
-            this.bt_cancel.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_cancel.Location = new System.Drawing.Point(191, 15);
-            this.bt_cancel.Name = "bt_cancel";
-            this.bt_cancel.Size = new System.Drawing.Size(87, 25);
-            this.bt_cancel.TabIndex = 10;
-            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
-            // 
-            // bt_delete_patient
-            // 
-            this.bt_delete_patient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_delete_patient.FlatAppearance.BorderSize = 0;
-            this.bt_delete_patient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_delete_patient.Image = global::Cepima.Properties.Resources.trasch_blue;
-            this.bt_delete_patient.Location = new System.Drawing.Point(686, 6);
-            this.bt_delete_patient.Name = "bt_delete_patient";
-            this.bt_delete_patient.Size = new System.Drawing.Size(33, 34);
-            this.bt_delete_patient.TabIndex = 9;
-            this.bt_delete_patient.UseVisualStyleBackColor = true;
-            this.bt_delete_patient.Click += new System.EventHandler(this.bt_delete_patient_Click);
-            // 
-            // bt_return
-            // 
-            this.bt_return.FlatAppearance.BorderSize = 0;
-            this.bt_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_return.Image = global::Cepima.Properties.Resources.left_blue;
-            this.bt_return.Location = new System.Drawing.Point(9, 15);
-            this.bt_return.Name = "bt_return";
-            this.bt_return.Size = new System.Drawing.Size(49, 29);
-            this.bt_return.TabIndex = 9;
-            this.bt_return.UseVisualStyleBackColor = true;
-            this.bt_return.Click += new System.EventHandler(this.bt_return_Click);
-            // 
             // tb_mod_postnom
             // 
             this.tb_mod_postnom.Location = new System.Drawing.Point(106, 77);
@@ -253,14 +221,14 @@
             // 
             this.tb_mod_adresse.Location = new System.Drawing.Point(509, 129);
             this.tb_mod_adresse.Name = "tb_mod_adresse";
-            this.tb_mod_adresse.Size = new System.Drawing.Size(144, 20);
+            this.tb_mod_adresse.Size = new System.Drawing.Size(179, 20);
             this.tb_mod_adresse.TabIndex = 6;
             // 
             // tb_mod_phone
             // 
             this.tb_mod_phone.Location = new System.Drawing.Point(509, 77);
             this.tb_mod_phone.Name = "tb_mod_phone";
-            this.tb_mod_phone.Size = new System.Drawing.Size(144, 20);
+            this.tb_mod_phone.Size = new System.Drawing.Size(179, 20);
             this.tb_mod_phone.TabIndex = 5;
             // 
             // tb_mod_genre
@@ -338,7 +306,7 @@
             // 
             this.lb_date.AutoSize = true;
             this.lb_date.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_date.Location = new System.Drawing.Point(506, 32);
+            this.lb_date.Location = new System.Drawing.Point(506, 237);
             this.lb_date.Name = "lb_date";
             this.lb_date.Size = new System.Drawing.Size(63, 14);
             this.lb_date.TabIndex = 1;
@@ -398,7 +366,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(381, 82);
+            this.label7.Location = new System.Drawing.Point(381, 79);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 15);
             this.label7.TabIndex = 0;
@@ -418,7 +386,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(381, 30);
+            this.label6.Location = new System.Drawing.Point(381, 235);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 15);
             this.label6.TabIndex = 0;
@@ -444,35 +412,171 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom : ";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(381, 25);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 15);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Date embauche  :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(11, 246);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Fonction : ";
+            // 
+            // lb_fonction
+            // 
+            this.lb_fonction.AutoSize = true;
+            this.lb_fonction.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lb_fonction.Location = new System.Drawing.Point(103, 248);
+            this.lb_fonction.Name = "lb_fonction";
+            this.lb_fonction.Size = new System.Drawing.Size(38, 14);
+            this.lb_fonction.TabIndex = 1;
+            this.lb_fonction.Text = "genre";
+            // 
+            // tb_mod_fonction
+            // 
+            this.tb_mod_fonction.Location = new System.Drawing.Point(106, 241);
+            this.tb_mod_fonction.Name = "tb_mod_fonction";
+            this.tb_mod_fonction.Size = new System.Drawing.Size(172, 20);
+            this.tb_mod_fonction.TabIndex = 4;
+            // 
+            // bt_mod_fonction
+            // 
+            this.bt_mod_fonction.FlatAppearance.BorderSize = 0;
+            this.bt_mod_fonction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_mod_fonction.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_fonction.Image")));
+            this.bt_mod_fonction.Location = new System.Drawing.Point(284, 241);
+            this.bt_mod_fonction.Name = "bt_mod_fonction";
+            this.bt_mod_fonction.Size = new System.Drawing.Size(25, 25);
+            this.bt_mod_fonction.TabIndex = 12;
+            this.bt_mod_fonction.UseVisualStyleBackColor = true;
+            this.bt_mod_fonction.Click += new System.EventHandler(this.bt_mod_fonction_Click);
+            // 
+            // lb_date_embauche
+            // 
+            this.lb_date_embauche.AutoSize = true;
+            this.lb_date_embauche.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lb_date_embauche.Location = new System.Drawing.Point(509, 26);
+            this.lb_date_embauche.Name = "lb_date_embauche";
+            this.lb_date_embauche.Size = new System.Drawing.Size(32, 14);
+            this.lb_date_embauche.TabIndex = 13;
+            this.lb_date_embauche.Text = "date";
+            // 
+            // dt_date_embauche
+            // 
+            this.dt_date_embauche.Location = new System.Drawing.Point(509, 22);
+            this.dt_date_embauche.Name = "dt_date_embauche";
+            this.dt_date_embauche.Size = new System.Drawing.Size(179, 20);
+            this.dt_date_embauche.TabIndex = 5;
+            // 
+            // bt_mod_date_embauche
+            // 
+            this.bt_mod_date_embauche.FlatAppearance.BorderSize = 0;
+            this.bt_mod_date_embauche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_mod_date_embauche.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_date_embauche.Image")));
+            this.bt_mod_date_embauche.Location = new System.Drawing.Point(694, 20);
+            this.bt_mod_date_embauche.Name = "bt_mod_date_embauche";
+            this.bt_mod_date_embauche.Size = new System.Drawing.Size(25, 25);
+            this.bt_mod_date_embauche.TabIndex = 12;
+            this.bt_mod_date_embauche.UseVisualStyleBackColor = true;
+            this.bt_mod_date_embauche.Click += new System.EventHandler(this.bt_mod_date_embauche_Click);
+            // 
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 8;
-            this.customRoundedPanel1.BorderSize = 1;
+            this.customRoundedPanel1.BorderSize = 2;
             this.customRoundedPanel1.Controls.Add(this.bt_save_update);
             this.customRoundedPanel1.Controls.Add(this.bt_cancel);
-            this.customRoundedPanel1.Controls.Add(this.bt_delete_patient);
+            this.customRoundedPanel1.Controls.Add(this.bt_delete_personnel);
             this.customRoundedPanel1.Controls.Add(this.bt_return);
             this.customRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(0, 369);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(0, 371);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(743, 61);
-            this.customRoundedPanel1.TabIndex = 4;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(743, 59);
+            this.customRoundedPanel1.TabIndex = 14;
             // 
-            // User_detail_patient
+            // bt_save_update
+            // 
+            this.bt_save_update.BackColor = System.Drawing.Color.Transparent;
+            this.bt_save_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_save_update.BorderRadius = 4;
+            this.bt_save_update.BorderSize = 0;
+            this.bt_save_update.ButtonText = "Enregister ";
+            this.bt_save_update.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_save_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.bt_save_update.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_save_update.Location = new System.Drawing.Point(462, 19);
+            this.bt_save_update.Name = "bt_save_update";
+            this.bt_save_update.Size = new System.Drawing.Size(80, 25);
+            this.bt_save_update.TabIndex = 15;
+            this.bt_save_update.Click += new System.EventHandler(this.bt_save_update_Click);
+            // 
+            // bt_cancel
+            // 
+            this.bt_cancel.BackColor = System.Drawing.Color.Transparent;
+            this.bt_cancel.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_cancel.BorderRadius = 4;
+            this.bt_cancel.BorderSize = 0;
+            this.bt_cancel.ButtonText = "Annuler";
+            this.bt_cancel.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_cancel.Location = new System.Drawing.Point(198, 19);
+            this.bt_cancel.Name = "bt_cancel";
+            this.bt_cancel.Size = new System.Drawing.Size(87, 25);
+            this.bt_cancel.TabIndex = 14;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            // 
+            // bt_delete_personnel
+            // 
+            this.bt_delete_personnel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_delete_personnel.FlatAppearance.BorderSize = 0;
+            this.bt_delete_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_delete_personnel.Image = global::Cepima.Properties.Resources.trasch_blue;
+            this.bt_delete_personnel.Location = new System.Drawing.Point(693, 10);
+            this.bt_delete_personnel.Name = "bt_delete_personnel";
+            this.bt_delete_personnel.Size = new System.Drawing.Size(33, 34);
+            this.bt_delete_personnel.TabIndex = 12;
+            this.bt_delete_personnel.UseVisualStyleBackColor = true;
+            this.bt_delete_personnel.Click += new System.EventHandler(this.bt_delete_personnel_Click);
+            // 
+            // bt_return
+            // 
+            this.bt_return.FlatAppearance.BorderSize = 0;
+            this.bt_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_return.Image = global::Cepima.Properties.Resources.left_blue;
+            this.bt_return.Location = new System.Drawing.Point(16, 19);
+            this.bt_return.Name = "bt_return";
+            this.bt_return.Size = new System.Drawing.Size(49, 29);
+            this.bt_return.TabIndex = 13;
+            this.bt_return.UseVisualStyleBackColor = true;
+            this.bt_return.Click += new System.EventHandler(this.bt_return_Click);
+            // 
+            // UC_detail_personnel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.customRoundedPanel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
-            this.Name = "User_detail_patient";
+            this.Name = "UC_detail_personnel";
             this.Size = new System.Drawing.Size(743, 430);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -483,38 +587,47 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button bt_mod_fonction;
+        private System.Windows.Forms.Button bt_mod_genre;
+        private System.Windows.Forms.Button bt_mod_prenom;
+        private System.Windows.Forms.Button bt_mod_postnom;
+        private System.Windows.Forms.Button bt_mod_adresse;
+        private System.Windows.Forms.Button bt_mod_phone;
+        private System.Windows.Forms.Button bt_mod_nom;
+        private System.Windows.Forms.TextBox tb_mod_postnom;
+        private System.Windows.Forms.TextBox tb_mod_adresse;
+        private System.Windows.Forms.TextBox tb_mod_fonction;
+        private System.Windows.Forms.TextBox tb_mod_phone;
+        private System.Windows.Forms.TextBox tb_mod_genre;
+        private System.Windows.Forms.TextBox tb_mod_prenom;
+        private System.Windows.Forms.Label lb_fonction;
+        private System.Windows.Forms.TextBox tb_mod_nom;
         private System.Windows.Forms.Label lb_genre;
         private System.Windows.Forms.Label lb_adresse;
         private System.Windows.Forms.Label lb_phone;
         private System.Windows.Forms.Label lb_prenom;
+        private System.Windows.Forms.Label lb_centre;
         private System.Windows.Forms.Label lb_date;
         private System.Windows.Forms.Label lb_postnom;
         private System.Windows.Forms.Label lb_nom;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tb_mod_postnom;
-        private System.Windows.Forms.TextBox tb_mod_adresse;
-        private System.Windows.Forms.TextBox tb_mod_phone;
-        private System.Windows.Forms.TextBox tb_mod_genre;
-        private System.Windows.Forms.TextBox tb_mod_prenom;
-        private System.Windows.Forms.TextBox tb_mod_nom;
+        private System.Windows.Forms.DateTimePicker dt_date_embauche;
+        private System.Windows.Forms.Label lb_date_embauche;
+        private System.Windows.Forms.Button bt_mod_date_embauche;
+        private CustomRoundedPanel customRoundedPanel1;
         private RoundedButton bt_save_update;
         private RoundedButton bt_cancel;
+        private System.Windows.Forms.Button bt_delete_personnel;
         private System.Windows.Forms.Button bt_return;
-        private System.Windows.Forms.Button bt_delete_patient;
-        private System.Windows.Forms.Button bt_mod_genre;
-        private System.Windows.Forms.Button bt_mod_prenom;
-        private System.Windows.Forms.Button bt_mod_postnom;
-        private System.Windows.Forms.Button bt_mod_nom;
-        private System.Windows.Forms.Button bt_mod_adresse;
-        private System.Windows.Forms.Button bt_mod_phone;
-        private System.Windows.Forms.Label lb_centre;
-        private System.Windows.Forms.Label label9;
-        private CustomRoundedPanel customRoundedPanel1;
     }
 }

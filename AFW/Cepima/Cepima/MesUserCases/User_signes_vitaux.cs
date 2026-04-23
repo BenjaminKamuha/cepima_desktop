@@ -15,61 +15,124 @@ namespace Cepima.MesUserCases
         public User_signes_vitaux()
         {
             InitializeComponent();
-            LoadPatientInCbx(cbx_patient_signes);
             MesClasses.ReceptionManager.MoveLabel(label1,panel1,2);
+            LoadPatient();
         }
-
-        private void bt_save_signes_Click(object sender, EventArgs e)
+        //cgarger les client dans le flowLayoutPanel
+        private void LoadPatient(params string[] args)
         {
-            //récuperation des différentes données
-            string id_patient = cbx_patient_signes.SelectedValue.ToString();
-            decimal temperature = Convert.ToDecimal(tb_temperature.Text);
-            string tensionArterielle = tb_tension.Text;
-            int frequence_cardiaque = Convert.ToInt32(tb_frequence.Text);
-            decimal poids = Convert.ToDecimal(tb_poids.Text);
-            decimal taille = Convert.ToDecimal(tb_taille.Text);
-            MesClasses.ReceptionManager.SaveSigneVitaux(id_patient,temperature,tensionArterielle,frequence_cardiaque,poids,taille);
-        }
+            fl_patient.Controls.Clear();
 
-        // ======================= Charger les patients dans le comboBox ====================================
-        private void LoadPatientInCbx(ComboBox cbx)
-        {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-            {
-                MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string querySelectPatients = "SELECT id_patient, CONCAT(numero_fiche,'   ',nom,' ',post_nom,' ',prenom)AS nomCompletPatient FROM patients ORDER BY nom DESC ";
-                    using (MySqlCommand cmdPatients = new MySqlCommand(querySelectPatients,con,tr))
+                    string query = "SELECT id_patient, nom, post_nom FROM patients ORDER BY id_patient DESC";
+
+                    MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true);
+
+                    while (reader.Read())
                     {
-                        DataTable dt = new DataTable();
-                        MySqlDataAdapter da = new MySqlDataAdapter(cmdPatients);
-                        da.Fill(dt);
-                        cbx.DataSource = dt;
-                        cbx.DisplayMember = "nomCompletPatient";
-                        cbx.ValueMember = "id_patient";
-                        cbx.SelectedIndex = -1;
+                        AjouterPanel(
+                            reader["id_patient"].ToString(),
+                            reader["nom"].ToString(),
+                            reader["post_nom"].ToString()
+                        );
                     }
+
+                    reader.Close();
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show("Erreur lors du chargement des patients : "+ex.Message);
+                    MessageBox.Show("Erreur patient " + ex.Message);
                 }
+        }
+        private void AjouterPanel(string id, string nom, string postNom)
+        {
+            Panel panelPatient = new Panel
+            {
+                Size = new Size(180, 60),
+                BorderStyle = BorderStyle.FixedSingle,
+                Margin = new Padding(5),
+            };
+
+            PictureBox picture = new PictureBox
+            {
+                Location = new Point(10, 5),
+                Size = new Size(35, 35),
+                Image = Properties.Resources.round_user,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+
+            panelPatient.Controls.Add(picture);
+
+            Label labelNom = new Label
+            {
+                Text = nom + " " + postNom,
+                Location = new Point(50, 20),
+                AutoSize = true,
+                Font = new Font("Consolas", 8, FontStyle.Bold)
+            };
+
+            panelPatient.Controls.Add(labelNom);
+
+            CheckBox chk = new CheckBox
+            {
+                Tag = id,
+                AutoSize = true,
+                Location = new Point(160, 40)
+            };
+
+            chk.CheckedChanged += chkClient_CheckedChanged;
+
+            panelPatient.Controls.Add(chk);
+
+            fl_patient.Controls.Add(panelPatient);
+        }
+
+        int idPatient;
+        void chkClient_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chk = sender as CheckBox;
+
+            if (chk.Checked)
+            {
+                foreach (Panel p in fl_patient.Controls.OfType<Panel>())
+                {
+                    foreach (CheckBox c in p.Controls.OfType<CheckBox>())
+                    {
+                        if (c != chk)
+                        {
+                            c.Checked = false;
+                        }
+                    }
+                }
+
+                idPatient = Convert.ToInt32(chk.Tag);
+            }
+            else
+            {
+                idPatient = 0;
+            }
+        }
+        private void bt_save_signes_Click(object sender, EventArgs e)
+        {
+            if (VerifierChampsSignesVitaux() == true)
+            {
+                //récuperation des différentes données
+                decimal temperature = Convert.ToDecimal(tb_temperature.Text);
+                string tensionArterielle = tb_tension.Text;
+                int frequence_cardiaque = Convert.ToInt32(tb_frequence.Text);
+                decimal poids = Convert.ToDecimal(tb_poids.Text);
+                decimal taille = Convert.ToDecimal(tb_taille.Text);
+                MesClasses.ReceptionManager.SaveSigneVitaux(idPatient.ToString(), temperature, tensionArterielle, frequence_cardiaque, poids, taille);
+            }
+            else
+            {
+                return;
             }
         }
 
         private bool VerifierChampsSignesVitaux()
         {
-            // comboBox_patients
-            if (cbx_patient_signes.SelectedIndex == -1)
-            {
-                User_patient.erreur.SetError(cbx_patient_signes, "Vous devez sélectionner un patient");
-                return false;
-            }
-            else
-            {
-                User_patient.erreur.SetError(cbx_patient_signes, "");
-            }
 
             // tb_temperature
             if (tb_temperature.Text.Trim() == "")
@@ -131,5 +194,6 @@ namespace Cepima.MesUserCases
             }
             return true;
         }
+
     }
 }

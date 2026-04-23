@@ -55,7 +55,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.myRoundedTextBox1 = new MyRoundedTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.bt_detail_patient = new test_arrondissement2012.PerfectRoundedButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
@@ -63,9 +62,10 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(2, 28);
+            this.panel1.Location = new System.Drawing.Point(26, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(199, 231);
             this.panel1.TabIndex = 0;
@@ -122,7 +122,7 @@
             this.customRoundedPanel1.Controls.Add(this.label2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(208, 21);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(285, 48);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(557, 391);
             this.customRoundedPanel1.TabIndex = 1;
@@ -411,22 +411,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom  : ";
             // 
-            // bt_detail_patient
-            // 
-            this.bt_detail_patient.BackColor = System.Drawing.Color.Transparent;
-            this.bt_detail_patient.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_detail_patient.BorderRadius = 5;
-            this.bt_detail_patient.BorderSize = 0;
-            this.bt_detail_patient.ButtonText = "Afficher tous les patients";
-            this.bt_detail_patient.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_detail_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_detail_patient.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_detail_patient.Location = new System.Drawing.Point(22, 363);
-            this.bt_detail_patient.Name = "bt_detail_patient";
-            this.bt_detail_patient.Size = new System.Drawing.Size(158, 30);
-            this.bt_detail_patient.TabIndex = 2;
-            this.bt_detail_patient.Click += new System.EventHandler(this.bt_display_patients);
-            // 
             // User_patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,9 +418,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.bt_detail_patient);
             this.Name = "User_patient";
-            this.Size = new System.Drawing.Size(786, 424);
+            this.Size = new System.Drawing.Size(940, 479);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -475,6 +458,5 @@
         private System.Windows.Forms.TextBox tb_phone_number;
         private MyRoundedTextBox myRoundedTextBox4;
         private System.Windows.Forms.Label label;
-        private test_arrondissement2012.PerfectRoundedButton bt_detail_patient;
     }
 }

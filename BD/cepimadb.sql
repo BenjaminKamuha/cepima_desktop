@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Lun 20 Avril 2026 à 12:28
+-- Généré le: Jeu 23 Avril 2026 à 13:13
 -- Version du serveur: 5.6.12-log
 -- Version de PHP: 5.4.12
 
@@ -336,15 +336,17 @@ CREATE TABLE IF NOT EXISTS `hospitalisation` (
   `id_patient` int(11) DEFAULT NULL,
   `id_centre` int(11) DEFAULT NULL,
   `id_service` int(11) DEFAULT NULL,
+  `id_consultation` int(11) NOT NULL,
   `date_entree` date DEFAULT NULL,
   `date_sortie` date DEFAULT NULL,
   `motif` varchar(255) DEFAULT NULL,
-  `etat` varchar(50) DEFAULT NULL,
+  `etat` enum('Hospitalisé','En observation','Stable','Sorti') DEFAULT NULL,
   PRIMARY KEY (`id_hospitalisation`),
   KEY `id_patient` (`id_patient`),
   KEY `id_centre` (`id_centre`),
   KEY `id_service` (`id_service`),
-  KEY `id_service_2` (`id_service`)
+  KEY `id_service_2` (`id_service`),
+  KEY `id_consultation` (`id_consultation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -372,6 +374,7 @@ CREATE TABLE IF NOT EXISTS `logs` (
 CREATE TABLE IF NOT EXISTS `medicament` (
   `id_medicament` int(11) NOT NULL AUTO_INCREMENT,
   `nom_medicament` varchar(50) DEFAULT NULL,
+  `photos` blob NOT NULL,
   `categorie` varchar(20) DEFAULT NULL,
   `unite` varchar(50) DEFAULT NULL,
   `prix_achat` decimal(12,2) DEFAULT NULL,
@@ -420,15 +423,16 @@ CREATE TABLE IF NOT EXISTS `patients` (
   PRIMARY KEY (`id_patient`),
   UNIQUE KEY `numero_fiche` (`numero_fiche`),
   KEY `id_centre` (`id_centre`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `patients`
 --
 
 INSERT INTO `patients` (`id_patient`, `numero_fiche`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `telephone`, `adresse`, `date_creation`, `id_centre`) VALUES
-(2, 'CEP-001', 'Kambale', 'Mukama', 'Mafungula', 'Homme', '1994-06-09', '+243 245 985 633', 'Butembo/Katwa/kyambuli', '2026-04-09', 1),
-(3, 'CEP-003', 'bvcbn', 'ghjkl', 'jhgh', 'Homme', '2026-04-09', 'jhgfhj', 'lkjjghjklm', '2026-04-09', 1);
+(2, 'CEP-001', 'Kambale', 'Mukama', 'Mafungula', 'Homme', '1994-06-09', '+243 245 985 633', 'Kyambuli', '2026-04-09', 1),
+(3, 'CEP-003', 'Kasereka', 'Mukandala', 'Jean', 'Homme', '2026-04-09', '0947856321', 'Butembo', '2026-04-09', 1),
+(4, 'CEP-004', 'kakule', 'Mughanda', 'Jean-louis', 'Homme', '1995-07-13', '+243 254 789 545 ', 'Avenue du centre', '2026-04-22', 1);
 
 -- --------------------------------------------------------
 
@@ -452,7 +456,7 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   `actif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_personnel`),
   KEY `id_centre` (`id_centre`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `personnels`
@@ -461,14 +465,33 @@ CREATE TABLE IF NOT EXISTS `personnels` (
 INSERT INTO `personnels` (`id_personnel`, `id_centre`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `date_embauche`, `fonction`, `telephone`, `adresse`, `salaire_base`, `actif`) VALUES
 (1, 1, 'KABAMBA', 'MWILU', 'Jean', 'M', '1985-03-12', '2020-01-15', 'Psychiatre', '0991000001', 'Goma', '1200.00', NULL),
 (2, 1, 'MUKENDI', 'LUBOYA', 'Aline', 'F', '1990-07-22', '2021-05-10', 'Psychologue', '0991000002', 'Goma', '900.00', NULL),
-(3, 1, 'KALONJI', 'MUKUNA', 'David', 'M', '1988-11-05', '2019-09-01', 'Infirmier psychiatrique', '0991000003', 'Goma', '600.00', NULL),
-(4, 1, 'NSIMBA', 'KABUYA', 'Sarah', 'F', '1992-02-18', '2022-03-20', 'Assistante sociale', '0991000004', 'Goma', '700.00', NULL),
-(5, 1, 'MBUYI', 'TSHIBANGU', 'Patrick', 'M', '1980-06-30', '2018-07-12', 'Médecin généraliste', '0991000005', 'Goma', '1100.00', NULL),
+(3, 1, 'KALONJI', 'MUKUNA', 'David', 'M', '1988-11-05', '2019-09-01', 'Psychiatre', '0991000003', 'Goma', '600.00', NULL),
+(4, 1, 'NSIMBA', 'KABUYA', 'Sarah', 'Féminin', '1992-02-18', '2022-03-20', 'Ass. Sociale', '0991000004', 'Goma', '700.00', NULL),
+(5, 1, 'MBUYI', 'TSHIBANGU', 'Patrick', 'M', '1980-06-30', '2018-07-12', 'Généraliste', '0991000005', 'Goma', '1100.00', NULL),
 (6, 1, 'KASONGO', 'MULUMBA', 'Grace', 'F', '1995-09-14', '2023-01-05', 'Psychologue', '0991000006', 'Goma', '850.00', NULL),
-(7, 1, 'ILUNGA', 'KABEYA', 'Michel', 'M', '1983-12-01', '2017-11-23', 'Technicien de laboratoire', '0991000007', 'Goma', '650.00', NULL),
+(7, 1, 'ILUNGA', 'KABEYA', 'Michel', 'M', '1983-12-01', '2017-11-23', 'Laboratoire', '0991000007', 'Goma', '650.00', NULL),
 (8, 1, 'KABONGO', 'MWANA', 'Chantal', 'F', '1991-04-09', '2020-06-18', 'Infirmière', '0991000008', 'Goma', '580.00', NULL),
-(9, 1, 'MULANGA', 'KATUMBA', 'Eric', 'M', '1987-08-25', '2019-02-14', 'Agent administratif', '0991000009', 'Goma', '500.00', NULL),
-(10, 1, 'SHABANI', 'NGOYI', 'Lucie', 'F', '1993-10-11', '2021-12-01', 'Secrétaire médicale', '0991000010', 'Goma', '550.00', NULL);
+(9, 1, 'MULANGA', 'KATUMBA', 'Eric', 'M', '1987-08-25', '2019-02-14', 'Psychologue', '0991000009', 'Goma', '500.00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `prescriptions`
+--
+
+CREATE TABLE IF NOT EXISTS `prescriptions` (
+  `id_prescription` int(11) NOT NULL AUTO_INCREMENT,
+  `id_consultation` int(11) NOT NULL,
+  `id_patient` int(11) NOT NULL,
+  `id_medicament` int(11) NOT NULL,
+  `quantite` int(11) DEFAULT NULL,
+  `unite` varchar(50) NOT NULL,
+  `statut` enum('Livrée','Non livrée') NOT NULL,
+  PRIMARY KEY (`id_prescription`),
+  KEY `id_consultation` (`id_consultation`,`id_patient`,`id_medicament`),
+  KEY `id_patient` (`id_patient`),
+  KEY `id_medicament` (`id_medicament`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -570,7 +593,20 @@ CREATE TABLE IF NOT EXISTS `services` (
   `description` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_service`),
   KEY `id_centre` (`id_centre`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `services`
+--
+
+INSERT INTO `services` (`id_service`, `id_centre`, `nom_service`, `description`) VALUES
+(1, 1, 'Pediatrie ', 'blabdbdzjdzjijjndduhduhzuhdud'),
+(2, 1, 'Consultation externe', ''),
+(3, 1, 'Hospitalisation', ''),
+(4, 1, 'Urgence', ''),
+(5, 1, 'Psychothérapie', ''),
+(6, 1, 'Addictologie', ''),
+(7, 1, 'Service social', '');
 
 -- --------------------------------------------------------
 
@@ -706,7 +742,14 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `actif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_utilisateurs`),
   KEY `id_personnel` (`id_personnel`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id_utilisateurs`, `id_personnel`, `username`, `password_hash`, `role`, `date_creation`, `actif`) VALUES
+(1, 1, 'user', '0000', 'Secretaire', '2026-04-21', NULL);
 
 --
 -- Contraintes pour les tables exportées
@@ -821,6 +864,7 @@ ALTER TABLE `horaire`
 -- Contraintes pour la table `hospitalisation`
 --
 ALTER TABLE `hospitalisation`
+  ADD CONSTRAINT `consultation_fk_hospital` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_centre_hospitalisation` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_patient_hospitalisation` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_service` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE;
@@ -848,6 +892,14 @@ ALTER TABLE `patients`
 --
 ALTER TABLE `personnels`
   ADD CONSTRAINT `fk_personnel_centre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `prescriptions`
+--
+ALTER TABLE `prescriptions`
+  ADD CONSTRAINT `fk_medoc_prescription` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_patient_prescription` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_prescription_consultation` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `presences`
