@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            //this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panel9 = new System.Windows.Forms.Panel();
             this.bt_close = new System.Windows.Forms.Button();
             this.bt_minus = new System.Windows.Forms.Button();
@@ -68,6 +69,9 @@
             this.bt_reception = new System.Windows.Forms.Button();
             this.bt_acceuil = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+
+            //((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture_statut)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -93,6 +97,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1055, 73);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox4
+            //// 
+            //this.pictureBox4.Image = global::Cepima.Properties.Resources.maintenance_20px;
+            //this.pictureBox4.Location = new System.Drawing.Point(250, 13);
+            //this.pictureBox4.Name = "pictureBox4";
+            //this.pictureBox4.Size = new System.Drawing.Size(100, 50);
+            //this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            //this.pictureBox4.TabIndex = 4;
+            //this.pictureBox4.TabStop = false;
+            //this.pictureBox4.Visible = false;
             // 
             // panel9
             // 
@@ -536,8 +551,10 @@
             this.Name = "Form1";
             this.Text = "Connexion";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            //((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture_statut)).EndInit();

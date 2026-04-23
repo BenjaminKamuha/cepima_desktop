@@ -67,4 +67,16 @@ public class ModernDataGridView : DataGridView
             this.Region = new Region(path);
         }
     }
+
+    protected override void OnColumnAdded(DataGridViewColumnEventArgs e)
+    {
+        base.OnColumnAdded(e);
+
+        // Chaque colonne remplira l'espace disponible
+        e.Column.AutoSizeMode =
+            DataGridViewAutoSizeColumnMode.Fill;
+
+        // Largeur minimale
+        e.Column.MinimumWidth = 50;
+    }
 }

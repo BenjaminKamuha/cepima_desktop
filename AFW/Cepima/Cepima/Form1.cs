@@ -20,8 +20,119 @@ namespace Cepima
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
             bt_personnel.Click += bt_personnel_Click;
+
+
+            LoadDataGrid();
+
             
         }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// 
+
+        private ModernDataGridView grid;
+
+        private void LoadDataGrid()
+        {
+            // =========================
+            // 1. Création du grid
+            // =========================
+            grid = new ModernDataGridView();
+            grid.Dock = DockStyle.Fill;
+            grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+
+
+            panel_center_main.Controls.Add(grid);
+
+            // =========================
+            // 2. Colonnes
+            // =========================
+
+            // Nom médicament
+            grid.Columns.Add(
+                "Medicament",
+                "Médicament");
+
+            // Stock (ProgressBar)
+            var stockCol =
+                new DataGridViewProgressBarColumn();
+
+            stockCol.HeaderText = "Stock (%)";
+            grid.Columns.Add(stockCol);
+
+
+            // Service (ComboBox)
+            var serviceCol =
+                new DataGridViewComboBoxColumn();
+
+            serviceCol.HeaderText = "Service";
+
+            serviceCol.Items.Add("Ambulatoire");
+            serviceCol.Items.Add("Hospitalisation");
+
+            grid.Columns.Add(serviceCol);
+
+            // Image (Photo)
+            var imgCol =
+                new DataGridViewImageColumn();
+
+            imgCol.HeaderText = "Photo";
+            imgCol.ImageLayout =
+                DataGridViewImageCellLayout.Zoom;
+
+            grid.Columns.Add(imgCol);
+
+            // =========================
+            // 3. Ajouter des données
+            // =========================
+
+            AddRow("Paracétamol", 80, true,
+                "Ambulatoire",
+                Properties.Resources.add_file_20px);
+
+            AddRow("Diazépam", 35, true,
+                "Hospitalisation",
+                Properties.Resources.add_file_20px);
+
+            AddRow("Morphine", 10, false,
+                "Hospitalisation",
+                Properties.Resources.add_file_20px);
+        }
+
+        // =========================
+        // 4. Méthode propre d’ajout
+        // =========================
+        private void AddRow(
+            string medicament,
+            int stock,
+            bool actif,
+            string service,
+            Image image)
+        {
+            int rowIndex = grid.Rows.Add();
+
+            grid.Rows[rowIndex]
+                .Cells["Medicament"]
+                .Value = medicament;
+
+            grid.Rows[rowIndex]
+                .Cells[1].Value = stock;
+
+            grid.Rows[rowIndex]
+                .Cells[2].Value = service;
+
+            grid.Rows[rowIndex]
+                .Cells[3].Value = image;
+        }
+
+
+
+
+
         private void bt_close_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -189,6 +300,15 @@ namespace Cepima
                 
                 }),
                 new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => {}),
+            
+                new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {
+                    
+                    MesUserCases.User_sortie_pharmacie sortie = new MesUserCases.User_sortie_pharmacie();
+                    sortie.Dock = DockStyle.Fill;
+                    Form1.GlobalPanel_main.Controls.Clear();
+                    Form1.GlobalPanel_main.Controls.Add(sortie);
+                }),
+
                 new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {})
 
             };
@@ -351,6 +471,11 @@ namespace Cepima
             Create_sous_menu(items);
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
     public class MenuItem
