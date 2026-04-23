@@ -26,29 +26,8 @@ namespace Cepima.MesUserCases
             string personnelId = cbx_personnel.SelectedValue.ToString();
             string motif = tb_motif.Text;
             string description = rich_description.Text;
-            string centre = "";
-            //récuperer le centre en fonction du personnel chosies
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-            {
-                string query = "SELECT id_centre FROM personnels WHERE id_personnel = @PersonnelId";
-                MySqlCommand cmd = new MySqlCommand(query,con);
-                cmd.Parameters.AddWithValue("@personnel",personnelId);
-                object result = cmd.ExecuteScalar();
-                if (result != null)
-                {
-                    centre = Convert.ToString(result);
-                }
-            }
-
             // ============================== Appel de la méthode d'ajout de la consultation
-            MesClasses.ReceptionManager.EnregistrerConsultation
-                (
-                    patientId,
-                    centre,
-                    personnelId,
-                    motif,
-                    description
-                );
+            MesClasses.ReceptionManager.EnregistrerConsultation(patientId,MesForms.SessionUtilisateur.idCentre.ToString(),personnelId,motif,description);
         }
 
         // ============================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
@@ -94,6 +73,44 @@ namespace Cepima.MesUserCases
                     tr.Rollback();
                     MessageBox.Show("Erreur lors du chargement de données "+ex.Message);
                 }
+            }
+        }
+
+        private void bt_display_panel_hospitalisation_Click(object sender, EventArgs e)
+        {
+            panel_hospit.Visible = true;
+        }
+
+        private void bt_save_hospitalisation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    //récuperons d'abord le dernier id de la consultation
+                    string query = "SELECT id_consultation FROM consultation WHERE id_patient = @id ORDER BY id_consultation DESC LIMIT 1";
+                    MySqlCommand cmdSelect = new MySqlCommand(query,con);
+                    cmdSelect.Parameters.AddWithValue("@id",cbx_patient.SelectedValue);
+                    int idConsultation = Convert.ToInt32(cmdSelect.ExecuteScalar());
+                    // Enregistrement de l'hospitalisation
+                    string queryInsert = "INSERT INTO hospitalisation(id_patient,id_centre,id_service,id_consultation,date_entree,motif,etat)VALUES(@patient,@centre,@service,@consultation,CURDATE(),@motif,@etat)";
+                    MySqlCommand cmd = new MySqlCommand(queryInsert,con);
+                    cmd.Parameters.AddWithValue("@patient",cbx_patient.SelectedValue);
+                    cmd.Parameters.AddWithValue("@centre",MesForms.SessionUtilisateur.idCentre);
+                    cmd.Parameters.AddWithValue("@service",cbx_service.SelectedValue);
+                    cmd.Parameters.AddWithValue("@consultation",idConsultation);
+                    cmd.Parameters.AddWithValue("@motif",tb_motif.Text);
+                    cmd.Parameters.AddWithValue("@etat",cbx_statut.SelectedItem);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Patient hospitalisé !!");
+                    cbx_statut.SelectedIndex = -1;
+                    cbx_service.SelectedIndex = -1;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Erreur : "+ex.Message);
             }
         }
 

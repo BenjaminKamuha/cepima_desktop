@@ -36,7 +36,7 @@
             this.rich_description = new System.Windows.Forms.RichTextBox();
             this.tb_motif = new System.Windows.Forms.TextBox();
             this.myRoundedTextBox4 = new MyRoundedTextBox();
-            this.bt_annuler_consultation = new test_arrondissement2012.PerfectRoundedButton();
+            this.bt_display_panel_hospitalisation = new test_arrondissement2012.PerfectRoundedButton();
             this.bt_save_consultation = new test_arrondissement2012.PerfectRoundedButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,19 +44,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbx_patient = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel_hospit = new System.Windows.Forms.Panel();
+            this.cbx_statut = new System.Windows.Forms.ComboBox();
+            this.bt_save_hospitalisation = new test_arrondissement2012.PerfectRoundedButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbx_service = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
+            this.panel_hospit.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(13, 54);
+            this.panel1.Location = new System.Drawing.Point(15, 15);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(276, 261);
+            this.panel1.Size = new System.Drawing.Size(305, 192);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -64,7 +71,7 @@
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(71, 229);
+            this.label1.Location = new System.Drawing.Point(88, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 23);
             this.label1.TabIndex = 1;
@@ -73,10 +80,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cepima.Properties.Resources.counselor_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(41, 21);
+            this.pictureBox1.Location = new System.Drawing.Point(78, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(194, 173);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.Size = new System.Drawing.Size(148, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -89,7 +96,7 @@
             this.customRoundedPanel1.Controls.Add(this.customRoundedPanel2);
             this.customRoundedPanel1.Controls.Add(this.tb_motif);
             this.customRoundedPanel1.Controls.Add(this.myRoundedTextBox4);
-            this.customRoundedPanel1.Controls.Add(this.bt_annuler_consultation);
+            this.customRoundedPanel1.Controls.Add(this.bt_display_panel_hospitalisation);
             this.customRoundedPanel1.Controls.Add(this.bt_save_consultation);
             this.customRoundedPanel1.Controls.Add(this.label3);
             this.customRoundedPanel1.Controls.Add(this.label6);
@@ -157,20 +164,21 @@
             this.myRoundedTextBox4.TabIndex = 5;
             this.myRoundedTextBox4.UseSystemPasswordChar = false;
             // 
-            // bt_annuler_consultation
+            // bt_display_panel_hospitalisation
             // 
-            this.bt_annuler_consultation.BackColor = System.Drawing.Color.Transparent;
-            this.bt_annuler_consultation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_annuler_consultation.BorderRadius = 5;
-            this.bt_annuler_consultation.BorderSize = 0;
-            this.bt_annuler_consultation.ButtonText = "Annuler";
-            this.bt_annuler_consultation.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_annuler_consultation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_annuler_consultation.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_annuler_consultation.Location = new System.Drawing.Point(121, 336);
-            this.bt_annuler_consultation.Name = "bt_annuler_consultation";
-            this.bt_annuler_consultation.Size = new System.Drawing.Size(132, 30);
-            this.bt_annuler_consultation.TabIndex = 2;
+            this.bt_display_panel_hospitalisation.BackColor = System.Drawing.Color.Transparent;
+            this.bt_display_panel_hospitalisation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_display_panel_hospitalisation.BorderRadius = 5;
+            this.bt_display_panel_hospitalisation.BorderSize = 0;
+            this.bt_display_panel_hospitalisation.ButtonText = "Hospitalisation";
+            this.bt_display_panel_hospitalisation.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_display_panel_hospitalisation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_display_panel_hospitalisation.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_display_panel_hospitalisation.Location = new System.Drawing.Point(121, 336);
+            this.bt_display_panel_hospitalisation.Name = "bt_display_panel_hospitalisation";
+            this.bt_display_panel_hospitalisation.Size = new System.Drawing.Size(132, 30);
+            this.bt_display_panel_hospitalisation.TabIndex = 2;
+            this.bt_display_panel_hospitalisation.Click += new System.EventHandler(this.bt_display_panel_hospitalisation_Click);
             // 
             // bt_save_consultation
             // 
@@ -190,20 +198,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(88, 153);
+            this.label3.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(48, 152);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 14);
+            this.label3.Size = new System.Drawing.Size(134, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "Motif de consultation : ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(88, 204);
+            this.label6.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(48, 203);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 14);
+            this.label6.Size = new System.Drawing.Size(72, 15);
             this.label6.TabIndex = 0;
             this.label6.Text = "Diagnostic : ";
             // 
@@ -212,7 +220,7 @@
             this.cbx_personnel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_personnel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_personnel.FormattingEnabled = true;
-            this.cbx_personnel.Location = new System.Drawing.Point(216, 89);
+            this.cbx_personnel.Location = new System.Drawing.Point(216, 94);
             this.cbx_personnel.Name = "cbx_personnel";
             this.cbx_personnel.Size = new System.Drawing.Size(297, 23);
             this.cbx_personnel.TabIndex = 4;
@@ -220,10 +228,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(88, 98);
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(48, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 14);
+            this.label2.Size = new System.Drawing.Size(80, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Personnels  : ";
             // 
@@ -240,18 +248,88 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(88, 48);
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(48, 47);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 14);
+            this.label4.Size = new System.Drawing.Size(65, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "Patients  : ";
+            // 
+            // panel_hospit
+            // 
+            this.panel_hospit.Controls.Add(this.cbx_service);
+            this.panel_hospit.Controls.Add(this.cbx_statut);
+            this.panel_hospit.Controls.Add(this.label7);
+            this.panel_hospit.Controls.Add(this.bt_save_hospitalisation);
+            this.panel_hospit.Controls.Add(this.label5);
+            this.panel_hospit.Location = new System.Drawing.Point(15, 216);
+            this.panel_hospit.Name = "panel_hospit";
+            this.panel_hospit.Size = new System.Drawing.Size(305, 183);
+            this.panel_hospit.TabIndex = 4;
+            this.panel_hospit.Visible = false;
+            // 
+            // cbx_statut
+            // 
+            this.cbx_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_statut.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_statut.FormattingEnabled = true;
+            this.cbx_statut.Location = new System.Drawing.Point(92, 88);
+            this.cbx_statut.Name = "cbx_statut";
+            this.cbx_statut.Size = new System.Drawing.Size(182, 23);
+            this.cbx_statut.TabIndex = 4;
+            // 
+            // bt_save_hospitalisation
+            // 
+            this.bt_save_hospitalisation.BackColor = System.Drawing.Color.Transparent;
+            this.bt_save_hospitalisation.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_save_hospitalisation.BorderRadius = 5;
+            this.bt_save_hospitalisation.BorderSize = 0;
+            this.bt_save_hospitalisation.ButtonText = "Enregistrer";
+            this.bt_save_hospitalisation.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_save_hospitalisation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_save_hospitalisation.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_save_hospitalisation.Location = new System.Drawing.Point(92, 135);
+            this.bt_save_hospitalisation.Name = "bt_save_hospitalisation";
+            this.bt_save_hospitalisation.Size = new System.Drawing.Size(106, 30);
+            this.bt_save_hospitalisation.TabIndex = 2;
+            this.bt_save_hospitalisation.Click += new System.EventHandler(this.bt_save_hospitalisation_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(14, 96);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(51, 15);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Statut : ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(14, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Service : ";
+            // 
+            // cbx_service
+            // 
+            this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_service.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_service.FormattingEnabled = true;
+            this.cbx_service.Location = new System.Drawing.Point(92, 42);
+            this.cbx_service.Name = "cbx_service";
+            this.cbx_service.Size = new System.Drawing.Size(182, 23);
+            this.cbx_service.TabIndex = 4;
             // 
             // User_consultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.Controls.Add(this.panel_hospit);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "User_consultation";
@@ -262,6 +340,8 @@
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
+            this.panel_hospit.ResumeLayout(false);
+            this.panel_hospit.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -274,7 +354,7 @@
         private CustomRoundedPanel customRoundedPanel1;
         private System.Windows.Forms.TextBox tb_motif;
         private MyRoundedTextBox myRoundedTextBox4;
-        private test_arrondissement2012.PerfectRoundedButton bt_annuler_consultation;
+        private test_arrondissement2012.PerfectRoundedButton bt_display_panel_hospitalisation;
         private test_arrondissement2012.PerfectRoundedButton bt_save_consultation;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbx_patient;
@@ -284,5 +364,11 @@
         private CustomRoundedPanel customRoundedPanel2;
         private System.Windows.Forms.RichTextBox rich_description;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel_hospit;
+        private System.Windows.Forms.ComboBox cbx_statut;
+        private test_arrondissement2012.PerfectRoundedButton bt_save_hospitalisation;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbx_service;
+        private System.Windows.Forms.Label label7;
     }
 }

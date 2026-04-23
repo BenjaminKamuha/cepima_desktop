@@ -145,7 +145,6 @@ namespace Cepima.MesForms
                   Form1 frm = new Form1();
                   frm.Show();
                   this.Hide();
-                  MessageBox.Show("Connexion établie");
             }
             else
             {

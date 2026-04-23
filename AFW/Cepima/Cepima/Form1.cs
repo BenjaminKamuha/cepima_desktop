@@ -15,16 +15,15 @@ namespace Cepima
     public partial class Form1 : Form
     {
         public static Panel GlobalPanel_main { get; set; }
+        public static ToolTip info = new ToolTip();
+        private Button currentSubMenu = null;
         public Form1()
         {
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
             bt_personnel.Click += bt_personnel_Click;
-
-
             LoadDataGrid();
-
-            
+            InfoBull();
         }
 
         /// <summary>
@@ -32,6 +31,47 @@ namespace Cepima
         /// <param name="sender"></param>
         /// <param name="e"></param>
         /// 
+         // =========================== ajout des infoBull sur les menus principaux =================================
+        private void InfoBull()
+        {
+            //bouton acceuil
+            info.SetToolTip(bt_acceuil, "Acceuil");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            //
+            info.SetToolTip(bt_comptability, "Comptabilité");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_personnel, "Personnel");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_EEG, "EEG");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_hospitalisation, "Hospitalisation");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_pharmacie, "Pharmacie");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_setting, "Paramètres");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_soin, "Soins médicaux");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+
+            info.SetToolTip(bt_reception, "Reception");
+            info.IsBalloon = false;
+            info.AutoPopDelay = 2000;
+        }
 
         private ModernDataGridView grid;
 
@@ -129,10 +169,6 @@ namespace Cepima
                 .Cells[3].Value = image;
         }
 
-
-
-
-
         private void bt_close_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -142,7 +178,20 @@ namespace Cepima
         {
             this.WindowState = FormWindowState.Minimized;
         }
-      
+        private void SetActiveSubMenu(Button btn)
+        {
+            // Reset ancien bouton
+            if (currentSubMenu != null)
+            {
+                currentSubMenu.BackColor = Color.Transparent; // ou ta couleur normale
+                currentSubMenu.ForeColor = Color.Black; // texte normal
+            }
+
+            // Appliquer nouveau style
+            currentSubMenu = btn;
+            currentSubMenu.BackColor = Color.FromArgb(80, 80, 80); // gris (effet focus)
+            currentSubMenu.ForeColor = Color.White;
+        }
         //méthode pour creer un sous menu
         private void Create_sous_menu(List<MenuItem> items)
         {
@@ -170,10 +219,11 @@ namespace Cepima
                 }
 
                 //Event
-                if (item.ClickEvent != null)
+                bt.Click += (s, ev) =>
                 {
-                    bt.Click += item.ClickEvent;
-                }
+                    SetActiveSubMenu(bt); // focus visuel
+                    item.ClickEvent.Invoke(s, ev);
+                };
 
                 MesClasses.ManagerClasse.AddControl(panel_sous_menu,bt,2,top);
 
@@ -182,6 +232,9 @@ namespace Cepima
                 pd.Start();
             }
         }
+
+        // info bul
+        
         private void bt_acceuil_Click(object sender, EventArgs e)
         {
             picture_image_menu.Image = Properties.Resources.homework_90px;
@@ -194,6 +247,7 @@ namespace Cepima
                 new MenuItem("    Infos Centres",Properties.Resources.location_20px,(s,ev) => 
                 {
                     //instructions
+
                 })
             };
             Create_sous_menu(items);
@@ -260,14 +314,6 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(chambre);
                 }),
-                
-                new MenuItem("    Hospitalisation",Properties.Resources.hospital_bed_25px,(s,ev) =>
-                {
-                    MesUserCases.User_hospitalisation hospitalisation = new MesUserCases.User_hospitalisation();
-                    hospitalisation.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(hospitalisation);
-                })
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -394,14 +440,7 @@ namespace Cepima
                         panel_center_main.Controls.Clear();
                         panel_center_main.Controls.Add(personnel);
                     }),
-                new MenuItem("    Présences",Properties.Resources.clock_20px,(s,ev) =>
-                    {
-                        //instructions
-                        MesUserCases.User_presences presences = new MesUserCases.User_presences();
-                        presences.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(presences);
-                    }),
+               
                 new MenuItem("    Horaires",Properties.Resources.planner_20px,(s,ev) =>
                     {
                         //instructions
@@ -476,6 +515,32 @@ namespace Cepima
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void bt_hospitalisation_Click(object sender, EventArgs e)
+        {
+             picture_image_menu.Image = Properties.Resources.reception_90px;
+            lb_sous_menu.Text = "Reception";
+            lb_sous_menu.Visible = true;
+            panel11.Visible = true;
+            var items = new List<MenuItem>()
+            {
+                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                {
+                    //instructions
+                }),
+
+                  new MenuItem("    Hospitalisation",Properties.Resources.hospital_bed_25px,(s,ev) =>  
+                {
+                    MesUserCases.User_hospitalisation hosp = new MesUserCases.User_hospitalisation();
+                    hosp.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(hosp);
+                }),
+            };
+            Create_sous_menu(items);
+            Button bt = sender as Button;
+            MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
     }
     public class MenuItem
