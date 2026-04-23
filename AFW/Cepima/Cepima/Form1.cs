@@ -355,8 +355,6 @@ namespace Cepima
                     Form1.GlobalPanel_main.Controls.Add(sortie);
                 }),
 
-                new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {})
-
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

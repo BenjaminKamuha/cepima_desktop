@@ -25,7 +25,7 @@ namespace Cepima.MesUserCases
 
         private void loadQues()
         {
-            //string query = "SELECT diagnostic, 
+            string query = "SELECT p.id_patient, p.nom patient, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM patient p JOIN consultation c ON c.id_patient_id = p.id_patient JOIN prescription pr ON pr.id_consultation = c.id_consultation JOIN medicament m ON m.id_medicament = c.id_medicament;";
         }
 
         private void controlPosition()
@@ -37,7 +37,6 @@ namespace Cepima.MesUserCases
 
         private Panel Pan_med(int id, string name)
         {
-
             // Chargement de l'image
             Image img_med = ImageHelper.LoadImageFromDatabase(id, "id_medicament", "medicament", "photo");
 
