@@ -122,6 +122,12 @@
     <Compile Include="MesUserCases\User_DashBord_pharmacie.Designer.cs">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_detail_hospitalisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_detail_hospitalisation.Designer.cs">
+      <DependentUpon>User_detail_hospitalisation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_detail_patient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_DashBord_pharmacie.resx">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_detail_hospitalisation.resx">
+      <DependentUpon>User_detail_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_detail_patient.resx">
       <DependentUpon>User_detail_patient.cs</DependentUpon>
@@ -622,6 +631,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hospital_bed_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\report_file_25px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

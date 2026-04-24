@@ -32,7 +32,28 @@ namespace Cepima.MesUserCases
                 {
                     while (reader.Read())
                     {
-                        
+                        //Patient
+                        lb_nom.Text = reader["nom"].ToString();
+                        lb_postnom.Text = reader["post_nom"].ToString();
+                        lb_prenom.Text = reader["prenom"].ToString();
+                        lb_sexe.Text = reader["telephone"].ToString();
+
+                        //hospitalisation
+                        lb_date_entree.Text = Convert.ToDateTime(reader["date_entree"]).ToString("dd/MM/yyyy");
+                        lb_date_sortie.Text = Convert.ToDateTime(reader["date_sortie"]).ToString("dd/MM/yyyy");
+                        lb_etat.Text = reader["etat"].ToString();
+                        lb_motif.Text = reader["motif"].ToString();
+
+                        //Centre/service
+                        lb_centre.Text = reader["nom_centre"].ToString();
+                        lb_service.Text = reader["nom_service"].ToString();
+                        lb_numero_chambre.Text = reader["numero_chambre"].ToString();
+                        lb_type.Text = reader["type_chambre"].ToString();
+                        lb_tarif.Text = reader["tarif"].ToString();
+
+                        //Consultation
+                        lb_date_consultation.Text = Convert.ToDateTime(reader["date_consultation"]).ToString("dd/MM/yyyy");
+                        lb_diagnostic.Text = reader["diagnostic"].ToString();
                     }
                     reader.Close();
                 }
@@ -41,6 +62,16 @@ namespace Cepima.MesUserCases
             {
                 MessageBox.Show("Erreur du chargement de données : "+ex.Message);
             }
+        }
+
+        private void bt_update_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_report_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

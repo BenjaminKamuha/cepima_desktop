@@ -45,11 +45,11 @@
             this.cbx_patient = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel_hospit = new System.Windows.Forms.Panel();
+            this.cbx_service = new System.Windows.Forms.ComboBox();
             this.cbx_statut = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.bt_save_hospitalisation = new test_arrondissement2012.PerfectRoundedButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbx_service = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
@@ -268,6 +268,16 @@
             this.panel_hospit.TabIndex = 4;
             this.panel_hospit.Visible = false;
             // 
+            // cbx_service
+            // 
+            this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_service.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_service.FormattingEnabled = true;
+            this.cbx_service.Location = new System.Drawing.Point(92, 42);
+            this.cbx_service.Name = "cbx_service";
+            this.cbx_service.Size = new System.Drawing.Size(182, 23);
+            this.cbx_service.TabIndex = 4;
+            // 
             // cbx_statut
             // 
             this.cbx_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -277,6 +287,16 @@
             this.cbx_statut.Name = "cbx_statut";
             this.cbx_statut.Size = new System.Drawing.Size(182, 23);
             this.cbx_statut.TabIndex = 4;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(14, 50);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Service : ";
             // 
             // bt_save_hospitalisation
             // 
@@ -288,7 +308,7 @@
             this.bt_save_hospitalisation.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_save_hospitalisation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save_hospitalisation.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_hospitalisation.Location = new System.Drawing.Point(92, 135);
+            this.bt_save_hospitalisation.Location = new System.Drawing.Point(108, 135);
             this.bt_save_hospitalisation.Name = "bt_save_hospitalisation";
             this.bt_save_hospitalisation.Size = new System.Drawing.Size(106, 30);
             this.bt_save_hospitalisation.TabIndex = 2;
@@ -303,26 +323,6 @@
             this.label5.Size = new System.Drawing.Size(51, 15);
             this.label5.TabIndex = 0;
             this.label5.Text = "Statut : ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(14, 50);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Service : ";
-            // 
-            // cbx_service
-            // 
-            this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_service.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_service.FormattingEnabled = true;
-            this.cbx_service.Location = new System.Drawing.Point(92, 42);
-            this.cbx_service.Name = "cbx_service";
-            this.cbx_service.Size = new System.Drawing.Size(182, 23);
-            this.cbx_service.TabIndex = 4;
             // 
             // User_consultation
             // 
