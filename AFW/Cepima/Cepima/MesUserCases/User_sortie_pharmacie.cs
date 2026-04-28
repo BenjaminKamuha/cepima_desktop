@@ -23,9 +23,49 @@ namespace Cepima.MesUserCases
 
         }
 
+        Dictionary<int, int> id_queue = new Dictionary<int, int>(); 
+
         private void loadQues()
         {
-            string query = "SELECT p.id_patient, p.nom patient, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM patient p JOIN consultation c ON c.id_patient_id = p.id_patient JOIN prescription pr ON pr.id_consultation = c.id_consultation JOIN medicament m ON m.id_medicament = c.id_medicament;";
+            string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient;";
+
+
+            MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true);
+
+            if (reader.HasRows)
+            {
+                int i = 0;
+                while (reader.Read())
+                {
+                    if (i == 0)
+                    {
+                        lb_name.Text = reader["nom"].ToString();
+                        lb_last_name.Text = reader["post_nom"].ToString();
+                        lb_file_number.Text = reader["numero_fiche"].ToString();
+                        lb_title.Text = "Prescription";
+                    }
+
+                    id_queue.Add(int.Parse(reader["id_patient"].ToString()), int.Parse(reader["id_consultation"].ToString()));
+                }
+            }
+        }
+
+        private void load_prescription(int id_patient, int id_cons)
+        {
+            string query = "SELECT pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM prescriptions pr WHERE id_patient=@id_patient AND id_consultation@id_cons";
+
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add(id_patient.ToString(), id_cons.ToString());
+
+            MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true);
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    // Remplissage du tableau
+                }
+            }
         }
 
         private void controlPosition()

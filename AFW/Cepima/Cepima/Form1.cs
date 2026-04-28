@@ -540,6 +540,11 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
+
+        private void panel_center_main_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
     public class MenuItem
     {
