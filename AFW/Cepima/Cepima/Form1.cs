@@ -97,6 +97,7 @@ namespace Cepima
                 "Medicament",
                 "Médicament");
 
+
             // Stock (ProgressBar)
             var stockCol =
                 new DataGridViewProgressBarColumn();
