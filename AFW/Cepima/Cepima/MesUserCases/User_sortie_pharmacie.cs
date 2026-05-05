@@ -14,6 +14,7 @@ namespace Cepima.MesUserCases
 {
     public partial class User_sortie_pharmacie : UserControl
     {
+        RichTextBox diag_summary = new RichTextBox();
         public User_sortie_pharmacie()
         {
             InitializeComponent();
@@ -38,8 +39,8 @@ namespace Cepima.MesUserCases
                     Image img_avt = ImageHelper.LoadImageFromDatabase(int.Parse(reader["id_patient"].ToString()), "id_patient", "patients", "photo");
                     if (i == 0)
                     {
-                        // Chargement de la prescription
-                        //load_prescription(reader["id_consultation"].ToString(), reader["id_patient"].ToString());
+                        // Chargement du patient
+                        load_prescription(reader["id_consultation"].ToString(), reader["id_patient"].ToString());
                     }
 
                     id_queue.Add(int.Parse(reader["id_patient"].ToString()), int.Parse(reader["id_consultation"].ToString()));
@@ -47,7 +48,7 @@ namespace Cepima.MesUserCases
                     // Ajout du panel description patient
                     Panel pnl_patient_queue = new Panel();
                     fl_queue.Controls.Add(pnl_patient_queue);
-                    pnl_patient_queue.Size = new Size(150, pnl_patient_queue.Parent.Height - 5);
+                    pnl_patient_queue.Size = new Size(150, pnl_patient_queue.Parent.Height - 15);
                     pnl_patient_queue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                     pnl_patient_queue.Tag = reader["id_consultation"].ToString() + "." + reader["id_patient"].ToString();
                     pnl_patient_queue.Click += pnl_patient_queue_Click;
@@ -56,18 +57,24 @@ namespace Cepima.MesUserCases
 
                     // Avatar du patient
                     AvatarControl avt_queue = new AvatarControl();
-                    avt_queue.Size = new Size(50, 50);
+                    avt_queue.Size = new Size(40, 40);
                     avt_queue.Avatar = img_avt;
                     avt_queue.Enabled = false;
 
                     // Label nom patient
                     Label lb_name_queue = new Label();
-                    lb_name_queue.Text = reader["nom"].ToString() + " " + reader["post_nom"].ToString();
-                    lb_name_queue.Location = new Point(avt_queue.Size.Width, avt_queue.Size.Height / 2);
+                    lb_name_queue.Text = reader["nom"].ToString() + "\n" + reader["post_nom"].ToString();
+                    lb_name_queue.TextAlign = ContentAlignment.TopCenter;
+                    lb_name_queue.Height = 50;
+                    lb_name_queue.Location = new Point(avt_queue.Size.Width, 10);
+                    lb_name_queue.FlatStyle = FlatStyle.Flat;
                     lb_name_queue.Enabled = false;
 
+                    Label lb_p_name_queue = new Label();
+
+
                     // Ajout du control avatar
-                    pnl_patient_queue.Controls.Add(lb_name);
+                    pnl_patient_queue.Controls.Add(lb_name_queue);
                     pnl_patient_queue.Controls.Add(avt_queue);
                     
 
@@ -94,18 +101,11 @@ namespace Cepima.MesUserCases
 
         private void load_patient(string patient_id)
         {
-
-        }
-
-        private void load_prescription(string id_cons, string id_patient)
-        {
-            data_grid_med.Rows.Clear();
-
             // Chargemeent du paitent
             string query_patient = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE p.id_patient=@id_p;";
 
             MesClasses.ManagerClasse.request_params.Clear();
-            MesClasses.ManagerClasse.request_params.Add("id_p", id_patient);
+            MesClasses.ManagerClasse.request_params.Add("id_p", patient_id);
             MySqlDataReader reader_patient = MesClasses.ManagerClasse.CRUD(query_patient, MesClasses.ManagerClasse.request_params, true);
 
             if (reader_patient.HasRows)
@@ -114,16 +114,41 @@ namespace Cepima.MesUserCases
                 {
                     Image img_avt = ImageHelper.LoadImageFromDatabase(int.Parse(reader_patient["id_patient"].ToString()), "id_patient", "patients", "photo");
                     avt.Avatar = img_avt;
-                    lb_name.Text = reader_patient["nom"].ToString();
-                    lb_last_name.Text = reader_patient["post_nom"].ToString();
+                    lb_name.Text = reader_patient["nom"].ToString() + "\n" + reader_patient["post_nom"].ToString();
+                    lb_name.TextAlign = ContentAlignment.TopCenter;
+                    lb_name.Height = 50;
                     lb_file_number.Text = reader_patient["numero_fiche"].ToString();
                     lb_title.Text = "Prescription";
 
                     avt.Avatar = img_avt;
+
+                    // Rich TextBox pour le résumé du diagnosic
+                    lb_title_summary.Text = " Resumé diagnostique de " + reader_patient["nom"].ToString() + " " + reader_patient["post_nom"].ToString();
+                    lb_title_summary.Left = (lb_title_summary.Parent.ClientSize.Width - lb_title_summary.Width) / 2; 
+                    
+                    //diag_summary.Clear();
+                    diag_summary.Text = reader_patient["diagnostic"].ToString();
+                    diag_summary.Size = new Size(250, 100);
+                    diag_summary.BorderStyle = System.Windows.Forms.BorderStyle.None;
+                    diag_summary_pnl.Margin = new System.Windows.Forms.Padding(10);
+                    diag_summary_pnl.TabIndex = 10;
+                    diag_summary_pnl.Font = new Font("Arial", 10, FontStyle.Regular);
+
+                    diag_summary_pnl.Controls.Add(diag_summary);
+                    diag_summary.Left = (diag_summary.Parent.ClientSize.Width - diag_summary.Width) / 2;
+                    diag_summary.Top = ((diag_summary.Parent.ClientSize.Height + 20) - diag_summary.Height) / 2;
+
+                    diag_summary_pnl.Left = (diag_summary_pnl.Parent.ClientSize.Width - diag_summary_pnl.Width) / 2;
+                    
+
                 }
             }
+        }
 
-
+        private void load_prescription(string id_cons, string id_patient)
+        {
+            load_patient(id_patient);
+            data_grid_med.Rows.Clear();
             // Chargement prescription
             string query_presc = "SELECT pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM prescriptions pr JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE id_consultation=@id_cons;";
 
@@ -361,6 +386,11 @@ namespace Cepima.MesUserCases
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnl_radio_mode_Paint(object sender, PaintEventArgs e)
         {
 
         }
