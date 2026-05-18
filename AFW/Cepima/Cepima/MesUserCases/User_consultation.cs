@@ -19,17 +19,6 @@ namespace Cepima.MesUserCases
             LoadDataPersonnelPatient();
         }
 
-        private void bt_save_consultation_Click(object sender, EventArgs e)
-        {
-
-            string patientId = cbx_patient.SelectedValue.ToString();
-            string personnelId = cbx_personnel.SelectedValue.ToString();
-            string motif = tb_motif.Text;
-            string description = rich_description.Text;
-            // ============================== Appel de la méthode d'ajout de la consultation
-            MesClasses.ReceptionManager.EnregistrerConsultation(patientId,MesForms.SessionUtilisateur.idCentre.ToString(),personnelId,motif,description);
-        }
-
         // ============================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
         private void LoadDataPersonnelPatient()
         {
@@ -65,6 +54,41 @@ namespace Cepima.MesUserCases
                             cbx_personnel.DisplayMember = "nomPersonnel";
                             cbx_personnel.ValueMember = "id_personnel";
                             cbx_personnel.SelectedIndex = -1;
+                        }
+                    }
+                    // ======================================= les services ==============================================
+                    string queryService = "SELECT id_service,nom_service FROM services ORDER BY nom_service";
+                    using (MySqlCommand cmd = new MySqlCommand(queryService, con))
+                    {
+                        DataTable dt = new DataTable();
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            da.Fill(dt);
+                            cbx_service.DataSource = dt;
+                            cbx_service.DisplayMember = "nom_service";
+                            cbx_service.ValueMember = "id_service";
+                            cbx_service.SelectedIndex = -1;
+                        }
+                    }
+
+                    // ========================================= les statuts ===========================================
+                    string query_statut = "SHOW COLUMNS FROM hospitalisation LIKE 'etat'";
+                    using (MySqlCommand cmd = new MySqlCommand(query_statut, con))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string enumValues = reader["Type"].ToString();
+                                //extraire les valeurs entre les quotes
+                                var value = enumValues
+                                    .Replace("enum(", "").Replace(")", "").Replace("'", "").Split(',');
+
+                                foreach (var val in value)
+                                {
+                                    cbx_statut.Items.Add(val);
+                                }
+                            }
                         }
                     }
                 }
@@ -114,5 +138,14 @@ namespace Cepima.MesUserCases
             }
         }
 
+        private void bt_save_consultation_Click_1(object sender, EventArgs e)
+        {
+            string patientId = cbx_patient.SelectedValue.ToString();
+            string personnelId = cbx_personnel.SelectedValue.ToString();
+            string motif = tb_motif.Text;
+            string description = rich_description.Text;
+            // ============================== Appel de la méthode d'ajout de la consultation
+            MesClasses.ReceptionManager.EnregistrerConsultation(patientId, MesForms.SessionUtilisateur.idCentre.ToString(), personnelId, motif, description);
+        }
     }
 }

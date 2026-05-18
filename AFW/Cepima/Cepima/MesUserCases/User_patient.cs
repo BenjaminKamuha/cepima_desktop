@@ -150,5 +150,34 @@ namespace Cepima.MesUserCases
         {
             erreur.SetError(tb_adresse,"");
         }
+
+        private void bt_save_continuous_Click(object sender, EventArgs e)
+        {
+
+            if (VerifierChamps() == true)
+            {
+                string numeroFiche = GenererNumeroFiche();
+                string nomPatient = tb_name_patient.Text;
+                string postnomPatient = tb_post_nom.Text;
+                string prename = tb_prenom.Text;
+                string Sexe = cbx_genre.SelectedItem.ToString();
+                DateTime dateNaissance = dt_naissance.Value;
+                string numeroPhone = tb_phone_number.Text;
+                string adressePatient = tb_adresse.Text;
+                //=====================Appel de la méthode dans sa class respective =====================
+                MesClasses.ReceptionManager.SavePatient(numeroFiche, nomPatient, postnomPatient, prename, Sexe, dateNaissance, numeroPhone, adressePatient, MesForms.SessionUtilisateur.idCentre.ToString()
+                    );
+                MessageBox.Show("Patient ajouté avec succès, prenez directement les signes vitaux du patient");
+                //Ajouter le fomulaire de consultation
+                MesUserCases.User_signes_vitaux consultation = new User_signes_vitaux();
+                consultation.Dock = DockStyle.Fill;
+                Form1.GlobalPanel_main.Controls.Clear();
+                Form1.GlobalPanel_main.Controls.Add(consultation);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
