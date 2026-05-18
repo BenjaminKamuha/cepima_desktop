@@ -20,18 +20,131 @@ namespace Cepima.MesUserCases
             controlPosition();
             loadMed();
             loadQues();
-
         }
+
+        Dictionary<int, int> id_queue = new Dictionary<int, int>(); 
 
         private void loadQues()
         {
-            string query = "SELECT p.id_patient, p.nom patient, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM patient p JOIN consultation c ON c.id_patient_id = p.id_patient JOIN prescription pr ON pr.id_consultation = c.id_consultation JOIN medicament m ON m.id_medicament = c.id_medicament;";
+            string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient;";
+
+            MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true);
+
+            if (reader.HasRows)
+            {
+                int i = 0;
+                while (reader.Read())
+                {
+                    Image img_avt = ImageHelper.LoadImageFromDatabase(int.Parse(reader["id_patient"].ToString()), "id_patient", "patients", "photo");
+                    if (i == 0)
+                    {
+                        // Chargement de la prescription
+                        //load_prescription(reader["id_consultation"].ToString(), reader["id_patient"].ToString());
+                    }
+
+                    id_queue.Add(int.Parse(reader["id_patient"].ToString()), int.Parse(reader["id_consultation"].ToString()));
+
+                    // Ajout du panel description patient
+                    Panel pnl_patient_queue = new Panel();
+                    fl_queue.Controls.Add(pnl_patient_queue);
+                    pnl_patient_queue.Size = new Size(150, pnl_patient_queue.Parent.Height - 5);
+                    pnl_patient_queue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                    pnl_patient_queue.Tag = reader["id_consultation"].ToString() + "." + reader["id_patient"].ToString();
+                    pnl_patient_queue.Click += pnl_patient_queue_Click;
+
+                    // Evenement lors du clique sur un panl
+
+                    // Avatar du patient
+                    AvatarControl avt_queue = new AvatarControl();
+                    avt_queue.Size = new Size(50, 50);
+                    avt_queue.Avatar = img_avt;
+                    avt_queue.Enabled = false;
+
+                    // Label nom patient
+                    Label lb_name_queue = new Label();
+                    lb_name_queue.Text = reader["nom"].ToString() + " " + reader["post_nom"].ToString();
+                    lb_name_queue.Location = new Point(avt_queue.Size.Width, avt_queue.Size.Height / 2);
+                    lb_name_queue.Enabled = false;
+
+                    // Ajout du control avatar
+                    pnl_patient_queue.Controls.Add(lb_name);
+                    pnl_patient_queue.Controls.Add(avt_queue);
+                    
+
+                    i++;
+                }
+
+                lb_nb_queu.Text += "(" + i.ToString() + ")";
+            }
+        }
+
+        void pnl_patient_queue_Click(object sender, EventArgs e)
+        {
+            Panel pnl = sender as Panel;
+            if (pnl.Tag != null)
+            {
+                string consultation_id = pnl.Tag.ToString().Split('.')[0];
+                string patient_id = pnl.Tag.ToString().Split('.')[1];
+
+                // Chargement de la prescription
+                load_prescription(consultation_id, patient_id);
+                
+            }
+        }
+
+        private void load_patient(string patient_id)
+        {
+
+        }
+
+        private void load_prescription(string id_cons, string id_patient)
+        {
+            data_grid_med.Rows.Clear();
+
+            // Chargemeent du paitent
+            string query_patient = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE p.id_patient=@id_p;";
+
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("id_p", id_patient);
+            MySqlDataReader reader_patient = MesClasses.ManagerClasse.CRUD(query_patient, MesClasses.ManagerClasse.request_params, true);
+
+            if (reader_patient.HasRows)
+            {
+                while (reader_patient.Read())
+                {
+                    Image img_avt = ImageHelper.LoadImageFromDatabase(int.Parse(reader_patient["id_patient"].ToString()), "id_patient", "patients", "photo");
+                    avt.Avatar = img_avt;
+                    lb_name.Text = reader_patient["nom"].ToString();
+                    lb_last_name.Text = reader_patient["post_nom"].ToString();
+                    lb_file_number.Text = reader_patient["numero_fiche"].ToString();
+                    lb_title.Text = "Prescription";
+
+                    avt.Avatar = img_avt;
+                }
+            }
+
+
+            // Chargement prescription
+            string query_presc = "SELECT pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM prescriptions pr JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE id_consultation=@id_cons;";
+
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("id_cons", id_cons);
+
+            MySqlDataReader reader_cons = MesClasses.ManagerClasse.CRUD(query_presc, MesClasses.ManagerClasse.request_params, true);
+
+            if (reader_cons.HasRows)
+            {
+                while (reader_cons.Read())
+                {
+                    data_grid_med.Rows.Add(reader_cons["nom_medicament"].ToString(), int.Parse(reader_cons["quantite"].ToString()), reader_cons["unite"].ToString());
+                }
+            }
         }
 
         private void controlPosition()
         {
             lb_title.Left = (lb_title.Parent.ClientSize.Width - lb_title.Width) / 2;
-            pnl_radio_mode.Left = (pnl_radio_mode.Parent.ClientSize.Width - lb_title.Width) / 2;
+            //pnl_radio_mode.Left = (pnl_radio_mode.Parent.ClientSize.Width - lb_title.Width) / 2;
             pnl_responsable.Left = (pnl_responsable.Parent.ClientSize.Width - pnl_responsable.Width) / 2;
         }
 
@@ -243,6 +356,11 @@ namespace Cepima.MesUserCases
         }
 
         private void fl_stock_med_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -342,6 +342,7 @@
             this.panel_center_main.Name = "panel_center_main";
             this.panel_center_main.Size = new System.Drawing.Size(822, 548);
             this.panel_center_main.TabIndex = 4;
+            this.panel_center_main.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_center_main_Paint);
             // 
             // pan
             // 

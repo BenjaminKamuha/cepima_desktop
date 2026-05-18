@@ -48,10 +48,6 @@
             this.avt = new AvatarControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.data_grid_med = new ModernDataGridView();
-            this.med_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.med_qty = new DataGridViewNumericUpDownColumn();
-            this.unite = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new DataGridViewControlColumn();
             this.fl_stock_med = new System.Windows.Forms.FlowLayoutPanel();
             this.pnl_info = new System.Windows.Forms.Panel();
             this.no_result_found = new System.Windows.Forms.Label();
@@ -62,6 +58,12 @@
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tb_search_med = new System.Windows.Forms.TextBox();
+            this.fl_queue = new System.Windows.Forms.FlowLayoutPanel();
+            this.lb_nb_queu = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.med_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.med_qty = new DataGridViewNumericUpDownColumn();
+            this.unite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customRoundedPanel1.SuspendLayout();
             this.pnl_title.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -119,30 +121,34 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.lb_nb_queu);
             this.panel2.Controls.Add(this.pnl_radio_mode);
             this.panel2.Controls.Add(this.pnl_responsable);
+            this.panel2.Controls.Add(this.fl_queue);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(845, 245);
             this.panel2.TabIndex = 2;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // pnl_radio_mode
             // 
             this.pnl_radio_mode.Controls.Add(this.Soins);
             this.pnl_radio_mode.Controls.Add(this.Ambilatoire);
-            this.pnl_radio_mode.Location = new System.Drawing.Point(267, 8);
+            this.pnl_radio_mode.Location = new System.Drawing.Point(38, 32);
             this.pnl_radio_mode.Name = "pnl_radio_mode";
-            this.pnl_radio_mode.Size = new System.Drawing.Size(194, 30);
+            this.pnl_radio_mode.Size = new System.Drawing.Size(136, 56);
             this.pnl_radio_mode.TabIndex = 1;
             // 
             // Soins
             // 
             this.Soins.AutoSize = true;
             this.Soins.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Soins.Location = new System.Drawing.Point(143, 0);
+            this.Soins.Location = new System.Drawing.Point(85, 0);
             this.Soins.Name = "Soins";
-            this.Soins.Size = new System.Drawing.Size(51, 30);
+            this.Soins.Size = new System.Drawing.Size(51, 56);
             this.Soins.TabIndex = 3;
             this.Soins.TabStop = true;
             this.Soins.Text = "Soins";
@@ -154,7 +160,7 @@
             this.Ambilatoire.Dock = System.Windows.Forms.DockStyle.Left;
             this.Ambilatoire.Location = new System.Drawing.Point(0, 0);
             this.Ambilatoire.Name = "Ambilatoire";
-            this.Ambilatoire.Size = new System.Drawing.Size(80, 30);
+            this.Ambilatoire.Size = new System.Drawing.Size(80, 56);
             this.Ambilatoire.TabIndex = 2;
             this.Ambilatoire.TabStop = true;
             this.Ambilatoire.Text = "Ambulatoire";
@@ -166,9 +172,9 @@
             this.pnl_responsable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_responsable.Controls.Add(this.pnl_resume_diag);
             this.pnl_responsable.Controls.Add(this.panel3);
-            this.pnl_responsable.Location = new System.Drawing.Point(38, 47);
+            this.pnl_responsable.Location = new System.Drawing.Point(38, 95);
             this.pnl_responsable.Name = "pnl_responsable";
-            this.pnl_responsable.Size = new System.Drawing.Size(751, 184);
+            this.pnl_responsable.Size = new System.Drawing.Size(751, 144);
             this.pnl_responsable.TabIndex = 1;
             this.pnl_responsable.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
@@ -178,7 +184,7 @@
             this.pnl_resume_diag.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnl_resume_diag.Location = new System.Drawing.Point(299, 0);
             this.pnl_resume_diag.Name = "pnl_resume_diag";
-            this.pnl_resume_diag.Size = new System.Drawing.Size(450, 182);
+            this.pnl_resume_diag.Size = new System.Drawing.Size(450, 142);
             this.pnl_resume_diag.TabIndex = 1;
             // 
             // lb_title_summary
@@ -201,14 +207,14 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(293, 182);
+            this.panel3.Size = new System.Drawing.Size(293, 142);
             this.panel3.TabIndex = 1;
             // 
             // lb_file_number
             // 
             this.lb_file_number.AutoSize = true;
             this.lb_file_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_file_number.Location = new System.Drawing.Point(10, 136);
+            this.lb_file_number.Location = new System.Drawing.Point(10, 87);
             this.lb_file_number.Name = "lb_file_number";
             this.lb_file_number.Size = new System.Drawing.Size(100, 17);
             this.lb_file_number.TabIndex = 4;
@@ -218,7 +224,7 @@
             // 
             this.lb_last_name.AutoSize = true;
             this.lb_last_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_last_name.Location = new System.Drawing.Point(116, 50);
+            this.lb_last_name.Location = new System.Drawing.Point(86, 45);
             this.lb_last_name.Name = "lb_last_name";
             this.lb_last_name.Size = new System.Drawing.Size(46, 17);
             this.lb_last_name.TabIndex = 3;
@@ -228,7 +234,7 @@
             // 
             this.lb_name.AutoSize = true;
             this.lb_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_name.Location = new System.Drawing.Point(116, 25);
+            this.lb_name.Location = new System.Drawing.Point(86, 20);
             this.lb_name.Name = "lb_name";
             this.lb_name.Size = new System.Drawing.Size(46, 17);
             this.lb_name.TabIndex = 2;
@@ -242,7 +248,7 @@
             this.avt.BorderSize = 2;
             this.avt.Location = new System.Drawing.Point(2, 3);
             this.avt.Name = "avt";
-            this.avt.Size = new System.Drawing.Size(108, 113);
+            this.avt.Size = new System.Drawing.Size(87, 76);
             this.avt.TabIndex = 1;
             // 
             // panel1
@@ -277,8 +283,7 @@
             this.data_grid_med.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.med_name,
             this.med_qty,
-            this.unite,
-            this.action});
+            this.unite});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -296,46 +301,6 @@
             this.data_grid_med.Size = new System.Drawing.Size(845, 246);
             this.data_grid_med.TabIndex = 0;
             this.data_grid_med.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.data_grid_med_CellContentClick);
-            // 
-            // med_name
-            // 
-            this.med_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.med_name.HeaderText = "Nom produit";
-            this.med_name.MinimumWidth = 50;
-            this.med_name.Name = "med_name";
-            this.med_name.ReadOnly = true;
-            // 
-            // med_qty
-            // 
-            this.med_qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.med_qty.HeaderText = "Quantité";
-            this.med_qty.Maximum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.med_qty.Minimum = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.med_qty.MinimumWidth = 50;
-            this.med_qty.Name = "med_qty";
-            // 
-            // unite
-            // 
-            this.unite.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.unite.HeaderText = "Unité";
-            this.unite.MinimumWidth = 50;
-            this.unite.Name = "unite";
-            this.unite.ReadOnly = true;
-            // 
-            // action
-            // 
-            this.action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.action.HeaderText = "Action";
-            this.action.MinimumWidth = 50;
-            this.action.Name = "action";
             // 
             // fl_stock_med
             // 
@@ -443,6 +408,69 @@
             this.tb_search_med.TabIndex = 1;
             this.tb_search_med.TextChanged += new System.EventHandler(this.tb_search_med_TextChanged);
             // 
+            // fl_queue
+            // 
+            this.fl_queue.AutoScroll = true;
+            this.fl_queue.Location = new System.Drawing.Point(197, 29);
+            this.fl_queue.Name = "fl_queue";
+            this.fl_queue.Size = new System.Drawing.Size(592, 61);
+            this.fl_queue.TabIndex = 9;
+            // 
+            // lb_nb_queu
+            // 
+            this.lb_nb_queu.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lb_nb_queu.AutoSize = true;
+            this.lb_nb_queu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nb_queu.Location = new System.Drawing.Point(194, 9);
+            this.lb_nb_queu.Name = "lb_nb_queu";
+            this.lb_nb_queu.Size = new System.Drawing.Size(103, 17);
+            this.lb_nb_queu.TabIndex = 6;
+            this.lb_nb_queu.Text = "File d\'attente";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(59, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 17);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Type sortie";
+            // 
+            // med_name
+            // 
+            this.med_name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.med_name.HeaderText = "Nom produit";
+            this.med_name.MinimumWidth = 50;
+            this.med_name.Name = "med_name";
+            this.med_name.ReadOnly = true;
+            // 
+            // med_qty
+            // 
+            this.med_qty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.med_qty.HeaderText = "Quantité";
+            this.med_qty.Maximum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.med_qty.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.med_qty.MinimumWidth = 50;
+            this.med_qty.Name = "med_qty";
+            // 
+            // unite
+            // 
+            this.unite.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.unite.HeaderText = "Unité";
+            this.unite.MinimumWidth = 50;
+            this.unite.Name = "unite";
+            this.unite.ReadOnly = true;
+            // 
             // User_sortie_pharmacie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,6 +485,7 @@
             this.pnl_title.ResumeLayout(false);
             this.pnl_title.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.pnl_radio_mode.ResumeLayout(false);
             this.pnl_radio_mode.PerformLayout();
             this.pnl_responsable.ResumeLayout(false);
@@ -497,10 +526,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnl_responsable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn med_name;
-        private DataGridViewNumericUpDownColumn med_qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unite;
-        private DataGridViewControlColumn action;
         private System.Windows.Forms.Panel pnl_title;
         private System.Windows.Forms.Label lb_title;
         private System.Windows.Forms.Panel pnl_radio_mode;
@@ -513,5 +538,11 @@
         private System.Windows.Forms.Label lb_last_name;
         private System.Windows.Forms.Label lb_name;
         private AvatarControl avt;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lb_nb_queu;
+        private System.Windows.Forms.FlowLayoutPanel fl_queue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn med_name;
+        private DataGridViewNumericUpDownColumn med_qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unite;
     }
 }
