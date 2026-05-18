@@ -207,6 +207,7 @@
             this.bt_save_continuous.Name = "bt_save_continuous";
             this.bt_save_continuous.Size = new System.Drawing.Size(166, 30);
             this.bt_save_continuous.TabIndex = 2;
+            this.bt_save_continuous.Click += new System.EventHandler(this.bt_save_continuous_Click);
             // 
             // bt_save
             // 

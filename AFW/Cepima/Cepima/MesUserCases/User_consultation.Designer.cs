@@ -30,7 +30,6 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.rich_description = new System.Windows.Forms.RichTextBox();
@@ -50,11 +49,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.bt_save_hospitalisation = new test_arrondissement2012.PerfectRoundedButton();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.panel_hospit.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,16 +77,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Consultation";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.counselor_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(78, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(148, 128);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -106,7 +96,7 @@
             this.customRoundedPanel1.Controls.Add(this.label4);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(326, 15);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(326, 16);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(620, 384);
             this.customRoundedPanel1.TabIndex = 3;
@@ -194,6 +184,7 @@
             this.bt_save_consultation.Name = "bt_save_consultation";
             this.bt_save_consultation.Size = new System.Drawing.Size(122, 30);
             this.bt_save_consultation.TabIndex = 2;
+            this.bt_save_consultation.Click += new System.EventHandler(this.bt_save_consultation_Click_1);
             // 
             // label3
             // 
@@ -324,6 +315,16 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Statut : ";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.counselor_100px;
+            this.pictureBox1.Location = new System.Drawing.Point(78, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(148, 128);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // User_consultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,15 +334,15 @@
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "User_consultation";
-            this.Size = new System.Drawing.Size(961, 424);
+            this.Size = new System.Drawing.Size(961, 426);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.panel_hospit.ResumeLayout(false);
             this.panel_hospit.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

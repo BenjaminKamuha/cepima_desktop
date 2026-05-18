@@ -30,9 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
+            this.lb_searchText = new System.Windows.Forms.Label();
             this.tb_taille = new System.Windows.Forms.TextBox();
             this.myRoundedTextBox5 = new MyRoundedTextBox();
             this.tb_frequence = new System.Windows.Forms.TextBox();
@@ -43,21 +45,19 @@
             this.myRoundedTextBox2 = new MyRoundedTextBox();
             this.tb_temperature = new System.Windows.Forms.TextBox();
             this.myRoundedTextBox1 = new MyRoundedTextBox();
-            this.perfectRoundedButton1 = new test_arrondissement2012.PerfectRoundedButton();
+            this.bt_retour = new test_arrondissement2012.PerfectRoundedButton();
             this.bt_save_signes = new test_arrondissement2012.PerfectRoundedButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lb_searchText = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.fl_patient.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -81,6 +81,16 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Signes vitaux";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.steto;
+            this.pictureBox1.Location = new System.Drawing.Point(31, 48);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(173, 145);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -98,7 +108,7 @@
             this.customRoundedPanel1.Controls.Add(this.myRoundedTextBox2);
             this.customRoundedPanel1.Controls.Add(this.tb_temperature);
             this.customRoundedPanel1.Controls.Add(this.myRoundedTextBox1);
-            this.customRoundedPanel1.Controls.Add(this.perfectRoundedButton1);
+            this.customRoundedPanel1.Controls.Add(this.bt_retour);
             this.customRoundedPanel1.Controls.Add(this.bt_save_signes);
             this.customRoundedPanel1.Controls.Add(this.label7);
             this.customRoundedPanel1.Controls.Add(this.label5);
@@ -125,7 +135,7 @@
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel2.Location = new System.Drawing.Point(11, 27);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(606, 93);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(606, 114);
             this.customRoundedPanel2.TabIndex = 7;
             // 
             // fl_patient
@@ -134,18 +144,29 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fl_patient.AutoScroll = true;
             this.fl_patient.Controls.Add(this.lb_searchText);
-            this.fl_patient.Location = new System.Drawing.Point(3, 7);
+            this.fl_patient.Location = new System.Drawing.Point(3, 3);
             this.fl_patient.Name = "fl_patient";
-            this.fl_patient.Size = new System.Drawing.Size(600, 79);
+            this.fl_patient.Size = new System.Drawing.Size(600, 104);
             this.fl_patient.TabIndex = 2;
             this.fl_patient.WrapContents = false;
+            // 
+            // lb_searchText
+            // 
+            this.lb_searchText.AutoSize = true;
+            this.lb_searchText.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_searchText.Location = new System.Drawing.Point(3, 0);
+            this.lb_searchText.Name = "lb_searchText";
+            this.lb_searchText.Padding = new System.Windows.Forms.Padding(50, 10, 0, 0);
+            this.lb_searchText.Size = new System.Drawing.Size(50, 25);
+            this.lb_searchText.TabIndex = 0;
+            this.lb_searchText.Visible = false;
             // 
             // tb_taille
             // 
             this.tb_taille.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_taille.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_taille.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_taille.Location = new System.Drawing.Point(402, 261);
+            this.tb_taille.Location = new System.Drawing.Point(400, 278);
             this.tb_taille.Multiline = true;
             this.tb_taille.Name = "tb_taille";
             this.tb_taille.Size = new System.Drawing.Size(106, 23);
@@ -158,7 +179,7 @@
             this.myRoundedTextBox5.BorderSize = 1;
             this.myRoundedTextBox5.Enabled = false;
             this.myRoundedTextBox5.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox5.Location = new System.Drawing.Point(400, 259);
+            this.myRoundedTextBox5.Location = new System.Drawing.Point(398, 276);
             this.myRoundedTextBox5.Name = "myRoundedTextBox5";
             this.myRoundedTextBox5.PasswordChar = '\0';
             this.myRoundedTextBox5.PlaceholderColor = System.Drawing.Color.Beige;
@@ -172,7 +193,7 @@
             this.tb_frequence.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_frequence.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_frequence.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_frequence.Location = new System.Drawing.Point(402, 193);
+            this.tb_frequence.Location = new System.Drawing.Point(400, 210);
             this.tb_frequence.Multiline = true;
             this.tb_frequence.Name = "tb_frequence";
             this.tb_frequence.Size = new System.Drawing.Size(106, 23);
@@ -183,7 +204,7 @@
             this.tb_poids.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_poids.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_poids.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_poids.Location = new System.Drawing.Point(216, 261);
+            this.tb_poids.Location = new System.Drawing.Point(214, 278);
             this.tb_poids.Multiline = true;
             this.tb_poids.Name = "tb_poids";
             this.tb_poids.Size = new System.Drawing.Size(106, 23);
@@ -196,7 +217,7 @@
             this.myRoundedTextBox3.BorderSize = 1;
             this.myRoundedTextBox3.Enabled = false;
             this.myRoundedTextBox3.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox3.Location = new System.Drawing.Point(400, 191);
+            this.myRoundedTextBox3.Location = new System.Drawing.Point(398, 208);
             this.myRoundedTextBox3.Name = "myRoundedTextBox3";
             this.myRoundedTextBox3.PasswordChar = '\0';
             this.myRoundedTextBox3.PlaceholderColor = System.Drawing.Color.Beige;
@@ -212,7 +233,7 @@
             this.myRoundedTextBox4.BorderSize = 1;
             this.myRoundedTextBox4.Enabled = false;
             this.myRoundedTextBox4.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox4.Location = new System.Drawing.Point(214, 259);
+            this.myRoundedTextBox4.Location = new System.Drawing.Point(212, 276);
             this.myRoundedTextBox4.Name = "myRoundedTextBox4";
             this.myRoundedTextBox4.PasswordChar = '\0';
             this.myRoundedTextBox4.PlaceholderColor = System.Drawing.Color.Beige;
@@ -226,7 +247,7 @@
             this.tb_tension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_tension.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_tension.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_tension.Location = new System.Drawing.Point(216, 193);
+            this.tb_tension.Location = new System.Drawing.Point(214, 210);
             this.tb_tension.Multiline = true;
             this.tb_tension.Name = "tb_tension";
             this.tb_tension.Size = new System.Drawing.Size(106, 23);
@@ -239,7 +260,7 @@
             this.myRoundedTextBox2.BorderSize = 1;
             this.myRoundedTextBox2.Enabled = false;
             this.myRoundedTextBox2.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox2.Location = new System.Drawing.Point(214, 191);
+            this.myRoundedTextBox2.Location = new System.Drawing.Point(212, 208);
             this.myRoundedTextBox2.Name = "myRoundedTextBox2";
             this.myRoundedTextBox2.PasswordChar = '\0';
             this.myRoundedTextBox2.PlaceholderColor = System.Drawing.Color.Beige;
@@ -253,7 +274,7 @@
             this.tb_temperature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_temperature.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_temperature.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_temperature.Location = new System.Drawing.Point(214, 132);
+            this.tb_temperature.Location = new System.Drawing.Point(212, 149);
             this.tb_temperature.Multiline = true;
             this.tb_temperature.Name = "tb_temperature";
             this.tb_temperature.Size = new System.Drawing.Size(294, 23);
@@ -266,7 +287,7 @@
             this.myRoundedTextBox1.BorderSize = 1;
             this.myRoundedTextBox1.Enabled = false;
             this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(212, 130);
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(210, 147);
             this.myRoundedTextBox1.Name = "myRoundedTextBox1";
             this.myRoundedTextBox1.PasswordChar = '\0';
             this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
@@ -275,20 +296,21 @@
             this.myRoundedTextBox1.TabIndex = 5;
             this.myRoundedTextBox1.UseSystemPasswordChar = false;
             // 
-            // perfectRoundedButton1
+            // bt_retour
             // 
-            this.perfectRoundedButton1.BackColor = System.Drawing.Color.Transparent;
-            this.perfectRoundedButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.perfectRoundedButton1.BorderRadius = 5;
-            this.perfectRoundedButton1.BorderSize = 0;
-            this.perfectRoundedButton1.ButtonText = "Annuler";
-            this.perfectRoundedButton1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.perfectRoundedButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.perfectRoundedButton1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.perfectRoundedButton1.Location = new System.Drawing.Point(120, 324);
-            this.perfectRoundedButton1.Name = "perfectRoundedButton1";
-            this.perfectRoundedButton1.Size = new System.Drawing.Size(132, 30);
-            this.perfectRoundedButton1.TabIndex = 2;
+            this.bt_retour.BackColor = System.Drawing.Color.Transparent;
+            this.bt_retour.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_retour.BorderRadius = 5;
+            this.bt_retour.BorderSize = 0;
+            this.bt_retour.ButtonText = "Annuler";
+            this.bt_retour.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_retour.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_retour.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_retour.Location = new System.Drawing.Point(120, 324);
+            this.bt_retour.Name = "bt_retour";
+            this.bt_retour.Size = new System.Drawing.Size(132, 30);
+            this.bt_retour.TabIndex = 2;
+            this.bt_retour.Click += new System.EventHandler(this.bt_retour_Click);
             // 
             // bt_save_signes
             // 
@@ -310,7 +332,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(336, 268);
+            this.label7.Location = new System.Drawing.Point(334, 285);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 14);
             this.label7.TabIndex = 0;
@@ -320,7 +342,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(336, 200);
+            this.label5.Location = new System.Drawing.Point(334, 217);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 14);
             this.label5.TabIndex = 0;
@@ -330,7 +352,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(82, 270);
+            this.label6.Location = new System.Drawing.Point(80, 287);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(45, 14);
             this.label6.TabIndex = 0;
@@ -340,42 +362,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(82, 202);
+            this.label3.Location = new System.Drawing.Point(80, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 14);
             this.label3.TabIndex = 0;
             this.label3.Text = "Tension Arterielle : ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(82, 141);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 14);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Température  : ";
-            // 
-            // lb_searchText
-            // 
-            this.lb_searchText.AutoSize = true;
-            this.lb_searchText.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_searchText.Location = new System.Drawing.Point(3, 0);
-            this.lb_searchText.Name = "lb_searchText";
-            this.lb_searchText.Padding = new System.Windows.Forms.Padding(50, 10, 0, 0);
-            this.lb_searchText.Size = new System.Drawing.Size(50, 25);
-            this.lb_searchText.TabIndex = 0;
-            this.lb_searchText.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.steto;
-            this.pictureBox1.Location = new System.Drawing.Point(31, 48);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(173, 145);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // label4
             // 
@@ -386,6 +377,16 @@
             this.label4.Size = new System.Drawing.Size(53, 14);
             this.label4.TabIndex = 0;
             this.label4.Text = "Patients  ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(80, 158);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 14);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Température  : ";
             // 
             // User_signes_vitaux
             // 
@@ -398,12 +399,12 @@
             this.Size = new System.Drawing.Size(986, 453);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.fl_patient.ResumeLayout(false);
             this.fl_patient.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -430,7 +431,7 @@
         private MyRoundedTextBox myRoundedTextBox4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private test_arrondissement2012.PerfectRoundedButton perfectRoundedButton1;
+        private test_arrondissement2012.PerfectRoundedButton bt_retour;
         private CustomRoundedPanel customRoundedPanel2;
         private System.Windows.Forms.FlowLayoutPanel fl_patient;
         private System.Windows.Forms.Label lb_searchText;

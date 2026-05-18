@@ -118,12 +118,31 @@ namespace Cepima.MesUserCases
             if (VerifierChampsSignesVitaux() == true)
             {
                 //récuperation des différentes données
-                decimal temperature = Convert.ToDecimal(tb_temperature.Text);
+                decimal temperature;
+                decimal taille;
+                if (!decimal.TryParse(tb_temperature.Text.Replace('.', ','), out temperature))
+                {
+                    tb_temperature.Clear();
+                }
+                if (!decimal.TryParse(tb_taille.Text.Replace('.', ','), out taille))
+                {
+                    tb_taille.Clear();
+                }
                 string tensionArterielle = tb_tension.Text;
                 int frequence_cardiaque = Convert.ToInt32(tb_frequence.Text);
                 decimal poids = Convert.ToDecimal(tb_poids.Text);
-                decimal taille = Convert.ToDecimal(tb_taille.Text);
                 MesClasses.ReceptionManager.SaveSigneVitaux(idPatient.ToString(), temperature, tensionArterielle, frequence_cardiaque, poids, taille);
+                tb_temperature.Clear();
+                tb_taille.Clear();
+                tb_tension.Clear();
+                tb_poids.Clear();
+                tb_frequence.Clear();
+
+                // retour à la case départ
+                MesUserCases.User_patient patient = new User_patient();
+                patient.Dock = DockStyle.Fill;
+                Form1.GlobalPanel_main.Controls.Clear();
+                Form1.GlobalPanel_main.Controls.Add(patient);
             }
             else
             {
@@ -193,6 +212,14 @@ namespace Cepima.MesUserCases
                 User_patient.erreur.SetError(tb_taille, "");
             }
             return true;
+        }
+
+        private void bt_retour_Click(object sender, EventArgs e)
+        {
+            MesUserCases.User_signes_vitaux signes = new User_signes_vitaux();
+            signes.Dock = DockStyle.Fill;
+            Form1.GlobalPanel_main.Controls.Clear();
+            Form1.GlobalPanel_main.Controls.Add(signes);
         }
 
     }

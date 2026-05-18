@@ -140,6 +140,12 @@
     <Compile Include="MesUserCases\User_display_patients.Designer.cs">
       <DependentUpon>User_display_patients.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_Examen_EEG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_Examen_EEG.Designer.cs">
+      <DependentUpon>User_Examen_EEG.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_horaires.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_display_patients.resx">
       <DependentUpon>User_display_patients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_Examen_EEG.resx">
+      <DependentUpon>User_Examen_EEG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_horaires.resx">
       <DependentUpon>User_horaires.cs</DependentUpon>
@@ -640,6 +649,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\report_file_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counselor_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counselor_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counselor_25px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

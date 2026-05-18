@@ -104,7 +104,7 @@ namespace Cepima.MesClasses
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string query = "INSERT INTO signes_vitaux(id_patient,temperature,tension,frequence,poids,taille,date_prise)VALUES(@patient,@temp,@tension,@frequency,@poids,@taille,CURDATE())";
+                    string query = "INSERT INTO signes_vitaux(id_patient,temperature,tension,frequence_cardiaque,poids,taille,date_prise)VALUES(@patient,@temp,@tension,@frequency,@poids,@taille,CURDATE())";
                     ManagerClasse.request_params.Clear();
                     ManagerClasse.request_params.Add("@patient", patient_id);
                     ManagerClasse.request_params.Add("@temp", temperature.ToString());
@@ -112,6 +112,7 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@frequency", frequence.ToString());
                     ManagerClasse.request_params.Add("@poids", poids.ToString());
                     ManagerClasse.request_params.Add("@taille", taille.ToString());
+                    ManagerClasse.CRUD(query,ManagerClasse.request_params);
                     tr.Commit();
                     MessageBox.Show("Les signes vitaux ont été ajoutés","Enregistrement");
                 }
@@ -197,5 +198,23 @@ namespace Cepima.MesClasses
             MessageBox.Show("Service supprimé avc succès !!");
         }
 
+
+        // ============================================= Ajouter une consultation =======================
+        public static void SaveConsultation(int id_patient, int id_centre, int id_personnel, string motif, string diagnostic)
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string queryInsert = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,motif,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@motif,@diagnostic)";
+                using (MySqlCommand cmd = new MySqlCommand(queryInsert, con))
+                {
+                    cmd.Parameters.AddWithValue("@patient",id_patient);
+                    cmd.Parameters.AddWithValue("@centre",id_centre);
+                    cmd.Parameters.AddWithValue("@personnel",id_personnel);
+                    cmd.Parameters.AddWithValue("@motif",motif);
+                    cmd.Parameters.AddWithValue("@diagnostic",diagnostic);
+                }
+                MessageBox.Show("Consultation crée avec succès !!");
+            }
+        }
     }
 }

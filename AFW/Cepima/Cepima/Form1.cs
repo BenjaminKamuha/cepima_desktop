@@ -518,7 +518,7 @@ namespace Cepima
         private void bt_hospitalisation_Click(object sender, EventArgs e)
         {
              picture_image_menu.Image = Properties.Resources.reception_90px;
-            lb_sous_menu.Text = "Reception";
+            lb_sous_menu.Text = "Hospitalisation";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
             var items = new List<MenuItem>()
@@ -526,14 +526,39 @@ namespace Cepima
                 new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
                 {
                     //instructions
+                   
                 }),
 
                   new MenuItem("    Hospitalisation",Properties.Resources.hospital_bed_25px,(s,ev) =>  
                 {
-                    MesUserCases.User_hospitalisation hosp = new MesUserCases.User_hospitalisation();
-                    hosp.Dock = DockStyle.Fill;
+                   
+                }),
+            };
+            Create_sous_menu(items);
+            Button bt = sender as Button;
+            MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
+        }
+
+        private void bt_consultation_Click(object sender, EventArgs e)
+        {
+            picture_image_menu.Image = Properties.Resources.counselor_100px;
+            lb_sous_menu.Text = "Consultation";
+            lb_sous_menu.Visible = true;
+            panel11.Visible = true;
+            var items = new List<MenuItem>()
+            {
+                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                {
+                    //instructions
+                   
+                }),
+
+                  new MenuItem("    Consultation",Properties.Resources.counselor_25px,(s,ev) =>  
+                {
+                    MesUserCases.User_consultation consultation = new MesUserCases.User_consultation();
+                    consultation.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(hosp);
+                    panel_center_main.Controls.Add(consultation);
                 }),
             };
             Create_sous_menu(items);
