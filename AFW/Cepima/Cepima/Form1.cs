@@ -291,30 +291,6 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(signes);
                 }),
-                new MenuItem("    Affectation",Properties.Resources.send_hot_list_20px,(s,ev) =>
-                {
-                    //Instructions
-                    MesUserCases.User_affectation affectation = new MesUserCases.User_affectation();
-                    affectation.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(affectation);
-                }),
-                 new MenuItem("    Services",Properties.Resources.unit_20px,(s,ev) =>
-                {
-                    //Instructions
-                    MesUserCases.User_service service = new MesUserCases.User_service();
-                    service.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(service);
-                }),
-                 new MenuItem("    Chambres",Properties.Resources.waiting_room_20px,(s,ev) =>
-                {
-                    //Instructions
-                    MesUserCases.User_chambres chambre = new MesUserCases.User_chambres();
-                    chambre.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(chambre);
-                }),
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -530,9 +506,29 @@ namespace Cepima
                    
                 }),
 
-                  new MenuItem("    Hospitalisation",Properties.Resources.hospital_bed_25px,(s,ev) =>  
+                   new MenuItem("    Affectation",Properties.Resources.send_hot_list_20px,(s,ev) =>
                 {
-                   
+                    //Instructions
+                    MesUserCases.User_affectation affectation = new MesUserCases.User_affectation();
+                    affectation.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(affectation);
+                }),
+                 new MenuItem("    Services",Properties.Resources.unit_20px,(s,ev) =>
+                {
+                    //Instructions
+                    MesUserCases.User_service service = new MesUserCases.User_service();
+                    service.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(service);
+                }),
+                 new MenuItem("    Chambres",Properties.Resources.waiting_room_20px,(s,ev) =>
+                {
+                    //Instructions
+                    MesUserCases.User_chambres chambre = new MesUserCases.User_chambres();
+                    chambre.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(chambre);
                 }),
             };
             Create_sous_menu(items);

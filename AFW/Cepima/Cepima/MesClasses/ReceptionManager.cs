@@ -77,7 +77,7 @@ namespace Cepima.MesClasses
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string queryConsultation = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,motid,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@motif,@diagnostic)";
+                    string queryConsultation = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,motif,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@motif,@diagnostic)";
                     ManagerClasse.request_params.Clear();
                     ManagerClasse.request_params.Add("@patient",patient_id);
                     ManagerClasse.request_params.Add("@centre",centre_id);
@@ -185,7 +185,8 @@ namespace Cepima.MesClasses
             MesClasses.ManagerClasse.request_params.Add("@name",service);
             MesClasses.ManagerClasse.request_params.Add("@id",id_service.ToString());
             MesClasses.ManagerClasse.CRUD(queryUpdate,MesClasses.ManagerClasse.request_params);
-            MessageBox.Show("Modificatio réussie !!");
+            MessageBox.Show("Modification réussie !!");
+
         }
 
         // ======================== supprimer un service =========================================

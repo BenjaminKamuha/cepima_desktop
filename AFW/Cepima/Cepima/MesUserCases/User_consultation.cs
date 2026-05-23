@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesUserCases
 {
     public partial class User_consultation : UserControl
@@ -18,9 +19,10 @@ namespace Cepima.MesUserCases
             //MesClasses.ReceptionManager.MoveLabel(label1,panel1);
             LoadDataPersonnelPatient();
             LoadPatient();
+            LoadServices();
         }
 
-        // ============================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
+        // ================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
         private void LoadDataPersonnelPatient()
         {
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
@@ -51,12 +53,12 @@ namespace Cepima.MesUserCases
                 }
             }
         }
-
-        private void SaveHospitalisation()
+        // =========================== hospitalisation =======================================================================================
+        private void SaveHospitalisation(int idConsultation)
         {
              try
              {
-                 int idConsultation = RecupererIdConsultation();
+
                  using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                  {
                      // Enregistrement de l'hospitalisation
@@ -80,6 +82,11 @@ namespace Cepima.MesUserCases
         }
         private void bt_save_consultation_Click_1(object sender, EventArgs e)
         {
+            if (cbx_personnel.SelectedValue == null)
+            {
+                MessageBox.Show("Sélectionnez un personnel");
+                return;
+            }
             string personnelId = cbx_personnel.SelectedValue.ToString();
             string motif = tb_motif.Text;
             string description = rich_description.Text;
@@ -101,6 +108,7 @@ namespace Cepima.MesUserCases
                 tb_motif.Clear();
                 cbx_personnel.SelectedIndex = -1;
                 rich_description.Clear();
+              
             }
 
             // ======================== cas du patient qui sera hospitalisé =================================================
@@ -109,8 +117,9 @@ namespace Cepima.MesUserCases
                 // ============================== Appel de la méthode d'ajout de la consultation
                 MesClasses.ReceptionManager.EnregistrerConsultation(idPatient.ToString(), MesForms.SessionUtilisateur.idCentre.ToString(), personnelId, motif, description);
 
-                // =================== save hospitalisation =================================
-                SaveHospitalisation();
+            //    // =================== save hospitalisation =================================
+                int consultationID = RecupererIdConsultation();
+                SaveHospitalisation(consultationID);
                 // =========================== mettre en jour le champs booleen de la table signes vitaux =================
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                 {
@@ -120,9 +129,13 @@ namespace Cepima.MesUserCases
                     cmd.ExecuteNonQuery();
                 }
                 MessageBox.Show("Hospitalisaton crée avec succès !!");
+
+            }
+            else
+            {
+                MessageBox.Show("Sélectionnez un type de patient");
             }
            
-            LoadPatient();
         }
 
         private void LoadPatient()
@@ -219,8 +232,7 @@ namespace Cepima.MesUserCases
                 idPatient = 0;
             }
         }
-
-        // ===================================  partie prescription =====================================
+        // ===================================  partie prescription ==================================================
         private void LoadMedicament(params string[] args)
         {
             panel_medicament.Controls.Clear();
@@ -325,7 +337,7 @@ namespace Cepima.MesUserCases
                 MessageBox.Show("Erreur : " + ex.Message);
             }
         }
-        // ====================== méthode pour ajouter au datagridview ================================
+        // ====================== méthode pour ajouter au datagridview ===============================================
         private void AjouterAuDataGrid(string id,string nom,string unite,string prix)
         {
             foreach (DataGridViewRow row in dgv_medoc.Rows)
@@ -375,6 +387,21 @@ namespace Cepima.MesUserCases
                 MessageBox.Show("Prescription enregistrée avec succès");
 
                 dgv_medoc.Rows.Clear();
+                LoadPatient();
+
+                // verifier s'il s'agit du préscription du patient ambulatoire ou pas
+                if (rb_ambulatoire.Checked)
+                {
+                    // imprimer la facture et l'envoyer dans la comptabilité
+                }
+                else
+                {
+                    // si patient hospitalisé, on l'affecte directement dans la chambre
+                    MesUserCases.User_affectation affectation = new User_affectation();
+                    affectation.Dock = DockStyle.Fill;
+                    Form1.GlobalPanel_main.Controls.Clear();
+                    Form1.GlobalPanel_main.Controls.Add(affectation);
+                }
             }
             catch (Exception ex)
             {
@@ -398,6 +425,24 @@ namespace Cepima.MesUserCases
         {
             if (rb_hospitalisation.Checked)
                 pan_test.Visible = true;
+        }
+
+        // =============== charger les services dans le comboBox =====================
+        private void LoadServices()
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string query = "SELECT id_service,nom_service FROM services ORDER BY id_service ASC";
+                using (MySqlDataAdapter ad = new MySqlDataAdapter(query, con))
+                {
+                    DataTable dt = new DataTable();
+                    ad.Fill(dt);
+
+                    cbx_service.DataSource = dt;
+                    cbx_service.DisplayMember = "nom_service";
+                    cbx_service.ValueMember = "id_service";
+                }
+            }
         }
     }
 }
