@@ -12,7 +12,7 @@ namespace Cepima.MesUserCases
 {
     public partial class User_affectation : UserControl
     {
-        string idChambre, hospitalisationID;
+        string idChambre, hospitalisationID,numeroChambre;
         public User_affectation()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace Cepima.MesUserCases
             ChargerInfosPatient("1");
         }
 
-        // =================== charger les patients hospitalisés ==========================
+        // =========================== charger les patients hospitalisés ===============================================
         private void ChargerPatientsHospitalises(params string[] args)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -64,6 +64,7 @@ namespace Cepima.MesUserCases
                                 lb.Text = patient;
                                 lb.AutoSize = true;
                                 lb.Location = new Point(50, 20);
+                                lb.Font = new System.Drawing.Font("Calibri", 9);
                                 p.Controls.Add(lb);
 
                                 // label date hospitalisation
@@ -71,7 +72,7 @@ namespace Cepima.MesUserCases
                                 lbHospi.AutoSize = true;
                                 lbHospi.Location = new Point(30, 50);
                                 lbHospi.Text = "Hospitalisé le " + date;
-                                lbHospi.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                                lbHospi.Font = new System.Drawing.Font("Calibri", 9);
                                 p.Controls.Add(lbHospi);
                                 //evenement (expression lambda)
                                 p.Click += (s, e) =>
@@ -138,6 +139,7 @@ namespace Cepima.MesUserCases
                                     lb.Text = patient;
                                     lb.AutoSize = true;
                                     lb.Location = new Point(50,20);
+                                    lb.Font = new System.Drawing.Font("Calibri", 9);
                                     p.Controls.Add(lb);
 
                                     // label date hospitalisation
@@ -145,7 +147,7 @@ namespace Cepima.MesUserCases
                                     lbHospi.AutoSize = true;
                                     lbHospi.Location = new Point(30, 50);
                                     lbHospi.Text = "Hospitalisé le " + date;
-                                    lbHospi.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                                    lbHospi.Font = new System.Drawing.Font("Calibri", 9);
                                     p.Controls.Add(lbHospi);
                                     //evenement (expression lambda)
                                     p.Click += (s, e) =>
@@ -297,6 +299,7 @@ namespace Cepima.MesUserCases
                         {
                             string id_chambre = reader["id_chambre"].ToString();
                             string numero_chambre = reader["numero_chambre"].ToString();
+                            numeroChambre = reader["numero_chambre"].ToString();
                             string type_chambre = reader["type_chambre"].ToString();
                             string tarif = reader["tarif_journalier"].ToString();
                             string statut = reader["statut"].ToString();
@@ -428,6 +431,8 @@ namespace Cepima.MesUserCases
                 MesClasses.ManagerClasse.request_params.Add("@id", idChambre);
                 MesClasses.ManagerClasse.CRUD(queryUpdate, MesClasses.ManagerClasse.request_params);
 
+                // enregistrer l'historique
+                MesClasses.Event.SaveHistorique(hospitalisationID,"Patient affecté à la chambre "+numeroChambre);
                 MessageBox.Show("Chambre affectée avec succès");
                 idChambre = "";
                 hospitalisationID = "";

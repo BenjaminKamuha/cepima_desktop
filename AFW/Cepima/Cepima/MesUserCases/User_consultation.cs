@@ -20,6 +20,7 @@ namespace Cepima.MesUserCases
             LoadDataPersonnelPatient();
             LoadPatient();
             LoadServices();
+            LoadMedicament();
         }
 
         // ================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
@@ -56,29 +57,47 @@ namespace Cepima.MesUserCases
         // =========================== hospitalisation =======================================================================================
         private void SaveHospitalisation(int idConsultation)
         {
-             try
-             {
+            try
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
 
-                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-                 {
-                     // Enregistrement de l'hospitalisation
-                     string queryInsert = "INSERT INTO hospitalisation(id_patient,id_centre,id_service,id_consultation,date_entree,motif,etat)VALUES(@patient,@centre,@service,@consultation,CURDATE(),@motif,@etat)";
-                     MySqlCommand cmd = new MySqlCommand(queryInsert, con);
-                     cmd.Parameters.AddWithValue("@patient", idPatient);
-                     cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
-                     cmd.Parameters.AddWithValue("@service", cbx_service.SelectedValue);
-                     cmd.Parameters.AddWithValue("@consultation", idConsultation);
-                     cmd.Parameters.AddWithValue("@motif", tb_motif.Text);
-                     cmd.Parameters.AddWithValue("@etat", "Hospitalisé");
-                     cmd.ExecuteNonQuery();
-                     cbx_service.SelectedIndex = -1;
-                     tb_motif_hospitalisation.Clear();
-                 }
-             }
-             catch (MySqlException ex)
-             {
-                 MessageBox.Show("Erreur : " + ex.Message);
-             }
+                    string queryInsert = "INSERT INTO hospitalisation(id_patient,id_centre,id_service,id_consultation,date_entree,motif,etat)VALUES(@patient,@centre,@service,@consultation,CURDATE(),@motif,@etat)";
+                    MySqlCommand cmd = new MySqlCommand(queryInsert,con);
+                    cmd.Parameters.AddWithValue("@patient",idPatient);
+                    cmd.Parameters.AddWithValue("@centre",MesForms.SessionUtilisateur.idCentre);
+                    cmd.Parameters.AddWithValue("@service",cbx_service.SelectedValue);
+                    cmd.Parameters.AddWithValue("@consultation",idConsultation);
+                    cmd.Parameters.AddWithValue("@motif",tb_motif.Text);
+                    cmd.Parameters.AddWithValue("@etat","Hospitalisé");
+                    cmd.ExecuteNonQuery();
+
+                    int idHospitalisation = Convert.ToInt32(cmd.LastInsertedId);
+                    
+                    string nomPatient = "";
+                    string queryNom = "SELECT CONCAT(nom,' ',post_nom,' ',prenom)FROM patients WHERE id_patient=@id";
+                    using (MySqlCommand cmdNom = new MySqlCommand(queryNom,con))
+                    {
+                        cmdNom.Parameters.AddWithValue("@id",idPatient);
+
+                        object result = cmdNom.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            nomPatient = result.ToString();
+                        }
+                    }
+
+                    MesClasses.Event.SaveHistorique(idHospitalisation.ToString(),"Patient : "+ nomPatient +" hospitalisé");
+                    cbx_service.SelectedIndex = -1;
+                    tb_motif_hospitalisation.Clear();
+
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Erreur : "+ ex.Message);
+            }
         }
         private void bt_save_consultation_Click_1(object sender, EventArgs e)
         {
@@ -119,6 +138,8 @@ namespace Cepima.MesUserCases
 
             //    // =================== save hospitalisation =================================
                 int consultationID = RecupererIdConsultation();
+                int hospitalisationID = RecupererIdHospitalisation();
+                MesClasses.Event.SaveHistorique(hospitalisationID.ToString(),"Patient hospitalisé");
                 SaveHospitalisation(consultationID);
                 // =========================== mettre en jour le champs booleen de la table signes vitaux =================
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
@@ -263,18 +284,18 @@ namespace Cepima.MesUserCases
                             string unite = reader["unite"].ToString();
                             string prix = reader["prix_vente"].ToString();
 
-                            Panel pan = new Panel();
-                            pan.Size = new Size(150, 170);
-                            pan.BorderStyle =
-                            BorderStyle.FixedSingle;
-                            pan.Cursor = Cursors.Hand;
-                            pan.Tag = idMed;
-                            MesClasses.ManagerClasse.AddControl(panel_medicament,pan,15,10);
+                            CustomRoundedPanel pan = new CustomRoundedPanel();
+                            pan.Size = new Size(100,120);
+                            pan.BorderRadius = 10;
+                            pan.BorderSize = 1;
+                            pan.BorderColor = Color.FromArgb(224, 224, 224);
+                            pan.HoverCursor = Cursors.Default;
+                            MesClasses.ManagerClasse.AddControl(panel_medicament,pan,5,5);
 
                             //====== Avatar ======
                             AvatarControl avatar = new AvatarControl();
-                            avatar.Location = new Point(30, 5);
-                            avatar.Size = new Size(80, 80);
+                            avatar.Location = new Point(25, 5);
+                            avatar.Size = new Size(45,45);
                             avatar.BorderSize = 2;
                             avatar.BorderColor = Color.FromArgb(44, 123, 229);
 
@@ -296,14 +317,17 @@ namespace Cepima.MesUserCases
 
                             pan.Controls.Add(avatar);
 
-                            Label lbNom = MesClasses.ManagerClasse.CustomLabel(nom,new Point(10, 90));
+                            Label lbNom = MesClasses.ManagerClasse.CustomLabel(nom,new Point(5,55));
                             lbNom.AutoSize = true;
-                            lbNom.Font = new Font("Calibri",9,FontStyle.Bold);
+                            lbNom.Font = new Font("Calibri",9);
                             pan.Controls.Add(lbNom);
-                            Label lbPrix =MesClasses.ManagerClasse.CustomLabel(prix + " FC",new Point(40, 115));
+
+                            Label lbPrix = MesClasses.ManagerClasse.CustomLabel("Prix : "+prix + "$",new Point(20,70));
+                            lbPrix.AutoSize = true;
+                            lbPrix.Font = new System.Drawing.Font("Calibri",9);
                             pan.Controls.Add(lbPrix);
 
-                            RoundedButton btSelect = MesClasses.ManagerClasse.Rbutton("Choisir",new Point(30, 140),new Size(80, 20),Color.FromArgb(7, 51, 131),Color.White);
+                            RoundedButton btSelect = MesClasses.ManagerClasse.Rbutton("Choisir",new Point(10, 95),new Size(80, 20),Color.FromArgb(7, 51, 131),Color.White);
                             btSelect.BorderRadius = 4;
                             btSelect.BorderSize = 0;
                             btSelect.Tag = idMed;
@@ -363,6 +387,18 @@ namespace Cepima.MesUserCases
                 return Convert.ToInt32(result);
             }
         }
+        // récuperer l'id_hospitalisation ===========================
+        private int RecupererIdHospitalisation()
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string query = "SELECT MAX(id_hospitalisation) FROM hospitalisation";
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                object result = cmd.ExecuteScalar();
+
+                return Convert.ToInt32(result);
+            }
+        }
         private void bt_valider_prescription_Click(object sender, EventArgs e)
         {
             try
@@ -392,11 +428,35 @@ namespace Cepima.MesUserCases
                 // verifier s'il s'agit du préscription du patient ambulatoire ou pas
                 if (rb_ambulatoire.Checked)
                 {
-                    // imprimer la facture et l'envoyer dans la comptabilité
+                    // imprimer la facture et l'envoyer dans la comptabilité puis vers la pharmacie
                 }
                 else
                 {
                     // si patient hospitalisé, on l'affecte directement dans la chambre
+                    int idHospitalisationID = RecupererIdHospitalisation();
+                    // récuperer aussi le nom du docteur qui a préscrit les medocs
+                    string nomMedecin = "";
+                    string query = "SELECT CONCAT(p.nom,' ',p.post_nom) AS medecin FROM consultation c JOIN personnel p ON c.id_personnel = p.id_personnel WHERE c.id_consultation = @id";
+                    MesClasses.ManagerClasse.request_params.Clear();
+                    MesClasses.ManagerClasse.request_params.Add("@id",idConsultation.ToString());
+                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
+                    {
+                        if (reader.Read())
+                        {
+                            nomMedecin = reader["medecin"].ToString();
+                        }
+                        reader.Close();
+                    }
+                    // ======================= construction de la liste de medocs préscrit par le medecin ===================
+                    string medicament = "";
+                    foreach (DataGridViewRow row in dgv_medoc.Rows)
+                    {
+                        if (row.IsNewRow)
+                            continue;
+                        medicament += row.Cells["colNom"].Value.ToString() + ", ";
+                    }
+                    MesClasses.Event.SaveHistorique(idHospitalisationID.ToString(),"Prescription par Dr : "+nomMedecin+" : "+medicament);
+                   
                     MesUserCases.User_affectation affectation = new User_affectation();
                     affectation.Dock = DockStyle.Fill;
                     Form1.GlobalPanel_main.Controls.Clear();
@@ -443,6 +503,12 @@ namespace Cepima.MesUserCases
                     cbx_service.ValueMember = "id_service";
                 }
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MesForms.Form_add_medoc medoc = new MesForms.Form_add_medoc();
+            medoc.ShowDialog();
         }
     }
 }

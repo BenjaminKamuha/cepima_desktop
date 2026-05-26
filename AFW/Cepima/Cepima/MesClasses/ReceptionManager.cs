@@ -218,4 +218,15 @@ namespace Cepima.MesClasses
             }
         }
     }
+    class Event
+    {
+        public static void SaveHistorique(string idHospitalisation, string evenement)
+        {
+            string query = "INSERT INTO historique_sejour(id_hospitalisation,evenement,date_evenement)VALUES(@id,@ev,NOW())";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@id", idHospitalisation);
+            MesClasses.ManagerClasse.request_params.Add("@ev", evenement);
+            MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
+        }
+    }
 }

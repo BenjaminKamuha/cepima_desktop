@@ -353,7 +353,7 @@
             this.pan.Dock = System.Windows.Forms.DockStyle.Left;
             this.pan.Location = new System.Drawing.Point(89, 73);
             this.pan.Name = "pan";
-            this.pan.Size = new System.Drawing.Size(161, 560);
+            this.pan.Size = new System.Drawing.Size(167, 560);
             this.pan.TabIndex = 5;
             // 
             // panel_sous_menu
@@ -364,7 +364,7 @@
             this.panel_sous_menu.AutoScroll = true;
             this.panel_sous_menu.Location = new System.Drawing.Point(6, 155);
             this.panel_sous_menu.Name = "panel_sous_menu";
-            this.panel_sous_menu.Size = new System.Drawing.Size(152, 402);
+            this.panel_sous_menu.Size = new System.Drawing.Size(158, 402);
             this.panel_sous_menu.TabIndex = 0;
             // 
             // panel11
@@ -401,7 +401,7 @@
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel10.Location = new System.Drawing.Point(250, 73);
+            this.panel10.Location = new System.Drawing.Point(256, 73);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(4, 560);
             this.panel10.TabIndex = 0;

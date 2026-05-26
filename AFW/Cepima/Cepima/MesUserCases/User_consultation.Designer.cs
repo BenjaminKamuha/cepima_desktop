@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.pan_test = new System.Windows.Forms.Panel();
+            this.tb_motif_hospitalisation = new System.Windows.Forms.TextBox();
+            this.myRoundedTextBox1 = new MyRoundedTextBox();
+            this.cbx_service = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.rich_description = new System.Windows.Forms.RichTextBox();
             this.tb_motif = new System.Windows.Forms.TextBox();
@@ -44,6 +50,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.customRoundedPanel3 = new CustomRoundedPanel();
+            this.rb_ambulatoire = new System.Windows.Forms.RadioButton();
             this.rb_hospitalisation = new System.Windows.Forms.RadioButton();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -53,7 +60,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.customRoundedPanel5 = new CustomRoundedPanel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tb_search_med = new System.Windows.Forms.TextBox();
             this.dgv_medoc = new ModernDataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,23 +70,18 @@
             this.bt_valider_prescription = new test_arrondissement2012.PerfectRoundedButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.rb_ambulatoire = new System.Windows.Forms.RadioButton();
-            this.pan_test = new System.Windows.Forms.Panel();
-            this.tb_motif_hospitalisation = new System.Windows.Forms.TextBox();
-            this.myRoundedTextBox1 = new MyRoundedTextBox();
-            this.cbx_service = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1.SuspendLayout();
+            this.pan_test.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel_medicament.SuspendLayout();
             this.customRoundedPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).BeginInit();
-            this.pan_test.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
@@ -100,10 +101,81 @@
             this.customRoundedPanel1.Controls.Add(this.label2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(357, 159);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(383, 159);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(626, 344);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(613, 344);
             this.customRoundedPanel1.TabIndex = 3;
+            // 
+            // pan_test
+            // 
+            this.pan_test.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.pan_test.Controls.Add(this.tb_motif_hospitalisation);
+            this.pan_test.Controls.Add(this.myRoundedTextBox1);
+            this.pan_test.Controls.Add(this.cbx_service);
+            this.pan_test.Controls.Add(this.label9);
+            this.pan_test.Controls.Add(this.label8);
+            this.pan_test.Location = new System.Drawing.Point(75, 210);
+            this.pan_test.Name = "pan_test";
+            this.pan_test.Size = new System.Drawing.Size(537, 76);
+            this.pan_test.TabIndex = 19;
+            this.pan_test.Visible = false;
+            // 
+            // tb_motif_hospitalisation
+            // 
+            this.tb_motif_hospitalisation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_motif_hospitalisation.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_motif_hospitalisation.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_motif_hospitalisation.Location = new System.Drawing.Point(289, 35);
+            this.tb_motif_hospitalisation.Multiline = true;
+            this.tb_motif_hospitalisation.Name = "tb_motif_hospitalisation";
+            this.tb_motif_hospitalisation.Size = new System.Drawing.Size(233, 23);
+            this.tb_motif_hospitalisation.TabIndex = 23;
+            // 
+            // myRoundedTextBox1
+            // 
+            this.myRoundedTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox1.BorderRadius = 4;
+            this.myRoundedTextBox1.BorderSize = 1;
+            this.myRoundedTextBox1.Enabled = false;
+            this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(286, 33);
+            this.myRoundedTextBox1.Name = "myRoundedTextBox1";
+            this.myRoundedTextBox1.PasswordChar = '\0';
+            this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
+            this.myRoundedTextBox1.PlaceholderText = "";
+            this.myRoundedTextBox1.Size = new System.Drawing.Size(242, 27);
+            this.myRoundedTextBox1.TabIndex = 22;
+            this.myRoundedTextBox1.UseSystemPasswordChar = false;
+            // 
+            // cbx_service
+            // 
+            this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_service.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_service.FormattingEnabled = true;
+            this.cbx_service.Location = new System.Drawing.Point(8, 35);
+            this.cbx_service.Name = "cbx_service";
+            this.cbx_service.Size = new System.Drawing.Size(169, 23);
+            this.cbx_service.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(286, 17);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(129, 15);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Motif d\'hospitalisation";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(14, 17);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(51, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Services";
             // 
             // customRoundedPanel2
             // 
@@ -229,7 +301,7 @@
             this.fl_patient.AutoScroll = true;
             this.fl_patient.Location = new System.Drawing.Point(4, 37);
             this.fl_patient.Name = "fl_patient";
-            this.fl_patient.Size = new System.Drawing.Size(620, 96);
+            this.fl_patient.Size = new System.Drawing.Size(605, 96);
             this.fl_patient.TabIndex = 5;
             this.fl_patient.WrapContents = false;
             // 
@@ -245,16 +317,29 @@
             this.customRoundedPanel3.Controls.Add(this.fl_patient);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(357, 6);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(383, 6);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(626, 147);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(612, 147);
             this.customRoundedPanel3.TabIndex = 5;
+            // 
+            // rb_ambulatoire
+            // 
+            this.rb_ambulatoire.AutoSize = true;
+            this.rb_ambulatoire.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.rb_ambulatoire.Location = new System.Drawing.Point(256, 13);
+            this.rb_ambulatoire.Name = "rb_ambulatoire";
+            this.rb_ambulatoire.Size = new System.Drawing.Size(135, 19);
+            this.rb_ambulatoire.TabIndex = 6;
+            this.rb_ambulatoire.TabStop = true;
+            this.rb_ambulatoire.Text = "Patient ambulatoire";
+            this.rb_ambulatoire.UseVisualStyleBackColor = true;
+            this.rb_ambulatoire.CheckedChanged += new System.EventHandler(this.rb_ambulatoire_CheckedChanged);
             // 
             // rb_hospitalisation
             // 
             this.rb_hospitalisation.AutoSize = true;
             this.rb_hospitalisation.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_hospitalisation.Location = new System.Drawing.Point(502, 13);
+            this.rb_hospitalisation.Location = new System.Drawing.Point(476, 13);
             this.rb_hospitalisation.Name = "rb_hospitalisation";
             this.rb_hospitalisation.Size = new System.Drawing.Size(121, 19);
             this.rb_hospitalisation.TabIndex = 6;
@@ -274,12 +359,13 @@
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel4.Location = new System.Drawing.Point(3, 6);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
-            this.customRoundedPanel4.Size = new System.Drawing.Size(348, 500);
+            this.customRoundedPanel4.Size = new System.Drawing.Size(378, 500);
             this.customRoundedPanel4.TabIndex = 6;
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.linkLabel1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.panel_medicament);
             this.panel1.Controls.Add(this.panel4);
@@ -291,7 +377,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(3, 7);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(342, 486);
+            this.panel1.Size = new System.Drawing.Size(371, 486);
             this.panel1.TabIndex = 7;
             // 
             // label1
@@ -307,11 +393,11 @@
             // panel_medicament
             // 
             this.panel_medicament.AutoScroll = true;
-            this.panel_medicament.BackColor = System.Drawing.Color.White;
+            this.panel_medicament.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.panel_medicament.Controls.Add(this.lb_not_found);
-            this.panel_medicament.Location = new System.Drawing.Point(4, 73);
+            this.panel_medicament.Location = new System.Drawing.Point(4, 56);
             this.panel_medicament.Name = "panel_medicament";
-            this.panel_medicament.Size = new System.Drawing.Size(341, 169);
+            this.panel_medicament.Size = new System.Drawing.Size(364, 182);
             this.panel_medicament.TabIndex = 11;
             // 
             // lb_not_found
@@ -327,7 +413,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.panel4.Location = new System.Drawing.Point(6, 60);
+            this.panel4.Location = new System.Drawing.Point(6, 48);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(118, 6);
             this.panel4.TabIndex = 8;
@@ -350,20 +436,10 @@
             this.customRoundedPanel5.Controls.Add(this.tb_search_med);
             this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel5.Location = new System.Drawing.Point(147, 41);
+            this.customRoundedPanel5.Location = new System.Drawing.Point(175, 29);
             this.customRoundedPanel5.Name = "customRoundedPanel5";
             this.customRoundedPanel5.Size = new System.Drawing.Size(190, 25);
             this.customRoundedPanel5.TabIndex = 10;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Cepima.Properties.Resources.search1;
-            this.pictureBox3.Location = new System.Drawing.Point(167, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(17, 19);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
             // 
             // tb_search_med
             // 
@@ -380,21 +456,21 @@
             this.dgv_medoc.AllowUserToAddRows = false;
             this.dgv_medoc.AllowUserToDeleteRows = false;
             this.dgv_medoc.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_medoc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_medoc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgv_medoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_medoc.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_medoc.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.dgv_medoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_medoc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_medoc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_medoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_medoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgv_medoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_medoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -402,21 +478,21 @@
             this.colQuantite,
             this.colUnite,
             this.colPrix});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_medoc.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_medoc.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgv_medoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgv_medoc.EnableHeadersVisualStyles = false;
             this.dgv_medoc.GridColor = System.Drawing.Color.LightGray;
             this.dgv_medoc.Location = new System.Drawing.Point(6, 274);
             this.dgv_medoc.Name = "dgv_medoc";
             this.dgv_medoc.RowHeadersVisible = false;
-            this.dgv_medoc.Size = new System.Drawing.Size(331, 178);
+            this.dgv_medoc.Size = new System.Drawing.Size(362, 178);
             this.dgv_medoc.TabIndex = 3;
             // 
             // colID
@@ -465,7 +541,7 @@
             this.bt_valider_prescription.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_valider_prescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_valider_prescription.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_valider_prescription.Location = new System.Drawing.Point(107, 458);
+            this.bt_valider_prescription.Location = new System.Drawing.Point(121, 458);
             this.bt_valider_prescription.Name = "bt_valider_prescription";
             this.bt_valider_prescription.Size = new System.Drawing.Size(129, 26);
             this.bt_valider_prescription.TabIndex = 2;
@@ -485,95 +561,33 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(3, 43);
+            this.label5.Location = new System.Drawing.Point(3, 31);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(108, 15);
             this.label5.TabIndex = 0;
             this.label5.Text = "Stock médicament";
             // 
-            // rb_ambulatoire
+            // linkLabel1
             // 
-            this.rb_ambulatoire.AutoSize = true;
-            this.rb_ambulatoire.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_ambulatoire.Location = new System.Drawing.Point(256, 13);
-            this.rb_ambulatoire.Name = "rb_ambulatoire";
-            this.rb_ambulatoire.Size = new System.Drawing.Size(135, 19);
-            this.rb_ambulatoire.TabIndex = 6;
-            this.rb_ambulatoire.TabStop = true;
-            this.rb_ambulatoire.Text = "Patient ambulatoire";
-            this.rb_ambulatoire.UseVisualStyleBackColor = true;
-            this.rb_ambulatoire.CheckedChanged += new System.EventHandler(this.rb_ambulatoire_CheckedChanged);
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(231, 254);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(100, 13);
+            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Ajouter médicament";
+            this.linkLabel1.Visible = false;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // pan_test
+            // pictureBox3
             // 
-            this.pan_test.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.pan_test.Controls.Add(this.tb_motif_hospitalisation);
-            this.pan_test.Controls.Add(this.myRoundedTextBox1);
-            this.pan_test.Controls.Add(this.cbx_service);
-            this.pan_test.Controls.Add(this.label9);
-            this.pan_test.Controls.Add(this.label8);
-            this.pan_test.Location = new System.Drawing.Point(75, 210);
-            this.pan_test.Name = "pan_test";
-            this.pan_test.Size = new System.Drawing.Size(537, 76);
-            this.pan_test.TabIndex = 19;
-            this.pan_test.Visible = false;
-            // 
-            // tb_motif_hospitalisation
-            // 
-            this.tb_motif_hospitalisation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.tb_motif_hospitalisation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_motif_hospitalisation.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_motif_hospitalisation.Location = new System.Drawing.Point(289, 35);
-            this.tb_motif_hospitalisation.Multiline = true;
-            this.tb_motif_hospitalisation.Name = "tb_motif_hospitalisation";
-            this.tb_motif_hospitalisation.Size = new System.Drawing.Size(233, 23);
-            this.tb_motif_hospitalisation.TabIndex = 23;
-            // 
-            // myRoundedTextBox1
-            // 
-            this.myRoundedTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox1.BorderRadius = 4;
-            this.myRoundedTextBox1.BorderSize = 1;
-            this.myRoundedTextBox1.Enabled = false;
-            this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(286, 33);
-            this.myRoundedTextBox1.Name = "myRoundedTextBox1";
-            this.myRoundedTextBox1.PasswordChar = '\0';
-            this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
-            this.myRoundedTextBox1.PlaceholderText = "";
-            this.myRoundedTextBox1.Size = new System.Drawing.Size(242, 27);
-            this.myRoundedTextBox1.TabIndex = 22;
-            this.myRoundedTextBox1.UseSystemPasswordChar = false;
-            // 
-            // cbx_service
-            // 
-            this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_service.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_service.FormattingEnabled = true;
-            this.cbx_service.Location = new System.Drawing.Point(8, 35);
-            this.cbx_service.Name = "cbx_service";
-            this.cbx_service.Size = new System.Drawing.Size(169, 23);
-            this.cbx_service.TabIndex = 21;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(286, 17);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(129, 15);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Motif d\'hospitalisation";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(14, 17);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 15);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Services";
+            this.pictureBox3.Image = global::Cepima.Properties.Resources.search1;
+            this.pictureBox3.Location = new System.Drawing.Point(167, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(17, 19);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
             // 
             // User_consultation
             // 
@@ -587,6 +601,8 @@
             this.Size = new System.Drawing.Size(999, 506);
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
+            this.pan_test.ResumeLayout(false);
+            this.pan_test.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
@@ -597,10 +613,8 @@
             this.panel_medicament.PerformLayout();
             this.customRoundedPanel5.ResumeLayout(false);
             this.customRoundedPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).EndInit();
-            this.pan_test.ResumeLayout(false);
-            this.pan_test.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -647,5 +661,6 @@
         private System.Windows.Forms.ComboBox cbx_service;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
