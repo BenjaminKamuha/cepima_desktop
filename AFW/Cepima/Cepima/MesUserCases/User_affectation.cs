@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesUserCases
 {
     public partial class User_affectation : UserControl
@@ -19,7 +20,7 @@ namespace Cepima.MesUserCases
             ChargerPatientsHospitalises();
             LoadTypeChambre();
             LoadChambres();
-            ChargerInfosPatient("1");
+            //ChargerInfosPatient();
         }
 
         // =========================== charger les patients hospitalisés ===============================================
@@ -282,12 +283,12 @@ namespace Cepima.MesUserCases
                 // Si un type est sélectionné
                 if (args.Length > 0)
                 {
-                    query = "SELECT id_chambre,numero_chambre,type_chambre,tarif_journalier,statut FROM chambre WHERE type_chambre=@type ORDER BY numero_chambre ASC";
+                    query = "SELECT c.id_chambre,c.numero_chambre,c.type_chambre,c.tarif_journalier,c.statut,s.nom_service FROM chambre c JOIN services s ON c.id_service=s.id_service WHERE c.type_chambre=@type ORDER BY c.numero_chambre ASC";
                     MesClasses.ManagerClasse.request_params.Add("@type", args[0]);
                 }
                 else
                 {
-                    query = "SELECT id_chambre,numero_chambre,type_chambre,tarif_journalier,statut FROM chambre ORDER BY numero_chambre ASC";
+                    query = "SELECT c.id_chambre,c.numero_chambre,c.type_chambre,c.tarif_journalier,c.statut,s.nom_service FROM chambre c JOIN services s ON c.id_service=s.id_service ORDER BY c.numero_chambre ASC";
                 }
 
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
@@ -299,19 +300,19 @@ namespace Cepima.MesUserCases
                         {
                             string id_chambre = reader["id_chambre"].ToString();
                             string numero_chambre = reader["numero_chambre"].ToString();
-                            numeroChambre = reader["numero_chambre"].ToString();
+                            //numeroChambre = reader["numero_chambre"].ToString();
                             string type_chambre = reader["type_chambre"].ToString();
                             string tarif = reader["tarif_journalier"].ToString();
                             string statut = reader["statut"].ToString();
-
+                            string service = reader["nom_service"].ToString();
                             CustomRoundedPanel panPatient = new CustomRoundedPanel();
-                            panPatient.Size = new Size(180, 180);
+                            panPatient.Size = new Size(188, 190);
                             panPatient.BorderRadius = 10;
                             panPatient.BorderSize = 1;
                             panPatient.BorderColor = Color.FromArgb(224,224,224);
                             panPatient.HoverCursor = Cursors.Default;
 
-                            RoundedButton bt_details = MesClasses.ManagerClasse.Rbutton("Choisir chambre", new Point(30, 150), new Size(120, 20), Color.FromArgb(39, 174, 96), Color.White);
+                            RoundedButton bt_details = MesClasses.ManagerClasse.Rbutton("Choisir chambre", new Point(30, 165), new Size(120, 20), Color.FromArgb(39, 174, 96), Color.White);
                             bt_details.BorderRadius = 4;
                             bt_details.BorderSize = 0;
                             bt_details.BorderColor = Color.FromArgb(39, 174, 96);
@@ -334,7 +335,7 @@ namespace Cepima.MesUserCases
 
                             if (statut == "Occupée")
                             {
-                                panPatient.BackColor = Color.FromArgb(255,230,230);
+                                panPatient.BackColor = Color.FromArgb(255, 230, 230);
                                 panPatient.BorderColor = Color.Red;
                                 bt_details.Enabled = false;
                                 avatar.BorderColor = Color.Red;
@@ -357,16 +358,21 @@ namespace Cepima.MesUserCases
                             panPatient.Controls.Add(lbNom);
 
                             Label lbType = MesClasses.ManagerClasse.CustomLabel("Type : "+ type_chambre,new Point(10, 60));
-                            lbType.Font = new System.Drawing.Font("Calibri",9,FontStyle.Bold);
+                            lbType.Font = new System.Drawing.Font("Calibri",9);
                             panPatient.Controls.Add(lbType);
 
                             Label lbTarif = MesClasses.ManagerClasse.CustomLabel("Tarif : "+ tarif + " Fc/jour",new Point(10, 90));
-                            lbTarif.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                            lbTarif.Font = new System.Drawing.Font("Calibri", 9);
                             panPatient.Controls.Add(lbTarif);
 
                             Label lbStatut = MesClasses.ManagerClasse.CustomLabel("Statut : "+ statut,new Point(10, 120));
-                            lbStatut.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                            lbStatut.Font = new System.Drawing.Font("Calibri", 9);
                             panPatient.Controls.Add(lbStatut);
+
+                            Label lbService = MesClasses.ManagerClasse.CustomLabel("Service : "+service,new Point(10,145));
+                            lbService.Font = new System.Drawing.Font("Calibri",9);
+                            lbService.AutoSize = true;
+                            panPatient.Controls.Add(lbService);
                             i++;
 
                         }
@@ -401,8 +407,9 @@ namespace Cepima.MesUserCases
 
         private void bt_add_affectation_Click(object sender, EventArgs e)
         {
-            SaveAffectation_chambre();
+           SaveAffectation_chambre();
         }
+
         // ======================= enregistrer l'affectation de la chambre ===============================================
         private void SaveAffectation_chambre()
         {
@@ -431,12 +438,23 @@ namespace Cepima.MesUserCases
                 MesClasses.ManagerClasse.request_params.Add("@id", idChambre);
                 MesClasses.ManagerClasse.CRUD(queryUpdate, MesClasses.ManagerClasse.request_params);
 
-                // enregistrer l'historique
+                // enregistrer l'historique mais avant tous récuperons le numero de la chambre du patient
+                string querySelect_chambre = "SELECT h.id_hospitalisation,c.numero_chambre FROM hospitalisation h JOIN affectation_chambre ac ON h.id_hospitalisation = ac.id_hospitalisation JOIN chambre c ON ac.id_chambre = c.id_chambre WHERE h.id_hospitalisation =@id";
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@id",hospitalisationID);
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(querySelect_chambre, MesClasses.ManagerClasse.request_params, true))
+                {
+                    if (reader.Read())
+                    {
+                        numeroChambre = reader["numero_chambre"].ToString();
+                    }
+                    reader.Close();
+                }
                 MesClasses.Event.SaveHistorique(hospitalisationID,"Patient affecté à la chambre "+numeroChambre);
                 MessageBox.Show("Chambre affectée avec succès");
                 idChambre = "";
                 hospitalisationID = "";
-                ChargerPatientsHospitalises("1");
+                ChargerPatientsHospitalises();
                 LoadChambres();
             }
             catch (Exception ex)

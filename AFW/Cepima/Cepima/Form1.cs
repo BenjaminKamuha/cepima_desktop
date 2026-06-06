@@ -384,7 +384,33 @@ namespace Cepima
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) => MessageBox.Show("Acceuil")),
+                    new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                    {
+
+                    }),
+
+                    new MenuItem("  Facturation",Properties.Resources.facture,(s,ev) =>
+                    {
+                        MesUserCases.User_facture_all facturation = new MesUserCases.User_facture_all();
+                        facturation.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(facturation);
+                    }),
+
+                    new MenuItem("  Paiements",Properties.Resources.cost_25px, (s,ev) =>
+                    {
+
+                    }),
+
+                     new MenuItem(" Caisse du jour",Properties.Resources.wallet_25px, (s,ev) =>
+                    {
+
+                    }),
+
+                     new MenuItem(" Rapport financier",Properties.Resources.analytics_25px, (s,ev) =>
+                    {
+
+                    }),
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

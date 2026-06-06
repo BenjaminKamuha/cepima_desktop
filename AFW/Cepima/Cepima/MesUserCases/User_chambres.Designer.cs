@@ -30,6 +30,7 @@
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbx_type_chambre = new System.Windows.Forms.ComboBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.numeric_chambre = new System.Windows.Forms.NumericUpDown();
             this.bt_save_chambre = new test_arrondissement2012.PerfectRoundedButton();
@@ -39,7 +40,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.cbx_type_chambre = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbx_service = new System.Windows.Forms.ComboBox();
             this.customRoundedPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_chambre)).BeginInit();
@@ -63,11 +65,13 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cbx_service);
             this.panel2.Controls.Add(this.cbx_type_chambre);
             this.panel2.Controls.Add(this.tb_tarif);
             this.panel2.Controls.Add(this.numeric_chambre);
             this.panel2.Controls.Add(this.bt_save_chambre);
             this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Location = new System.Drawing.Point(82, 50);
@@ -75,13 +79,23 @@
             this.panel2.Size = new System.Drawing.Size(498, 342);
             this.panel2.TabIndex = 10;
             // 
+            // cbx_type_chambre
+            // 
+            this.cbx_type_chambre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_type_chambre.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cbx_type_chambre.FormattingEnabled = true;
+            this.cbx_type_chambre.Location = new System.Drawing.Point(189, 117);
+            this.cbx_type_chambre.Name = "cbx_type_chambre";
+            this.cbx_type_chambre.Size = new System.Drawing.Size(189, 23);
+            this.cbx_type_chambre.TabIndex = 13;
+            // 
             // tb_tarif
             // 
             this.tb_tarif.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tb_tarif.BorderRadius = 4;
             this.tb_tarif.BorderSize = 0;
             this.tb_tarif.FocusBorderColor = System.Drawing.Color.Orange;
-            this.tb_tarif.Location = new System.Drawing.Point(189, 184);
+            this.tb_tarif.Location = new System.Drawing.Point(189, 214);
             this.tb_tarif.Name = "tb_tarif";
             this.tb_tarif.PasswordChar = '\0';
             this.tb_tarif.PlaceholderColor = System.Drawing.Color.Gray;
@@ -108,7 +122,7 @@
             this.bt_save_chambre.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_save_chambre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save_chambre.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_chambre.Location = new System.Drawing.Point(189, 253);
+            this.bt_save_chambre.Location = new System.Drawing.Point(189, 283);
             this.bt_save_chambre.Name = "bt_save_chambre";
             this.bt_save_chambre.Size = new System.Drawing.Size(132, 30);
             this.bt_save_chambre.TabIndex = 10;
@@ -128,7 +142,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(49, 198);
+            this.label3.Location = new System.Drawing.Point(49, 228);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 14);
             this.label3.TabIndex = 8;
@@ -175,15 +189,25 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // cbx_type_chambre
+            // label2
             // 
-            this.cbx_type_chambre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_type_chambre.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.cbx_type_chambre.FormattingEnabled = true;
-            this.cbx_type_chambre.Location = new System.Drawing.Point(189, 117);
-            this.cbx_type_chambre.Name = "cbx_type_chambre";
-            this.cbx_type_chambre.Size = new System.Drawing.Size(189, 23);
-            this.cbx_type_chambre.TabIndex = 13;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(49, 177);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 14);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Service  : ";
+            // 
+            // cbx_service
+            // 
+            this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_service.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cbx_service.FormattingEnabled = true;
+            this.cbx_service.Location = new System.Drawing.Point(189, 169);
+            this.cbx_service.Name = "cbx_service";
+            this.cbx_service.Size = new System.Drawing.Size(189, 23);
+            this.cbx_service.TabIndex = 13;
             // 
             // User_chambres
             // 
@@ -220,5 +244,7 @@
         private System.Windows.Forms.Label label3;
         private MyRoundedTextBox tb_tarif;
         private System.Windows.Forms.ComboBox cbx_type_chambre;
+        private System.Windows.Forms.ComboBox cbx_service;
+        private System.Windows.Forms.Label label2;
     }
 }

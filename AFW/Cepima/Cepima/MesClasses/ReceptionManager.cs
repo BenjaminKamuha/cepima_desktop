@@ -97,7 +97,7 @@ namespace Cepima.MesClasses
         }
 
         //================================ Save signes vitaux =======================================================
-        public static void SaveSigneVitaux(string patient_id,decimal temperature,string tension,int frequence,decimal poids,decimal taille)
+        public static void SaveSigneVitaux(string patient_id,decimal temperature,string tension,string frequence,decimal poids,decimal taille)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {

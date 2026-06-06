@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_add_suivi_hospitalisation));
             this.tb_temperature = new MyRoundedTextBox();
             this.tb_tension = new MyRoundedTextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -189,6 +190,7 @@
             this.Controls.Add(this.tb_rythme);
             this.Controls.Add(this.tb_tension);
             this.Controls.Add(this.tb_temperature);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_add_suivi_hospitalisation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Passer un suivi d\'hospitalisation";

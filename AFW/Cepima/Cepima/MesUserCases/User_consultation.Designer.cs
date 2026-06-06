@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.pan_test = new System.Windows.Forms.Panel();
             this.tb_motif_hospitalisation = new System.Windows.Forms.TextBox();
@@ -54,12 +54,14 @@
             this.rb_hospitalisation = new System.Windows.Forms.RadioButton();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel_medicament = new System.Windows.Forms.Panel();
             this.lb_not_found = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.customRoundedPanel5 = new CustomRoundedPanel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tb_search_med = new System.Windows.Forms.TextBox();
             this.dgv_medoc = new ModernDataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,11 +69,10 @@
             this.colQuantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUnite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bt_valider_prescription = new test_arrondissement2012.PerfectRoundedButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1.SuspendLayout();
             this.pan_test.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
@@ -80,8 +81,8 @@
             this.panel1.SuspendLayout();
             this.panel_medicament.SuspendLayout();
             this.customRoundedPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).BeginInit();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
@@ -180,7 +181,7 @@
             // customRoundedPanel2
             // 
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel2.BorderRadius = 10;
+            this.customRoundedPanel2.BorderRadius = 4;
             this.customRoundedPanel2.BorderSize = 2;
             this.customRoundedPanel2.Controls.Add(this.rich_description);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
@@ -197,6 +198,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rich_description.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.rich_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rich_description.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rich_description.Location = new System.Drawing.Point(4, 3);
             this.rich_description.Name = "rich_description";
             this.rich_description.Size = new System.Drawing.Size(287, 61);
@@ -380,6 +382,18 @@
             this.panel1.Size = new System.Drawing.Size(371, 486);
             this.panel1.TabIndex = 7;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(231, 254);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(100, 13);
+            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Ajouter médicament";
+            this.linkLabel1.Visible = false;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -441,6 +455,16 @@
             this.customRoundedPanel5.Size = new System.Drawing.Size(190, 25);
             this.customRoundedPanel5.TabIndex = 10;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Cepima.Properties.Resources.search1;
+            this.pictureBox3.Location = new System.Drawing.Point(167, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(17, 19);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 8;
+            this.pictureBox3.TabStop = false;
+            // 
             // tb_search_med
             // 
             this.tb_search_med.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -456,36 +480,37 @@
             this.dgv_medoc.AllowUserToAddRows = false;
             this.dgv_medoc.AllowUserToDeleteRows = false;
             this.dgv_medoc.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_medoc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_medoc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_medoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_medoc.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.dgv_medoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_medoc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_medoc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_medoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_medoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_medoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_medoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
             this.colMedicament,
             this.colQuantite,
             this.colUnite,
-            this.colPrix});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_medoc.DefaultCellStyle = dataGridViewCellStyle18;
+            this.colPrix,
+            this.colMontant});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_medoc.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_medoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgv_medoc.EnableHeadersVisualStyles = false;
             this.dgv_medoc.GridColor = System.Drawing.Color.LightGray;
@@ -530,6 +555,14 @@
             this.colPrix.MinimumWidth = 50;
             this.colPrix.Name = "colPrix";
             // 
+            // colMontant
+            // 
+            this.colMontant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMontant.HeaderText = "montant";
+            this.colMontant.MinimumWidth = 50;
+            this.colMontant.Name = "colMontant";
+            this.colMontant.Visible = false;
+            // 
             // bt_valider_prescription
             // 
             this.bt_valider_prescription.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -567,28 +600,6 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Stock médicament";
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(231, 254);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(100, 13);
-            this.linkLabel1.TabIndex = 13;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ajouter médicament";
-            this.linkLabel1.Visible = false;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Cepima.Properties.Resources.search1;
-            this.pictureBox3.Location = new System.Drawing.Point(167, 3);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(17, 19);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 8;
-            this.pictureBox3.TabStop = false;
-            // 
             // User_consultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,8 +624,8 @@
             this.panel_medicament.PerformLayout();
             this.customRoundedPanel5.ResumeLayout(false);
             this.customRoundedPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -662,5 +673,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMontant;
     }
 }

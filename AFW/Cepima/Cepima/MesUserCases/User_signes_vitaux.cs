@@ -129,7 +129,7 @@ namespace Cepima.MesUserCases
                     tb_taille.Clear();
                 }
                 string tensionArterielle = tb_tension.Text;
-                int frequence_cardiaque = Convert.ToInt32(tb_frequence.Text);
+                string frequence_cardiaque = tb_frequence.Text;
                 decimal poids = Convert.ToDecimal(tb_poids.Text);
                 MesClasses.ReceptionManager.SaveSigneVitaux(idPatient.ToString(), temperature, tensionArterielle, frequence_cardiaque, poids, taille);
                 tb_temperature.Clear();

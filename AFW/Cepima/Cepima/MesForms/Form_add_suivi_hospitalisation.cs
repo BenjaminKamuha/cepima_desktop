@@ -40,7 +40,7 @@ namespace Cepima.MesForms
             MessageBox.Show("Le suivi de l'hospitalisation "+id_hospitalisation+" a été effectué avec succès");
 
             // save l'historique du séjour
-            MesClasses.Event.SaveHistorique(id_hospitalisation,"Suivi : Temp "+tb_temperature.Text+"°C, patient "+cbx_etat_mental.Text);
+            MesClasses.Event.SaveHistorique(id_hospitalisation,"Suivi : Temp "+tb_temperature.Text+"°C, TA : "+tb_tension.Text+",Frequence : "+tb_rythme.Text+" Etat mental : "+cbx_etat_mental.Text);
             CacherText();
         }
         private void CacherText()

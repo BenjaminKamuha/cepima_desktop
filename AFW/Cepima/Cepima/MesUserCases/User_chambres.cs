@@ -16,6 +16,7 @@ namespace Cepima.MesUserCases
         {
             InitializeComponent();
             MesClasses.ReceptionManager.MoveLabel(label4,panel1);
+            LoadService();
         }
 
         private void User_chambres_Load(object sender, EventArgs e)
@@ -69,17 +70,37 @@ namespace Cepima.MesUserCases
         {
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
-                string query = "INSERT INTO chambre(id_centre,numero_chambre,type_chambre,tarif_journalier)VALUES(@centre,@numero,@type,@tarif)";
+                string query = "INSERT INTO chambre(id_centre,id_service,numero_chambre,type_chambre,tarif_journalier)VALUES(@centre,@service,@numero,@type,@tarif)";
                 using (MySqlCommand cmd = new MySqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@centre",MesForms.SessionUtilisateur.idCentre);
+                    cmd.Parameters.AddWithValue("@service",cbx_service.SelectedValue);
                     cmd.Parameters.AddWithValue("@numero",numeric_chambre.Value);
                     cmd.Parameters.AddWithValue("@type",cbx_type_chambre.SelectedItem);
                     cmd.Parameters.AddWithValue("@tarif",tb_tarif.Text);
                     cmd.ExecuteNonQuery();
+                    MessageBox.Show("Chambre ajoutée avec succès!!");
                     cbx_type_chambre.SelectedIndex = -1;
+                    cbx_service.SelectedIndex = -1;
                     tb_tarif.Text = "";
                     numeric_chambre.Value = 0;
+                }
+            }
+        }
+
+        private void LoadService()
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string query = "SELECT id_service,nom_service FROM services ORDER BY id_service ASC";
+                using (MySqlDataAdapter ad = new MySqlDataAdapter(query, con))
+                {
+                    DataTable dt = new DataTable();
+                    ad.Fill(dt);
+
+                    cbx_service.DataSource = dt;
+                    cbx_service.DisplayMember = "nom_service";
+                    cbx_service.ValueMember = "id_service";
                 }
             }
         }

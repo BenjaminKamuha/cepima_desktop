@@ -93,6 +93,18 @@
     <Compile Include="MesForms\Form_add_suivi_hospitalisation.Designer.cs">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Form_Display_prescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Form_Display_prescription.Designer.cs">
+      <DependentUpon>Form_Display_prescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Form_New_prescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Form_New_prescription.Designer.cs">
+      <DependentUpon>Form_New_prescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\UC_detail_personnel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,17 +177,17 @@
     <Compile Include="MesUserCases\User_Examen_EEG.Designer.cs">
       <DependentUpon>User_Examen_EEG.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_facture_all.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_facture_all.Designer.cs">
+      <DependentUpon>User_facture_all.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_horaires.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\User_horaires.Designer.cs">
       <DependentUpon>User_horaires.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_hospitalisation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_hospitalisation.Designer.cs">
-      <DependentUpon>User_hospitalisation.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_medicament.cs">
       <SubType>UserControl</SubType>
@@ -257,6 +269,12 @@
     <EmbeddedResource Include="MesForms\Form_add_suivi_hospitalisation.resx">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Form_Display_prescription.resx">
+      <DependentUpon>Form_Display_prescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Form_New_prescription.resx">
+      <DependentUpon>Form_New_prescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\UC_detail_personnel.resx">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,11 +311,11 @@
     <EmbeddedResource Include="MesUserCases\User_Examen_EEG.resx">
       <DependentUpon>User_Examen_EEG.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_facture_all.resx">
+      <DependentUpon>User_facture_all.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_horaires.resx">
       <DependentUpon>User_horaires.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_hospitalisation.resx">
-      <DependentUpon>User_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_medicament.resx">
       <DependentUpon>User_medicament.cs</DependentUpon>
@@ -698,6 +716,45 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_40px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facture.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\analytics_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cost_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_red1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoice_paid_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\purchase_order_90px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
