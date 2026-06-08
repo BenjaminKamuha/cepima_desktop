@@ -42,7 +42,6 @@
             this.dt_debut = new System.Windows.Forms.DateTimePicker();
             this.cbx_statut_facture = new System.Windows.Forms.ComboBox();
             this.cbx_type_facture = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -52,6 +51,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.customRoundedPanel4 = new CustomRoundedPanel();
+            this.bt_actualiser = new test_arrondissement2012.PerfectRoundedButton();
+            this.bt_add_paiement = new test_arrondissement2012.PerfectRoundedButton();
             this.lb_nombre_facture = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dgv_facture = new ModernDataGridView();
@@ -60,17 +61,16 @@
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
-            this.customRoundedPanel5 = new CustomRoundedPanel();
+            this.panel_add_paiement = new CustomRoundedPanel();
             this.dgv_detail_facture = new ModernDataGridView();
             this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lb_ID_facture = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
@@ -83,33 +83,40 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lb_patient = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lb_montant_paye = new System.Windows.Forms.Label();
+            this.lb_reste = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.lb_ID_facture = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.colPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_facture)).BeginInit();
             this.customRoundedPanel3.SuspendLayout();
-            this.customRoundedPanel5.SuspendLayout();
+            this.panel_add_paiement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detail_facture)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.label1.Location = new System.Drawing.Point(13, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 26);
+            this.label1.Size = new System.Drawing.Size(136, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Facturation";
+            this.label1.Text = "FACTURATION";
             // 
             // panel2
             // 
@@ -197,16 +204,6 @@
             this.cbx_type_facture.Size = new System.Drawing.Size(145, 23);
             this.cbx_type_facture.TabIndex = 17;
             this.cbx_type_facture.SelectedIndexChanged += new System.EventHandler(this.cbx_type_facture_SelectedIndexChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // tb_search
             // 
@@ -306,6 +303,8 @@
             this.customRoundedPanel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel4.BorderRadius = 4;
             this.customRoundedPanel4.BorderSize = 1;
+            this.customRoundedPanel4.Controls.Add(this.bt_actualiser);
+            this.customRoundedPanel4.Controls.Add(this.bt_add_paiement);
             this.customRoundedPanel4.Controls.Add(this.lb_nombre_facture);
             this.customRoundedPanel4.Controls.Add(this.label8);
             this.customRoundedPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -316,10 +315,44 @@
             this.customRoundedPanel4.Size = new System.Drawing.Size(742, 35);
             this.customRoundedPanel4.TabIndex = 2;
             // 
+            // bt_actualiser
+            // 
+            this.bt_actualiser.BackColor = System.Drawing.Color.Transparent;
+            this.bt_actualiser.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_actualiser.BorderRadius = 5;
+            this.bt_actualiser.BorderSize = 0;
+            this.bt_actualiser.ButtonText = "Actualiser";
+            this.bt_actualiser.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_actualiser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_actualiser.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_actualiser.Location = new System.Drawing.Point(628, 4);
+            this.bt_actualiser.Name = "bt_actualiser";
+            this.bt_actualiser.Size = new System.Drawing.Size(85, 25);
+            this.bt_actualiser.TabIndex = 11;
+            this.bt_actualiser.Click += new System.EventHandler(this.bt_actualiser_Click);
+            // 
+            // bt_add_paiement
+            // 
+            this.bt_add_paiement.BackColor = System.Drawing.Color.Transparent;
+            this.bt_add_paiement.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_add_paiement.BorderRadius = 5;
+            this.bt_add_paiement.BorderSize = 0;
+            this.bt_add_paiement.ButtonText = "Effectuer paiement";
+            this.bt_add_paiement.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_add_paiement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_add_paiement.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_add_paiement.Location = new System.Drawing.Point(305, 6);
+            this.bt_add_paiement.Name = "bt_add_paiement";
+            this.bt_add_paiement.Size = new System.Drawing.Size(125, 25);
+            this.bt_add_paiement.TabIndex = 11;
+            this.bt_add_paiement.Visible = false;
+            this.bt_add_paiement.Click += new System.EventHandler(this.bt_add_paiement_Click);
+            // 
             // lb_nombre_facture
             // 
             this.lb_nombre_facture.AutoSize = true;
             this.lb_nombre_facture.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nombre_facture.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.lb_nombre_facture.Location = new System.Drawing.Point(68, 9);
             this.lb_nombre_facture.Name = "lb_nombre_facture";
             this.lb_nombre_facture.Size = new System.Drawing.Size(14, 15);
@@ -420,22 +453,6 @@
             this.colStatut.MinimumWidth = 50;
             this.colStatut.Name = "colStatut";
             // 
-            // colPrint
-            // 
-            this.colPrint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPrint.HeaderText = "";
-            this.colPrint.Image = global::Cepima.Properties.Resources.print_20px;
-            this.colPrint.MinimumWidth = 50;
-            this.colPrint.Name = "colPrint";
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDelete.HeaderText = "";
-            this.colDelete.Image = global::Cepima.Properties.Resources.trash_red1;
-            this.colDelete.MinimumWidth = 50;
-            this.colDelete.Name = "colDelete";
-            // 
             // colID
             // 
             this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -462,7 +479,7 @@
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 8;
             this.customRoundedPanel3.BorderSize = 1;
-            this.customRoundedPanel3.Controls.Add(this.customRoundedPanel5);
+            this.customRoundedPanel3.Controls.Add(this.panel_add_paiement);
             this.customRoundedPanel3.Controls.Add(this.lb_ID_facture);
             this.customRoundedPanel3.Controls.Add(this.panel3);
             this.customRoundedPanel3.Controls.Add(this.label13);
@@ -473,21 +490,21 @@
             this.customRoundedPanel3.Size = new System.Drawing.Size(363, 410);
             this.customRoundedPanel3.TabIndex = 3;
             // 
-            // customRoundedPanel5
+            // panel_add_paiement
             // 
-            this.customRoundedPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel_add_paiement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.customRoundedPanel5.BorderColor = System.Drawing.Color.Transparent;
-            this.customRoundedPanel5.BorderRadius = 8;
-            this.customRoundedPanel5.BorderSize = 0;
-            this.customRoundedPanel5.Controls.Add(this.dgv_detail_facture);
-            this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel5.Location = new System.Drawing.Point(3, 180);
-            this.customRoundedPanel5.Name = "customRoundedPanel5";
-            this.customRoundedPanel5.Size = new System.Drawing.Size(357, 227);
-            this.customRoundedPanel5.TabIndex = 1;
+            this.panel_add_paiement.BorderColor = System.Drawing.Color.Transparent;
+            this.panel_add_paiement.BorderRadius = 8;
+            this.panel_add_paiement.BorderSize = 0;
+            this.panel_add_paiement.Controls.Add(this.dgv_detail_facture);
+            this.panel_add_paiement.HoverBackColor = System.Drawing.Color.Empty;
+            this.panel_add_paiement.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_add_paiement.Location = new System.Drawing.Point(3, 224);
+            this.panel_add_paiement.Name = "panel_add_paiement";
+            this.panel_add_paiement.Size = new System.Drawing.Size(357, 183);
+            this.panel_add_paiement.TabIndex = 1;
             // 
             // dgv_detail_facture
             // 
@@ -530,7 +547,7 @@
             this.dgv_detail_facture.Location = new System.Drawing.Point(0, -2);
             this.dgv_detail_facture.Name = "dgv_detail_facture";
             this.dgv_detail_facture.RowHeadersVisible = false;
-            this.dgv_detail_facture.Size = new System.Drawing.Size(354, 226);
+            this.dgv_detail_facture.Size = new System.Drawing.Size(354, 182);
             this.dgv_detail_facture.TabIndex = 2;
             // 
             // colDesc
@@ -561,6 +578,15 @@
             this.colTotal.MinimumWidth = 50;
             this.colTotal.Name = "colTotal";
             // 
+            // lb_ID_facture
+            // 
+            this.lb_ID_facture.AutoSize = true;
+            this.lb_ID_facture.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_ID_facture.Location = new System.Drawing.Point(180, 6);
+            this.lb_ID_facture.Name = "lb_ID_facture";
+            this.lb_ID_facture.Size = new System.Drawing.Size(0, 15);
+            this.lb_ID_facture.TabIndex = 1;
+            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -569,7 +595,11 @@
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.label14);
             this.panel3.Controls.Add(this.lb_statut);
+            this.panel3.Controls.Add(this.lb_reste);
+            this.panel3.Controls.Add(this.lb_montant_paye);
             this.panel3.Controls.Add(this.lb_medecin);
+            this.panel3.Controls.Add(this.label16);
+            this.panel3.Controls.Add(this.label15);
             this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.lb_date_facture);
             this.panel3.Controls.Add(this.label11);
@@ -580,14 +610,14 @@
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Location = new System.Drawing.Point(3, 21);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(357, 153);
+            this.panel3.Size = new System.Drawing.Size(357, 203);
             this.panel3.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 149);
+            this.panel4.Location = new System.Drawing.Point(0, 199);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(357, 4);
             this.panel4.TabIndex = 1;
@@ -687,16 +717,6 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "Patient :";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.purchase_order_90px;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(102, 126);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -706,6 +726,44 @@
             this.label13.Size = new System.Drawing.Size(172, 19);
             this.label13.TabIndex = 0;
             this.label13.Text = "Détails de la facture N° : ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(111, 146);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 14);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Deja payé : ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(112, 176);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 14);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Reste facture : ";
+            // 
+            // lb_montant_paye
+            // 
+            this.lb_montant_paye.AutoSize = true;
+            this.lb_montant_paye.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_montant_paye.Location = new System.Drawing.Point(192, 146);
+            this.lb_montant_paye.Name = "lb_montant_paye";
+            this.lb_montant_paye.Size = new System.Drawing.Size(0, 14);
+            this.lb_montant_paye.TabIndex = 1;
+            // 
+            // lb_reste
+            // 
+            this.lb_reste.AutoSize = true;
+            this.lb_reste.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_reste.Location = new System.Drawing.Point(206, 176);
+            this.lb_reste.Name = "lb_reste";
+            this.lb_reste.Size = new System.Drawing.Size(0, 14);
+            this.lb_reste.TabIndex = 1;
             // 
             // dataGridViewImageColumn1
             // 
@@ -723,14 +781,41 @@
             this.dataGridViewImageColumn2.MinimumWidth = 50;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             // 
-            // lb_ID_facture
+            // pictureBox2
             // 
-            this.lb_ID_facture.AutoSize = true;
-            this.lb_ID_facture.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_ID_facture.Location = new System.Drawing.Point(180, 6);
-            this.lb_ID_facture.Name = "lb_ID_facture";
-            this.lb_ID_facture.Size = new System.Drawing.Size(0, 15);
-            this.lb_ID_facture.TabIndex = 1;
+            this.pictureBox2.Image = global::Cepima.Properties.Resources.purchase_order_90px;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(102, 178);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // colPrint
+            // 
+            this.colPrint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrint.HeaderText = "";
+            this.colPrint.Image = global::Cepima.Properties.Resources.print_20px;
+            this.colPrint.MinimumWidth = 50;
+            this.colPrint.Name = "colPrint";
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDelete.HeaderText = "";
+            this.colDelete.Image = global::Cepima.Properties.Resources.trash_red1;
+            this.colDelete.MinimumWidth = 50;
+            this.colDelete.Name = "colDelete";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
+            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             // 
             // User_facture_all
             // 
@@ -747,7 +832,6 @@
             this.panel1.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
@@ -755,11 +839,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_facture)).EndInit();
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
-            this.customRoundedPanel5.ResumeLayout(false);
+            this.panel_add_paiement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detail_facture)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -813,13 +898,19 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private CustomRoundedPanel customRoundedPanel5;
+        private CustomRoundedPanel panel_add_paiement;
         private ModernDataGridView dgv_detail_facture;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantite;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrix;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
         private System.Windows.Forms.Label lb_ID_facture;
+        private test_arrondissement2012.PerfectRoundedButton bt_add_paiement;
+        private test_arrondissement2012.PerfectRoundedButton bt_actualiser;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lb_reste;
+        private System.Windows.Forms.Label lb_montant_paye;
 
     }
 }

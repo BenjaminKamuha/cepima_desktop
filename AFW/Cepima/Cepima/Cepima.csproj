@@ -111,6 +111,12 @@
     <Compile Include="MesUserCases\UC_detail_personnel.Designer.cs">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_add_paiement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_add_paiement.Designer.cs">
+      <DependentUpon>User_add_paiement.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_add_salaire.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -153,12 +159,6 @@
     <Compile Include="MesUserCases\User_DashBord_pharmacie.Designer.cs">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\User_detail_hospitalisation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_detail_hospitalisation.Designer.cs">
-      <DependentUpon>User_detail_hospitalisation.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\User_detail_patient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -194,6 +194,12 @@
     </Compile>
     <Compile Include="MesUserCases\User_medicament.designer.cs">
       <DependentUpon>User_medicament.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\User_paiement_facture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_paiement_facture.Designer.cs">
+      <DependentUpon>User_paiement_facture.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_patient.cs">
       <SubType>UserControl</SubType>
@@ -278,6 +284,9 @@
     <EmbeddedResource Include="MesUserCases\UC_detail_personnel.resx">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
+      <DependentUpon>User_add_paiement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_salaire.resx">
       <DependentUpon>User_add_salaire.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,9 +308,6 @@
     <EmbeddedResource Include="MesUserCases\User_DashBord_pharmacie.resx">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_detail_hospitalisation.resx">
-      <DependentUpon>User_detail_hospitalisation.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_detail_patient.resx">
       <DependentUpon>User_detail_patient.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_medicament.resx">
       <DependentUpon>User_medicament.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_paiement_facture.resx">
+      <DependentUpon>User_paiement_facture.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_patient.resx">
       <DependentUpon>User_patient.cs</DependentUpon>

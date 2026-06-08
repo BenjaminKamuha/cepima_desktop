@@ -13,6 +13,8 @@ namespace Cepima.MesUserCases
 {
     public partial class User_facture_all : UserControl
     {
+        decimal MONTANT;
+        int idFacture;
         public User_facture_all()
         {
             InitializeComponent();
@@ -25,10 +27,13 @@ namespace Cepima.MesUserCases
         {
             if (e.RowIndex >= 0)
             {
-                int idFacture = Convert.ToInt32(dgv_facture.Rows[e.RowIndex].Cells["colID"].Value);
+                 idFacture = Convert.ToInt32(dgv_facture.Rows[e.RowIndex].Cells["colID"].Value);
+                
                 LoadDetailFacture(idFacture);
                 Charger_detail_de_la_facture(idFacture);
                 lb_ID_facture.Text = idFacture.ToString();
+                bt_add_paiement.Visible = true;
+                MONTANT = Convert.ToDecimal(dgv_facture.Rows[e.RowIndex].Cells["colMontant"].Value);
                 // ======================= si le bouton delete est clicqué, on supprime la facture ==========
                 if (dgv_facture.Columns[e.ColumnIndex].Name == "colDelete")
                 {
@@ -48,7 +53,7 @@ namespace Cepima.MesUserCases
             }
         }
         // ================================ supprimer la facture =================================================
-        private void DeletFacture(int factureID)
+        private void DeletFacture(int factureID) //357; 227 (panel_add_paiement)
         {
             try
             {
@@ -68,7 +73,7 @@ namespace Cepima.MesUserCases
         {
             try
             {
-                string query = "SELECT  CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,f.type_facture,f.date_facture,f.montant_total,f.statut FROM facture f JOIN patients p ON f.id_patient = p.id_patient WHERE id_facture =@id";
+                string query = "SELECT  CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,f.type_facture,f.date_facture,f.montant_total,f.statut,p.montant,p.reste FROM facture f  JOIN paiement p ON p.id_facture =f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE id_facture =@id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",factureID.ToString());
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
@@ -80,6 +85,8 @@ namespace Cepima.MesUserCases
                         lb_date_facture.Text = Convert.ToDateTime(reader["date_facture"]).ToString("dd/MM/yyyy");
                         lb_medecin.Text = reader["montant_total"].ToString() + "$";
                         lb_type.Text = reader["type_facture"].ToString();
+                        lb_montant_paye.Text = reader["montant"].ToString();
+                        lb_reste.Text = reader["reste"].ToString();
                     }
                     reader.Close();
                 }
@@ -258,6 +265,19 @@ namespace Cepima.MesUserCases
         }
 
         private void tb_search_TextChanged(object sender, EventArgs e)
+        {
+            LoadFacture();
+        }
+
+        private void bt_add_paiement_Click(object sender, EventArgs e)
+        {
+            MesUserCases.User_add_paiement paiement = new User_add_paiement(MONTANT,idFacture);
+            paiement.Dock = DockStyle.Fill;
+            panel_add_paiement.Controls.Clear();
+            panel_add_paiement.Controls.Add(paiement);
+        }
+
+        private void bt_actualiser_Click(object sender, EventArgs e)
         {
             LoadFacture();
         }

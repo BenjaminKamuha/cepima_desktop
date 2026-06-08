@@ -399,7 +399,10 @@ namespace Cepima
 
                     new MenuItem("  Paiements",Properties.Resources.cost_25px, (s,ev) =>
                     {
-
+                        MesUserCases.User_paiement_facture paiement = new MesUserCases.User_paiement_facture();
+                        paiement.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(paiement);
                     }),
 
                      new MenuItem(" Caisse du jour",Properties.Resources.wallet_25px, (s,ev) =>
