@@ -66,6 +66,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ds_facture.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ds_facture.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ds_recu.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,6 +92,12 @@
     </Compile>
     <Compile Include="MesForms\FormConnexion.Designer.cs">
       <DependentUpon>FormConnexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\FormFacturePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\FormFacturePrint.Designer.cs">
+      <DependentUpon>FormFacturePrint.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\FormRecu.cs">
       <SubType>Form</SubType>
@@ -276,11 +287,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormConnexion.resx">
       <DependentUpon>FormConnexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\FormFacturePrint.resx">
+      <DependentUpon>FormFacturePrint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormRecu.resx">
       <DependentUpon>FormRecu.cs</DependentUpon>
@@ -383,6 +398,17 @@
     <EmbeddedResource Include="RecuRDLC.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="ds_facture.xsc">
+      <DependentUpon>ds_facture.xsd</DependentUpon>
+    </None>
+    <None Include="ds_facture.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ds_facture.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ds_facture.xss">
+      <DependentUpon>ds_facture.xsd</DependentUpon>
+    </None>
     <None Include="ds_recu.xsc">
       <DependentUpon>ds_recu.xsd</DependentUpon>
     </None>
