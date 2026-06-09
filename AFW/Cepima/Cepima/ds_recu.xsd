@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ds_recu" targetNamespace="http://tempuri.org/ds_recu.xsd" xmlns:mstns="http://tempuri.org/ds_recu.xsd" xmlns="http://tempuri.org/ds_recu.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ds_recu" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ds_recu" msprop:Generator_UserDSName="ds_recu">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt_recu" msprop:Generator_TableClassName="dt_recuDataTable" msprop:Generator_TableVarName="tabledt_recu" msprop:Generator_RowChangedName="dt_recuRowChanged" msprop:Generator_TablePropName="dt_recu" msprop:Generator_RowDeletingName="dt_recuRowDeleting" msprop:Generator_RowChangingName="dt_recuRowChanging" msprop:Generator_RowEvHandlerName="dt_recuRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_recuRowDeleted" msprop:Generator_RowClassName="dt_recuRow" msprop:Generator_UserTableName="dt_recu" msprop:Generator_RowEvArgName="dt_recuRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="numero_recu" msprop:Generator_ColumnVarNameInTable="columnnumero_recu" msprop:Generator_ColumnPropNameInRow="numero_recu" msprop:Generator_ColumnPropNameInTable="numero_recuColumn" msprop:Generator_UserColumnName="numero_recu" type="xs:string" />
+              <xs:element name="date_paiement" msprop:Generator_ColumnVarNameInTable="columndate_paiement" msprop:Generator_ColumnPropNameInRow="date_paiement" msprop:Generator_ColumnPropNameInTable="date_paiementColumn" msprop:Generator_UserColumnName="date_paiement" type="xs:string" minOccurs="0" />
+              <xs:element name="id_facture" msprop:Generator_ColumnVarNameInTable="columnid_facture" msprop:Generator_ColumnPropNameInRow="id_facture" msprop:Generator_ColumnPropNameInTable="id_factureColumn" msprop:Generator_UserColumnName="id_facture" type="xs:string" minOccurs="0" />
+              <xs:element name="patient" msprop:Generator_ColumnVarNameInTable="columnpatient" msprop:Generator_ColumnPropNameInRow="patient" msprop:Generator_ColumnPropNameInTable="patientColumn" msprop:Generator_UserColumnName="patient" type="xs:string" minOccurs="0" />
+              <xs:element name="montant" msprop:Generator_ColumnVarNameInTable="columnmontant" msprop:Generator_ColumnPropNameInRow="montant" msprop:Generator_ColumnPropNameInTable="montantColumn" msprop:Generator_UserColumnName="montant" type="xs:string" minOccurs="0" />
+              <xs:element name="type_paiement" msprop:Generator_ColumnVarNameInTable="columntype_paiement" msprop:Generator_ColumnPropNameInRow="type_paiement" msprop:Generator_ColumnPropNameInTable="type_paiementColumn" msprop:Generator_UserColumnName="type_paiement" type="xs:string" minOccurs="0" />
+              <xs:element name="reste" msprop:Generator_ColumnVarNameInTable="columnreste" msprop:Generator_ColumnPropNameInRow="reste" msprop:Generator_ColumnPropNameInTable="resteColumn" msprop:Generator_UserColumnName="reste" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

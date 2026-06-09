@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ds_facture" targetNamespace="http://tempuri.org/ds_facture.xsd" xmlns:mstns="http://tempuri.org/ds_facture.xsd" xmlns="http://tempuri.org/ds_facture.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ds_facture" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ds_facture" msprop:Generator_UserDSName="ds_facture">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dt_facture" msprop:Generator_TableClassName="dt_factureDataTable" msprop:Generator_TableVarName="tabledt_facture" msprop:Generator_TablePropName="dt_facture" msprop:Generator_RowDeletingName="dt_factureRowDeleting" msprop:Generator_RowChangingName="dt_factureRowChanging" msprop:Generator_RowEvHandlerName="dt_factureRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_factureRowDeleted" msprop:Generator_UserTableName="dt_facture" msprop:Generator_RowChangedName="dt_factureRowChanged" msprop:Generator_RowEvArgName="dt_factureRowChangeEvent" msprop:Generator_RowClassName="dt_factureRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_facture" msprop:Generator_ColumnVarNameInTable="columnid_facture" msprop:Generator_ColumnPropNameInRow="id_facture" msprop:Generator_ColumnPropNameInTable="id_factureColumn" msprop:Generator_UserColumnName="id_facture" type="xs:string" />
+              <xs:element name="date_facture" msprop:Generator_ColumnVarNameInTable="columndate_facture" msprop:Generator_ColumnPropNameInRow="date_facture" msprop:Generator_ColumnPropNameInTable="date_factureColumn" msprop:Generator_UserColumnName="date_facture" type="xs:string" minOccurs="0" />
+              <xs:element name="montant_total" msprop:Generator_ColumnVarNameInTable="columnmontant_total" msprop:Generator_ColumnPropNameInRow="montant_total" msprop:Generator_ColumnPropNameInTable="montant_totalColumn" msprop:Generator_UserColumnName="montant_total" type="xs:string" minOccurs="0" />
+              <xs:element name="type_facture" msprop:Generator_ColumnVarNameInTable="columntype_facture" msprop:Generator_ColumnPropNameInRow="type_facture" msprop:Generator_ColumnPropNameInTable="type_factureColumn" msprop:Generator_UserColumnName="type_facture" type="xs:string" minOccurs="0" />
+              <xs:element name="statut" msprop:Generator_ColumnVarNameInTable="columnstatut" msprop:Generator_ColumnPropNameInRow="statut" msprop:Generator_ColumnPropNameInTable="statutColumn" msprop:Generator_UserColumnName="statut" type="xs:string" minOccurs="0" />
+              <xs:element name="patient" msprop:Generator_ColumnVarNameInTable="columnpatient" msprop:Generator_ColumnPropNameInRow="patient" msprop:Generator_ColumnPropNameInTable="patientColumn" msprop:Generator_UserColumnName="patient" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dt_detail_facture" msprop:Generator_TableClassName="dt_detail_factureDataTable" msprop:Generator_TableVarName="tabledt_detail_facture" msprop:Generator_TablePropName="dt_detail_facture" msprop:Generator_RowDeletingName="dt_detail_factureRowDeleting" msprop:Generator_RowChangingName="dt_detail_factureRowChanging" msprop:Generator_RowEvHandlerName="dt_detail_factureRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_detail_factureRowDeleted" msprop:Generator_UserTableName="dt_detail_facture" msprop:Generator_RowChangedName="dt_detail_factureRowChanged" msprop:Generator_RowEvArgName="dt_detail_factureRowChangeEvent" msprop:Generator_RowClassName="dt_detail_factureRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="description" msprop:Generator_ColumnVarNameInTable="columndescription" msprop:Generator_ColumnPropNameInRow="description" msprop:Generator_ColumnPropNameInTable="descriptionColumn" msprop:Generator_UserColumnName="description" type="xs:string" minOccurs="0" />
+              <xs:element name="quantite" msprop:Generator_ColumnVarNameInTable="columnquantite" msprop:Generator_ColumnPropNameInRow="quantite" msprop:Generator_ColumnPropNameInTable="quantiteColumn" msprop:Generator_UserColumnName="quantite" type="xs:string" minOccurs="0" />
+              <xs:element name="prix_unitaire" msprop:Generator_ColumnVarNameInTable="columnprix_unitaire" msprop:Generator_ColumnPropNameInRow="prix_unitaire" msprop:Generator_ColumnPropNameInTable="prix_unitaireColumn" msprop:Generator_UserColumnName="prix_unitaire" type="xs:string" minOccurs="0" />
+              <xs:element name="montant" msprop:Generator_ColumnVarNameInTable="columnmontant" msprop:Generator_ColumnPropNameInRow="montant" msprop:Generator_ColumnPropNameInTable="montantColumn" msprop:Generator_UserColumnName="montant" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="dt_factureKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dt_facture" />
+      <xs:field xpath="mstns:id_facture" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

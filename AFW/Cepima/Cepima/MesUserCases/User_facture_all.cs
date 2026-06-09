@@ -14,7 +14,7 @@ namespace Cepima.MesUserCases
     public partial class User_facture_all : UserControl
     {
         decimal MONTANT;
-        int idFacture;
+        int idFacture ;
         public User_facture_all()
         {
             InitializeComponent();
@@ -48,7 +48,9 @@ namespace Cepima.MesUserCases
                 if (dgv_facture.Columns[e.ColumnIndex].Name == "colPrint")
                 {
                     // lancer l'impression de la facture après avoir clicqué 
-                    MessageBox.Show("La facture se lance directement,cliquer sur ok pour condirmer");
+                    MesForms.FormFacturePrint facture = new MesForms.FormFacturePrint(idFacture);
+                    facture.Show();
+
                 }
             }
         }

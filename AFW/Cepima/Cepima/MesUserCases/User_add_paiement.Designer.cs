@@ -83,7 +83,6 @@
             this.bt_add_paiement.Name = "bt_add_paiement";
             this.bt_add_paiement.Size = new System.Drawing.Size(125, 25);
             this.bt_add_paiement.TabIndex = 12;
-            this.bt_add_paiement.Visible = false;
             this.bt_add_paiement.Click += new System.EventHandler(this.bt_add_paiement_Click);
             // 
             // label5
