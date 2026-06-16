@@ -7,146 +7,154 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace Cepima.MesUserCases
 {
     public partial class User_service : UserControl
     {
-        string  ancienneValeur = "0";
-        int rowEndition = -1;
+        string SERVICE_ID;
         public User_service()
         {
             InitializeComponent();
-            MesClasses.ReceptionManager.MoveLabel(label4,panel1);
-            MesClasses.ReceptionManager.ChargerServicesInDatagridview(dgv_services);
-            AjouterBoutons();
-            dgv_services.CellFormatting += dgv_services_CellFormatting;
-            dgv_services.CellContentClick += dgv_services_CellContentClick;
-            dgv_services.CellClick += dgv_services_CellClick;
-            dgv_services.CellBeginEdit += dgv_services_CellBeginEdit;
+            LoadService();
         }
-
-        void dgv_services_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            if (dgv_services.Columns[e.ColumnIndex].Name == "Service")
-            {
-                ancienneValeur = dgv_services.Rows[e.RowIndex].Cells["Service"].ToString();
-                rowEndition = e.RowIndex;
-            }
-        }
-
-        void dgv_services_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgv_services.Columns[e.ColumnIndex].Name == "Service")
-            {
-                //ancienneValeur = Convert.ToDecimal(dgv_salaire.Rows[e.RowIndex].Cells["salaire_base"].Value);
-                dgv_services.ReadOnly = false;
-                foreach (DataGridViewColumn col in dgv_services.Columns)
-                {
-                    col.ReadOnly = true;
-                }
-                dgv_services.Columns["Service"].ReadOnly = false;
-                dgv_services.CurrentCell = dgv_services.Rows[e.RowIndex].Cells["Service"];
-                dgv_services.BeginEdit(true);
-            }
-        }
-
-        void dgv_services_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-
-                int id_service = Convert.ToInt32(dgv_services.Rows[e.RowIndex].Cells["id_service"].Value);
-
-                if (dgv_services.Columns[e.ColumnIndex].Name == "Modifier" && e.RowIndex >= 0)
-                {
-                    dgv_services.EndEdit();
-                    if (rowEndition != e.RowIndex)
-                    {
-                        MessageBox.Show("Veuillez d'abord modifier la cellule !");
-                        return;
-                    }
-                    string  nouveau_service = Convert.ToString(dgv_services.Rows[e.RowIndex].Cells["Service"].Value);
-                    if (ancienneValeur == nouveau_service)
-                    {
-                        MessageBox.Show("Aucune modification effectuée !");
-                        return;
-                    }
-                    MesClasses.ReceptionManager.UpdateService(id_service, nouveau_service);
-                    MesClasses.ReceptionManager.ChargerServicesInDatagridview(dgv_services);
-                    dgv_services.ReadOnly = true;
-                    rowEndition = -1;
-                }
-                else if (dgv_services.Columns[e.ColumnIndex].Name == "Supprimer")
-                {
-                    DialogResult result = MessageBox.Show(" Voulez-vous Supprimer ce service ?", "Confirmation", MessageBoxButtons.YesNo);
-
-                    if (result == DialogResult.Yes)
-                    {
-                        MesClasses.ReceptionManager.DeleteService(id_service);
-                        MesClasses.ReceptionManager.ChargerServicesInDatagridview(dgv_services);
-                    }
-                }
-
-            }
-            catch (Exception)
-            {
-                return;
-            }
-        }
-
-        void dgv_services_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgv_services.Columns[e.ColumnIndex].Name == "Modifier")
-            {
-                e.CellStyle.BackColor = Color.FromArgb(39, 174, 96);
-                e.CellStyle.ForeColor = Color.White;
-            }
-            else if (dgv_services.Columns[e.ColumnIndex].Name == "Supprimer")
-            {
-                e.CellStyle.BackColor = Color.FromArgb(231, 76, 60);
-                e.CellStyle.ForeColor = Color.White;
-            }
-        }
-
         private void bt_save_service_Click(object sender, EventArgs e)
         {
-            string service_name = tb_name_service.Text;
+            string service_name = textbox.Text;
             string description = rich_description.Text;
            // enregistrement d'un service
             MesClasses.ReceptionManager.ServiceCepima(MesForms.SessionUtilisateur.idCentre.ToString(),service_name,description);
-            MesClasses.ReceptionManager.ChargerServicesInDatagridview(dgv_services);
-            tb_name_service.Text = "";
+            LoadService();
+            textbox.Text = "";
             rich_description.Clear();
         }
 
-        // =================================== Ajouter la colonnes pour les actions (Modifier,supprimer,ect) =======================
-        private void AjouterBoutons()
+        // ======================== charger les services sur le panel ========================================================
+        private void LoadService()
         {
-            // Modifier
-            DataGridViewButtonColumn btnModifier = new DataGridViewButtonColumn();
-            btnModifier.Name = "Modifier";
-            btnModifier.Text = "Modifier";
-            btnModifier.UseColumnTextForButtonValue = true;
-            dgv_services.Columns.Add(btnModifier);
+            try
+            {
+                string querySelectService = "SELECT s.id_service,s.nom_service,c.nom_centre FROM services s JOIN centres c ON s.id_centre = s.id_centre ORDER BY s.nom_service ASC";
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(querySelectService, null, true))
+                {
+                    int i = 0;
+                    while (reader.Read())
+                    {
+                        string id_service = reader["id_service"].ToString();
+                        string nomService = reader["nom_service"].ToString();
+                        //string centre = reader["nom_centre"].ToString();
+                        AjouterPanelService(id_service,nomService);
+                        i++;
+                    }
+                    reader.Close();
+                    lb_nombre.Text = i.ToString()+" Service(s)";
+                    lb_nombre.Font = new Font("Calibri",9,FontStyle.Bold);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur : "+ex.Message);
+            }
+        }
 
-            // Supprimer
-            DataGridViewButtonColumn btnSupprimer = new DataGridViewButtonColumn();
-            btnSupprimer.Name = "Supprimer";
-            btnSupprimer.Text = "Supprimer";
-            btnSupprimer.UseColumnTextForButtonValue = true;
-            dgv_services.Columns.Add(btnSupprimer);
+        // =================== ajouter panel ===================================
+        private void AjouterPanelService(string service_id, string name_service)
+        {
+            CustomRoundedPanel panService = new CustomRoundedPanel();
+            panService.Size = new Size(200, 160);
+            panService.BorderRadius = 10;
+            panService.BorderSize = 1;
+            panService.BorderColor = Color.FromArgb(224, 224, 224);
+            panService.HoverCursor = Cursors.Default;
+            MesClasses.ManagerClasse.AddControl(pan_display_service, panService, 8, 8);
 
-            //desactiver
-            ((DataGridViewButtonColumn)dgv_services.Columns["Modifier"]).FlatStyle = FlatStyle.Flat;
-            ((DataGridViewButtonColumn)dgv_services.Columns["Supprimer"]).FlatStyle = FlatStyle.Flat;
-            dgv_services.Columns["Modifier"].HeaderText = "";
-            dgv_services.Columns["Supprimer"].HeaderText = "";
-            dgv_services.Columns["Modifier"].Width = 60;
-            dgv_services.Columns["Supprimer"].Width = 90;
-            dgv_services.Columns["Centre"].Width = 280;
-            dgv_services.Columns["Service"].Width = 160;
-            dgv_services.DefaultCellStyle.SelectionBackColor = Color.FromArgb(39, 174, 96);
+            AvatarControl avatar = new AvatarControl();
+            avatar.Location = new Point(10, 10);
+            avatar.Size = new Size(40, 40);
+            avatar.BorderSize = 1;
+            avatar.BorderColor = Color.Transparent;
+            avatar.Avatar = Properties.Resources.unit_25px;
+            panService.Controls.Add(avatar);
+
+            RoundedButton bt_update = MesClasses.ManagerClasse.Rbutton("modifier", new Point(10, 125), new Size(80, 20), Color.FromArgb(39, 174, 96), Color.White);
+            bt_update.BorderRadius = 4;
+            bt_update.BorderSize = 0;
+            bt_update.BorderColor = Color.FromArgb(39, 174, 96);
+            bt_update.Tag = service_id;
+            panService.Controls.Add(bt_update);
+
+            bt_update.Click += (e, s) =>
+            {
+                SERVICE_ID = service_id;
+                pan_update_service.Visible = true;
+                ChargerNomService(service_id);
+            };
+
+            RoundedButton bt_delete = MesClasses.ManagerClasse.Rbutton("Supprimer",new Point(115,125),new Size(80,20),Color.FromArgb(231,76,60),Color.White);
+            bt_delete.BorderRadius = 4;
+            bt_delete.BorderSize = 0;
+            bt_delete.BorderColor = Color.FromArgb(231, 76, 60);//231; 76; 60
+            bt_delete.Tag = service_id;
+            panService.Controls.Add(bt_delete);
+
+            bt_delete.Click += (e, s) =>
+                {
+                    var result = MessageBox.Show("Supprimer ce service ?","Confirmation",MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        SERVICE_ID = service_id;
+                        DeleteService(service_id);
+                    }
+                    else
+                        return;
+                };
+
+            Label lbNom = MesClasses.ManagerClasse.CustomLabel(name_service, new Point(60, 25));
+            lbNom.AutoSize = true;
+            lbNom.Font = new Font("Calibri", 10);
+            panService.Controls.Add(lbNom);
+
+            ProgressiveDisplay pd = new ProgressiveDisplay(pan_display_service, 100);
+            pd.Start();
+        }
+        // =================================== charger le nom du service dans le textBox ===========================
+        private void ChargerNomService(string id)
+        {
+            string query = "SELECT nom_service FROM services WHERE id_service =@id";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@id",id);
+            using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
+            {
+                while (reader.Read())
+                {
+                    tb_mod_name_service.Text = reader["nom_service"].ToString();
+                    tb_mod_name_service.SelectAll();
+                    tb_mod_name_service.Focus();
+                }
+                reader.Close();
+            }
+        }
+
+        private void bt_update_service_Click(object sender, EventArgs e)
+        {
+            string query = "UPDATE services SET nom_service=@name WHERE id_service =@id";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@name",tb_mod_name_service.Text);
+            MesClasses.ManagerClasse.request_params.Add("@id",SERVICE_ID);
+            MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params);
+            MessageBox.Show("Service mis en jour !!");
+            LoadService();
+            pan_update_service.Visible = false;
+        }
+
+        private void DeleteService(string id)
+        {
+            string queryDelete = "DELETE FROM services WHERE id_service =@id";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@id",id);
+            MesClasses.ManagerClasse.CRUD(queryDelete,MesClasses.ManagerClasse.request_params);
+            MessageBox.Show("Service supprimé avec succès !!");
         }
     }
 }

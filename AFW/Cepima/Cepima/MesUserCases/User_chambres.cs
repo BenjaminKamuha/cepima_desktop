@@ -17,8 +17,70 @@ namespace Cepima.MesUserCases
             InitializeComponent();
             MesClasses.ReceptionManager.MoveLabel(label4,panel1);
             LoadService();
+            LoadChambreInDataGridView();
+            dgv_chambres.CellClick += dgv_chambres_CellClick;
         }
 
+        void dgv_chambres_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+            string idChambre = dgv_chambres.Rows[e.RowIndex].Tag.ToString();
+
+            if (dgv_chambres.Columns[e.ColumnIndex].Name == "colUpdate")
+            {
+                // Tout verrouiller
+                foreach (DataGridViewColumn col in dgv_chambres.Columns)
+                {
+                    col.ReadOnly = true;
+                }
+
+                // Déverrouiller seulement
+                dgv_chambres.Rows[e.RowIndex].Cells["colNumero"].ReadOnly = false;
+                dgv_chambres.Rows[e.RowIndex].Cells["colTarif"].ReadOnly = false;
+                dgv_chambres.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+            }
+
+                // ===================== si bouton save ==============================
+                if (dgv_chambres.Columns[e.ColumnIndex].Name == "colSave")
+                {
+                    saveModification(e.RowIndex);
+                }
+
+                // =========================== si bouton supprimer ==================
+                if (dgv_chambres.Columns[e.ColumnIndex].Name == "colDelete")
+                {
+                    string query = "DELETE FROM chambre WHERE id_chambre =@id";
+                    MesClasses.ManagerClasse.request_params.Clear();
+                    MesClasses.ManagerClasse.request_params.Add("@id", idChambre.ToString());
+                    MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
+                    MessageBox.Show("Données supprimée avec succès !!");
+                    LoadChambreInDataGridView();
+                }
+        }
+
+        private void saveModification(int rowIndex)
+        {
+            string idchambre = dgv_chambres.Rows[rowIndex].Tag.ToString();
+            string numero = dgv_chambres.Rows[rowIndex].Cells["colNumero"].Value.ToString();
+            string tarif = dgv_chambres.Rows[rowIndex].Cells["colTarif"].Value.ToString();
+
+            string queryUpdate = "UPDATE chambre SET numero_chambre =@numero,tarif_journalier =@tarif WHERE id_chambre =@id";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("@numero", numero);
+            MesClasses.ManagerClasse.request_params.Add("@tarif", tarif);
+            MesClasses.ManagerClasse.request_params.Add("id",idchambre);
+
+            MesClasses.ManagerClasse.CRUD(queryUpdate, MesClasses.ManagerClasse.request_params);
+            MessageBox.Show("Données modifiée avec succès!!");
+            LoadChambreInDataGridView();
+            //remettre la lecture seule
+            dgv_chambres.Rows[rowIndex].Cells["colNumero"].ReadOnly = true;
+            dgv_chambres.Rows[rowIndex].Cells["colTarif"].ReadOnly = true;
+            dgv_chambres.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
+        }
         private void User_chambres_Load(object sender, EventArgs e)
         {
             LoadTypeChambre();
@@ -104,5 +166,51 @@ namespace Cepima.MesUserCases
                 }
             }
         }
+
+        // ========================== charger les chambres dans le datagridview ===========================
+        private void LoadChambreInDataGridView()
+        {
+            dgv_chambres.Rows.Clear();
+            try
+            {
+                string query = "SELECT c.id_chambre,s.nom_service,c.numero_chambre,c.type_chambre,c.tarif_journalier,c.statut FROM chambre c JOIN services s ON c.id_service =s.id_service ORDER BY s.nom_service ASC";
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,null,true))
+                {
+                    while (reader.Read())
+                    {
+                        int row = dgv_chambres.Rows.Add();
+                        dgv_chambres.Rows[row].Cells["colID"].Value = reader["id_chambre"];
+                        dgv_chambres.Rows[row].Cells["colService"].Value = reader["nom_service"];
+                        dgv_chambres.Rows[row].Cells["colNumero"].Value = reader["numero_chambre"];
+                        dgv_chambres.Rows[row].Cells["colType"].Value = reader["type_chambre"];
+                        dgv_chambres.Rows[row].Cells["colTarif"].Value = reader["tarif_journalier"];
+                        dgv_chambres.Rows[row].Cells["colStatut"].Value = reader["statut"];
+                        dgv_chambres.Rows[row].Tag = reader["id_chambre"];
+                        ApplyStyle();
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur : "+ex.Message);
+            }
+        }
+
+        // ============================= style ==============================================================================================
+        private void ApplyStyle()
+        {
+            dgv_chambres.Columns["colID"].Width = 70;
+            dgv_chambres.Columns["colService"].Width = 80;
+            dgv_chambres.Columns["colNumero"].Width = 80;
+            dgv_chambres.Columns["colType"].Width = 150;
+            dgv_chambres.Columns["colTarif"].Width = 80;
+            dgv_chambres.Columns["colStatut"].Width = 90;
+            dgv_chambres.Columns["colUpdate"].Width = 10;
+            dgv_chambres.Columns["colDelete"].Width = 10;
+            dgv_chambres.Columns["colSave"].Width = 10;
+        }
+
     }
 }

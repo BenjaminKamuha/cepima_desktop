@@ -361,7 +361,7 @@ namespace Cepima.MesUserCases
                             lbType.Font = new System.Drawing.Font("Calibri",9);
                             panPatient.Controls.Add(lbType);
 
-                            Label lbTarif = MesClasses.ManagerClasse.CustomLabel("Tarif : "+ tarif + " Fc/jour",new Point(10, 90));
+                            Label lbTarif = MesClasses.ManagerClasse.CustomLabel("Tarif : "+ tarif + " $/jour",new Point(10, 90));
                             lbTarif.Font = new System.Drawing.Font("Calibri", 9);
                             panPatient.Controls.Add(lbTarif);
 

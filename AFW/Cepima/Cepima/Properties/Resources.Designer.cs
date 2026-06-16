@@ -883,6 +883,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap out_patient_department_25px {
+            get {
+                object obj = ResourceManager.GetObject("out_patient_department_25px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap paycheque_40px {
             get {
                 object obj = ResourceManager.GetObject("paycheque_40px", resourceCulture);

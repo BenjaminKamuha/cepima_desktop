@@ -100,10 +100,16 @@ namespace Cepima.MesUserCases
                         cmdUpdate.ExecuteNonQuery();
                     }
 
+                    tr.Commit();
                     MessageBox.Show("Paiement enregistré");
+                    tb_mode_paiement.Clear();
+                    tb_montant_paye.Clear();
+                    tb_numero_fiche.Clear();
+                    tb_reste.Clear();
                 }
                 catch (Exception ex)
                 {
+                    tr.Rollback();
                     MessageBox.Show("Erreur : " + ex.Message);
                 }
             }

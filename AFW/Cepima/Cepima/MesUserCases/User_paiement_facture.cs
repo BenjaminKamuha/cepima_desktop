@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesUserCases
 {
     public partial class User_paiement_facture : UserControl
@@ -19,7 +20,9 @@ namespace Cepima.MesUserCases
             FilterType(cbx_type_facture);
             dgv_paiement.CellClick += dgv_paiement_CellClick;
             ChargerPaiement();
+            
         }
+
 
         void dgv_paiement_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -46,7 +49,7 @@ namespace Cepima.MesUserCases
                 dgv_paiement.Rows.Clear();
                 try
                 {
-                    string query = "SELECT pa.id_paiement,pa.numero_recu,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,pa.montant,pa.reste,pa.type_paiement FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE 1=1";
+                    string query = "SELECT pa.id_paiement,f.id_facture,pa.numero_recu,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,pa.montant,pa.reste,pa.type_paiement,pa.date_paiement FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE 1=1";
 
                     // ================================= filtrage par patient ===============================
                     if (tb_search.Text.Trim() != "")
@@ -113,7 +116,7 @@ namespace Cepima.MesUserCases
         {
             try
             {
-                string query = "SELECT pa.id_paiement,pa.numero_recu,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,pa.montant,pa.reste,pa.type_paiement FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE p.id_paiement = @id";
+                string query = "SELECT f.id_facture,pa.id_paiement,pa.numero_recu,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,pa.montant,pa.reste,pa.type_paiement,pa.date_paiement FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE pa.id_paiement = @id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",id_paiement.ToString());
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
@@ -121,7 +124,7 @@ namespace Cepima.MesUserCases
                     while (reader.Read())
                     {
                         lb_numero_recu.Text = reader["id_paiement"].ToString();
-                        lb_date.Text = Convert.ToDecimal(reader["date_paiement"]).ToString("dd/MM/yyyy");
+                        lb_date.Text = Convert.ToDateTime(reader["date_paiement"]).ToString("dd/MM/yyyy");
                         lb_numero_facture.Text = reader["id_facture"].ToString();
                         lb_patient.Text = reader["patient"].ToString();
                         lb_montant.Text = reader["montant"].ToString();

@@ -27,8 +27,7 @@ namespace Cepima.MesUserCases
         {
             if (e.RowIndex >= 0)
             {
-                 idFacture = Convert.ToInt32(dgv_facture.Rows[e.RowIndex].Cells["colID"].Value);
-                
+                idFacture = Convert.ToInt32(dgv_facture.Rows[e.RowIndex].Cells["colID"].Value);
                 LoadDetailFacture(idFacture);
                 Charger_detail_de_la_facture(idFacture);
                 lb_ID_facture.Text = idFacture.ToString();
@@ -75,7 +74,7 @@ namespace Cepima.MesUserCases
         {
             try
             {
-                string query = "SELECT  CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,f.type_facture,f.date_facture,f.montant_total,f.statut,p.montant,p.reste FROM facture f  JOIN paiement p ON p.id_facture =f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE id_facture =@id";
+                string query = "SELECT  CONCAT(pa.nom,' ',pa.post_nom,' ',pa.prenom) AS patient,f.type_facture,f.date_facture,f.montant_total,f.statut,p.montant,p.reste FROM facture f  JOIN paiement p ON p.id_facture =f.id_facture JOIN patients pa ON f.id_patient = pa.id_patient WHERE f.id_facture =@id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",factureID.ToString());
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))

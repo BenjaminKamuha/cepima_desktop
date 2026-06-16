@@ -257,7 +257,7 @@
         <Top>6.39974cm</Top>
         <Left>0.94932cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.55833cm</Width>
+        <Width>2.8175cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -294,7 +294,7 @@
         <Top>7.17613cm</Top>
         <Left>0.94932cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.55833cm</Width>
+        <Width>3.16146cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -365,18 +365,21 @@
                 <Value>Mr/Mme </Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!patient.Value</Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>, merci pour votre confiance</Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -407,7 +410,10 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!numero_recu.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -417,7 +423,7 @@
         <Top>2.72203cm</Top>
         <Left>3.04363cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.8175cm</Width>
+        <Width>1.06715cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -437,7 +443,10 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!date_paiement.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -467,7 +476,10 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!patient.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -477,7 +489,7 @@
         <Top>4.27481cm</Top>
         <Left>3.04363cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.8175cm</Width>
+        <Width>4.4932cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -497,7 +509,10 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!id_facture.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -507,7 +522,7 @@
         <Top>5.0512cm</Top>
         <Left>3.29057cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.57056cm</Width>
+        <Width>0.82021cm</Width>
         <ZIndex>14</ZIndex>
         <Style>
           <Border>
@@ -527,17 +542,27 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!montant.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>$</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox41</rd:DefaultName>
-        <Top>6.39974cm</Top>
-        <Left>4.65349cm</Left>
+        <Top>6.43502cm</Top>
+        <Left>3.87265cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.14792cm</Width>
+        <Width>1.83854cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -557,7 +582,17 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!reste.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>$</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -565,9 +600,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox41</rd:DefaultName>
         <Top>7.17613cm</Top>
-        <Left>4.68405cm</Left>
+        <Left>4.21661cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.14792cm</Width>
+        <Width>1.49458cm</Width>
         <ZIndex>16</ZIndex>
         <Style>
           <Border>
@@ -587,7 +622,10 @@
             <TextRuns>
               <TextRun>
                 <Value>=Fields!type_paiement.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -610,10 +648,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>3.96875in</Height>
+    <Height>4.42708in</Height>
     <Style />
   </Body>
-  <Width>3.24317in</Width>
+  <Width>3.26401in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
