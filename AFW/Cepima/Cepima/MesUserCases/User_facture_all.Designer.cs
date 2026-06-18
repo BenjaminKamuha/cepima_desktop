@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -42,6 +42,7 @@
             this.dt_debut = new System.Windows.Forms.DateTimePicker();
             this.cbx_statut_facture = new System.Windows.Forms.ComboBox();
             this.cbx_type_facture = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -61,6 +62,8 @@
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrint = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
@@ -75,7 +78,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.lb_statut = new System.Windows.Forms.Label();
+            this.lb_reste = new System.Windows.Forms.Label();
+            this.lb_montant_paye = new System.Windows.Forms.Label();
             this.lb_medecin = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lb_date_facture = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -83,19 +90,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lb_patient = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lb_montant_paye = new System.Windows.Forms.Label();
-            this.lb_reste = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.colPrint = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_facture)).BeginInit();
@@ -104,7 +105,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_detail_facture)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -165,28 +165,28 @@
             // 
             // dt_final
             // 
-            this.dt_final.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dt_final.Font = new System.Drawing.Font("Calibri", 10F);
             this.dt_final.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dt_final.Location = new System.Drawing.Point(931, 32);
             this.dt_final.Name = "dt_final";
-            this.dt_final.Size = new System.Drawing.Size(148, 22);
+            this.dt_final.Size = new System.Drawing.Size(148, 24);
             this.dt_final.TabIndex = 18;
             this.dt_final.ValueChanged += new System.EventHandler(this.dt_final_ValueChanged);
             // 
             // dt_debut
             // 
-            this.dt_debut.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dt_debut.Font = new System.Drawing.Font("Calibri", 10F);
             this.dt_debut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dt_debut.Location = new System.Drawing.Point(699, 32);
             this.dt_debut.Name = "dt_debut";
-            this.dt_debut.Size = new System.Drawing.Size(148, 22);
+            this.dt_debut.Size = new System.Drawing.Size(148, 24);
             this.dt_debut.TabIndex = 18;
             this.dt_debut.ValueChanged += new System.EventHandler(this.dt_debut_ValueChanged);
             // 
             // cbx_statut_facture
             // 
             this.cbx_statut_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_statut_facture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_statut_facture.Font = new System.Drawing.Font("Calibri", 10F);
             this.cbx_statut_facture.FormattingEnabled = true;
             this.cbx_statut_facture.Location = new System.Drawing.Point(520, 32);
             this.cbx_statut_facture.Name = "cbx_statut_facture";
@@ -197,7 +197,7 @@
             // cbx_type_facture
             // 
             this.cbx_type_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_type_facture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_type_facture.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_type_facture.FormattingEnabled = true;
             this.cbx_type_facture.Location = new System.Drawing.Point(308, 32);
             this.cbx_type_facture.Name = "cbx_type_facture";
@@ -205,9 +205,20 @@
             this.cbx_type_facture.TabIndex = 17;
             this.cbx_type_facture.SelectedIndexChanged += new System.EventHandler(this.cbx_type_facture_SelectedIndexChanged);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
+            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // tb_search
             // 
             this.tb_search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_search.Font = new System.Drawing.Font("Calibri", 10F);
             this.tb_search.Location = new System.Drawing.Point(25, 30);
             this.tb_search.Multiline = true;
             this.tb_search.Name = "tb_search";
@@ -374,8 +385,8 @@
             this.dgv_facture.AllowUserToAddRows = false;
             this.dgv_facture.AllowUserToDeleteRows = false;
             this.dgv_facture.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_facture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -384,14 +395,14 @@
             this.dgv_facture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_facture.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_facture.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_facture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_facture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatient,
@@ -402,14 +413,14 @@
             this.colPrint,
             this.colDelete,
             this.colID});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgv_facture.EnableHeadersVisualStyles = false;
             this.dgv_facture.GridColor = System.Drawing.Color.LightGray;
             this.dgv_facture.Location = new System.Drawing.Point(3, 30);
@@ -452,6 +463,22 @@
             this.colStatut.HeaderText = "Statut";
             this.colStatut.MinimumWidth = 50;
             this.colStatut.Name = "colStatut";
+            // 
+            // colPrint
+            // 
+            this.colPrint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrint.HeaderText = "";
+            this.colPrint.Image = global::Cepima.Properties.Resources.print_20px;
+            this.colPrint.MinimumWidth = 50;
+            this.colPrint.Name = "colPrint";
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDelete.HeaderText = "";
+            this.colDelete.Image = global::Cepima.Properties.Resources.trash_red1;
+            this.colDelete.MinimumWidth = 50;
+            this.colDelete.Name = "colDelete";
             // 
             // colID
             // 
@@ -511,8 +538,8 @@
             this.dgv_detail_facture.AllowUserToAddRows = false;
             this.dgv_detail_facture.AllowUserToDeleteRows = false;
             this.dgv_detail_facture.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_detail_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_detail_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_detail_facture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -520,28 +547,28 @@
             this.dgv_detail_facture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_detail_facture.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_detail_facture.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detail_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detail_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgv_detail_facture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_detail_facture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colDesc,
             this.colQuantite,
             this.colPrix,
             this.colTotal});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_detail_facture.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_detail_facture.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgv_detail_facture.EnableHeadersVisualStyles = false;
             this.dgv_detail_facture.GridColor = System.Drawing.Color.LightGray;
             this.dgv_detail_facture.Location = new System.Drawing.Point(0, -2);
@@ -641,6 +668,24 @@
             this.lb_statut.Size = new System.Drawing.Size(0, 15);
             this.lb_statut.TabIndex = 1;
             // 
+            // lb_reste
+            // 
+            this.lb_reste.AutoSize = true;
+            this.lb_reste.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_reste.Location = new System.Drawing.Point(206, 176);
+            this.lb_reste.Name = "lb_reste";
+            this.lb_reste.Size = new System.Drawing.Size(0, 14);
+            this.lb_reste.TabIndex = 1;
+            // 
+            // lb_montant_paye
+            // 
+            this.lb_montant_paye.AutoSize = true;
+            this.lb_montant_paye.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_montant_paye.Location = new System.Drawing.Point(192, 146);
+            this.lb_montant_paye.Name = "lb_montant_paye";
+            this.lb_montant_paye.Size = new System.Drawing.Size(0, 14);
+            this.lb_montant_paye.TabIndex = 1;
+            // 
             // lb_medecin
             // 
             this.lb_medecin.AutoSize = true;
@@ -649,6 +694,26 @@
             this.lb_medecin.Name = "lb_medecin";
             this.lb_medecin.Size = new System.Drawing.Size(0, 14);
             this.lb_medecin.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(112, 176);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(88, 14);
+            this.label16.TabIndex = 1;
+            this.label16.Text = "Reste facture : ";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(111, 146);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(70, 14);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Deja payé : ";
             // 
             // label12
             // 
@@ -717,6 +782,16 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "Patient :";
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Cepima.Properties.Resources.purchase_order_90px;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(102, 178);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -726,44 +801,6 @@
             this.label13.Size = new System.Drawing.Size(172, 19);
             this.label13.TabIndex = 0;
             this.label13.Text = "Détails de la facture N° : ";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(111, 146);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(70, 14);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "Deja payé : ";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(112, 176);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(88, 14);
-            this.label16.TabIndex = 1;
-            this.label16.Text = "Reste facture : ";
-            // 
-            // lb_montant_paye
-            // 
-            this.lb_montant_paye.AutoSize = true;
-            this.lb_montant_paye.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_montant_paye.Location = new System.Drawing.Point(192, 146);
-            this.lb_montant_paye.Name = "lb_montant_paye";
-            this.lb_montant_paye.Size = new System.Drawing.Size(0, 14);
-            this.lb_montant_paye.TabIndex = 1;
-            // 
-            // lb_reste
-            // 
-            this.lb_reste.AutoSize = true;
-            this.lb_reste.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_reste.Location = new System.Drawing.Point(206, 176);
-            this.lb_reste.Name = "lb_reste";
-            this.lb_reste.Size = new System.Drawing.Size(0, 14);
-            this.lb_reste.TabIndex = 1;
             // 
             // dataGridViewImageColumn1
             // 
@@ -781,42 +818,6 @@
             this.dataGridViewImageColumn2.MinimumWidth = 50;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.purchase_order_90px;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 12);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(102, 178);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // colPrint
-            // 
-            this.colPrint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPrint.HeaderText = "";
-            this.colPrint.Image = global::Cepima.Properties.Resources.print_20px;
-            this.colPrint.MinimumWidth = 50;
-            this.colPrint.Name = "colPrint";
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDelete.HeaderText = "";
-            this.colDelete.Image = global::Cepima.Properties.Resources.trash_red1;
-            this.colDelete.MinimumWidth = 50;
-            this.colDelete.Name = "colDelete";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
             // User_facture_all
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -832,6 +833,7 @@
             this.panel1.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
@@ -844,7 +846,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

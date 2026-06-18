@@ -213,6 +213,12 @@
     <Compile Include="MesUserCases\User_horaires.Designer.cs">
       <DependentUpon>User_horaires.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_livre_caisse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_livre_caisse.Designer.cs">
+      <DependentUpon>User_livre_caisse.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_medicament.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -353,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_horaires.resx">
       <DependentUpon>User_horaires.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_livre_caisse.resx">
+      <DependentUpon>User_livre_caisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_medicament.resx">
       <DependentUpon>User_medicament.cs</DependentUpon>
@@ -823,6 +832,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\out_patient_department_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downloading_updates_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sortie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Capture_1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capture_2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capture_3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capture_4.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

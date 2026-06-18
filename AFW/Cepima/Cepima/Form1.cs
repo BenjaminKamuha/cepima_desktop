@@ -407,7 +407,10 @@ namespace Cepima
 
                      new MenuItem(" Caisse du jour",Properties.Resources.wallet_25px, (s,ev) =>
                     {
-
+                        MesUserCases.User_livre_caisse caisse = new MesUserCases.User_livre_caisse();
+                        caisse.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(caisse);
                     }),
 
                      new MenuItem(" Rapport financier",Properties.Resources.analytics_25px, (s,ev) =>
