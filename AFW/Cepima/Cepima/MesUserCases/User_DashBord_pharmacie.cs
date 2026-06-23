@@ -16,5 +16,10 @@ namespace Cepima.MesUserCases
         {
             InitializeComponent();
         }
+
+        private void User_DashBord_pharmacie_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
