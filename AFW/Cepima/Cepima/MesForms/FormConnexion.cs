@@ -87,7 +87,7 @@ namespace Cepima.MesForms
                 tb_password.Focus();
                 cb_remember.Visible = false;
 
-                bt_connexion_Click(null, null);
+               // bt_connexion_Click(null, null);
             }
 
             else

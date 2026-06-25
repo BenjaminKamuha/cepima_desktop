@@ -78,7 +78,6 @@ namespace Cepima.MesUserCases
 
                     Label lb_p_name_queue = new Label();
 
-
                     // Ajout du control avatar
                     pnl_patient_queue.Controls.Add(lb_name_queue);
                     pnl_patient_queue.Controls.Add(avt_queue);
@@ -281,8 +280,8 @@ namespace Cepima.MesUserCases
         {
             if (args.Length != 0)
             {
-                //try
-                //{
+                try
+                {
                 string presc_status = "Livrée";
                 string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE c.statut_presc=@status AND p.nom LIKE @searchText OR p.post_nom LIKE @searchText or p.prenom LIKE @searchText;";
 
@@ -335,18 +334,17 @@ namespace Cepima.MesUserCases
 
                     }
                 }
-                //}
-                //catch (MySqlException ex)
-                //{
-                //    MessageBox.Show("Erreur : " + ex.Message);
-                //}
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("Erreur : " + ex.Message);
+                }
             }
 
             else
             {
                 try
                 {
-
                     string presc_status = "Livrée";
                     string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE c.statut_presc=@status;";
 
@@ -356,7 +354,6 @@ namespace Cepima.MesUserCases
                     using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                     {
                     
-
                         if (reader.HasRows)
                         {
                             fl_recent_cons.Controls.Clear();
@@ -404,6 +401,7 @@ namespace Cepima.MesUserCases
 
         }
 
+
         private void User_sortie_pharmacie_Load(object sender, EventArgs e)
         {
 
@@ -443,15 +441,17 @@ namespace Cepima.MesUserCases
                      string query_update_cons ="UPDATE consultation SET statut_presc = @status WHERE id_patient = @id_patient";
                      string query_create_sortie = "INSERT INTO sorties_stock(id_centre, type_sortie, id_patient, id_service, date_sortie) VALUES(@id_centre, @type_sortie, @id_patient, @id_service, @date)";
                      string query_create_detail = "INSERT INTO detail_sortie_stock(id_sortie, id_medicament, quantite, prix_unitaire) VALUES(@id_sortie_stock, @id_medicament, @quantite, @prix_unitaire)";
+                     string query_update_stock_pharmacie = "UPDATE stock_pharmacie SET quantite = (quantite - @qty) WHERE id_medicament = @med_id";
 
-                     //try
-                     //{
+                     try
+                     {
                          using (MySqlCommand cmdUpdate = new MySqlCommand(query_update_cons, con, tr))
                          {
                              cmdUpdate.Parameters.AddWithValue("id_patient", id_patient);
                              cmdUpdate.Parameters.AddWithValue("status", status); 
                              cmdUpdate.ExecuteNonQuery();
                          }
+
 
                          using (MySqlCommand cmdCreate_sortie = new MySqlCommand(query_create_sortie, con, tr))
                          {
@@ -477,11 +477,8 @@ namespace Cepima.MesUserCases
                              cmdCreate_sortie.ExecuteNonQuery();
 
                              id_sortie = cmdCreate_sortie.LastInsertedId;
-
                          }
 
-
-                        
 
                          using (MySqlCommand cmdCreate_detail = new MySqlCommand(query_create_detail, con, tr))
                          {
@@ -499,7 +496,6 @@ namespace Cepima.MesUserCases
 
                                  cmdCreate_detail.Parameters.AddWithValue("quantite", Convert.ToString(row.Cells["med_qty"].Value));
 
-
                                  cmdCreate_detail.Parameters.AddWithValue("prix_unitaire" ,Convert.ToString(row.Cells["med_price"].Value));
                              }
 
@@ -507,17 +503,30 @@ namespace Cepima.MesUserCases
                          }
 
 
+                         foreach (DataGridViewRow row in data_grid_med.Rows)
+                         {
+                             if (row.IsNewRow)
+                                 continue;
 
+                             using (MySqlCommand cmdUpdateStockPharmacie = new MySqlCommand(query_update_stock_pharmacie, con, tr))
+                             {
+                                 cmdUpdateStockPharmacie.Parameters.AddWithValue("qty", Convert.ToString(row.Cells["med_qty"].Value));
+                                 cmdUpdateStockPharmacie.Parameters.AddWithValue("med_id", Convert.ToString(row.Cells["id_medicament"].Value));
+                                 
+                                 cmdUpdateStockPharmacie.ExecuteNonQuery();
+                             }
+                         }
+                         
                          tr.Commit();
-                         MessageBox.Show("Prescription enregistré!!");
+                         MessageBox.Show("Prescription enregistré!");
                      }
 
-                     //catch (Exception ex)
-                     //{
-                     //    tr.Rollback();
-                     //    MessageBox.Show("Erreur : " + ex.Message);
-                     //}
-                 //}
+                     catch (Exception ex)
+                     {
+                         tr.Rollback();
+                         MessageBox.Show("Erreur : " + ex.Message);
+                     }
+                 }
             }
 
             else
@@ -526,6 +535,128 @@ namespace Cepima.MesUserCases
             }
         }
 
+        private void bt_cansel_presc_Click(object sender, EventArgs e)
+        {
+            string type_sortie = "";
+
+            long id_sortie = 0;
+
+            if (rd_type_soritie_H.Checked)
+            {
+                type_sortie = "Hospitalisation";
+            }
+
+            else if (rd_type_sortie_A.Checked)
+            {
+                type_sortie = "Ambulatoire";
+            }
+
+
+            string id_patient = ID_PATIENT;
+            string status = "Livrée";
+
+            if (type_sortie != string.Empty)
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    MySqlTransaction tr = con.BeginTransaction();
+                    // Les trois requêtes à executer
+                    string query_update_cons = "UPDATE consultation SET statut_presc = @status WHERE id_patient = @id_patient";
+                    string query_create_sortie = "INSERT INTO sorties_stock(id_centre, type_sortie, id_patient, id_service, date_sortie) VALUES(@id_centre, @type_sortie, @id_patient, @id_service, @date)";
+                    string query_create_detail = "INSERT INTO detail_sortie_stock(id_sortie, id_medicament, quantite, prix_unitaire) VALUES(@id_sortie_stock, @id_medicament, @quantite, @prix_unitaire)";
+                    string query_update_stock_pharmacie = "UPDATE stock_pharmacie SET quantite = (quantite - @qty) WHERE id_medicament = @med_id";
+
+                    try
+                    {
+                        using (MySqlCommand cmdUpdate = new MySqlCommand(query_update_cons, con, tr))
+                        {
+                            cmdUpdate.Parameters.AddWithValue("id_patient", id_patient);
+                            cmdUpdate.Parameters.AddWithValue("status", status);
+                            cmdUpdate.ExecuteNonQuery();
+                        }
+
+
+                        using (MySqlCommand cmdCreate_sortie = new MySqlCommand(query_create_sortie, con, tr))
+                        {
+                            cmdCreate_sortie.Parameters.AddWithValue("id_centre", MesForms.SessionUtilisateur.idCentre);
+                            if (rd_type_sortie_A.Checked)
+                            {
+                                cmdCreate_sortie.Parameters.AddWithValue("type_sortie", type_sortie);
+                                cmdCreate_sortie.Parameters.AddWithValue("id_patient", ID_PATIENT);
+                                cmdCreate_sortie.Parameters.AddWithValue("id_service", null);   
+                                cmdCreate_sortie.Parameters.AddWithValue("date", DateTime.Now.Date);
+
+                            }
+
+                            else
+                            {
+                                cmdCreate_sortie.Parameters.AddWithValue("type_sortie", type_sortie);
+                                cmdCreate_sortie.Parameters.AddWithValue("id_patient", ID_SERVICE);
+                                cmdCreate_sortie.Parameters.AddWithValue("id_service", null);
+                                cmdCreate_sortie.Parameters.AddWithValue("date", DateTime.Now.Date);
+
+                            }
+
+                            cmdCreate_sortie.ExecuteNonQuery();
+
+                            id_sortie = cmdCreate_sortie.LastInsertedId;
+                        }
+
+
+                        using (MySqlCommand cmdCreate_detail = new MySqlCommand(query_create_detail, con, tr))
+                        {
+                            foreach (DataGridViewRow row in data_grid_med.Rows)
+                            {
+                                // Ingorer la ligne vide
+                                if (row.IsNewRow)
+                                    continue;
+
+                                cmdCreate_detail.Parameters.Clear();
+
+                                cmdCreate_detail.Parameters.AddWithValue("id_sortie_stock", id_sortie);
+
+                                cmdCreate_detail.Parameters.AddWithValue("id_medicament", Convert.ToString(row.Cells["id_medicament"].Value));
+
+                                cmdCreate_detail.Parameters.AddWithValue("quantite", Convert.ToString(row.Cells["med_qty"].Value));
+
+                                cmdCreate_detail.Parameters.AddWithValue("prix_unitaire", Convert.ToString(row.Cells["med_price"].Value));
+                            }
+
+                            cmdCreate_detail.ExecuteNonQuery();
+                        }
+
+
+                        foreach (DataGridViewRow row in data_grid_med.Rows)
+                        {
+                            if (row.IsNewRow)
+                                continue;
+
+                            using (MySqlCommand cmdUpdateStockPharmacie = new MySqlCommand(query_update_stock_pharmacie, con, tr))
+                            {
+                                cmdUpdateStockPharmacie.Parameters.AddWithValue("qty", Convert.ToString(row.Cells["med_qty"].Value));
+                                cmdUpdateStockPharmacie.Parameters.AddWithValue("med_id", Convert.ToString(row.Cells["id_medicament"].Value));
+
+                                cmdUpdateStockPharmacie.ExecuteNonQuery();
+                            }
+                        }
+
+                        tr.Commit();
+                        MessageBox.Show("Prescription enregistré!");
+                    }
+
+                    catch (Exception ex)
+                    {
+                        tr.Rollback();
+                        MessageBox.Show("Erreur : " + ex.Message);
+                    }
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Erreur! Sélélectionner le type de sortie avant confirmation");
+            }
+        }
 
     }
 }
