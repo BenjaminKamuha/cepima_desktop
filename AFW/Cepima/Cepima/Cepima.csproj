@@ -249,6 +249,12 @@
     <Compile Include="MesUserCases\User_personnels_display.Designer.cs">
       <DependentUpon>User_personnels_display.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_prescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_prescription.Designer.cs">
+      <DependentUpon>User_prescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_presences.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -377,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_personnels_display.resx">
       <DependentUpon>User_personnels_display.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_prescription.resx">
+      <DependentUpon>User_prescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_presences.resx">
       <DependentUpon>User_presences.cs</DependentUpon>
@@ -850,6 +859,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\capture_4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brain_wave.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\brain.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

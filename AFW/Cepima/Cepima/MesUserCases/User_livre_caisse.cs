@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesUserCases
 {
     public partial class User_livre_caisse : UserControl
@@ -19,7 +20,6 @@ namespace Cepima.MesUserCases
             Selectionner(lbl_tous);
             LoadResumeLivreCaisse();
             LoadLivreCaisse();
-         
         }
         // ================================ METTRE EN MOUVEMENT LE PANEL ========================================
         private void MoveBar(Label lbl)

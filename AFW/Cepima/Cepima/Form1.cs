@@ -24,6 +24,7 @@ namespace Cepima
             bt_personnel.Click += bt_personnel_Click;
             LoadDataGrid();
             InfoBull();
+            LoadUserConnect(lb_username,"Connecté",lb_statut);
         }
 
         /// <summary>
@@ -352,7 +353,10 @@ namespace Cepima
                 }),
                 new MenuItem("    Examens EEG",Properties.Resources.brain_20px, (s,ev) =>
                 {
-
+                    MesUserCases.User_Examen_EEG eeg = new MesUserCases.User_Examen_EEG();
+                    eeg.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(eeg);
                 })
 
             };
@@ -607,6 +611,15 @@ namespace Cepima
         private void panel_center_main_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void LoadUserConnect(Label lbl1,string message,Label lbl2)
+        {
+            lbl1.Text = MesForms.SessionUtilisateur.Nom;
+            if (MesForms.SessionUtilisateur.EstConnecte)
+            {
+                lbl2.Text = message;
+            }
         }
     }
     public class MenuItem

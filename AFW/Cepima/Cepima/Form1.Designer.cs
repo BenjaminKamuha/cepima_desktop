@@ -34,7 +34,7 @@
             this.bt_close = new System.Windows.Forms.Button();
             this.bt_minus = new System.Windows.Forms.Button();
             this.picture_statut = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lb_statut = new System.Windows.Forms.Label();
             this.lb_role = new System.Windows.Forms.Label();
             this.lb_username = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -110,7 +110,7 @@
             this.panel9.Controls.Add(this.bt_close);
             this.panel9.Controls.Add(this.bt_minus);
             this.panel9.Controls.Add(this.picture_statut);
-            this.panel9.Controls.Add(this.label2);
+            this.panel9.Controls.Add(this.lb_statut);
             this.panel9.Controls.Add(this.lb_role);
             this.panel9.Controls.Add(this.lb_username);
             this.panel9.Controls.Add(this.pictureBox2);
@@ -146,22 +146,22 @@
             // picture_statut
             // 
             this.picture_statut.Image = global::Cepima.Properties.Resources.dot_point;
-            this.picture_statut.Location = new System.Drawing.Point(213, 6);
+            this.picture_statut.Location = new System.Drawing.Point(230, 6);
             this.picture_statut.Name = "picture_statut";
             this.picture_statut.Size = new System.Drawing.Size(19, 21);
             this.picture_statut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picture_statut.TabIndex = 3;
             this.picture_statut.TabStop = false;
             // 
-            // label2
+            // lb_statut
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9F);
-            this.label2.Location = new System.Drawing.Point(168, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 14);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Statut";
+            this.lb_statut.AutoSize = true;
+            this.lb_statut.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lb_statut.Location = new System.Drawing.Point(166, 10);
+            this.lb_statut.Name = "lb_statut";
+            this.lb_statut.Size = new System.Drawing.Size(39, 14);
+            this.lb_statut.TabIndex = 3;
+            this.lb_statut.Text = "Statut";
             // 
             // lb_role
             // 
@@ -572,7 +572,7 @@
         private System.Windows.Forms.Label lb_role;
         private System.Windows.Forms.Label lb_username;
         private System.Windows.Forms.PictureBox picture_statut;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lb_statut;
         private System.Windows.Forms.Button bt_close;
         private System.Windows.Forms.Button bt_minus;
         private System.Windows.Forms.Panel panel5;

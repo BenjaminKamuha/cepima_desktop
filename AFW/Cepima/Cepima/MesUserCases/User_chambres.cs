@@ -112,8 +112,6 @@ namespace Cepima.MesUserCases
 
                         cbx_type_chambre.Items.Clear();
 
-                        cbx_type_chambre.Items.Add("Tous");
-
                         cbx_type_chambre.Items.AddRange(types);
 
                         cbx_type_chambre.SelectedIndex = 0;

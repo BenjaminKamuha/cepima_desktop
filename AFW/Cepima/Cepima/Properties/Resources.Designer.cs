@@ -163,6 +163,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap brain {
+            get {
+                object obj = ResourceManager.GetObject("brain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap brain_20px {
             get {
                 object obj = ResourceManager.GetObject("brain_20px", resourceCulture);
@@ -206,6 +216,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap brain_90px1 {
             get {
                 object obj = ResourceManager.GetObject("brain_90px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap brain_wave {
+            get {
+                object obj = ResourceManager.GetObject("brain_wave", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

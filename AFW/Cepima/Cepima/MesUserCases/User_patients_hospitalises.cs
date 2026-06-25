@@ -695,15 +695,11 @@ namespace Cepima.MesUserCases
                         cmdDetailMed.ExecuteNonQuery();
                     }
 
-
-
                     // =========================================
                     // validation transaction
                     // =========================================
 
                     trans.Commit();
-
-
                     MessageBox.Show("Facture hospitalisation générée\n\nTotal : "+ total + " Fc");
                 }
                 catch (Exception ex)
