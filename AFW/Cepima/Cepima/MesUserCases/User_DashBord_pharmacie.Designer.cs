@@ -49,8 +49,8 @@
             this.roundedButton1 = new RoundedButton();
             this.roundedButton2 = new RoundedButton();
             this.customRoundedPanel6 = new CustomRoundedPanel();
-            this.tb_search_medoc = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tb_search_medoc = new System.Windows.Forms.TextBox();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
@@ -314,6 +314,16 @@
             this.customRoundedPanel6.Size = new System.Drawing.Size(227, 29);
             this.customRoundedPanel6.TabIndex = 12;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.search1;
+            this.pictureBox1.Location = new System.Drawing.Point(192, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(32, 24);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // tb_search_medoc
             // 
             this.tb_search_medoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
@@ -324,16 +334,6 @@
             this.tb_search_medoc.Name = "tb_search_medoc";
             this.tb_search_medoc.Size = new System.Drawing.Size(188, 24);
             this.tb_search_medoc.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.search1;
-            this.pictureBox1.Location = new System.Drawing.Point(192, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 24);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // User_DashBord_pharmacie
             // 
@@ -349,6 +349,7 @@
             this.Controls.Add(this.customRoundedPanel1);
             this.Name = "User_DashBord_pharmacie";
             this.Size = new System.Drawing.Size(786, 424);
+            this.Load += new System.EventHandler(this.User_DashBord_pharmacie_Load);
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();

@@ -73,25 +73,29 @@ namespace Cepima.MesClasses
          // ======================== supprimer le salaire ==========================================================
          public static void DeleteSalary(int id_salaire)
          {
-             try
+
+             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
              {
-                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                 MySqlTransaction tr = con.BeginTransaction();
+                 string query = "DELETE FROM salaires WHERE id_salaire = @id";
+                 try
                  {
-                     MySqlTransaction tr = con.BeginTransaction();
-                     string query = "DELETE FROM salaires WHERE id_salaire = @id";
-                     using (MySqlCommand cmdDelete = new MySqlCommand(query,con,tr))
+                     using (MySqlCommand cmdDelete = new MySqlCommand(query, con, tr))
                      {
-                         cmdDelete.Parameters.AddWithValue("@id",id_salaire);
+                         cmdDelete.Parameters.AddWithValue("@id", id_salaire);
                          cmdDelete.ExecuteNonQuery();
                      }
                      tr.Commit();
                      MessageBox.Show("Données supprimeés avec succès!!");
                  }
+
+                 catch (Exception ex)
+                 {
+                     tr.Rollback();
+                     MessageBox.Show("Erreur lors de la suppression du salaire : " + ex.Message);
+                 }
              }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("Erreur lors de la suppression du salaire : "+ex.Message);
-             }
+
             
          }
 

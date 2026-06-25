@@ -15,11 +15,14 @@ namespace Cepima.MesUserCases
     public partial class User_sortie_pharmacie : UserControl
     {
         RichTextBox diag_summary = new RichTextBox();
+        string ID_PATIENT = null;
+        string ID_SERVICE = null;
+
         public User_sortie_pharmacie()
         {
             InitializeComponent();
             controlPosition();
-            loadMed();
+            loadRecent();
             loadQues();
         }
 
@@ -27,9 +30,12 @@ namespace Cepima.MesUserCases
 
         private void loadQues()
         {
-            string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient;";
+            string presc_status = "Non livrée";
+            string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE c.statut_presc=@status;";
+            MesClasses.ManagerClasse.request_params.Clear();
+            MesClasses.ManagerClasse.request_params.Add("status", presc_status);
 
-            MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true);
+            MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true);
 
             if (reader.HasRows)
             {
@@ -83,6 +89,20 @@ namespace Cepima.MesUserCases
 
                 lb_nb_queu.Text += "(" + i.ToString() + ")";
             }
+            else
+            {
+                pnl_responsable.Controls.Clear();
+                Label lb_info = new Label();
+                lb_info.Text = "Pas des patients en attente";
+                lb_info.Font = new Font("Arial", 12, FontStyle.Bold);
+                lb_info.Size = new Size(210, 15);
+                pnl_responsable.Controls.Add(lb_info);
+
+                lb_info.Left = (lb_info.Parent.ClientSize.Width - lb_info.Width) / 2;
+                lb_info.Top = (lb_info.Parent.ClientSize.Height - lb_info.Height) / 2;
+
+                bt_validate_presc.Visible = false;
+            }
         }
 
         void pnl_patient_queue_Click(object sender, EventArgs e)
@@ -101,15 +121,19 @@ namespace Cepima.MesUserCases
 
         private void load_patient(string patient_id)
         {
+            ID_PATIENT = patient_id;
+
             // Chargemeent du paitent
             string query_patient = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE p.id_patient=@id_p;";
 
             MesClasses.ManagerClasse.request_params.Clear();
             MesClasses.ManagerClasse.request_params.Add("id_p", patient_id);
+
             MySqlDataReader reader_patient = MesClasses.ManagerClasse.CRUD(query_patient, MesClasses.ManagerClasse.request_params, true);
 
             if (reader_patient.HasRows)
             {
+                
                 while (reader_patient.Read())
                 {
                     Image img_avt = ImageHelper.LoadImageFromDatabase(int.Parse(reader_patient["id_patient"].ToString()), "id_patient", "patients", "photo");
@@ -118,14 +142,14 @@ namespace Cepima.MesUserCases
                     lb_name.TextAlign = ContentAlignment.TopCenter;
                     lb_name.Height = 50;
                     lb_file_number.Text = reader_patient["numero_fiche"].ToString();
-                    lb_title.Text = "Prescription";
+                    //lb_title.Text = "Prescription";
 
                     avt.Avatar = img_avt;
 
                     // Rich TextBox pour le résumé du diagnosic
                     lb_title_summary.Text = " Resumé diagnostique de " + reader_patient["nom"].ToString() + " " + reader_patient["post_nom"].ToString();
-                    lb_title_summary.Left = (lb_title_summary.Parent.ClientSize.Width - lb_title_summary.Width) / 2; 
-                    
+                    lb_title_summary.Left = (lb_title_summary.Parent.ClientSize.Width - lb_title_summary.Width) / 2;
+
                     //diag_summary.Clear();
                     diag_summary.Text = reader_patient["diagnostic"].ToString();
                     diag_summary.Size = new Size(250, 100);
@@ -139,49 +163,71 @@ namespace Cepima.MesUserCases
                     diag_summary.Top = ((diag_summary.Parent.ClientSize.Height + 20) - diag_summary.Height) / 2;
 
                     diag_summary_pnl.Left = (diag_summary_pnl.Parent.ClientSize.Width - diag_summary_pnl.Width) / 2;
-                    
 
                 }
             }
+
+            else
+            {
+                pnl_responsable.Controls.Clear();
+                Label lb_info = new Label();
+                lb_info.Text = "La fils d'attente est vide";
+                lb_info.Font = new Font("Arial", 12, FontStyle.Bold);
+                pnl_responsable.Controls.Add(lb_info);
+
+                lb_info.Left = (lb_info.Parent.ClientSize.Width - lb_info.Width) / 2;
+                lb_info.Top = (lb_info.Parent.ClientSize.Height - lb_info.Height) / 2;
+            }
+
         }
 
         private void load_prescription(string id_cons, string id_patient)
         {
+            
             load_patient(id_patient);
             data_grid_med.Rows.Clear();
             // Chargement prescription
-            string query_presc = "SELECT pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.photo FROM prescriptions pr JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE id_consultation=@id_cons;";
+            string query_presc = "SELECT pr.id_prescription, pr.quantite, pr.unite, m.id_medicament, m.nom_medicament, m.prix_vente, m.photo FROM prescriptions pr JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE id_consultation=@id_cons;";
 
             MesClasses.ManagerClasse.request_params.Clear();
             MesClasses.ManagerClasse.request_params.Add("id_cons", id_cons);
 
-            MySqlDataReader reader_cons = MesClasses.ManagerClasse.CRUD(query_presc, MesClasses.ManagerClasse.request_params, true);
+            MySqlDataReader reader_presc = MesClasses.ManagerClasse.CRUD(query_presc, MesClasses.ManagerClasse.request_params, true);
 
-            if (reader_cons.HasRows)
+            if (reader_presc.HasRows)
             {
-                while (reader_cons.Read())
+                while (reader_presc.Read())
                 {
-                    data_grid_med.Rows.Add(reader_cons["nom_medicament"].ToString(), int.Parse(reader_cons["quantite"].ToString()), reader_cons["unite"].ToString());
+                    data_grid_med.Rows.Add(reader_presc["id_medicament"], reader_presc["nom_medicament"].ToString(), int.Parse(reader_presc["quantite"].ToString()), reader_presc["unite"].ToString(), reader_presc["prix_vente"].ToString());
                 }
+
+                bt_validate_presc.Visible = true;
             }
+
+            else
+            {
+                bt_validate_presc.Visible = false;
+            }
+
+
         }
 
         private void controlPosition()
         {
-            lb_title.Left = (lb_title.Parent.ClientSize.Width - lb_title.Width) / 2;
+            //lb_title.Left = (lb_title.Parent.ClientSize.Width - lb_title.Width) / 2;
             //pnl_radio_mode.Left = (pnl_radio_mode.Parent.ClientSize.Width - lb_title.Width) / 2;
             pnl_responsable.Left = (pnl_responsable.Parent.ClientSize.Width - pnl_responsable.Width) / 2;
         }
 
-        private Panel Pan_med(int id, string name)
+        private Panel Pan_rec_cons(int id, string name)
         {
             // Chargement de l'image
-            Image img_med = ImageHelper.LoadImageFromDatabase(id, "id_medicament", "medicament", "photo");
+            Image img_patient = ImageHelper.LoadImageFromDatabase(id, "id_patient", "patients", "photo");
 
-            Panel pan_med = new Panel();
-            pan_med.Width = 150;
-            pan_med.Height = 140;
-            pan_med.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            Panel pan_rec_cons = new Panel();
+            pan_rec_cons.Width = 150;
+            pan_rec_cons.Height = 140;
+            pan_rec_cons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 
             AvatarControl avatar = new AvatarControl();
             avatar.BorderSize = 2;
@@ -190,8 +236,8 @@ namespace Cepima.MesUserCases
             avatar.Top = 5;
             avatar.Left = 10;
             avatar.Enabled = false;
-            avatar.Avatar = img_med;
-            pan_med.Controls.Add(avatar);
+            avatar.Avatar = img_patient;
+            pan_rec_cons.Controls.Add(avatar);
             avatar.Left = (avatar.Parent.ClientSize.Width - avatar.Width) / 2;
 
             // Panel pour les actions 
@@ -215,7 +261,7 @@ namespace Cepima.MesUserCases
             panel_action.Controls.Add(btn_distribuer);
             btn_distribuer.Left = (btn_distribuer.Parent.ClientSize.Width - btn_distribuer.Width) / 2; 
 
-            pan_med.Controls.Add(panel_action);
+            pan_rec_cons.Controls.Add(panel_action);
             panel_action.Left = (panel_action.Parent.ClientSize.Width - panel_action.Width) / 2;
 
             Label lbl = new Label();
@@ -224,43 +270,46 @@ namespace Cepima.MesUserCases
             lbl.Left = 10;
             lbl.Width = 80;
             lbl.Tag = id;
-            pan_med.Controls.Add(lbl);
+            pan_rec_cons.Controls.Add(lbl);
             lbl.Left = (lbl.Parent.ClientSize.Width - lbl.Width) / 2;
 
-            return pan_med;
+            return pan_rec_cons;
 
         }
 
-        private void loadMed(params string[] args)
+        private void loadRecent(params string[] args)
         {
             if (args.Length != 0)
             {
                 //try
                 //{
-                string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament WHERE nom_medicament LIKE @searchText ORDER BY nom_medicament ASC";
-                Dictionary<string, string> request_params = MesClasses.ManagerClasse.request_params;
-                request_params.Clear();
-                request_params.Add("searchText", "%" + args[0] + "%");
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, request_params, true))
+                string presc_status = "Livrée";
+                string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE c.statut_presc=@status AND p.nom LIKE @searchText OR p.post_nom LIKE @searchText or p.prenom LIKE @searchText;";
+
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("status", presc_status);
+                MesClasses.ManagerClasse.request_params.Add("searchText", args[0]);
+
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                 {
                     if (reader.HasRows)
                     {
-                        fl_stock_med.Controls.Clear();
+                        fl_recent_cons.Controls.Clear();
 
                         while (reader.Read())
                         {
-                            string med_id = reader["id_medicament"].ToString();
-                            string med_name = reader["nom_medicament"].ToString();
+                            string cons_id = reader["id_consultation"].ToString();
+                            string patient_name = reader["nom"].ToString();
                             //Panel pan_med = new Panel();
                             //pan_med.Size = new Size(140, 130);
                             //pan_med.BorderStyle = BorderStyle.FixedSingle;
 
-                            Panel pan_med = Pan_med(int.Parse(med_id), med_name);
-                            pan_med.Tag = med_id;
+                            Panel pan_cons = Pan_rec_cons(int.Parse(cons_id), patient_name);
+                            pan_cons.Tag = cons_id;
                             //pan_med.BackColor = Color.Tomato;
 
 
-                            MesClasses.ManagerClasse.AddControl(fl_stock_med, pan_med, 15, 10);
+                            MesClasses.ManagerClasse.AddControl(fl_recent_cons, pan_cons, 15, 10);
 
                             //PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.capsules_100px, new Point(30, 2),
                             //new Size(80, 80));
@@ -272,14 +321,14 @@ namespace Cepima.MesUserCases
                             //pan_med.Controls.Add(lbNom);
                         }
                         reader.Close();
-                        ProgressiveDisplay pd = new ProgressiveDisplay(fl_stock_med, 100);
+                        ProgressiveDisplay pd = new ProgressiveDisplay(fl_recent_cons, 100);
                         pd.Start();
                     }
                     else
                     {
-                        fl_stock_med.Controls.Clear();
-                        fl_stock_med.Controls.Add(pnl_info);
-                        fl_stock_med.Left = (pnl_info.Parent.ClientSize.Width - pnl_info.Width) / 2;
+                        fl_recent_cons.Controls.Clear();
+                        fl_recent_cons.Controls.Add(pnl_info);
+                        fl_recent_cons.Left = (pnl_info.Parent.ClientSize.Width - pnl_info.Width) / 2;
                         pnl_info.Top = (pnl_info.Parent.ClientSize.Height - pnl_info.Height) / 2;
                         pnl_info.Visible = true;
 
@@ -297,26 +346,34 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament ORDER BY nom_medicament ASC";
-                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true))
+
+                    string presc_status = "Livrée";
+                    string query = "SELECT p.id_patient, p.nom, p.post_nom, p.prenom, p.numero_fiche, c.id_consultation, c.diagnostic FROM consultation c JOIN patients p ON c.id_patient = p.id_patient WHERE c.statut_presc=@status;";
+
+                    MesClasses.ManagerClasse.request_params.Clear();
+                    MesClasses.ManagerClasse.request_params.Add("status", presc_status);
+                    
+                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                     {
+                    
+
                         if (reader.HasRows)
                         {
-                            fl_stock_med.Controls.Clear();
+                            fl_recent_cons.Controls.Clear();
                             while (reader.Read())
                             {
-                                string med_id = reader["id_medicament"].ToString();
-                                string med_name = reader["nom_medicament"].ToString();
+                                string cons_id = reader["id_consultation"].ToString();
+                                string patient_name = reader["nom"].ToString();
                                 //Panel pan_med = new Panel();
                                 //pan_med.Size = new Size(140, 130);
                                 //pan_med.BorderStyle = BorderStyle.FixedSingle;
 
-                                Panel pan_med = Pan_med(int.Parse(med_id), med_name);
-                                pan_med.Tag = med_id;
+                                Panel pan_med = Pan_rec_cons(int.Parse(cons_id), patient_name);
+                                pan_med.Tag = cons_id;
                                 //pan_med.BackColor = Color.Tomato;
 
 
-                                MesClasses.ManagerClasse.AddControl(fl_stock_med, pan_med, 15, 10);
+                                MesClasses.ManagerClasse.AddControl(fl_recent_cons, pan_med, 15, 10);
 
                                 //PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.capsules_100px, new Point(30, 2),
                                 //new Size(80, 80));
@@ -328,17 +385,14 @@ namespace Cepima.MesUserCases
                                 //pan_med.Controls.Add(lbNom);
                             }
                             reader.Close();
-                            ProgressiveDisplay pd = new ProgressiveDisplay(fl_stock_med, 100);
+                            ProgressiveDisplay pd = new ProgressiveDisplay(fl_recent_cons, 100);
                             pd.Start();
                         }
 
                         else
                         {
-                            fl_stock_med.Controls.Clear();
-                            fl_stock_med.Controls.Add(pnl_no_entry);
-                            pnl_no_entry.Left = (pnl_no_entry.Parent.ClientSize.Width - pnl_no_entry.Width) / 2;
-                            pnl_no_entry.Top = (pnl_no_entry.Parent.ClientSize.Height - pnl_no_entry.Height) / 2;
-                            pnl_no_entry.Visible = true;
+                            fl_recent_cons.Controls.Clear();
+
                         }
                     }
                 }
@@ -357,42 +411,121 @@ namespace Cepima.MesUserCases
 
         private void tb_search_med_TextChanged(object sender, EventArgs e)
         {
-            loadMed(tb_search_med.Text);
+            //loadMed(tb_search_med.Text);
         }
 
-        private void customRoundedPanel1_Paint(object sender, PaintEventArgs e)
+        private void bt_validate_presc_Click(object sender, EventArgs e)
         {
+            string type_sortie = "";
 
+            long id_sortie = 0;
+
+            if (rd_type_soritie_H.Checked)
+            {
+                type_sortie = "Hospitalisation";
+            }
+
+            else if (rd_type_sortie_A.Checked)
+            {
+                type_sortie = "Ambulatoire";
+            }
+
+       
+            string id_patient = ID_PATIENT;
+            string status = "Livrée";
+
+            if (type_sortie != string.Empty)
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                 {
+                     MySqlTransaction tr = con.BeginTransaction();
+                     // Les trois requêtes à executer
+                     string query_update_cons ="UPDATE consultation SET statut_presc = @status WHERE id_patient = @id_patient";
+                     string query_create_sortie = "INSERT INTO sorties_stock(id_centre, type_sortie, id_patient, id_service, date_sortie) VALUES(@id_centre, @type_sortie, @id_patient, @id_service, @date)";
+                     string query_create_detail = "INSERT INTO detail_sortie_stock(id_sortie, id_medicament, quantite, prix_unitaire) VALUES(@id_sortie_stock, @id_medicament, @quantite, @prix_unitaire)";
+
+                     //try
+                     //{
+                         using (MySqlCommand cmdUpdate = new MySqlCommand(query_update_cons, con, tr))
+                         {
+                             cmdUpdate.Parameters.AddWithValue("id_patient", id_patient);
+                             cmdUpdate.Parameters.AddWithValue("status", status); 
+                             cmdUpdate.ExecuteNonQuery();
+                         }
+
+                         using (MySqlCommand cmdCreate_sortie = new MySqlCommand(query_create_sortie, con, tr))
+                         {
+                             cmdCreate_sortie.Parameters.AddWithValue("id_centre", MesForms.SessionUtilisateur.idCentre);
+                             if (rd_type_sortie_A.Checked)
+                             {
+                                 cmdCreate_sortie.Parameters.AddWithValue("type_sortie", type_sortie);
+                                 cmdCreate_sortie.Parameters.AddWithValue("id_patient", ID_PATIENT);
+                                 cmdCreate_sortie.Parameters.AddWithValue("id_service", null);
+                                 cmdCreate_sortie.Parameters.AddWithValue("date", DateTime.Now.Date);
+
+                             }
+
+                             else
+                             {
+                                 cmdCreate_sortie.Parameters.AddWithValue("type_sortie", type_sortie);
+                                 cmdCreate_sortie.Parameters.AddWithValue("id_patient", ID_SERVICE);
+                                 cmdCreate_sortie.Parameters.AddWithValue("id_service", null);
+                                 cmdCreate_sortie.Parameters.AddWithValue("date", DateTime.Now.Date);
+
+                             }
+
+                             cmdCreate_sortie.ExecuteNonQuery();
+
+                             id_sortie = cmdCreate_sortie.LastInsertedId;
+
+                         }
+
+
+                        
+
+                         using (MySqlCommand cmdCreate_detail = new MySqlCommand(query_create_detail, con, tr))
+                         {
+                             foreach (DataGridViewRow row in data_grid_med.Rows)
+                             {
+                                 // Ingorer la ligne vide
+                                 if (row.IsNewRow)
+                                     continue;
+
+                                 cmdCreate_detail.Parameters.Clear();
+
+                                 cmdCreate_detail.Parameters.AddWithValue("id_sortie_stock", id_sortie);
+
+                                 cmdCreate_detail.Parameters.AddWithValue("id_medicament", Convert.ToString(row.Cells["id_medicament"].Value));
+
+                                 cmdCreate_detail.Parameters.AddWithValue("quantite", Convert.ToString(row.Cells["med_qty"].Value));
+
+
+                                 cmdCreate_detail.Parameters.AddWithValue("prix_unitaire" ,Convert.ToString(row.Cells["med_price"].Value));
+                             }
+
+                             cmdCreate_detail.ExecuteNonQuery();
+                         }
+
+
+
+                         tr.Commit();
+                         MessageBox.Show("Prescription enregistré!!");
+                     }
+
+                     //catch (Exception ex)
+                     //{
+                     //    tr.Rollback();
+                     //    MessageBox.Show("Erreur : " + ex.Message);
+                     //}
+                 //}
+            }
+
+            else
+            {
+                MessageBox.Show("Erreur! Sélélectionner le type de sortie avant confirmation");
+            }
         }
 
-        private void modernDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-
-        private void data_grid_med_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-           
-        }
-
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void fl_stock_med_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pnl_radio_mode_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

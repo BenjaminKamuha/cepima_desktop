@@ -50,6 +50,8 @@ namespace Cepima.MesForms
                     tb_password.Text = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(session.PasswordEncrypte));
                     tb_password.Focus();
 
+                    
+
                     return true;
                 }
             }
@@ -84,7 +86,10 @@ namespace Cepima.MesForms
                 // si la session existe et n'est pas expirée, tu peut directement mettre le focus sur le mot de passe
                 tb_password.Focus();
                 cb_remember.Visible = false;
+
+                bt_connexion_Click(null, null);
             }
+
             else
             {
                 //sinon, focus sur le champs username
