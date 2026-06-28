@@ -153,7 +153,7 @@ namespace Cepima.MesUserCases
             }
             int quantite = 1;
             decimal montant = quantite * prixUnit;
-            dgv_medoc.Rows.Add(id, nom, quantite, unite, prixUnit, montant, "Non Livré");
+            dgv_medoc.Rows.Add(id, nom, quantite, unite, prixUnit, montant);
         }
 
         private decimal CalculTotal()
@@ -280,7 +280,7 @@ namespace Cepima.MesUserCases
             int idConsultation = 0;
             try
             {
-                string query = "SELECT id_consultation FROM hospitalisation WHERE id_patient=@patient ORDER BY id_hospitalisation DESC LIMIT 1";
+                string query = "SELECT id_consultation FROM consultation WHERE id_patient=@patient ORDER BY id_consultation DESC LIMIT 1";
                 MesClasses.ManagerClasse.request_params.Clear();
 
                 MesClasses.ManagerClasse.request_params.Add("@patient", id_patient.ToString());
@@ -318,7 +318,6 @@ namespace Cepima.MesUserCases
                     MesClasses.ManagerClasse.request_params.Add("@id_medicament", row.Cells["colID"].Value.ToString());
                     MesClasses.ManagerClasse.request_params.Add("@quantite", row.Cells["colQuantite"].Value.ToString());
                     MesClasses.ManagerClasse.request_params.Add("@unite", row.Cells["colUnite"].Value.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@statut", "Non Livré");
                     MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
                 }
 
@@ -328,6 +327,7 @@ namespace Cepima.MesUserCases
                 {
                     int idFacture = GenererFacture(idConsultation, id_patient, "Ambulatoire");
                     MessageBox.Show("Prescription et facture enregistrées");
+                    UpdateConsultation(idConsultation);
                 }
                 else
                 {
@@ -355,7 +355,7 @@ namespace Cepima.MesUserCases
                         medos.Add(row.Cells["colMedicament"].Value.ToString());
                     }
                     string medicaments = string.Join(", ", medos);
-
+                    UpdateConsultation(idConsultation);
                     // =============================== HISTORIQUE HOSPITALISATION =======================================
                     MesClasses.Event.SaveHistorique(idHospitalisationID.ToString(), "Prescription ajoutée par Dr : " + nomMedecin + " : " + medicaments);
                     dgv_medoc.Rows.Clear();
@@ -364,9 +364,7 @@ namespace Cepima.MesUserCases
                     MesUserCases.User_affectation affectation = new User_affectation();
                     affectation.Dock = DockStyle.Fill;
                     Form1.GlobalPanel_main.Controls.Clear();
-                    Form1.GlobalPanel_main.Controls.Add(affectation);
                 }
-                MessageBox.Show("La préscription a été crée pour la patient hospitalisé");
             }
             catch (Exception ex)
             {
@@ -374,6 +372,31 @@ namespace Cepima.MesUserCases
                 MessageBox.Show("Erreur : "+ex.Message);
             }
            
+        }
+        // ========================== METHODE POUR LA MISE EN JOUR DE LA CONSULTATION (STATUT 'LIVRE') ===============================
+        private void UpdateConsultation(int idConsultation)
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                try
+                {
+                    string queryUpdate = "UPDATE consultation SET statut_presc='Livrée' WHERE id_consultation = @id";
+                    using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id",idConsultation);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void tb_search_medoc_TextChanged_1(object sender, EventArgs e)
+        {
+            LoadMedicament(tb_search_medoc.Text);
         }
     }
 }
