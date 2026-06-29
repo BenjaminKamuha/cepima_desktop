@@ -92,15 +92,21 @@ namespace Cepima.MesUserCases
             }
             else
             {
-                pnl_responsable.Controls.Clear();
-                Label lb_info = new Label();
-                lb_info.Text = "Pas des patients en attente";
-                lb_info.Font = new Font("Arial", 12, FontStyle.Bold);
-                lb_info.Size = new Size(210, 15);
-                pnl_responsable.Controls.Add(lb_info);
+                //pnl_responsable.Controls.Clear();
+                //Label lb_info = new Label();
+                //lb_info.Text = "Pas des patients en attente";
+                //lb_info.Font = new Font("Arial", 12, FontStyle.Bold);
+                //lb_info.Size = new Size(210, 15);
+                //pnl_responsable.Controls.Add(lb_info);
 
-                lb_info.Left = (lb_info.Parent.ClientSize.Width - lb_info.Width) / 2;
-                lb_info.Top = (lb_info.Parent.ClientSize.Height - lb_info.Height) / 2;
+                //lb_info.Left = (lb_info.Parent.ClientSize.Width - lb_info.Width) / 2;
+                //lb_info.Top = (lb_info.Parent.ClientSize.Height - lb_info.Height) / 2;
+
+                pnl_info.Visible = true;
+                pnl_responsable.Controls.Add(pnl_info);
+
+                pnl_info.Left = (pnl_info.Parent.ClientSize.Width - pnl_info.Width) / 2;
+                pnl_info.Top = (pnl_info.Parent.ClientSize.Height - pnl_info.Height) / 2;
 
                 bt_validate_presc.Visible = false;
             }
@@ -222,7 +228,6 @@ namespace Cepima.MesUserCases
 
         private Panel Pan_rec_cons(int id, string name)
         {
-            MessageBox.Show(id.ToString());
             // Chargement de l'image
             Image img_patient = ImageHelper.LoadImageFromDatabase(id, "id_patient", "patients", "photo");
 
@@ -619,8 +624,9 @@ namespace Cepima.MesUserCases
 
                             tr.Commit();
 
+                            loadRecent();                            
                             loadQues();
-                            loadRecent();
+                            load_prescription(ID_PATIENT);
                             
                             MessageBox.Show("Vous venez d'annuler la prescription");
                         //}

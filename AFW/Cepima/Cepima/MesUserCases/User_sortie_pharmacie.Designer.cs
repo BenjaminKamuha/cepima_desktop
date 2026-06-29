@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.tb_search_med = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
@@ -63,17 +62,17 @@
             this.lb_name = new System.Windows.Forms.Label();
             this.avt = new AvatarControl();
             this.fl_queue = new System.Windows.Forms.FlowLayoutPanel();
+            this.customRoundedPanel3 = new CustomRoundedPanel();
             this.customRoundedPanel1.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.fl_recent_cons.SuspendLayout();
             this.pnl_info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnl_radio_mode.SuspendLayout();
             this.pnl_responsable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data_grid_med)).BeginInit();
             this.panel3.SuspendLayout();
+            this.customRoundedPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
@@ -95,18 +94,6 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(774, 543);
             this.customRoundedPanel1.TabIndex = 7;
             // 
-            // panel5
-            // 
-            this.panel5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.label4);
-            this.panel5.Controls.Add(this.customRoundedPanel2);
-            this.panel5.Controls.Add(this.fl_recent_cons);
-            this.panel5.Location = new System.Drawing.Point(823, 46);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(186, 543);
-            this.panel5.TabIndex = 8;
-            // 
             // tb_search_med
             // 
             this.tb_search_med.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -122,7 +109,7 @@
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 45);
+            this.label4.Location = new System.Drawing.Point(21, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(106, 17);
             this.label4.TabIndex = 13;
@@ -138,7 +125,7 @@
             this.customRoundedPanel2.Controls.Add(this.tb_search_med);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(11, 86);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(21, 80);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
             this.customRoundedPanel2.Size = new System.Drawing.Size(163, 25);
             this.customRoundedPanel2.TabIndex = 12;
@@ -157,8 +144,7 @@
             // 
             this.fl_recent_cons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.fl_recent_cons.AutoScroll = true;
-            this.fl_recent_cons.Controls.Add(this.pnl_info);
-            this.fl_recent_cons.Location = new System.Drawing.Point(16, 124);
+            this.fl_recent_cons.Location = new System.Drawing.Point(18, 118);
             this.fl_recent_cons.Name = "fl_recent_cons";
             this.fl_recent_cons.Size = new System.Drawing.Size(157, 463);
             this.fl_recent_cons.TabIndex = 11;
@@ -167,7 +153,7 @@
             // 
             this.pnl_info.Controls.Add(this.no_result_found);
             this.pnl_info.Controls.Add(this.pictureBox1);
-            this.pnl_info.Location = new System.Drawing.Point(3, 3);
+            this.pnl_info.Location = new System.Drawing.Point(315, 13);
             this.pnl_info.Name = "pnl_info";
             this.pnl_info.Size = new System.Drawing.Size(145, 107);
             this.pnl_info.TabIndex = 1;
@@ -227,7 +213,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(40, 45);
+            this.label3.Location = new System.Drawing.Point(40, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 17);
             this.label3.TabIndex = 15;
@@ -238,11 +224,11 @@
             this.lb_nb_queu.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lb_nb_queu.AutoSize = true;
             this.lb_nb_queu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_nb_queu.Location = new System.Drawing.Point(168, 45);
+            this.lb_nb_queu.Location = new System.Drawing.Point(214, 12);
             this.lb_nb_queu.Name = "lb_nb_queu";
-            this.lb_nb_queu.Size = new System.Drawing.Size(103, 17);
+            this.lb_nb_queu.Size = new System.Drawing.Size(175, 17);
             this.lb_nb_queu.TabIndex = 13;
-            this.lb_nb_queu.Text = "File d\'attente";
+            this.lb_nb_queu.Text = "Prescription en Attente";
             // 
             // pnl_radio_mode
             // 
@@ -311,20 +297,20 @@
             this.data_grid_med.AllowUserToAddRows = false;
             this.data_grid_med.AllowUserToDeleteRows = false;
             this.data_grid_med.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.data_grid_med.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.data_grid_med.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.data_grid_med.BackgroundColor = System.Drawing.Color.White;
             this.data_grid_med.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.data_grid_med.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.data_grid_med.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data_grid_med.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data_grid_med.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.data_grid_med.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data_grid_med.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_medicament,
@@ -332,14 +318,14 @@
             this.med_qty,
             this.med_unit,
             this.med_price});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.data_grid_med.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.data_grid_med.DefaultCellStyle = dataGridViewCellStyle15;
             this.data_grid_med.EnableHeadersVisualStyles = false;
             this.data_grid_med.GridColor = System.Drawing.Color.LightGray;
             this.data_grid_med.Location = new System.Drawing.Point(-1, 102);
@@ -445,23 +431,38 @@
             this.fl_queue.Size = new System.Drawing.Size(533, 58);
             this.fl_queue.TabIndex = 14;
             // 
+            // customRoundedPanel3
+            // 
+            this.customRoundedPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel3.BackColor = System.Drawing.Color.White;
+            this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.customRoundedPanel3.BorderRadius = 10;
+            this.customRoundedPanel3.BorderSize = 2;
+            this.customRoundedPanel3.Controls.Add(this.label4);
+            this.customRoundedPanel3.Controls.Add(this.customRoundedPanel2);
+            this.customRoundedPanel3.Controls.Add(this.fl_recent_cons);
+            this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Arrow;
+            this.customRoundedPanel3.Location = new System.Drawing.Point(812, 46);
+            this.customRoundedPanel3.Name = "customRoundedPanel3";
+            this.customRoundedPanel3.Size = new System.Drawing.Size(197, 543);
+            this.customRoundedPanel3.TabIndex = 16;
+            // 
             // User_sortie_pharmacie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.pnl_info);
+            this.Controls.Add(this.customRoundedPanel3);
             this.Controls.Add(this.customRoundedPanel1);
             this.Name = "User_sortie_pharmacie";
             this.Size = new System.Drawing.Size(1025, 623);
             this.Load += new System.EventHandler(this.User_sortie_pharmacie_Load);
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.fl_recent_cons.ResumeLayout(false);
             this.pnl_info.ResumeLayout(false);
             this.pnl_info.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -471,6 +472,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.data_grid_med)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.customRoundedPanel3.ResumeLayout(false);
+            this.customRoundedPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -478,7 +481,6 @@
         #endregion
 
         private CustomRoundedPanel customRoundedPanel1;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label4;
         private CustomRoundedPanel customRoundedPanel2;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -509,5 +511,6 @@
         private System.Windows.Forms.Label lb_name;
         private AvatarControl avt;
         private System.Windows.Forms.FlowLayoutPanel fl_queue;
+        private CustomRoundedPanel customRoundedPanel3;
     }
 }

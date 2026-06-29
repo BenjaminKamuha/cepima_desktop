@@ -22,7 +22,8 @@ namespace Cepima
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
             bt_personnel.Click += bt_personnel_Click;
-            LoadDataGrid();
+            //LoadDataGrid();
+            bt_acceuil.PerformClick();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
         }
