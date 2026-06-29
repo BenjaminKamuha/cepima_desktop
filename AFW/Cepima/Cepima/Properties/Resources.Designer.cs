@@ -1223,6 +1223,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sleeping_in_bed_40px {
+            get {
+                object obj = ResourceManager.GetObject("sleeping_in_bed_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Sortie {
             get {
                 object obj = ResourceManager.GetObject("Sortie", resourceCulture);

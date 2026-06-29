@@ -56,31 +56,28 @@ namespace Cepima.MesUserCases
 
 
             // Boutons Actions
-            RoundedButton btn_distribuer = new RoundedButton();
-            btn_distribuer.ButtonText = "Distribuer";
-            btn_distribuer.BorderColor = Color.Transparent;
-            btn_distribuer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            btn_distribuer.BorderRadius = 5;
-            btn_distribuer.Size = new Size(72, 24);
-            btn_distribuer.Location = new Point(2, 2);
-            btn_distribuer.Tag = id;
-            btn_distribuer.Click += btn_distribuer_Click;
+            ProgressBar prog__med = new ProgressBar();
+            prog__med.Size = new Size(100, 15);
+            prog__med.Location = new Point(2, 2);
+            prog__med.Tag = id;
+            prog__med.Value = 50;
+            
 
 
-            RoundedButton btn_update = new RoundedButton();
-            btn_update.ButtonText = "Mettre à jour";
-            btn_update.BorderColor = Color.Transparent;
-            btn_update.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            btn_update.BorderRadius = 5;
-            btn_update.Size = new Size(72, 24);
-            btn_update.Location = new Point(75, 2);
-            btn_update.Tag = id;
+            //RoundedButton btn_update = new RoundedButton();
+            //btn_update.ButtonText = "Mettre à jour";
+            //btn_update.BorderColor = Color.Transparent;
+            //btn_update.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            //btn_update.BorderRadius = 5;
+            //btn_update.Size = new Size(72, 24);
+            //btn_update.Location = new Point(75, 2);
+            //btn_update.Tag = id;
 
             Panel panel_action = new Panel();
             panel_action.Size = new Size(311, 60);
             panel_action.Location = new Point(0, 110);
-            panel_action.Controls.Add(btn_distribuer);
-            panel_action.Controls.Add(btn_update);
+            panel_action.Controls.Add(prog__med);
+            //panel_action.Controls.Add(btn_update);
             pan_med.Controls.Add(panel_action);
 
             Label lbl = new Label();

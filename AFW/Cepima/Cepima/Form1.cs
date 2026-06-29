@@ -23,7 +23,6 @@ namespace Cepima
             GlobalPanel_main = panel_center_main;
             bt_personnel.Click += bt_personnel_Click;
             //LoadDataGrid();
-            bt_acceuil.PerformClick();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
         }
@@ -240,6 +239,13 @@ namespace Cepima
         
         private void bt_acceuil_Click(object sender, EventArgs e)
         {
+
+            panel_center_main.Controls.Clear();
+            UC_logo_cepima uc_lg = new UC_logo_cepima();
+            uc_lg.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Add(uc_lg);
+
+
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
             lb_sous_menu.Visible = true;
@@ -526,7 +532,7 @@ namespace Cepima
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            bt_acceuil.PerformClick();
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)

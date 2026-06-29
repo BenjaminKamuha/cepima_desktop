@@ -299,6 +299,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UC_logo_cepima.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UC_logo_cepima.Designer.cs">
+      <DependentUpon>UC_logo_cepima.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -415,6 +421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecuRDLC.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_logo_cepima.resx">
+      <DependentUpon>UC_logo_cepima.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ds_facture.xsc">
       <DependentUpon>ds_facture.xsd</DependentUpon>
@@ -865,6 +874,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\brain.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sleeping_in_bed_40px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
