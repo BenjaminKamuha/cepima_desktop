@@ -330,7 +330,14 @@ namespace Cepima
                     panel_center_main.Controls.Add(user_med);
                 
                 }),
-                new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => {}),
+                new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => {
+
+                    MesUserCases.UC_add_medoc add_med = new MesUserCases.UC_add_medoc();
+                    panel_center_main.Controls.Clear();
+                    add_med.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(add_med);
+                
+                }),
             
                 new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {
                     

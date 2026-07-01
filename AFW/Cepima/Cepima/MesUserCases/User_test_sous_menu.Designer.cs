@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.bt_annuler_consultation = new test_arrondissement2012.PerfectRoundedButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.bt_annuler_consultation = new test_arrondissement2012.PerfectRoundedButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.rich_description = new System.Windows.Forms.RichTextBox();
@@ -46,15 +46,15 @@
             this.cbx_patient = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
             // 
-            this.customRoundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.Transparent;
             this.customRoundedPanel1.BorderRadius = 8;
             this.customRoundedPanel1.BorderSize = 0;
@@ -68,14 +68,15 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(143, 424);
             this.customRoundedPanel1.TabIndex = 0;
             // 
-            // panel1
+            // pictureBox1
             // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.Controls.Add(this.customRoundedPanel2);
-            this.panel1.Location = new System.Drawing.Point(149, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(809, 418);
-            this.panel1.TabIndex = 1;
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.counselor_100px;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 14);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(132, 77);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // bt_annuler_consultation
             // 
@@ -92,19 +93,19 @@
             this.bt_annuler_consultation.Size = new System.Drawing.Size(132, 30);
             this.bt_annuler_consultation.TabIndex = 3;
             // 
-            // pictureBox1
+            // panel1
             // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.counselor_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(132, 77);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.customRoundedPanel2);
+            this.panel1.Location = new System.Drawing.Point(149, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(809, 418);
+            this.panel1.TabIndex = 1;
             // 
             // customRoundedPanel2
             // 
             this.customRoundedPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel2.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel2.BorderRadius = 10;
             this.customRoundedPanel2.BorderSize = 2;
@@ -144,7 +145,7 @@
             this.rich_description.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rich_description.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.rich_description.BackColor = System.Drawing.Color.White;
             this.rich_description.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rich_description.Location = new System.Drawing.Point(4, 3);
             this.rich_description.Name = "rich_description";
@@ -154,7 +155,7 @@
             // 
             // tb_motif
             // 
-            this.tb_motif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_motif.BackColor = System.Drawing.Color.White;
             this.tb_motif.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_motif.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_motif.Location = new System.Drawing.Point(217, 144);
@@ -165,6 +166,7 @@
             // 
             // myRoundedTextBox4
             // 
+            this.myRoundedTextBox4.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox4.BorderRadius = 4;
             this.myRoundedTextBox4.BorderSize = 1;
@@ -231,6 +233,7 @@
             // 
             // cbx_personnel
             // 
+            this.cbx_personnel.BackColor = System.Drawing.Color.White;
             this.cbx_personnel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_personnel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_personnel.FormattingEnabled = true;
@@ -251,6 +254,7 @@
             // 
             // cbx_patient
             // 
+            this.cbx_patient.BackColor = System.Drawing.Color.White;
             this.cbx_patient.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_patient.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_patient.FormattingEnabled = true;
@@ -279,8 +283,8 @@
             this.Name = "User_test_sous_menu";
             this.Size = new System.Drawing.Size(961, 424);
             this.customRoundedPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             this.customRoundedPanel3.ResumeLayout(false);

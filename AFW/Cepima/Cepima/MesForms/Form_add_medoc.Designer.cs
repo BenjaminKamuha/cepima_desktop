@@ -157,7 +157,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 419);
+            this.ClientSize = new System.Drawing.Size(637, 419);
             this.Controls.Add(this.bt_add_image);
             this.Controls.Add(this.picture_image);
             this.Controls.Add(this.bt_save_medoc);
@@ -173,6 +173,7 @@
             this.Controls.Add(this.tb_medoc);
             this.Name = "Form_add_medoc";
             this.Text = "Form_add_medoc";
+            this.Load += new System.EventHandler(this.Form_add_medoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picture_image)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -129,6 +129,12 @@
     <Compile Include="MesForms\Form_New_prescription.Designer.cs">
       <DependentUpon>Form_New_prescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\UC_add_medoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\UC_add_medoc.Designer.cs">
+      <DependentUpon>UC_add_medoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\UC_detail_personnel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_New_prescription.resx">
       <DependentUpon>Form_New_prescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\UC_add_medoc.resx">
+      <DependentUpon>UC_add_medoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\UC_detail_personnel.resx">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>

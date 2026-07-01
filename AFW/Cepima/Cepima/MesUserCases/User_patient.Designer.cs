@@ -63,6 +63,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(26, 65);
@@ -94,6 +95,7 @@
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
@@ -129,7 +131,7 @@
             // 
             // tb_phone_number
             // 
-            this.tb_phone_number.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_phone_number.BackColor = System.Drawing.Color.White;
             this.tb_phone_number.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_phone_number.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_phone_number.Location = new System.Drawing.Point(174, 244);
@@ -140,7 +142,7 @@
             // 
             // tb_adresse
             // 
-            this.tb_adresse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_adresse.BackColor = System.Drawing.Color.White;
             this.tb_adresse.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_adresse.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_adresse.Location = new System.Drawing.Point(174, 288);
@@ -152,7 +154,7 @@
             // 
             // tb_prenom
             // 
-            this.tb_prenom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_prenom.BackColor = System.Drawing.Color.White;
             this.tb_prenom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_prenom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_prenom.Location = new System.Drawing.Point(175, 111);
@@ -163,7 +165,7 @@
             // 
             // tb_post_nom
             // 
-            this.tb_post_nom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_post_nom.BackColor = System.Drawing.Color.White;
             this.tb_post_nom.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_post_nom.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_post_nom.Location = new System.Drawing.Point(176, 62);
@@ -174,7 +176,7 @@
             // 
             // tb_name_patient
             // 
-            this.tb_name_patient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_name_patient.BackColor = System.Drawing.Color.White;
             this.tb_name_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_name_patient.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_name_patient.Location = new System.Drawing.Point(174, 17);
@@ -252,6 +254,7 @@
             // 
             // cbx_genre
             // 
+            this.cbx_genre.BackColor = System.Drawing.Color.White;
             this.cbx_genre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_genre.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_genre.FormattingEnabled = true;

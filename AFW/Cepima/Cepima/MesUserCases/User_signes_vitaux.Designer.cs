@@ -63,6 +63,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(16, 53);
@@ -94,6 +95,7 @@
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
@@ -163,7 +165,7 @@
             // 
             // tb_taille
             // 
-            this.tb_taille.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_taille.BackColor = System.Drawing.Color.White;
             this.tb_taille.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_taille.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_taille.Location = new System.Drawing.Point(400, 278);
@@ -190,7 +192,7 @@
             // 
             // tb_frequence
             // 
-            this.tb_frequence.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_frequence.BackColor = System.Drawing.Color.White;
             this.tb_frequence.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_frequence.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_frequence.Location = new System.Drawing.Point(400, 210);
@@ -201,7 +203,7 @@
             // 
             // tb_poids
             // 
-            this.tb_poids.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_poids.BackColor = System.Drawing.Color.White;
             this.tb_poids.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_poids.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_poids.Location = new System.Drawing.Point(214, 278);
@@ -244,7 +246,7 @@
             // 
             // tb_tension
             // 
-            this.tb_tension.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_tension.BackColor = System.Drawing.Color.White;
             this.tb_tension.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_tension.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_tension.Location = new System.Drawing.Point(214, 210);
@@ -271,7 +273,7 @@
             // 
             // tb_temperature
             // 
-            this.tb_temperature.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.tb_temperature.BackColor = System.Drawing.Color.White;
             this.tb_temperature.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_temperature.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_temperature.Location = new System.Drawing.Point(212, 149);
@@ -282,6 +284,7 @@
             // 
             // myRoundedTextBox1
             // 
+            this.myRoundedTextBox1.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox1.BorderRadius = 4;
             this.myRoundedTextBox1.BorderSize = 1;

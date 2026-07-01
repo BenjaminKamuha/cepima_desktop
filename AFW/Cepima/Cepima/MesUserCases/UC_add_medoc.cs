@@ -1,22 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 using System.IO;
-namespace Cepima.MesForms
+using MySql.Data.MySqlClient;
+
+namespace Cepima.MesUserCases
 {
-    public partial class Form_add_medoc : Form
+    public partial class UC_add_medoc : UserControl
     {
-        public Form_add_medoc()
+        public UC_add_medoc()
         {
             InitializeComponent();
         }
+
+
 
         private void bt_add_image_Click(object sender, EventArgs e)
         {
@@ -42,7 +45,7 @@ namespace Cepima.MesForms
                 catch (Exception ex)
                 {
 
-                    MessageBox.Show("Erreur : "+ex.Message);
+                    MessageBox.Show("Erreur : " + ex.Message);
                 }
             }
         }
@@ -55,28 +58,28 @@ namespace Cepima.MesForms
                 {
                     MessageBox.Show("Charger une image"); return;
                 }
-                byte[] photo = null ;
+                byte[] photo = null;
                 //convertion image en byte
                 using (MemoryStream ms = new MemoryStream())
                 {
                     using (Bitmap bmp = new Bitmap(picture_image.Image))
                     {
-                        bmp.Save(ms,System.Drawing.Imaging.ImageFormat.Jpeg);
+                        bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                     }
                     photo = ms.ToArray();
                 }
 
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                 {
-                    string query = "INSERT INTO medicament(nom_medicament,photos,categorie,unite,prix_achat,prix_vente)VALUES(@nom,@photo,@cat,@unite,@achat,@vente)";
+                    string query = "INSERT INTO medicament(nom_medicament,photo,categorie,unite,prix_achat,prix_vente)VALUES(@nom,@photo,@cat,@unite,@achat,@vente)";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@nom",tb_medoc.Text);
-                        cmd.Parameters.AddWithValue("@photo",photo);
-                        cmd.Parameters.AddWithValue("@cat",tb_categorie.Text);
-                        cmd.Parameters.AddWithValue("@unite",tb_unity.Text);
-                        cmd.Parameters.AddWithValue("@achat",decimal.Parse(tb_prix_achat.Text));
-                        cmd.Parameters.AddWithValue("@vente",decimal.Parse(tb_prix_vente.Text));
+                        cmd.Parameters.AddWithValue("@nom", tb_medoc.Text);
+                        cmd.Parameters.AddWithValue("@photo", photo);
+                        cmd.Parameters.AddWithValue("@cat", tb_categorie.Text);
+                        cmd.Parameters.AddWithValue("@unite", tb_unity.Text);
+                        cmd.Parameters.AddWithValue("@achat", decimal.Parse(tb_prix_achat.Text));
+                        cmd.Parameters.AddWithValue("@vente", decimal.Parse(tb_prix_vente.Text));
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -91,11 +94,11 @@ namespace Cepima.MesForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur : "+ex.Message);
+                MessageBox.Show("Erreur : " + ex.Message);
             }
         }
 
-        private void Form_add_medoc_Load(object sender, EventArgs e)
+        private void UC_add_medoc_Load(object sender, EventArgs e)
         {
 
         }

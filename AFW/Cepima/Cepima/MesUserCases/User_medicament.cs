@@ -121,6 +121,7 @@ namespace Cepima.MesUserCases
         {
             if (args.Length != 0)
             {
+                //string query = "SELECT m.id_medicament, m.nom_medicament, m.categorie, m.unite, s.quantite FROM stock_pharmacie s JOIN medicament m on m.id_medicament = s.id_medicament WHERE m.nom_medicament LIKE @searchText ORDER BY m.nom_medicament ASC";
                 //try
                 //{
                     string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament WHERE nom_medicament LIKE @searchText ORDER BY nom_medicament ASC";
