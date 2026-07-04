@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.bt_add_image = new System.Windows.Forms.Button();
+            this.picture_image = new System.Windows.Forms.PictureBox();
+            this.tb_prix_vente = new System.Windows.Forms.TextBox();
+            this.myRoundedTextBox5 = new MyRoundedTextBox();
             this.tb_prix_achat = new System.Windows.Forms.TextBox();
             this.tb_unity = new System.Windows.Forms.TextBox();
             this.tb_categorie = new System.Windows.Forms.TextBox();
@@ -47,14 +51,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tb_prix_vente = new System.Windows.Forms.TextBox();
-            this.myRoundedTextBox5 = new MyRoundedTextBox();
-            this.bt_add_image = new System.Windows.Forms.Button();
-            this.picture_image = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_image)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picture_image)).BeginInit();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
@@ -89,6 +89,52 @@
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(612, 391);
             this.customRoundedPanel1.TabIndex = 32;
+            // 
+            // bt_add_image
+            // 
+            this.bt_add_image.Location = new System.Drawing.Point(477, 117);
+            this.bt_add_image.Name = "bt_add_image";
+            this.bt_add_image.Size = new System.Drawing.Size(114, 23);
+            this.bt_add_image.TabIndex = 32;
+            this.bt_add_image.Text = "choisir image";
+            this.bt_add_image.UseVisualStyleBackColor = true;
+            this.bt_add_image.Click += new System.EventHandler(this.bt_add_image_Click);
+            // 
+            // picture_image
+            // 
+            this.picture_image.Location = new System.Drawing.Point(477, 38);
+            this.picture_image.Name = "picture_image";
+            this.picture_image.Size = new System.Drawing.Size(114, 73);
+            this.picture_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picture_image.TabIndex = 31;
+            this.picture_image.TabStop = false;
+            // 
+            // tb_prix_vente
+            // 
+            this.tb_prix_vente.BackColor = System.Drawing.Color.White;
+            this.tb_prix_vente.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_prix_vente.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_prix_vente.Location = new System.Drawing.Point(174, 233);
+            this.tb_prix_vente.Multiline = true;
+            this.tb_prix_vente.Name = "tb_prix_vente";
+            this.tb_prix_vente.Size = new System.Drawing.Size(280, 23);
+            this.tb_prix_vente.TabIndex = 7;
+            // 
+            // myRoundedTextBox5
+            // 
+            this.myRoundedTextBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox5.BorderRadius = 4;
+            this.myRoundedTextBox5.BorderSize = 1;
+            this.myRoundedTextBox5.Enabled = false;
+            this.myRoundedTextBox5.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox5.Location = new System.Drawing.Point(170, 232);
+            this.myRoundedTextBox5.Name = "myRoundedTextBox5";
+            this.myRoundedTextBox5.PasswordChar = '\0';
+            this.myRoundedTextBox5.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox5.PlaceholderText = "";
+            this.myRoundedTextBox5.Size = new System.Drawing.Size(288, 27);
+            this.myRoundedTextBox5.TabIndex = 8;
+            this.myRoundedTextBox5.UseSystemPasswordChar = false;
             // 
             // tb_prix_achat
             // 
@@ -276,9 +322,10 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(31, 57);
+            this.panel1.Location = new System.Drawing.Point(21, 57);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(254, 231);
             this.panel1.TabIndex = 31;
@@ -304,52 +351,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // tb_prix_vente
-            // 
-            this.tb_prix_vente.BackColor = System.Drawing.Color.White;
-            this.tb_prix_vente.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_prix_vente.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_prix_vente.Location = new System.Drawing.Point(174, 233);
-            this.tb_prix_vente.Multiline = true;
-            this.tb_prix_vente.Name = "tb_prix_vente";
-            this.tb_prix_vente.Size = new System.Drawing.Size(280, 23);
-            this.tb_prix_vente.TabIndex = 7;
-            // 
-            // myRoundedTextBox5
-            // 
-            this.myRoundedTextBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox5.BorderRadius = 4;
-            this.myRoundedTextBox5.BorderSize = 1;
-            this.myRoundedTextBox5.Enabled = false;
-            this.myRoundedTextBox5.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox5.Location = new System.Drawing.Point(170, 232);
-            this.myRoundedTextBox5.Name = "myRoundedTextBox5";
-            this.myRoundedTextBox5.PasswordChar = '\0';
-            this.myRoundedTextBox5.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox5.PlaceholderText = "";
-            this.myRoundedTextBox5.Size = new System.Drawing.Size(288, 27);
-            this.myRoundedTextBox5.TabIndex = 8;
-            this.myRoundedTextBox5.UseSystemPasswordChar = false;
-            // 
-            // bt_add_image
-            // 
-            this.bt_add_image.Location = new System.Drawing.Point(477, 117);
-            this.bt_add_image.Name = "bt_add_image";
-            this.bt_add_image.Size = new System.Drawing.Size(114, 23);
-            this.bt_add_image.TabIndex = 32;
-            this.bt_add_image.Text = "choisir image";
-            this.bt_add_image.UseVisualStyleBackColor = true;
-            this.bt_add_image.Click += new System.EventHandler(this.bt_add_image_Click);
-            // 
-            // picture_image
-            // 
-            this.picture_image.Location = new System.Drawing.Point(477, 38);
-            this.picture_image.Name = "picture_image";
-            this.picture_image.Size = new System.Drawing.Size(114, 73);
-            this.picture_image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picture_image.TabIndex = 31;
-            this.picture_image.TabStop = false;
-            // 
             // UC_add_medoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,10 +362,10 @@
             this.Load += new System.EventHandler(this.UC_add_medoc_Load);
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_image)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picture_image)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -231,6 +231,12 @@
     <Compile Include="MesUserCases\User_medicament.designer.cs">
       <DependentUpon>User_medicament.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_paiement_eeg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_paiement_eeg.Designer.cs">
+      <DependentUpon>User_paiement_eeg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_paiement_facture.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -386,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_medicament.resx">
       <DependentUpon>User_medicament.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_paiement_eeg.resx">
+      <DependentUpon>User_paiement_eeg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_paiement_facture.resx">
       <DependentUpon>User_paiement_facture.cs</DependentUpon>
@@ -886,6 +895,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sleeping_in_bed_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icone_eeg_pay.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\montant_eeg.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\encaissement_mois.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\non_paye.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total_examen.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

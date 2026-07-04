@@ -9,16 +9,38 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
+
 namespace Cepima.MesUserCases
 {
     public partial class User_prescription : UserControl
     {
         public static int id_patient;
+        string type_patient = "";
         public User_prescription(int PatientID)
         {
             InitializeComponent();
             LoadMedicament();
             id_patient = PatientID;
+            rb_ambulatoire.CheckedChanged += rb_ambulatoire_CheckedChanged;
+            rb_hospitalise.CheckedChanged += rb_hospitalise_CheckedChanged;
+        }
+
+        void rb_hospitalise_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_hospitalise.Checked)
+            {
+                type_patient = "hospitalisation";
+                return;
+            }
+        }
+
+        void rb_ambulatoire_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_ambulatoire.Checked)
+            {
+                type_patient = "ambulatoire";
+                return;
+            }
         }
 
         private void LoadMedicament(params string[] args)
@@ -301,78 +323,6 @@ namespace Cepima.MesUserCases
 
             return idConsultation;
         }
-        private void bt_valider_prescription_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int idConsultation = RecupererIdConsultation();
-                // ================================ INSERERTION PRESCRIPTIONS ==================================
-                foreach (DataGridViewRow row in dgv_medoc.Rows)
-                {
-                    if (row.IsNewRow)
-                        continue;
-                    string query = "INSERT INTO prescriptions(id_consultation,id_patient,id_medicament,quantite,unite,statut,date_prescription)VALUES(@id_consultation,@id_patient,@id_medicament,@quantite,@unite,@statut,CURDATE())";
-                    MesClasses.ManagerClasse.request_params.Clear();
-                    MesClasses.ManagerClasse.request_params.Add("@id_consultation", idConsultation.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@id_patient", id_patient.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@id_medicament", row.Cells["colID"].Value.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@quantite", row.Cells["colQuantite"].Value.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@unite", row.Cells["colUnite"].Value.ToString());
-                    MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
-                }
-
-
-                // ===================================== PATIENT AMBULATOIRE ========================================
-                if (rb_ambulatoire.Checked)
-                {
-                    int idFacture = GenererFacture(idConsultation, id_patient, "Ambulatoire");
-                    MessageBox.Show("Prescription et facture enregistrées");
-                    UpdateConsultation(idConsultation);
-                }
-                else
-                {
-                    // récuperer l'id hospitalisation
-                    int idHospitalisationID = RecupererIdHospitalisation();
-                    // récuperer aussi le nom du docteur qui a préscrit les medocs
-                    string nomMedecin = "";
-                    string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS medecin FROM consultation c JOIN personnels p ON c.id_personnel = p.id_personnel WHERE c.id_consultation = @id";
-                    MesClasses.ManagerClasse.request_params.Clear();
-                    MesClasses.ManagerClasse.request_params.Add("@id", idConsultation.ToString());
-                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
-                    {
-                        if (reader.Read())
-                        {
-                            nomMedecin = reader["medecin"].ToString();
-                        }
-                        reader.Close();
-                    }
-                    // ======================= construction de la liste de medocs préscrit par le medecin ===================
-                    List<string> medos = new List<string>();
-                    foreach (DataGridViewRow row in dgv_medoc.Rows)
-                    {
-                        if (row.IsNewRow)
-                            continue;
-                        medos.Add(row.Cells["colMedicament"].Value.ToString());
-                    }
-                    string medicaments = string.Join(", ", medos);
-                    UpdateConsultation(idConsultation);
-                    // =============================== HISTORIQUE HOSPITALISATION =======================================
-                    MesClasses.Event.SaveHistorique(idHospitalisationID.ToString(), "Prescription ajoutée par Dr : " + nomMedecin + " : " + medicaments);
-                    dgv_medoc.Rows.Clear();
-
-                    // ================================= AFFECTATION CHAMBRE ============================================
-                    MesUserCases.User_affectation affectation = new User_affectation();
-                    affectation.Dock = DockStyle.Fill;
-                    Form1.GlobalPanel_main.Controls.Clear();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Erreur : "+ex.Message);
-            }
-           
-        }
         // ========================== METHODE POUR LA MISE EN JOUR DE LA CONSULTATION (STATUT 'LIVRE') ===============================
         private void UpdateConsultation(int idConsultation)
         {
@@ -397,6 +347,108 @@ namespace Cepima.MesUserCases
         private void tb_search_medoc_TextChanged_1(object sender, EventArgs e)
         {
             LoadMedicament(tb_search_medoc.Text);
+        }
+
+        private void bt_valider_prescription_Click(object sender, EventArgs e)
+        {
+            ValiderPrescriptions();
+        }
+
+        // ===================================== VALIDER PRESCRIPTIONS ==========================================
+        private void ValiderPrescriptions()
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+                int idSortie = 0;
+                try
+                {
+                    string queryInsertSortie = "INSERT INTO sorties_stock(id_centre,type_sortie,id_patient,date_sortie)VALUES(@centre,@type,@patient,CURDATE())";
+                    using (MySqlCommand cmd = new MySqlCommand(queryInsertSortie, con, tr))
+                    {
+                        cmd.Parameters.AddWithValue("@centre",MesForms.SessionUtilisateur.idCentre);
+                        cmd.Parameters.AddWithValue("@type",type_patient);
+                        cmd.Parameters.AddWithValue("@patient",id_patient);
+                        cmd.ExecuteNonQuery();
+
+                        idSortie = Convert.ToInt32(cmd.LastInsertedId); // recupérer la dernier ligne (==> id)
+                    }
+
+                    // =============================== PRESCRIPTIONS =================================
+                    int idconsultation = RecupererIdConsultation();
+
+                    foreach (DataGridViewRow row in dgv_medoc.Rows)
+                    {
+                        if (row.IsNewRow)
+                            continue;
+                        string queryInsertPresc = "INSERT INTO prescriptions(id_sortie,id_patient,id_medicament,id_consultation,quantite,unite,date_prescription)VALUES(@sortie,@patient,@medoc,@consultation,@qte,@unite,CURDATE())";
+                        using (MySqlCommand cmd = new MySqlCommand(queryInsertPresc, con, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@sortie",idSortie);
+                            cmd.Parameters.AddWithValue("@patient",id_patient);
+                            cmd.Parameters.AddWithValue("@medoc", row.Cells["colID"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@consultation",idconsultation);
+                            cmd.Parameters.AddWithValue("@qte", row.Cells["colQuantite"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@unite", row.Cells["colUnite"].Value.ToString());
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // ===================================== PATIENT AMBULATOIRE ========================================
+                        if (type_patient == "ambulatoire")
+                        {
+                            int idFacture = GenererFacture(idconsultation, id_patient, "Ambulatoire");
+                            MessageBox.Show("Prescription et facture enregistrées");
+                            UpdateConsultation(idconsultation);
+                        }
+                        else
+                        {
+                            // récuperer l'id hospitalisation
+                            int idHospitalisationID = RecupererIdHospitalisation();
+                            // récuperer aussi le nom du docteur qui a préscrit les medocs
+                            string nomMedecin = "";
+                            string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS medecin FROM consultation c JOIN personnels p ON c.id_personnel = p.id_personnel WHERE c.id_consultation = @id";
+                            using (MySqlCommand cmd = new MySqlCommand(query,con,tr))
+                            {
+                                using (MySqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        nomMedecin = reader["medecin"].ToString();
+                                    }
+                                    reader.Close();
+                                }
+                            }
+
+                            // ======================= construction de la liste de medocs préscrit par le medecin ===================
+                            List<string> medos = new List<string>();
+                            foreach (DataGridViewRow row_medoc in dgv_medoc.Rows)
+                            {
+                                if (row_medoc.IsNewRow)
+                                    continue;
+                                medos.Add(row.Cells["colMedicament"].Value.ToString());
+                            }
+                            string medicaments = string.Join(", ", medos);
+                            UpdateConsultation(idconsultation);
+                            // =============================== HISTORIQUE HOSPITALISATION =======================================
+                            MesClasses.Event.SaveHistorique(idHospitalisationID.ToString(), "Prescription ajoutée par Dr : " + nomMedecin + " : " + medicaments);
+                            dgv_medoc.Rows.Clear();
+
+                            // ================================= AFFECTATION CHAMBRE ============================================
+                            MesUserCases.User_affectation affectation = new User_affectation();
+                            affectation.Dock = DockStyle.Fill;
+                            Form1.GlobalPanel_main.Controls.Clear();
+                        }
+                        tr.Commit();
+                        MessageBox.Show("Prescription ajoutée avec succès!!!");
+                    }
+              
+                }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur : "+ex.Message);
+                }
+            }
         }
     }
 }

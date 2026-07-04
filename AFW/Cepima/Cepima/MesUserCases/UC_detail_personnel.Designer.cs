@@ -32,17 +32,23 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dt_date_embauche = new System.Windows.Forms.DateTimePicker();
+            this.lb_date_embauche = new System.Windows.Forms.Label();
+            this.bt_mod_fonction = new System.Windows.Forms.Button();
             this.bt_mod_genre = new System.Windows.Forms.Button();
             this.bt_mod_prenom = new System.Windows.Forms.Button();
             this.bt_mod_postnom = new System.Windows.Forms.Button();
             this.bt_mod_adresse = new System.Windows.Forms.Button();
+            this.bt_mod_date_embauche = new System.Windows.Forms.Button();
             this.bt_mod_phone = new System.Windows.Forms.Button();
             this.bt_mod_nom = new System.Windows.Forms.Button();
             this.tb_mod_postnom = new System.Windows.Forms.TextBox();
             this.tb_mod_adresse = new System.Windows.Forms.TextBox();
+            this.tb_mod_fonction = new System.Windows.Forms.TextBox();
             this.tb_mod_phone = new System.Windows.Forms.TextBox();
             this.tb_mod_genre = new System.Windows.Forms.TextBox();
             this.tb_mod_prenom = new System.Windows.Forms.TextBox();
+            this.lb_fonction = new System.Windows.Forms.Label();
             this.tb_mod_nom = new System.Windows.Forms.TextBox();
             this.lb_genre = new System.Windows.Forms.Label();
             this.lb_adresse = new System.Windows.Forms.Label();
@@ -55,19 +61,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lb_fonction = new System.Windows.Forms.Label();
-            this.tb_mod_fonction = new System.Windows.Forms.TextBox();
-            this.bt_mod_fonction = new System.Windows.Forms.Button();
-            this.lb_date_embauche = new System.Windows.Forms.Label();
-            this.dt_date_embauche = new System.Windows.Forms.DateTimePicker();
-            this.bt_mod_date_embauche = new System.Windows.Forms.Button();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.bt_save_update = new RoundedButton();
             this.bt_cancel = new RoundedButton();
@@ -97,6 +97,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.dt_date_embauche);
             this.panel2.Controls.Add(this.lb_date_embauche);
             this.panel2.Controls.Add(this.bt_mod_fonction);
@@ -137,6 +138,35 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(733, 296);
             this.panel2.TabIndex = 4;
+            // 
+            // dt_date_embauche
+            // 
+            this.dt_date_embauche.Location = new System.Drawing.Point(509, 22);
+            this.dt_date_embauche.Name = "dt_date_embauche";
+            this.dt_date_embauche.Size = new System.Drawing.Size(179, 20);
+            this.dt_date_embauche.TabIndex = 5;
+            // 
+            // lb_date_embauche
+            // 
+            this.lb_date_embauche.AutoSize = true;
+            this.lb_date_embauche.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lb_date_embauche.Location = new System.Drawing.Point(509, 26);
+            this.lb_date_embauche.Name = "lb_date_embauche";
+            this.lb_date_embauche.Size = new System.Drawing.Size(32, 14);
+            this.lb_date_embauche.TabIndex = 13;
+            this.lb_date_embauche.Text = "date";
+            // 
+            // bt_mod_fonction
+            // 
+            this.bt_mod_fonction.FlatAppearance.BorderSize = 0;
+            this.bt_mod_fonction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_mod_fonction.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_fonction.Image")));
+            this.bt_mod_fonction.Location = new System.Drawing.Point(284, 241);
+            this.bt_mod_fonction.Name = "bt_mod_fonction";
+            this.bt_mod_fonction.Size = new System.Drawing.Size(25, 25);
+            this.bt_mod_fonction.TabIndex = 12;
+            this.bt_mod_fonction.UseVisualStyleBackColor = true;
+            this.bt_mod_fonction.Click += new System.EventHandler(this.bt_mod_fonction_Click);
             // 
             // bt_mod_genre
             // 
@@ -186,6 +216,18 @@
             this.bt_mod_adresse.UseVisualStyleBackColor = true;
             this.bt_mod_adresse.Click += new System.EventHandler(this.bt_mod_adresse_Click);
             // 
+            // bt_mod_date_embauche
+            // 
+            this.bt_mod_date_embauche.FlatAppearance.BorderSize = 0;
+            this.bt_mod_date_embauche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_mod_date_embauche.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_date_embauche.Image")));
+            this.bt_mod_date_embauche.Location = new System.Drawing.Point(694, 20);
+            this.bt_mod_date_embauche.Name = "bt_mod_date_embauche";
+            this.bt_mod_date_embauche.Size = new System.Drawing.Size(25, 25);
+            this.bt_mod_date_embauche.TabIndex = 12;
+            this.bt_mod_date_embauche.UseVisualStyleBackColor = true;
+            this.bt_mod_date_embauche.Click += new System.EventHandler(this.bt_mod_date_embauche_Click);
+            // 
             // bt_mod_phone
             // 
             this.bt_mod_phone.FlatAppearance.BorderSize = 0;
@@ -224,6 +266,13 @@
             this.tb_mod_adresse.Size = new System.Drawing.Size(179, 20);
             this.tb_mod_adresse.TabIndex = 6;
             // 
+            // tb_mod_fonction
+            // 
+            this.tb_mod_fonction.Location = new System.Drawing.Point(106, 241);
+            this.tb_mod_fonction.Name = "tb_mod_fonction";
+            this.tb_mod_fonction.Size = new System.Drawing.Size(172, 20);
+            this.tb_mod_fonction.TabIndex = 4;
+            // 
             // tb_mod_phone
             // 
             this.tb_mod_phone.Location = new System.Drawing.Point(509, 77);
@@ -244,6 +293,16 @@
             this.tb_mod_prenom.Name = "tb_mod_prenom";
             this.tb_mod_prenom.Size = new System.Drawing.Size(172, 20);
             this.tb_mod_prenom.TabIndex = 3;
+            // 
+            // lb_fonction
+            // 
+            this.lb_fonction.AutoSize = true;
+            this.lb_fonction.Font = new System.Drawing.Font("Calibri", 9F);
+            this.lb_fonction.Location = new System.Drawing.Point(103, 248);
+            this.lb_fonction.Name = "lb_fonction";
+            this.lb_fonction.Size = new System.Drawing.Size(38, 14);
+            this.lb_fonction.TabIndex = 1;
+            this.lb_fonction.Text = "genre";
             // 
             // tb_mod_nom
             // 
@@ -362,6 +421,16 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Adresse  : ";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(381, 25);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 15);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Date embauche  :";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -371,6 +440,16 @@
             this.label7.Size = new System.Drawing.Size(74, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "Téléphone  :";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(11, 246);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 15);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Fonction : ";
             // 
             // label4
             // 
@@ -411,84 +490,6 @@
             this.label2.Size = new System.Drawing.Size(44, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom : ";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(381, 25);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 15);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Date embauche  :";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(11, 246);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 15);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Fonction : ";
-            // 
-            // lb_fonction
-            // 
-            this.lb_fonction.AutoSize = true;
-            this.lb_fonction.Font = new System.Drawing.Font("Calibri", 9F);
-            this.lb_fonction.Location = new System.Drawing.Point(103, 248);
-            this.lb_fonction.Name = "lb_fonction";
-            this.lb_fonction.Size = new System.Drawing.Size(38, 14);
-            this.lb_fonction.TabIndex = 1;
-            this.lb_fonction.Text = "genre";
-            // 
-            // tb_mod_fonction
-            // 
-            this.tb_mod_fonction.Location = new System.Drawing.Point(106, 241);
-            this.tb_mod_fonction.Name = "tb_mod_fonction";
-            this.tb_mod_fonction.Size = new System.Drawing.Size(172, 20);
-            this.tb_mod_fonction.TabIndex = 4;
-            // 
-            // bt_mod_fonction
-            // 
-            this.bt_mod_fonction.FlatAppearance.BorderSize = 0;
-            this.bt_mod_fonction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_mod_fonction.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_fonction.Image")));
-            this.bt_mod_fonction.Location = new System.Drawing.Point(284, 241);
-            this.bt_mod_fonction.Name = "bt_mod_fonction";
-            this.bt_mod_fonction.Size = new System.Drawing.Size(25, 25);
-            this.bt_mod_fonction.TabIndex = 12;
-            this.bt_mod_fonction.UseVisualStyleBackColor = true;
-            this.bt_mod_fonction.Click += new System.EventHandler(this.bt_mod_fonction_Click);
-            // 
-            // lb_date_embauche
-            // 
-            this.lb_date_embauche.AutoSize = true;
-            this.lb_date_embauche.Font = new System.Drawing.Font("Calibri", 9F);
-            this.lb_date_embauche.Location = new System.Drawing.Point(509, 26);
-            this.lb_date_embauche.Name = "lb_date_embauche";
-            this.lb_date_embauche.Size = new System.Drawing.Size(32, 14);
-            this.lb_date_embauche.TabIndex = 13;
-            this.lb_date_embauche.Text = "date";
-            // 
-            // dt_date_embauche
-            // 
-            this.dt_date_embauche.Location = new System.Drawing.Point(509, 22);
-            this.dt_date_embauche.Name = "dt_date_embauche";
-            this.dt_date_embauche.Size = new System.Drawing.Size(179, 20);
-            this.dt_date_embauche.TabIndex = 5;
-            // 
-            // bt_mod_date_embauche
-            // 
-            this.bt_mod_date_embauche.FlatAppearance.BorderSize = 0;
-            this.bt_mod_date_embauche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_mod_date_embauche.Image = ((System.Drawing.Image)(resources.GetObject("bt_mod_date_embauche.Image")));
-            this.bt_mod_date_embauche.Location = new System.Drawing.Point(694, 20);
-            this.bt_mod_date_embauche.Name = "bt_mod_date_embauche";
-            this.bt_mod_date_embauche.Size = new System.Drawing.Size(25, 25);
-            this.bt_mod_date_embauche.TabIndex = 12;
-            this.bt_mod_date_embauche.UseVisualStyleBackColor = true;
-            this.bt_mod_date_embauche.Click += new System.EventHandler(this.bt_mod_date_embauche_Click);
             // 
             // customRoundedPanel1
             // 
@@ -568,7 +569,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

@@ -32,6 +32,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.dgv_chambres = new ModernDataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTarif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUpdate = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colSave = new System.Windows.Forms.DataGridViewImageColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cbx_service = new System.Windows.Forms.ComboBox();
             this.cbx_type_chambre = new System.Windows.Forms.ComboBox();
@@ -45,27 +55,18 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dgv_chambres = new ModernDataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colService = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTarif = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUpdate = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colDelete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colSave = new System.Windows.Forms.DataGridViewImageColumn();
             this.customRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_chambres)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_chambre)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_chambres)).BeginInit();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
@@ -77,6 +78,123 @@
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(809, 474);
             this.customRoundedPanel1.TabIndex = 0;
+            // 
+            // dgv_chambres
+            // 
+            this.dgv_chambres.AllowUserToAddRows = false;
+            this.dgv_chambres.AllowUserToDeleteRows = false;
+            this.dgv_chambres.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_chambres.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_chambres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_chambres.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_chambres.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_chambres.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv_chambres.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgv_chambres.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_chambres.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_chambres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_chambres.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.colService,
+            this.colNumero,
+            this.colType,
+            this.colTarif,
+            this.colStatut,
+            this.colUpdate,
+            this.colDelete,
+            this.colSave});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_chambres.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv_chambres.EnableHeadersVisualStyles = false;
+            this.dgv_chambres.GridColor = System.Drawing.Color.LightGray;
+            this.dgv_chambres.Location = new System.Drawing.Point(3, 291);
+            this.dgv_chambres.Name = "dgv_chambres";
+            this.dgv_chambres.RowHeadersVisible = false;
+            this.dgv_chambres.Size = new System.Drawing.Size(803, 178);
+            this.dgv_chambres.TabIndex = 11;
+            // 
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "ID";
+            this.colID.MinimumWidth = 50;
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colService
+            // 
+            this.colService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colService.HeaderText = "Service";
+            this.colService.MinimumWidth = 50;
+            this.colService.Name = "colService";
+            // 
+            // colNumero
+            // 
+            this.colNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colNumero.HeaderText = "N°chambre";
+            this.colNumero.MinimumWidth = 50;
+            this.colNumero.Name = "colNumero";
+            // 
+            // colType
+            // 
+            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colType.HeaderText = "Type chambre";
+            this.colType.MinimumWidth = 50;
+            this.colType.Name = "colType";
+            // 
+            // colTarif
+            // 
+            this.colTarif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colTarif.HeaderText = "Tarif journalier";
+            this.colTarif.MinimumWidth = 50;
+            this.colTarif.Name = "colTarif";
+            // 
+            // colStatut
+            // 
+            this.colStatut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.MinimumWidth = 50;
+            this.colStatut.Name = "colStatut";
+            // 
+            // colUpdate
+            // 
+            this.colUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colUpdate.HeaderText = "";
+            this.colUpdate.Image = global::Cepima.Properties.Resources.edit_green;
+            this.colUpdate.MinimumWidth = 50;
+            this.colUpdate.Name = "colUpdate";
+            // 
+            // colDelete
+            // 
+            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDelete.HeaderText = "";
+            this.colDelete.Image = global::Cepima.Properties.Resources.trash_red;
+            this.colDelete.MinimumWidth = 50;
+            this.colDelete.Name = "colDelete";
+            // 
+            // colSave
+            // 
+            this.colSave.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colSave.HeaderText = "";
+            this.colSave.Image = global::Cepima.Properties.Resources.ok_20px;
+            this.colSave.MinimumWidth = 50;
+            this.colSave.Name = "colSave";
             // 
             // panel2
             // 
@@ -196,6 +314,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Location = new System.Drawing.Point(14, 114);
@@ -224,123 +343,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // dgv_chambres
-            // 
-            this.dgv_chambres.AllowUserToAddRows = false;
-            this.dgv_chambres.AllowUserToDeleteRows = false;
-            this.dgv_chambres.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_chambres.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_chambres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_chambres.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_chambres.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_chambres.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_chambres.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgv_chambres.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_chambres.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_chambres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_chambres.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colID,
-            this.colService,
-            this.colNumero,
-            this.colType,
-            this.colTarif,
-            this.colStatut,
-            this.colUpdate,
-            this.colDelete,
-            this.colSave});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_chambres.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv_chambres.EnableHeadersVisualStyles = false;
-            this.dgv_chambres.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_chambres.Location = new System.Drawing.Point(3, 291);
-            this.dgv_chambres.Name = "dgv_chambres";
-            this.dgv_chambres.RowHeadersVisible = false;
-            this.dgv_chambres.Size = new System.Drawing.Size(803, 178);
-            this.dgv_chambres.TabIndex = 11;
-            // 
-            // colID
-            // 
-            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colID.HeaderText = "ID";
-            this.colID.MinimumWidth = 50;
-            this.colID.Name = "colID";
-            this.colID.Visible = false;
-            // 
-            // colService
-            // 
-            this.colService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colService.HeaderText = "Service";
-            this.colService.MinimumWidth = 50;
-            this.colService.Name = "colService";
-            // 
-            // colNumero
-            // 
-            this.colNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colNumero.HeaderText = "N°chambre";
-            this.colNumero.MinimumWidth = 50;
-            this.colNumero.Name = "colNumero";
-            // 
-            // colType
-            // 
-            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colType.HeaderText = "Type chambre";
-            this.colType.MinimumWidth = 50;
-            this.colType.Name = "colType";
-            // 
-            // colTarif
-            // 
-            this.colTarif.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colTarif.HeaderText = "Tarif journalier";
-            this.colTarif.MinimumWidth = 50;
-            this.colTarif.Name = "colTarif";
-            // 
-            // colStatut
-            // 
-            this.colStatut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.MinimumWidth = 50;
-            this.colStatut.Name = "colStatut";
-            // 
-            // colUpdate
-            // 
-            this.colUpdate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colUpdate.HeaderText = "";
-            this.colUpdate.Image = global::Cepima.Properties.Resources.edit_green;
-            this.colUpdate.MinimumWidth = 50;
-            this.colUpdate.Name = "colUpdate";
-            // 
-            // colDelete
-            // 
-            this.colDelete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDelete.HeaderText = "";
-            this.colDelete.Image = global::Cepima.Properties.Resources.trash_red;
-            this.colDelete.MinimumWidth = 50;
-            this.colDelete.Name = "colDelete";
-            // 
-            // colSave
-            // 
-            this.colSave.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSave.HeaderText = "";
-            this.colSave.Image = global::Cepima.Properties.Resources.ok_20px;
-            this.colSave.MinimumWidth = 50;
-            this.colSave.Name = "colSave";
-            // 
             // User_chambres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,13 +354,13 @@
             this.Size = new System.Drawing.Size(1008, 530);
             this.Load += new System.EventHandler(this.User_chambres_Load);
             this.customRoundedPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_chambres)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numeric_chambre)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_chambres)).EndInit();
             this.ResumeLayout(false);
 
         }

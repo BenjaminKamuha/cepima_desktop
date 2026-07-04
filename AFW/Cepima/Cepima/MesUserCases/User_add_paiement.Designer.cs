@@ -46,6 +46,7 @@
             // 
             // customRoundedPanel1
             // 
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 4;
             this.customRoundedPanel1.BorderSize = 1;

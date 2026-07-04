@@ -245,10 +245,11 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string queryUpdate = "UPDATE examens_eeg SET type_EEG=@type,resultat=@result,interpretation=@inter,statut='Terminé' WHERE id_examens=@id AND id_consultation=@idConsultation";
+                    string queryUpdate = "UPDATE examens_eeg SET type_EEG=@type,prix_examen =@prix,resultat=@result,interpretation=@inter,statut='Terminé' WHERE id_examens=@id AND id_consultation=@idConsultation";
                     using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con))
                     {
                         cmd.Parameters.AddWithValue("@type",cbx_type.SelectedItem);
+                        cmd.Parameters.AddWithValue("@prix",tb_prix_examen.Text);
                         cmd.Parameters.AddWithValue("@result",richResultat.Text);
                         cmd.Parameters.AddWithValue("@inter", rich_interpretation.Text);
                         cmd.Parameters.AddWithValue("@id",idExamenSelectionne);

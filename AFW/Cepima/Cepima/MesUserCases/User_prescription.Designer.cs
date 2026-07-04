@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rb_hospitalise = new System.Windows.Forms.RadioButton();
             this.rb_ambulatoire = new System.Windows.Forms.RadioButton();
@@ -42,6 +42,7 @@
             this.colQuantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUnite = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bt_valider_prescription = new test_arrondissement2012.PerfectRoundedButton();
             this.label3 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
@@ -51,7 +52,6 @@
             this.tb_search_medoc = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customRoundedPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_medoc)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
@@ -121,8 +121,8 @@
             this.dgv_medoc.AllowUserToAddRows = false;
             this.dgv_medoc.AllowUserToDeleteRows = false;
             this.dgv_medoc.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_medoc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_medoc.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_medoc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_medoc.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -130,14 +130,14 @@
             this.dgv_medoc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_medoc.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_medoc.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_medoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_medoc.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_medoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_medoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -146,14 +146,14 @@
             this.colUnite,
             this.colPrix,
             this.colMontant});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_medoc.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_medoc.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_medoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgv_medoc.EnableHeadersVisualStyles = false;
             this.dgv_medoc.GridColor = System.Drawing.Color.LightGray;
@@ -198,6 +198,13 @@
             this.colPrix.MinimumWidth = 50;
             this.colPrix.Name = "colPrix";
             // 
+            // colMontant
+            // 
+            this.colMontant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMontant.HeaderText = "Monant";
+            this.colMontant.MinimumWidth = 50;
+            this.colMontant.Name = "colMontant";
+            // 
             // bt_valider_prescription
             // 
             this.bt_valider_prescription.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -213,6 +220,7 @@
             this.bt_valider_prescription.Name = "bt_valider_prescription";
             this.bt_valider_prescription.Size = new System.Drawing.Size(129, 26);
             this.bt_valider_prescription.TabIndex = 9;
+            this.bt_valider_prescription.Click += new System.EventHandler(this.bt_valider_prescription_Click);
             // 
             // label3
             // 
@@ -311,13 +319,6 @@
             this.label2.Size = new System.Drawing.Size(120, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "STOCK MEDICAMENT";
-            // 
-            // colMontant
-            // 
-            this.colMontant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMontant.HeaderText = "Monant";
-            this.colMontant.MinimumWidth = 50;
-            this.colMontant.Name = "colMontant";
             // 
             // User_prescription
             // 
