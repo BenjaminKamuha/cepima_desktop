@@ -371,7 +371,15 @@ namespace Cepima
                     eeg.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(eeg);
-                })
+                }),
+
+                new MenuItem("    Paiement EEG",Properties.Resources.cost_25px, (s,ev) =>
+                {
+                    MesUserCases.User_paiement_eeg eeg_paiement = new MesUserCases.User_paiement_eeg();
+                    eeg_paiement.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(eeg_paiement);
+                }),
 
             };
             Create_sous_menu(items);
@@ -404,7 +412,7 @@ namespace Cepima
             {
                     new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
                     {
-
+                        
                     }),
 
                     new MenuItem("  Facturation",Properties.Resources.facture,(s,ev) =>

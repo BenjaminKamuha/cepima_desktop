@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.avatarControl1 = new AvatarControl();
@@ -38,6 +38,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.dgv_examen_eeg = new ModernDataGridView();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelSelection = new System.Windows.Forms.Panel();
             this.lbl_termine = new System.Windows.Forms.Label();
             this.lbl_en_cours = new System.Windows.Forms.Label();
@@ -84,17 +88,13 @@
             this.rich_interpretation = new System.Windows.Forms.RichTextBox();
             this.customRoundedPanel5 = new CustomRoundedPanel();
             this.richResultat = new System.Windows.Forms.RichTextBox();
-            this.dt_date_demande = new System.Windows.Forms.DateTimePicker();
             this.cbx_type = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tb_prix_examen = new MyRoundedTextBox();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_examen_eeg)).BeginInit();
@@ -168,6 +168,7 @@
             this.customRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 1;
@@ -187,7 +188,7 @@
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel1.Location = new System.Drawing.Point(3, 71);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(375, 425);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(375, 457);
             this.customRoundedPanel1.TabIndex = 1;
             // 
             // dgv_examen_eeg
@@ -195,46 +196,74 @@
             this.dgv_examen_eeg.AllowUserToAddRows = false;
             this.dgv_examen_eeg.AllowUserToDeleteRows = false;
             this.dgv_examen_eeg.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_examen_eeg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_examen_eeg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_examen_eeg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_examen_eeg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_examen_eeg.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.dgv_examen_eeg.BackgroundColor = System.Drawing.Color.White;
             this.dgv_examen_eeg.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_examen_eeg.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_examen_eeg.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_examen_eeg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_examen_eeg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_examen_eeg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_examen_eeg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colDate,
             this.colPatient,
             this.colType,
             this.colStatut});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_examen_eeg.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_examen_eeg.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_examen_eeg.EnableHeadersVisualStyles = false;
             this.dgv_examen_eeg.GridColor = System.Drawing.Color.LightGray;
             this.dgv_examen_eeg.Location = new System.Drawing.Point(3, 122);
             this.dgv_examen_eeg.Name = "dgv_examen_eeg";
             this.dgv_examen_eeg.RowHeadersVisible = false;
-            this.dgv_examen_eeg.Size = new System.Drawing.Size(369, 259);
+            this.dgv_examen_eeg.Size = new System.Drawing.Size(369, 291);
             this.dgv_examen_eeg.TabIndex = 23;
             this.dgv_examen_eeg.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_examen_eeg_CellClick);
+            // 
+            // colDate
+            // 
+            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDate.HeaderText = "Date";
+            this.colDate.MinimumWidth = 50;
+            this.colDate.Name = "colDate";
+            // 
+            // colPatient
+            // 
+            this.colPatient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatient.HeaderText = "Patient";
+            this.colPatient.MinimumWidth = 50;
+            this.colPatient.Name = "colPatient";
+            // 
+            // colType
+            // 
+            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colType.HeaderText = "Type EEG";
+            this.colType.MinimumWidth = 50;
+            this.colType.Name = "colType";
+            // 
+            // colStatut
+            // 
+            this.colStatut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.MinimumWidth = 50;
+            this.colStatut.Name = "colStatut";
             // 
             // panelSelection
             // 
@@ -362,7 +391,7 @@
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.lb_total_demande);
             this.panel2.Controls.Add(this.label9);
-            this.panel2.Location = new System.Drawing.Point(3, 384);
+            this.panel2.Location = new System.Drawing.Point(3, 416);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(369, 38);
             this.panel2.TabIndex = 0;
@@ -400,6 +429,7 @@
             // 
             this.customRoundedPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel2.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel2.BorderRadius = 10;
             this.customRoundedPanel2.BorderSize = 1;
@@ -410,7 +440,7 @@
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel2.Location = new System.Drawing.Point(384, 71);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(626, 210);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(626, 211);
             this.customRoundedPanel2.TabIndex = 2;
             // 
             // pictureBox1
@@ -447,7 +477,7 @@
             this.panel6.Controls.Add(this.label12);
             this.panel6.Controls.Add(this.label7);
             this.panel6.Controls.Add(this.label6);
-            this.panel6.Location = new System.Drawing.Point(3, 26);
+            this.panel6.Location = new System.Drawing.Point(3, 25);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(620, 178);
             this.panel6.TabIndex = 3;
@@ -671,13 +701,14 @@
             // customRoundedPanel3
             // 
             this.customRoundedPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel3.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 10;
             this.customRoundedPanel3.BorderSize = 1;
+            this.customRoundedPanel3.Controls.Add(this.tb_prix_examen);
             this.customRoundedPanel3.Controls.Add(this.bt_save_eeg);
             this.customRoundedPanel3.Controls.Add(this.customRoundedPanel4);
             this.customRoundedPanel3.Controls.Add(this.customRoundedPanel5);
-            this.customRoundedPanel3.Controls.Add(this.dt_date_demande);
             this.customRoundedPanel3.Controls.Add(this.cbx_type);
             this.customRoundedPanel3.Controls.Add(this.label22);
             this.customRoundedPanel3.Controls.Add(this.label24);
@@ -686,9 +717,9 @@
             this.customRoundedPanel3.Controls.Add(this.label23);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(384, 287);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(384, 288);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(626, 209);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(626, 240);
             this.customRoundedPanel3.TabIndex = 2;
             // 
             // bt_save_eeg
@@ -701,7 +732,7 @@
             this.bt_save_eeg.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_save_eeg.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_save_eeg.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_eeg.Location = new System.Drawing.Point(253, 170);
+            this.bt_save_eeg.Location = new System.Drawing.Point(253, 192);
             this.bt_save_eeg.Name = "bt_save_eeg";
             this.bt_save_eeg.Size = new System.Drawing.Size(148, 32);
             this.bt_save_eeg.TabIndex = 43;
@@ -761,14 +792,6 @@
             this.richResultat.TabIndex = 8;
             this.richResultat.Text = "";
             // 
-            // dt_date_demande
-            // 
-            this.dt_date_demande.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_date_demande.Location = new System.Drawing.Point(401, 55);
-            this.dt_date_demande.Name = "dt_date_demande";
-            this.dt_date_demande.Size = new System.Drawing.Size(211, 22);
-            this.dt_date_demande.TabIndex = 41;
-            // 
             // cbx_type
             // 
             this.cbx_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -796,9 +819,9 @@
             this.label24.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.Location = new System.Drawing.Point(309, 61);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(86, 15);
+            this.label24.Size = new System.Drawing.Size(83, 15);
             this.label24.TabIndex = 40;
-            this.label24.Text = "Date examen : ";
+            this.label24.Text = "Prix examen : ";
             // 
             // label26
             // 
@@ -830,33 +853,20 @@
             this.label23.TabIndex = 40;
             this.label23.Text = "Type EEG : ";
             // 
-            // colDate
+            // tb_prix_examen
             // 
-            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDate.HeaderText = "Date";
-            this.colDate.MinimumWidth = 50;
-            this.colDate.Name = "colDate";
-            // 
-            // colPatient
-            // 
-            this.colPatient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPatient.HeaderText = "Patient";
-            this.colPatient.MinimumWidth = 50;
-            this.colPatient.Name = "colPatient";
-            // 
-            // colType
-            // 
-            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colType.HeaderText = "Type EEG";
-            this.colType.MinimumWidth = 50;
-            this.colType.Name = "colType";
-            // 
-            // colStatut
-            // 
-            this.colStatut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.MinimumWidth = 50;
-            this.colStatut.Name = "colStatut";
+            this.tb_prix_examen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tb_prix_examen.BorderRadius = 4;
+            this.tb_prix_examen.BorderSize = 0;
+            this.tb_prix_examen.FocusBorderColor = System.Drawing.Color.Orange;
+            this.tb_prix_examen.Location = new System.Drawing.Point(398, 48);
+            this.tb_prix_examen.Name = "tb_prix_examen";
+            this.tb_prix_examen.PasswordChar = '\0';
+            this.tb_prix_examen.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_prix_examen.PlaceholderText = "";
+            this.tb_prix_examen.Size = new System.Drawing.Size(217, 28);
+            this.tb_prix_examen.TabIndex = 44;
+            this.tb_prix_examen.UseSystemPasswordChar = false;
             // 
             // User_Examen_EEG
             // 
@@ -868,7 +878,7 @@
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "User_Examen_EEG";
-            this.Size = new System.Drawing.Size(1013, 499);
+            this.Size = new System.Drawing.Size(1013, 531);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
@@ -938,7 +948,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dt_date_demande;
         private System.Windows.Forms.ComboBox cbx_type;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label24;
@@ -958,6 +967,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatient;
         private System.Windows.Forms.DataGridViewTextBoxColumn colType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
+        private MyRoundedTextBox tb_prix_examen;
 
     }
 }

@@ -202,6 +202,7 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.flowLayoutPanel1);
             this.panel4.Controls.Add(this.pictureBox1);
@@ -306,6 +307,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.groupBox2.Controls.Add(this.panel7);
             this.groupBox2.Controls.Add(this.panel6);
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
@@ -321,6 +323,7 @@
             // 
             this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Controls.Add(this.label5);
             this.panel7.Controls.Add(this.lb_statut);
@@ -451,6 +454,7 @@
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel6.BackColor = System.Drawing.Color.White;
             this.panel6.Controls.Add(this.lb_adresse);
             this.panel6.Controls.Add(this.lb_phone);
             this.panel6.Controls.Add(this.label11);
@@ -581,6 +585,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.cbx_afficher);
             this.groupBox3.Controls.Add(this.panel_add_suivie_hospitalisation);
@@ -596,6 +601,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
             this.label4.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label4.Location = new System.Drawing.Point(263, 33);
@@ -616,6 +622,7 @@
             // 
             // panel_add_suivie_hospitalisation
             // 
+            this.panel_add_suivie_hospitalisation.BackColor = System.Drawing.Color.White;
             this.panel_add_suivie_hospitalisation.Controls.Add(this.dgv_suivi);
             this.panel_add_suivie_hospitalisation.Controls.Add(this.bt_add_suivie);
             this.panel_add_suivie_hospitalisation.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -631,7 +638,7 @@
             this.dgv_suivi.AllowUserToResizeRows = false;
             dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dgv_suivi.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgv_suivi.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.dgv_suivi.BackgroundColor = System.Drawing.Color.White;
             this.dgv_suivi.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_suivi.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_suivi.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -760,6 +767,7 @@
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.BackColor = System.Drawing.Color.White;
             this.groupBox4.Controls.Add(this.tableLayoutPanel1);
             this.groupBox4.Location = new System.Drawing.Point(431, 330);
             this.groupBox4.Name = "groupBox4";
@@ -773,7 +781,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.80694F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.19306F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 217F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 219F));
             this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel1, 0, 0);
@@ -797,9 +805,9 @@
             this.customRoundedPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(421, 3);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(419, 3);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(212, 183);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(214, 183);
             this.customRoundedPanel3.TabIndex = 2;
             // 
             // label16
@@ -894,9 +902,9 @@
             this.customRoundedPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(207, 3);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(206, 3);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(208, 183);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(207, 183);
             this.customRoundedPanel2.TabIndex = 1;
             // 
             // label22
@@ -1003,7 +1011,7 @@
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel1.Location = new System.Drawing.Point(3, 3);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(198, 183);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(197, 183);
             this.customRoundedPanel1.TabIndex = 0;
             // 
             // lb_id_prescription
@@ -1109,7 +1117,7 @@
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dgv_historique.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_historique.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_historique.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.dgv_historique.BackgroundColor = System.Drawing.Color.White;
             this.dgv_historique.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_historique.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_historique.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;

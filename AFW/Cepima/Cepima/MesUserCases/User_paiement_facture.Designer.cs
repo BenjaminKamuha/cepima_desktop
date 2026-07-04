@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -59,6 +59,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.perfectRoundedButton1 = new test_arrondissement2012.PerfectRoundedButton();
+            this.bt_print_recu = new test_arrondissement2012.PerfectRoundedButton();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
@@ -79,8 +81,6 @@
             this.lb_numero_recu = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.bt_print_recu = new test_arrondissement2012.PerfectRoundedButton();
-            this.perfectRoundedButton1 = new test_arrondissement2012.PerfectRoundedButton();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -125,6 +125,7 @@
             // 
             this.customRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 6;
             this.customRoundedPanel1.BorderSize = 1;
@@ -268,6 +269,7 @@
             // 
             this.customRoundedPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.customRoundedPanel2.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel2.BorderRadius = 6;
             this.customRoundedPanel2.BorderSize = 1;
@@ -286,8 +288,8 @@
             this.dgv_paiement.AllowUserToAddRows = false;
             this.dgv_paiement.AllowUserToDeleteRows = false;
             this.dgv_paiement.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_paiement.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_paiement.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_paiement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -296,14 +298,14 @@
             this.dgv_paiement.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_paiement.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_paiement.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 9.5F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_paiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_paiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_paiement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_paiement.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecu,
@@ -313,14 +315,14 @@
             this.colMontant,
             this.colReste,
             this.colType});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_paiement.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_paiement.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_paiement.EnableHeadersVisualStyles = false;
             this.dgv_paiement.GridColor = System.Drawing.Color.LightGray;
             this.dgv_paiement.Location = new System.Drawing.Point(3, 36);
@@ -402,6 +404,7 @@
             this.customRoundedPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel3.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 6;
             this.customRoundedPanel3.BorderSize = 1;
@@ -424,6 +427,37 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(219, 65);
             this.panel4.TabIndex = 0;
+            // 
+            // perfectRoundedButton1
+            // 
+            this.perfectRoundedButton1.BackColor = System.Drawing.Color.Transparent;
+            this.perfectRoundedButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.perfectRoundedButton1.BorderRadius = 5;
+            this.perfectRoundedButton1.BorderSize = 0;
+            this.perfectRoundedButton1.ButtonText = "Actualiser";
+            this.perfectRoundedButton1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.perfectRoundedButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.perfectRoundedButton1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.perfectRoundedButton1.Location = new System.Drawing.Point(119, 37);
+            this.perfectRoundedButton1.Name = "perfectRoundedButton1";
+            this.perfectRoundedButton1.Size = new System.Drawing.Size(100, 25);
+            this.perfectRoundedButton1.TabIndex = 13;
+            // 
+            // bt_print_recu
+            // 
+            this.bt_print_recu.BackColor = System.Drawing.Color.Transparent;
+            this.bt_print_recu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_print_recu.BorderRadius = 5;
+            this.bt_print_recu.BorderSize = 0;
+            this.bt_print_recu.ButtonText = "Imprimer";
+            this.bt_print_recu.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_print_recu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_print_recu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_print_recu.Location = new System.Drawing.Point(10, 37);
+            this.bt_print_recu.Name = "bt_print_recu";
+            this.bt_print_recu.Size = new System.Drawing.Size(100, 25);
+            this.bt_print_recu.TabIndex = 13;
+            this.bt_print_recu.Click += new System.EventHandler(this.bt_print_recu_Click);
             // 
             // label9
             // 
@@ -637,37 +671,6 @@
             this.label7.Size = new System.Drawing.Size(88, 17);
             this.label7.TabIndex = 1;
             this.label7.Text = "APERCU RECU";
-            // 
-            // bt_print_recu
-            // 
-            this.bt_print_recu.BackColor = System.Drawing.Color.Transparent;
-            this.bt_print_recu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_print_recu.BorderRadius = 5;
-            this.bt_print_recu.BorderSize = 0;
-            this.bt_print_recu.ButtonText = "Imprimer";
-            this.bt_print_recu.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_print_recu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_print_recu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_print_recu.Location = new System.Drawing.Point(10, 37);
-            this.bt_print_recu.Name = "bt_print_recu";
-            this.bt_print_recu.Size = new System.Drawing.Size(100, 25);
-            this.bt_print_recu.TabIndex = 13;
-            this.bt_print_recu.Click += new System.EventHandler(this.bt_print_recu_Click);
-            // 
-            // perfectRoundedButton1
-            // 
-            this.perfectRoundedButton1.BackColor = System.Drawing.Color.Transparent;
-            this.perfectRoundedButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.perfectRoundedButton1.BorderRadius = 5;
-            this.perfectRoundedButton1.BorderSize = 0;
-            this.perfectRoundedButton1.ButtonText = "Actualiser";
-            this.perfectRoundedButton1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.perfectRoundedButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.perfectRoundedButton1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.perfectRoundedButton1.Location = new System.Drawing.Point(119, 37);
-            this.perfectRoundedButton1.Name = "perfectRoundedButton1";
-            this.perfectRoundedButton1.Size = new System.Drawing.Size(100, 25);
-            this.perfectRoundedButton1.TabIndex = 13;
             // 
             // User_paiement_facture
             // 

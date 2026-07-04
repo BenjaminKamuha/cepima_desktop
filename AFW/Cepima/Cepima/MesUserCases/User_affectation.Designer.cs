@@ -702,6 +702,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_display_chambre.AutoScroll = true;
+            this.panel_display_chambre.BackColor = System.Drawing.Color.White;
             this.panel_display_chambre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panel_display_chambre.Location = new System.Drawing.Point(3, 54);
             this.panel_display_chambre.Name = "panel_display_chambre";

@@ -30,7 +30,6 @@
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.rb_eeg = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rb_hospitalisation = new System.Windows.Forms.RadioButton();
             this.rb_ambulatoire = new System.Windows.Forms.RadioButton();
@@ -42,21 +41,22 @@
             this.label8 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.rich_description = new System.Windows.Forms.RichTextBox();
-            this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.tb_motif = new System.Windows.Forms.TextBox();
             this.myRoundedTextBox4 = new MyRoundedTextBox();
+            this.bt_continue = new test_arrondissement2012.PerfectRoundedButton();
             this.bt_save_consultation = new test_arrondissement2012.PerfectRoundedButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cbx_personnel = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.customRoundedPanel3 = new CustomRoundedPanel();
-            this.rb_attente = new System.Windows.Forms.RadioButton();
-            this.rb_eeg_termine = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
-            this.bt_continue = new test_arrondissement2012.PerfectRoundedButton();
+            this.rb_eeg_termine = new System.Windows.Forms.RadioButton();
+            this.rb_attente = new System.Windows.Forms.RadioButton();
             this.customRoundedPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pan_test.SuspendLayout();
@@ -68,6 +68,7 @@
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
@@ -102,16 +103,6 @@
             this.rb_eeg.Text = "Demander examen EEG";
             this.rb_eeg.UseVisualStyleBackColor = true;
             this.rb_eeg.CheckedChanged += new System.EventHandler(this.rb_eeg_CheckedChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(6, 8);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(144, 19);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Patients à consulter";
             // 
             // panel2
             // 
@@ -150,7 +141,7 @@
             // 
             // pan_test
             // 
-            this.pan_test.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.pan_test.BackColor = System.Drawing.Color.White;
             this.pan_test.Controls.Add(this.tb_motif_hospitalisation);
             this.pan_test.Controls.Add(this.myRoundedTextBox1);
             this.pan_test.Controls.Add(this.cbx_service);
@@ -246,17 +237,6 @@
             this.rich_description.TabIndex = 8;
             this.rich_description.Text = "";
             // 
-            // fl_patient
-            // 
-            this.fl_patient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fl_patient.AutoScroll = true;
-            this.fl_patient.Location = new System.Drawing.Point(11, 115);
-            this.fl_patient.Name = "fl_patient";
-            this.fl_patient.Size = new System.Drawing.Size(257, 374);
-            this.fl_patient.TabIndex = 5;
-            // 
             // tb_motif
             // 
             this.tb_motif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
@@ -283,6 +263,23 @@
             this.myRoundedTextBox4.Size = new System.Drawing.Size(299, 27);
             this.myRoundedTextBox4.TabIndex = 5;
             this.myRoundedTextBox4.UseSystemPasswordChar = false;
+            // 
+            // bt_continue
+            // 
+            this.bt_continue.BackColor = System.Drawing.Color.Transparent;
+            this.bt_continue.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_continue.BorderRadius = 5;
+            this.bt_continue.BorderSize = 0;
+            this.bt_continue.ButtonText = "Continuer la préscription";
+            this.bt_continue.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_continue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_continue.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_continue.Location = new System.Drawing.Point(450, 447);
+            this.bt_continue.Name = "bt_continue";
+            this.bt_continue.Size = new System.Drawing.Size(148, 32);
+            this.bt_continue.TabIndex = 2;
+            this.bt_continue.Visible = false;
+            this.bt_continue.Click += new System.EventHandler(this.bt_continue_Click);
             // 
             // bt_save_consultation
             // 
@@ -340,9 +337,31 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Personnels  : ";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(6, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(144, 19);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Patients à consulter";
+            // 
+            // fl_patient
+            // 
+            this.fl_patient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fl_patient.AutoScroll = true;
+            this.fl_patient.Location = new System.Drawing.Point(11, 115);
+            this.fl_patient.Name = "fl_patient";
+            this.fl_patient.Size = new System.Drawing.Size(257, 374);
+            this.fl_patient.TabIndex = 5;
+            // 
             // customRoundedPanel3
             // 
             this.customRoundedPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.customRoundedPanel3.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 10;
             this.customRoundedPanel3.BorderSize = 1;
@@ -359,32 +378,6 @@
             this.customRoundedPanel3.Name = "customRoundedPanel3";
             this.customRoundedPanel3.Size = new System.Drawing.Size(283, 492);
             this.customRoundedPanel3.TabIndex = 4;
-            // 
-            // rb_attente
-            // 
-            this.rb_attente.AutoSize = true;
-            this.rb_attente.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_attente.Location = new System.Drawing.Point(10, 46);
-            this.rb_attente.Name = "rb_attente";
-            this.rb_attente.Size = new System.Drawing.Size(82, 19);
-            this.rb_attente.TabIndex = 1;
-            this.rb_attente.TabStop = true;
-            this.rb_attente.Text = "En attente";
-            this.rb_attente.UseVisualStyleBackColor = true;
-            this.rb_attente.CheckedChanged += new System.EventHandler(this.rb_attente_CheckedChanged);
-            // 
-            // rb_eeg_termine
-            // 
-            this.rb_eeg_termine.AutoSize = true;
-            this.rb_eeg_termine.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_eeg_termine.Location = new System.Drawing.Point(177, 46);
-            this.rb_eeg_termine.Name = "rb_eeg_termine";
-            this.rb_eeg_termine.Size = new System.Drawing.Size(93, 19);
-            this.rb_eeg_termine.TabIndex = 1;
-            this.rb_eeg_termine.TabStop = true;
-            this.rb_eeg_termine.Text = "EEG terminé";
-            this.rb_eeg_termine.UseVisualStyleBackColor = true;
-            this.rb_eeg_termine.CheckedChanged += new System.EventHandler(this.rb_eeg_termine_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -422,22 +415,31 @@
             this.tb_tarif.TabIndex = 19;
             this.tb_tarif.UseSystemPasswordChar = false;
             // 
-            // bt_continue
+            // rb_eeg_termine
             // 
-            this.bt_continue.BackColor = System.Drawing.Color.Transparent;
-            this.bt_continue.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_continue.BorderRadius = 5;
-            this.bt_continue.BorderSize = 0;
-            this.bt_continue.ButtonText = "Continuer la préscription";
-            this.bt_continue.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_continue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_continue.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_continue.Location = new System.Drawing.Point(450, 447);
-            this.bt_continue.Name = "bt_continue";
-            this.bt_continue.Size = new System.Drawing.Size(148, 32);
-            this.bt_continue.TabIndex = 2;
-            this.bt_continue.Visible = false;
-            this.bt_continue.Click += new System.EventHandler(this.bt_continue_Click);
+            this.rb_eeg_termine.AutoSize = true;
+            this.rb_eeg_termine.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.rb_eeg_termine.Location = new System.Drawing.Point(177, 46);
+            this.rb_eeg_termine.Name = "rb_eeg_termine";
+            this.rb_eeg_termine.Size = new System.Drawing.Size(93, 19);
+            this.rb_eeg_termine.TabIndex = 1;
+            this.rb_eeg_termine.TabStop = true;
+            this.rb_eeg_termine.Text = "EEG terminé";
+            this.rb_eeg_termine.UseVisualStyleBackColor = true;
+            this.rb_eeg_termine.CheckedChanged += new System.EventHandler(this.rb_eeg_termine_CheckedChanged);
+            // 
+            // rb_attente
+            // 
+            this.rb_attente.AutoSize = true;
+            this.rb_attente.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.rb_attente.Location = new System.Drawing.Point(10, 46);
+            this.rb_attente.Name = "rb_attente";
+            this.rb_attente.Size = new System.Drawing.Size(82, 19);
+            this.rb_attente.TabIndex = 1;
+            this.rb_attente.TabStop = true;
+            this.rb_attente.Text = "En attente";
+            this.rb_attente.UseVisualStyleBackColor = true;
+            this.rb_attente.CheckedChanged += new System.EventHandler(this.rb_attente_CheckedChanged);
             // 
             // User_consultation
             // 
