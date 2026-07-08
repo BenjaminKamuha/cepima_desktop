@@ -124,7 +124,7 @@ namespace Cepima.MesUserCases
                 //string query = "SELECT m.id_medicament, m.nom_medicament, m.categorie, m.unite, s.quantite FROM stock_pharmacie s JOIN medicament m on m.id_medicament = s.id_medicament WHERE m.nom_medicament LIKE @searchText ORDER BY m.nom_medicament ASC";
                 //try
                 //{
-                    string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament WHERE nom_medicament LIKE @searchText ORDER BY nom_medicament ASC";
+                string query = "SELECT med.id_medicament, nom_medicament, categorie, unite FROM medicament med WHERE nom_medicament JOIN stock_pharmacie ON stock_pharmacie.id_medicament = med.id_medicament LIKE @searchText ORDER BY nom_medicament ASC";
                     Dictionary<string, string> request_params = MesClasses.ManagerClasse.request_params;
                     request_params.Clear();
                     request_params.Add("searchText", "%" + args[0] + "%");
@@ -184,7 +184,7 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT id_medicament, nom_medicament, categorie, unite FROM medicament ORDER BY nom_medicament ASC";
+                    string query = "SELECT med.id_medicament, nom_medicament, categorie, unite FROM medicament med JOIN stock_pharmacie ON stock_pharmacie.id_medicament = med.id_medicament ORDER BY nom_medicament ASC";
                     using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true))
                     {
                         if (reader.HasRows)

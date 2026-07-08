@@ -69,23 +69,53 @@ namespace Cepima.MesUserCases
                     photo = ms.ToArray();
                 }
 
+                // Unité de mésure
+                string unity = "";
+                string id_medicament = "";
+
+                foreach (RadioButton rd in panel_unity.Controls)
+                {
+                    if (rd.Checked)
+                    {
+                        unity = rd.Text;
+                    }
+                }
+
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                 {
-                    string query = "INSERT INTO medicament(nom_medicament,photo,categorie,unite,prix_achat,prix_vente)VALUES(@nom,@photo,@cat,@unite,@achat,@vente)";
+                    string query = "INSERT INTO medicament(nom_medicament, photo, categorie, prix_achat, prix_vente)VALUES(@nom, @photo, @cat, @achat,@vente)";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
                         cmd.Parameters.AddWithValue("@nom", tb_medoc.Text);
                         cmd.Parameters.AddWithValue("@photo", photo);
                         cmd.Parameters.AddWithValue("@cat", tb_categorie.Text);
-                        cmd.Parameters.AddWithValue("@unite", tb_unity.Text);
                         cmd.Parameters.AddWithValue("@achat", decimal.Parse(tb_prix_achat.Text));
                         cmd.Parameters.AddWithValue("@vente", decimal.Parse(tb_prix_vente.Text));
                         cmd.ExecuteNonQuery();
+
+                        // Récuperataion de l'id du médicament
+                        id_medicament = cmd.LastInsertedId.ToString();
                     }
+
+                    string query_stock = "INSERT INTO stock_pharmacie(id_centre, id_medicament, quantite, unite, stock_minimum) VALUES(@id_centre, @id_medicament, @quantite, @unite, @stock_minimum)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query_stock, con))
+                    {
+                        cmd.Parameters.AddWithValue("id_centre", MesForms.SessionUtilisateur.idCentre);
+                        cmd.Parameters.AddWithValue("id_medicament", id_medicament);
+                        cmd.Parameters.AddWithValue("quantite", num_qty.Value);
+                        cmd.Parameters.AddWithValue("unite", unity);
+                        cmd.Parameters.AddWithValue("stock_minimum", num_stock_min.Value);
+
+                        // Execution de la requêtte
+                        cmd.ExecuteNonQuery();
+                    }
+
+
+
                 }
                 MessageBox.Show("Médicament enregistré !!");
                 tb_medoc.Clear();
-                tb_unity.Clear();
                 tb_categorie.Clear();
                 tb_prix_vente.Clear();
                 tb_prix_achat.Clear();
@@ -99,6 +129,21 @@ namespace Cepima.MesUserCases
         }
 
         private void UC_add_medoc_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customRoundedPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void rd_plaquettte_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
 
         }

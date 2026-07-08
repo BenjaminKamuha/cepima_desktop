@@ -52,13 +52,13 @@ namespace Cepima.MesUserCases
                 string query = "";
                 if (args.Length != 0)
                 {
-                    query = "SELECT id_medicament,nom_medicament,photo,categorie,unite,prix_vente FROM medicament WHERE nom_medicament LIKE @search";
+                    query = "SELECT med.id_medicament,nom_medicament,photo,categorie unite,prix_vente FROM medicament med JOIN stock_pharmacie ON stock_pharmacie.id_medicament = med.id_medicament WHERE nom_medicament LIKE @search";
                     MesClasses.ManagerClasse.request_params.Clear();
                     MesClasses.ManagerClasse.request_params.Add("@search", "%" + args[0] + "%");
                 }
                 else
                 {
-                    query = "SELECT id_medicament,nom_medicament,photo,categorie,unite,prix_vente FROM medicament ORDER BY nom_medicament ASC";
+                    query = "SELECT med.id_medicament,nom_medicament,photo,categorie,unite,prix_vente FROM medicament med JOIN stock_pharmacie ON stock_pharmacie.id_medicament = med.id_medicament ORDER BY nom_medicament ASC";
                 }
 
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, args.Length != 0 ? MesClasses.ManagerClasse.request_params : null, true))
