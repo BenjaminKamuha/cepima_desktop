@@ -360,93 +360,83 @@ namespace Cepima.MesUserCases
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
-                int idSortie = 0;
+
                 try
                 {
+                    int idSortie = 0;
+
+                    //==================== SORTIE STOCK ====================
                     string queryInsertSortie = "INSERT INTO sorties_stock(id_centre,type_sortie,id_patient,date_sortie)VALUES(@centre,@type,@patient,CURDATE())";
+
                     using (MySqlCommand cmd = new MySqlCommand(queryInsertSortie, con, tr))
                     {
-                        cmd.Parameters.AddWithValue("@centre",MesForms.SessionUtilisateur.idCentre);
-                        cmd.Parameters.AddWithValue("@type",type_patient);
-                        cmd.Parameters.AddWithValue("@patient",id_patient);
+                        cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
+                        cmd.Parameters.AddWithValue("@type", type_patient);
+                        cmd.Parameters.AddWithValue("@patient", id_patient);
+
                         cmd.ExecuteNonQuery();
 
-                        idSortie = Convert.ToInt32(cmd.LastInsertedId); // recupérer la dernier ligne (==> id)
+                        idSortie = Convert.ToInt32(cmd.LastInsertedId);
                     }
 
-                    // =============================== PRESCRIPTIONS =================================
+                    //==================== CONSULTATION ====================
                     int idconsultation = RecupererIdConsultation();
 
+                    //==================== PRESCRIPTIONS ====================
                     foreach (DataGridViewRow row in dgv_medoc.Rows)
                     {
                         if (row.IsNewRow)
                             continue;
+
                         string queryInsertPresc = "INSERT INTO prescriptions(id_sortie,id_patient,id_medicament,id_consultation,quantite,unite,date_prescription)VALUES(@sortie,@patient,@medoc,@consultation,@qte,@unite,CURDATE())";
                         using (MySqlCommand cmd = new MySqlCommand(queryInsertPresc, con, tr))
                         {
-                            cmd.Parameters.AddWithValue("@sortie",idSortie);
-                            cmd.Parameters.AddWithValue("@patient",id_patient);
-                            cmd.Parameters.AddWithValue("@medoc", row.Cells["colID"].Value.ToString());
-                            cmd.Parameters.AddWithValue("@consultation",idconsultation);
-                            cmd.Parameters.AddWithValue("@qte", row.Cells["colQuantite"].Value.ToString());
-                            cmd.Parameters.AddWithValue("@unite", row.Cells["colUnite"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@sortie", idSortie);
+                            cmd.Parameters.AddWithValue("@patient", id_patient);
+                            cmd.Parameters.AddWithValue("@medoc", row.Cells["colID"].Value);
+                            cmd.Parameters.AddWithValue("@consultation", idconsultation);
+                            cmd.Parameters.AddWithValue("@qte", row.Cells["colQuantite"].Value);
+                            cmd.Parameters.AddWithValue("@unite", row.Cells["colUnite"].Value);
+
                             cmd.ExecuteNonQuery();
                         }
-
-                        // ===================================== PATIENT AMBULATOIRE ========================================
-                        if (type_patient == "ambulatoire")
-                        {
-                            int idFacture = GenererFacture(idconsultation, id_patient, "Ambulatoire");
-                            MessageBox.Show("Prescription et facture enregistrées");
-                            UpdateConsultation(idconsultation);
-                        }
-                        else
-                        {
-                            // récuperer l'id hospitalisation
-                            int idHospitalisationID = RecupererIdHospitalisation();
-                            // récuperer aussi le nom du docteur qui a préscrit les medocs
-                            string nomMedecin = "";
-                            string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS medecin FROM consultation c JOIN personnels p ON c.id_personnel = p.id_personnel WHERE c.id_consultation = @id";
-                            using (MySqlCommand cmd = new MySqlCommand(query,con,tr))
-                            {
-                                using (MySqlDataReader reader = cmd.ExecuteReader())
-                                {
-                                    if (reader.Read())
-                                    {
-                                        nomMedecin = reader["medecin"].ToString();
-                                    }
-                                    reader.Close();
-                                }
-                            }
-
-                            // ======================= construction de la liste de medocs préscrit par le medecin ===================
-                            List<string> medos = new List<string>();
-                            foreach (DataGridViewRow row_medoc in dgv_medoc.Rows)
-                            {
-                                if (row_medoc.IsNewRow)
-                                    continue;
-                                medos.Add(row.Cells["colMedicament"].Value.ToString());
-                            }
-                            string medicaments = string.Join(", ", medos);
-                            UpdateConsultation(idconsultation);
-                            // =============================== HISTORIQUE HOSPITALISATION =======================================
-                            MesClasses.Event.SaveHistorique(idHospitalisationID.ToString(), "Prescription ajoutée par Dr : " + nomMedecin + " : " + medicaments);
-                            dgv_medoc.Rows.Clear();
-
-                            // ================================= AFFECTATION CHAMBRE ============================================
-                            MesUserCases.User_affectation affectation = new User_affectation();
-                            affectation.Dock = DockStyle.Fill;
-                            Form1.GlobalPanel_main.Controls.Clear();
-                        }
-                        tr.Commit();
-                        MessageBox.Show("Prescription ajoutée avec succès!!!");
                     }
-              
+
+                    //==================== TRAITEMENT FINAL ====================
+                    if (type_patient == "ambulatoire")
+                    {
+                        GenererFacture(idconsultation, id_patient, "Ambulatoire");
+                        UpdateConsultation(idconsultation);
+                    }
+                    else
+                    {
+                        // Ouvrir l'affectation de chambre
+                        MesUserCases.User_affectation affectation = new User_affectation();
+                        affectation.Dock = DockStyle.Fill;
+
+                        Form1.GlobalPanel_main.Controls.Clear();
+                        Form1.GlobalPanel_main.Controls.Add(affectation);
+                    }
+
+                    //==================== VALIDATION ====================
+                    tr.Commit();
+
+                    dgv_medoc.Rows.Clear();
+
+                    MessageBox.Show("Prescription ajoutée avec succès.");
                 }
                 catch (Exception ex)
                 {
-                    tr.Rollback();
-                    MessageBox.Show("Erreur : "+ex.Message);
+                    try
+                    {
+                        tr.Rollback();
+                    }
+                    catch
+                    {
+
+                    }
+
+                    MessageBox.Show("Erreur : " + ex.Message);
                 }
             }
         }

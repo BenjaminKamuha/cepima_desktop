@@ -12,22 +12,149 @@ namespace Cepima.MesUserCases
 {
     public partial class User_paiement_eeg : UserControl
     {
+        int idExamen = 0;
         public User_paiement_eeg()
         {
             InitializeComponent();
-            FilterByType_eeg(cbx_type_eeg);
+            FilterByType_eeg(cbx_type_eeg,cbx_filtrer);
             LoadExamensEEG();
             LoadResume();
+            LoadHistoriquePaiementEEG();
+            dgv_examens_eeg.CellContentClick += dgv_examens_eeg_CellContentClick;
+            LoadEnum(cbx_mode_paiement,"paiement_eeg","mode_paiement");
         }
 
+        void dgv_examens_eeg_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex  < 0)
+            {
+                return;
+            }
+
+            if (dgv_examens_eeg.Columns[e.ColumnIndex].Name =="colEncaisser")
+            {
+                idExamen = Convert.ToInt32(dgv_examens_eeg.Rows[e.RowIndex].Tag);
+                pan_add_encaissement.Visible = true;
+                LoadInfosPaiement(idExamen);
+            }
+        }
+
+        // ============================================= REMPLIR LES INFORMATIONS DU PAIEMENT ==========================
+        private void LoadInfosPaiement(int examen_id)
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string querySelect = "SELECT prix_examen FROM examens_eeg WHERE id_examen = @id";
+                using (MySqlCommand cmd = new MySqlCommand(querySelect, con))
+                {
+                    cmd.Parameters.AddWithValue("@id",examen_id);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        tb_montant_a_payer.Text = reader["prix_examen"].ToString();
+                    }
+                    reader.Close();
+                }
+            }
+        }
+
+        // =============================== CHARGER LES ENUM (mode de paiement) =======================
+        private void LoadEnum(ComboBox cbx, string table, string colonne)
+        {
+            try
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    string query = "SHOW COLUMNS FROM " + table + " LIKE @colonne";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@colonne", colonne);
+
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        string typeEnum = reader["Type"].ToString();
+
+                        typeEnum = typeEnum.Replace("enum(", "");
+                        typeEnum = typeEnum.Replace(")", "");
+                        typeEnum = typeEnum.Replace("'", "");
+
+                        string[] valeurs = typeEnum.Split(',');
+
+                        cbx.Items.Clear();
+                        cbx.Items.AddRange(valeurs);
+
+                        if (cbx.Items.Count > 0)
+                            cbx.SelectedIndex = 0;
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // ============================== SAVE PAIEMENT EEG =======================================
+        private void SavePaiementEEG()
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction trans = con.BeginTransaction();
+
+                try
+                {
+                    //================= INSERTION DU PAIEMENT =================
+
+                    string query = "INSERT INTO paiement_eeg(id_examen,date_paiement,montant_eeg,mode_paiement)VALUES(@exam,NOW(),@montant,@mode)";
+                    MySqlCommand cmd = new MySqlCommand(query, con, trans);
+                    cmd.Parameters.AddWithValue("@exam", idExamen);
+                    cmd.Parameters.AddWithValue("@montant", Convert.ToDecimal(tb_montant_recu.Text));
+                    cmd.Parameters.AddWithValue("@mode", cbx_mode_paiement.Text);
+                    //cmd.Parameters.AddWithValue("@user", MesForms.SessionUtilisateur.idUser);
+
+                    cmd.ExecuteNonQuery();
+
+                    //================= MISE A JOUR DE L'EXAMEN =================
+
+                    query = "UPDATE examens_eeg SET etat_paiement='Payé' WHERE id_examen=@id";
+                    cmd = new MySqlCommand(query, con, trans);
+                    cmd.Parameters.AddWithValue("@id", idExamen);
+                    cmd.ExecuteNonQuery();
+
+                    trans.Commit();
+                    MessageBox.Show("Paiement enregistré avec succès.");
+                    pan_add_encaissement.Visible = false;
+                    LoadHistoriquePaiementEEG();
+                    LoadResume();
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         // =============================== FILTRER PAR TYPE EEG =====================================
-        private void FilterByType_eeg(ComboBox cbx)
+        private void FilterByType_eeg(ComboBox cbx, ComboBox cbx1)
         {
             cbx.Items.Clear();
             cbx.Items.Add("Tous");
             cbx.Items.Add("18_cannaux");
             cbx.Items.Add("32_cannaux");
             cbx.SelectedIndex = 0;
+
+            // ====================================================
+            cbx1.Items.Clear();
+            cbx1.Items.Add("Tous");
+            cbx1.Items.Add("Ajourd'hui");
+            cbx1.Items.Add("Cette semaine");
+            cbx1.Items.Add("Ce mois");
+            cbx1.SelectedIndex = 0;
         }
 
         // ============================= CHARGER LES EXAMENS DANS LE DATAGRIDVIEW ==============================
@@ -59,10 +186,19 @@ namespace Cepima.MesUserCases
                             cmd.Parameters.AddWithValue("@type",cbx_type_eeg.Text);
                         }
 
-                        // ================================== DATE  =============================================
-                        query += " AND DATE(e.date_examen) = @date";
-                        cmd.Parameters.AddWithValue("@date",dt_date.Value.ToString("yyyy-MM-dd"));
-                        query += " ORDER BY e.date_examens DESC";
+                       // ============================================== type ==================
+                        switch (cbx_filtrer.Text)
+                        {
+                            case "Ajourd'hui":
+                                query += " AND DATE(pe.date_paiement)=CURDATE()";
+                                break;
+                            case "Cette semaine":
+                                query += " AND YEARWEEK(pe.date_paiement,1)=YEARWEEK(CURDATE(),1)";
+                                break;
+                            case "Ce mois":
+                                query += " AND MONTH(pe.date_paiement)=MONTH(CURDATE()) AND YEAR(pe.date_paiement)=YEAR(CURDATE())";
+                                break;
+                        }
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -153,9 +289,73 @@ namespace Cepima.MesUserCases
                 }
             }
         }
+
+        // ====================================== HISTORIQUE DE PAIEMENT EEG ==================================
+        private void LoadHistoriquePaiementEEG()
+        {
+            dgv_historique_paiement.Rows.Clear();
+
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                try
+                {
+                    string query = "SELECT pe.id_paiement_eeg,pe.date_paiement,pe.montant_eeg,pe.mode_paiement,e.type_EEG,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) patient, FROM paiement_eeg pe INNER JOIN examens_eeg e ON pe.id_examen=e.id_examen INNER JOIN patients p ON e.id_patient=p.id_patient  WHERE 1=1 ";
+                    MesClasses.ManagerClasse.request_params.Clear();
+
+                    //===================== Recherche ==========================
+                    if (!string.IsNullOrWhiteSpace(tb_search_patient.Text))
+                    {
+                        query += " AND(p.nom LIKE @rech OR p.post_nom LIKE @rech OR p.prenom LIKE @rech OR pe.numero_recu LIKE @rech)";
+
+                        MesClasses.ManagerClasse.request_params.Add("@rech", "%" + tb_search_patient.Text + "%");
+                    }
+
+                    // ============================================== type ==================
+                    switch (cbx_filtrer.Text)
+                    {
+                        case "Ajourd'hui":
+                            query += " AND DATE(pe.date_paiement)=CURDATE()";
+                            break;
+                        case "Cette semaine":
+                            query += " AND YEARWEEK(pe.date_paiement,1)=YEARWEEK(CURDATE(),1)";
+                            break;
+                        case "Ce mois":
+                            query += " AND MONTH(pe.date_paiement)=MONTH(CURDATE()) AND YEAR(pe.date_paiement)=YEAR(CURDATE())";
+                            break;
+                    }
+                 
+
+                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
+                    {
+                        while (reader.Read())
+                        {
+                            int row = dgv_historique_paiement.Rows.Add();
+
+                            dgv_historique_paiement.Rows[row].Tag = reader["id_paiement_eeg"];
+
+                            dgv_historique_paiement.Rows[row].Cells["date"].Value = Convert.ToDateTime(reader["date_paiement"]).ToString("dd/MM/yyyy HH:mm");
+
+                            dgv_historique_paiement.Rows[row].Cells["patient"].Value = reader["patient"];
+                            dgv_historique_paiement.Rows[row].Cells["type"].Value = reader["type_EEG"];
+                            dgv_historique_paiement.Rows[row].Cells["colMontant"].Value = Convert.ToDecimal(reader["montant_eeg"]);
+                            dgv_historique_paiement.Rows[row].Cells["mode"].Value = reader["mode_paiement"];
+
+                        }
+
+                        reader.Close();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
         private void tb_search_patient_TextChanged(object sender, EventArgs e)
         {
             LoadExamensEEG();
+            LoadHistoriquePaiementEEG();
         }
 
         private void cbx_type_eeg_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,9 +363,15 @@ namespace Cepima.MesUserCases
             LoadExamensEEG();
         }
 
-        private void dt_date_ValueChanged(object sender, EventArgs e)
+        private void cbx_filtrer_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadExamensEEG();
+            LoadHistoriquePaiementEEG();
+        }
+
+        private void bt_valider_Click(object sender, EventArgs e)
+        {
+            SavePaiementEEG();
         }
     }
 }

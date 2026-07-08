@@ -47,8 +47,6 @@
             this.bt_save_consultation = new test_arrondissement2012.PerfectRoundedButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.cbx_personnel = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.customRoundedPanel3 = new CustomRoundedPanel();
@@ -56,7 +54,9 @@
             this.tb_search = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.rb_eeg_termine = new System.Windows.Forms.RadioButton();
+            this.rb_all = new System.Windows.Forms.RadioButton();
             this.rb_attente = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pan_test.SuspendLayout();
@@ -79,11 +79,10 @@
             this.customRoundedPanel1.Controls.Add(this.tb_motif);
             this.customRoundedPanel1.Controls.Add(this.myRoundedTextBox4);
             this.customRoundedPanel1.Controls.Add(this.bt_continue);
+            this.customRoundedPanel1.Controls.Add(this.label1);
             this.customRoundedPanel1.Controls.Add(this.bt_save_consultation);
             this.customRoundedPanel1.Controls.Add(this.label3);
             this.customRoundedPanel1.Controls.Add(this.label6);
-            this.customRoundedPanel1.Controls.Add(this.cbx_personnel);
-            this.customRoundedPanel1.Controls.Add(this.label2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
             this.customRoundedPanel1.Location = new System.Drawing.Point(342, 11);
@@ -95,7 +94,7 @@
             // 
             this.rb_eeg.AutoSize = true;
             this.rb_eeg.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_eeg.Location = new System.Drawing.Point(28, 35);
+            this.rb_eeg.Location = new System.Drawing.Point(37, 260);
             this.rb_eeg.Name = "rb_eeg";
             this.rb_eeg.Size = new System.Drawing.Size(153, 19);
             this.rb_eeg.TabIndex = 6;
@@ -108,7 +107,7 @@
             // 
             this.panel2.Controls.Add(this.rb_hospitalisation);
             this.panel2.Controls.Add(this.rb_ambulatoire);
-            this.panel2.Location = new System.Drawing.Point(264, 29);
+            this.panel2.Location = new System.Drawing.Point(250, 254);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(337, 26);
             this.panel2.TabIndex = 4;
@@ -130,7 +129,7 @@
             // 
             this.rb_ambulatoire.AutoSize = true;
             this.rb_ambulatoire.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_ambulatoire.Location = new System.Drawing.Point(159, 4);
+            this.rb_ambulatoire.Location = new System.Drawing.Point(185, 4);
             this.rb_ambulatoire.Name = "rb_ambulatoire";
             this.rb_ambulatoire.Size = new System.Drawing.Size(135, 19);
             this.rb_ambulatoire.TabIndex = 6;
@@ -147,7 +146,7 @@
             this.pan_test.Controls.Add(this.cbx_service);
             this.pan_test.Controls.Add(this.label9);
             this.pan_test.Controls.Add(this.label8);
-            this.pan_test.Location = new System.Drawing.Point(65, 329);
+            this.pan_test.Location = new System.Drawing.Point(65, 337);
             this.pan_test.Name = "pan_test";
             this.pan_test.Size = new System.Drawing.Size(537, 76);
             this.pan_test.TabIndex = 19;
@@ -218,7 +217,7 @@
             this.customRoundedPanel2.Controls.Add(this.rich_description);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(228, 231);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(228, 126);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
             this.customRoundedPanel2.Size = new System.Drawing.Size(296, 67);
             this.customRoundedPanel2.TabIndex = 7;
@@ -242,7 +241,7 @@
             this.tb_motif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.tb_motif.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tb_motif.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_motif.Location = new System.Drawing.Point(231, 172);
+            this.tb_motif.Location = new System.Drawing.Point(231, 67);
             this.tb_motif.Multiline = true;
             this.tb_motif.Name = "tb_motif";
             this.tb_motif.Size = new System.Drawing.Size(290, 23);
@@ -255,7 +254,7 @@
             this.myRoundedTextBox4.BorderSize = 1;
             this.myRoundedTextBox4.Enabled = false;
             this.myRoundedTextBox4.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox4.Location = new System.Drawing.Point(228, 170);
+            this.myRoundedTextBox4.Location = new System.Drawing.Point(228, 65);
             this.myRoundedTextBox4.Name = "myRoundedTextBox4";
             this.myRoundedTextBox4.PasswordChar = '\0';
             this.myRoundedTextBox4.PlaceholderColor = System.Drawing.Color.Beige;
@@ -301,7 +300,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(62, 180);
+            this.label3.Location = new System.Drawing.Point(62, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(134, 15);
             this.label3.TabIndex = 0;
@@ -311,31 +310,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(62, 231);
+            this.label6.Location = new System.Drawing.Point(62, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 15);
             this.label6.TabIndex = 0;
             this.label6.Text = "Diagnostic : ";
-            // 
-            // cbx_personnel
-            // 
-            this.cbx_personnel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_personnel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_personnel.FormattingEnabled = true;
-            this.cbx_personnel.Location = new System.Drawing.Point(230, 122);
-            this.cbx_personnel.Name = "cbx_personnel";
-            this.cbx_personnel.Size = new System.Drawing.Size(297, 23);
-            this.cbx_personnel.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(62, 125);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Personnels  : ";
             // 
             // label5
             // 
@@ -365,11 +344,12 @@
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 10;
             this.customRoundedPanel3.BorderSize = 1;
+            this.customRoundedPanel3.Controls.Add(this.rb_attente);
             this.customRoundedPanel3.Controls.Add(this.pictureBox1);
             this.customRoundedPanel3.Controls.Add(this.tb_search);
             this.customRoundedPanel3.Controls.Add(this.tb_tarif);
             this.customRoundedPanel3.Controls.Add(this.rb_eeg_termine);
-            this.customRoundedPanel3.Controls.Add(this.rb_attente);
+            this.customRoundedPanel3.Controls.Add(this.rb_all);
             this.customRoundedPanel3.Controls.Add(this.fl_patient);
             this.customRoundedPanel3.Controls.Add(this.label5);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
@@ -419,7 +399,7 @@
             // 
             this.rb_eeg_termine.AutoSize = true;
             this.rb_eeg_termine.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_eeg_termine.Location = new System.Drawing.Point(177, 46);
+            this.rb_eeg_termine.Location = new System.Drawing.Point(179, 46);
             this.rb_eeg_termine.Name = "rb_eeg_termine";
             this.rb_eeg_termine.Size = new System.Drawing.Size(93, 19);
             this.rb_eeg_termine.TabIndex = 1;
@@ -428,11 +408,24 @@
             this.rb_eeg_termine.UseVisualStyleBackColor = true;
             this.rb_eeg_termine.CheckedChanged += new System.EventHandler(this.rb_eeg_termine_CheckedChanged);
             // 
+            // rb_all
+            // 
+            this.rb_all.AutoSize = true;
+            this.rb_all.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.rb_all.Location = new System.Drawing.Point(10, 46);
+            this.rb_all.Name = "rb_all";
+            this.rb_all.Size = new System.Drawing.Size(49, 19);
+            this.rb_all.TabIndex = 1;
+            this.rb_all.TabStop = true;
+            this.rb_all.Text = "Tous";
+            this.rb_all.UseVisualStyleBackColor = true;
+            this.rb_all.CheckedChanged += new System.EventHandler(this.rb_all_CheckedChanged);
+            // 
             // rb_attente
             // 
             this.rb_attente.AutoSize = true;
             this.rb_attente.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_attente.Location = new System.Drawing.Point(10, 46);
+            this.rb_attente.Location = new System.Drawing.Point(78, 46);
             this.rb_attente.Name = "rb_attente";
             this.rb_attente.Size = new System.Drawing.Size(82, 19);
             this.rb_attente.TabIndex = 1;
@@ -440,6 +433,16 @@
             this.rb_attente.Text = "En attente";
             this.rb_attente.UseVisualStyleBackColor = true;
             this.rb_attente.CheckedChanged += new System.EventHandler(this.rb_attente_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(50, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Ajouter une consultation";
             // 
             // User_consultation
             // 
@@ -471,8 +474,6 @@
         private MyRoundedTextBox myRoundedTextBox4;
         private test_arrondissement2012.PerfectRoundedButton bt_save_consultation;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox cbx_personnel;
-        private System.Windows.Forms.Label label2;
         private CustomRoundedPanel customRoundedPanel2;
         private System.Windows.Forms.RichTextBox rich_description;
         private System.Windows.Forms.Label label3;
@@ -495,5 +496,7 @@
         private System.Windows.Forms.TextBox tb_search;
         private MyRoundedTextBox tb_tarif;
         private test_arrondissement2012.PerfectRoundedButton bt_continue;
+        private System.Windows.Forms.RadioButton rb_all;
+        private System.Windows.Forms.Label label1;
     }
 }

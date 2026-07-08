@@ -18,43 +18,12 @@ namespace Cepima.MesUserCases
         public User_consultation()
         {
             InitializeComponent();
-            LoadDataPersonnelPatient();
             LoadPatient();
             LoadServices();
             rb_attente.Checked = true;
         }
 
         // ================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
-        private void LoadDataPersonnelPatient()
-        {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-            {
-                MySqlTransaction tr = con.BeginTransaction();
-                try
-                {
-                    // ========================================== les personnels ==================================
-                    string queryPersonnel = "SELECT id_personnel,CONCAT(nom,' ',post_nom,' ',prenom) AS nomPersonnel FROM personnels ORDER BY nom ASC";
-                    using (MySqlCommand cmd = new MySqlCommand(queryPersonnel, con, tr))
-                    {
-                        DataTable dt = new DataTable();
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
-                        {
-                            da.Fill(dt);
-                            cbx_personnel.DataSource = dt;
-                            cbx_personnel.DisplayMember = "nomPersonnel";
-                            cbx_personnel.ValueMember = "id_personnel";
-                            cbx_personnel.SelectedIndex = -1;
-                        }
-                    }
-                  
-                }
-                catch (Exception ex)
-                {
-                    tr.Rollback();
-                    MessageBox.Show("Erreur lors du chargement de données "+ex.Message);
-                }
-            }
-        }
         // =========================== hospitalisation =======================================================================================
         private void SaveHospitalisation(int idConsultation)
         {
@@ -158,77 +127,81 @@ namespace Cepima.MesUserCases
         }
         private void bt_save_consultation_Click_1(object sender, EventArgs e)
         {
-            if (cbx_personnel.SelectedValue == null)
+            if (!rb_ambulatoire.Checked || !rb_hospitalisation.Checked)
             {
-                MessageBox.Show("Sélectionnez un personnel");
-                return;
-            }
-            string personnelId = cbx_personnel.SelectedValue.ToString();
-            string motif = tb_motif.Text;
-            string description = rich_description.Text;
-
-            // ================= cas du patient ambulatoire (qui arrive juste pour faire la consultation et repartir chez lui ===========
-            if (rb_ambulatoire.Checked)
-            {
-                // ============================== Appel de la méthode d'ajout de la consultation
-                MesClasses.ReceptionManager.EnregistrerConsultation(idPatient.ToString(), MesForms.SessionUtilisateur.idCentre.ToString(), personnelId, motif, description);
-
-                // =========================== mettre en jour le champs booleen de la table signes vitaux =================
-                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-                {
-                    string query = "UPDATE  signes_vitaux SET is_counsel = 1 WHERE id_patient = @id";
-                    MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@id", idPatient);
-                    cmd.ExecuteNonQuery(); 
-                }
-
-                tb_motif.Clear();
-                cbx_personnel.SelectedIndex = -1;
-                rich_description.Clear();
-            }
-
-            // ======================== cas du patient qui sera hospitalisé =================================================
-            else if (rb_hospitalisation.Checked)
-            {
-                // ============================== Appel de la méthode d'ajout de la consultation
-                MesClasses.ReceptionManager.EnregistrerConsultation(idPatient.ToString(), MesForms.SessionUtilisateur.idCentre.ToString(), personnelId, motif, description);
-
-            //=========================================== save hospitalisation ===========================
-                int consultationID = RecupererIdConsultation();
-                SaveHospitalisation(consultationID);
-                int hospitalisationID = RecupererIdHospitalisation();
-                // =========================== mettre en jour le champs booleen de la table signes vitaux =================
-                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-                {
-                    string query = "UPDATE  signes_vitaux SET is_counsel = 1 WHERE id_patient = @id";
-                    MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@id", idPatient);
-                    cmd.ExecuteNonQuery();
-                }
-                
-                MessageBox.Show("Hospitalisaton enregistré.\nChoisissez la suite");
-            }
-
-            else
-            {
-                MessageBox.Show("Sélectionnez un type de patient");
-            }
-
-            if (rb_eeg.Checked)
-            {
-                int idConsultation = RecupererIdConsultation();
-                SaveEEG(idConsultation, idPatient);
-                MessageBox.Show("Demande EEG envoyée avec succès");
-                LoadPatient();
-                return;
+                MessageBox.Show("Vous devez sélectionner le type de patient à consulter");
             }
             else
             {
-                //======================= PASSER DIRECTEMENT A LA PRESCRIPTION DES MEDICAMENTS ========================
-                User_prescription presc = new User_prescription(idPatient);
-                presc.Dock = DockStyle.Fill;
-                Form1.GlobalPanel_main.Controls.Clear();
-                Form1.GlobalPanel_main.Controls.Add(presc);
+                string motif = tb_motif.Text;
+                string description = rich_description.Text;
+                // ================= cas du patient ambulatoire (qui arrive juste pour faire la consultation et repartir chez lui ===========
+                if (rb_ambulatoire.Checked)
+                {
+                    // ============================== Appel de la méthode d'ajout de la consultation
+                    MesClasses.ReceptionManager.EnregistrerConsultation(idPatient.ToString(), MesForms.SessionUtilisateur.idCentre.ToString(), MesForms.SessionUtilisateur.idUser.ToString(), motif, description);
+
+                    // =========================== mettre en jour le champs booleen de la table signes vitaux =================
+                    using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                    {
+                        string query = "UPDATE  signes_vitaux SET is_counsel = 1 WHERE id_patient = @id";
+                        MySqlCommand cmd = new MySqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@id", idPatient);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    tb_motif.Clear();
+                    rich_description.Clear();
+                }
+
+                // ======================== cas du patient qui sera hospitalisé =================================================
+                else if (rb_hospitalisation.Checked)
+                {
+                    // ============================== Appel de la méthode d'ajout de la consultation
+                    MesClasses.ReceptionManager.EnregistrerConsultation(idPatient.ToString(), MesForms.SessionUtilisateur.idCentre.ToString(), MesForms.SessionUtilisateur.idUser.ToString(), motif, description);
+
+                    //=========================================== save hospitalisation ===========================
+                    int consultationID = RecupererIdConsultation();
+                    SaveHospitalisation(consultationID);
+                    int hospitalisationID = RecupererIdHospitalisation();
+                    // =========================== mettre en jour le champs booleen de la table signes vitaux =================
+                    using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                    {
+                        string query = "UPDATE  signes_vitaux SET is_counsel = 1 WHERE id_patient = @id";
+                        MySqlCommand cmd = new MySqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@id", idPatient);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Hospitalisaton enregistré.\nChoisissez la suite");
+                    //======================= PASSER DIRECTEMENT A LA PRESCRIPTION DES MEDICAMENTS ========================
+                    User_prescription presc = new User_prescription(idPatient);
+                    presc.Dock = DockStyle.Fill;
+                    Form1.GlobalPanel_main.Controls.Clear();
+                    Form1.GlobalPanel_main.Controls.Add(presc);
+                }
+
+                else
+                {
+                    MessageBox.Show("Sélectionnez un type de patient");
+                }
+
+                if (rb_eeg.Checked)
+                {
+                    int idConsultation = RecupererIdConsultation();
+                    SaveEEG(idConsultation, idPatient);
+                    MessageBox.Show("Demande EEG envoyée avec succès");
+                    LoadPatient();
+                    return;
+                }
+                else
+                {
+                    //======================= PASSER DIRECTEMENT A LA PRESCRIPTION DES MEDICAMENTS ========================
+                    User_prescription presc = new User_prescription(idPatient);
+                    presc.Dock = DockStyle.Fill;
+                    Form1.GlobalPanel_main.Controls.Clear();
+                    Form1.GlobalPanel_main.Controls.Add(presc);
+                }
             }
         }
 
@@ -245,7 +218,10 @@ namespace Cepima.MesUserCases
                 {
                     query ="SELECT DISTINCT p.id_patient,p.nom,p.post_nom FROM signes_vitaux s JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0";
                 }
-
+                else if (filtrePatient == "Tous")
+                {
+                    query = "SELECT  p.id_patient,p.nom,p.post_nom FROM hospitalisation h JOIN consultation c ON c.id_consultation =h.id_consultation JOIN patients p ON p.id_patient=c.id_patient WHERE h.etat ='Hospitalisé'";
+                }
                 // ================= EEG TERMINE =================
                 else
                 {
@@ -357,7 +333,7 @@ namespace Cepima.MesUserCases
                 idPatient = Convert.ToInt32(chk.Tag);
 
                 //===================================== si EEG terminé =========================
-                if (filtrePatient == "EEG")
+                if (filtrePatient == "EEG" || filtrePatient == "Tous")
                 {
                     bt_continue.Visible = true;
                 }
@@ -451,8 +427,6 @@ namespace Cepima.MesUserCases
                         cmdInsert.Parameters.AddWithValue("@consultation", idConsultation);
                         cmdInsert.ExecuteNonQuery();
                     }
-
-                    MessageBox.Show("Examen EEG ajouté !!!");
                 }
                 catch (Exception ex)
                 {
@@ -467,6 +441,15 @@ namespace Cepima.MesUserCases
             presc.Dock = DockStyle.Fill;
             Form1.GlobalPanel_main.Controls.Clear();
             Form1.GlobalPanel_main.Controls.Add(presc);
+        }
+
+        private void rb_all_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_all.Checked)
+            {
+                filtrePatient = "Tous";
+                LoadPatient();
+            }
         }
 
         //

@@ -19,14 +19,15 @@ namespace Cepima.MesUserCases
             InitializeComponent();
             ChargerPatientsHospitalises();
             //ChargerInfosPatient("1");
-            dgv_suivi.ReadOnly = true;
+            dgv_consultation.ReadOnly = true;
             cbx_afficher.SelectedIndexChanged += cbx_afficher_SelectedIndexChanged;
             LoadFiltrer();
         }
 
         void cbx_afficher_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadSuivi(cbx_afficher.Text);
+            LoadHistoriqueConsultation(cbx_afficher.Text);
+            LoadPrescription(cbx_afficher.Text);
         }
         private void LoadFiltrer()
         {
@@ -34,7 +35,7 @@ namespace Cepima.MesUserCases
             cbx_afficher.Items.Add("Tous");
             cbx_afficher.Items.Add("Aujourd'hui");
             cbx_afficher.Items.Add("Cette semaine");
-
+            cbx_afficher.Items.Add("Ce mois");
             cbx_afficher.SelectedIndex = 0;
         }
         private void ChargerInfosPatient(string idHospitalisation)
@@ -82,7 +83,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.statut FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE CONCAT(p.nom,' ',p.post_nom) LIKE @search";
+                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE CONCAT(p.nom,' ',p.post_nom) LIKE @search";
                         MesClasses.ManagerClasse.request_params.Clear();
                         MesClasses.ManagerClasse.request_params.Add("@search", "%" + args[0] + "%");
                         MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true);
@@ -95,10 +96,10 @@ namespace Cepima.MesUserCases
                                 string patientID = reader["id_patient"].ToString();
                                 string patient = reader["Patient"].ToString();
                                 string date = reader["date_entree"].ToString();
-                                STATUT = reader["statut"].ToString();
+                                STATUT = reader["etat"].ToString();
                                 //création des panel dynamiquement
                                 Panel p = new Panel();
-                                p.Size = new Size(180, 70);
+                                p.Size = new Size(190, 70);
                                 p.BorderStyle = BorderStyle.FixedSingle; // 193; 318
                                 p.Cursor = Cursors.Hand;
 
@@ -132,10 +133,10 @@ namespace Cepima.MesUserCases
                                     ChargerInfosPatient(idHospitalisation);
                                     hospitalisationID = idHospitalisation;
                                     ID_PATIENT = patientID;
+                                    LoadHistoriqueConsultation();
                                     LoadDernierPrescription(patientID);
+                                    LoadPrescription();
                                     LoadResumeSejour();
-                                    LoadSuivi();
-                                    LoadHistorique();
                                 };
                                 flowLayoutPanel1.Controls.Add(p);
                                 i++;
@@ -176,7 +177,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient";
+                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient";
                         using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                         {
                             if (reader.HasRows)
@@ -188,6 +189,7 @@ namespace Cepima.MesUserCases
                                     string patientID = reader["id_patient"].ToString();
                                     string patient = reader["Patient"].ToString();
                                     string date = Convert.ToDateTime(reader["date_entree"]).ToString("dd/MM/yyyy");
+                                    STATUT = reader["etat"].ToString();
                                     //création des panel dynamiquement
                                     Panel p = new Panel();
                                     p.Size = new Size(190, 70);
@@ -225,9 +227,9 @@ namespace Cepima.MesUserCases
                                         hospitalisationID = idHospitalisation;
                                         ID_PATIENT = patientID;
                                         LoadDernierPrescription(patientID);
+                                        LoadHistoriqueConsultation();
+                                        LoadPrescription();
                                         LoadResumeSejour();
-                                        LoadSuivi();
-                                        LoadHistorique();
                                     };
                                     flowLayoutPanel1.Controls.Add(p);
                                     i++;
@@ -264,7 +266,7 @@ namespace Cepima.MesUserCases
         {
             try
             {
-                string query = "SELECT c.numero_chambre,c.type_chambre,h.date_entree,DATEDIFF(NOW(),h.date_entree) AS jours FROM hospitalisation h LEFT JOIN affectation_chambre a ON h.id_hospitalisation = a.id_hospitalisation LEFT JOIN chambre c ON a.id_chambre = c.id_chambre WHERE h.id_hospitalisation=@id";
+                string query = "SELECT c.numero_chambre,c.type_chambre,h.date_entree,DATEDIFF(NOW(),h.date_entree) AS jours,c.tarif_journalier FROM hospitalisation h LEFT JOIN affectation_chambre a ON h.id_hospitalisation = a.id_hospitalisation LEFT JOIN chambre c ON a.id_chambre = c.id_chambre WHERE h.id_hospitalisation=@id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",hospitalisationID);
 
@@ -272,10 +274,11 @@ namespace Cepima.MesUserCases
                 {
                     if (reader.Read())
                     {
-                        lb_chambre_actuelle.Text = "Chamb n°:" + reader["numero_chambre"];
+                        lb_chambre_actuelle.Text = "Chamb n° : " + reader["numero_chambre"];
                         lb_type_chambre.Text = reader["type_chambre"].ToString();
                         lb_date_entree.Text = Convert.ToDateTime(reader["date_entree"]).ToString("dd/MM/yyyy");
                         lb_nombre_jours.Text = reader["jours"] + "Jours";
+                        lb_tarif.Text = reader["tarif_journalier"].ToString() + " $/jour";
                     }
                     else
                     {
@@ -283,6 +286,7 @@ namespace Cepima.MesUserCases
                         lb_type_chambre.Text = "Type : ---";
                         lb_date_entree.Text = "Date :---";
                         lb_nombre_jours.Text = "jours :---";
+                        lb_tarif.Text = "Tarif : ---";
                     }
                     reader.Close();
                 }
@@ -298,7 +302,7 @@ namespace Cepima.MesUserCases
         {
             try
             {
-                string query = "SELECT pr.id_prescription,DATE(pr.date_prescription) AS datePrescription,CONCAT(p.nom,' ',p.post_nom) AS medecin FROM prescriptions pr INNER JOIN consultation c ON pr.id_consultation=c.id_consultation INNER JOIN personnels p ON c.id_personnel=p.id_personnel WHERE pr.id_patient =@id ORDER BY pr.id_prescription DESC LIMIT 1";
+                string query = "SELECT pr.id_prescription,DATE(pr.date_prescription) AS datePrescription,pr.statut,CONCAT(p.nom,' ',p.post_nom) AS medecin FROM prescriptions pr INNER JOIN consultation c ON pr.id_consultation=c.id_consultation INNER JOIN personnels p ON c.id_personnel=p.id_personnel WHERE pr.id_patient =@id ORDER BY pr.id_prescription DESC LIMIT 1";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",patient_id);
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
@@ -308,12 +312,14 @@ namespace Cepima.MesUserCases
                         lb_id_prescription.Text = "Préscription n°: " + reader["id_prescription"];
                         lb_date_prescription.Text = Convert.ToDateTime(reader["datePrescription"]).ToString("dd/MM/yyyy");
                         lb_nom_medecin.Text = reader["medecin"].ToString();
+                        lb_statut_prescription.Text = reader["statut"].ToString();
                     }
                     else
                     {
                         lb_id_prescription.Text = "---";
                         lb_date_prescription.Text = "---";
                         lb_nom_medecin.Text = "---";
+                        lb_statut_prescription.Text = "---";
                     }
                     reader.Close();
                 }
@@ -321,17 +327,6 @@ namespace Cepima.MesUserCases
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur : "+ex.Message);
-            }
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                ChargerPatientsHospitalises();
-            }
-            else
-            {
-                ChargerPatientsHospitalises(textBox1.Text);
             }
         }
 
@@ -346,126 +341,122 @@ namespace Cepima.MesUserCases
             suivi.ShowDialog();
         }
 
-        // =================================================== suivi hospitalisation ============================
-        private void LoadSuivi(string filter = "Tous")
+        // ============================== HISTORIQUE DE CONSULTATION DU PATIENT HOSPITALISE ============================
+        private void LoadHistoriqueConsultation(string filtre = "Tous")
         {
-            dgv_suivi.Rows.Clear();
-
+            dgv_consultation.Rows.Clear();
             try
             {
                 string query = "";
+                // ========================================== FILTRES ==============================================
 
-                // ================= FILTRES =================
-
-                if (filter == "Tous") // tous ensemble
+                if (filtre =="Tous") // afficher toutes les consultations possibles
                 {
-                    query = "SELECT id_suivi,temperature,tension,rythme_cardiaque,observation,date_suivi,etat_mental FROM suivi_hospitalisation WHERE id_hospitalisation=@id ORDER BY date_suivi DESC";
+                    query = "SELECT c.date_consultation,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS personnel,c.diagnostic AS Observation,c.statut_presc FROM hospitalisation h JOIN consultation c ON h.id_consultation = c.id_consultation JOIN personnels p ON c.id_personnel = p.id_personnel ORDER BY date_consultation DESC ";
                 }
-                    // afficher les suivis du jour
-                else if (filter == "Aujourd'hui")
+                // afficher les consultations du jour
+                else if (filtre =="Aujourd'hui")
                 {
-                    query = "SELECT id_suivi,temperature,tension,rythme_cardiaque,observation,date_suivi,etat_mental FROM suivi_hospitalisation WHERE id_hospitalisation=@id AND DATE(date_suivi)=CURDATE() ORDER BY date_suivi DESC";
+                    query = "SELECT c.date_consultation,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS personnel,c.diagnostic AS Observation,c.statut_presc FROM hospitalisation h JOIN consultation c ON h.id_consultation = c.id_consultation JOIN personnels p ON c.id_personnel = p.id_personnel  WHERE h.id_hospitalisation =@id AND DATE(c.date_consultation)=CURDATE() ORDER BY c.date_consultation DESC";
                 }
-                    // afficher les suivi de la semaine
-                else if (filter == "Cette semaine")
+                // afficher les consultations de la semaine
+                else if (filtre =="Cette semaine")
                 {
-                    query = "SELECT id_suivi,temperature,tension,rythme_cardiaque,observation,date_suivi,etat_mental FROM suivi_hospitalisation WHERE id_hospitalisation=@id AND date_suivi >= DATE_SUB(NOW(),INTERVAL 7 DAY) ORDER BY date_suivi DESC";
+                    query = "SELECT c.date_consultation,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS personnel,c.diagnostic AS Observation,c.statut_presc FROM hospitalisation h JOIN consultation c ON h.id_consultation = c.id_consultation JOIN personnels p ON c.id_personnel = p.id_personnel  WHERE h.id_hospitalisation =@id AND c.date_consultation >= DATE_SUB(NOW(),INTERVAL 7 DAY) ORDER BY c.date_consultation DESC";
                 }
 
-                // ================= PARAMETRES =================
+                else if (filtre =="Ce mois")
+                {
+                    query = "SELECT c.date_consultation,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS personnel,c.diagnostic AS Observation,c.statut_presc FROM hospitalisation h JOIN consultation c ON h.id_consultation = c.id_consultation JOIN personnels p ON c.id_personnel = p.id_personnel  WHERE h.id_hospitalisation =@id AND MONTH(c.date_consultation)=MONTH(CURDATE()) AND YEAR(c.date_consultation)=YEAR(CURDATE()) ORDER BY c.date_consultation DESC";
+                }
 
+                // ======================================= PARAMETRES ============================================
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",hospitalisationID);
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
                 {
-
-                    if (reader.HasRows)
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            int row = dgv_suivi.Rows.Add();
-                            dgv_suivi.Rows[row].Tag = reader["id_suivi"];
-                            dgv_suivi.Rows[row].Cells["Date"].Value = Convert.ToDateTime(reader["date_suivi"]).ToString("dd/MM/yyyy HH:mm");
-                            dgv_suivi.Rows[row].Cells["Temp"].Value = reader["temperature"]+ " °C";
-                            dgv_suivi.Rows[row].Cells["Tension"].Value = reader["tension"];
-                            dgv_suivi.Rows[row].Cells["Pouls"].Value = reader["rythme_cardiaque"];
-                            dgv_suivi.Rows[row].Cells["Obs"].Value = reader["observation"];
-                            dgv_suivi.Rows[row].Cells["etat"].Value = reader["etat_mental"];
-
-                            // ===== STYLE
-
-                            double temp = Convert.ToDouble(reader["temperature"]);
-
-                            if (temp >= 38)
-                            {
-                                dgv_suivi.Rows[row].DefaultCellStyle.BackColor = Color.MistyRose;
-                            }
-
-                            ApplyStyle();
-                        }
-
-                        reader.Close();
+                        int row = dgv_consultation.Rows.Add();
+                        dgv_consultation.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_consultation"]).ToString("dd/MM/yyyy");
+                        dgv_consultation.Rows[row].Cells["colPersonnel"].Value = reader["personnel"].ToString();
+                        dgv_consultation.Rows[row].Cells["colObservation"].Value = reader["Observation"].ToString();
+                        dgv_consultation.Rows[row].Cells["colStatut"].Value = reader["statut_presc"].ToString();
+                        // ============================== STYLE ==============================================
+                        ApplyStyle();
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show( "Erreur : " + ex.Message);
-            }
-        }
-
-        private void ApplyStyle()
-        {
-            dgv_suivi.Columns["Date"].Width = 100;
-            dgv_suivi.Columns["Temp"].Width = 60;
-            dgv_suivi.Columns["Tension"].Width = 80;
-            dgv_suivi.Columns["Pouls"].Width = 80;
-            dgv_suivi.Columns["Obs"].Width = 120;
-            dgv_suivi.Columns["etat"].Width = 70;
-            dgv_suivi.Columns["colSave"].Width = 10;
-            dgv_suivi.Columns["colUpdate"].Width = 10;
-            dgv_suivi.Columns["colDelete"].Width = 10;
-        }
-        // ============================== Charger les evenements dans le datagridview ======================================================
-        private void LoadHistorique()
-        {
-            dgv_historique.Rows.Clear();
-
-            try
-            {
-                string query ="SELECT id_historique,evenement,date_evenement FROM historique_sejour WHERE id_hospitalisation=@id ORDER BY date_evenement DESC";
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id",hospitalisationID);
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
-                {
-
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            int row = dgv_historique.Rows.Add();
-                            dgv_historique.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_evenement"]).ToString("dd/MM/yyyy HH:mm");
-                            dgv_historique.Rows[row].Cells["colEvenement"].Value = reader["evenement"];
-                            dgv_historique.Rows[row].Tag = reader["id_historique"];
-
-                            dgv_historique.Columns["colDate"].Width = 130;
-                        }
-                        reader.Close();
-                    }
-                    else
-                    {
-                        dgv_historique.Rows.Add("","Aucun événement");
-                    }
-
                     reader.Close();
                 }
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur : "+ ex.Message);
+                MessageBox.Show("Erreur de chargement de données : "+ex.Message);
             }
         }
+
+        // ============================== HISTORIQUE DE PRESCRIPTIONS =================================================
+        private void LoadPrescription(string filter = "Tous")
+        {
+            dgv_prescription.Rows.Clear();
+            try
+            {
+                string query = "";
+                // ============================================ FILTRES =============================
+                if (filter == "Tous")
+                {
+                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation ORDER BY pr.date_prescription DESC ";
+                }
+
+                else if (filter == "Aujourd'hui")
+                {
+                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation WHERE h.id_hospitalisation =@id AND DATE(pr.date_prescription)=CURDATE() ORDER BY pr.date_prescription DESC ";
+                }
+                else if (filter == "Cette semaine")
+                {
+                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation WHERE h.id_hospitalisation =@id AND pr.date_prescription >= DATE_SUB(NOW(),INTERVAL 7 DAY) ORDER BY pr.date_prescription DESC ";
+                }
+                else if (filter == "Ce mois")
+                {
+                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation WHERE h.id_hospitalisation =@id AND MONTH(pr.date_prescription)=MONTH(CURDATE()) AND YEAR(pr.date_prescription)=YEAR(CURDATE()) ORDER BY pr.date_prescription DESC ";
+                }
+
+                // =========================================== PARAMETRES ============================================
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@id",hospitalisationID);
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
+                {
+                    while (reader.Read())
+                    {
+                        int row = dgv_prescription.Rows.Add();
+                        dgv_prescription.Rows[row].Cells["date"].Value = Convert.ToDateTime(reader["date_prescription"]).ToString("dd/MM/yyyy");
+                        dgv_prescription.Rows[row].Cells["colMedoc"].Value = reader["nom_medicament"].ToString();
+                        dgv_prescription.Rows[row].Cells["colUnit"].Value = reader["unite"].ToString();
+                        dgv_prescription.Rows[row].Cells["colQuantite"].Value = reader["quantite"].ToString();
+
+                        // ======================= datagridview_prescription style ===============================
+                        dgv_prescription.Columns["date"].Width = 80;
+                        dgv_prescription.Columns["colMedoc"].Width = 200;
+                        dgv_prescription.Columns["colUnit"].Width = 80;
+                        dgv_prescription.Columns["colQuantite"].Width = 60;
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur : "+ex.Message);
+            }
+        }
+        private void ApplyStyle()
+        {
+            // ======================= datagridview_consultation style ===============================
+            dgv_consultation.Columns["colDate"].Width = 80;
+            dgv_consultation.Columns["colPersonnel"].Width = 160;
+            dgv_consultation.Columns["colObservation"].Width = 150;
+            dgv_consultation.Columns["colStatut"].Width = 80;
+
+        }
+        // ============================== Charger les evenements dans le datagridview ======================================================
 
         private void bt_sortie_patient_Click(object sender,EventArgs e)
         {
@@ -523,17 +514,15 @@ namespace Cepima.MesUserCases
                         MesClasses.ManagerClasse.request_params.Clear();
                         MesClasses.ManagerClasse.request_params.Add("@id", hospitalisationID);
                         MesClasses.ManagerClasse.CRUD(queryAf, MesClasses.ManagerClasse.request_params);
-                        MesClasses.Event.SaveHistorique(hospitalisationID, "Patient sorti");
+                        //MesClasses.Event.SaveHistorique(hospitalisationID, "Patient sorti");
                         MessageBox.Show("Sortie enregistrée");
                         ChargerPatientsHospitalises();
-                        LoadHistorique();
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
-                    ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
             else
@@ -825,28 +814,22 @@ namespace Cepima.MesUserCases
             }
         }
 
-        private void bt_load_suivi__Click(object sender, EventArgs e)
-        {
-            LoadSuivi(cbx_afficher.Text);
-            LoadHistorique();
-        }
-
         private void bt_new_prescription_Click(object sender, EventArgs e)
         {
             MesForms.Form_New_prescription presc = new MesForms.Form_New_prescription(hospitalisationID,ID_PATIENT);
             presc.ShowDialog();
         }
 
-        private void dgv_suivi_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgv_consultation_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
             {
                 return;
             }
-            string idSuivi = dgv_suivi.Rows[e.RowIndex].Tag.ToString();
+            string idSuivi = dgv_consultation.Rows[e.RowIndex].Tag.ToString();
 
             // si bouton supprimer clicqué
-            if (dgv_suivi.Columns[e.ColumnIndex].Name == "colDelete")
+            if (dgv_consultation.Columns[e.ColumnIndex].Name == "colDelete")
             {
                 var result = MessageBox.Show("Supprimer cette donnée ?","Confirmation",MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
@@ -856,24 +839,23 @@ namespace Cepima.MesUserCases
                     MesClasses.ManagerClasse.request_params.Add("@id",idSuivi);
                     MesClasses.ManagerClasse.CRUD(queryDelete,MesClasses.ManagerClasse.request_params);
                     MessageBox.Show("Donnée supprimée avec succès !!");
-                    LoadSuivi();
                 }
             }
 
             // si bouton modifier clicqué on passe au mode edition
-            if (dgv_suivi.Columns[e.ColumnIndex].Name == "colUpdate")
+            if (dgv_consultation.Columns[e.ColumnIndex].Name == "colUpdate")
             {
-                dgv_suivi.ReadOnly = false;
-                dgv_suivi.Rows[e.RowIndex].Cells["Temp"].ReadOnly = false;
-                dgv_suivi.Rows[e.RowIndex].Cells["Tension"].ReadOnly = false;
-                dgv_suivi.Rows[e.RowIndex].Cells["Pouls"].ReadOnly = false;
-                dgv_suivi.Rows[e.RowIndex].Cells["Obs"].ReadOnly = false;
+                dgv_consultation.ReadOnly = false;
+                dgv_consultation.Rows[e.RowIndex].Cells["Temp"].ReadOnly = false;
+                dgv_consultation.Rows[e.RowIndex].Cells["Tension"].ReadOnly = false;
+                dgv_consultation.Rows[e.RowIndex].Cells["Pouls"].ReadOnly = false;
+                dgv_consultation.Rows[e.RowIndex].Cells["Obs"].ReadOnly = false;
 
-                dgv_suivi.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
+                dgv_consultation.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightYellow;
             }
 
             // si bouton save clicqué, on enregistre les modifications du tableau
-            if (dgv_suivi.Columns[e.ColumnIndex].Name == "colSave")
+            if (dgv_consultation.Columns[e.ColumnIndex].Name == "colSave")
             {
                 SaveModification_suivi(e.RowIndex);
             }
@@ -881,11 +863,11 @@ namespace Cepima.MesUserCases
         // ============================================ modification des données edités dans le tableau =========================
         private void SaveModification_suivi(int rowIndex)
         {
-            string idSuivi = dgv_suivi.Rows[rowIndex].Tag.ToString();
-            string temp = dgv_suivi.Rows[rowIndex].Cells["Temp"].Value.ToString();
-            string tension = dgv_suivi.Rows[rowIndex].Cells["Tension"].Value.ToString();
-            string poul = dgv_suivi.Rows[rowIndex].Cells["Pouls"].Value.ToString();
-            string observation = dgv_suivi.Rows[rowIndex].Cells["Obs"].Value.ToString();
+            string idSuivi = dgv_consultation.Rows[rowIndex].Tag.ToString();
+            string temp = dgv_consultation.Rows[rowIndex].Cells["Temp"].Value.ToString();
+            string tension = dgv_consultation.Rows[rowIndex].Cells["Tension"].Value.ToString();
+            string poul = dgv_consultation.Rows[rowIndex].Cells["Pouls"].Value.ToString();
+            string observation = dgv_consultation.Rows[rowIndex].Cells["Obs"].Value.ToString();
 
             string queryUpdate = "UPDATE suivi_hospitalisation SET temperature=@temp,tension=@tension,rythme_cardiaque=@frequence,observation=@obs WHERE id_suivi = @id";
             MesClasses.ManagerClasse.request_params.Clear();
@@ -897,15 +879,27 @@ namespace Cepima.MesUserCases
 
             MesClasses.ManagerClasse.CRUD(queryUpdate,MesClasses.ManagerClasse.request_params);
             MessageBox.Show("Données modifiée avec succès!!");
-            LoadSuivi();
             //remettre la lecture seule
-            dgv_suivi.Rows[rowIndex].Cells["Temp"].ReadOnly = true;
-            dgv_suivi.Rows[rowIndex].Cells["Tension"].ReadOnly = true;
-            dgv_suivi.Rows[rowIndex].Cells["Pouls"].ReadOnly = true;
-            dgv_suivi.Rows[rowIndex].Cells["Obs"].ReadOnly = true;
+            dgv_consultation.Rows[rowIndex].Cells["Temp"].ReadOnly = true;
+            dgv_consultation.Rows[rowIndex].Cells["Tension"].ReadOnly = true;
+            dgv_consultation.Rows[rowIndex].Cells["Pouls"].ReadOnly = true;
+            dgv_consultation.Rows[rowIndex].Cells["Obs"].ReadOnly = true;
 
-            dgv_suivi.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
+            dgv_consultation.Rows[rowIndex].DefaultCellStyle.BackColor = Color.White;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                ChargerPatientsHospitalises();
+            }
+            else
+            {
+                ChargerPatientsHospitalises(textBox1.Text);
+            }
+        }
+
     }
    
 }
