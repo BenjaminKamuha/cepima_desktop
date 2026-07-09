@@ -352,7 +352,7 @@ namespace Cepima.MesUserCases
 
                 if (filtre =="Tous") // afficher toutes les consultations possibles
                 {
-                    query = "SELECT c.date_consultation,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS personnel,c.diagnostic AS Observation,c.statut_presc FROM hospitalisation h JOIN consultation c ON h.id_consultation = c.id_consultation JOIN personnels p ON c.id_personnel = p.id_personnel ORDER BY date_consultation DESC ";
+                    query = "SELECT c.date_consultation,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS personnel,c.diagnostic AS Observation,c.statut_presc FROM hospitalisation h JOIN consultation c ON h.id_consultation = c.id_consultation JOIN personnels p ON c.id_personnel = p.id_personnel WHERE h.id_hospitalisation =@id ORDER BY date_consultation DESC ";
                 }
                 // afficher les consultations du jour
                 else if (filtre =="Aujourd'hui")
@@ -404,7 +404,7 @@ namespace Cepima.MesUserCases
                 // ============================================ FILTRES =============================
                 if (filter == "Tous")
                 {
-                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation ORDER BY pr.date_prescription DESC ";
+                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation  WHERE h.id_hospitalisation =@id ORDER BY pr.date_prescription DESC ";
                 }
 
                 else if (filter == "Aujourd'hui")
@@ -689,7 +689,7 @@ namespace Cepima.MesUserCases
                     // =========================================
 
                     trans.Commit();
-                    MessageBox.Show("Facture hospitalisation générée\n\nTotal : "+ total + " Fc");
+                    MessageBox.Show("Facture hospitalisation générée\n\nTotal : "+ total + " $");
                 }
                 catch (Exception ex)
                 {

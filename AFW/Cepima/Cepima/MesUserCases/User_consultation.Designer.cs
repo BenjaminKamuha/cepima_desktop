@@ -44,19 +44,19 @@
             this.tb_motif = new System.Windows.Forms.TextBox();
             this.myRoundedTextBox4 = new MyRoundedTextBox();
             this.bt_continue = new test_arrondissement2012.PerfectRoundedButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.bt_save_consultation = new test_arrondissement2012.PerfectRoundedButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.customRoundedPanel3 = new CustomRoundedPanel();
+            this.rb_attente = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.rb_eeg_termine = new System.Windows.Forms.RadioButton();
             this.rb_all = new System.Windows.Forms.RadioButton();
-            this.rb_attente = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pan_test.SuspendLayout();
@@ -280,6 +280,16 @@
             this.bt_continue.Visible = false;
             this.bt_continue.Click += new System.EventHandler(this.bt_continue_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(50, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Ajouter une consultation";
+            // 
             // bt_save_consultation
             // 
             this.bt_save_consultation.BackColor = System.Drawing.Color.Transparent;
@@ -294,7 +304,7 @@
             this.bt_save_consultation.Name = "bt_save_consultation";
             this.bt_save_consultation.Size = new System.Drawing.Size(148, 32);
             this.bt_save_consultation.TabIndex = 2;
-            this.bt_save_consultation.Click += new System.EventHandler(this.bt_save_consultation_Click_1);
+            this.bt_save_consultation.Click += new System.EventHandler(this.bt_save_consultation_Click);
             // 
             // label3
             // 
@@ -359,6 +369,19 @@
             this.customRoundedPanel3.Size = new System.Drawing.Size(283, 492);
             this.customRoundedPanel3.TabIndex = 4;
             // 
+            // rb_attente
+            // 
+            this.rb_attente.AutoSize = true;
+            this.rb_attente.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
+            this.rb_attente.Location = new System.Drawing.Point(78, 46);
+            this.rb_attente.Name = "rb_attente";
+            this.rb_attente.Size = new System.Drawing.Size(82, 19);
+            this.rb_attente.TabIndex = 1;
+            this.rb_attente.TabStop = true;
+            this.rb_attente.Text = "En attente";
+            this.rb_attente.UseVisualStyleBackColor = true;
+            this.rb_attente.CheckedChanged += new System.EventHandler(this.rb_attente_CheckedChanged);
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
@@ -420,29 +443,6 @@
             this.rb_all.Text = "Tous";
             this.rb_all.UseVisualStyleBackColor = true;
             this.rb_all.CheckedChanged += new System.EventHandler(this.rb_all_CheckedChanged);
-            // 
-            // rb_attente
-            // 
-            this.rb_attente.AutoSize = true;
-            this.rb_attente.Font = new System.Drawing.Font("Calibri", 9.4F, System.Drawing.FontStyle.Bold);
-            this.rb_attente.Location = new System.Drawing.Point(78, 46);
-            this.rb_attente.Name = "rb_attente";
-            this.rb_attente.Size = new System.Drawing.Size(82, 19);
-            this.rb_attente.TabIndex = 1;
-            this.rb_attente.TabStop = true;
-            this.rb_attente.Text = "En attente";
-            this.rb_attente.UseVisualStyleBackColor = true;
-            this.rb_attente.CheckedChanged += new System.EventHandler(this.rb_attente_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(50, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Ajouter une consultation";
             // 
             // User_consultation
             // 

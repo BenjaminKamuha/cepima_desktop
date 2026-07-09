@@ -23,6 +23,9 @@ namespace Cepima.MesUserCases
             id_patient = PatientID;
             rb_ambulatoire.CheckedChanged += rb_ambulatoire_CheckedChanged;
             rb_hospitalise.CheckedChanged += rb_hospitalise_CheckedChanged;
+            LoadInfosPatient();
+            LoadHistoriquePrescription();
+            LoadDernierEEG();
         }
 
         void rb_hospitalise_CheckedChanged(object sender, EventArgs e)
@@ -52,13 +55,13 @@ namespace Cepima.MesUserCases
                 string query = "";
                 if (args.Length != 0)
                 {
-                    query = "SELECT med.id_medicament,nom_medicament,photo,categorie unite,prix_vente FROM medicament med JOIN stock_pharmacie ON stock_pharmacie.id_medicament = med.id_medicament WHERE nom_medicament LIKE @search";
+                    query = "SELECT m.id_medicament,m.nom_medicament,m.photo,m.categorie,ph.unite,m.prix_vente FROM stock_pharmacie ph  JOIN medicament m ON ph.id_medicament = m.id_medicament  WHERE m.nom_medicament LIKE @search"; 
                     MesClasses.ManagerClasse.request_params.Clear();
                     MesClasses.ManagerClasse.request_params.Add("@search", "%" + args[0] + "%");
                 }
                 else
                 {
-                    query = "SELECT med.id_medicament,nom_medicament,photo,categorie,unite,prix_vente FROM medicament med JOIN stock_pharmacie ON stock_pharmacie.id_medicament = med.id_medicament ORDER BY nom_medicament ASC";
+                    query = "SELECT m.id_medicament,m.nom_medicament,m.photo,m.categorie,ph.unite,m.prix_vente FROM stock_pharmacie ph  JOIN medicament m ON ph.id_medicament = m.id_medicament  ORDER BY m.nom_medicament ASC";
                 }
 
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, args.Length != 0 ? MesClasses.ManagerClasse.request_params : null, true))
@@ -351,12 +354,22 @@ namespace Cepima.MesUserCases
 
         private void bt_valider_prescription_Click(object sender, EventArgs e)
         {
-            ValiderPrescriptions();
+            if (!rb_ambulatoire.Checked && rb_hospitalise.Checked)
+            {
+                MessageBox.Show("Vous devez sélectiionner le type de patient");
+                return;
+            }
+            else
+            {
+                ValiderPrescriptions();
+            }
+         
         }
 
         // ===================================== VALIDER PRESCRIPTIONS ==========================================
         private void ValiderPrescriptions()
         {
+          
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
@@ -438,6 +451,113 @@ namespace Cepima.MesUserCases
 
                     MessageBox.Show("Erreur : " + ex.Message);
                 }
+            }
+        }
+
+        // ======================================= CHARGER LES INFORMATIONS DU PATIENT =================================
+        private void LoadInfosPatient()
+        {
+            int idConsultation = RecupererIdConsultation();
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                try
+                {
+                    string query = "SELECT p.nom,p.post_nom,p.sexe,TIMESTAMPDIFF(YEAR,p.date_naissance,CURDATE()) AS age,CONCAT(pe.nom,' ',pe.post_nom,' ',pe.prenom) AS medecin,c.date_consultation FROM consultation c INNER JOIN patients p ON c.id_patient=p.id_patient INNER JOIN personnels pe ON pe.id_personnel=c.id_personnel WHERE c.id_consultation=@consultation LIMIT 1";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@consultation",idConsultation);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lb_nom.Text = reader["nom"] + " " + reader["post_nom"];
+                                lb_sexe.Text = reader["sexe"].ToString();
+                                lb_age.Text = reader["age"] + " ans";
+                                lb_type_patient.Text = "Patient : " +type_patient.ToString();
+                                lb_date.Text = Convert.ToDateTime(reader["date_consultation"]).ToString("dd/MM/yyyy");
+                                lb_medecin.Text = "Medecin: "+reader["medecin"].ToString();
+                            }
+                            reader.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        // ====================================== CHARGER L'HISTORIQUE DE PRESCRIPTION =====================================
+        private void LoadHistoriquePrescription()
+        {
+            dgvHistorique.Rows.Clear();
+
+            try
+            {
+                string query = "SELECT pr.date_prescription,CONCAT(pe.nom,' ',pe.post_nom) AS medecin,m.nom_medicament FROM prescriptions pr INNER JOIN consultation c ON c.id_consultation=pr.id_consultation INNER JOIN personnels pe ON pe.id_personnel=c.id_personnel INNER JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE pr.id_patient=@patient ORDER BY pr.date_prescription DESC";
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@patient", id_patient.ToString());
+
+                using (MySqlDataReader reader =
+                    MesClasses.ManagerClasse.CRUD(query,
+                    MesClasses.ManagerClasse.request_params,
+                    true))
+                {
+                    while (reader.Read())
+                    {
+                        int row = dgvHistorique.Rows.Add();
+                        dgvHistorique.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_prescription"]).ToString("dd/MM/yyyy");
+                        dgvHistorique.Rows[row].Cells["colMedecin"].Value = reader["medecin"];
+                        dgvHistorique.Rows[row].Cells["colMedoc"].Value = reader["nom_medicament"];
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        // ======================================= CHARGER LE DERNIER EXAMEN EEG  =============================================
+        private void LoadDernierEEG()
+        {
+            try
+            {
+                string query = "SELECT * FROM examens_eeg WHERE id_patient=@patient ORDER BY date_examen DESC LIMIT 1";
+
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@patient", id_patient.ToString());
+
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
+                {
+                    if (reader.Read())
+                    {
+                        lb_date_examen.Text = Convert.ToDateTime(reader["date_examen"]).ToString("dd/MM/yyyy");
+                        lb_type.Text = reader["type_EEG"].ToString();
+                        lb_resultat.Text = reader["resultat"].ToString();
+                        lb_interpretation.Text = reader["interpretation"].ToString();
+                        lblStatut.Text = reader["statut"].ToString();
+                    }
+                    else
+                    {
+                        lb_date_examen.Text = "-";
+                        lb_type.Text = "-";
+                        lb_resultat.Text = "Aucun examen";
+                        lb_interpretation.Text = "-";
+                        lblStatut.Text = "-";
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
