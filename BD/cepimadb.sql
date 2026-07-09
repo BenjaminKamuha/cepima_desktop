@@ -158,7 +158,7 @@ CREATE TABLE `consultation` (
   CONSTRAINT `fk_consultation _personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE,
   CONSTRAINT `fk_consultation_centre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
   CONSTRAINT `fk_consultation_patient` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `consultation` (
 
 LOCK TABLES `consultation` WRITE;
 /*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
-INSERT INTO `consultation` VALUES (1,15,1,7,'2026-06-12','maux de tete','depuis toujours','Livrée'),(3,16,1,3,'2026-06-19','','','Non livrée'),(5,18,1,6,'2026-06-29','jldjkfllksfj','sjdlkjflsdf','Non livrée'),(6,14,1,1,'2026-07-03','maux de tete','kjhgfgh','Livrée'),(7,19,1,8,'2026-07-06','Môt de tête','Le patient est gravement malade','Non livrée');
+INSERT INTO `consultation` VALUES (1,15,1,7,'2026-06-12','maux de tete','depuis toujours','Livrée'),(3,16,1,3,'2026-06-19','','','Non livrée'),(5,18,1,6,'2026-06-29','jldjkfllksfj','sjdlkjflsdf','Non livrée'),(6,14,1,1,'2026-07-03','maux de tete','kjhgfgh','Livrée'),(7,19,1,8,'2026-07-06','Môt de tête','Le patient est gravement malade','Non livrée'),(8,18,1,6,'2026-07-07','Mot de tête','Il soufre trop! Fait tout ce qu\'il faut pour qu\'il reprene ses esprits','Non livrée'),(9,17,1,3,'2026-07-07','motif','autre','Non livrée'),(10,11,1,9,'2026-07-07','abcd','wxyz','Livrée');
 /*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +247,7 @@ CREATE TABLE `detail_facture` (
   PRIMARY KEY (`id_detail_facture`),
   KEY `id_facture` (`id_facture`),
   CONSTRAINT `fk_facture` FOREIGN KEY (`id_facture`) REFERENCES `facture` (`id_facture`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +256,7 @@ CREATE TABLE `detail_facture` (
 
 LOCK TABLES `detail_facture` WRITE;
 /*!40000 ALTER TABLE `detail_facture` DISABLE KEYS */;
-INSERT INTO `detail_facture` VALUES (1,1,'Alprazolam',1,0.00,0.00),(2,1,'Amitriptyline',1,0.00,0.00),(3,1,'Carbamazepine',1,1.00,1.00),(4,1,'Diazepan',2,0.00,1.00),(5,1,'Clozapine',1,2.00,2.00);
+INSERT INTO `detail_facture` VALUES (1,1,'Alprazolam',1,0.00,0.00),(2,1,'Amitriptyline',1,0.00,0.00),(3,1,'Carbamazepine',1,1.00,1.00),(4,1,'Diazepan',2,0.00,1.00),(5,1,'Clozapine',1,2.00,2.00),(6,2,'Carbamazepine',2,1.00,2.00),(7,2,'Clozapine',2,2.00,4.00),(8,2,'Clonazepam',3,0.90,2.70),(9,2,'Diazepan',1,0.60,0.60),(10,3,'Carbamazepine',2,1.00,2.00),(11,3,'Clozapine',2,2.00,4.00),(12,3,'Clonazepam',3,0.90,2.70),(13,3,'Diazepan',1,0.60,0.60);
 /*!40000 ALTER TABLE `detail_facture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +341,7 @@ CREATE TABLE `detail_sortie_stock` (
   CONSTRAINT `fk_detail_sortie_stock_consultation` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_medicament_sortie_detail` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
   CONSTRAINT `fk_sortie_idStock` FOREIGN KEY (`id_sortie`) REFERENCES `sorties_stock` (`id_sortie`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +350,7 @@ CREATE TABLE `detail_sortie_stock` (
 
 LOCK TABLES `detail_sortie_stock` WRITE;
 /*!40000 ALTER TABLE `detail_sortie_stock` DISABLE KEYS */;
-INSERT INTO `detail_sortie_stock` VALUES (12,18,4,3,0.50,NULL,NULL),(13,18,4,3,0.50,NULL,NULL),(14,18,4,3,0.50,NULL,NULL),(15,18,4,3,0.50,NULL,NULL),(16,18,4,3,0.50,NULL,NULL),(17,18,4,3,0.50,NULL,NULL),(18,18,4,3,0.50,NULL,NULL),(19,18,4,3,0.50,NULL,NULL),(20,18,4,3,0.50,NULL,NULL),(21,19,6,8,1.20,NULL,NULL),(22,19,9,8,1.60,NULL,NULL),(23,19,12,3,0.70,NULL,NULL),(24,19,6,8,1.20,NULL,NULL),(25,19,9,8,1.60,NULL,NULL),(26,19,12,3,0.70,NULL,NULL),(27,18,4,3,0.50,NULL,NULL),(28,18,4,3,0.50,NULL,NULL),(29,18,4,3,0.50,NULL,NULL),(30,18,4,3,0.50,NULL,NULL),(31,18,4,3,0.50,NULL,NULL),(32,19,6,8,1.20,NULL,NULL),(33,19,9,8,1.60,NULL,NULL),(34,19,12,3,0.70,NULL,NULL),(35,19,6,8,1.20,NULL,NULL),(36,19,9,8,1.60,NULL,NULL),(37,19,12,3,0.70,NULL,NULL),(38,18,4,3,0.50,NULL,NULL),(39,18,4,3,0.50,NULL,NULL),(40,19,6,8,1.20,NULL,NULL),(41,19,9,8,1.60,NULL,NULL),(42,19,12,3,0.70,NULL,NULL),(43,18,4,3,0.50,NULL,NULL),(44,19,6,8,1.20,NULL,NULL),(45,19,9,8,1.60,NULL,NULL),(46,19,12,3,0.70,NULL,NULL),(47,19,6,8,1.20,NULL,NULL),(48,19,9,8,1.60,NULL,NULL),(49,19,12,3,0.70,NULL,NULL),(50,18,4,3,0.50,NULL,NULL),(51,19,6,8,1.20,NULL,NULL),(52,19,9,8,1.60,NULL,NULL),(53,19,12,3,0.70,NULL,NULL),(54,19,6,8,1.20,NULL,NULL),(55,19,9,8,1.60,NULL,NULL),(56,19,12,3,0.70,NULL,NULL);
+INSERT INTO `detail_sortie_stock` VALUES (12,18,4,3,0.50,NULL,NULL),(13,18,4,3,0.50,NULL,NULL),(14,18,4,3,0.50,NULL,NULL),(15,18,4,3,0.50,NULL,NULL),(16,18,4,3,0.50,NULL,NULL),(17,18,4,3,0.50,NULL,NULL),(18,18,4,3,0.50,NULL,NULL),(19,18,4,3,0.50,NULL,NULL),(20,18,4,3,0.50,NULL,NULL),(21,19,6,8,1.20,NULL,NULL),(22,19,9,8,1.60,NULL,NULL),(23,19,12,3,0.70,NULL,NULL),(24,19,6,8,1.20,NULL,NULL),(25,19,9,8,1.60,NULL,NULL),(26,19,12,3,0.70,NULL,NULL),(27,18,4,3,0.50,NULL,NULL),(28,18,4,3,0.50,NULL,NULL),(29,18,4,3,0.50,NULL,NULL),(30,18,4,3,0.50,NULL,NULL),(31,18,4,3,0.50,NULL,NULL),(32,19,6,8,1.20,NULL,NULL),(33,19,9,8,1.60,NULL,NULL),(34,19,12,3,0.70,NULL,NULL),(35,19,6,8,1.20,NULL,NULL),(36,19,9,8,1.60,NULL,NULL),(37,19,12,3,0.70,NULL,NULL),(38,18,4,3,0.50,NULL,NULL),(39,18,4,3,0.50,NULL,NULL),(40,19,6,8,1.20,NULL,NULL),(41,19,9,8,1.60,NULL,NULL),(42,19,12,3,0.70,NULL,NULL),(43,18,4,3,0.50,NULL,NULL),(44,19,6,8,1.20,NULL,NULL),(45,19,9,8,1.60,NULL,NULL),(46,19,12,3,0.70,NULL,NULL),(47,19,6,8,1.20,NULL,NULL),(48,19,9,8,1.60,NULL,NULL),(49,19,12,3,0.70,NULL,NULL),(50,18,4,3,0.50,NULL,NULL),(51,19,6,8,1.20,NULL,NULL),(52,19,9,8,1.60,NULL,NULL),(53,19,12,3,0.70,NULL,NULL),(54,19,6,8,1.20,NULL,NULL),(55,19,9,8,1.60,NULL,NULL),(56,19,12,3,0.70,NULL,NULL),(57,20,15,2,1.00,NULL,NULL),(58,20,10,2,2.00,NULL,NULL);
 /*!40000 ALTER TABLE `detail_sortie_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -458,7 +458,7 @@ CREATE TABLE `examens_eeg` (
   KEY `id_consultation` (`id_consultation`),
   CONSTRAINT `fk_consultation` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE,
   CONSTRAINT `fk_patient_examen` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -467,6 +467,7 @@ CREATE TABLE `examens_eeg` (
 
 LOCK TABLES `examens_eeg` WRITE;
 /*!40000 ALTER TABLE `examens_eeg` DISABLE KEYS */;
+INSERT INTO `examens_eeg` VALUES (1,18,8,'2026-07-07',NULL,NULL,NULL,'Demande',NULL);
 /*!40000 ALTER TABLE `examens_eeg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -493,7 +494,7 @@ CREATE TABLE `facture` (
   CONSTRAINT `centre_fk_facture` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `consultation_fk_facture` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE,
   CONSTRAINT `patient_fk_facture` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -502,7 +503,7 @@ CREATE TABLE `facture` (
 
 LOCK TABLES `facture` WRITE;
 /*!40000 ALTER TABLE `facture` DISABLE KEYS */;
-INSERT INTO `facture` VALUES (1,15,1,1,'Ambulatoire','2026-06-12',5.40,'Partiellement payé');
+INSERT INTO `facture` VALUES (1,15,1,1,'Ambulatoire','2026-06-12',5.40,'Partiellement payé'),(2,11,10,1,'Ambulatoire','2026-07-07',9.30,'Non payé'),(3,11,10,1,'Ambulatoire','2026-07-07',9.30,'Non payé');
 /*!40000 ALTER TABLE `facture` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -519,7 +520,7 @@ CREATE TABLE `historique_sejour` (
   `evenement` text,
   `date_evenement` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_historique`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -528,7 +529,7 @@ CREATE TABLE `historique_sejour` (
 
 LOCK TABLES `historique_sejour` WRITE;
 /*!40000 ALTER TABLE `historique_sejour` DISABLE KEYS */;
-INSERT INTO `historique_sejour` VALUES (1,2,'Patient : Kasereka Kuduma Joel hospitalisé','2026-06-19 08:28:13'),(2,0,'Prescription ajoutée par Dr : KABAMBA MWILU Jean : Carbamazepine, Amitriptyline','2026-07-03 14:39:56');
+INSERT INTO `historique_sejour` VALUES (1,2,'Patient : Kasereka Kuduma Joel hospitalisé','2026-06-19 08:28:13'),(2,0,'Prescription ajoutée par Dr : KABAMBA MWILU Jean : Carbamazepine, Amitriptyline','2026-07-03 14:39:56'),(3,3,'Patient : Muhindo Kalungero John hospitalisé','2026-07-07 11:28:20');
 /*!40000 ALTER TABLE `historique_sejour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -588,7 +589,7 @@ CREATE TABLE `hospitalisation` (
   CONSTRAINT `fk_centre_hospitalisation` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
   CONSTRAINT `fk_patient_hospitalisation` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
   CONSTRAINT `fk_service` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -597,7 +598,7 @@ CREATE TABLE `hospitalisation` (
 
 LOCK TABLES `hospitalisation` WRITE;
 /*!40000 ALTER TABLE `hospitalisation` DISABLE KEYS */;
-INSERT INTO `hospitalisation` VALUES (2,16,1,5,3,'2026-06-19',NULL,'','Hospitalisé');
+INSERT INTO `hospitalisation` VALUES (2,16,1,5,3,'2026-06-19',NULL,'','Hospitalisé'),(3,18,1,2,8,'2026-07-07',NULL,'Mot de tête','Hospitalisé');
 /*!40000 ALTER TABLE `hospitalisation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -692,6 +693,33 @@ INSERT INTO `paiement` VALUES (2,1,1,'2026-06-12',2.20,3.20,'Cash','Partiel');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `paiement_eeg`
+--
+
+DROP TABLE IF EXISTS `paiement_eeg`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `paiement_eeg` (
+  `id_paiement_eeg` int(11) NOT NULL AUTO_INCREMENT,
+  `id_examens` int(11) NOT NULL,
+  `date_paiement` datetime DEFAULT NULL,
+  `montant_eeg` decimal(12,2) NOT NULL,
+  `mode_paiement` enum('Espèces','Mobile Money','Banque') DEFAULT NULL,
+  PRIMARY KEY (`id_paiement_eeg`),
+  KEY `paiement_examens_eeg` (`id_examens`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paiement_eeg`
+--
+
+LOCK TABLES `paiement_eeg` WRITE;
+/*!40000 ALTER TABLE `paiement_eeg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paiement_eeg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `patients`
 --
 
@@ -715,7 +743,7 @@ CREATE TABLE `patients` (
   UNIQUE KEY `numero_fiche` (`numero_fiche`),
   KEY `id_centre` (`id_centre`),
   CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -724,7 +752,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
-INSERT INTO `patients` VALUES (2,'CEP-001','Kambalejbjbjnènènjn','Mukama','Mafungula','Homme','1994-06-09','+243 245 985 633','Kyambuli','2026-04-09',1,NULL),(3,'CEP-003','Kasereka','Mukandala','Jean','Homme','2026-04-09','0947856321','Butembo','2026-04-09',1,NULL),(4,'CEP-004','kakule','Mughanda','Jean-louis','Homme','1995-07-13','+243 254 789 545 ','Avenue du centre','2026-04-22',1,NULL),(5,'CEP-005','kasereka','mafungula','joel','Homme','1994-06-15','+243 895 745 526','Vukula','2026-05-20',1,NULL),(6,'CEP-006','Mukeba','Kalume','Jean','Masculin','1998-05-14','099112233','Goma Katindo','2026-05-28',1,NULL),(7,'CEP-007','Kasereka','Bahati','Aline','Feminin','2001-03-20','097445566','Goma Himbi','2026-05-28',1,NULL),(8,'CEP-008','Mateso','Kambale','Patrick','Masculin','1995-11-08','081223344','Goma Majengo','2026-05-28',1,NULL),(9,'CEP-009','Safari','Mukwege','Grâce','Feminin','2003-07-17','082334455','Goma Ndosho','2026-05-28',1,NULL),(10,'CEP-0010','Bisimwa','Lusenge','Eric','Masculin','1990-01-25','099556677','Goma Keshero','2026-05-28',1,NULL),(11,'CEP-0011','Uwimana','Nadine','Chantal','Feminin','1999-09-12','081998877','Goma Katoyi','2026-05-28',1,NULL),(12,'CEP-0012','Kavira','Mumbere','Daniel','Masculin','1997-12-30','082887766','Goma Virunga','2026-05-28',1,NULL),(13,'CEP-0013','Niyonsaba','Claude','Sandrine','Feminin','2002-04-11','097776655','Goma Lac Vert','2026-05-28',1,NULL),(14,'CEP-0014','Mambene','Masika','Joël','Masculin','1994-08-09','099665544','Goma Mugunga','2026-05-28',1,NULL),(15,'CEP-0015','Kamala','Bahwere','Esther','Feminin','2000-06-21','081554433','Goma Kyeshero','2026-05-28',1,NULL),(16,'CEP-016','Kasereka','Kuduma','Joel','Homme','1999-06-08','09845345434','Vichai','2026-06-19',1,NULL),(17,'CEP-017','Mumbere','Kamuha','Patrick','Homme','1999-02-16','093464345','Vulamba','2026-06-24',1,NULL),(18,'CEP-018','Muhindo','Kalungero','John','Homme','2000-02-15','0987634234','Kitulu','2026-06-24',1,NULL),(19,'CEP-019','Kambere','Kamuha','Kawaki','Homme','2026-07-06','098768734','Vungi','2026-07-06',1,NULL);
+INSERT INTO `patients` VALUES (2,'CEP-001','Kambalejbjbjnènènjn','Mukama','Mafungula','Homme','1994-06-09','+243 245 985 633','Kyambuli','2026-04-09',1,NULL),(3,'CEP-003','Kasereka','Mukandala','Jean','Homme','2026-04-09','0947856321','Butembo','2026-04-09',1,NULL),(4,'CEP-004','kakule','Mughanda','Jean-louis','Homme','1995-07-13','+243 254 789 545 ','Avenue du centre','2026-04-22',1,NULL),(5,'CEP-005','kasereka','mafungula','joel','Homme','1994-06-15','+243 895 745 526','Vukula','2026-05-20',1,NULL),(6,'CEP-006','Mukeba','Kalume','Jean','Masculin','1998-05-14','099112233','Goma Katindo','2026-05-28',1,NULL),(7,'CEP-007','Kasereka','Bahati','Aline','Feminin','2001-03-20','097445566','Goma Himbi','2026-05-28',1,NULL),(8,'CEP-008','Mateso','Kambale','Patrick','Masculin','1995-11-08','081223344','Goma Majengo','2026-05-28',1,NULL),(9,'CEP-009','Safari','Mukwege','Grâce','Feminin','2003-07-17','082334455','Goma Ndosho','2026-05-28',1,NULL),(10,'CEP-0010','Bisimwa','Lusenge','Eric','Masculin','1990-01-25','099556677','Goma Keshero','2026-05-28',1,NULL),(11,'CEP-0011','Uwimana','Nadine','Chantal','Feminin','1999-09-12','081998877','Goma Katoyi','2026-05-28',1,NULL),(12,'CEP-0012','Kavira','Mumbere','Daniel','Masculin','1997-12-30','082887766','Goma Virunga','2026-05-28',1,NULL),(13,'CEP-0013','Niyonsaba','Claude','Sandrine','Feminin','2002-04-11','097776655','Goma Lac Vert','2026-05-28',1,NULL),(14,'CEP-0014','Mambene','Masika','Joël','Masculin','1994-08-09','099665544','Goma Mugunga','2026-05-28',1,NULL),(15,'CEP-0015','Kamala','Bahwere','Esther','Feminin','2000-06-21','081554433','Goma Kyeshero','2026-05-28',1,NULL),(16,'CEP-016','Kasereka','Kuduma','Joel','Homme','1999-06-08','09845345434','Vichai','2026-06-19',1,NULL),(17,'CEP-017','Mumbere','Kamuha','Patrick','Homme','1999-02-16','093464345','Vulamba','2026-06-24',1,NULL),(18,'CEP-018','Muhindo','Kalungero','John','Homme','2000-02-15','0987634234','Kitulu','2026-06-24',1,NULL),(19,'CEP-019','Kambere','Kamuha','Kawaki','Homme','2026-07-06','098768734','Vungi','2026-07-06',1,NULL),(20,'CEP-020','Kambale','Kamuha','Danniel','Homme','2026-07-08','097656746','Kitulu','2026-07-08',1,NULL);
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -791,7 +819,7 @@ CREATE TABLE `prescriptions` (
   CONSTRAINT `fk_medoc_prescription` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
   CONSTRAINT `fk_patient_prescription` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
   CONSTRAINT `fk_sortie_pharmacie` FOREIGN KEY (`id_sortie`) REFERENCES `sorties_stock` (`id_sortie`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -800,7 +828,7 @@ CREATE TABLE `prescriptions` (
 
 LOCK TABLES `prescriptions` WRITE;
 /*!40000 ALTER TABLE `prescriptions` DISABLE KEYS */;
-INSERT INTO `prescriptions` VALUES (1,NULL,14,15,6,1,'comprimé','Livrée','2026-07-03'),(2,NULL,14,5,6,1,'comprimé','Livrée','2026-07-03');
+INSERT INTO `prescriptions` VALUES (1,NULL,14,15,6,1,'comprimé','Livrée','2026-07-03'),(2,NULL,14,5,6,1,'comprimé','Livrée','2026-07-03'),(3,20,11,15,10,2,'','Livrée','2026-07-07'),(4,20,11,10,10,2,'','Livrée','2026-07-07');
 /*!40000 ALTER TABLE `prescriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -968,7 +996,7 @@ CREATE TABLE `signes_vitaux` (
   PRIMARY KEY (`id_signe`),
   KEY `id_patient` (`id_patient`),
   CONSTRAINT `signes_vitaux_ibfk_1` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -977,7 +1005,7 @@ CREATE TABLE `signes_vitaux` (
 
 LOCK TABLES `signes_vitaux` WRITE;
 /*!40000 ALTER TABLE `signes_vitaux` DISABLE KEYS */;
-INSERT INTO `signes_vitaux` VALUES (1,15,36.00,'120/80mmHg','70bpm',60.00,1.00,'2026-06-12 00:00:00',1),(2,16,10.00,'34','45',45.00,0.00,'2026-06-19 00:00:00',1),(3,18,37.00,'23','43',60.00,180.00,'2026-06-25 00:00:00',1),(4,14,35.00,'25Hgmm','50bpm',56.00,10.00,'2026-07-03 00:00:00',1),(5,19,5.00,'12','23',15.00,2.00,'2026-07-06 00:00:00',1);
+INSERT INTO `signes_vitaux` VALUES (1,15,36.00,'120/80mmHg','70bpm',60.00,1.00,'2026-06-12 00:00:00',1),(2,16,10.00,'34','45',45.00,0.00,'2026-06-19 00:00:00',1),(3,18,37.00,'23','43',60.00,180.00,'2026-06-25 00:00:00',1),(4,14,35.00,'25Hgmm','50bpm',56.00,10.00,'2026-07-03 00:00:00',1),(5,19,5.00,'12','23',15.00,2.00,'2026-07-06 00:00:00',1),(6,18,34.00,'123','34',56.00,1.00,'2026-07-07 00:00:00',1),(7,17,34.00,'23','65',65.00,180.00,'2026-07-07 00:00:00',1),(8,11,37.00,'34','23',67.00,1.00,'2026-07-07 00:00:00',1);
 /*!40000 ALTER TABLE `signes_vitaux` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1086,7 +1114,7 @@ CREATE TABLE `sorties_stock` (
   CONSTRAINT `fk_centre_stock` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
   CONSTRAINT `fk_patient_stock` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
   CONSTRAINT `fk_service_stock` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1095,7 +1123,7 @@ CREATE TABLE `sorties_stock` (
 
 LOCK TABLES `sorties_stock` WRITE;
 /*!40000 ALTER TABLE `sorties_stock` DISABLE KEYS */;
-INSERT INTO `sorties_stock` VALUES (18,1,NULL,5,NULL,NULL,'en attente'),(19,1,NULL,15,NULL,NULL,'en attente');
+INSERT INTO `sorties_stock` VALUES (18,1,NULL,5,NULL,NULL,'en attente'),(19,1,NULL,15,NULL,NULL,'en attente'),(20,1,'ambulatoire',11,NULL,'2026-07-07','en attente');
 /*!40000 ALTER TABLE `sorties_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1233,4 +1261,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-06 18:33:13
+-- Dump completed on 2026-07-09 12:42:33
