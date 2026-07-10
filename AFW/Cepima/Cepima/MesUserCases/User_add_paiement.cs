@@ -19,29 +19,8 @@ namespace Cepima.MesUserCases
             InitializeComponent();
             Montant = montant;
             FactureID = Idfacture;
-            tb_total.Text = Montant.ToString();
-            tb_montant_paye.TextChanged += tb_montant_paye_TextChanged;
-        }
-
-        void tb_montant_paye_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                decimal total = Convert.ToDecimal(tb_total.Text);
-                decimal montant_ = 0;
-
-                if (tb_montant_paye.Text != "")
-                {
-                    montant_ = Convert.ToDecimal(tb_montant_paye.Text);
-                }
-
-                decimal reste = total - montant_;
-                tb_reste.Text = reste.ToString("N2");
-            }
-            catch (Exception )
-            {
-                tb_reste.Text = "";
-            }
+            lb_total_facture.Text = Montant.ToString() + " $";
+           
         }
 
         private void ValiderPaiement()
@@ -52,7 +31,7 @@ namespace Cepima.MesUserCases
                 try
                 {
                     // ======================== récuperer les valeures ============================
-                    decimal totalFacture = Convert.ToDecimal(tb_total.Text);
+                    decimal totalFacture = Convert.ToDecimal(lb_total_facture.Text);
                     decimal montantPaye = Convert.ToDecimal(tb_montant_paye.Text);
                     decimal reste = Convert.ToDecimal(tb_reste.Text);
                     string numero = tb_numero_fiche.Text;
@@ -118,6 +97,37 @@ namespace Cepima.MesUserCases
         private void bt_add_paiement_Click(object sender, EventArgs e)
         {
             ValiderPaiement();
+        }
+
+        private void tb_montant_paye_TextChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Je suis dedans monsier");
+             try
+             {
+                 decimal total = Convert.ToDecimal(lb_total_facture.Text.Replace("$","").Trim());
+                 decimal montant_ = 0;
+
+                 if (!string.IsNullOrWhiteSpace(tb_montant_paye.Text))
+                 {
+                     montant_ = Convert.ToDecimal(tb_montant_paye.Text);
+
+                     if (montant_ > total)
+                     {
+                         MessageBox.Show("Le montant payé ne peut pas dépasser le montant de la facture");
+                         tb_montant_paye.Text = total.ToString();
+                         tb_montant_paye.SelectionStart = tb_montant_paye.Text.Length;
+                         return;
+                     }
+                 }
+
+                 decimal reste = total - montant_;
+                 tb_reste.Text = reste.ToString("N2");
+                
+             }
+             catch (Exception)
+             {
+                 tb_reste.Clear();
+             }
         }
     }
 }

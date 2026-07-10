@@ -56,17 +56,34 @@ namespace Cepima.MesUserCases
         // ================================ supprimer la facture =================================================
         private void DeletFacture(int factureID) //357; 227 (panel_add_paiement)
         {
-            try
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
-                string queryDelete = "DELETE FROM facture WHERE id_facture =@id";
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id",factureID.ToString());
-                MesClasses.ManagerClasse.CRUD(queryDelete,MesClasses.ManagerClasse.request_params);
-                MessageBox.Show("Facture supprimée ");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur de suppression de la facture "+ex.Message);
+                MySqlTransaction tr = con.BeginTransaction();
+                try
+                {
+                    string queryDelete = "DELETE FROM facture WHERE id_facture =@id";
+                    using (MySqlCommand cmdDelete = new MySqlCommand(queryDelete,con,tr))
+                    {
+                    cmdDelete.Parameters.AddWithValue("@id", factureID);
+                    cmdDelete.ExecuteNonQuery();
+                    }
+
+                    // ================================= SUPPRIMER LES DETAILS AUSSI DE LA FACTURE ==============================
+                    string queryDetail = "DELETE FROM detail_facture WHERE id_facture = @id";
+                    using (MySqlCommand cmdDetail = new MySqlCommand(queryDetail, con, tr))
+                    {
+                        cmdDetail.Parameters.AddWithValue("@id",factureID);
+                        cmdDetail.ExecuteNonQuery();
+                    }
+
+                    tr.Commit();
+                    MessageBox.Show("Facture supprimée avec succès !!");
+                }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur de suppression de la facture " + ex.Message);
+                }
             }
         }
         // ================================== charger les details de la facture ===================================

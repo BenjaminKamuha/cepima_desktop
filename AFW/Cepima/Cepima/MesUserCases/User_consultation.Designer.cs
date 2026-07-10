@@ -50,6 +50,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.fl_patient = new System.Windows.Forms.FlowLayoutPanel();
+            this.lb_search = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.rb_attente = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -57,10 +58,12 @@
             this.tb_tarif = new MyRoundedTextBox();
             this.rb_eeg_termine = new System.Windows.Forms.RadioButton();
             this.rb_all = new System.Windows.Forms.RadioButton();
+            this.myRoundedTextBox2 = new MyRoundedTextBox();
             this.customRoundedPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pan_test.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
+            this.fl_patient.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -342,10 +345,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fl_patient.AutoScroll = true;
+            this.fl_patient.Controls.Add(this.lb_search);
             this.fl_patient.Location = new System.Drawing.Point(11, 115);
             this.fl_patient.Name = "fl_patient";
             this.fl_patient.Size = new System.Drawing.Size(257, 374);
             this.fl_patient.TabIndex = 5;
+            // 
+            // lb_search
+            // 
+            this.lb_search.AutoSize = true;
+            this.lb_search.Font = new System.Drawing.Font("Calibri", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_search.Location = new System.Drawing.Point(3, 0);
+            this.lb_search.Name = "lb_search";
+            this.lb_search.Padding = new System.Windows.Forms.Padding(50);
+            this.lb_search.Size = new System.Drawing.Size(100, 114);
+            this.lb_search.TabIndex = 0;
+            this.lb_search.Visible = false;
             // 
             // customRoundedPanel3
             // 
@@ -444,11 +459,28 @@
             this.rb_all.UseVisualStyleBackColor = true;
             this.rb_all.CheckedChanged += new System.EventHandler(this.rb_all_CheckedChanged);
             // 
+            // myRoundedTextBox2
+            // 
+            this.myRoundedTextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox2.BorderRadius = 4;
+            this.myRoundedTextBox2.BorderSize = 1;
+            this.myRoundedTextBox2.Enabled = false;
+            this.myRoundedTextBox2.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox2.Location = new System.Drawing.Point(350, 240);
+            this.myRoundedTextBox2.Name = "myRoundedTextBox2";
+            this.myRoundedTextBox2.PasswordChar = '\0';
+            this.myRoundedTextBox2.PlaceholderColor = System.Drawing.Color.Beige;
+            this.myRoundedTextBox2.PlaceholderText = "";
+            this.myRoundedTextBox2.Size = new System.Drawing.Size(122, 27);
+            this.myRoundedTextBox2.TabIndex = 6;
+            this.myRoundedTextBox2.UseSystemPasswordChar = false;
+            // 
             // User_consultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.Controls.Add(this.myRoundedTextBox2);
             this.Controls.Add(this.customRoundedPanel3);
             this.Controls.Add(this.customRoundedPanel1);
             this.Name = "User_consultation";
@@ -460,6 +492,8 @@
             this.pan_test.ResumeLayout(false);
             this.pan_test.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
+            this.fl_patient.ResumeLayout(false);
+            this.fl_patient.PerformLayout();
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -498,5 +532,7 @@
         private test_arrondissement2012.PerfectRoundedButton bt_continue;
         private System.Windows.Forms.RadioButton rb_all;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lb_search;
+        private MyRoundedTextBox myRoundedTextBox2;
     }
 }
