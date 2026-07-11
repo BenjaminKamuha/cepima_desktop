@@ -30,8 +30,8 @@ namespace Cepima.MesUserCases
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    // ======================== récuperer les valeures ============================
-                    decimal totalFacture = Convert.ToDecimal(lb_total_facture.Text);
+                //    // ======================== récuperer les valeures ============================
+                decimal totalFacture = Convert.ToDecimal(lb_total_facture.Text.Replace("$", "").Trim());
                     decimal montantPaye = Convert.ToDecimal(tb_montant_paye.Text);
                     decimal reste = Convert.ToDecimal(tb_reste.Text);
                     string numero = tb_numero_fiche.Text;

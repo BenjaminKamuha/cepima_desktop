@@ -429,12 +429,13 @@ namespace Cepima.MesUserCases
 
             string motif = tb_motif.Text.Trim();
             string description = rich_description.Text.Trim();
-
+            string frais = tb_montant_consultation.Text;
             //================ Enregistrement consultation =================
             MesClasses.ReceptionManager.EnregistrerConsultation(
                 idPatient.ToString(),
                 MesForms.SessionUtilisateur.idCentre.ToString(),
                 MesForms.SessionUtilisateur.idUser.ToString(),
+                frais,
                 motif,
                 description);
 
