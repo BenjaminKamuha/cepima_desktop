@@ -22,9 +22,10 @@ namespace Cepima.MesUserCases
         // ============================= Charger les détails du patients sur le control ===================
         public void ChargerDetails()
         {
+            tb_num_fiche.Focus();
             try
             {
-                string querySelect = "SELECT id_patient,nom,post_nom,prenom,sexe,date_naissance,patients.adresse,patients.telephone,nom_centre FROM patients JOIN centres  ON centres.id_centre = patients.id_centre WHERE id_patient = @id";
+                string querySelect = "SELECT id_patient,numero_fiche,nom,post_nom,prenom,sexe,date_naissance,patients.adresse,patients.telephone,nom_centre FROM patients JOIN centres  ON centres.id_centre = patients.id_centre WHERE id_patient = @id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id",_patientId);
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(querySelect,MesClasses.ManagerClasse.request_params,true))
@@ -32,6 +33,7 @@ namespace Cepima.MesUserCases
                     CacherTextBox();
                     while (reader.Read())
                     {
+                        tb_num_fiche.Text = reader["numero_fiche"].ToString();
                         lb_nom.Text = reader["nom"].ToString();
                         tb_mod_nom.Text = reader["nom"].ToString();
                         lb_postnom.Text = reader["post_nom"].ToString();

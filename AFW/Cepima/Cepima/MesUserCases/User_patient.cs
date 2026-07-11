@@ -32,7 +32,7 @@ namespace Cepima.MesUserCases
                 if (result != DBNull.Value)
                     dernierNumero = Convert.ToInt32(result);
             }
-
+            
             int nouveauNumero = dernierNumero + 1;
             return "CEP-" + nouveauNumero.ToString("D3");
         }
@@ -51,7 +51,6 @@ namespace Cepima.MesUserCases
         {
             if (VerifierChamps() == true)
             {
-                string numeroFiche = GenererNumeroFiche();
                 string nomPatient = tb_name_patient.Text;
                 string postnomPatient = tb_post_nom.Text;
                 string prename = tb_prenom.Text;
@@ -60,7 +59,7 @@ namespace Cepima.MesUserCases
                 string numeroPhone = tb_phone_number.Text;
                 string adressePatient = tb_adresse.Text;
                 //=====================Appel de la méthode dans sa class respective =====================
-                MesClasses.ReceptionManager.SavePatient(numeroFiche,nomPatient,postnomPatient,prename,Sexe,dateNaissance,numeroPhone,adressePatient,MesForms.SessionUtilisateur.idCentre.ToString()
+                MesClasses.ReceptionManager.SavePatient(tb_num_fiche.Text,nomPatient,postnomPatient,prename,Sexe,dateNaissance,numeroPhone,adressePatient,MesForms.SessionUtilisateur.idCentre.ToString()
                     );
             }
             else
@@ -178,6 +177,11 @@ namespace Cepima.MesUserCases
             {
                 return;
             }
+        }
+
+        private void User_patient_Load(object sender, EventArgs e)
+        {
+            tb_num_fiche.Text = GenererNumeroFiche();
         }
     }
 }

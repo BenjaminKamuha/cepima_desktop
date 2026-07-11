@@ -37,10 +37,6 @@
             this.bt_mod_adresse = new System.Windows.Forms.Button();
             this.bt_mod_phone = new System.Windows.Forms.Button();
             this.bt_mod_nom = new System.Windows.Forms.Button();
-            this.bt_save_update = new RoundedButton();
-            this.bt_cancel = new RoundedButton();
-            this.bt_delete_patient = new System.Windows.Forms.Button();
-            this.bt_return = new System.Windows.Forms.Button();
             this.tb_mod_postnom = new System.Windows.Forms.TextBox();
             this.tb_mod_adresse = new System.Windows.Forms.TextBox();
             this.tb_mod_phone = new System.Windows.Forms.TextBox();
@@ -63,7 +59,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.bt_save_update = new RoundedButton();
+            this.bt_cancel = new RoundedButton();
+            this.bt_delete_patient = new System.Windows.Forms.Button();
+            this.bt_return = new System.Windows.Forms.Button();
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.tb_num_fiche = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -184,63 +185,6 @@
             this.bt_mod_nom.TabIndex = 12;
             this.bt_mod_nom.UseVisualStyleBackColor = true;
             this.bt_mod_nom.Click += new System.EventHandler(this.bt_mod_nom_Click);
-            // 
-            // bt_save_update
-            // 
-            this.bt_save_update.BackColor = System.Drawing.Color.Transparent;
-            this.bt_save_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_save_update.BorderRadius = 4;
-            this.bt_save_update.BorderSize = 0;
-            this.bt_save_update.ButtonText = "Enregister ";
-            this.bt_save_update.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_save_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.bt_save_update.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_update.Location = new System.Drawing.Point(455, 15);
-            this.bt_save_update.Name = "bt_save_update";
-            this.bt_save_update.Size = new System.Drawing.Size(80, 25);
-            this.bt_save_update.TabIndex = 11;
-            this.bt_save_update.Click += new System.EventHandler(this.bt_save_update_Click);
-            // 
-            // bt_cancel
-            // 
-            this.bt_cancel.BackColor = System.Drawing.Color.Transparent;
-            this.bt_cancel.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_cancel.BorderRadius = 4;
-            this.bt_cancel.BorderSize = 0;
-            this.bt_cancel.ButtonText = "Annuler";
-            this.bt_cancel.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_cancel.Location = new System.Drawing.Point(191, 15);
-            this.bt_cancel.Name = "bt_cancel";
-            this.bt_cancel.Size = new System.Drawing.Size(87, 25);
-            this.bt_cancel.TabIndex = 10;
-            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
-            // 
-            // bt_delete_patient
-            // 
-            this.bt_delete_patient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_delete_patient.FlatAppearance.BorderSize = 0;
-            this.bt_delete_patient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_delete_patient.Image = global::Cepima.Properties.Resources.trasch_blue;
-            this.bt_delete_patient.Location = new System.Drawing.Point(686, 6);
-            this.bt_delete_patient.Name = "bt_delete_patient";
-            this.bt_delete_patient.Size = new System.Drawing.Size(33, 34);
-            this.bt_delete_patient.TabIndex = 9;
-            this.bt_delete_patient.UseVisualStyleBackColor = true;
-            this.bt_delete_patient.Click += new System.EventHandler(this.bt_delete_patient_Click);
-            // 
-            // bt_return
-            // 
-            this.bt_return.FlatAppearance.BorderSize = 0;
-            this.bt_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_return.Image = global::Cepima.Properties.Resources.left_blue;
-            this.bt_return.Location = new System.Drawing.Point(9, 15);
-            this.bt_return.Name = "bt_return";
-            this.bt_return.Size = new System.Drawing.Size(49, 29);
-            this.bt_return.TabIndex = 9;
-            this.bt_return.UseVisualStyleBackColor = true;
-            this.bt_return.Click += new System.EventHandler(this.bt_return_Click);
             // 
             // tb_mod_postnom
             // 
@@ -444,6 +388,63 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom : ";
             // 
+            // bt_save_update
+            // 
+            this.bt_save_update.BackColor = System.Drawing.Color.Transparent;
+            this.bt_save_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_save_update.BorderRadius = 4;
+            this.bt_save_update.BorderSize = 0;
+            this.bt_save_update.ButtonText = "Enregister ";
+            this.bt_save_update.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_save_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.bt_save_update.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_save_update.Location = new System.Drawing.Point(455, 15);
+            this.bt_save_update.Name = "bt_save_update";
+            this.bt_save_update.Size = new System.Drawing.Size(80, 25);
+            this.bt_save_update.TabIndex = 11;
+            this.bt_save_update.Click += new System.EventHandler(this.bt_save_update_Click);
+            // 
+            // bt_cancel
+            // 
+            this.bt_cancel.BackColor = System.Drawing.Color.Transparent;
+            this.bt_cancel.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_cancel.BorderRadius = 4;
+            this.bt_cancel.BorderSize = 0;
+            this.bt_cancel.ButtonText = "Annuler";
+            this.bt_cancel.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_cancel.Location = new System.Drawing.Point(191, 15);
+            this.bt_cancel.Name = "bt_cancel";
+            this.bt_cancel.Size = new System.Drawing.Size(87, 25);
+            this.bt_cancel.TabIndex = 10;
+            this.bt_cancel.Click += new System.EventHandler(this.bt_cancel_Click);
+            // 
+            // bt_delete_patient
+            // 
+            this.bt_delete_patient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_delete_patient.FlatAppearance.BorderSize = 0;
+            this.bt_delete_patient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_delete_patient.Image = global::Cepima.Properties.Resources.trasch_blue;
+            this.bt_delete_patient.Location = new System.Drawing.Point(686, 6);
+            this.bt_delete_patient.Name = "bt_delete_patient";
+            this.bt_delete_patient.Size = new System.Drawing.Size(33, 34);
+            this.bt_delete_patient.TabIndex = 9;
+            this.bt_delete_patient.UseVisualStyleBackColor = true;
+            this.bt_delete_patient.Click += new System.EventHandler(this.bt_delete_patient_Click);
+            // 
+            // bt_return
+            // 
+            this.bt_return.FlatAppearance.BorderSize = 0;
+            this.bt_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_return.Image = global::Cepima.Properties.Resources.left_blue;
+            this.bt_return.Location = new System.Drawing.Point(9, 15);
+            this.bt_return.Name = "bt_return";
+            this.bt_return.Size = new System.Drawing.Size(49, 29);
+            this.bt_return.TabIndex = 9;
+            this.bt_return.UseVisualStyleBackColor = true;
+            this.bt_return.Click += new System.EventHandler(this.bt_return_Click);
+            // 
             // customRoundedPanel1
             // 
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -461,11 +462,20 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(743, 61);
             this.customRoundedPanel1.TabIndex = 4;
             // 
+            // tb_num_fiche
+            // 
+            this.tb_num_fiche.Location = new System.Drawing.Point(153, 8);
+            this.tb_num_fiche.Name = "tb_num_fiche";
+            this.tb_num_fiche.ReadOnly = true;
+            this.tb_num_fiche.Size = new System.Drawing.Size(100, 20);
+            this.tb_num_fiche.TabIndex = 5;
+            // 
             // User_detail_patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.Controls.Add(this.tb_num_fiche);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -516,5 +526,6 @@
         private System.Windows.Forms.Label lb_centre;
         private System.Windows.Forms.Label label9;
         private CustomRoundedPanel customRoundedPanel1;
+        private System.Windows.Forms.TextBox tb_num_fiche;
     }
 }

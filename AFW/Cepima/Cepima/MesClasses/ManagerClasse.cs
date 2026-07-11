@@ -12,7 +12,7 @@ namespace Cepima.MesClasses
     class ManagerClasse
     {
         //====================================méthode de connexion à la base de données==============================
-        private static readonly string con_string = "server=192.168.145.121;database=cepimadb;Uid=cepima_desk;pwd=Cepima@Soft1234!";
+        private static readonly string con_string = "server=192.168.203.2;database=cepimadb;Uid=cepima_desk;pwd=cepima";
         public static Dictionary<string, string> request_params = new Dictionary<string, string>();
         public static MySqlConnection GetConnexion()
         {

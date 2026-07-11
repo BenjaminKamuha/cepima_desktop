@@ -55,6 +55,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.myRoundedTextBox1 = new MyRoundedTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tb_num_fiche = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.myRoundedTextBox6 = new MyRoundedTextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
@@ -99,6 +103,10 @@
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
+            this.customRoundedPanel1.Controls.Add(this.tb_num_fiche);
+            this.customRoundedPanel1.Controls.Add(this.textBox3);
+            this.customRoundedPanel1.Controls.Add(this.myRoundedTextBox6);
+            this.customRoundedPanel1.Controls.Add(this.label8);
             this.customRoundedPanel1.Controls.Add(this.tb_phone_number);
             this.customRoundedPanel1.Controls.Add(this.tb_adresse);
             this.customRoundedPanel1.Controls.Add(this.tb_prenom);
@@ -126,7 +134,7 @@
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
             this.customRoundedPanel1.Location = new System.Drawing.Point(285, 48);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(557, 391);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(622, 391);
             this.customRoundedPanel1.TabIndex = 1;
             // 
             // tb_phone_number
@@ -415,6 +423,53 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom  : ";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(498, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 14);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Numéro Fiche  : ";
+            // 
+            // tb_num_fiche
+            // 
+            this.tb_num_fiche.BackColor = System.Drawing.Color.White;
+            this.tb_num_fiche.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_num_fiche.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_num_fiche.Location = new System.Drawing.Point(504, 38);
+            this.tb_num_fiche.Multiline = true;
+            this.tb_num_fiche.Name = "tb_num_fiche";
+            this.tb_num_fiche.Size = new System.Drawing.Size(93, 23);
+            this.tb_num_fiche.TabIndex = 9;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Location = new System.Drawing.Point(504, 38);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(93, 23);
+            this.textBox3.TabIndex = 11;
+            // 
+            // myRoundedTextBox6
+            // 
+            this.myRoundedTextBox6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox6.BorderRadius = 4;
+            this.myRoundedTextBox6.BorderSize = 1;
+            this.myRoundedTextBox6.Enabled = false;
+            this.myRoundedTextBox6.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox6.Location = new System.Drawing.Point(500, 36);
+            this.myRoundedTextBox6.Name = "myRoundedTextBox6";
+            this.myRoundedTextBox6.PasswordChar = '\0';
+            this.myRoundedTextBox6.PlaceholderColor = System.Drawing.Color.Beige;
+            this.myRoundedTextBox6.PlaceholderText = "";
+            this.myRoundedTextBox6.Size = new System.Drawing.Size(101, 27);
+            this.myRoundedTextBox6.TabIndex = 10;
+            this.myRoundedTextBox6.UseSystemPasswordChar = false;
+            // 
             // User_patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,6 +479,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "User_patient";
             this.Size = new System.Drawing.Size(940, 479);
+            this.Load += new System.EventHandler(this.User_patient_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -462,5 +518,9 @@
         private System.Windows.Forms.TextBox tb_phone_number;
         private MyRoundedTextBox myRoundedTextBox4;
         private System.Windows.Forms.Label label;
+        private System.Windows.Forms.TextBox tb_num_fiche;
+        private System.Windows.Forms.TextBox textBox3;
+        private MyRoundedTextBox myRoundedTextBox6;
+        private System.Windows.Forms.Label label8;
     }
 }
