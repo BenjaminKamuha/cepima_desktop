@@ -28,24 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.dt_final = new System.Windows.Forms.DateTimePicker();
-            this.dt_debut = new System.Windows.Forms.DateTimePicker();
             this.cbx_statut_facture = new System.Windows.Forms.ComboBox();
             this.cbx_type_facture = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tb_search = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -94,6 +91,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cbx_filter_periode = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -145,14 +143,12 @@
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 8;
             this.customRoundedPanel1.BorderSize = 1;
-            this.customRoundedPanel1.Controls.Add(this.dt_final);
-            this.customRoundedPanel1.Controls.Add(this.dt_debut);
+            this.customRoundedPanel1.Controls.Add(this.cbx_filter_periode);
             this.customRoundedPanel1.Controls.Add(this.cbx_statut_facture);
             this.customRoundedPanel1.Controls.Add(this.cbx_type_facture);
             this.customRoundedPanel1.Controls.Add(this.pictureBox1);
             this.customRoundedPanel1.Controls.Add(this.tb_search);
             this.customRoundedPanel1.Controls.Add(this.tb_tarif);
-            this.customRoundedPanel1.Controls.Add(this.label6);
             this.customRoundedPanel1.Controls.Add(this.label5);
             this.customRoundedPanel1.Controls.Add(this.label4);
             this.customRoundedPanel1.Controls.Add(this.label3);
@@ -164,34 +160,14 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(1111, 80);
             this.customRoundedPanel1.TabIndex = 1;
             // 
-            // dt_final
-            // 
-            this.dt_final.Font = new System.Drawing.Font("Calibri", 10F);
-            this.dt_final.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_final.Location = new System.Drawing.Point(931, 32);
-            this.dt_final.Name = "dt_final";
-            this.dt_final.Size = new System.Drawing.Size(148, 24);
-            this.dt_final.TabIndex = 18;
-            this.dt_final.ValueChanged += new System.EventHandler(this.dt_final_ValueChanged);
-            // 
-            // dt_debut
-            // 
-            this.dt_debut.Font = new System.Drawing.Font("Calibri", 10F);
-            this.dt_debut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_debut.Location = new System.Drawing.Point(699, 32);
-            this.dt_debut.Name = "dt_debut";
-            this.dt_debut.Size = new System.Drawing.Size(148, 24);
-            this.dt_debut.TabIndex = 18;
-            this.dt_debut.ValueChanged += new System.EventHandler(this.dt_debut_ValueChanged);
-            // 
             // cbx_statut_facture
             // 
             this.cbx_statut_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_statut_facture.Font = new System.Drawing.Font("Calibri", 10F);
             this.cbx_statut_facture.FormattingEnabled = true;
-            this.cbx_statut_facture.Location = new System.Drawing.Point(520, 32);
+            this.cbx_statut_facture.Location = new System.Drawing.Point(628, 25);
             this.cbx_statut_facture.Name = "cbx_statut_facture";
-            this.cbx_statut_facture.Size = new System.Drawing.Size(125, 23);
+            this.cbx_statut_facture.Size = new System.Drawing.Size(163, 23);
             this.cbx_statut_facture.TabIndex = 17;
             this.cbx_statut_facture.SelectedIndexChanged += new System.EventHandler(this.cbx_statut_facture_SelectedIndexChanged);
             // 
@@ -200,7 +176,7 @@
             this.cbx_type_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_type_facture.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_type_facture.FormattingEnabled = true;
-            this.cbx_type_facture.Location = new System.Drawing.Point(308, 32);
+            this.cbx_type_facture.Location = new System.Drawing.Point(368, 25);
             this.cbx_type_facture.Name = "cbx_type_facture";
             this.cbx_type_facture.Size = new System.Drawing.Size(145, 23);
             this.cbx_type_facture.TabIndex = 17;
@@ -243,53 +219,43 @@
             this.tb_tarif.TabIndex = 16;
             this.tb_tarif.UseSystemPasswordChar = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(928, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(22, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Au";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(696, 9);
+            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(844, 33);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 15);
+            this.label5.Size = new System.Drawing.Size(58, 15);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Période du : ";
+            this.label5.Text = "Période : ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(526, 9);
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(571, 33);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 15);
+            this.label4.Size = new System.Drawing.Size(39, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "Statut";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(315, 9);
+            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(273, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 15);
+            this.label3.Size = new System.Drawing.Size(89, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "Type de facture";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(35, 9);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 15);
+            this.label2.Size = new System.Drawing.Size(71, 15);
             this.label2.TabIndex = 0;
             this.label2.Text = "Rechercher ";
             // 
@@ -387,8 +353,8 @@
             this.dgv_facture.AllowUserToAddRows = false;
             this.dgv_facture.AllowUserToDeleteRows = false;
             this.dgv_facture.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv_facture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -397,14 +363,14 @@
             this.dgv_facture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_facture.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_facture.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgv_facture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_facture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatient,
@@ -415,14 +381,14 @@
             this.colPrint,
             this.colDelete,
             this.colID});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgv_facture.EnableHeadersVisualStyles = false;
             this.dgv_facture.GridColor = System.Drawing.Color.LightGray;
             this.dgv_facture.Location = new System.Drawing.Point(3, 30);
@@ -522,8 +488,7 @@
             // 
             // panel_add_paiement
             // 
-            this.panel_add_paiement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel_add_paiement.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_add_paiement.BorderColor = System.Drawing.Color.Transparent;
             this.panel_add_paiement.BorderRadius = 8;
@@ -531,9 +496,9 @@
             this.panel_add_paiement.Controls.Add(this.dgv_detail_facture);
             this.panel_add_paiement.HoverBackColor = System.Drawing.Color.Empty;
             this.panel_add_paiement.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.panel_add_paiement.Location = new System.Drawing.Point(3, 224);
+            this.panel_add_paiement.Location = new System.Drawing.Point(3, 199);
             this.panel_add_paiement.Name = "panel_add_paiement";
-            this.panel_add_paiement.Size = new System.Drawing.Size(357, 183);
+            this.panel_add_paiement.Size = new System.Drawing.Size(357, 211);
             this.panel_add_paiement.TabIndex = 1;
             // 
             // dgv_detail_facture
@@ -541,8 +506,8 @@
             this.dgv_detail_facture.AllowUserToAddRows = false;
             this.dgv_detail_facture.AllowUserToDeleteRows = false;
             this.dgv_detail_facture.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_detail_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_detail_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgv_detail_facture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -550,34 +515,34 @@
             this.dgv_detail_facture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_detail_facture.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_detail_facture.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detail_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detail_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgv_detail_facture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_detail_facture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colDesc,
             this.colQuantite,
             this.colPrix,
             this.colTotal});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_detail_facture.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_detail_facture.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgv_detail_facture.EnableHeadersVisualStyles = false;
             this.dgv_detail_facture.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_detail_facture.Location = new System.Drawing.Point(0, -2);
+            this.dgv_detail_facture.Location = new System.Drawing.Point(3, 6);
             this.dgv_detail_facture.Name = "dgv_detail_facture";
             this.dgv_detail_facture.RowHeadersVisible = false;
-            this.dgv_detail_facture.Size = new System.Drawing.Size(354, 182);
+            this.dgv_detail_facture.Size = new System.Drawing.Size(351, 199);
             this.dgv_detail_facture.TabIndex = 2;
             // 
             // colDesc
@@ -638,16 +603,16 @@
             this.panel3.Controls.Add(this.lb_patient);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(3, 21);
+            this.panel3.Location = new System.Drawing.Point(3, 24);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(357, 203);
+            this.panel3.Size = new System.Drawing.Size(357, 168);
             this.panel3.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 199);
+            this.panel4.Location = new System.Drawing.Point(0, 164);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(357, 4);
             this.panel4.TabIndex = 1;
@@ -673,36 +638,40 @@
             // 
             // lb_reste
             // 
+            this.lb_reste.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_reste.AutoSize = true;
             this.lb_reste.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_reste.Location = new System.Drawing.Point(206, 176);
+            this.lb_reste.Location = new System.Drawing.Point(206, 157);
             this.lb_reste.Name = "lb_reste";
             this.lb_reste.Size = new System.Drawing.Size(0, 14);
             this.lb_reste.TabIndex = 1;
             // 
             // lb_montant_paye
             // 
+            this.lb_montant_paye.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_montant_paye.AutoSize = true;
             this.lb_montant_paye.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_montant_paye.Location = new System.Drawing.Point(192, 146);
+            this.lb_montant_paye.Location = new System.Drawing.Point(192, 127);
             this.lb_montant_paye.Name = "lb_montant_paye";
             this.lb_montant_paye.Size = new System.Drawing.Size(0, 14);
             this.lb_montant_paye.TabIndex = 1;
             // 
             // lb_medecin
             // 
+            this.lb_medecin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_medecin.AutoSize = true;
             this.lb_medecin.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_medecin.Location = new System.Drawing.Point(204, 115);
+            this.lb_medecin.Location = new System.Drawing.Point(204, 96);
             this.lb_medecin.Name = "lb_medecin";
             this.lb_medecin.Size = new System.Drawing.Size(0, 14);
             this.lb_medecin.TabIndex = 1;
             // 
             // label16
             // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(112, 176);
+            this.label16.Location = new System.Drawing.Point(112, 153);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(88, 14);
             this.label16.TabIndex = 1;
@@ -710,9 +679,10 @@
             // 
             // label15
             // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(111, 146);
+            this.label15.Location = new System.Drawing.Point(111, 127);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(70, 14);
             this.label15.TabIndex = 1;
@@ -720,9 +690,10 @@
             // 
             // label12
             // 
+            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(111, 115);
+            this.label12.Location = new System.Drawing.Point(111, 96);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(81, 14);
             this.label12.TabIndex = 1;
@@ -730,18 +701,20 @@
             // 
             // lb_date_facture
             // 
+            this.lb_date_facture.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_date_facture.AutoSize = true;
             this.lb_date_facture.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_date_facture.Location = new System.Drawing.Point(221, 86);
+            this.lb_date_facture.Location = new System.Drawing.Point(221, 67);
             this.lb_date_facture.Name = "lb_date_facture";
             this.lb_date_facture.Size = new System.Drawing.Size(0, 14);
             this.lb_date_facture.TabIndex = 1;
             // 
             // label11
             // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(111, 86);
+            this.label11.Location = new System.Drawing.Point(111, 67);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(104, 14);
             this.label11.TabIndex = 1;
@@ -749,18 +722,20 @@
             // 
             // lb_type
             // 
+            this.lb_type.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_type.AutoSize = true;
             this.lb_type.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_type.Location = new System.Drawing.Point(200, 57);
+            this.lb_type.Location = new System.Drawing.Point(200, 38);
             this.lb_type.Name = "lb_type";
             this.lb_type.Size = new System.Drawing.Size(0, 14);
             this.lb_type.TabIndex = 1;
             // 
             // label10
             // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(111, 57);
+            this.label10.Location = new System.Drawing.Point(111, 38);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(40, 14);
             this.label10.TabIndex = 1;
@@ -768,18 +743,20 @@
             // 
             // lb_patient
             // 
+            this.lb_patient.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_patient.AutoSize = true;
             this.lb_patient.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_patient.Location = new System.Drawing.Point(170, 28);
+            this.lb_patient.Location = new System.Drawing.Point(170, 9);
             this.lb_patient.Name = "lb_patient";
             this.lb_patient.Size = new System.Drawing.Size(0, 14);
             this.lb_patient.TabIndex = 1;
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(111, 28);
+            this.label9.Location = new System.Drawing.Point(111, 9);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(51, 14);
             this.label9.TabIndex = 1;
@@ -787,10 +764,11 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Image = global::Cepima.Properties.Resources.purchase_order_90px;
-            this.pictureBox2.Location = new System.Drawing.Point(3, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(3, 49);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(102, 178);
+            this.pictureBox2.Size = new System.Drawing.Size(102, 95);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -820,6 +798,17 @@
             this.dataGridViewImageColumn2.Image = global::Cepima.Properties.Resources.trash_red1;
             this.dataGridViewImageColumn2.MinimumWidth = 50;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            // 
+            // cbx_filter_periode
+            // 
+            this.cbx_filter_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_filter_periode.Font = new System.Drawing.Font("Calibri", 10F);
+            this.cbx_filter_periode.FormattingEnabled = true;
+            this.cbx_filter_periode.Location = new System.Drawing.Point(910, 27);
+            this.cbx_filter_periode.Name = "cbx_filter_periode";
+            this.cbx_filter_periode.Size = new System.Drawing.Size(165, 23);
+            this.cbx_filter_periode.TabIndex = 17;
+            this.cbx_filter_periode.SelectedIndexChanged += new System.EventHandler(this.cbx_statut_facture_SelectedIndexChanged);
             // 
             // User_facture_all
             // 
@@ -865,11 +854,8 @@
         private MyRoundedTextBox tb_tarif;
         private System.Windows.Forms.ComboBox cbx_statut_facture;
         private System.Windows.Forms.ComboBox cbx_type_facture;
-        private System.Windows.Forms.DateTimePicker dt_final;
-        private System.Windows.Forms.DateTimePicker dt_debut;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private CustomRoundedPanel customRoundedPanel2;
         private CustomRoundedPanel customRoundedPanel3;
@@ -915,6 +901,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lb_reste;
         private System.Windows.Forms.Label lb_montant_paye;
+        private System.Windows.Forms.ComboBox cbx_filter_periode;
 
     }
 }

@@ -15,12 +15,13 @@ namespace Cepima.MesUserCases
     public partial class User_consultation : UserControl
     {
         string filtrePatient = "En attente";
+        string type_patient = "";
         public User_consultation()
         {
             InitializeComponent();
             LoadPatient();
             LoadServices();
-            rb_attente.Checked = true;
+            rb_all.Checked = true;
         }
 
         // ================ Charger les patients et les personnels dans leurs comboBox respectif =============================================
@@ -125,70 +126,99 @@ namespace Cepima.MesUserCases
 
             return idConsultation;
         }
-    
 
         private void LoadPatient()
         {
             fl_patient.Controls.Clear();
+            lb_search.Visible = false;
 
             try
             {
                 string query = "";
 
-                // ================= PATIENTS EN ATTENTE =================
+                //=================== Construction de la requête ===================
+
                 if (filtrePatient == "En attente")
                 {
-                    query ="SELECT DISTINCT p.id_patient,p.nom,p.post_nom FROM signes_vitaux s JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0";
+                    query = "SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient = s.id_patient WHERE s.is_counsel = 0";
                 }
+
                 else if (filtrePatient == "Tous")
                 {
-                    query = "SELECT  p.id_patient,p.nom,p.post_nom FROM hospitalisation h JOIN consultation c ON c.id_consultation =h.id_consultation JOIN patients p ON p.id_patient=c.id_patient WHERE h.etat ='Hospitalisé'";
-                }
-                // ================= EEG TERMINE =================
-                else
-                {
-                    query = "SELECT DISTINCT p.id_patient,p.nom,p.post_nom FROM examens_eeg e JOIN patients p ON p.id_patient=e.id_patient WHERE e.statut='Terminé'";
+                    query = "SELECT * FROM(SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0 UNION SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'Hospitalisé' AS etat_patient FROM hospitalisation h INNER JOIN consultation c ON c.id_consultation=h.id_consultation INNER JOIN patients p ON p.id_patient=c.id_patient WHERE h.etat='Hospitalisé') AS listePatients";
                 }
 
-                // ================= RECHERCHE =================
+                else // EEG terminé
+                {
+                    query = "SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'EEG Terminé' AS etat_patient FROM examens_eeg e INNER JOIN patients p ON p.id_patient=e.id_patient WHERE e.statut='Terminé'";
+                }
+
+                //=================== Recherche ===================
 
                 if (!string.IsNullOrWhiteSpace(tb_search.Text))
                 {
-                    query +=" AND(p.nom LIKE @rech OR p.post_nom LIKE @rech)";
-                }
-
-                query += " ORDER BY p.nom ASC";
-
-                MySqlCommand cmd = new MySqlCommand(query,MesClasses.ManagerClasse.GetConnexion());
-
-                if (!string.IsNullOrWhiteSpace(tb_search.Text))
-                {
-                    cmd.Parameters.AddWithValue("@rech","%" +tb_search.Text +"%");
-                }
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
+                    if (filtrePatient == "Tous")
                     {
-                        AjouterPanel(
-
-                        reader["id_patient"].ToString(),
-                        reader["nom"].ToString(),
-                        reader["post_nom"].ToString(),
-                        filtrePatient
-                        );
+                        query += " WHERE nom LIKE @rech OR post_nom LIKE @rech";
                     }
+                    else
+                    {
+                        query += " AND (p.nom LIKE @rech OR p.post_nom LIKE @rech)";
+                    }
+                }
 
-                    reader.Close();
+                //=================== Tri ===================
+
+                query += " ORDER BY nom ASC";
+
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        if (!string.IsNullOrWhiteSpace(tb_search.Text))
+                        {
+                            cmd.Parameters.AddWithValue("@rech", "%" + tb_search.Text.Trim() + "%");
+                        }
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    AjouterPanel(
+                                        reader["id_patient"].ToString(),
+                                        reader["nom"].ToString(),
+                                        reader["post_nom"].ToString(),
+                                        reader["etat_patient"].ToString());
+                                }
+
+                                reader.Close();
+                            }
+                            else
+                            {
+                          
+                                if (!string.IsNullOrWhiteSpace(tb_search.Text))
+                                {
+                                    lb_search.Text = "Aucun patient trouvé pour \""+tb_search.Text +"\"";
+                                }
+                                else
+                                {
+                                    lb_search.Text = "Aucun patient disponible.";
+                                }
+                                lb_search.Visible = true;
+                                fl_patient.Controls.Add(lb_search);
+                            }
+                        }
+                    }
                 }
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Erreur : " + ex.Message);
             }
         }
-        private void AjouterPanel(string id, string nom, string postNom,string statut)
+        private void AjouterPanel(string id, string nom, string postNom,string etat)
         {
             Panel panelPatient = new Panel
             {
@@ -225,12 +255,20 @@ namespace Cepima.MesUserCases
             };
 
             chk.CheckedChanged += chkClient_CheckedChanged;
-
-            Label lbStatut = MesClasses.ManagerClasse.CustomLabel("Statut : "+statut,new Point(50,40));
+            Label lbStatut = MesClasses.ManagerClasse.CustomLabel("Statut : " + etat, new Point(50, 40));
             lbStatut.AutoSize = true;
-            lbStatut.Font = new System.Drawing.Font("Calibri",9);
+            lbStatut.Font = new System.Drawing.Font("Calibri", 9);
             panelPatient.Controls.Add(chk);
             panelPatient.Controls.Add(lbStatut);
+
+            if (etat == "Hospitalisé")
+            {
+                lbStatut.ForeColor = Color.Red;
+            }
+            else
+            {
+                lbStatut.ForeColor = Color.DarkOrange;
+            }
             fl_patient.Controls.Add(panelPatient);
         }
         public static int idPatient;
@@ -271,13 +309,19 @@ namespace Cepima.MesUserCases
         private void rb_ambulatoire_CheckedChanged(object sender, EventArgs e)
         {
             if (rb_ambulatoire.Checked)
+            {
                 pan_test.Visible = false;
+                type_patient = "Ambulatoire";
+            }
         }
 
         private void rb_hospitalisation_CheckedChanged(object sender, EventArgs e)
         {
             if (rb_hospitalisation.Checked)
+            {
                 pan_test.Visible = true;
+                type_patient = "Hospitalisé";
+            }
         }
 
         // =============== charger les services dans le comboBox =====================
@@ -359,7 +403,7 @@ namespace Cepima.MesUserCases
 
         private void bt_continue_Click(object sender, EventArgs e)
         {
-            MesUserCases.User_prescription presc = new User_prescription(idPatient);
+            MesUserCases.User_prescription presc = new User_prescription(idPatient,type_patient);
             presc.Dock = DockStyle.Fill;
             Form1.GlobalPanel_main.Controls.Clear();
             Form1.GlobalPanel_main.Controls.Add(presc);
@@ -385,12 +429,13 @@ namespace Cepima.MesUserCases
 
             string motif = tb_motif.Text.Trim();
             string description = rich_description.Text.Trim();
-
+            string frais = tb_montant_consultation.Text;
             //================ Enregistrement consultation =================
             MesClasses.ReceptionManager.EnregistrerConsultation(
                 idPatient.ToString(),
                 MesForms.SessionUtilisateur.idCentre.ToString(),
                 MesForms.SessionUtilisateur.idUser.ToString(),
+                frais,
                 motif,
                 description);
 
@@ -400,7 +445,6 @@ namespace Cepima.MesUserCases
             if (rb_hospitalisation.Checked)
             {
                 SaveHospitalisation(idConsultation);
-
                 MessageBox.Show("Hospitalisation enregistrée.");
             }
 
@@ -433,9 +477,8 @@ namespace Cepima.MesUserCases
             }
 
             //================ Prescription =================
-            User_prescription presc = new User_prescription(idPatient);
+            User_prescription presc = new User_prescription(idPatient,type_patient);
             presc.Dock = DockStyle.Fill;
-
             Form1.GlobalPanel_main.Controls.Clear();
             Form1.GlobalPanel_main.Controls.Add(presc);
         }

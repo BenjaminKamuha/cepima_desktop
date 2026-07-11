@@ -11,8 +11,13 @@ namespace Cepima.MesClasses
 {
     class ManagerClasse
     {
-        //====================================méthode de connexion à la base de données==============================
+        ////====================================méthode de connexion à la base de données==============================
+        //private static readonly string con_string = "server=192.168.203.2;database=cepimadb;Uid=cepima_desk;pwd=cepima";
+
+        //==================================== méthode de connexion à la base de données==============================
         private static readonly string con_string = "server=192.168.203.2;database=cepimadb;Uid=cepima_desk;pwd=cepima";
+        //private static readonly string con_string = "server=localhost;database=cepimadb;user id=root;pwd=''";
+
         public static Dictionary<string, string> request_params = new Dictionary<string, string>();
         public static MySqlConnection GetConnexion()
         {
@@ -99,7 +104,6 @@ namespace Cepima.MesClasses
                     {
                         cmd.Parameters.AddWithValue(cle_valeur.Key, cle_valeur.Value);
                     }
-
                 }
 
                 MySqlDataReader reader = cmd.ExecuteReader();

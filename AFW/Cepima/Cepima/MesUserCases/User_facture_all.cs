@@ -21,8 +21,26 @@ namespace Cepima.MesUserCases
             LoadFilter(cbx_type_facture,cbx_statut_facture);
             LoadFacture();
             dgv_facture.CellClick += dgv_facture_CellClick;
+            FiltragePeriode(cbx_filter_periode);
+            cbx_filter_periode.SelectedIndexChanged += cbx_filter_periode_SelectedIndexChanged;
         }
 
+        void cbx_filter_periode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadFacture();
+        }
+
+        // ======================== FILTRAGE PAR periode ===============================
+        private void FiltragePeriode(ComboBox cbx)
+        {
+            cbx.Items.Clear();
+            cbx.Items.Add("Tous");
+            cbx.Items.Add("Aujourd'hui");
+            cbx.Items.Add("Cette semaine");
+            cbx.Items.Add("Ce mois");
+
+            cbx.SelectedIndex = 0;
+        }
         void dgv_facture_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -56,17 +74,34 @@ namespace Cepima.MesUserCases
         // ================================ supprimer la facture =================================================
         private void DeletFacture(int factureID) //357; 227 (panel_add_paiement)
         {
-            try
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
-                string queryDelete = "DELETE FROM facture WHERE id_facture =@id";
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id",factureID.ToString());
-                MesClasses.ManagerClasse.CRUD(queryDelete,MesClasses.ManagerClasse.request_params);
-                MessageBox.Show("Facture supprimée ");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur de suppression de la facture "+ex.Message);
+                MySqlTransaction tr = con.BeginTransaction();
+                try
+                {
+                    string queryDelete = "DELETE FROM facture WHERE id_facture =@id";
+                    using (MySqlCommand cmdDelete = new MySqlCommand(queryDelete,con,tr))
+                    {
+                    cmdDelete.Parameters.AddWithValue("@id", factureID);
+                    cmdDelete.ExecuteNonQuery();
+                    }
+
+                    // ================================= SUPPRIMER LES DETAILS AUSSI DE LA FACTURE ==============================
+                    string queryDetail = "DELETE FROM detail_facture WHERE id_facture = @id";
+                    using (MySqlCommand cmdDetail = new MySqlCommand(queryDetail, con, tr))
+                    {
+                        cmdDetail.Parameters.AddWithValue("@id",factureID);
+                        cmdDetail.ExecuteNonQuery();
+                    }
+
+                    tr.Commit();
+                    MessageBox.Show("Facture supprimée avec succès !!");
+                }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur de suppression de la facture " + ex.Message);
+                }
             }
         }
         // ================================== charger les details de la facture ===================================
@@ -170,8 +205,19 @@ namespace Cepima.MesUserCases
                     {
                         query += " AND f.statut=@statut";
                     }
-                    // filtrage par date
-                    query += " AND DATE(f.date_facture) BETWEEN @debut AND @fin";
+                    // filtrage par periode
+                    switch (cbx_filter_periode.Text)
+                    {
+                        case "Aujourd'hui":
+                            query += " AND DATE(f.date_facture)=CURDATE()";
+                            break;
+                        case "Cette semaine":
+                            query += " AND YEARWEEK(f.date_facture,1)=YEARWEEK(CURDATE(),1)";
+                            break;
+                        case "Ce mois":
+                            query += " AND MONTH(f.date_facture)=MONTH(CURDATE()) AND YEAR(f.date_facture)=YEAR(CURDATE())";
+                            break;
+                    }
 
                     query += " ORDER BY f.date_facture DESC";
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
@@ -191,9 +237,7 @@ namespace Cepima.MesUserCases
                         {
                             cmd.Parameters.AddWithValue("@statut",cbx_statut_facture.Text);
                         }
-                        // ============= paramètre date ==========
-                        cmd.Parameters.AddWithValue("@debut",dt_debut.Value.ToString("yyyy-MM-dd"));
-                        cmd.Parameters.AddWithValue("@fin",dt_final.Value.ToString("yyyy-MM-dd"));
+                        
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -251,16 +295,6 @@ namespace Cepima.MesUserCases
         }
 
         private void cbx_statut_facture_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadFacture();
-        }
-
-        private void dt_debut_ValueChanged(object sender, EventArgs e)
-        {
-            LoadFacture();
-        }
-
-        private void dt_final_ValueChanged(object sender, EventArgs e)
         {
             LoadFacture();
         }

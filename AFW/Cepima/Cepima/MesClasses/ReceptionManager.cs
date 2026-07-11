@@ -70,18 +70,19 @@ namespace Cepima.MesClasses
         }
 
         // ==============================Enregistrer la consultation =====================================
-        public static void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string motif, string diagnostic)
+        public static void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string frais_consultation,string motif, string diagnostic)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string queryConsultation = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,motif,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@motif,@diagnostic)";
+                    string queryConsultation = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,frais_consultation,motif,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@frais,@motif,@diagnostic)";
                     ManagerClasse.request_params.Clear();
                     ManagerClasse.request_params.Add("@patient",patient_id);
                     ManagerClasse.request_params.Add("@centre",centre_id);
                     ManagerClasse.request_params.Add("@personnel",personnel_id);
+                    ManagerClasse.request_params.Add("@frais",frais_consultation);
                     ManagerClasse.request_params.Add("@motif",motif);
                     ManagerClasse.request_params.Add("@diagnostic",diagnostic);
                     ManagerClasse.CRUD(queryConsultation,ManagerClasse.request_params);

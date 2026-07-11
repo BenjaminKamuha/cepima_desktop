@@ -15,35 +15,15 @@ namespace Cepima.MesUserCases
     public partial class User_prescription : UserControl
     {
         public static int id_patient;
-        string type_patient = "";
-        public User_prescription(int PatientID)
+        string Patient_Type;
+        public User_prescription(int PatientID,string Type)
         {
             InitializeComponent();
             LoadMedicament();
             id_patient = PatientID;
-            rb_ambulatoire.CheckedChanged += rb_ambulatoire_CheckedChanged;
-            rb_hospitalise.CheckedChanged += rb_hospitalise_CheckedChanged;
+            Patient_Type = Type;
             LoadInfosPatient();
             LoadHistoriquePrescription();
-            LoadDernierEEG();
-        }
-
-        void rb_hospitalise_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rb_hospitalise.Checked)
-            {
-                type_patient = "hospitalisation";
-                return;
-            }
-        }
-
-        void rb_ambulatoire_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rb_ambulatoire.Checked)
-            {
-                type_patient = "ambulatoire";
-                return;
-            }
         }
 
         private void LoadMedicament(params string[] args)
@@ -73,7 +53,7 @@ namespace Cepima.MesUserCases
                             string idMed = reader["id_medicament"].ToString();
                             string nom = reader["nom_medicament"].ToString();
                             string unite = reader["unite"].ToString();
-                            string prix = reader["prix_vente"].ToString();
+                            decimal prix = Convert.ToDecimal(reader["prix_vente"]);
 
                             CustomRoundedPanel pan = new CustomRoundedPanel();
                             pan.Size = new Size(100, 120);
@@ -149,6 +129,7 @@ namespace Cepima.MesUserCases
                         //panel_medicament.Controls.Clear();
                         lb_not_found.Visible = true;
                         lb_not_found.Text = "Aucun médicament trouvé";
+                        panel_medicament.Controls.Add(lb_not_found);
                     }
                 }
 
@@ -159,7 +140,7 @@ namespace Cepima.MesUserCases
             }
         }
         // ====================== méthode pour ajouter au datagridview ===============================================
-        private void AjouterAuDataGrid(string id, string nom, string unite, string prix)
+        private void AjouterAuDataGrid(string id, string nom, string unite, decimal prix)
         {
             decimal prixUnit = Convert.ToDecimal(prix);
 
@@ -200,17 +181,16 @@ namespace Cepima.MesUserCases
             LoadMedicament(tb_search_medoc.Text);
         }
         // ================================ méthode pour generer la facture =============================================
-        private int GenererFacture(int consultationID, int patientID, string type)
+        private int GenererFacture(int consultationID, int patientID, string type,MySqlConnection con,MySqlTransaction tr)
         {
             int idFacture = 0;
 
             try
             {
                 decimal total = CalculTotal();
-                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-                {
+                
                     string queryInsert = "INSERT INTO facture(id_patient,id_consultation,id_centre,type_facture,date_facture,montant_total,statut)VALUES(@patient,@consultation,@centre,@type,CURDATE(),@total,'Non payé')";
-                    MySqlCommand cmd = new MySqlCommand(queryInsert, con);
+                    MySqlCommand cmd = new MySqlCommand(queryInsert, con,tr);
                     cmd.Parameters.AddWithValue("@patient", patientID);
                     cmd.Parameters.AddWithValue("@consultation", consultationID);
                     cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
@@ -219,9 +199,8 @@ namespace Cepima.MesUserCases
                     cmd.ExecuteNonQuery();
 
                     idFacture = Convert.ToInt32(cmd.LastInsertedId);
-                }
 
-                GenererDetailFacture(idFacture);
+                GenererDetailFacture(idFacture,con,tr);
             }
             catch (Exception ex)
             {
@@ -245,32 +224,34 @@ namespace Cepima.MesUserCases
             return 0;
         }
         // ============================== détails facture =================================================================
-        private void GenererDetailFacture(int idFacture)
+        private void GenererDetailFacture(int idFacture,MySqlConnection con,MySqlTransaction tr)
         {
-            try
-            {
-                foreach (DataGridViewRow row in dgv_medoc.Rows)
+   
+                try
                 {
-                    if (row.IsNewRow) continue;
+                    foreach (DataGridViewRow row in dgv_medoc.Rows)
+                    {
+                        if (row.IsNewRow) continue;
 
-                    string query = "INSERT INTO detail_facture(id_facture, description, quantite, prix_unitaire, montant)VALUES(@id_facture, @desc, @qte, @prix, @montant)";
-                    MesClasses.ManagerClasse.request_params.Clear();
-                    MesClasses.ManagerClasse.request_params.Add("@id_facture", idFacture.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@desc", row.Cells["colMedicament"].Value.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@qte", row.Cells["colQuantite"].Value.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@prix", row.Cells["colPrix"].Value.ToString());
-                    MesClasses.ManagerClasse.request_params.Add("@montant", row.Cells["colMontant"].Value.ToString());
-                    MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
+                        string query = "INSERT INTO detail_facture(id_facture, description, quantite, prix_unitaire, montant)VALUES(@id_facture, @desc, @qte, @prix, @montant)";
+                        using (MySqlCommand cmd = new MySqlCommand(query,con,tr))
+                        {
+                            cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                            cmd.Parameters.AddWithValue("@desc", row.Cells["colMedicament"].Value.ToString());
+                            cmd.Parameters.AddWithValue("@qte",row.Cells["colQuantite"].Value);
+                            cmd.Parameters.AddWithValue("@prix",row.Cells["colPrix"].Value);
+                            cmd.Parameters.AddWithValue("@montant",row.Cells["colMontant"].Value);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
+                catch (Exception ex)
+                {
 
-                MessageBox.Show("Erreur détail facture : " + ex.Message);
-            }
+                    MessageBox.Show("Erreur détail facture : " + ex.Message);
+                }
 
         }
-        // enregistrement dans la table prescriptions  et récuperation de l'id consultation ===============================
 
         // récuperer l'id_hospitalisation ===========================
         private int RecupererIdHospitalisation()
@@ -327,14 +308,13 @@ namespace Cepima.MesUserCases
             return idConsultation;
         }
         // ========================== METHODE POUR LA MISE EN JOUR DE LA CONSULTATION (STATUT 'LIVRE') ===============================
-        private void UpdateConsultation(int idConsultation)
+        private void UpdateConsultation(int idConsultation,MySqlConnection con,MySqlTransaction tra)
         {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-            {
+           
                 try
                 {
                     string queryUpdate = "UPDATE consultation SET statut_presc='Livrée' WHERE id_consultation = @id";
-                    using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con))
+                    using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con,tra))
                     {
                         cmd.Parameters.AddWithValue("@id",idConsultation);
                         cmd.ExecuteNonQuery();
@@ -344,7 +324,6 @@ namespace Cepima.MesUserCases
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
         }
 
         private void tb_search_medoc_TextChanged_1(object sender, EventArgs e)
@@ -354,16 +333,7 @@ namespace Cepima.MesUserCases
 
         private void bt_valider_prescription_Click(object sender, EventArgs e)
         {
-            if (!rb_ambulatoire.Checked && rb_hospitalise.Checked)
-            {
-                MessageBox.Show("Vous devez sélectiionner le type de patient");
-                return;
-            }
-            else
-            {
-                ValiderPrescriptions();
-            }
-         
+            ValiderPrescriptions();
         }
 
         // ===================================== VALIDER PRESCRIPTIONS ==========================================
@@ -384,7 +354,7 @@ namespace Cepima.MesUserCases
                     using (MySqlCommand cmd = new MySqlCommand(queryInsertSortie, con, tr))
                     {
                         cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
-                        cmd.Parameters.AddWithValue("@type", type_patient);
+                        cmd.Parameters.AddWithValue("@type", Patient_Type);
                         cmd.Parameters.AddWithValue("@patient", id_patient);
 
                         cmd.ExecuteNonQuery();
@@ -415,40 +385,31 @@ namespace Cepima.MesUserCases
                         }
                     }
 
+                    MessageBox.Show("Patient type = [" +Patient_Type+ "]");
                     //==================== TRAITEMENT FINAL ====================
-                    if (type_patient == "ambulatoire")
+                    if (Patient_Type == "Ambulatoire")
                     {
-                        GenererFacture(idconsultation, id_patient, "Ambulatoire");
-                        UpdateConsultation(idconsultation);
+                        MessageBox.Show("Facture generé avec succès !!");
+                        GenererFacture(idconsultation, id_patient,Patient_Type,con,tr);
+                        UpdateConsultation(idconsultation,con,tr);
                     }
-                    else
+                    else if(Patient_Type == "Hospitalisé")
                     {
                         // Ouvrir l'affectation de chambre
                         MesUserCases.User_affectation affectation = new User_affectation();
                         affectation.Dock = DockStyle.Fill;
-
                         Form1.GlobalPanel_main.Controls.Clear();
                         Form1.GlobalPanel_main.Controls.Add(affectation);
                     }
 
                     //==================== VALIDATION ====================
                     tr.Commit();
-
                     dgv_medoc.Rows.Clear();
-
                     MessageBox.Show("Prescription ajoutée avec succès.");
                 }
                 catch (Exception ex)
                 {
-                    try
-                    {
-                        tr.Rollback();
-                    }
-                    catch
-                    {
-
-                    }
-
+                    tr.Rollback();
                     MessageBox.Show("Erreur : " + ex.Message);
                 }
             }
@@ -462,7 +423,7 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT p.nom,p.post_nom,p.sexe,TIMESTAMPDIFF(YEAR,p.date_naissance,CURDATE()) AS age,CONCAT(pe.nom,' ',pe.post_nom,' ',pe.prenom) AS medecin,c.date_consultation FROM consultation c INNER JOIN patients p ON c.id_patient=p.id_patient INNER JOIN personnels pe ON pe.id_personnel=c.id_personnel WHERE c.id_consultation=@consultation LIMIT 1";
+                    string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,p.sexe,TIMESTAMPDIFF(YEAR,p.date_naissance,CURDATE()) AS age,CONCAT(pe.nom,' ',pe.post_nom,' ',pe.prenom) AS medecin,c.date_consultation FROM consultation c INNER JOIN patients p ON c.id_patient=p.id_patient INNER JOIN personnels pe ON pe.id_personnel=c.id_personnel WHERE c.id_consultation=@consultation LIMIT 1";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
@@ -472,12 +433,12 @@ namespace Cepima.MesUserCases
                         {
                             while (reader.Read())
                             {
-                                lb_nom.Text = reader["nom"] + " " + reader["post_nom"];
-                                lb_sexe.Text = reader["sexe"].ToString();
-                                lb_age.Text = reader["age"] + " ans";
-                                lb_type_patient.Text = "Patient : " +type_patient.ToString();
-                                lb_date.Text = Convert.ToDateTime(reader["date_consultation"]).ToString("dd/MM/yyyy");
+                                lb_nom.Text = "Patient: "+reader["patient"];
+                                lb_sexe.Text = "Sexe: "+reader["sexe"].ToString();
+                                lb_age.Text = "Age: "+reader["age"] + " ans";
+                                lb_date.Text = "Date consultation: "+Convert.ToDateTime(reader["date_consultation"]).ToString("dd/MM/yyyy");
                                 lb_medecin.Text = "Medecin: "+reader["medecin"].ToString();
+                                lb_type_patient.Text = "Type Patient: " + Patient_Type;
                             }
                             reader.Close();
                         }
@@ -497,7 +458,7 @@ namespace Cepima.MesUserCases
 
             try
             {
-                string query = "SELECT pr.date_prescription,CONCAT(pe.nom,' ',pe.post_nom) AS medecin,m.nom_medicament FROM prescriptions pr INNER JOIN consultation c ON c.id_consultation=pr.id_consultation INNER JOIN personnels pe ON pe.id_personnel=c.id_personnel INNER JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE pr.id_patient=@patient ORDER BY pr.date_prescription DESC";
+                string query = "SELECT pr.date_prescription,CONCAT(pe.nom,' ',pe.post_nom) AS medecin,m.nom_medicament,m.categorie,m.prix_vente FROM prescriptions pr INNER JOIN consultation c ON c.id_consultation=pr.id_consultation INNER JOIN personnels pe ON pe.id_personnel=c.id_personnel INNER JOIN medicament m ON m.id_medicament=pr.id_medicament WHERE pr.id_patient=@patient ORDER BY pr.date_prescription DESC";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@patient", id_patient.ToString());
 
@@ -512,6 +473,8 @@ namespace Cepima.MesUserCases
                         dgvHistorique.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_prescription"]).ToString("dd/MM/yyyy");
                         dgvHistorique.Rows[row].Cells["colMedecin"].Value = reader["medecin"];
                         dgvHistorique.Rows[row].Cells["colMedoc"].Value = reader["nom_medicament"];
+                        dgvHistorique.Rows[row].Cells["colPrice"].Value = reader["prix_vente"];
+                        dgvHistorique.Rows[row].Cells["colCategorie"].Value = reader["categorie"];
                     }
 
                     reader.Close();
@@ -523,42 +486,5 @@ namespace Cepima.MesUserCases
             }
         }
 
-        // ======================================= CHARGER LE DERNIER EXAMEN EEG  =============================================
-        private void LoadDernierEEG()
-        {
-            try
-            {
-                string query = "SELECT * FROM examens_eeg WHERE id_patient=@patient ORDER BY date_examen DESC LIMIT 1";
-
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@patient", id_patient.ToString());
-
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
-                {
-                    if (reader.Read())
-                    {
-                        lb_date_examen.Text = Convert.ToDateTime(reader["date_examen"]).ToString("dd/MM/yyyy");
-                        lb_type.Text = reader["type_EEG"].ToString();
-                        lb_resultat.Text = reader["resultat"].ToString();
-                        lb_interpretation.Text = reader["interpretation"].ToString();
-                        lblStatut.Text = reader["statut"].ToString();
-                    }
-                    else
-                    {
-                        lb_date_examen.Text = "-";
-                        lb_type.Text = "-";
-                        lb_resultat.Text = "Aucun examen";
-                        lb_interpretation.Text = "-";
-                        lblStatut.Text = "-";
-                    }
-
-                    reader.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
     }
 }
