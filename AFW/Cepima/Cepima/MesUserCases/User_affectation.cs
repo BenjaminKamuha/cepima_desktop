@@ -33,7 +33,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE CONCAT(p.nom,' ',p.post_nom) LIKE @search";
+                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE CONCAT(p.nom,' ',p.post_nom) LIKE @search AND h.date_sortie IS NULL";
                         MesClasses.ManagerClasse.request_params.Clear();
                         MesClasses.ManagerClasse.request_params.Add("@search", "%" + args[0] + "%");
                         MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true);
@@ -109,7 +109,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient";
+                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE h.date_sortie IS NULL";
                         using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                         {
                             if (reader.HasRows)

@@ -27,48 +27,32 @@ namespace Cepima.MesForms
             {
                 try
                 {
-                    // ========================== DATASET PRINCICAP ====================================
-                    DataSet ds = new DataSet();
 
-                    //  ========================= DATATABLE FACTURE =========================================
                     DataTable dtFacture = new DataTable();
-                    string queryFacture = "SELECT f.id_facture,DATE_FORMAT(f.date_facture,'%d/%m/%Y') AS date_facture,f.type_facture,f.montant_total,f.statut,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient FROM facture f JOIN patients p ON f.id_patient = p.id_patient WHERE f.id_facture = @id";
-                    using (MySqlCommand cmdFacture = new MySqlCommand(queryFacture, con))
-                    {
-                        cmdFacture.Parameters.AddWithValue("@id",factureID);
-                        MySqlDataAdapter daFacture = new MySqlDataAdapter(cmdFacture);
-                        daFacture.Fill(dtFacture);
-                    }
+                    string query = "SELECT f.id_facture,DATE_FORMAT(f.date_facture,'%d/%m/%Y') AS date_facture,f.type_facture,f.montant_total,f.statut,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,df.description,df.quantite,df.prix_unitaire,df.montant FROM facture f INNER JOIN patients p ON p.id_patient = f.id_patient INNER JOIN detail_facture df ON df.id_facture = f.id_facture WHERE f.id_facture=@id";
 
-                    // =================================== DATATABLE DETAILS ===============================
-                    DataTable dtDetail = new DataTable();
-                    string queryDetail = "SELECT description,quantite,prix_unitaire,montant FROM detail_facture WHERE id_facture =@id";
-                    using (MySqlCommand cmdDetail = new MySqlCommand(queryDetail, con))
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmdDetail.Parameters.AddWithValue("@id",factureID);
-                        MySqlDataAdapter daDetail = new MySqlDataAdapter(cmdDetail);
-                        daDetail.Fill(dtDetail);
-                    }
+                        cmd.Parameters.AddWithValue("@id", factureID);
+                        MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                        da.Fill(dtFacture);
 
-                    // =================================== AJOUT DATASOURCE ===========================================
+                    }
+                    // ================= DATASOURCE ===================
                     reportViewer1.LocalReport.DataSources.Clear();
-                    // ========================== datasource facture ====================================
-                    ReportDataSource rdsFacture = new ReportDataSource("facture_ds",dtFacture);
-                    // ========================== datasource details ===================================
-                    ReportDataSource rdsDetail = new ReportDataSource("ds_detail",dtDetail);
+                    ReportDataSource rds = new ReportDataSource("facture_ds",dtFacture);
+                    reportViewer1.LocalReport.DataSources.Add(rds);
+                    // ================= RDLC ========================
 
-                    reportViewer1.LocalReport.DataSources.Add(rdsFacture);
-                    reportViewer1.LocalReport.DataSources.Add(rdsDetail);
-
-                    // =============================== RDLC ===========================================
                     reportViewer1.LocalReport.ReportEmbeddedResource = "Cepima.FactureRDLC.rdlc";
                     reportViewer1.LocalReport.Refresh();
-                    this.reportViewer1.RefreshReport();
+                    reportViewer1.RefreshReport();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erreur d'impression de la facture :" + ex.Message);
+                    MessageBox.Show("Erreur impression facture : "+ ex.Message);
                 }
+
             }
         }
     }

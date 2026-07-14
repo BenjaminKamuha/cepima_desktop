@@ -274,33 +274,33 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label7.Location = new System.Drawing.Point(689, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 14);
+            this.label7.Size = new System.Drawing.Size(58, 14);
             this.label7.TabIndex = 16;
             this.label7.Text = "Date fin : ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label6.Location = new System.Drawing.Point(404, 19);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(71, 14);
+            this.label6.Size = new System.Drawing.Size(77, 14);
             this.label6.TabIndex = 16;
             this.label6.Text = "Date début : ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label5.Location = new System.Drawing.Point(154, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 14);
+            this.label5.Size = new System.Drawing.Size(138, 14);
             this.label5.TabIndex = 16;
             this.label5.Text = "Chambre sélectionnée : ";
             // 
@@ -322,6 +322,7 @@
             // 
             // dt_date_fin
             // 
+            this.dt_date_fin.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_date_fin.Location = new System.Drawing.Point(692, 36);
             this.dt_date_fin.Name = "dt_date_fin";
             this.dt_date_fin.Size = new System.Drawing.Size(218, 23);
@@ -329,6 +330,7 @@
             // 
             // dt_date_debut
             // 
+            this.dt_date_debut.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_date_debut.Location = new System.Drawing.Point(407, 36);
             this.dt_date_debut.Name = "dt_date_debut";
             this.dt_date_debut.Size = new System.Drawing.Size(215, 23);
