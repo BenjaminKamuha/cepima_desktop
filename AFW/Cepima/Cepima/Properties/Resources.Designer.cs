@@ -303,6 +303,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cash_20px {
+            get {
+                object obj = ResourceManager.GetObject("cash_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cash_and_credit_card_90px {
             get {
                 object obj = ResourceManager.GetObject("cash_and_credit_card_90px", resourceCulture);
@@ -1326,6 +1336,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap steto {
             get {
                 object obj = ResourceManager.GetObject("steto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stock_ph {
+            get {
+                object obj = ResourceManager.GetObject("stock_ph", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

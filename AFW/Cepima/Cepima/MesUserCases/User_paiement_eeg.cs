@@ -17,11 +17,11 @@ namespace Cepima.MesUserCases
         {
             InitializeComponent();
             FilterByType_eeg(cbx_type_eeg,cbx_filtrer);
-            LoadExamensEEG();
+            //LoadExamensEEG();
             LoadResume();
             LoadHistoriquePaiementEEG();
             dgv_examens_eeg.CellContentClick += dgv_examens_eeg_CellContentClick;
-            LoadEnum(cbx_mode_paiement,"paiement_eeg","mode_paiement");
+            LoadEnum(cbx_mode_paiement, "paiement_eeg", "mode_paiement");
         }
 
         void dgv_examens_eeg_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -190,16 +190,17 @@ namespace Cepima.MesUserCases
                         switch (cbx_filtrer.Text)
                         {
                             case "Ajourd'hui":
-                                query += " AND DATE(pe.date_paiement)=CURDATE()";
+                                query += " AND DATE(e.date_examen)=CURDATE()";
                                 break;
                             case "Cette semaine":
-                                query += " AND YEARWEEK(pe.date_paiement,1)=YEARWEEK(CURDATE(),1)";
+                                query += " AND YEARWEEK(e.date_examen,1)=YEARWEEK(CURDATE(),1)";
                                 break;
                             case "Ce mois":
-                                query += " AND MONTH(pe.date_paiement)=MONTH(CURDATE()) AND YEAR(pe.date_paiement)=YEAR(CURDATE())";
+                                query += " AND MONTH(e.date_examen)=MONTH(CURDATE()) AND YEAR(e.date_examen)=YEAR(CURDATE())";
                                 break;
                         }
 
+                        cmd.CommandText = query;
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())

@@ -37,22 +37,17 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.lb_examen_total = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.lb_examen_non_paye = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.lb_encaissement_mois = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.lb_encaissement_jour = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.customRoundedPanel6 = new CustomRoundedPanel();
@@ -94,22 +89,35 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cbx_type_eeg = new System.Windows.Forms.ComboBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+
             this.tb_search_patient = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.cbx_filtrer = new System.Windows.Forms.ComboBox();
+
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut_examen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.colEncaisser = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+
             this.panel1.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.customRoundedPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.customRoundedPanel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_examens_eeg)).BeginInit();
@@ -118,6 +126,13 @@
             this.customRoundedPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_historique_paiement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+
             this.SuspendLayout();
             // 
             // panel1
@@ -163,16 +178,6 @@
             this.lb_examen_total.Size = new System.Drawing.Size(30, 23);
             this.lb_examen_total.TabIndex = 1;
             this.lb_examen_total.Text = "35";
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Cepima.Properties.Resources.total_examen;
-            this.pictureBox5.Location = new System.Drawing.Point(122, 28);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 1;
-            this.pictureBox5.TabStop = false;
             // 
             // label6
             // 
@@ -222,16 +227,6 @@
             this.lb_examen_non_paye.TabIndex = 1;
             this.lb_examen_non_paye.Text = "12";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Cepima.Properties.Resources.non_paye;
-            this.pictureBox4.Location = new System.Drawing.Point(134, 24);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 1;
-            this.pictureBox4.TabStop = false;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -280,16 +275,6 @@
             this.lb_encaissement_mois.TabIndex = 1;
             this.lb_encaissement_mois.Text = "1250$";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Cepima.Properties.Resources.encaissement_mois;
-            this.pictureBox3.Location = new System.Drawing.Point(135, 24);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -299,16 +284,6 @@
             this.label4.Size = new System.Drawing.Size(125, 15);
             this.label4.TabIndex = 1;
             this.label4.Text = "Encaissement ce mois";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.Icone_eeg_pay;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 85);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // customRoundedPanel1
             // 
@@ -336,16 +311,6 @@
             this.lb_encaissement_jour.Size = new System.Drawing.Size(65, 23);
             this.lb_encaissement_jour.TabIndex = 1;
             this.lb_encaissement_jour.Text = "85,00$";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.montant_eeg;
-            this.pictureBox2.Location = new System.Drawing.Point(130, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
             // 
             // label3
             // 
@@ -841,16 +806,6 @@
             this.cbx_type_eeg.TabIndex = 18;
             this.cbx_type_eeg.SelectedIndexChanged += new System.EventHandler(this.cbx_type_eeg_SelectedIndexChanged);
             // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox6.Location = new System.Drawing.Point(205, 137);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(21, 23);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 20;
-            this.pictureBox6.TabStop = false;
-            // 
             // tb_search_patient
             // 
             this.tb_search_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -919,6 +874,136 @@
             this.cbx_filtrer.TabIndex = 18;
             this.cbx_filtrer.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
             // 
+
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "Column1";
+            this.colID.MinimumWidth = 50;
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colDate
+            // 
+            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDate.HeaderText = "Date";
+            this.colDate.MinimumWidth = 50;
+            this.colDate.Name = "colDate";
+            // 
+            // colPatient
+            // 
+            this.colPatient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatient.HeaderText = "Patient";
+            this.colPatient.MinimumWidth = 50;
+            this.colPatient.Name = "colPatient";
+            // 
+            // colType
+            // 
+            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colType.HeaderText = "Type EEG";
+            this.colType.MinimumWidth = 50;
+            this.colType.Name = "colType";
+            // 
+            // colPrix
+            // 
+            this.colPrix.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrix.HeaderText = "Prix";
+            this.colPrix.MinimumWidth = 50;
+            this.colPrix.Name = "colPrix";
+            // 
+            // colStatut_examen
+            // 
+            this.colStatut_examen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colStatut_examen.HeaderText = "Statut Examen";
+            this.colStatut_examen.MinimumWidth = 50;
+            this.colStatut_examen.Name = "colStatut_examen";
+            // 
+            // colMedecin
+            // 
+            this.colMedecin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMedecin.HeaderText = "Medecin demandeur";
+            this.colMedecin.MinimumWidth = 50;
+            this.colMedecin.Name = "colMedecin";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::Cepima.Properties.Resources.cash_20px;
+            this.dataGridViewImageColumn1.MinimumWidth = 50;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ToolTipText = "Encaissement";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Cepima.Properties.Resources.search;
+            this.pictureBox6.Location = new System.Drawing.Point(205, 137);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 20;
+            this.pictureBox6.TabStop = false;
+            // 
+            // colEncaisser
+            // 
+            this.colEncaisser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEncaisser.HeaderText = "";
+            this.colEncaisser.Image = global::Cepima.Properties.Resources.cash_20px;
+            this.colEncaisser.MinimumWidth = 50;
+            this.colEncaisser.Name = "colEncaisser";
+            this.colEncaisser.ToolTipText = "Encaissement";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Cepima.Properties.Resources.total_examen;
+            this.pictureBox5.Location = new System.Drawing.Point(122, 28);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 1;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.non_paye;
+            this.pictureBox4.Location = new System.Drawing.Point(134, 24);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 1;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Cepima.Properties.Resources.encaissement_mois;
+            this.pictureBox3.Location = new System.Drawing.Point(135, 24);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 1;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.Icone_eeg_pay;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 85);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Cepima.Properties.Resources.montant_eeg;
+            this.pictureBox2.Location = new System.Drawing.Point(130, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+
             // User_paiement_eeg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -942,17 +1027,12 @@
             this.panel1.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.customRoundedPanel6.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -965,6 +1045,13 @@
             this.customRoundedPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_historique_paiement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1028,6 +1115,8 @@
         private System.Windows.Forms.ComboBox cbx_mode_paiement;
         private test_arrondissement2012.PerfectRoundedButton bt_valider;
         private test_arrondissement2012.PerfectRoundedButton bt_cancel;
+        private System.Windows.Forms.TextBox tb_montant_recu;
+        private System.Windows.Forms.TextBox tb_montant_a_payer;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatient;
@@ -1036,7 +1125,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatut_examen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedecin;
         private System.Windows.Forms.DataGridViewImageColumn colEncaisser;
-        private System.Windows.Forms.TextBox tb_montant_recu;
-        private System.Windows.Forms.TextBox tb_montant_a_payer;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

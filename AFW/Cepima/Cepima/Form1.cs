@@ -581,6 +581,10 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(patient);
                 }),
+                new MenuItem ("     Stock soin",Properties.Resources.stock_ph, (s,ev) =>
+                {
+
+                }),
                  new MenuItem("    Services",Properties.Resources.unit_20px,(s,ev) =>
                 {
                     //Instructions
