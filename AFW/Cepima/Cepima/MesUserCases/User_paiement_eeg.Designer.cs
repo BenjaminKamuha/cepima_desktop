@@ -57,6 +57,14 @@
             this.lb_total_examens = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dgv_examens_eeg = new ModernDataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut_examen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEncaisser = new System.Windows.Forms.DataGridViewImageColumn();
             this.customRoundedPanel5 = new CustomRoundedPanel();
             this.pan_add_encaissement = new System.Windows.Forms.Panel();
             this.tb_montant_recu = new System.Windows.Forms.TextBox();
@@ -80,12 +88,15 @@
             this.mode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
             this.cbx_type_eeg = new System.Windows.Forms.ComboBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+
             this.tb_search_patient = new System.Windows.Forms.TextBox();
             this.tb_tarif = new MyRoundedTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.cbx_filtrer = new System.Windows.Forms.ComboBox();
+
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,6 +112,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+
             this.panel1.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
@@ -114,11 +126,13 @@
             this.customRoundedPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_historique_paiement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+
             this.SuspendLayout();
             // 
             // panel1
@@ -437,6 +451,63 @@
             this.dgv_examens_eeg.RowHeadersVisible = false;
             this.dgv_examens_eeg.Size = new System.Drawing.Size(701, 330);
             this.dgv_examens_eeg.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "Column1";
+            this.colID.MinimumWidth = 50;
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colDate
+            // 
+            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDate.HeaderText = "Date";
+            this.colDate.MinimumWidth = 50;
+            this.colDate.Name = "colDate";
+            // 
+            // colPatient
+            // 
+            this.colPatient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatient.HeaderText = "Patient";
+            this.colPatient.MinimumWidth = 50;
+            this.colPatient.Name = "colPatient";
+            // 
+            // colType
+            // 
+            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colType.HeaderText = "Type EEG";
+            this.colType.MinimumWidth = 50;
+            this.colType.Name = "colType";
+            // 
+            // colPrix
+            // 
+            this.colPrix.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrix.HeaderText = "Prix";
+            this.colPrix.MinimumWidth = 50;
+            this.colPrix.Name = "colPrix";
+            // 
+            // colStatut_examen
+            // 
+            this.colStatut_examen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colStatut_examen.HeaderText = "Statut Examen";
+            this.colStatut_examen.MinimumWidth = 50;
+            this.colStatut_examen.Name = "colStatut_examen";
+            // 
+            // colMedecin
+            // 
+            this.colMedecin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMedecin.HeaderText = "Medecin demandeur";
+            this.colMedecin.MinimumWidth = 50;
+            this.colMedecin.Name = "colMedecin";
+            // 
+            // colEncaisser
+            // 
+            this.colEncaisser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEncaisser.HeaderText = "";
+            this.colEncaisser.MinimumWidth = 50;
+            this.colEncaisser.Name = "colEncaisser";
             // 
             // customRoundedPanel5
             // 
@@ -803,6 +874,7 @@
             this.cbx_filtrer.TabIndex = 18;
             this.cbx_filtrer.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
             // 
+
             // colID
             // 
             this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -931,6 +1003,7 @@
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
             // 
+
             // User_paiement_eeg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -972,11 +1045,13 @@
             this.customRoundedPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_historique_paiement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
