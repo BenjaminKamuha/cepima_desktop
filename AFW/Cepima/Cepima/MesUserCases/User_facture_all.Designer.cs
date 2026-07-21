@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.cbx_filter_periode = new System.Windows.Forms.ComboBox();
             this.cbx_statut_facture = new System.Windows.Forms.ComboBox();
             this.cbx_type_facture = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -91,7 +92,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.cbx_filter_periode = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -159,6 +159,17 @@
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(1111, 80);
             this.customRoundedPanel1.TabIndex = 1;
+            // 
+            // cbx_filter_periode
+            // 
+            this.cbx_filter_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_filter_periode.Font = new System.Drawing.Font("Calibri", 10F);
+            this.cbx_filter_periode.FormattingEnabled = true;
+            this.cbx_filter_periode.Location = new System.Drawing.Point(910, 27);
+            this.cbx_filter_periode.Name = "cbx_filter_periode";
+            this.cbx_filter_periode.Size = new System.Drawing.Size(165, 23);
+            this.cbx_filter_periode.TabIndex = 17;
+            this.cbx_filter_periode.SelectedIndexChanged += new System.EventHandler(this.cbx_statut_facture_SelectedIndexChanged);
             // 
             // cbx_statut_facture
             // 
@@ -353,8 +364,8 @@
             this.dgv_facture.AllowUserToAddRows = false;
             this.dgv_facture.AllowUserToDeleteRows = false;
             this.dgv_facture.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_facture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -363,14 +374,14 @@
             this.dgv_facture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_facture.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_facture.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_facture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_facture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colPatient,
@@ -381,14 +392,14 @@
             this.colPrint,
             this.colDelete,
             this.colID});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_facture.EnableHeadersVisualStyles = false;
             this.dgv_facture.GridColor = System.Drawing.Color.LightGray;
             this.dgv_facture.Location = new System.Drawing.Point(3, 30);
@@ -506,8 +517,8 @@
             this.dgv_detail_facture.AllowUserToAddRows = false;
             this.dgv_detail_facture.AllowUserToDeleteRows = false;
             this.dgv_detail_facture.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_detail_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_detail_facture.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_detail_facture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -515,28 +526,28 @@
             this.dgv_detail_facture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_detail_facture.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_detail_facture.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_detail_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_detail_facture.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_detail_facture.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_detail_facture.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colDesc,
             this.colQuantite,
             this.colPrix,
             this.colTotal});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Calibri", 9F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_detail_facture.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_detail_facture.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_detail_facture.EnableHeadersVisualStyles = false;
             this.dgv_detail_facture.GridColor = System.Drawing.Color.LightGray;
             this.dgv_detail_facture.Location = new System.Drawing.Point(3, 6);
@@ -603,7 +614,7 @@
             this.panel3.Controls.Add(this.lb_patient);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.Location = new System.Drawing.Point(3, 24);
+            this.panel3.Location = new System.Drawing.Point(3, 22);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(357, 168);
             this.panel3.TabIndex = 0;
@@ -621,7 +632,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(218, 3);
+            this.label14.Location = new System.Drawing.Point(177, 6);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(48, 15);
             this.label14.TabIndex = 1;
@@ -631,7 +642,7 @@
             // 
             this.lb_statut.AutoSize = true;
             this.lb_statut.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_statut.Location = new System.Drawing.Point(268, 3);
+            this.lb_statut.Location = new System.Drawing.Point(227, 6);
             this.lb_statut.Name = "lb_statut";
             this.lb_statut.Size = new System.Drawing.Size(0, 15);
             this.lb_statut.TabIndex = 1;
@@ -641,7 +652,7 @@
             this.lb_reste.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lb_reste.AutoSize = true;
             this.lb_reste.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_reste.Location = new System.Drawing.Point(206, 157);
+            this.lb_reste.Location = new System.Drawing.Point(206, 149);
             this.lb_reste.Name = "lb_reste";
             this.lb_reste.Size = new System.Drawing.Size(0, 14);
             this.lb_reste.TabIndex = 1;
@@ -798,17 +809,6 @@
             this.dataGridViewImageColumn2.Image = global::Cepima.Properties.Resources.trash_red1;
             this.dataGridViewImageColumn2.MinimumWidth = 50;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            // 
-            // cbx_filter_periode
-            // 
-            this.cbx_filter_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_filter_periode.Font = new System.Drawing.Font("Calibri", 10F);
-            this.cbx_filter_periode.FormattingEnabled = true;
-            this.cbx_filter_periode.Location = new System.Drawing.Point(910, 27);
-            this.cbx_filter_periode.Name = "cbx_filter_periode";
-            this.cbx_filter_periode.Size = new System.Drawing.Size(165, 23);
-            this.cbx_filter_periode.TabIndex = 17;
-            this.cbx_filter_periode.SelectedIndexChanged += new System.EventHandler(this.cbx_statut_facture_SelectedIndexChanged);
             // 
             // User_facture_all
             // 

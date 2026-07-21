@@ -303,6 +303,12 @@
     <Compile Include="MesUserCases\User_sortie_pharmacie.Designer.cs">
       <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_Stock_hospitalisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_Stock_hospitalisation.Designer.cs">
+      <DependentUpon>User_Stock_hospitalisation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_test_sous_menu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -428,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_sortie_pharmacie.resx">
       <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_Stock_hospitalisation.resx">
+      <DependentUpon>User_Stock_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_test_sous_menu.resx">
       <DependentUpon>User_test_sous_menu.cs</DependentUpon>

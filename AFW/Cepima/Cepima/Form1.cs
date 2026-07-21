@@ -583,7 +583,10 @@ namespace Cepima
                 }),
                 new MenuItem ("     Stock soin",Properties.Resources.stock_ph, (s,ev) =>
                 {
-
+                    MesUserCases.User_Stock_hospitalisation stock = new MesUserCases.User_Stock_hospitalisation();
+                    stock.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(stock);
                 }),
                  new MenuItem("    Services",Properties.Resources.unit_20px,(s,ev) =>
                 {

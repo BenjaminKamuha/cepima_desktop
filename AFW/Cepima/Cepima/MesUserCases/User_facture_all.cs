@@ -30,6 +30,24 @@ namespace Cepima.MesUserCases
             LoadFacture();
         }
 
+        private decimal RecupererMontantRestant(int factureID)
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string query = "SELECT reste FROM paiement WHERE id_facture = @id ORDER BY id_paiement DESC LIMIT 1";
+                using (MySqlCommand cmd = new MySqlCommand(query,con))
+                {
+                    cmd.Parameters.AddWithValue("@id",factureID);
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        return Convert.ToDecimal(result);
+                    }
+                }
+                return Convert.ToDecimal(dgv_facture.CurrentRow.Cells["colMontant"].Value);
+            }
+        }
         // ======================== FILTRAGE PAR periode ===============================
         private void FiltragePeriode(ComboBox cbx)
         {
@@ -50,7 +68,7 @@ namespace Cepima.MesUserCases
                 Charger_detail_de_la_facture(idFacture);
                 lb_ID_facture.Text = idFacture.ToString();
                 bt_add_paiement.Visible = true;
-                MONTANT = Convert.ToDecimal(dgv_facture.Rows[e.RowIndex].Cells["colMontant"].Value);
+                MONTANT = RecupererMontantRestant(idFacture);
                 // ======================= si le bouton delete est clicqué, on supprime la facture ==========
                 if (dgv_facture.Columns[e.ColumnIndex].Name == "colDelete")
                 {
@@ -121,8 +139,8 @@ namespace Cepima.MesUserCases
                         lb_date_facture.Text = Convert.ToDateTime(reader["date_facture"]).ToString("dd/MM/yyyy");
                         lb_medecin.Text = reader["montant_total"].ToString() + "$";
                         lb_type.Text = reader["type_facture"].ToString();
-                        lb_montant_paye.Text = reader["montant"].ToString();
-                        lb_reste.Text = reader["reste"].ToString();
+                        lb_montant_paye.Text = reader["montant"].ToString() + "$";
+                        lb_reste.Text = reader["reste"].ToString() +"$";
                     }
                     reader.Close();
                 }
