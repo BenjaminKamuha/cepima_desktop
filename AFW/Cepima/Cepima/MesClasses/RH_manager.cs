@@ -292,6 +292,7 @@ namespace Cepima.MesClasses
          // ======================================= delete retenue =======================================
          public static void Delete_retenue(int retenueId)
          {
+             
              string queryDelete = "DELETE FROM retenue WHERE id_retenue = @id";
              MesClasses.ManagerClasse.request_params.Clear();
              MesClasses.ManagerClasse.request_params.Add("@id",retenueId.ToString());

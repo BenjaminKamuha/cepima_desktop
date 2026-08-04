@@ -44,6 +44,7 @@ namespace Cepima.MesClasses
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
                 MySqlTransaction tr = con.BeginTransaction();
+
                 try
                 {
                     string queryInsertPatient = "INSERT INTO patients(numero_fiche,nom,post_nom,prenom,sexe,date_naissance,telephone,adresse,date_creation,id_centre)VALUES(@numero,@nom,@post,@prenom,@sexe,@naissance,@phone,@adresse,CURDATE(),@centre)";

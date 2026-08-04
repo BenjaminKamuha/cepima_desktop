@@ -145,7 +145,7 @@ namespace Cepima.MesUserCases
 
                 else if (filtrePatient == "Tous")
                 {
-                    query = "SELECT * FROM(SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0 UNION SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'Hospitalisé' AS etat_patient FROM hospitalisation h INNER JOIN consultation c ON c.id_consultation=h.id_consultation INNER JOIN patients p ON p.id_patient=c.id_patient WHERE h.etat='Hospitalisé') AS listePatients";
+                    query = "SELECT * FROM(SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0 UNION SELECT DISTINCT p.id_patient,p.nom,p.post_nom, h.etat AS etat_patient FROM hospitalisation h INNER JOIN consultation c ON c.id_consultation=h.id_consultation INNER JOIN patients p ON p.id_patient=c.id_patient) AS listePatients";
                 }
 
                 else // EEG terminé
