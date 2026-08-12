@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Lun 27 Juillet 2026 à 21:13
--- Version du serveur: 5.6.12-log
--- Version de PHP: 5.4.12
+-- Client :  127.0.0.1
+-- Généré le :  Mer 12 Août 2026 à 18:27
+-- Version du serveur :  5.6.17
+-- Version de PHP :  5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `cepimadb`
+-- Base de données :  `cepimadb`
 --
-CREATE DATABASE IF NOT EXISTS `cepimadb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `cepimadb`;
 
 -- --------------------------------------------------------
 
@@ -63,7 +61,15 @@ CREATE TABLE IF NOT EXISTS `avances_salaire` (
   `reste` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_avance`),
   KEY `id_personnel` (`id_salaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `avances_salaire`
+--
+
+INSERT INTO `avances_salaire` (`id_avance`, `id_salaire`, `date_avance`, `montant`, `reste`) VALUES
+(1, 0, '2026-07-29', '150.00', '50.00'),
+(2, 1, '2026-08-09', '56.00', '144.00');
 
 -- --------------------------------------------------------
 
@@ -141,7 +147,6 @@ INSERT INTO `chambre` (`id_chambre`, `id_centre`, `id_service`, `numero_chambre`
 (26, 1, 7, 702, 'Double', '15.21', 'Disponible'),
 (27, 1, 7, 703, 'Commune', '6.52', 'Disponible'),
 (28, 1, 7, 704, 'Observation', '17.39', 'Disponible'),
-(29, 1, 7, 705, 'Double', '15.21', 'Disponible'),
 (30, 1, 7, 706, 'Individuelle', '10.86', 'Disponible'),
 (32, 1, 6, 90, 'Surveillance renforcée', '19.56', 'Occupée'),
 (33, 1, 5, 91, 'Isolement thérapeutique', '2.17', 'Disponible'),
@@ -175,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `consultation` (
 --
 
 INSERT INTO `consultation` (`id_consultation`, `id_patient`, `id_centre`, `id_personnel`, `date_consultation`, `frais_consultation`, `motif`, `diagnostic`, `statut_presc`) VALUES
-(1, 19, 1, 1, '2026-07-14', '20.00', 'Pas de motif valable', 'Aucun dignostic', 'Livrée');
+(1, 19, 1, 1, '2026-08-12', '30.00', 'Maux de mutwe', 'Aucun diagnostic', 'Livrée');
 
 -- --------------------------------------------------------
 
@@ -249,9 +254,9 @@ CREATE TABLE IF NOT EXISTS `detail_facture` (
 --
 
 INSERT INTO `detail_facture` (`id_detail_facture`, `id_facture`, `description`, `quantite`, `prix_unitaire`, `montant`) VALUES
-(1, 1, 'Consultation', 1, '20.00', '20.00'),
-(2, 1, 'Médicaments', 12, NULL, '36.80'),
-(3, 1, 'EEG', 1, '30.00', '30.00'),
+(1, 1, 'Consultation', 1, '30.00', '30.00'),
+(2, 1, 'Médicaments', 14, NULL, '41.30'),
+(3, 1, 'EEG', 1, '25.00', '25.00'),
 (4, 1, 'Laboratoire', NULL, NULL, NULL),
 (5, 1, 'Hospitalisation', NULL, NULL, NULL),
 (6, 1, 'Nursing', NULL, NULL, NULL),
@@ -419,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `examens_eeg` (
 --
 
 INSERT INTO `examens_eeg` (`id_examens`, `id_patient`, `id_consultation`, `date_examen`, `type_EEG`, `prix_examen`, `resultat`, `statut`, `interpretation`) VALUES
-(1, 19, 1, '2026-07-14', '18_cannaux', '30.00', 'Pas de resultat', 'Terminé', 'Aucune');
+(1, 19, 1, '2026-08-12', '32_cannaux', '25.00', 'Aucun resultat', 'Terminé', 'Pas du tout');
 
 -- --------------------------------------------------------
 
@@ -447,7 +452,7 @@ CREATE TABLE IF NOT EXISTS `facture` (
 --
 
 INSERT INTO `facture` (`id_facture`, `id_patient`, `id_consultation`, `id_centre`, `type_facture`, `date_facture`, `montant_total`, `statut`) VALUES
-(1, 19, 1, 1, 'Ambulatoire', '2026-07-14', '86.80', 'Partiellement payé');
+(1, 19, 1, 1, 'Ambulatoire', '2026-08-12', '96.30', 'Partiellement payé');
 
 -- --------------------------------------------------------
 
@@ -492,6 +497,7 @@ CREATE TABLE IF NOT EXISTS `horaire` (
   `jour_travail` varchar(50) DEFAULT NULL,
   `id_personnel` int(11) NOT NULL,
   PRIMARY KEY (`id_horaire`),
+  UNIQUE KEY `unique_personnel_jour` (`id_personnel`,`jour_travail`),
   KEY `id_personnel` (`id_personnel`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -632,7 +638,7 @@ CREATE TABLE IF NOT EXISTS `paiement` (
 --
 
 INSERT INTO `paiement` (`id_paiement`, `id_facture`, `numero_recu`, `date_paiement`, `montant`, `reste`, `mode_paiement`, `type_paiement`) VALUES
-(1, 1, 125, '2026-07-21', '60.00', '26.80', 'cash', 'Partiel');
+(1, 1, 0, '2026-08-12', '40.00', '56.30', 'Cash', 'Partiel');
 
 -- --------------------------------------------------------
 
@@ -679,7 +685,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
 --
 
 INSERT INTO `patients` (`id_patient`, `numero_fiche`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `telephone`, `adresse`, `date_creation`, `id_centre`, `photo`) VALUES
-(2, 'CEP-001', 'Kambalejbjbjnènènjn', 'Mukama', 'Mafungula', 'Homme', '1994-06-09', '+243 245 985 633', 'Kyambuli', '2026-04-09', 1, NULL),
+(2, 'CEP-001', 'Kasereka', 'Mulamo', 'Mafungula', 'Homme', '1994-06-09', '+243 245 985 633', 'Kyambuli', '2026-04-09', 1, NULL),
 (3, 'CEP-003', 'Kasereka', 'Mukandala', 'Jean', 'Homme', '1999-06-25', '0947856321', 'Butembo', '2026-04-09', 1, NULL),
 (4, 'CEP-004', 'kakule', 'Mughanda', 'Jean-louis', 'Homme', '1995-07-13', '+243 254 789 545 ', 'Avenue du centre', '2026-04-22', 1, NULL),
 (5, 'CEP-005', 'kasereka', 'mafungula', 'joel', 'Homme', '1994-06-15', '+243 895 745 526', 'Vukula', '2026-05-20', 1, NULL),
@@ -727,7 +733,7 @@ CREATE TABLE IF NOT EXISTS `personnels` (
 --
 
 INSERT INTO `personnels` (`id_personnel`, `id_centre`, `nom`, `post_nom`, `prenom`, `sexe`, `date_naissance`, `date_embauche`, `fonction`, `telephone`, `adresse`, `salaire_base`, `actif`) VALUES
-(1, 1, 'KABAMBA', 'MWILU', 'Jean', 'M', '1985-03-12', '2020-01-15', 'Psychiatre', '0991000001', 'Goma', '1200.00', NULL),
+(1, 1, 'KABAMBA', 'MWILU', 'Jean', 'M', '1985-03-12', '2020-01-15', 'Psychiatre', '+243 989 567 434', 'Goma', '1200.00', NULL),
 (2, 1, 'MUKENDI', 'LUBOYA', 'Aline', 'F', '1990-07-22', '2021-05-10', 'Psychologue', '0991000002', 'Goma', '900.00', NULL),
 (3, 1, 'KALONJI', 'MUKUNA', 'David', 'M', '1988-11-05', '2019-09-01', 'Psychiatre', '0991000003', 'Goma', '600.00', NULL),
 (4, 1, 'NSIMBA', 'KABUYA', 'Sarah', 'Féminin', '1992-02-18', '2022-03-20', 'Ass. Sociale', '0991000004', 'Goma', '700.00', NULL),
@@ -758,27 +764,18 @@ CREATE TABLE IF NOT EXISTS `prescriptions` (
   KEY `id_medicament` (`id_medicament`),
   KEY `fk_sortie_pharmacie` (`id_sortie`),
   KEY `id_consultation` (`id_consultation`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `prescriptions`
 --
 
 INSERT INTO `prescriptions` (`id_prescription`, `id_sortie`, `id_patient`, `id_medicament`, `id_consultation`, `quantite`, `unite`, `statut`, `date_prescription`) VALUES
-(1, 39, 19, 19, 1, 3, '', 'Livrée', '2026-07-14'),
-(2, 39, 19, 16, 1, 2, '', 'Livrée', '2026-07-14'),
-(3, 39, 19, 18, 1, 2, '', 'Livrée', '2026-07-14'),
-(4, 39, 19, 7, 1, 2, '', 'Livrée', '2026-07-14'),
-(5, 40, 19, 15, 1, 1, '', 'Livrée', '2026-07-18'),
-(6, 40, 19, 5, 1, 3, '', 'Livrée', '2026-07-18'),
-(7, 40, 19, 10, 1, 4, '', 'Livrée', '2026-07-18'),
-(8, 40, 19, 11, 1, 3, '', 'Livrée', '2026-07-18'),
-(9, 41, 19, 12, 1, 3, '', 'Livrée', '2026-07-21'),
-(10, 41, 19, 5, 1, 2, '', 'Livrée', '2026-07-21'),
-(11, 41, 19, 6, 1, 2, '', 'Livrée', '2026-07-21'),
-(12, 41, 19, 1, 1, 1, '', 'Livrée', '2026-07-21'),
-(13, 41, 19, 22, 1, 3, 'Carton', 'Livrée', '2026-07-21'),
-(14, 41, 19, 13, 1, 1, '', 'Livrée', '2026-07-21');
+(1, 43, 19, 3, 1, 5, '', 'Livrée', '2026-08-12'),
+(2, 43, 19, 8, 1, 2, '', 'Livrée', '2026-08-12'),
+(3, 43, 19, 20, 1, 2, '', 'Livrée', '2026-08-12'),
+(4, 43, 19, 22, 1, 3, 'Carton', 'Livrée', '2026-08-12'),
+(5, 43, 19, 17, 1, 2, '', 'Livrée', '2026-08-12');
 
 -- --------------------------------------------------------
 
@@ -818,7 +815,14 @@ CREATE TABLE IF NOT EXISTS `prime` (
   `montant` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id_prime`),
   KEY `id_personnel` (`id_salaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `prime`
+--
+
+INSERT INTO `prime` (`id_prime`, `id_salaire`, `date_prime`, `motif`, `montant`) VALUES
+(1, 1, '2026-08-07', 'Personnel vaillant', '30.00');
 
 -- --------------------------------------------------------
 
@@ -907,18 +911,14 @@ CREATE TABLE IF NOT EXISTS `signes_vitaux` (
   `is_counsel` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_signe`),
   KEY `id_patient` (`id_patient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Contenu de la table `signes_vitaux`
 --
 
 INSERT INTO `signes_vitaux` (`id_signe`, `id_patient`, `temperature`, `tension`, `frequence_cardiaque`, `poids`, `taille`, `date_prise`, `is_counsel`) VALUES
-(1, 19, '36.00', '120Hgmm/80', '60', '52.00', '1.00', '2026-07-11 00:00:00', 1),
-(2, 19, '36.00', '120Hgmm/80', '80bpm', '50.00', '1.00', '2026-07-13 00:00:00', 1),
-(3, 18, '32.00', '45', '78', '52.00', '1.00', '2026-07-13 00:00:00', 1),
-(4, 17, '56.00', '45', '200', '55.00', '1.00', '2026-07-13 00:00:00', 1),
-(5, 19, '36.00', '45', '25', '52.00', '1.00', '2026-07-14 00:00:00', 1);
+(1, 19, '34.00', '139', '60', '55.00', '1.00', '2026-08-12 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -952,7 +952,7 @@ CREATE TABLE IF NOT EXISTS `sorties_stock` (
   KEY `id_centre` (`id_centre`),
   KEY `id_service` (`id_service`),
   KEY `id_patient` (`id_patient`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Contenu de la table `sorties_stock`
@@ -982,7 +982,9 @@ INSERT INTO `sorties_stock` (`id_sortie`, `id_centre`, `type_sortie`, `id_patien
 (38, 1, 'ambulatoire', 17, NULL, '2026-07-14', 'en attente'),
 (39, 1, 'ambulatoire', 19, NULL, '2026-07-14', 'en attente'),
 (40, 1, 'ambulatoire', 19, NULL, '2026-07-18', 'en attente'),
-(41, 1, 'ambulatoire', 19, NULL, '2026-07-21', 'en attente');
+(41, 1, 'ambulatoire', 19, NULL, '2026-07-21', 'en attente'),
+(42, 1, 'ambulatoire', 19, NULL, '2026-07-31', 'en attente'),
+(43, 1, 'ambulatoire', 19, NULL, '2026-08-12', 'en attente');
 
 -- --------------------------------------------------------
 
@@ -1128,244 +1130,10 @@ INSERT INTO `utilisateurs` (`id_utilisateurs`, `id_personnel`, `username`, `pass
 --
 
 --
--- Contraintes pour la table `affectation_chambre`
---
-ALTER TABLE `affectation_chambre`
-  ADD CONSTRAINT `fk_hospitalisation_chambre` FOREIGN KEY (`id_chambre`) REFERENCES `chambre` (`id_chambre`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_hospitalisation_id` FOREIGN KEY (`id_hospitalisation`) REFERENCES `hospitalisation` (`id_hospitalisation`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `avances_salaire`
---
-ALTER TABLE `avances_salaire`
-  ADD CONSTRAINT `fk_avance_salaire` FOREIGN KEY (`id_salaire`) REFERENCES `salaires` (`id_salaire`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `chambre`
---
-ALTER TABLE `chambre`
-  ADD CONSTRAINT `fk_chambre_idCentre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_service_chambre` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `consultation`
---
-ALTER TABLE `consultation`
-  ADD CONSTRAINT `fk_consultation _personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_consultation_centre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_consultation_patient` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `depenses`
---
-ALTER TABLE `depenses`
-  ADD CONSTRAINT `fk_centre_depense` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `details_soins`
---
-ALTER TABLE `details_soins`
-  ADD CONSTRAINT `fk_detail_soin_` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `detail_entree_stock`
---
-ALTER TABLE `detail_entree_stock`
-  ADD CONSTRAINT `fk_entree_stock` FOREIGN KEY (`id_entree`) REFERENCES `entree_stock` (`id_entre`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_medoc_id` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `detail_facture`
---
-ALTER TABLE `detail_facture`
-  ADD CONSTRAINT `fk_facture` FOREIGN KEY (`id_facture`) REFERENCES `facture` (`id_facture`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `detail_sortie_ph_service`
---
-ALTER TABLE `detail_sortie_ph_service`
-  ADD CONSTRAINT `fk_medoc_detail` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_s_ph` FOREIGN KEY (`id_sortie`) REFERENCES `sortie_ph_service` (`id_sortie`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `detail_sortie_stock`
---
-ALTER TABLE `detail_sortie_stock`
-  ADD CONSTRAINT `fk_detail_sortie_stock_consultation` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_medicament_sortie_detail` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_sortie_idStock` FOREIGN KEY (`id_sortie`) REFERENCES `sorties_stock` (`id_sortie`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `detail_sortie_s_pa`
---
-ALTER TABLE `detail_sortie_s_pa`
-  ADD CONSTRAINT `fk_medicament_detail` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_sortie_detail` FOREIGN KEY (`id_sortie`) REFERENCES `sorties_stock` (`id_sortie`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `empreinte`
---
-ALTER TABLE `empreinte`
-  ADD CONSTRAINT `fk_personnel_empreinte` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `entree_stock`
---
-ALTER TABLE `entree_stock`
-  ADD CONSTRAINT `centre_fk_stock` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `examens_eeg`
---
-ALTER TABLE `examens_eeg`
-  ADD CONSTRAINT `fk_consultation` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_patient_examen` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `facture`
---
-ALTER TABLE `facture`
-  ADD CONSTRAINT `centre_fk_facture` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `consultation_fk_facture` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE,
-  ADD CONSTRAINT `patient_fk_facture` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `horaire`
---
-ALTER TABLE `horaire`
-  ADD CONSTRAINT `fk_personnel_horaire` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `hospitalisation`
---
-ALTER TABLE `hospitalisation`
-  ADD CONSTRAINT `consultation_fk_hospital` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_centre_hospitalisation` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_patient_hospitalisation` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_service` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `logs`
---
-ALTER TABLE `logs`
-  ADD CONSTRAINT `user_fk_logs` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateurs` (`id_utilisateurs`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `paiement`
---
-ALTER TABLE `paiement`
-  ADD CONSTRAINT `facture_fk` FOREIGN KEY (`id_facture`) REFERENCES `facture` (`id_facture`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `paiement_eeg`
---
-ALTER TABLE `paiement_eeg`
-  ADD CONSTRAINT `fk_examen_eeg_pay` FOREIGN KEY (`id_examen`) REFERENCES `examens_eeg` (`id_examens`);
-
---
--- Contraintes pour la table `patients`
---
-ALTER TABLE `patients`
-  ADD CONSTRAINT `patients_ibfk_1` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `personnels`
---
-ALTER TABLE `personnels`
-  ADD CONSTRAINT `fk_personnel_centre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `prescriptions`
---
-ALTER TABLE `prescriptions`
-  ADD CONSTRAINT `fk_cons_pres` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id_consultation`),
-  ADD CONSTRAINT `fk_medoc_prescription` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_patient_prescription` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_sortie_pharmacie` FOREIGN KEY (`id_sortie`) REFERENCES `sorties_stock` (`id_sortie`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Contraintes pour la table `presences`
 --
 ALTER TABLE `presences`
-  ADD CONSTRAINT `personnel_fk_` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `prime`
---
-ALTER TABLE `prime`
-  ADD CONSTRAINT `fk_prime_salaire` FOREIGN KEY (`id_salaire`) REFERENCES `salaires` (`id_salaire`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `retenue`
---
-ALTER TABLE `retenue`
-  ADD CONSTRAINT `fk_retenue_salaire` FOREIGN KEY (`id_salaire`) REFERENCES `salaires` (`id_salaire`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `salaires`
---
-ALTER TABLE `salaires`
-  ADD CONSTRAINT `fk_salaire_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `services`
---
-ALTER TABLE `services`
-  ADD CONSTRAINT `fk_service_centre` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `signes_vitaux`
---
-ALTER TABLE `signes_vitaux`
-  ADD CONSTRAINT `signes_vitaux_ibfk_1` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`);
-
---
--- Contraintes pour la table `sorties_stock`
---
-ALTER TABLE `sorties_stock`
-  ADD CONSTRAINT `fk_centre_stock` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_patient_stock` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_service_stock` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `sortie_ph_service`
---
-ALTER TABLE `sortie_ph_service`
-  ADD CONSTRAINT `fk_sortie_service` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `service_fk_sortie` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `sortie_s_pa`
---
-ALTER TABLE `sortie_s_pa`
-  ADD CONSTRAINT `fk_hospitalisation_sortie` FOREIGN KEY (`id_hospitalisation`) REFERENCES `hospitalisation` (`id_hospitalisation`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_sortie_patient` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `stock_pharmacie`
---
-ALTER TABLE `stock_pharmacie`
-  ADD CONSTRAINT `fk_medoc_pharmacie` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
-  ADD CONSTRAINT `stock_fk_pharmacie` FOREIGN KEY (`id_centre`) REFERENCES `centres` (`id_centre`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `stock_service`
---
-ALTER TABLE `stock_service`
-  ADD CONSTRAINT `fk_medicament_stock_service` FOREIGN KEY (`id_medicament`) REFERENCES `medicament` (`id_medicament`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_service__service_` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON DELETE CASCADE;
-
---
--- Contraintes pour la table `suivi_hospitalisation`
---
-ALTER TABLE `suivi_hospitalisation`
-  ADD CONSTRAINT `fk_hospitalisation_suivi` FOREIGN KEY (`id_hospitalisation`) REFERENCES `hospitalisation` (`id_hospitalisation`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `utilisateurs`
---
-ALTER TABLE `utilisateurs`
-  ADD CONSTRAINT `fk_personnel_user` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fk_presence_personnel` FOREIGN KEY (`id_personnel`) REFERENCES `personnels` (`id_personnel`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+
 namespace Cepima.MesClasses
 {
     class ManagerClasse

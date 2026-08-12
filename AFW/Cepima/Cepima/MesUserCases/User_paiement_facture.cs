@@ -20,7 +20,7 @@ namespace Cepima.MesUserCases
             FilterType(cbx_type_facture);
             dgv_paiement.CellClick += dgv_paiement_CellClick;
             ChargerPaiement();
-            
+            ChargerApercuRecu(1);
         }
 
 
@@ -94,7 +94,7 @@ namespace Cepima.MesUserCases
                             int row = dgv_paiement.Rows.Add();
                             dgv_paiement.Rows[row].Cells["colRecu"].Value = reader["id_paiement"];
                             dgv_paiement.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_paiement"]).ToString("dd/MM/yyyy");
-                            dgv_paiement.Rows[row].Cells["colFacture"].Value = reader["id_facture"];
+                            //dgv_paiement.Rows[row].Cells["colFacture"].Value = reader["id_facture"];
                             dgv_paiement.Rows[row].Cells["colPatient"].Value = reader["patient"];
                             dgv_paiement.Rows[row].Cells["colMontant"].Value = reader["montant"];
                             dgv_paiement.Rows[row].Cells["colReste"].Value = reader["reste"];
