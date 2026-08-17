@@ -32,13 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts">
-      <HintPath>..\..\..\..\Setup\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net40\LiveCharts.dll</HintPath>
+      <HintPath>..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net40\LiveCharts.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.WinForms">
-      <HintPath>..\..\..\..\Setup\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\lib\net40\LiveCharts.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\lib\net40\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf">
-      <HintPath>..\..\..\..\Setup\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net40\LiveCharts.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net40\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\Cepima\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>

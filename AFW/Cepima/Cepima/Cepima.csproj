@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts">
+      <HintPath>..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net40\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms">
+      <HintPath>..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\lib\net40\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf">
+      <HintPath>..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net40\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -128,11 +137,23 @@
     <Compile Include="MesForms\FormConnexion.Designer.cs">
       <DependentUpon>FormConnexion.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\FormDetailFacture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\FormDetailFacture.Designer.cs">
+      <DependentUpon>FormDetailFacture.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\FormFacturePrint.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\FormFacturePrint.Designer.cs">
       <DependentUpon>FormFacturePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\FormPaiement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\FormPaiement.Designer.cs">
+      <DependentUpon>FormPaiement.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\FormRecu.cs">
       <SubType>Form</SubType>
@@ -365,8 +386,14 @@
     <EmbeddedResource Include="MesForms\FormConnexion.resx">
       <DependentUpon>FormConnexion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\FormDetailFacture.resx">
+      <DependentUpon>FormDetailFacture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormFacturePrint.resx">
       <DependentUpon>FormFacturePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\FormPaiement.resx">
+      <DependentUpon>FormPaiement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormRecu.resx">
       <DependentUpon>FormRecu.cs</DependentUpon>
@@ -961,6 +988,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\stock_ph.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checked_user_male_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\User_green.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retard.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Absent.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\total_user.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\more_details_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Us Dollar Circled_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\more_details_40px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_40px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

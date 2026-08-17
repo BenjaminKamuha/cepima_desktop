@@ -347,7 +347,7 @@ namespace Cepima.MesUserCases
                                 avatar.BorderColor = Color.FromArgb(39, 174, 96);
                             }
                             
-                            MesClasses.ManagerClasse.AddControl(panel_display_chambre,panPatient,8,8);
+                            MesClasses.ManagerClasse.AddControl(panel_display_chambre,panPatient,3,8);
 
                             panPatient.Controls.Add(avatar);
 

@@ -64,10 +64,6 @@ namespace Cepima.MesUserCases
             if (e.RowIndex >= 0)
             {
                 idFacture = Convert.ToInt32(dgv_facture.Rows[e.RowIndex].Cells["colID"].Value);
-                LoadDetailFacture(idFacture);
-                Charger_detail_de_la_facture(idFacture);
-                lb_ID_facture.Text = idFacture.ToString();
-                bt_add_paiement.Visible = true;
                 MONTANT = RecupererMontantRestant(idFacture);
                 // ======================= si le bouton delete est clicqué, on supprime la facture ==========
                 if (dgv_facture.Columns[e.ColumnIndex].Name == "colDelete")
@@ -85,7 +81,20 @@ namespace Cepima.MesUserCases
                     // lancer l'impression de la facture après avoir clicqué 
                     MesForms.FormFacturePrint facture = new MesForms.FormFacturePrint(idFacture);
                     facture.Show();
+                }
 
+                // Afficher les détails de la facture sélectionnée
+                if (dgv_facture.Columns[e.ColumnIndex].Name == "colDetail")
+                {
+                    MesForms.FormDetailFacture detail = new MesForms.FormDetailFacture(idFacture);
+                    detail.Show();
+                }
+
+                // Afficher le formulaire de paiement de la facture
+                if (dgv_facture.Columns[e.ColumnIndex].Name == "colPayement")
+                {
+                    MesForms.FormPaiement pay = new MesForms.FormPaiement(MONTANT,idFacture);
+                    pay.Show();
                 }
             }
         }
@@ -122,65 +131,8 @@ namespace Cepima.MesUserCases
                 }
             }
         }
-        // ================================== charger les details de la facture ===================================
-        private void LoadDetailFacture(int factureID)
-        {
-            try
-            {
-                string query = "SELECT  CONCAT(pa.nom,' ',pa.post_nom,' ',pa.prenom) AS patient,f.type_facture,f.date_facture,f.montant_total,f.statut,p.montant,p.reste FROM facture f  JOIN paiement p ON p.id_facture =f.id_facture JOIN patients pa ON f.id_patient = pa.id_patient WHERE f.id_facture =@id";
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id",factureID.ToString());
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
-                {
-                    while (reader.Read())
-                    {
-                        lb_patient.Text = reader["patient"].ToString();
-                        lb_statut.Text = reader["statut"].ToString();
-                        lb_date_facture.Text = Convert.ToDateTime(reader["date_facture"]).ToString("dd/MM/yyyy");
-                        lb_medecin.Text = reader["montant_total"].ToString() + "$";
-                        lb_type.Text = reader["type_facture"].ToString();
-                        lb_montant_paye.Text = reader["montant"].ToString() + "$";
-                        lb_reste.Text = reader["reste"].ToString() +"$";
-                    }
-                    reader.Close();
-                }
-
-               
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Erreur : "+ex.Message);
-            }
-        }
-        private void Charger_detail_de_la_facture(int facture)
-        {
-            try
-            {
-                // ========================================== Détails de la facture ========================================================
-                dgv_detail_facture.Rows.Clear();
-                string query_two = "SELECT description,quantite,prix_unitaire,montant FROM detail_facture WHERE id_facture =@id";
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id", facture.ToString());
-                using (MySqlDataReader reader_two = MesClasses.ManagerClasse.CRUD(query_two, MesClasses.ManagerClasse.request_params, true))
-                {
-                    while (reader_two.Read())
-                    {
-                        int row = dgv_detail_facture.Rows.Add();
-                        dgv_detail_facture.Rows[row].Cells["colDesc"].Value = reader_two["description"];
-                        dgv_detail_facture.Rows[row].Cells["colQuantite"].Value = reader_two["quantite"];
-                        dgv_detail_facture.Rows[row].Cells["colPrix"].Value = reader_two["prix_unitaire"];
-                        dgv_detail_facture.Rows[row].Cells["colTotal"].Value = reader_two["montant"];
-                    }
-                    reader_two.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
+       
         // ================================ charger les filtres dans les comboBox ===================================
         private void LoadFilter(ComboBox cbx1, ComboBox cbx2)
         {
@@ -197,7 +149,7 @@ namespace Cepima.MesUserCases
             cbx2.SelectedIndex = 0;
         }
 
-        // =============================== LoadFacture ======================================
+        // ===================================================== LoadFacture ================================================
         private void LoadFacture()
         {
             
@@ -297,13 +249,15 @@ namespace Cepima.MesUserCases
         private void ApplyStyle()
         {
             dgv_facture.Columns["colID"].Width = 70;
-            dgv_facture.Columns["colPatient"].Width = 150;
-            dgv_facture.Columns["colType"].Width = 90;
-            dgv_facture.Columns["colMontant"].Width = 80;
-            dgv_facture.Columns["colDate"].Width = 100;
-            dgv_facture.Columns["colStatut"].Width = 70;
-            dgv_facture.Columns["colPrint"].Width = 10;
-            dgv_facture.Columns["colDelete"].Width = 10;
+            dgv_facture.Columns["colPatient"].Width = 180;
+            dgv_facture.Columns["colType"].Width = 100;
+            dgv_facture.Columns["colMontant"].Width = 100;
+            dgv_facture.Columns["colDate"].Width = 110;
+            dgv_facture.Columns["colStatut"].Width = 90;
+            dgv_facture.Columns["colPrint"].Width = 90;
+            dgv_facture.Columns["colDelete"].Width = 90;
+            dgv_facture.Columns["colDetail"].Width = 100;
+            dgv_facture.Columns["colPayement"].Width = 50;
         }
 
         // ====================================================================================================================================
@@ -324,10 +278,10 @@ namespace Cepima.MesUserCases
 
         private void bt_add_paiement_Click(object sender, EventArgs e)
         {
-            MesUserCases.User_add_paiement paiement = new User_add_paiement(MONTANT,idFacture);
-            paiement.Dock = DockStyle.Fill;
-            panel_add_paiement.Controls.Clear();
-            panel_add_paiement.Controls.Add(paiement);
+            //MesUserCases.User_add_paiement paiement = new User_add_paiement(MONTANT,idFacture);
+            //paiement.Dock = DockStyle.Fill;
+            //panel_add_paiement.Controls.Clear();
+            //panel_add_paiement.Controls.Add(paiement);
         }
 
         private void bt_actualiser_Click(object sender, EventArgs e)

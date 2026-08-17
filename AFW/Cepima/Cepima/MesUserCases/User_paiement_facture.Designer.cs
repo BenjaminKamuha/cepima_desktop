@@ -63,8 +63,6 @@
             this.bt_print_recu = new test_arrondissement2012.PerfectRoundedButton();
             this.label9 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.lb_numero_facture = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -97,17 +95,19 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1034, 50);
+            this.panel1.Size = new System.Drawing.Size(1600, 62);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 46);
+            this.panel2.Location = new System.Drawing.Point(0, 57);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1034, 4);
+            this.panel2.Size = new System.Drawing.Size(1600, 5);
             this.panel2.TabIndex = 2;
             // 
             // label1
@@ -115,9 +115,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.label1.Location = new System.Drawing.Point(11, 11);
+            this.label1.Location = new System.Drawing.Point(15, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(340, 26);
+            this.label1.Size = new System.Drawing.Size(435, 33);
             this.label1.TabIndex = 1;
             this.label1.Text = "HISTORIQUE DES PAIEMENTS / RECUS";
             // 
@@ -142,18 +143,20 @@
             this.customRoundedPanel1.Controls.Add(this.label2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(3, 56);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(4, 69);
+            this.customRoundedPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1028, 86);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(1592, 106);
             this.customRoundedPanel1.TabIndex = 2;
             // 
             // dt_final
             // 
             this.dt_final.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_final.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_final.Location = new System.Drawing.Point(857, 55);
+            this.dt_final.Location = new System.Drawing.Point(1143, 68);
+            this.dt_final.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dt_final.Name = "dt_final";
-            this.dt_final.Size = new System.Drawing.Size(148, 22);
+            this.dt_final.Size = new System.Drawing.Size(196, 26);
             this.dt_final.TabIndex = 18;
             this.dt_final.ValueChanged += new System.EventHandler(this.dt_final_ValueChanged);
             // 
@@ -162,9 +165,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.label4.Location = new System.Drawing.Point(8, 7);
+            this.label4.Location = new System.Drawing.Point(11, 9);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(155, 19);
+            this.label4.Size = new System.Drawing.Size(195, 24);
             this.label4.TabIndex = 1;
             this.label4.Text = "FILTRE DE RECHERCHE";
             // 
@@ -172,9 +176,10 @@
             // 
             this.dt_debut.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_debut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_debut.Location = new System.Drawing.Point(604, 55);
+            this.dt_debut.Location = new System.Drawing.Point(805, 68);
+            this.dt_debut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dt_debut.Name = "dt_debut";
-            this.dt_debut.Size = new System.Drawing.Size(148, 22);
+            this.dt_debut.Size = new System.Drawing.Size(196, 26);
             this.dt_debut.TabIndex = 18;
             this.dt_debut.ValueChanged += new System.EventHandler(this.dt_debut_ValueChanged);
             // 
@@ -183,18 +188,20 @@
             this.cbx_type_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_type_facture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_type_facture.FormattingEnabled = true;
-            this.cbx_type_facture.Location = new System.Drawing.Point(339, 54);
+            this.cbx_type_facture.Location = new System.Drawing.Point(452, 66);
+            this.cbx_type_facture.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbx_type_facture.Name = "cbx_type_facture";
-            this.cbx_type_facture.Size = new System.Drawing.Size(145, 23);
+            this.cbx_type_facture.Size = new System.Drawing.Size(192, 26);
             this.cbx_type_facture.TabIndex = 17;
             this.cbx_type_facture.SelectedIndexChanged += new System.EventHandler(this.cbx_type_facture_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(218, 51);
+            this.pictureBox1.Location = new System.Drawing.Point(291, 63);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
@@ -202,10 +209,11 @@
             // tb_search
             // 
             this.tb_search.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_search.Location = new System.Drawing.Point(25, 52);
+            this.tb_search.Location = new System.Drawing.Point(33, 64);
+            this.tb_search.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_search.Multiline = true;
             this.tb_search.Name = "tb_search";
-            this.tb_search.Size = new System.Drawing.Size(194, 22);
+            this.tb_search.Size = new System.Drawing.Size(259, 27);
             this.tb_search.TabIndex = 15;
             this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
             // 
@@ -216,12 +224,13 @@
             this.tb_tarif.BorderSize = 0;
             this.tb_tarif.Enabled = false;
             this.tb_tarif.FocusBorderColor = System.Drawing.Color.Orange;
-            this.tb_tarif.Location = new System.Drawing.Point(22, 49);
+            this.tb_tarif.Location = new System.Drawing.Point(29, 60);
+            this.tb_tarif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tb_tarif.Name = "tb_tarif";
             this.tb_tarif.PasswordChar = '\0';
             this.tb_tarif.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_tarif.PlaceholderText = "";
-            this.tb_tarif.Size = new System.Drawing.Size(219, 28);
+            this.tb_tarif.Size = new System.Drawing.Size(292, 34);
             this.tb_tarif.TabIndex = 16;
             this.tb_tarif.UseSystemPasswordChar = false;
             // 
@@ -229,9 +238,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(854, 37);
+            this.label6.Location = new System.Drawing.Point(1139, 46);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 15);
+            this.label6.Size = new System.Drawing.Size(79, 21);
             this.label6.TabIndex = 0;
             this.label6.Text = "Date fin : ";
             // 
@@ -239,9 +249,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(603, 36);
+            this.label5.Location = new System.Drawing.Point(804, 44);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 15);
+            this.label5.Size = new System.Drawing.Size(103, 21);
             this.label5.TabIndex = 0;
             this.label5.Text = "Date début : ";
             // 
@@ -249,9 +260,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(346, 35);
+            this.label3.Location = new System.Drawing.Point(461, 43);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 15);
+            this.label3.Size = new System.Drawing.Size(137, 21);
             this.label3.TabIndex = 0;
             this.label3.Text = "Type de paiement";
             // 
@@ -259,9 +271,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 31);
+            this.label2.Location = new System.Drawing.Point(47, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 15);
+            this.label2.Size = new System.Drawing.Size(160, 21);
             this.label2.TabIndex = 0;
             this.label2.Text = "Rechercher (Patient) ";
             // 
@@ -278,9 +291,10 @@
             this.customRoundedPanel2.Controls.Add(this.label8);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(3, 148);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(4, 182);
+            this.customRoundedPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(793, 391);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(1218, 533);
             this.customRoundedPanel2.TabIndex = 3;
             // 
             // dgv_paiement
@@ -325,10 +339,11 @@
             this.dgv_paiement.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_paiement.EnableHeadersVisualStyles = false;
             this.dgv_paiement.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_paiement.Location = new System.Drawing.Point(3, 36);
+            this.dgv_paiement.Location = new System.Drawing.Point(4, 44);
+            this.dgv_paiement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_paiement.Name = "dgv_paiement";
             this.dgv_paiement.RowHeadersVisible = false;
-            this.dgv_paiement.Size = new System.Drawing.Size(787, 352);
+            this.dgv_paiement.Size = new System.Drawing.Size(1210, 485);
             this.dgv_paiement.TabIndex = 3;
             // 
             // colRecu
@@ -383,9 +398,10 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel5.Location = new System.Drawing.Point(3, 26);
+            this.panel5.Location = new System.Drawing.Point(4, 32);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 4);
+            this.panel5.Size = new System.Drawing.Size(267, 5);
             this.panel5.TabIndex = 2;
             // 
             // label8
@@ -393,17 +409,16 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.label8.Location = new System.Drawing.Point(9, 8);
+            this.label8.Location = new System.Drawing.Point(12, 10);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(178, 17);
+            this.label8.Size = new System.Drawing.Size(216, 21);
             this.label8.TabIndex = 1;
             this.label8.Text = "HISTORIQUE DES PAIEMENTS";
             // 
             // customRoundedPanel3
             // 
-            this.customRoundedPanel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.customRoundedPanel3.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 6;
@@ -413,9 +428,10 @@
             this.customRoundedPanel3.Controls.Add(this.label7);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(802, 148);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(1191, 182);
+            this.customRoundedPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(229, 391);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(405, 533);
             this.customRoundedPanel3.TabIndex = 4;
             // 
             // panel4
@@ -423,9 +439,10 @@
             this.panel4.Controls.Add(this.perfectRoundedButton1);
             this.panel4.Controls.Add(this.bt_print_recu);
             this.panel4.Controls.Add(this.label9);
-            this.panel4.Location = new System.Drawing.Point(7, 315);
+            this.panel4.Location = new System.Drawing.Point(9, 422);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(219, 65);
+            this.panel4.Size = new System.Drawing.Size(392, 97);
             this.panel4.TabIndex = 0;
             // 
             // perfectRoundedButton1
@@ -438,9 +455,10 @@
             this.perfectRoundedButton1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.perfectRoundedButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.perfectRoundedButton1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.perfectRoundedButton1.Location = new System.Drawing.Point(119, 37);
+            this.perfectRoundedButton1.Location = new System.Drawing.Point(159, 46);
+            this.perfectRoundedButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.perfectRoundedButton1.Name = "perfectRoundedButton1";
-            this.perfectRoundedButton1.Size = new System.Drawing.Size(100, 25);
+            this.perfectRoundedButton1.Size = new System.Drawing.Size(133, 31);
             this.perfectRoundedButton1.TabIndex = 13;
             // 
             // bt_print_recu
@@ -453,9 +471,10 @@
             this.bt_print_recu.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_print_recu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_print_recu.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_print_recu.Location = new System.Drawing.Point(10, 37);
+            this.bt_print_recu.Location = new System.Drawing.Point(13, 46);
+            this.bt_print_recu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.bt_print_recu.Name = "bt_print_recu";
-            this.bt_print_recu.Size = new System.Drawing.Size(100, 25);
+            this.bt_print_recu.Size = new System.Drawing.Size(133, 31);
             this.bt_print_recu.TabIndex = 13;
             this.bt_print_recu.Click += new System.EventHandler(this.bt_print_recu_Click);
             // 
@@ -464,16 +483,18 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.label9.Location = new System.Drawing.Point(5, 5);
+            this.label9.Location = new System.Drawing.Point(7, 6);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(105, 17);
+            this.label9.Size = new System.Drawing.Size(130, 21);
             this.label9.TabIndex = 1;
             this.label9.Text = "ACTIONS RAPIDE";
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label18);
-            this.panel3.Controls.Add(this.label17);
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.Controls.Add(this.lb_numero_facture);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.label19);
@@ -489,51 +510,30 @@
             this.panel3.Controls.Add(this.label11);
             this.panel3.Controls.Add(this.lb_numero_recu);
             this.panel3.Controls.Add(this.label10);
-            this.panel3.Location = new System.Drawing.Point(7, 29);
+            this.panel3.Location = new System.Drawing.Point(9, 36);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(219, 280);
+            this.panel3.Size = new System.Drawing.Size(392, 378);
             this.panel3.TabIndex = 0;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(3, 226);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(455, 14);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "---------------------------------------------------------------------------------" +
-    "-------------------------------";
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(2, 128);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(455, 14);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "---------------------------------------------------------------------------------" +
-    "-------------------------------";
             // 
             // lb_numero_facture
             // 
             this.lb_numero_facture.AutoSize = true;
-            this.lb_numero_facture.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_numero_facture.Location = new System.Drawing.Point(98, 108);
+            this.lb_numero_facture.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_numero_facture.Location = new System.Drawing.Point(226, 167);
+            this.lb_numero_facture.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_numero_facture.Name = "lb_numero_facture";
-            this.lb_numero_facture.Size = new System.Drawing.Size(0, 14);
+            this.lb_numero_facture.Size = new System.Drawing.Size(0, 24);
             this.lb_numero_facture.TabIndex = 0;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(23, 108);
+            this.label13.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label13.Location = new System.Drawing.Point(27, 158);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 14);
+            this.label13.Size = new System.Drawing.Size(109, 24);
             this.label13.TabIndex = 0;
             this.label13.Text = "N° facture : ";
             // 
@@ -541,123 +541,136 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(30, 249);
+            this.label19.Location = new System.Drawing.Point(54, 331);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(149, 14);
+            this.label19.Size = new System.Drawing.Size(173, 18);
             this.label19.TabIndex = 0;
             this.label19.Text = "Merci pour votre confiance";
             // 
             // lb_type
             // 
             this.lb_type.AutoSize = true;
-            this.lb_type.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_type.Location = new System.Drawing.Point(145, 207);
+            this.lb_type.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_type.Location = new System.Drawing.Point(230, 280);
+            this.lb_type.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_type.Name = "lb_type";
-            this.lb_type.Size = new System.Drawing.Size(0, 14);
+            this.lb_type.Size = new System.Drawing.Size(0, 24);
             this.lb_type.TabIndex = 0;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(23, 207);
+            this.label16.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label16.Location = new System.Drawing.Point(27, 280);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(116, 14);
+            this.label16.Size = new System.Drawing.Size(180, 24);
             this.label16.TabIndex = 0;
             this.label16.Text = "Type de paiement :  ";
             // 
             // lb_mode
             // 
             this.lb_mode.AutoSize = true;
-            this.lb_mode.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_mode.Location = new System.Drawing.Point(122, 177);
+            this.lb_mode.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_mode.Location = new System.Drawing.Point(230, 243);
+            this.lb_mode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_mode.Name = "lb_mode";
-            this.lb_mode.Size = new System.Drawing.Size(0, 14);
+            this.lb_mode.Size = new System.Drawing.Size(0, 24);
             this.lb_mode.TabIndex = 0;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(23, 177);
+            this.label15.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label15.Location = new System.Drawing.Point(27, 243);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(103, 14);
+            this.label15.Size = new System.Drawing.Size(159, 24);
             this.label15.TabIndex = 0;
             this.label15.Text = "Mode paiement : ";
             // 
             // lb_patient
             // 
             this.lb_patient.AutoSize = true;
-            this.lb_patient.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_patient.Location = new System.Drawing.Point(83, 78);
+            this.lb_patient.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_patient.Location = new System.Drawing.Point(151, 121);
+            this.lb_patient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_patient.Name = "lb_patient";
-            this.lb_patient.Size = new System.Drawing.Size(0, 14);
+            this.lb_patient.Size = new System.Drawing.Size(0, 24);
             this.lb_patient.TabIndex = 0;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(23, 78);
+            this.label12.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label12.Location = new System.Drawing.Point(27, 121);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 14);
+            this.label12.Size = new System.Drawing.Size(84, 24);
             this.label12.TabIndex = 0;
             this.label12.Text = "Patient : ";
             // 
             // lb_montant
             // 
             this.lb_montant.AutoSize = true;
-            this.lb_montant.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_montant.Location = new System.Drawing.Point(119, 146);
+            this.lb_montant.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_montant.Location = new System.Drawing.Point(226, 205);
+            this.lb_montant.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_montant.Name = "lb_montant";
-            this.lb_montant.Size = new System.Drawing.Size(0, 14);
+            this.lb_montant.Size = new System.Drawing.Size(0, 24);
             this.lb_montant.TabIndex = 0;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(23, 146);
+            this.label14.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label14.Location = new System.Drawing.Point(27, 205);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 14);
+            this.label14.Size = new System.Drawing.Size(143, 24);
             this.label14.TabIndex = 0;
             this.label14.Text = "Montant Payé : ";
             // 
             // lb_date
             // 
             this.lb_date.AutoSize = true;
-            this.lb_date.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_date.Location = new System.Drawing.Point(84, 48);
+            this.lb_date.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_date.Location = new System.Drawing.Point(227, 84);
+            this.lb_date.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_date.Name = "lb_date";
-            this.lb_date.Size = new System.Drawing.Size(0, 14);
+            this.lb_date.Size = new System.Drawing.Size(0, 24);
             this.lb_date.TabIndex = 0;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(23, 48);
+            this.label11.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label11.Location = new System.Drawing.Point(27, 84);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 14);
+            this.label11.Size = new System.Drawing.Size(64, 24);
             this.label11.TabIndex = 0;
             this.label11.Text = "Date : ";
             // 
             // lb_numero_recu
             // 
             this.lb_numero_recu.AutoSize = true;
-            this.lb_numero_recu.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_numero_recu.Location = new System.Drawing.Point(86, 17);
+            this.lb_numero_recu.Font = new System.Drawing.Font("Calibri", 12F);
+            this.lb_numero_recu.Location = new System.Drawing.Point(230, 46);
+            this.lb_numero_recu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lb_numero_recu.Name = "lb_numero_recu";
-            this.lb_numero_recu.Size = new System.Drawing.Size(0, 14);
+            this.lb_numero_recu.Size = new System.Drawing.Size(0, 24);
             this.lb_numero_recu.TabIndex = 0;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(23, 17);
+            this.label10.Font = new System.Drawing.Font("Calibri", 12F);
+            this.label10.Location = new System.Drawing.Point(27, 46);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 14);
+            this.label10.Size = new System.Drawing.Size(90, 24);
             this.label10.TabIndex = 0;
             this.label10.Text = "N° Reçu : ";
             // 
@@ -666,23 +679,25 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.label7.Location = new System.Drawing.Point(8, 8);
+            this.label7.Location = new System.Drawing.Point(11, 10);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 17);
+            this.label7.Size = new System.Drawing.Size(109, 21);
             this.label7.TabIndex = 1;
             this.label7.Text = "APERCU RECU";
             // 
             // User_paiement_facture
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.customRoundedPanel3);
             this.Controls.Add(this.customRoundedPanel2);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "User_paiement_facture";
-            this.Size = new System.Drawing.Size(1034, 542);
+            this.Size = new System.Drawing.Size(1600, 719);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
@@ -741,9 +756,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lb_numero_facture;
         private System.Windows.Forms.Label lb_type;
         private System.Windows.Forms.Label lb_mode;

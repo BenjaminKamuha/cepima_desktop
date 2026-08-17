@@ -517,9 +517,12 @@ namespace Cepima
                         panel_center_main.Controls.Add(retenue);
                      
                     }),
-                     new MenuItem("    Empreintes",Properties.Resources.fingerprint_20px,(s,ev) =>
+                     new MenuItem("    Présences",Properties.Resources.clock_20px,(s,ev) =>
                     {
-                       //instructions
+                        MesUserCases.User_presences presence = new MesUserCases.User_presences();
+                        presence.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(presence);
                     }),
 
             };
