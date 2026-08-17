@@ -201,7 +201,6 @@ namespace Cepima.MesClasses
             MessageBox.Show("Service supprimé avc succès !!");
         }
 
-
         // ============================================= Ajouter une consultation =======================
         public static void SaveConsultation(int id_patient, int id_centre, int id_personnel, string motif, string diagnostic)
         {
@@ -219,6 +218,107 @@ namespace Cepima.MesClasses
                 MessageBox.Show("Consultation crée avec succès !!");
             }
         }
+
+        private static void InitialiserDetailFacture(int idFacture,MySqlConnection con, MySqlTransaction tr)
+        {
+            string[] prestations = 
+            {"Consultation","Médicaments","EEG","Laboratoire","Hospitalisation","Nursing","Séance psychosociale","Imprimés","Autres"};
+
+            foreach (string p in prestations)
+            {
+                string query = "INSERT INTO detail_facture(id_facture,description,quantite,prix_unitaire,montant)VALUES(@facture,@description,@qte,@prix,@montant)";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+                {
+                    cmd.Parameters.AddWithValue("@facture", idFacture);
+                    cmd.Parameters.AddWithValue("@description", p);
+                    cmd.Parameters.AddWithValue("@qte",DBNull.Value);
+                    cmd.Parameters.AddWithValue("@prix",DBNull.Value);
+                    cmd.Parameters.AddWithValue("@montant",DBNull.Value);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        // ================================== mettre en jour la prestation (consultationn,EEG,Laboratoire,Hospitalisation ============
+        public static void MettreAJourPrestation(int idFacture, string description, int? quantite, decimal? prixUnitaire, decimal? montant, MySqlConnection con, MySqlTransaction tr)
+        {
+
+            string query = @"UPDATE detail_facture SET quantite = @qte,prix_unitaire = @prix,montant = @montant WHERE id_facture = @facture AND description = @description";
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@facture", idFacture);
+                cmd.Parameters.AddWithValue("@description", description);
+                cmd.Parameters.AddWithValue("@qte", quantite.HasValue ? (object)quantite.Value : DBNull.Value);
+                cmd.Parameters.AddWithValue("@prix", prixUnitaire.HasValue ? (object)prixUnitaire.Value : DBNull.Value);
+                cmd.Parameters.AddWithValue("@montant", montant.HasValue ? (object)montant.Value : DBNull.Value);
+                cmd.ExecuteNonQuery();
+
+                RecalculerFacture(idFacture, con, tr);
+            }
+        }
+
+        // ==================================== recalculer le montant ========================================================
+        private  static void RecalculerFacture(int idFacture,MySqlConnection con,MySqlTransaction tr)
+        {
+            decimal total = 0;
+
+            string query = @"SELECT IFNULL(SUM(montant),0) FROM detail_facture WHERE id_facture=@id";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id", idFacture);
+
+                total = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            query = "UPDATE facture SET montant_total=@total WHERE id_facture=@id";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@total", total);
+                cmd.Parameters.AddWithValue("@id", idFacture);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        // ================================== creer une facture s'il n'existe pas =============================================
+        public static int CreerFactureSiInexistante(int idConsultation,int idPatient,string typeFacture,MySqlConnection con,MySqlTransaction tr)
+        {
+            // Vérifier si la facture existe déjà
+            string query = "SELECT id_facture FROM facture WHERE id_consultation=@id";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id", idConsultation);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
+                    return Convert.ToInt32(result);
+            }
+
+            //================ Création =================
+
+            int idFacture = 0;
+
+            string insert = "INSERT INTO facture(id_patient,id_consultation,id_centre,type_facture,date_facture,montant_total,statut)VALUES(@patient,@consultation,@centre,@type,CURDATE(),0,'Non payé')";
+            using (MySqlCommand cmd = new MySqlCommand(insert, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@patient", idPatient);
+                cmd.Parameters.AddWithValue("@consultation", idConsultation);
+                cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
+                cmd.Parameters.AddWithValue("@type", typeFacture);
+
+                cmd.ExecuteNonQuery();
+
+                idFacture = Convert.ToInt32(cmd.LastInsertedId);
+            }
+
+            InitialiserDetailFacture(idFacture, con, tr);
+
+            return idFacture;
+        }
+
     }
     class Event
     {

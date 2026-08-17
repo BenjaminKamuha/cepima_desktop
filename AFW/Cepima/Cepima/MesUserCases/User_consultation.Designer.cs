@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.tb_montant_consultation = new System.Windows.Forms.NumericUpDown();
             this.rb_eeg = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rb_hospitalisation = new System.Windows.Forms.RadioButton();
@@ -42,10 +43,12 @@
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.rich_description = new System.Windows.Forms.RichTextBox();
             this.tb_motif = new System.Windows.Forms.TextBox();
+            this.myRoundedTextBox3 = new MyRoundedTextBox();
             this.myRoundedTextBox4 = new MyRoundedTextBox();
             this.bt_continue = new test_arrondissement2012.PerfectRoundedButton();
             this.label1 = new System.Windows.Forms.Label();
             this.bt_save_consultation = new test_arrondissement2012.PerfectRoundedButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,17 +61,18 @@
             this.tb_tarif = new MyRoundedTextBox();
             this.rb_eeg_termine = new System.Windows.Forms.RadioButton();
             this.rb_all = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.myRoundedTextBox3 = new MyRoundedTextBox();
-            this.tb_montant_consultation = new System.Windows.Forms.NumericUpDown();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rb_patient_hospitalisé = new System.Windows.Forms.RadioButton();
+            this.rb_patient_sortie = new System.Windows.Forms.RadioButton();
             this.customRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_montant_consultation)).BeginInit();
             this.panel2.SuspendLayout();
             this.pan_test.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.fl_patient.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_montant_consultation)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // customRoundedPanel1
@@ -98,6 +102,15 @@
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Size = new System.Drawing.Size(623, 492);
             this.customRoundedPanel1.TabIndex = 3;
+            // 
+            // tb_montant_consultation
+            // 
+            this.tb_montant_consultation.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_montant_consultation.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_montant_consultation.Location = new System.Drawing.Point(258, 65);
+            this.tb_montant_consultation.Name = "tb_montant_consultation";
+            this.tb_montant_consultation.Size = new System.Drawing.Size(294, 19);
+            this.tb_montant_consultation.TabIndex = 20;
             // 
             // rb_eeg
             // 
@@ -256,6 +269,22 @@
             this.tb_motif.Size = new System.Drawing.Size(290, 23);
             this.tb_motif.TabIndex = 6;
             // 
+            // myRoundedTextBox3
+            // 
+            this.myRoundedTextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox3.BorderRadius = 4;
+            this.myRoundedTextBox3.BorderSize = 1;
+            this.myRoundedTextBox3.Enabled = false;
+            this.myRoundedTextBox3.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox3.Location = new System.Drawing.Point(256, 61);
+            this.myRoundedTextBox3.Name = "myRoundedTextBox3";
+            this.myRoundedTextBox3.PasswordChar = '\0';
+            this.myRoundedTextBox3.PlaceholderColor = System.Drawing.Color.Beige;
+            this.myRoundedTextBox3.PlaceholderText = "";
+            this.myRoundedTextBox3.Size = new System.Drawing.Size(299, 27);
+            this.myRoundedTextBox3.TabIndex = 5;
+            this.myRoundedTextBox3.UseSystemPasswordChar = false;
+            // 
             // myRoundedTextBox4
             // 
             this.myRoundedTextBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -315,6 +344,16 @@
             this.bt_save_consultation.TabIndex = 2;
             this.bt_save_consultation.Click += new System.EventHandler(this.bt_save_consultation_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(90, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 15);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Frais de consultation : ";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -352,9 +391,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fl_patient.AutoScroll = true;
             this.fl_patient.Controls.Add(this.lb_search);
-            this.fl_patient.Location = new System.Drawing.Point(11, 115);
+            this.fl_patient.Location = new System.Drawing.Point(11, 155);
             this.fl_patient.Name = "fl_patient";
-            this.fl_patient.Size = new System.Drawing.Size(257, 374);
+            this.fl_patient.Size = new System.Drawing.Size(257, 334);
             this.fl_patient.TabIndex = 5;
             // 
             // lb_search
@@ -375,6 +414,7 @@
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel3.BorderRadius = 10;
             this.customRoundedPanel3.BorderSize = 1;
+            this.customRoundedPanel3.Controls.Add(this.panel1);
             this.customRoundedPanel3.Controls.Add(this.rb_attente);
             this.customRoundedPanel3.Controls.Add(this.pictureBox1);
             this.customRoundedPanel3.Controls.Add(this.tb_search);
@@ -465,40 +505,40 @@
             this.rb_all.UseVisualStyleBackColor = true;
             this.rb_all.CheckedChanged += new System.EventHandler(this.rb_all_CheckedChanged);
             // 
-            // label2
+            // panel1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(90, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Frais de consultation : ";
+            this.panel1.Controls.Add(this.rb_patient_sortie);
+            this.panel1.Controls.Add(this.rb_patient_hospitalisé);
+            this.panel1.Location = new System.Drawing.Point(10, 112);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(258, 37);
+            this.panel1.TabIndex = 21;
             // 
-            // myRoundedTextBox3
+            // rb_patient_hospitalisé
             // 
-            this.myRoundedTextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox3.BorderRadius = 4;
-            this.myRoundedTextBox3.BorderSize = 1;
-            this.myRoundedTextBox3.Enabled = false;
-            this.myRoundedTextBox3.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox3.Location = new System.Drawing.Point(256, 61);
-            this.myRoundedTextBox3.Name = "myRoundedTextBox3";
-            this.myRoundedTextBox3.PasswordChar = '\0';
-            this.myRoundedTextBox3.PlaceholderColor = System.Drawing.Color.Beige;
-            this.myRoundedTextBox3.PlaceholderText = "";
-            this.myRoundedTextBox3.Size = new System.Drawing.Size(299, 27);
-            this.myRoundedTextBox3.TabIndex = 5;
-            this.myRoundedTextBox3.UseSystemPasswordChar = false;
+            this.rb_patient_hospitalisé.AutoSize = true;
+            this.rb_patient_hospitalisé.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb_patient_hospitalisé.Location = new System.Drawing.Point(5, 12);
+            this.rb_patient_hospitalisé.Name = "rb_patient_hospitalisé";
+            this.rb_patient_hospitalisé.Size = new System.Drawing.Size(89, 18);
+            this.rb_patient_hospitalisé.TabIndex = 21;
+            this.rb_patient_hospitalisé.TabStop = true;
+            this.rb_patient_hospitalisé.Text = "Hospitalisé";
+            this.rb_patient_hospitalisé.UseVisualStyleBackColor = true;
+            this.rb_patient_hospitalisé.CheckedChanged += new System.EventHandler(this.rb_patient_hospitalisé_CheckedChanged);
             // 
-            // tb_montant_consultation
+            // rb_patient_sortie
             // 
-            this.tb_montant_consultation.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_montant_consultation.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_montant_consultation.Location = new System.Drawing.Point(258, 65);
-            this.tb_montant_consultation.Name = "tb_montant_consultation";
-            this.tb_montant_consultation.Size = new System.Drawing.Size(294, 19);
-            this.tb_montant_consultation.TabIndex = 20;
+            this.rb_patient_sortie.AutoSize = true;
+            this.rb_patient_sortie.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rb_patient_sortie.Location = new System.Drawing.Point(147, 11);
+            this.rb_patient_sortie.Name = "rb_patient_sortie";
+            this.rb_patient_sortie.Size = new System.Drawing.Size(102, 18);
+            this.rb_patient_sortie.TabIndex = 21;
+            this.rb_patient_sortie.TabStop = true;
+            this.rb_patient_sortie.Text = "Patients sortis";
+            this.rb_patient_sortie.UseVisualStyleBackColor = true;
+            this.rb_patient_sortie.CheckedChanged += new System.EventHandler(this.rb_patient_sortie_CheckedChanged);
             // 
             // User_consultation
             // 
@@ -511,6 +551,7 @@
             this.Size = new System.Drawing.Size(941, 506);
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tb_montant_consultation)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pan_test.ResumeLayout(false);
@@ -521,7 +562,8 @@
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tb_montant_consultation)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -561,5 +603,8 @@
         private MyRoundedTextBox myRoundedTextBox3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown tb_montant_consultation;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RadioButton rb_patient_sortie;
+        private System.Windows.Forms.RadioButton rb_patient_hospitalisé;
     }
 }

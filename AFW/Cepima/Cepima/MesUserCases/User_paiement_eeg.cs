@@ -17,11 +17,11 @@ namespace Cepima.MesUserCases
         {
             InitializeComponent();
             FilterByType_eeg(cbx_type_eeg,cbx_filtrer);
-            LoadExamensEEG();
+            //LoadExamensEEG();
             LoadResume();
             LoadHistoriquePaiementEEG();
             dgv_examens_eeg.CellContentClick += dgv_examens_eeg_CellContentClick;
-            LoadEnum(cbx_mode_paiement,"paiement_eeg","mode_paiement");
+            LoadEnum(cbx_mode_paiement, "paiement_eeg", "mode_paiement");
         }
 
         void dgv_examens_eeg_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -44,7 +44,7 @@ namespace Cepima.MesUserCases
         {
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
-                string querySelect = "SELECT prix_examen FROM examens_eeg WHERE id_examen = @id";
+                string querySelect = "SELECT prix_examen FROM examens_eeg WHERE id_examens = @id";
                 using (MySqlCommand cmd = new MySqlCommand(querySelect, con))
                 {
                     cmd.Parameters.AddWithValue("@id",examen_id);
@@ -121,7 +121,7 @@ namespace Cepima.MesUserCases
 
                     //================= MISE A JOUR DE L'EXAMEN =================
 
-                    query = "UPDATE examens_eeg SET etat_paiement='Payé' WHERE id_examen=@id";
+                    query = "UPDATE examens_eeg SET etat_paiement='Payé' WHERE id_examens=@id";
                     cmd = new MySqlCommand(query, con, trans);
                     cmd.Parameters.AddWithValue("@id", idExamen);
                     cmd.ExecuteNonQuery();
@@ -190,16 +190,17 @@ namespace Cepima.MesUserCases
                         switch (cbx_filtrer.Text)
                         {
                             case "Ajourd'hui":
-                                query += " AND DATE(pe.date_paiement)=CURDATE()";
+                                query += " AND DATE(e.date_examen)=CURDATE()";
                                 break;
                             case "Cette semaine":
-                                query += " AND YEARWEEK(pe.date_paiement,1)=YEARWEEK(CURDATE(),1)";
+                                query += " AND YEARWEEK(e.date_examen,1)=YEARWEEK(CURDATE(),1)";
                                 break;
                             case "Ce mois":
-                                query += " AND MONTH(pe.date_paiement)=MONTH(CURDATE()) AND YEAR(pe.date_paiement)=YEAR(CURDATE())";
+                                query += " AND MONTH(e.date_examen)=MONTH(CURDATE()) AND YEAR(e.date_examen)=YEAR(CURDATE())";
                                 break;
                         }
 
+                        cmd.CommandText = query;
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -210,7 +211,7 @@ namespace Cepima.MesUserCases
                                 dgv_examens_eeg.Rows[row].Cells["colPatient"].Value = reader["patient"];
                                 dgv_examens_eeg.Rows[row].Cells["colType"].Value = reader["type_EEG"];
                                 dgv_examens_eeg.Rows[row].Cells["colPrix"].Value = Convert.ToDecimal(reader["prix_examen"]);
-                                dgv_examens_eeg.Rows[row].Cells["colStatut"].Value = reader["statut"];
+                                dgv_examens_eeg.Rows[row].Cells["colStatut_examen"].Value = reader["statut"];
                                 dgv_examens_eeg.Rows[row].Cells["colMedecin"].Value = reader["medecin"];
 
                                 montantTotal += Convert.ToDecimal(reader["prix_examen"]);
@@ -299,13 +300,13 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT pe.id_paiement_eeg,pe.date_paiement,pe.montant_eeg,pe.mode_paiement,e.type_EEG,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) patient, FROM paiement_eeg pe INNER JOIN examens_eeg e ON pe.id_examen=e.id_examen INNER JOIN patients p ON e.id_patient=p.id_patient  WHERE 1=1 ";
+                    string query = "SELECT pe.id_paiement_eeg,pe.date_paiement,pe.montant_eeg,pe.mode_paiement,e.type_EEG,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) patient FROM paiement_eeg pe INNER JOIN examens_eeg e ON pe.id_examen=e.id_examens INNER JOIN patients p ON e.id_patient=p.id_patient  WHERE 1=1 ";
                     MesClasses.ManagerClasse.request_params.Clear();
 
                     //===================== Recherche ==========================
                     if (!string.IsNullOrWhiteSpace(tb_search_patient.Text))
                     {
-                        query += " AND(p.nom LIKE @rech OR p.post_nom LIKE @rech OR p.prenom LIKE @rech OR pe.numero_recu LIKE @rech)";
+                        query += " AND(p.nom LIKE @rech OR p.post_nom LIKE @rech OR p.prenom LIKE @rech )";
 
                         MesClasses.ManagerClasse.request_params.Add("@rech", "%" + tb_search_patient.Text + "%");
                     }
@@ -372,6 +373,11 @@ namespace Cepima.MesUserCases
         private void bt_valider_Click(object sender, EventArgs e)
         {
             SavePaiementEEG();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

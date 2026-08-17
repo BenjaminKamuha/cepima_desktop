@@ -83,7 +83,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE CONCAT(p.nom,' ',p.post_nom) LIKE @search";
+                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE CONCAT(p.nom,' ',p.post_nom) LIKE @search AND h.date_sortie IS NULL";
                         MesClasses.ManagerClasse.request_params.Clear();
                         MesClasses.ManagerClasse.request_params.Add("@search", "%" + args[0] + "%");
                         MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true);
@@ -177,7 +177,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient";
+                        string query = "SELECT h.id_hospitalisation,p.id_patient,CONCAT(p.nom,' ',p.post_nom) AS Patient,h.date_entree,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient WHERE h.date_sortie IS NULL";
                         using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                         {
                             if (reader.HasRows)
@@ -340,7 +340,6 @@ namespace Cepima.MesUserCases
             MesForms.Form_add_suivi_hospitalisation suivi = new MesForms.Form_add_suivi_hospitalisation(hospitalisationID);
             suivi.ShowDialog();
         }
-
         // ============================== HISTORIQUE DE CONSULTATION DU PATIENT HOSPITALISE ============================
         private void LoadHistoriqueConsultation(string filtre = "Tous")
         {
@@ -401,7 +400,7 @@ namespace Cepima.MesUserCases
             try
             {
                 string query = "";
-                // ============================================ FILTRES =============================
+                // ============================================ FILTRES ===============================================
                 if (filter == "Tous")
                 {
                     query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation  WHERE h.id_hospitalisation =@id ORDER BY pr.date_prescription DESC ";
@@ -417,7 +416,7 @@ namespace Cepima.MesUserCases
                 }
                 else if (filter == "Ce mois")
                 {
-                    query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation WHERE h.id_hospitalisation =@id AND MONTH(pr.date_prescription)=MONTH(CURDATE()) AND YEAR(pr.date_prescription)=YEAR(CURDATE()) ORDER BY pr.date_prescription DESC ";
+                   query = "SELECT pr.date_prescription,m.nom_medicament,pr.unite,pr.quantite FROM prescriptions pr JOIN medicament m ON pr.id_medicament = m.id_medicament JOIN consultation c ON c.id_consultation = pr.id_consultation JOIN hospitalisation h ON h.id_consultation = c.id_consultation WHERE h.id_hospitalisation =@id AND MONTH(pr.date_prescription)=MONTH(CURDATE()) AND YEAR(pr.date_prescription)=YEAR(CURDATE()) ORDER BY pr.date_prescription DESC ";
                 }
 
                 // =========================================== PARAMETRES ============================================
@@ -433,7 +432,7 @@ namespace Cepima.MesUserCases
                         dgv_prescription.Rows[row].Cells["colUnit"].Value = reader["unite"].ToString();
                         dgv_prescription.Rows[row].Cells["colQuantite"].Value = reader["quantite"].ToString();
 
-                        // ======================= datagridview_prescription style ===============================
+                        // ======================= datagridview_prescription style =======================================
                         dgv_prescription.Columns["date"].Width = 80;
                         dgv_prescription.Columns["colMedoc"].Width = 200;
                         dgv_prescription.Columns["colUnit"].Width = 80;
@@ -469,7 +468,7 @@ namespace Cepima.MesUserCases
                 {
                     using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                     {
-
+                        MySqlTransaction trans = con.BeginTransaction();
                         // ========= changer état hospitalisation
 
                         string queryHosp = "UPDATE hospitalisation SET etat='Sorti',date_sortie=NOW() WHERE id_hospitalisation=@id";
@@ -492,11 +491,44 @@ namespace Cepima.MesUserCases
                             chambreID = result.ToString();
                         }
 
+                        // ==================================== calculer le nombre de jour et le tarif =========================
+                        decimal tarif = 0;
+                        int nbJours = 1;
+                        string queryJours = "SELECT h.date_entree,c.tarif_journalier FROM hospitalisation h JOIN affectation_chambre a ON h.id_hospitalisation = a.id_hospitalisation JOIN chambre c ON a.id_chambre = c.id_chambre WHERE h.id_hospitalisation=@id ORDER BY a.id_affectation DESC LIMIT 1";
+                        using (MySqlCommand cmd = new MySqlCommand(queryJours,con,trans))
+                        {
+                            cmd.Parameters.AddWithValue("@id", hospitalisationID);
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                if (reader.Read())
+                                {
+                                    DateTime entree = Convert.ToDateTime(reader["date_entree"]);
+
+                                    tarif = Convert.ToDecimal(reader["tarif_journalier"]);
+
+                                    nbJours = (DateTime.Now - entree).Days;
+
+                                    if (nbJours <= 0)
+                                        nbJours = 1;
+                                }
+
+                                reader.Close();
+                            }
+                        }
                         // ===================================================================================================
                         // GENERER LA FACTURE POUR L'HOSPITALISATION
                         //=====================================================================================================
+                        //int idConsultation = RecupererIdConsultation();
+                        //GenererFactureHospitalisation(idConsultation);
+                        // ===================================================================================================
+                        // GENERER / METTRE A JOUR LA FACTURE HOSPITALISATION
+                        //=====================================================================================================
+
                         int idConsultation = RecupererIdConsultation();
-                        GenererFactureHospitalisation(idConsultation);
+                        decimal montantHospitalisation = CalculerMontantChambre();
+
+                        int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(idConsultation,Convert.ToInt32(ID_PATIENT),"Hospitalisé",con,trans);
+                        MesClasses.ReceptionManager.MettreAJourPrestation(idFacture, "Hospitalisation", nbJours, tarif,montantHospitalisation, con, trans);
 
                         // ==================== libérer la chambre ============================================================
 

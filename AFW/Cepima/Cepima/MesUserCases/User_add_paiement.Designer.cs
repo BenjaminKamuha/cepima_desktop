@@ -205,7 +205,7 @@
             // 
             this.lb_total_facture.AutoSize = true;
             this.lb_total_facture.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_total_facture.Location = new System.Drawing.Point(283, 8);
+            this.lb_total_facture.Location = new System.Drawing.Point(273, 8);
             this.lb_total_facture.Name = "lb_total_facture";
             this.lb_total_facture.Size = new System.Drawing.Size(0, 15);
             this.lb_total_facture.TabIndex = 13;
@@ -261,11 +261,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(228, 8);
+            this.label6.Location = new System.Drawing.Point(201, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(46, 15);
+            this.label6.Size = new System.Drawing.Size(68, 15);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Total  : ";
+            this.label6.Text = "Montant  : ";
             // 
             // label2
             // 

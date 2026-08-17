@@ -181,77 +181,77 @@ namespace Cepima.MesUserCases
             LoadMedicament(tb_search_medoc.Text);
         }
         // ================================ méthode pour generer la facture =============================================
-        private int GenererFacture(int consultationID, int patientID, string type,MySqlConnection con,MySqlTransaction tr)
-        {
-            int idFacture = 0;
+        //private int GenererFacture(int consultationID, int patientID, string type,MySqlConnection con,MySqlTransaction tr)
+        //{
+        //    int idFacture = 0;
 
-            try
-            {
-                decimal total = CalculTotal();
+        //    try
+        //    {
+        //        decimal total = CalculTotal();
                 
-                    string queryInsert = "INSERT INTO facture(id_patient,id_consultation,id_centre,type_facture,date_facture,montant_total,statut)VALUES(@patient,@consultation,@centre,@type,CURDATE(),@total,'Non payé')";
-                    MySqlCommand cmd = new MySqlCommand(queryInsert, con,tr);
-                    cmd.Parameters.AddWithValue("@patient", patientID);
-                    cmd.Parameters.AddWithValue("@consultation", consultationID);
-                    cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
-                    cmd.Parameters.AddWithValue("@type", type);
-                    cmd.Parameters.AddWithValue("@total", total);
-                    cmd.ExecuteNonQuery();
+        //            string queryInsert = "INSERT INTO facture(id_patient,id_consultation,id_centre,type_facture,date_facture,montant_total,statut)VALUES(@patient,@consultation,@centre,@type,CURDATE(),@total,'Non payé')";
+        //            MySqlCommand cmd = new MySqlCommand(queryInsert, con,tr);
+        //            cmd.Parameters.AddWithValue("@patient", patientID);
+        //            cmd.Parameters.AddWithValue("@consultation", consultationID);
+        //            cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
+        //            cmd.Parameters.AddWithValue("@type", type);
+        //            cmd.Parameters.AddWithValue("@total", total);
+        //            cmd.ExecuteNonQuery();
 
-                    idFacture = Convert.ToInt32(cmd.LastInsertedId);
+        //            idFacture = Convert.ToInt32(cmd.LastInsertedId);
 
-                GenererDetailFacture(idFacture,con,tr);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur facture : " + ex.Message);
-            }
-            return idFacture;
-        }
-        // ============================= recuperer l'idfacture ====================================
-        private int GetFactureByConsultation(int consultation)
-        {
-            string query = "SELECT id_facture FROM facture WHERE id_consultation = @id ORDER BY id_facture DESC LIMIT 1";
-            MesClasses.ManagerClasse.request_params.Clear();
-            MesClasses.ManagerClasse.request_params.Add("@id", consultation.ToString());
-            using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
-            {
-                if (reader.Read())
-                {
-                    return Convert.ToInt32(reader["id_facture"]);
-                }
-            }
-            return 0;
-        }
-        // ============================== détails facture =================================================================
-        private void GenererDetailFacture(int idFacture,MySqlConnection con,MySqlTransaction tr)
-        {
+        //        GenererDetailFacture(idFacture,con,tr);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Erreur facture : " + ex.Message);
+        //    }
+        //    return idFacture;
+        //}
+        //// ============================= recuperer l'idfacture ====================================
+        //private int GetFactureByConsultation(int consultation)
+        //{
+        //    string query = "SELECT id_facture FROM facture WHERE id_consultation = @id ORDER BY id_facture DESC LIMIT 1";
+        //    MesClasses.ManagerClasse.request_params.Clear();
+        //    MesClasses.ManagerClasse.request_params.Add("@id", consultation.ToString());
+        //    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
+        //    {
+        //        if (reader.Read())
+        //        {
+        //            return Convert.ToInt32(reader["id_facture"]);
+        //        }
+        //    }
+        //    return 0;
+        //}
+        //// ============================== détails facture =================================================================
+        //private void GenererDetailFacture(int idFacture,MySqlConnection con,MySqlTransaction tr)
+        //{
    
-                try
-                {
-                    foreach (DataGridViewRow row in dgv_medoc.Rows)
-                    {
-                        if (row.IsNewRow) continue;
+        //        try
+        //        {
+        //            foreach (DataGridViewRow row in dgv_medoc.Rows)
+        //            {
+        //                if (row.IsNewRow) continue;
 
-                        string query = "INSERT INTO detail_facture(id_facture, description, quantite, prix_unitaire, montant)VALUES(@id_facture, @desc, @qte, @prix, @montant)";
-                        using (MySqlCommand cmd = new MySqlCommand(query,con,tr))
-                        {
-                            cmd.Parameters.AddWithValue("@id_facture", idFacture);
-                            cmd.Parameters.AddWithValue("@desc", row.Cells["colMedicament"].Value.ToString());
-                            cmd.Parameters.AddWithValue("@qte",row.Cells["colQuantite"].Value);
-                            cmd.Parameters.AddWithValue("@prix",row.Cells["colPrix"].Value);
-                            cmd.Parameters.AddWithValue("@montant",row.Cells["colMontant"].Value);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
+        //                string query = "INSERT INTO detail_facture(id_facture, description, quantite, prix_unitaire, montant)VALUES(@id_facture, @desc, @qte, @prix, @montant)";
+        //                using (MySqlCommand cmd = new MySqlCommand(query,con,tr))
+        //                {
+        //                    cmd.Parameters.AddWithValue("@id_facture", idFacture);
+        //                    cmd.Parameters.AddWithValue("@desc", row.Cells["colMedicament"].Value.ToString());
+        //                    cmd.Parameters.AddWithValue("@qte",row.Cells["colQuantite"].Value);
+        //                    cmd.Parameters.AddWithValue("@prix",row.Cells["colPrix"].Value);
+        //                    cmd.Parameters.AddWithValue("@montant",row.Cells["colMontant"].Value);
+        //                    cmd.ExecuteNonQuery();
+        //                }
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
 
-                    MessageBox.Show("Erreur détail facture : " + ex.Message);
-                }
+        //            MessageBox.Show("Erreur détail facture : " + ex.Message);
+        //        }
 
-        }
+        //}
 
         // récuperer l'id_hospitalisation ===========================
         private int RecupererIdHospitalisation()
@@ -385,13 +385,35 @@ namespace Cepima.MesUserCases
                         }
                     }
 
-                    MessageBox.Show("Patient type = [" +Patient_Type+ "]");
+                    int quantiteTotale = 0;
+                    decimal montantTotal = 0;
+
+                    foreach (DataGridViewRow row in dgv_medoc.Rows)
+                    {
+                        if (row.IsNewRow)
+                            continue;
+
+                        int qte = Convert.ToInt32(row.Cells["colQuantite"].Value);
+                        decimal montant = Convert.ToDecimal(row.Cells["colMontant"].Value);
+
+                        quantiteTotale += qte;
+                        montantTotal += montant;
+                    }
                     //==================== TRAITEMENT FINAL ====================
+                    //if (Patient_Type == "Ambulatoire")
+                    //{
+                    //    MessageBox.Show("Facture generé avec succès !!");
+                    //    GenererFacture(idconsultation, id_patient,Patient_Type,con,tr);
+                    //    UpdateConsultation(idconsultation,con,tr);
+                    //}
                     if (Patient_Type == "Ambulatoire")
                     {
-                        MessageBox.Show("Facture generé avec succès !!");
-                        GenererFacture(idconsultation, id_patient,Patient_Type,con,tr);
-                        UpdateConsultation(idconsultation,con,tr);
+
+                        int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(idconsultation,id_patient,Patient_Type,con,tr);
+
+                        MesClasses.ReceptionManager.MettreAJourPrestation(idFacture, "Médicaments", quantiteTotale, null, montantTotal, con, tr);
+
+                        UpdateConsultation(idconsultation, con, tr);
                     }
                     else if(Patient_Type == "Hospitalisé")
                     {

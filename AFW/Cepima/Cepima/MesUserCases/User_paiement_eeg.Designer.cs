@@ -28,31 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.lb_examen_total = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.lb_examen_non_paye = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.lb_encaissement_mois = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.lb_encaissement_jour = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.customRoundedPanel6 = new CustomRoundedPanel();
@@ -62,34 +57,6 @@
             this.lb_total_examens = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.dgv_examens_eeg = new ModernDataGridView();
-            this.customRoundedPanel5 = new CustomRoundedPanel();
-            this.customRoundedPanel7 = new CustomRoundedPanel();
-            this.dgv_historique_paiement = new ModernDataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cbx_type_eeg = new System.Windows.Forms.ComboBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.tb_search_patient = new System.Windows.Forms.TextBox();
-            this.tb_tarif = new MyRoundedTextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.cbx_filtrer = new System.Windows.Forms.ComboBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label7 = new System.Windows.Forms.Label();
-            this.pan_add_encaissement = new System.Windows.Forms.Panel();
-            this.myRoundedTextBox1 = new MyRoundedTextBox();
-            this.myRoundedTextBox2 = new MyRoundedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cbx_mode_paiement = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.bt_cancel = new test_arrondissement2012.PerfectRoundedButton();
-            this.bt_valider = new test_arrondissement2012.PerfectRoundedButton();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,26 +65,74 @@
             this.colStatut_examen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEncaisser = new System.Windows.Forms.DataGridViewImageColumn();
-            this.tb_montant_a_payer = new System.Windows.Forms.TextBox();
+            this.customRoundedPanel5 = new CustomRoundedPanel();
+            this.pan_add_encaissement = new System.Windows.Forms.Panel();
             this.tb_montant_recu = new System.Windows.Forms.TextBox();
+            this.tb_montant_a_payer = new System.Windows.Forms.TextBox();
+            this.bt_valider = new test_arrondissement2012.PerfectRoundedButton();
+            this.bt_cancel = new test_arrondissement2012.PerfectRoundedButton();
+            this.myRoundedTextBox2 = new MyRoundedTextBox();
+            this.myRoundedTextBox1 = new MyRoundedTextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbx_mode_paiement = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.customRoundedPanel7 = new CustomRoundedPanel();
+            this.dgv_historique_paiement = new ModernDataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cbx_type_eeg = new System.Windows.Forms.ComboBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+
+            this.tb_search_patient = new System.Windows.Forms.TextBox();
+            this.tb_tarif = new MyRoundedTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbx_filtrer = new System.Windows.Forms.ComboBox();
+
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut_examen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.colEncaisser = new System.Windows.Forms.DataGridViewImageColumn();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+
             this.panel1.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.customRoundedPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.customRoundedPanel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_examens_eeg)).BeginInit();
             this.customRoundedPanel5.SuspendLayout();
+            this.pan_add_encaissement.SuspendLayout();
             this.customRoundedPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_historique_paiement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            this.pan_add_encaissement.SuspendLayout();
+
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+
             this.SuspendLayout();
             // 
             // panel1
@@ -163,16 +178,6 @@
             this.lb_examen_total.Size = new System.Drawing.Size(30, 23);
             this.lb_examen_total.TabIndex = 1;
             this.lb_examen_total.Text = "35";
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Cepima.Properties.Resources.total_examen;
-            this.pictureBox5.Location = new System.Drawing.Point(122, 28);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 1;
-            this.pictureBox5.TabStop = false;
             // 
             // label6
             // 
@@ -222,16 +227,6 @@
             this.lb_examen_non_paye.TabIndex = 1;
             this.lb_examen_non_paye.Text = "12";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Cepima.Properties.Resources.non_paye;
-            this.pictureBox4.Location = new System.Drawing.Point(134, 24);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 1;
-            this.pictureBox4.TabStop = false;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -280,16 +275,6 @@
             this.lb_encaissement_mois.TabIndex = 1;
             this.lb_encaissement_mois.Text = "1250$";
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Cepima.Properties.Resources.encaissement_mois;
-            this.pictureBox3.Location = new System.Drawing.Point(135, 24);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -299,16 +284,6 @@
             this.label4.Size = new System.Drawing.Size(125, 15);
             this.label4.TabIndex = 1;
             this.label4.Text = "Encaissement ce mois";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.Icone_eeg_pay;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 85);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // customRoundedPanel1
             // 
@@ -337,16 +312,6 @@
             this.lb_encaissement_jour.TabIndex = 1;
             this.lb_encaissement_jour.Text = "85,00$";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.montant_eeg;
-            this.pictureBox2.Location = new System.Drawing.Point(130, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(45, 42);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 1;
-            this.pictureBox2.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -365,6 +330,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1076, 4);
             this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // customRoundedPanel6
             // 
@@ -442,8 +408,8 @@
             this.dgv_examens_eeg.AllowUserToAddRows = false;
             this.dgv_examens_eeg.AllowUserToDeleteRows = false;
             this.dgv_examens_eeg.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_examens_eeg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_examens_eeg.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_examens_eeg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -452,14 +418,14 @@
             this.dgv_examens_eeg.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_examens_eeg.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_examens_eeg.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_examens_eeg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_examens_eeg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_examens_eeg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_examens_eeg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -470,14 +436,14 @@
             this.colStatut_examen,
             this.colMedecin,
             this.colEncaisser});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_examens_eeg.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_examens_eeg.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_examens_eeg.EnableHeadersVisualStyles = false;
             this.dgv_examens_eeg.GridColor = System.Drawing.Color.LightGray;
             this.dgv_examens_eeg.Location = new System.Drawing.Point(3, 5);
@@ -485,6 +451,63 @@
             this.dgv_examens_eeg.RowHeadersVisible = false;
             this.dgv_examens_eeg.Size = new System.Drawing.Size(701, 330);
             this.dgv_examens_eeg.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "Column1";
+            this.colID.MinimumWidth = 50;
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colDate
+            // 
+            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDate.HeaderText = "Date";
+            this.colDate.MinimumWidth = 50;
+            this.colDate.Name = "colDate";
+            // 
+            // colPatient
+            // 
+            this.colPatient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPatient.HeaderText = "Patient";
+            this.colPatient.MinimumWidth = 50;
+            this.colPatient.Name = "colPatient";
+            // 
+            // colType
+            // 
+            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colType.HeaderText = "Type EEG";
+            this.colType.MinimumWidth = 50;
+            this.colType.Name = "colType";
+            // 
+            // colPrix
+            // 
+            this.colPrix.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrix.HeaderText = "Prix";
+            this.colPrix.MinimumWidth = 50;
+            this.colPrix.Name = "colPrix";
+            // 
+            // colStatut_examen
+            // 
+            this.colStatut_examen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colStatut_examen.HeaderText = "Statut Examen";
+            this.colStatut_examen.MinimumWidth = 50;
+            this.colStatut_examen.Name = "colStatut_examen";
+            // 
+            // colMedecin
+            // 
+            this.colMedecin.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMedecin.HeaderText = "Medecin demandeur";
+            this.colMedecin.MinimumWidth = 50;
+            this.colMedecin.Name = "colMedecin";
+            // 
+            // colEncaisser
+            // 
+            this.colEncaisser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEncaisser.HeaderText = "";
+            this.colEncaisser.MinimumWidth = 50;
+            this.colEncaisser.Name = "colEncaisser";
             // 
             // customRoundedPanel5
             // 
@@ -501,6 +524,161 @@
             this.customRoundedPanel5.Name = "customRoundedPanel5";
             this.customRoundedPanel5.Size = new System.Drawing.Size(357, 205);
             this.customRoundedPanel5.TabIndex = 2;
+            // 
+            // pan_add_encaissement
+            // 
+            this.pan_add_encaissement.Controls.Add(this.tb_montant_recu);
+            this.pan_add_encaissement.Controls.Add(this.tb_montant_a_payer);
+            this.pan_add_encaissement.Controls.Add(this.bt_valider);
+            this.pan_add_encaissement.Controls.Add(this.bt_cancel);
+            this.pan_add_encaissement.Controls.Add(this.myRoundedTextBox2);
+            this.pan_add_encaissement.Controls.Add(this.myRoundedTextBox1);
+            this.pan_add_encaissement.Controls.Add(this.label10);
+            this.pan_add_encaissement.Controls.Add(this.label9);
+            this.pan_add_encaissement.Controls.Add(this.label8);
+            this.pan_add_encaissement.Controls.Add(this.cbx_mode_paiement);
+            this.pan_add_encaissement.Location = new System.Drawing.Point(7, 25);
+            this.pan_add_encaissement.Name = "pan_add_encaissement";
+            this.pan_add_encaissement.Size = new System.Drawing.Size(342, 177);
+            this.pan_add_encaissement.TabIndex = 2;
+            this.pan_add_encaissement.Visible = false;
+            // 
+            // tb_montant_recu
+            // 
+            this.tb_montant_recu.BackColor = System.Drawing.Color.White;
+            this.tb_montant_recu.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_montant_recu.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_montant_recu.Location = new System.Drawing.Point(151, 66);
+            this.tb_montant_recu.Multiline = true;
+            this.tb_montant_recu.Name = "tb_montant_recu";
+            this.tb_montant_recu.Size = new System.Drawing.Size(156, 23);
+            this.tb_montant_recu.TabIndex = 2;
+            // 
+            // tb_montant_a_payer
+            // 
+            this.tb_montant_a_payer.BackColor = System.Drawing.Color.White;
+            this.tb_montant_a_payer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_montant_a_payer.Enabled = false;
+            this.tb_montant_a_payer.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_montant_a_payer.Location = new System.Drawing.Point(150, 18);
+            this.tb_montant_a_payer.Multiline = true;
+            this.tb_montant_a_payer.Name = "tb_montant_a_payer";
+            this.tb_montant_a_payer.Size = new System.Drawing.Size(156, 23);
+            this.tb_montant_a_payer.TabIndex = 2;
+            // 
+            // bt_valider
+            // 
+            this.bt_valider.BackColor = System.Drawing.Color.Transparent;
+            this.bt_valider.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_valider.BorderRadius = 5;
+            this.bt_valider.BorderSize = 0;
+            this.bt_valider.ButtonText = "Valider le paiement";
+            this.bt_valider.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_valider.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_valider.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_valider.Location = new System.Drawing.Point(206, 144);
+            this.bt_valider.Name = "bt_valider";
+            this.bt_valider.Size = new System.Drawing.Size(133, 28);
+            this.bt_valider.TabIndex = 24;
+            this.bt_valider.Click += new System.EventHandler(this.bt_valider_Click);
+            // 
+            // bt_cancel
+            // 
+            this.bt_cancel.BackColor = System.Drawing.Color.Transparent;
+            this.bt_cancel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_cancel.BorderRadius = 5;
+            this.bt_cancel.BorderSize = 0;
+            this.bt_cancel.ButtonText = "Annuler";
+            this.bt_cancel.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.bt_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_cancel.Location = new System.Drawing.Point(13, 144);
+            this.bt_cancel.Name = "bt_cancel";
+            this.bt_cancel.Size = new System.Drawing.Size(124, 28);
+            this.bt_cancel.TabIndex = 24;
+            // 
+            // myRoundedTextBox2
+            // 
+            this.myRoundedTextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox2.BorderRadius = 4;
+            this.myRoundedTextBox2.BorderSize = 1;
+            this.myRoundedTextBox2.Enabled = false;
+            this.myRoundedTextBox2.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox2.Location = new System.Drawing.Point(148, 64);
+            this.myRoundedTextBox2.Name = "myRoundedTextBox2";
+            this.myRoundedTextBox2.PasswordChar = '\0';
+            this.myRoundedTextBox2.PlaceholderColor = System.Drawing.Color.Beige;
+            this.myRoundedTextBox2.PlaceholderText = "";
+            this.myRoundedTextBox2.Size = new System.Drawing.Size(161, 27);
+            this.myRoundedTextBox2.TabIndex = 2;
+            this.myRoundedTextBox2.UseSystemPasswordChar = false;
+            // 
+            // myRoundedTextBox1
+            // 
+            this.myRoundedTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.myRoundedTextBox1.BorderRadius = 4;
+            this.myRoundedTextBox1.BorderSize = 1;
+            this.myRoundedTextBox1.Enabled = false;
+            this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(148, 16);
+            this.myRoundedTextBox1.Name = "myRoundedTextBox1";
+            this.myRoundedTextBox1.PasswordChar = '\0';
+            this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
+            this.myRoundedTextBox1.PlaceholderText = "";
+            this.myRoundedTextBox1.Size = new System.Drawing.Size(161, 27);
+            this.myRoundedTextBox1.TabIndex = 2;
+            this.myRoundedTextBox1.UseSystemPasswordChar = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(20, 119);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(117, 15);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "Mode de paiement : ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(18, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 15);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Montant reçu : ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(7, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(107, 15);
+            this.label8.TabIndex = 23;
+            this.label8.Text = "Montant à payer : ";
+            // 
+            // cbx_mode_paiement
+            // 
+            this.cbx_mode_paiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_mode_paiement.Font = new System.Drawing.Font("Calibri", 10F);
+            this.cbx_mode_paiement.FormattingEnabled = true;
+            this.cbx_mode_paiement.Location = new System.Drawing.Point(148, 111);
+            this.cbx_mode_paiement.Name = "cbx_mode_paiement";
+            this.cbx_mode_paiement.Size = new System.Drawing.Size(161, 23);
+            this.cbx_mode_paiement.TabIndex = 18;
+            this.cbx_mode_paiement.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(9, 7);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(138, 15);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "ENCAISSER LE PAIEMENT";
             // 
             // customRoundedPanel7
             // 
@@ -523,8 +701,8 @@
             this.dgv_historique_paiement.AllowUserToAddRows = false;
             this.dgv_historique_paiement.AllowUserToDeleteRows = false;
             this.dgv_historique_paiement.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_historique_paiement.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_historique_paiement.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_historique_paiement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -532,14 +710,14 @@
             this.dgv_historique_paiement.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_historique_paiement.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_historique_paiement.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_historique_paiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_historique_paiement.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgv_historique_paiement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_historique_paiement.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -548,14 +726,14 @@
             this.patient,
             this.type,
             this.mode});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_historique_paiement.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_historique_paiement.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_historique_paiement.EnableHeadersVisualStyles = false;
             this.dgv_historique_paiement.GridColor = System.Drawing.Color.LightGray;
             this.dgv_historique_paiement.Location = new System.Drawing.Point(3, 23);
@@ -563,6 +741,49 @@
             this.dgv_historique_paiement.RowHeadersVisible = false;
             this.dgv_historique_paiement.Size = new System.Drawing.Size(357, 188);
             this.dgv_historique_paiement.TabIndex = 0;
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.HeaderText = "";
+            this.ID.MinimumWidth = 50;
+            this.ID.Name = "ID";
+            this.ID.Visible = false;
+            // 
+            // date
+            // 
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.date.HeaderText = "Date";
+            this.date.MinimumWidth = 50;
+            this.date.Name = "date";
+            // 
+            // colMontant
+            // 
+            this.colMontant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMontant.HeaderText = "Montant";
+            this.colMontant.MinimumWidth = 50;
+            this.colMontant.Name = "colMontant";
+            // 
+            // patient
+            // 
+            this.patient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.patient.HeaderText = "Patient";
+            this.patient.MinimumWidth = 50;
+            this.patient.Name = "patient";
+            // 
+            // type
+            // 
+            this.type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.type.HeaderText = "Type EEG";
+            this.type.MinimumWidth = 50;
+            this.type.Name = "type";
+            // 
+            // mode
+            // 
+            this.mode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.mode.HeaderText = "Mode paiement";
+            this.mode.MinimumWidth = 50;
+            this.mode.Name = "mode";
             // 
             // label11
             // 
@@ -584,16 +805,6 @@
             this.cbx_type_eeg.Size = new System.Drawing.Size(169, 23);
             this.cbx_type_eeg.TabIndex = 18;
             this.cbx_type_eeg.SelectedIndexChanged += new System.EventHandler(this.cbx_type_eeg_SelectedIndexChanged);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox6.Location = new System.Drawing.Point(205, 137);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(21, 23);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 20;
-            this.pictureBox6.TabStop = false;
             // 
             // tb_search_patient
             // 
@@ -663,181 +874,7 @@
             this.cbx_filtrer.TabIndex = 18;
             this.cbx_filtrer.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
             // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ID.HeaderText = "";
-            this.ID.MinimumWidth = 50;
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
-            // 
-            // date
-            // 
-            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.date.HeaderText = "Date";
-            this.date.MinimumWidth = 50;
-            this.date.Name = "date";
-            // 
-            // colMontant
-            // 
-            this.colMontant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMontant.HeaderText = "Montant";
-            this.colMontant.MinimumWidth = 50;
-            this.colMontant.Name = "colMontant";
-            // 
-            // patient
-            // 
-            this.patient.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.patient.HeaderText = "Patient";
-            this.patient.MinimumWidth = 50;
-            this.patient.Name = "patient";
-            // 
-            // type
-            // 
-            this.type.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.type.HeaderText = "Type EEG";
-            this.type.MinimumWidth = 50;
-            this.type.Name = "type";
-            // 
-            // mode
-            // 
-            this.mode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.mode.HeaderText = "Mode paiement";
-            this.mode.MinimumWidth = 50;
-            this.mode.Name = "mode";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(9, 7);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(138, 15);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "ENCAISSER LE PAIEMENT";
-            // 
-            // pan_add_encaissement
-            // 
-            this.pan_add_encaissement.Controls.Add(this.tb_montant_recu);
-            this.pan_add_encaissement.Controls.Add(this.tb_montant_a_payer);
-            this.pan_add_encaissement.Controls.Add(this.bt_valider);
-            this.pan_add_encaissement.Controls.Add(this.bt_cancel);
-            this.pan_add_encaissement.Controls.Add(this.myRoundedTextBox2);
-            this.pan_add_encaissement.Controls.Add(this.myRoundedTextBox1);
-            this.pan_add_encaissement.Controls.Add(this.label10);
-            this.pan_add_encaissement.Controls.Add(this.label9);
-            this.pan_add_encaissement.Controls.Add(this.label8);
-            this.pan_add_encaissement.Controls.Add(this.cbx_mode_paiement);
-            this.pan_add_encaissement.Location = new System.Drawing.Point(7, 25);
-            this.pan_add_encaissement.Name = "pan_add_encaissement";
-            this.pan_add_encaissement.Size = new System.Drawing.Size(342, 177);
-            this.pan_add_encaissement.TabIndex = 2;
-            this.pan_add_encaissement.Visible = false;
-            // 
-            // myRoundedTextBox1
-            // 
-            this.myRoundedTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox1.BorderRadius = 4;
-            this.myRoundedTextBox1.BorderSize = 1;
-            this.myRoundedTextBox1.Enabled = false;
-            this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(148, 16);
-            this.myRoundedTextBox1.Name = "myRoundedTextBox1";
-            this.myRoundedTextBox1.PasswordChar = '\0';
-            this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
-            this.myRoundedTextBox1.PlaceholderText = "";
-            this.myRoundedTextBox1.Size = new System.Drawing.Size(161, 27);
-            this.myRoundedTextBox1.TabIndex = 2;
-            this.myRoundedTextBox1.UseSystemPasswordChar = false;
-            // 
-            // myRoundedTextBox2
-            // 
-            this.myRoundedTextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.myRoundedTextBox2.BorderRadius = 4;
-            this.myRoundedTextBox2.BorderSize = 1;
-            this.myRoundedTextBox2.Enabled = false;
-            this.myRoundedTextBox2.FocusBorderColor = System.Drawing.Color.Orange;
-            this.myRoundedTextBox2.Location = new System.Drawing.Point(148, 64);
-            this.myRoundedTextBox2.Name = "myRoundedTextBox2";
-            this.myRoundedTextBox2.PasswordChar = '\0';
-            this.myRoundedTextBox2.PlaceholderColor = System.Drawing.Color.Beige;
-            this.myRoundedTextBox2.PlaceholderText = "";
-            this.myRoundedTextBox2.Size = new System.Drawing.Size(161, 27);
-            this.myRoundedTextBox2.TabIndex = 2;
-            this.myRoundedTextBox2.UseSystemPasswordChar = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(7, 25);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(107, 15);
-            this.label8.TabIndex = 23;
-            this.label8.Text = "Montant à payer : ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(18, 76);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(90, 15);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Montant reçu : ";
-            // 
-            // cbx_mode_paiement
-            // 
-            this.cbx_mode_paiement.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_mode_paiement.Font = new System.Drawing.Font("Calibri", 10F);
-            this.cbx_mode_paiement.FormattingEnabled = true;
-            this.cbx_mode_paiement.Location = new System.Drawing.Point(148, 111);
-            this.cbx_mode_paiement.Name = "cbx_mode_paiement";
-            this.cbx_mode_paiement.Size = new System.Drawing.Size(161, 23);
-            this.cbx_mode_paiement.TabIndex = 18;
-            this.cbx_mode_paiement.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(20, 119);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(117, 15);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "Mode de paiement : ";
-            // 
-            // bt_cancel
-            // 
-            this.bt_cancel.BackColor = System.Drawing.Color.Transparent;
-            this.bt_cancel.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_cancel.BorderRadius = 5;
-            this.bt_cancel.BorderSize = 0;
-            this.bt_cancel.ButtonText = "Annuler";
-            this.bt_cancel.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_cancel.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_cancel.Location = new System.Drawing.Point(13, 144);
-            this.bt_cancel.Name = "bt_cancel";
-            this.bt_cancel.Size = new System.Drawing.Size(124, 28);
-            this.bt_cancel.TabIndex = 24;
-            // 
-            // bt_valider
-            // 
-            this.bt_valider.BackColor = System.Drawing.Color.Transparent;
-            this.bt_valider.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_valider.BorderRadius = 5;
-            this.bt_valider.BorderSize = 0;
-            this.bt_valider.ButtonText = "Valider le paiement";
-            this.bt_valider.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_valider.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_valider.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_valider.Location = new System.Drawing.Point(206, 144);
-            this.bt_valider.Name = "bt_valider";
-            this.bt_valider.Size = new System.Drawing.Size(133, 28);
-            this.bt_valider.TabIndex = 24;
-            this.bt_valider.Click += new System.EventHandler(this.bt_valider_Click);
-            // 
+
             // colID
             // 
             this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -888,36 +925,85 @@
             this.colMedecin.MinimumWidth = 50;
             this.colMedecin.Name = "colMedecin";
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::Cepima.Properties.Resources.cash_20px;
+            this.dataGridViewImageColumn1.MinimumWidth = 50;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ToolTipText = "Encaissement";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Cepima.Properties.Resources.search;
+            this.pictureBox6.Location = new System.Drawing.Point(205, 137);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 20;
+            this.pictureBox6.TabStop = false;
+            // 
             // colEncaisser
             // 
             this.colEncaisser.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colEncaisser.HeaderText = "";
+            this.colEncaisser.Image = global::Cepima.Properties.Resources.cash_20px;
             this.colEncaisser.MinimumWidth = 50;
             this.colEncaisser.Name = "colEncaisser";
+            this.colEncaisser.ToolTipText = "Encaissement";
             // 
-            // tb_montant_a_payer
+            // pictureBox5
             // 
-            this.tb_montant_a_payer.BackColor = System.Drawing.Color.White;
-            this.tb_montant_a_payer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_montant_a_payer.Enabled = false;
-            this.tb_montant_a_payer.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_montant_a_payer.Location = new System.Drawing.Point(150, 18);
-            this.tb_montant_a_payer.Multiline = true;
-            this.tb_montant_a_payer.Name = "tb_montant_a_payer";
-            this.tb_montant_a_payer.Size = new System.Drawing.Size(156, 23);
-            this.tb_montant_a_payer.TabIndex = 2;
+            this.pictureBox5.Image = global::Cepima.Properties.Resources.total_examen;
+            this.pictureBox5.Location = new System.Drawing.Point(122, 28);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 1;
+            this.pictureBox5.TabStop = false;
             // 
-            // tb_montant_recu
+            // pictureBox4
             // 
-            this.tb_montant_recu.BackColor = System.Drawing.Color.White;
-            this.tb_montant_recu.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_montant_recu.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_montant_recu.Location = new System.Drawing.Point(151, 66);
-            this.tb_montant_recu.Multiline = true;
-            this.tb_montant_recu.Name = "tb_montant_recu";
-            this.tb_montant_recu.Size = new System.Drawing.Size(156, 23);
-            this.tb_montant_recu.TabIndex = 2;
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.non_paye;
+            this.pictureBox4.Location = new System.Drawing.Point(134, 24);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 1;
+            this.pictureBox4.TabStop = false;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Cepima.Properties.Resources.encaissement_mois;
+            this.pictureBox3.Location = new System.Drawing.Point(135, 24);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 1;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.Icone_eeg_pay;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 85);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Cepima.Properties.Resources.montant_eeg;
+            this.pictureBox2.Location = new System.Drawing.Point(130, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(45, 42);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+
             // User_paiement_eeg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -941,29 +1027,31 @@
             this.panel1.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.customRoundedPanel6.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_examens_eeg)).EndInit();
             this.customRoundedPanel5.ResumeLayout(false);
             this.customRoundedPanel5.PerformLayout();
+            this.pan_add_encaissement.ResumeLayout(false);
+            this.pan_add_encaissement.PerformLayout();
             this.customRoundedPanel7.ResumeLayout(false);
             this.customRoundedPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_historique_paiement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.pan_add_encaissement.ResumeLayout(false);
-            this.pan_add_encaissement.PerformLayout();
+
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1027,6 +1115,8 @@
         private System.Windows.Forms.ComboBox cbx_mode_paiement;
         private test_arrondissement2012.PerfectRoundedButton bt_valider;
         private test_arrondissement2012.PerfectRoundedButton bt_cancel;
+        private System.Windows.Forms.TextBox tb_montant_recu;
+        private System.Windows.Forms.TextBox tb_montant_a_payer;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatient;
@@ -1035,7 +1125,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatut_examen;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedecin;
         private System.Windows.Forms.DataGridViewImageColumn colEncaisser;
-        private System.Windows.Forms.TextBox tb_montant_recu;
-        private System.Windows.Forms.TextBox tb_montant_a_payer;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

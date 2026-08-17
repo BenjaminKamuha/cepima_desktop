@@ -15,6 +15,7 @@ namespace Cepima.MesUserCases
         string filtreStatut = "Tous";
         int idExamenSelectionne = 0;
         int idConsultation = 0;
+        int ID_PATIENT = 0;
         public User_Examen_EEG()
         {
             InitializeComponent();
@@ -123,7 +124,7 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT e.id_examens,e.date_examen,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,e.type_EEG,e.statut,IFNULL(e.resultat,'-')resultat FROM examens_eeg e JOIN patients p ON p.id_patient = e.id_patient WHERE 1=1";
+                    string query = "SELECT e.id_examens,p.id_patient,e.date_examen,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,e.type_EEG,e.statut,IFNULL(e.resultat,'-')resultat FROM examens_eeg e JOIN patients p ON p.id_patient = e.id_patient WHERE 1=1";
 
                     //=========================================== FILTRE STATUT ==================================================
                     if (filtreStatut != "Tous")
@@ -193,6 +194,7 @@ namespace Cepima.MesUserCases
                 return;
             }
             idExamenSelectionne = Convert.ToInt32(dgv_examen_eeg.Rows[e.RowIndex].Tag);
+            ID_PATIENT = Convert.ToInt32(dgv_examen_eeg.Rows[e.RowIndex].Tag);
             LoadDetailsEEG(idExamenSelectionne);
         }
 
@@ -243,19 +245,34 @@ namespace Cepima.MesUserCases
         {
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
+                MySqlTransaction tr = con.BeginTransaction();
                 try
                 {
-                    string queryUpdate = "UPDATE examens_eeg SET type_EEG=@type,prix_examen =@prix,resultat=@result,interpretation=@inter,statut='Terminé' WHERE id_examens=@id AND id_consultation=@idConsultation";
-                    using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con))
+                    // ================================ recuperer la consultation =======================================
+                    string queryConsultation = "SELECT id_consultation FROM examens_eeg WHERE id_examens = @id";
+                    using (MySqlCommand cmd = new MySqlCommand(queryConsultation, con, tr))
                     {
-                        cmd.Parameters.AddWithValue("@type",cbx_type.SelectedItem);
-                        cmd.Parameters.AddWithValue("@prix",tb_prix_examen.Text);
-                        cmd.Parameters.AddWithValue("@result",richResultat.Text);
+                        cmd.Parameters.AddWithValue("@id", idExamenSelectionne);
+                        idConsultation = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+
+                    string queryUpdate = "UPDATE examens_eeg SET type_EEG=@type,prix_examen =@prix,resultat=@result,interpretation=@inter,statut='Terminé' WHERE id_examens=@id AND id_consultation=@idConsultation";
+                    using (MySqlCommand cmd = new MySqlCommand(queryUpdate, con, tr))
+                    {
+                        cmd.Parameters.AddWithValue("@type", cbx_type.SelectedItem);
+                        cmd.Parameters.AddWithValue("@prix", tb_prix_examen.Text);
+                        cmd.Parameters.AddWithValue("@result", richResultat.Text);
                         cmd.Parameters.AddWithValue("@inter", rich_interpretation.Text);
-                        cmd.Parameters.AddWithValue("@id",idExamenSelectionne);
-                        cmd.Parameters.AddWithValue("@idConsultation",idConsultation);
+                        cmd.Parameters.AddWithValue("@id", idExamenSelectionne);
+                        cmd.Parameters.AddWithValue("@idConsultation", idConsultation);
                         cmd.ExecuteNonQuery();
                     }
+                    decimal prixEEG = Convert.ToDecimal(tb_prix_examen.Text);
+                    int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(idConsultation, ID_PATIENT, "Ambulatoire", con, tr);
+
+                    MesClasses.ReceptionManager.MettreAJourPrestation(idFacture, "EEG",1, prixEEG,prixEEG, con, tr);
+
+                    tr.Commit();
                     MessageBox.Show("EEG ajouté avec succès !!");
                     LoadExamensEEG();
                     cbx_type.SelectedIndex = -1;

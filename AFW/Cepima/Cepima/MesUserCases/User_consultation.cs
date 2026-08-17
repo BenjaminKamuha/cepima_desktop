@@ -145,9 +145,19 @@ namespace Cepima.MesUserCases
 
                 else if (filtrePatient == "Tous")
                 {
-                    query = "SELECT * FROM(SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0 UNION SELECT DISTINCT p.id_patient,p.nom,p.post_nom, h.etat AS etat_patient FROM hospitalisation h INNER JOIN consultation c ON c.id_consultation=h.id_consultation INNER JOIN patients p ON p.id_patient=c.id_patient) AS listePatients";
-                }
 
+                    query = "SELECT * FROM(SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0 UNION SELECT DISTINCT p.id_patient,p.nom,p.post_nom, h.etat AS etat_patient FROM hospitalisation h INNER JOIN consultation c ON c.id_consultation=h.id_consultation INNER JOIN patients p ON p.id_patient=c.id_patient) AS listePatients";
+
+                    query = "SELECT * FROM(SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'En attente' AS etat_patient FROM signes_vitaux s INNER JOIN patients p ON p.id_patient=s.id_patient WHERE s.is_counsel=0 UNION SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'Hospitalisé' AS etat_patient FROM hospitalisation h INNER JOIN consultation c ON c.id_consultation=h.id_consultation INNER JOIN patients p ON p.id_patient=c.id_patient WHERE h.date_sortie IS NULL) AS listePatients";
+                }
+                else if(filtrePatient == "Hospitalisé")
+                {
+                    query = "SELECT p.id_patient,p.nom,p.post_nom,h.etat AS etat_patient FROM hospitalisation h INNER JOIN patients p ON p.id_patient=h.id_patient WHERE date_sortie IS NULL";
+                }
+                else if (filtrePatient == "Sorti")
+                {
+                    query = "SELECT p.id_patient,p.nom,p.post_nom,h.etat AS etat_patient FROM hospitalisation h INNER JOIN patients p ON p.id_patient=h.id_patient WHERE h.etat = 'Sorti'";
+                }
                 else // EEG terminé
                 {
                     query = "SELECT DISTINCT p.id_patient,p.nom,p.post_nom,'EEG Terminé' AS etat_patient FROM examens_eeg e INNER JOIN patients p ON p.id_patient=e.id_patient WHERE e.statut='Terminé'";
@@ -229,7 +239,7 @@ namespace Cepima.MesUserCases
 
             PictureBox picture = new PictureBox
             {
-                Location = new Point(10, 2),
+                Location = new Point(10, 10),
                 Size = new Size(35, 35),
                 Image = Properties.Resources.round_user,
                 SizeMode = PictureBoxSizeMode.Zoom
@@ -240,7 +250,7 @@ namespace Cepima.MesUserCases
             Label labelNom = new Label
             {
                 Text = nom + " " + postNom,
-                Location = new Point(50, 20),
+                Location = new Point(50, 15),
                 AutoSize = true,
                 Font = new Font("Calibri", 10)
             };
@@ -255,7 +265,7 @@ namespace Cepima.MesUserCases
             };
 
             chk.CheckedChanged += chkClient_CheckedChanged;
-            Label lbStatut = MesClasses.ManagerClasse.CustomLabel("Statut : " + etat, new Point(50, 40));
+            Label lbStatut = MesClasses.ManagerClasse.CustomLabel("Statut : " + etat, new Point(50, 30));
             lbStatut.AutoSize = true;
             lbStatut.Font = new System.Drawing.Font("Calibri", 9);
             panelPatient.Controls.Add(chk);
@@ -305,7 +315,6 @@ namespace Cepima.MesUserCases
             }
         }
   
-
         private void rb_ambulatoire_CheckedChanged(object sender, EventArgs e)
         {
             if (rb_ambulatoire.Checked)
@@ -393,6 +402,7 @@ namespace Cepima.MesUserCases
                         cmdInsert.Parameters.AddWithValue("@consultation", idConsultation);
                         cmdInsert.ExecuteNonQuery();
                     }
+
                 }
                 catch (Exception ex)
                 {
@@ -418,6 +428,7 @@ namespace Cepima.MesUserCases
             }
         }
 
+        // ====================================== ENREGISTRER LA CONSULTATION  =========================================
         private void bt_save_consultation_Click(object sender, EventArgs e)
         {
             //================ Vérification =================
@@ -441,9 +452,36 @@ namespace Cepima.MesUserCases
 
             int idConsultation = RecupererIdConsultation();
 
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+
+                try
+                {
+                    int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(idConsultation,idPatient,type_patient,con,tr);
+
+                    decimal montantConsultation = Convert.ToDecimal(tb_montant_consultation.Text);
+
+                    MesClasses.ReceptionManager.MettreAJourPrestation(idFacture, "Consultation", 1, montantConsultation, montantConsultation, con, tr);
+
+                    tr.Commit();
+                }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
             //================ Hospitalisation =================
             if (rb_hospitalisation.Checked)
             {
+                // ========================== VERIFIER SI LE PATIENT EST DEJA HOSPITALISE ==========================
+                if (PatientEstHospitalise(idPatient))
+                {
+                    MessageBox.Show("Ce patient est déjà hospitalisé");
+                    return;
+                }
                 SaveHospitalisation(idConsultation);
                 MessageBox.Show("Hospitalisation enregistrée.");
             }
@@ -481,6 +519,39 @@ namespace Cepima.MesUserCases
             presc.Dock = DockStyle.Fill;
             Form1.GlobalPanel_main.Controls.Clear();
             Form1.GlobalPanel_main.Controls.Add(presc);
+        }
+
+        private void rb_patient_hospitalisé_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_patient_hospitalisé.Checked)
+            {
+                filtrePatient = "Hospitalisé";
+                LoadPatient();
+            }
+        }
+
+        private void rb_patient_sortie_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_patient_sortie.Checked)
+            {
+                filtrePatient = "Sorti";
+                LoadPatient();
+            }
+        }
+        // =================================== vérifier si le patient est deja hospitalisé ==================================
+        private bool PatientEstHospitalise(int idPatient)
+        {
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string query = "SELECT COUNT(*) FROM hospitalisation WHERE id_patient = @id AND date_sortie IS NULL";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", idPatient);
+
+                    return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                }
+            }
         }
     }
 }
