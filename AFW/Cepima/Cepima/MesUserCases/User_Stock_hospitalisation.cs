@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using LiveCharts;
-using LiveCharts.WinForms;
+//using LiveCharts;
+//using LiveCharts.WinForms;
 using UIFramework;
 namespace Cepima.MesUserCases
 {

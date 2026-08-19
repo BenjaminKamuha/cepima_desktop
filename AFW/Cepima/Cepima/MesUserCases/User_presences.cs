@@ -251,5 +251,10 @@ namespace Cepima.MesUserCases
         {
             ChargerPresences();
         }
+
+        private void dgvPresences_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

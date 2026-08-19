@@ -379,6 +379,7 @@
     <Compile Include="UC_logo_cepima.Designer.cs">
       <DependentUpon>UC_logo_cepima.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Theme.cs" />
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -1016,6 +1017,7 @@
   <ItemGroup>
     <None Include="Resources\Close_40px.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
