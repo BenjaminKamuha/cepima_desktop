@@ -13,6 +13,7 @@ namespace Cepima.MesUserCases
 {
     public partial class User_paiement_facture : UserControl
     {
+        
         int paiementID = 0;
         public User_paiement_facture()
         {
@@ -21,8 +22,8 @@ namespace Cepima.MesUserCases
             dgv_paiement.CellClick += dgv_paiement_CellClick;
             ChargerPaiement();
             ChargerApercuRecu(1);
-        }
 
+        }
 
         void dgv_paiement_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -30,6 +31,11 @@ namespace Cepima.MesUserCases
             {
                 paiementID = Convert.ToInt32(dgv_paiement.Rows[e.RowIndex].Cells["colRecu"].Value);
                 ChargerApercuRecu(paiementID);
+
+                if (dgv_paiement.Columns[e.ColumnIndex].Name == "colApercu")
+                {
+                    panel_appercu_recu.Visible = true;
+                }
             }
         }
 
@@ -49,7 +55,7 @@ namespace Cepima.MesUserCases
                 dgv_paiement.Rows.Clear();
                 try
                 {
-                    string query = "SELECT pa.id_paiement,f.id_facture,pa.numero_recu,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,pa.montant,pa.reste,pa.type_paiement,pa.date_paiement FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE 1=1";
+                    string query = "SELECT pa.id_paiement,f.id_facture,pa.numero_recu,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS patient,pa.montant,f.montant_total,pa.reste,pa.type_paiement,pa.date_paiement FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient = p.id_patient WHERE 1=1";
 
                     // ================================= filtrage par patient ===============================
                     if (tb_search.Text.Trim() != "")
@@ -96,11 +102,13 @@ namespace Cepima.MesUserCases
                             dgv_paiement.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_paiement"]).ToString("dd/MM/yyyy");
                             //dgv_paiement.Rows[row].Cells["colFacture"].Value = reader["id_facture"];
                             dgv_paiement.Rows[row].Cells["colPatient"].Value = reader["patient"];
+                            dgv_paiement.Rows[row].Cells["colTotal"].Value = reader["montant_total"];
                             dgv_paiement.Rows[row].Cells["colMontant"].Value = reader["montant"];
                             dgv_paiement.Rows[row].Cells["colReste"].Value = reader["reste"];
                             dgv_paiement.Rows[row].Cells["colType"].Value = reader["type_paiement"];
                         }
                         reader.Close();
+                        ApplyStyle();
                     }
 
                 }
@@ -111,6 +119,17 @@ namespace Cepima.MesUserCases
             }
         }
 
+        private void ApplyStyle()
+        {
+            dgv_paiement.Columns["colRecu"].Width = 70;
+            dgv_paiement.Columns["colPatient"].Width = 180;
+            dgv_paiement.Columns["colType"].Width = 100;
+            dgv_paiement.Columns["colTotal"].Width = 150;
+            dgv_paiement.Columns["colDate"].Width = 110;
+            dgv_paiement.Columns["colMontant"].Width = 150;
+            dgv_paiement.Columns["colReste"].Width = 150;
+            dgv_paiement.Columns["colApercu"].Width = 100;
+        }
         //======================================= charger l'apercu du reçu ========================================================
         private void ChargerApercuRecu(int id_paiement)
         {
@@ -123,12 +142,7 @@ namespace Cepima.MesUserCases
                 {
                     while (reader.Read())
                     {
-                        lb_numero_recu.Text = reader["id_paiement"].ToString();
-                        lb_date.Text = Convert.ToDateTime(reader["date_paiement"]).ToString("dd/MM/yyyy");
-                        lb_numero_facture.Text = reader["id_facture"].ToString();
-                        lb_patient.Text = reader["patient"].ToString();
-                        lb_montant.Text = reader["montant"].ToString();
-                        lb_type.Text = reader["type_paiement"].ToString();
+                       
                     }
                     reader.Close();
                 }
@@ -158,19 +172,16 @@ namespace Cepima.MesUserCases
             ChargerPaiement();
         }
 
-        private void bt_print_recu_Click(object sender, EventArgs e)
+        private void bt_cacher_Click(object sender, EventArgs e)
         {
-            // ====================== lancer l'impression de la facture ===========================
-            if (paiementID == 0)
-            {
-                MessageBox.Show(" ID_PAIEMENT vide " +paiementID.ToString());
-                return;
-            }
-            else
-            {
-                MesForms.FormRecu recu = new MesForms.FormRecu(paiementID);
-                recu.ShowDialog();
-            }
+            panel_appercu_recu.Visible = false;
         }
+
+        private void bt_print_Click(object sender, EventArgs e)
+        {
+            MesForms.FormRecu recu = new MesForms.FormRecu(paiementID);
+            recu.ShowDialog();
+        }
+
     }
 }

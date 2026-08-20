@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.customRoundedPanel3 = new CustomRoundedPanel();
@@ -106,7 +106,7 @@
             this.customRoundedPanel1.Location = new System.Drawing.Point(0, 0);
             this.customRoundedPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1200, 100);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(1100, 100);
             this.customRoundedPanel1.TabIndex = 0;
             // 
             // customRoundedPanel2
@@ -124,10 +124,10 @@
             this.customRoundedPanel2.Controls.Add(this.combo_periode);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(404, 8);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(354, 8);
             this.customRoundedPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(794, 87);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(733, 87);
             this.customRoundedPanel2.TabIndex = 20;
             // 
             // customRoundedPanel3
@@ -142,7 +142,7 @@
             this.customRoundedPanel3.Location = new System.Drawing.Point(89, 34);
             this.customRoundedPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(250, 31);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(194, 31);
             this.customRoundedPanel3.TabIndex = 1;
             // 
             // textBox_research
@@ -153,14 +153,14 @@
             this.textBox_research.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_research.Multiline = true;
             this.textBox_research.Name = "textBox_research";
-            this.textBox_research.Size = new System.Drawing.Size(212, 25);
+            this.textBox_research.Size = new System.Drawing.Size(159, 25);
             this.textBox_research.TabIndex = 1;
             this.textBox_research.TextChanged += new System.EventHandler(this.textBox_research_TextChanged);
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox2.Location = new System.Drawing.Point(219, 4);
+            this.pictureBox2.Location = new System.Drawing.Point(164, 4);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(28, 24);
@@ -172,7 +172,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(578, 45);
+            this.label7.Location = new System.Drawing.Point(514, 46);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 17);
@@ -183,7 +183,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(350, 44);
+            this.label4.Location = new System.Drawing.Point(296, 43);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(61, 17);
@@ -217,7 +217,7 @@
             this.combo_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_statut.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_statut.FormattingEnabled = true;
-            this.combo_statut.Location = new System.Drawing.Point(644, 39);
+            this.combo_statut.Location = new System.Drawing.Point(580, 40);
             this.combo_statut.Margin = new System.Windows.Forms.Padding(2);
             this.combo_statut.Name = "combo_statut";
             this.combo_statut.Size = new System.Drawing.Size(138, 25);
@@ -229,7 +229,7 @@
             this.combo_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_periode.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_periode.FormattingEnabled = true;
-            this.combo_periode.Location = new System.Drawing.Point(417, 38);
+            this.combo_periode.Location = new System.Drawing.Point(363, 37);
             this.combo_periode.Margin = new System.Windows.Forms.Padding(2);
             this.combo_periode.Name = "combo_periode";
             this.combo_periode.Size = new System.Drawing.Size(138, 25);
@@ -242,7 +242,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(6, 11);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(79, 78);
+            this.pictureBox1.Size = new System.Drawing.Size(63, 78);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -250,11 +250,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(102, 62);
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(73, 70);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(306, 23);
+            this.label1.Size = new System.Drawing.Size(266, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "GESTION DE PRESENCES ET ABSENCES";
             // 
@@ -270,10 +270,10 @@
             this.customRoundedPanel8.Controls.Add(this.label5);
             this.customRoundedPanel8.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel8.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel8.Location = new System.Drawing.Point(11, 253);
+            this.customRoundedPanel8.Location = new System.Drawing.Point(2, 220);
             this.customRoundedPanel8.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel8.Name = "customRoundedPanel8";
-            this.customRoundedPanel8.Size = new System.Drawing.Size(1176, 317);
+            this.customRoundedPanel8.Size = new System.Drawing.Size(1085, 313);
             this.customRoundedPanel8.TabIndex = 2;
             // 
             // dgvPresences
@@ -281,8 +281,8 @@
             this.dgvPresences.AllowUserToAddRows = false;
             this.dgvPresences.AllowUserToDeleteRows = false;
             this.dgvPresences.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvPresences.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgvPresences.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPresences.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -291,14 +291,14 @@
             this.dgvPresences.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPresences.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvPresences.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPresences.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPresences.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPresences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPresences.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -311,14 +311,14 @@
             this.colSortieNormal,
             this.colSortie,
             this.colStatut});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPresences.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPresences.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvPresences.EnableHeadersVisualStyles = false;
             this.dgvPresences.GridColor = System.Drawing.Color.LightGray;
             this.dgvPresences.Location = new System.Drawing.Point(2, 42);
@@ -326,7 +326,7 @@
             this.dgvPresences.Name = "dgvPresences";
             this.dgvPresences.RowHeadersVisible = false;
             this.dgvPresences.RowTemplate.Height = 24;
-            this.dgvPresences.Size = new System.Drawing.Size(1172, 272);
+            this.dgvPresences.Size = new System.Drawing.Size(1081, 268);
             this.dgvPresences.TabIndex = 2;
             this.dgvPresences.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPresences_CellContentClick);
             // 
@@ -413,17 +413,16 @@
             // 
             // panel_sous_menu
             // 
-            this.panel_sous_menu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel_sous_menu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_sous_menu.AutoScroll = true;
             this.panel_sous_menu.Controls.Add(this.customRoundedPanel7);
             this.panel_sous_menu.Controls.Add(this.customRoundedPanel6);
             this.panel_sous_menu.Controls.Add(this.customRoundedPanel5);
             this.panel_sous_menu.Controls.Add(this.customRoundedPanel4);
-            this.panel_sous_menu.Location = new System.Drawing.Point(11, 105);
+            this.panel_sous_menu.Location = new System.Drawing.Point(4, 105);
             this.panel_sous_menu.Name = "panel_sous_menu";
-            this.panel_sous_menu.Size = new System.Drawing.Size(1173, 132);
+            this.panel_sous_menu.Size = new System.Drawing.Size(1080, 110);
             this.panel_sous_menu.TabIndex = 4;
             // 
             // customRoundedPanel7
@@ -440,10 +439,10 @@
             this.customRoundedPanel7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customRoundedPanel7.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel7.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel7.Location = new System.Drawing.Point(868, 14);
+            this.customRoundedPanel7.Location = new System.Drawing.Point(825, 8);
             this.customRoundedPanel7.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel7.Name = "customRoundedPanel7";
-            this.customRoundedPanel7.Size = new System.Drawing.Size(242, 105);
+            this.customRoundedPanel7.Size = new System.Drawing.Size(242, 91);
             this.customRoundedPanel7.TabIndex = 10;
             // 
             // pictureBox6
@@ -453,7 +452,7 @@
             this.pictureBox6.Location = new System.Drawing.Point(19, 14);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(65, 73);
+            this.pictureBox6.Size = new System.Drawing.Size(65, 68);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
@@ -494,10 +493,10 @@
             this.customRoundedPanel6.Controls.Add(this.lblAbsence);
             this.customRoundedPanel6.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel6.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel6.Location = new System.Drawing.Point(599, 14);
+            this.customRoundedPanel6.Location = new System.Drawing.Point(564, 8);
             this.customRoundedPanel6.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel6.Name = "customRoundedPanel6";
-            this.customRoundedPanel6.Size = new System.Drawing.Size(206, 105);
+            this.customRoundedPanel6.Size = new System.Drawing.Size(206, 91);
             this.customRoundedPanel6.TabIndex = 11;
             // 
             // pictureBox5
@@ -507,7 +506,7 @@
             this.pictureBox5.Location = new System.Drawing.Point(18, 14);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(65, 73);
+            this.pictureBox5.Size = new System.Drawing.Size(65, 68);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox5.TabIndex = 0;
             this.pictureBox5.TabStop = false;
@@ -548,10 +547,10 @@
             this.customRoundedPanel5.Controls.Add(this.lblRetard);
             this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel5.Location = new System.Drawing.Point(330, 14);
+            this.customRoundedPanel5.Location = new System.Drawing.Point(305, 8);
             this.customRoundedPanel5.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel5.Name = "customRoundedPanel5";
-            this.customRoundedPanel5.Size = new System.Drawing.Size(206, 105);
+            this.customRoundedPanel5.Size = new System.Drawing.Size(206, 91);
             this.customRoundedPanel5.TabIndex = 12;
             // 
             // pictureBox4
@@ -561,7 +560,7 @@
             this.pictureBox4.Location = new System.Drawing.Point(11, 14);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(65, 73);
+            this.pictureBox4.Size = new System.Drawing.Size(65, 68);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 0;
             this.pictureBox4.TabStop = false;
@@ -603,10 +602,10 @@
             this.customRoundedPanel4.Controls.Add(this.lblPresence);
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel4.Location = new System.Drawing.Point(61, 14);
+            this.customRoundedPanel4.Location = new System.Drawing.Point(22, 8);
             this.customRoundedPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
-            this.customRoundedPanel4.Size = new System.Drawing.Size(206, 105);
+            this.customRoundedPanel4.Size = new System.Drawing.Size(206, 91);
             this.customRoundedPanel4.TabIndex = 13;
             // 
             // pictureBox3
@@ -616,7 +615,7 @@
             this.pictureBox3.Location = new System.Drawing.Point(10, 14);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(65, 73);
+            this.pictureBox3.Size = new System.Drawing.Size(65, 68);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
@@ -654,7 +653,7 @@
             this.Controls.Add(this.customRoundedPanel8);
             this.Controls.Add(this.customRoundedPanel1);
             this.Name = "User_presences";
-            this.Size = new System.Drawing.Size(1200, 584);
+            this.Size = new System.Drawing.Size(1100, 547);
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);

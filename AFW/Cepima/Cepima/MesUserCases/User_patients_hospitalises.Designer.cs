@@ -149,9 +149,8 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1600, 68);
+            this.panel1.Size = new System.Drawing.Size(1100, 55);
             this.panel1.TabIndex = 0;
             // 
             // label2
@@ -159,10 +158,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(52, 41);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(39, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(639, 21);
+            this.label2.Size = new System.Drawing.Size(505, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "Gérer les patients actuellement hospitalisés,suivez leur état de santé et planifi" +
     "er leur sortie";
@@ -171,10 +169,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 63);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Location = new System.Drawing.Point(0, 51);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1600, 5);
+            this.panel2.Size = new System.Drawing.Size(1100, 4);
             this.panel2.TabIndex = 1;
             // 
             // label1
@@ -182,10 +179,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.label1.Location = new System.Drawing.Point(51, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(38, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(355, 29);
+            this.label1.Size = new System.Drawing.Size(282, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "PATIENTS HOSPITALISES EN COURS";
             // 
@@ -199,10 +195,9 @@
             this.bt_add_suivie.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_add_suivie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_add_suivie.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_add_suivie.Location = new System.Drawing.Point(13, 12);
-            this.bt_add_suivie.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_add_suivie.Location = new System.Drawing.Point(10, 10);
             this.bt_add_suivie.Name = "bt_add_suivie";
-            this.bt_add_suivie.Size = new System.Drawing.Size(176, 34);
+            this.bt_add_suivie.Size = new System.Drawing.Size(132, 28);
             this.bt_add_suivie.TabIndex = 16;
             this.bt_add_suivie.Click += new System.EventHandler(this.bt_add_suivie_Click);
             // 
@@ -216,10 +211,9 @@
             this.bt_sortie_patient.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.bt_sortie_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_sortie_patient.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_sortie_patient.Location = new System.Drawing.Point(935, 12);
-            this.bt_sortie_patient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_sortie_patient.Location = new System.Drawing.Point(701, 10);
             this.bt_sortie_patient.Name = "bt_sortie_patient";
-            this.bt_sortie_patient.Size = new System.Drawing.Size(208, 34);
+            this.bt_sortie_patient.Size = new System.Drawing.Size(156, 28);
             this.bt_sortie_patient.TabIndex = 16;
             this.bt_sortie_patient.Click += new System.EventHandler(this.bt_sortie_patient_Click);
             // 
@@ -233,10 +227,9 @@
             this.bt_load_suivi_.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.bt_load_suivi_.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_load_suivi_.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_load_suivi_.Location = new System.Drawing.Point(332, 11);
-            this.bt_load_suivi_.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bt_load_suivi_.Location = new System.Drawing.Point(249, 9);
             this.bt_load_suivi_.Name = "bt_load_suivi_";
-            this.bt_load_suivi_.Size = new System.Drawing.Size(208, 34);
+            this.bt_load_suivi_.Size = new System.Drawing.Size(156, 28);
             this.bt_load_suivi_.TabIndex = 16;
             // 
             // dataGridViewImageColumn1
@@ -270,10 +263,9 @@
             this.panel3.Controls.Add(this.bt_add_suivie);
             this.panel3.Controls.Add(this.bt_sortie_patient);
             this.panel3.Controls.Add(this.bt_load_suivi_);
-            this.panel3.Location = new System.Drawing.Point(300, 664);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Location = new System.Drawing.Point(225, 503);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1300, 55);
+            this.panel3.Size = new System.Drawing.Size(875, 45);
             this.panel3.TabIndex = 6;
             // 
             // customRoundedPanel1
@@ -289,10 +281,9 @@
             this.customRoundedPanel1.Controls.Add(this.panel6);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(300, 75);
-            this.customRoundedPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(225, 61);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1296, 261);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(872, 212);
             this.customRoundedPanel1.TabIndex = 7;
             // 
             // panel9
@@ -308,10 +299,9 @@
             this.panel9.Controls.Add(this.lb_numero_fiche);
             this.panel9.Controls.Add(this.label13);
             this.panel9.Controls.Add(this.label12);
-            this.panel9.Location = new System.Drawing.Point(944, 5);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel9.Location = new System.Drawing.Point(658, 4);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(346, 251);
+            this.panel9.Size = new System.Drawing.Size(205, 204);
             this.panel9.TabIndex = 52;
             // 
             // panel12
@@ -319,19 +309,17 @@
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(5, 251);
+            this.panel12.Size = new System.Drawing.Size(4, 204);
             this.panel12.TabIndex = 22;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(12, 9);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(9, 7);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(255, 21);
+            this.label11.Size = new System.Drawing.Size(190, 15);
             this.label11.TabIndex = 47;
             this.label11.Text = "INFORMATIONS HOSPITALISATION";
             // 
@@ -341,10 +329,9 @@
             this.lb_statut.AutoSize = true;
             this.lb_statut.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.lb_statut.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb_statut.Location = new System.Drawing.Point(166, 180);
-            this.lb_statut.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_statut.Location = new System.Drawing.Point(96, 146);
             this.lb_statut.Name = "lb_statut";
-            this.lb_statut.Size = new System.Drawing.Size(0, 21);
+            this.lb_statut.Size = new System.Drawing.Size(0, 15);
             this.lb_statut.TabIndex = 52;
             // 
             // lb_motif
@@ -353,10 +340,9 @@
             this.lb_motif.AutoSize = true;
             this.lb_motif.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.lb_motif.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb_motif.Location = new System.Drawing.Point(134, 143);
-            this.lb_motif.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_motif.Location = new System.Drawing.Point(72, 116);
             this.lb_motif.Name = "lb_motif";
-            this.lb_motif.Size = new System.Drawing.Size(0, 21);
+            this.lb_motif.Size = new System.Drawing.Size(0, 15);
             this.lb_motif.TabIndex = 51;
             // 
             // label15
@@ -365,10 +351,9 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label15.Location = new System.Drawing.Point(53, 180);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Location = new System.Drawing.Point(12, 146);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 21);
+            this.label15.Size = new System.Drawing.Size(48, 15);
             this.label15.TabIndex = 50;
             this.label15.Text = "Statut : ";
             // 
@@ -378,10 +363,9 @@
             this.lb_date_hospitalisation.AutoSize = true;
             this.lb_date_hospitalisation.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.lb_date_hospitalisation.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb_date_hospitalisation.Location = new System.Drawing.Point(200, 98);
-            this.lb_date_hospitalisation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_date_hospitalisation.Location = new System.Drawing.Point(122, 80);
             this.lb_date_hospitalisation.Name = "lb_date_hospitalisation";
-            this.lb_date_hospitalisation.Size = new System.Drawing.Size(0, 21);
+            this.lb_date_hospitalisation.Size = new System.Drawing.Size(0, 15);
             this.lb_date_hospitalisation.TabIndex = 49;
             // 
             // label14
@@ -390,10 +374,9 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(50, 144);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Location = new System.Drawing.Point(10, 117);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(61, 21);
+            this.label14.Size = new System.Drawing.Size(45, 15);
             this.label14.TabIndex = 48;
             this.label14.Text = "Motif : ";
             // 
@@ -403,10 +386,9 @@
             this.lb_numero_fiche.AutoSize = true;
             this.lb_numero_fiche.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.lb_numero_fiche.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb_numero_fiche.Location = new System.Drawing.Point(200, 53);
-            this.lb_numero_fiche.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_numero_fiche.Location = new System.Drawing.Point(122, 43);
             this.lb_numero_fiche.Name = "lb_numero_fiche";
-            this.lb_numero_fiche.Size = new System.Drawing.Size(0, 21);
+            this.lb_numero_fiche.Size = new System.Drawing.Size(0, 15);
             this.lb_numero_fiche.TabIndex = 47;
             // 
             // label13
@@ -415,10 +397,9 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(53, 98);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(12, 80);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(112, 21);
+            this.label13.Size = new System.Drawing.Size(89, 15);
             this.label13.TabIndex = 46;
             this.label13.Text = "Hospitalisé le :";
             // 
@@ -428,10 +409,9 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label12.Location = new System.Drawing.Point(54, 53);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(12, 43);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(121, 21);
+            this.label12.Size = new System.Drawing.Size(91, 15);
             this.label12.TabIndex = 45;
             this.label12.Text = "Numéro fiche   :";
             // 
@@ -447,10 +427,9 @@
             this.panel8.Controls.Add(this.label26);
             this.panel8.Controls.Add(this.label19);
             this.panel8.Controls.Add(this.label18);
-            this.panel8.Location = new System.Drawing.Point(679, 5);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel8.Location = new System.Drawing.Point(459, 4);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(257, 251);
+            this.panel8.Size = new System.Drawing.Size(193, 204);
             this.panel8.TabIndex = 51;
             // 
             // panel11
@@ -458,69 +437,62 @@
             this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(5, 251);
+            this.panel11.Size = new System.Drawing.Size(4, 204);
             this.panel11.TabIndex = 22;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(13, 9);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(10, 7);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(240, 21);
+            this.label7.Size = new System.Drawing.Size(178, 15);
             this.label7.TabIndex = 47;
             this.label7.Text = "INFORMATIONS PRESCRIPTIONS";
             // 
             // lb_id_prescription
             // 
             this.lb_id_prescription.AutoSize = true;
-            this.lb_id_prescription.Location = new System.Drawing.Point(29, 78);
-            this.lb_id_prescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_id_prescription.Location = new System.Drawing.Point(22, 63);
             this.lb_id_prescription.Name = "lb_id_prescription";
-            this.lb_id_prescription.Size = new System.Drawing.Size(0, 17);
+            this.lb_id_prescription.Size = new System.Drawing.Size(0, 13);
             this.lb_id_prescription.TabIndex = 53;
             // 
             // lb_statut_prescription
             // 
             this.lb_statut_prescription.AutoSize = true;
             this.lb_statut_prescription.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_statut_prescription.Location = new System.Drawing.Point(111, 194);
-            this.lb_statut_prescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_statut_prescription.Location = new System.Drawing.Point(83, 158);
             this.lb_statut_prescription.Name = "lb_statut_prescription";
-            this.lb_statut_prescription.Size = new System.Drawing.Size(0, 18);
+            this.lb_statut_prescription.Size = new System.Drawing.Size(0, 14);
             this.lb_statut_prescription.TabIndex = 52;
             // 
             // lb_nom_medecin
             // 
             this.lb_nom_medecin.AutoSize = true;
             this.lb_nom_medecin.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_nom_medecin.Location = new System.Drawing.Point(111, 156);
-            this.lb_nom_medecin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_nom_medecin.Location = new System.Drawing.Point(83, 127);
             this.lb_nom_medecin.Name = "lb_nom_medecin";
-            this.lb_nom_medecin.Size = new System.Drawing.Size(0, 18);
+            this.lb_nom_medecin.Size = new System.Drawing.Size(0, 14);
             this.lb_nom_medecin.TabIndex = 52;
             // 
             // lb_date_prescription
             // 
             this.lb_date_prescription.AutoSize = true;
             this.lb_date_prescription.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_date_prescription.Location = new System.Drawing.Point(164, 116);
-            this.lb_date_prescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_date_prescription.Location = new System.Drawing.Point(123, 94);
             this.lb_date_prescription.Name = "lb_date_prescription";
-            this.lb_date_prescription.Size = new System.Drawing.Size(0, 18);
+            this.lb_date_prescription.Size = new System.Drawing.Size(0, 14);
             this.lb_date_prescription.TabIndex = 51;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(16, 193);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Location = new System.Drawing.Point(12, 157);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(66, 21);
+            this.label26.Size = new System.Drawing.Size(48, 15);
             this.label26.TabIndex = 49;
             this.label26.Text = "Statut : ";
             // 
@@ -528,10 +500,9 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(16, 156);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Location = new System.Drawing.Point(12, 127);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(83, 21);
+            this.label19.Size = new System.Drawing.Size(63, 15);
             this.label19.TabIndex = 49;
             this.label19.Text = "Medecin : ";
             // 
@@ -539,10 +510,9 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(16, 117);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Location = new System.Drawing.Point(12, 95);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(142, 21);
+            this.label18.Size = new System.Drawing.Size(111, 15);
             this.label18.TabIndex = 50;
             this.label18.Text = "Date préscription : ";
             // 
@@ -561,10 +531,9 @@
             this.panel7.Controls.Add(this.label21);
             this.panel7.Controls.Add(this.label20);
             this.panel7.Controls.Add(this.label17);
-            this.panel7.Location = new System.Drawing.Point(379, 5);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel7.Location = new System.Drawing.Point(234, 4);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(292, 251);
+            this.panel7.Size = new System.Drawing.Size(219, 204);
             this.panel7.TabIndex = 50;
             // 
             // panel10
@@ -572,19 +541,17 @@
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.panel10.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(5, 251);
+            this.panel10.Size = new System.Drawing.Size(4, 204);
             this.panel10.TabIndex = 22;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(19, 9);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(14, 7);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(266, 21);
+            this.label6.Size = new System.Drawing.Size(197, 15);
             this.label6.TabIndex = 47;
             this.label6.Text = "INFORMATIONS SEJOUR(CHAMBRE)";
             // 
@@ -592,10 +559,9 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(24, 223);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Location = new System.Drawing.Point(18, 181);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(124, 21);
+            this.label24.Size = new System.Drawing.Size(100, 15);
             this.label24.TabIndex = 46;
             this.label24.Text = "Tarif journalier : ";
             // 
@@ -603,20 +569,18 @@
             // 
             this.lb_tarif.AutoSize = true;
             this.lb_tarif.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_tarif.Location = new System.Drawing.Point(188, 224);
-            this.lb_tarif.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_tarif.Location = new System.Drawing.Point(141, 182);
             this.lb_tarif.Name = "lb_tarif";
-            this.lb_tarif.Size = new System.Drawing.Size(0, 18);
+            this.lb_tarif.Size = new System.Drawing.Size(0, 14);
             this.lb_tarif.TabIndex = 52;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(20, 185);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Location = new System.Drawing.Point(15, 150);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(140, 21);
+            this.label22.Size = new System.Drawing.Size(107, 15);
             this.label22.TabIndex = 46;
             this.label22.Text = "Nombre de jours : ";
             // 
@@ -624,50 +588,45 @@
             // 
             this.lb_nombre_jours.AutoSize = true;
             this.lb_nombre_jours.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_nombre_jours.Location = new System.Drawing.Point(184, 186);
-            this.lb_nombre_jours.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_nombre_jours.Location = new System.Drawing.Point(138, 151);
             this.lb_nombre_jours.Name = "lb_nombre_jours";
-            this.lb_nombre_jours.Size = new System.Drawing.Size(0, 18);
+            this.lb_nombre_jours.Size = new System.Drawing.Size(0, 14);
             this.lb_nombre_jours.TabIndex = 52;
             // 
             // lb_date_entree
             // 
             this.lb_date_entree.AutoSize = true;
             this.lb_date_entree.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_date_entree.Location = new System.Drawing.Point(139, 143);
-            this.lb_date_entree.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_date_entree.Location = new System.Drawing.Point(104, 116);
             this.lb_date_entree.Name = "lb_date_entree";
-            this.lb_date_entree.Size = new System.Drawing.Size(0, 18);
+            this.lb_date_entree.Size = new System.Drawing.Size(0, 14);
             this.lb_date_entree.TabIndex = 53;
             // 
             // lb_type_chambre
             // 
             this.lb_type_chambre.AutoSize = true;
             this.lb_type_chambre.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_type_chambre.Location = new System.Drawing.Point(156, 97);
-            this.lb_type_chambre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_type_chambre.Location = new System.Drawing.Point(117, 79);
             this.lb_type_chambre.Name = "lb_type_chambre";
-            this.lb_type_chambre.Size = new System.Drawing.Size(0, 18);
+            this.lb_type_chambre.Size = new System.Drawing.Size(0, 14);
             this.lb_type_chambre.TabIndex = 51;
             // 
             // lb_chambre_actuelle
             // 
             this.lb_chambre_actuelle.AutoSize = true;
             this.lb_chambre_actuelle.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_chambre_actuelle.Location = new System.Drawing.Point(169, 48);
-            this.lb_chambre_actuelle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_chambre_actuelle.Location = new System.Drawing.Point(127, 39);
             this.lb_chambre_actuelle.Name = "lb_chambre_actuelle";
-            this.lb_chambre_actuelle.Size = new System.Drawing.Size(0, 18);
+            this.lb_chambre_actuelle.Size = new System.Drawing.Size(0, 14);
             this.lb_chambre_actuelle.TabIndex = 50;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(20, 142);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(15, 115);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(104, 21);
+            this.label21.Size = new System.Drawing.Size(78, 15);
             this.label21.TabIndex = 49;
             this.label21.Text = "Date entrée : ";
             // 
@@ -675,10 +634,9 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(20, 96);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Location = new System.Drawing.Point(15, 78);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(120, 21);
+            this.label20.Size = new System.Drawing.Size(91, 15);
             this.label20.TabIndex = 48;
             this.label20.Text = "Type chambre : ";
             // 
@@ -686,10 +644,9 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(20, 49);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Location = new System.Drawing.Point(15, 40);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(144, 21);
+            this.label17.Size = new System.Drawing.Size(112, 15);
             this.label17.TabIndex = 47;
             this.label17.Text = "Chambre actuelle : ";
             // 
@@ -708,20 +665,18 @@
             this.panel6.Controls.Add(this.lb_nom);
             this.panel6.Controls.Add(this.label8);
             this.panel6.Controls.Add(this.avatarControl1);
-            this.panel6.Location = new System.Drawing.Point(13, 9);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Location = new System.Drawing.Point(10, 7);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(358, 252);
+            this.panel6.Size = new System.Drawing.Size(218, 205);
             this.panel6.TabIndex = 49;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 10);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(12, 8);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(235, 21);
+            this.label5.Size = new System.Drawing.Size(178, 15);
             this.label5.TabIndex = 47;
             this.label5.Text = "INFORMATIONS PERSONNELLES";
             // 
@@ -729,30 +684,27 @@
             // 
             this.lb_adresse.AutoSize = true;
             this.lb_adresse.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.lb_adresse.Location = new System.Drawing.Point(144, 224);
-            this.lb_adresse.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_adresse.Location = new System.Drawing.Point(108, 182);
             this.lb_adresse.Name = "lb_adresse";
-            this.lb_adresse.Size = new System.Drawing.Size(0, 21);
+            this.lb_adresse.Size = new System.Drawing.Size(0, 15);
             this.lb_adresse.TabIndex = 46;
             // 
             // lb_phone
             // 
             this.lb_phone.AutoSize = true;
             this.lb_phone.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.lb_phone.Location = new System.Drawing.Point(143, 194);
-            this.lb_phone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_phone.Location = new System.Drawing.Point(107, 158);
             this.lb_phone.Name = "lb_phone";
-            this.lb_phone.Size = new System.Drawing.Size(0, 21);
+            this.lb_phone.Size = new System.Drawing.Size(0, 15);
             this.lb_phone.TabIndex = 46;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.label16.Location = new System.Drawing.Point(35, 224);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Location = new System.Drawing.Point(26, 182);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(78, 21);
+            this.label16.Size = new System.Drawing.Size(59, 15);
             this.label16.TabIndex = 45;
             this.label16.Text = "Adresse  :";
             // 
@@ -760,10 +712,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.label10.Location = new System.Drawing.Point(33, 194);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(25, 158);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 21);
+            this.label10.Size = new System.Drawing.Size(71, 15);
             this.label10.TabIndex = 45;
             this.label10.Text = "Téléphone  :";
             // 
@@ -771,10 +722,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.label9.Location = new System.Drawing.Point(33, 165);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(25, 134);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 21);
+            this.label9.Size = new System.Drawing.Size(72, 15);
             this.label9.TabIndex = 44;
             this.label9.Text = "Genre          :";
             // 
@@ -782,20 +732,18 @@
             // 
             this.lb_genre.AutoSize = true;
             this.lb_genre.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.lb_genre.Location = new System.Drawing.Point(145, 165);
-            this.lb_genre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_genre.Location = new System.Drawing.Point(109, 134);
             this.lb_genre.Name = "lb_genre";
-            this.lb_genre.Size = new System.Drawing.Size(0, 21);
+            this.lb_genre.Size = new System.Drawing.Size(0, 15);
             this.lb_genre.TabIndex = 43;
             // 
             // lb_prenom
             // 
             this.lb_prenom.AutoSize = true;
             this.lb_prenom.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.lb_prenom.Location = new System.Drawing.Point(159, 134);
-            this.lb_prenom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_prenom.Location = new System.Drawing.Point(119, 109);
             this.lb_prenom.Name = "lb_prenom";
-            this.lb_prenom.Size = new System.Drawing.Size(65, 21);
+            this.lb_prenom.Size = new System.Drawing.Size(49, 15);
             this.lb_prenom.TabIndex = 42;
             this.lb_prenom.Text = "Prenom";
             // 
@@ -803,10 +751,9 @@
             // 
             this.lb_postnom.AutoSize = true;
             this.lb_postnom.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.lb_postnom.Location = new System.Drawing.Point(159, 102);
-            this.lb_postnom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_postnom.Location = new System.Drawing.Point(119, 83);
             this.lb_postnom.Name = "lb_postnom";
-            this.lb_postnom.Size = new System.Drawing.Size(73, 21);
+            this.lb_postnom.Size = new System.Drawing.Size(55, 15);
             this.lb_postnom.TabIndex = 41;
             this.lb_postnom.Text = "Postnom";
             // 
@@ -814,10 +761,9 @@
             // 
             this.lb_nom.AutoSize = true;
             this.lb_nom.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.lb_nom.Location = new System.Drawing.Point(159, 74);
-            this.lb_nom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_nom.Location = new System.Drawing.Point(119, 60);
             this.lb_nom.Name = "lb_nom";
-            this.lb_nom.Size = new System.Drawing.Size(44, 21);
+            this.lb_nom.Size = new System.Drawing.Size(32, 15);
             this.lb_nom.TabIndex = 40;
             this.lb_nom.Text = "Nom";
             // 
@@ -825,10 +771,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.label8.Location = new System.Drawing.Point(155, 43);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(116, 35);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(113, 21);
+            this.label8.Size = new System.Drawing.Size(85, 15);
             this.label8.TabIndex = 39;
             this.label8.Text = "Nom complet  ";
             // 
@@ -838,10 +783,9 @@
             this.avatarControl1.BackColor = System.Drawing.Color.Transparent;
             this.avatarControl1.BorderColor = System.Drawing.Color.Transparent;
             this.avatarControl1.BorderSize = 2;
-            this.avatarControl1.Location = new System.Drawing.Point(4, 41);
-            this.avatarControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.avatarControl1.Location = new System.Drawing.Point(3, 33);
             this.avatarControl1.Name = "avatarControl1";
-            this.avatarControl1.Size = new System.Drawing.Size(113, 106);
+            this.avatarControl1.Size = new System.Drawing.Size(85, 86);
             this.avatarControl1.TabIndex = 38;
             // 
             // customRoundedPanel2
@@ -857,10 +801,9 @@
             this.customRoundedPanel2.Controls.Add(this.customRoundedPanel4);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(300, 338);
-            this.customRoundedPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(225, 275);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(1296, 324);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(872, 226);
             this.customRoundedPanel2.TabIndex = 8;
             // 
             // panel13
@@ -871,20 +814,18 @@
             this.panel13.Controls.Add(this.label23);
             this.panel13.Controls.Add(this.cbx_afficher);
             this.panel13.Controls.Add(this.label4);
-            this.panel13.Location = new System.Drawing.Point(5, 6);
-            this.panel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel13.Location = new System.Drawing.Point(4, 5);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1285, 37);
+            this.panel13.Size = new System.Drawing.Size(864, 30);
             this.panel13.TabIndex = 24;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(829, 11);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Location = new System.Drawing.Point(622, 9);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(231, 21);
+            this.label25.Size = new System.Drawing.Size(169, 15);
             this.label25.TabIndex = 47;
             this.label25.Text = "HISTORIQUE DE PRESCRIPTION";
             // 
@@ -892,10 +833,9 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(373, 11);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Location = new System.Drawing.Point(280, 9);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(236, 21);
+            this.label23.Size = new System.Drawing.Size(175, 15);
             this.label23.TabIndex = 47;
             this.label23.Text = "HISTORIQUE DE CONSULTATION";
             // 
@@ -904,10 +844,9 @@
             this.cbx_afficher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_afficher.Font = new System.Drawing.Font("Calibri", 10F);
             this.cbx_afficher.FormattingEnabled = true;
-            this.cbx_afficher.Location = new System.Drawing.Point(104, 5);
-            this.cbx_afficher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbx_afficher.Location = new System.Drawing.Point(78, 4);
             this.cbx_afficher.Name = "cbx_afficher";
-            this.cbx_afficher.Size = new System.Drawing.Size(245, 29);
+            this.cbx_afficher.Size = new System.Drawing.Size(185, 23);
             this.cbx_afficher.TabIndex = 20;
             // 
             // label4
@@ -916,10 +855,9 @@
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.label4.Font = new System.Drawing.Font("Calibri", 9.75F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(15, 15);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(11, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 21);
+            this.label4.Size = new System.Drawing.Size(61, 15);
             this.label4.TabIndex = 21;
             this.label4.Text = "Période  : ";
             // 
@@ -933,10 +871,9 @@
             this.customRoundedPanel5.Controls.Add(this.dgv_prescription);
             this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel5.Location = new System.Drawing.Point(798, 50);
-            this.customRoundedPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customRoundedPanel5.Location = new System.Drawing.Point(498, 41);
             this.customRoundedPanel5.Name = "customRoundedPanel5";
-            this.customRoundedPanel5.Size = new System.Drawing.Size(494, 266);
+            this.customRoundedPanel5.Size = new System.Drawing.Size(370, 179);
             this.customRoundedPanel5.TabIndex = 24;
             // 
             // dgv_prescription
@@ -978,11 +915,10 @@
             this.dgv_prescription.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_prescription.EnableHeadersVisualStyles = false;
             this.dgv_prescription.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_prescription.Location = new System.Drawing.Point(4, 0);
-            this.dgv_prescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv_prescription.Location = new System.Drawing.Point(3, 0);
             this.dgv_prescription.Name = "dgv_prescription";
             this.dgv_prescription.RowHeadersVisible = false;
-            this.dgv_prescription.Size = new System.Drawing.Size(482, 266);
+            this.dgv_prescription.Size = new System.Drawing.Size(362, 179);
             this.dgv_prescription.TabIndex = 23;
             // 
             // date
@@ -1024,10 +960,9 @@
             this.customRoundedPanel4.Controls.Add(this.dgv_consultation);
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel4.Location = new System.Drawing.Point(4, 50);
-            this.customRoundedPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customRoundedPanel4.Location = new System.Drawing.Point(3, 41);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
-            this.customRoundedPanel4.Size = new System.Drawing.Size(786, 266);
+            this.customRoundedPanel4.Size = new System.Drawing.Size(490, 179);
             this.customRoundedPanel4.TabIndex = 23;
             // 
             // dgv_consultation
@@ -1070,10 +1005,9 @@
             this.dgv_consultation.EnableHeadersVisualStyles = false;
             this.dgv_consultation.GridColor = System.Drawing.Color.LightGray;
             this.dgv_consultation.Location = new System.Drawing.Point(1, 0);
-            this.dgv_consultation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv_consultation.Name = "dgv_consultation";
             this.dgv_consultation.RowHeadersVisible = false;
-            this.dgv_consultation.Size = new System.Drawing.Size(781, 266);
+            this.dgv_consultation.Size = new System.Drawing.Size(486, 179);
             this.dgv_consultation.TabIndex = 23;
             // 
             // colDate
@@ -1114,10 +1048,9 @@
             this.customRoundedPanel3.Controls.Add(this.panel4);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(4, 75);
-            this.customRoundedPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(3, 61);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(288, 644);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(216, 486);
             this.customRoundedPanel3.TabIndex = 9;
             // 
             // panel4
@@ -1131,10 +1064,9 @@
             this.panel4.Controls.Add(this.pictureBox1);
             this.panel4.Controls.Add(this.textBox1);
             this.panel4.Controls.Add(this.tb_tarif);
-            this.panel4.Location = new System.Drawing.Point(4, 12);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Location = new System.Drawing.Point(3, 10);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(280, 627);
+            this.panel4.Size = new System.Drawing.Size(210, 472);
             this.panel4.TabIndex = 1;
             // 
             // panel5
@@ -1142,10 +1074,9 @@
             this.panel5.Controls.Add(this.lb_nombre_patient);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 583);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Location = new System.Drawing.Point(0, 436);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(280, 44);
+            this.panel5.Size = new System.Drawing.Size(210, 36);
             this.panel5.TabIndex = 17;
             // 
             // lb_nombre_patient
@@ -1153,10 +1084,9 @@
             this.lb_nombre_patient.AutoSize = true;
             this.lb_nombre_patient.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_nombre_patient.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lb_nombre_patient.Location = new System.Drawing.Point(137, 11);
-            this.lb_nombre_patient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_nombre_patient.Location = new System.Drawing.Point(103, 9);
             this.lb_nombre_patient.Name = "lb_nombre_patient";
-            this.lb_nombre_patient.Size = new System.Drawing.Size(19, 21);
+            this.lb_nombre_patient.Size = new System.Drawing.Size(14, 15);
             this.lb_nombre_patient.TabIndex = 0;
             this.lb_nombre_patient.Text = "0";
             // 
@@ -1164,10 +1094,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(16, 11);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(12, 9);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 21);
+            this.label3.Size = new System.Drawing.Size(84, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "Total patient : ";
             // 
@@ -1179,31 +1108,28 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.lb_search);
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(4, 55);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 45);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(272, 520);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(204, 385);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // lb_search
             // 
             this.lb_search.AutoSize = true;
             this.lb_search.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_search.Location = new System.Drawing.Point(4, 0);
-            this.lb_search.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lb_search.Location = new System.Drawing.Point(3, 0);
             this.lb_search.Name = "lb_search";
-            this.lb_search.Padding = new System.Windows.Forms.Padding(13, 12, 0, 0);
-            this.lb_search.Size = new System.Drawing.Size(13, 33);
+            this.lb_search.Padding = new System.Windows.Forms.Padding(10, 10, 0, 0);
+            this.lb_search.Size = new System.Drawing.Size(10, 25);
             this.lb_search.TabIndex = 1;
             this.lb_search.Visible = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(244, 17);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(183, 14);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
@@ -1211,11 +1137,10 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(15, 17);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(11, 14);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 27);
+            this.textBox1.Size = new System.Drawing.Size(172, 22);
             this.textBox1.TabIndex = 15;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -1226,19 +1151,18 @@
             this.tb_tarif.BorderSize = 0;
             this.tb_tarif.Enabled = false;
             this.tb_tarif.FocusBorderColor = System.Drawing.Color.Orange;
-            this.tb_tarif.Location = new System.Drawing.Point(11, 14);
-            this.tb_tarif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_tarif.Location = new System.Drawing.Point(8, 11);
             this.tb_tarif.Name = "tb_tarif";
             this.tb_tarif.PasswordChar = '\0';
             this.tb_tarif.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_tarif.PlaceholderText = "";
-            this.tb_tarif.Size = new System.Drawing.Size(265, 34);
+            this.tb_tarif.Size = new System.Drawing.Size(199, 28);
             this.tb_tarif.TabIndex = 16;
             this.tb_tarif.UseSystemPasswordChar = false;
             // 
             // User_patients_hospitalises
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.customRoundedPanel3);
@@ -1247,9 +1171,8 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "User_patients_hospitalises";
-            this.Size = new System.Drawing.Size(1600, 719);
+            this.Size = new System.Drawing.Size(1100, 547);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);

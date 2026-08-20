@@ -215,6 +215,7 @@ namespace Cepima.MesClasses
                     cmd.Parameters.AddWithValue("@motif",motif);
                     cmd.Parameters.AddWithValue("@diagnostic",diagnostic);
                 }
+
                 MessageBox.Show("Consultation crée avec succès !!");
             }
         }
@@ -243,7 +244,7 @@ namespace Cepima.MesClasses
         public static void MettreAJourPrestation(int idFacture, string description, int? quantite, decimal? prixUnitaire, decimal? montant, MySqlConnection con, MySqlTransaction tr)
         {
 
-            string query = @"UPDATE detail_facture SET quantite = @qte,prix_unitaire = @prix,montant = @montant WHERE id_facture = @facture AND description = @description";
+            string query = "UPDATE detail_facture SET quantite = @qte,prix_unitaire = @prix,montant = @montant WHERE id_facture = @facture AND description = @description";
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
                 cmd.Parameters.AddWithValue("@facture", idFacture);

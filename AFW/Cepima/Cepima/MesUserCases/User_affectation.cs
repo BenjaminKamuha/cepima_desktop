@@ -306,7 +306,7 @@ namespace Cepima.MesUserCases
                             string statut = reader["statut"].ToString();
                             string service = reader["nom_service"].ToString();
                             CustomRoundedPanel panPatient = new CustomRoundedPanel();
-                            panPatient.Size = new Size(188, 190);
+                            panPatient.Size = new Size(190, 190);
                             panPatient.BorderRadius = 10;
                             panPatient.BorderSize = 1;
                             panPatient.BorderColor = Color.FromArgb(224,224,224);
@@ -347,7 +347,7 @@ namespace Cepima.MesUserCases
                                 avatar.BorderColor = Color.FromArgb(39, 174, 96);
                             }
                             
-                            MesClasses.ManagerClasse.AddControl(panel_display_chambre,panPatient,3,8);
+                            MesClasses.ManagerClasse.AddControl(panel_display_chambre,panPatient,10,8);
 
                             panPatient.Controls.Add(avatar);
 
@@ -461,7 +461,7 @@ namespace Cepima.MesUserCases
             {
                 MessageBox.Show("Erreur : "+ex.Message);
             }
-           
+
         }
     }
 }
