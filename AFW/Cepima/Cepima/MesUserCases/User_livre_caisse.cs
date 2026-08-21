@@ -13,179 +13,131 @@ namespace Cepima.MesUserCases
 {
     public partial class User_livre_caisse : UserControl
     {
-        string typeOperation = "Tous";
+
         public User_livre_caisse()
         {
             InitializeComponent();
-            Selectionner(lbl_tous);
-            LoadResumeLivreCaisse();
+            InitCBXPeriode();
+            LoadLivreCaisse();
+            AfficherDernierSolde();
+            cbxPeriode.SelectedIndexChanged += cbxPeriode_SelectedIndexChanged;
+        }
+
+        void cbxPeriode_SelectedIndexChanged(object sender, EventArgs e)
+        {
             LoadLivreCaisse();
         }
-        // ================================ METTRE EN MOUVEMENT LE PANEL ========================================
-        private void MoveBar(Label lbl)
-        {
-            panelSelection.Width = lbl.Width;
-            panelSelection.Left = lbl.Left;
-            panelSelection.Top = lbl.Bottom + 17;
-        }
-
-        private void Selectionner(Label actif)
-        {
-            lbl_tous.ForeColor = Color.Black;
-            lbl_depenses.ForeColor = Color.Black;
-            lbl_entrees.ForeColor = Color.Black;
-            actif.ForeColor = Color.FromArgb(33,99,219);
-            MoveBar(actif);
-        }
-
-        private void lbl_tous_Click(object sender, EventArgs e)
-        {
-            typeOperation = "Tous";
-            Selectionner(lbl_tous);
-            LoadResumeLivreCaisse();
-            LoadLivreCaisse();
-        }
-
-        private void lbl_entrees_Click(object sender, EventArgs e)
-        {
-            typeOperation = "Entrée";
-            Selectionner(lbl_entrees);
-            LoadResumeLivreCaisse();
-            LoadLivreCaisse();
-        }
-
-        private void lbl_depenses_Click(object sender, EventArgs e)
-        {
-            typeOperation = "Sortie";
-            Selectionner(lbl_depenses);
-            LoadResumeLivreCaisse();
-            LoadLivreCaisse();
-        }
-
+       
         // ========================================== CHARGER TOUTES LES OPERATIONS (LIVRE DE CAISSE ) ======================================
         private void LoadLivreCaisse()
         {
-            dgv_livre.Rows.Clear();
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            try
             {
-                try
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                 {
-                    string query = "";
-
-                    // ============================= TOUTES LES OPERATIONS ==============================
-                    if (typeOperation == "Tous")
+                    string condition = "";
+                    switch (cbxPeriode.Text)
                     {
-                        query = "SELECT pa.date_paiement AS date_operation,'Entrée' AS type_operation,pa.numero_recu AS reference,CONCAT('Paiement facture N°',f.id_facture) AS designation,pa.mode_paiement,pa.montant,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS responsable FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON f.id_patient=p.id_patient UNION ALL SELECT d.date_depense,'Sortie',d.id_depense,d.motif,'-',d.montant,d.responsable FROM depenses d ORDER BY date_operation DESC";
-                    }
+                        case "Aujourd'hui":
+                            condition = "WHERE DATE(date) = CURDATE()";
+                            break;
+                        case "Hier":
+                            condition = "WHERE DATE(date) = CURDATE() - INTERVAL 1 DAY";
+                            break;
+                        case "Cette semaine":
+                            condition = "WHERE YEARWEEK(date,1) = YEARWEEK(CURDATE(),1)";
+                            break;
+                        case "Ce mois":
+                            condition = "WHERE YEAR(date) = YEAR(CURDATE()) AND MONTH(date) = MONTH(CURDATE())";
+                            break;
+                        case "Cette année":
+                            condition = "WHERE YEAR(date) = YEAR(CURDATE())";
+                            break;
+                        case "Toutes les opérations":
+                        default:
+                            condition = "";
+                            break;
+                    } 
 
-                    // ================================================ ENTREES =====================================
-                    else if (typeOperation == "Entrée")
-                    {
-                        query = "SELECT pa.date_paiement AS date_operation,'Entrée' AS type_operation,pa.numero_recu AS reference,CONCAT('Paiement facture N° ',f.id_facture) AS designation,pa.mode_paiement,pa.montant,CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS responsable FROM paiement pa JOIN facture f ON pa.id_facture = f.id_facture JOIN patients p ON p.id_patient = f.id_patient ORDER BY date_operation DESC";
-                    }
-                    // =========================================== DEPENSES ======================================
-                    else
-                    {
-                        query = "SELECT d.date_depense AS date_operation,'Sortie' AS type_operation,d.id_depense AS reference,d.motif AS designation,'-' AS mode_paiement,d.montant,d.responsable FROM depenses d ORDER BY date_operation";
-                    }
+                    string query = "SELECT date AS Date,recette AS Recette,depasse AS 'Depasse', solde AS Solde,provenance AS Reference,description AS Description FROM livre_caisse WHERE 1 = 1 ORDER BY date DESC";
 
+                    DataTable dt = new DataTable();
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
                         {
-                            while (reader.Read())
-                            {
-                                int row = dgv_livre.Rows.Add();
-                                dgv_livre.Rows[row].Cells["colDate"].Value = Convert.ToDateTime(reader["date_operation"]).ToString("dd/MM/yyyy");
-                                dgv_livre.Rows[row].Cells["colType"].Value = reader["type_operation"];
-                                dgv_livre.Rows[row].Cells["colReference"].Value = reader["reference"];
-                                dgv_livre.Rows[row].Cells["colDesignation"].Value = reader["designation"];
-                                dgv_livre.Rows[row].Cells["colMode"].Value = reader["mode_paiement"];
-                                dgv_livre.Rows[row].Cells["colMontant"].Value = Convert.ToDecimal(reader["montant"]);
-                                dgv_livre.Rows[row].Cells["colResponsable"].Value = reader["responsable"];
-                            }
-                            reader.Close();
+                            da.Fill(dt);
                         }
+
+                        // Afficher les données
+
+                        dgv_caisse.DataSource = dt;
+
+                        //calcul des totaux
+                        decimal totalEntree = 0;
+                        decimal totalDepasse = 0;
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            if (row["Recette"] != DBNull.Value)
+                            {
+                                totalEntree += Convert.ToDecimal(row["Recette"]);
+                            }
+
+                            if (row["Dépasse"] != DBNull.Value)
+                            {
+                                totalDepasse += Convert.ToDecimal(row["Dépasse"]);
+                            }
+                        }
+                        decimal solde = totalEntree - totalDepasse;
+
+                        //Afficher dans les panels via les labels
+                        lb_total_entree.Text = totalEntree.ToString("N2") + "$";
+                        lb_total_depense.Text = totalDepasse.ToString("N2") + "$";
+                        lb_solde_jour.Text = solde.ToString("N2") + "$";
+                        lb_nombre_operation.Text = dt.Rows.Count.ToString();
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message);
-                }
             }
-        }
-        // ==================================================== CHARGER LE RESUME DU LIVRE DE CAISSE =========================
-        private void LoadResumeLivreCaisse()
-        {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            catch (Exception ex)
             {
-                try
-                {
-                    MySqlTransaction tr = con.BeginTransaction();
-
-                    decimal encaisse = 0;
-                    decimal depense = 0;
-                    decimal operation = 0;
-
-                    // ================================= TOTAL PAIEMENTS ================================
-                    string queryPaiement = "SELECT COUNT(*) nb, IFNULL(SUM(montant),0) total FROM paiement WHERE DATE (date_paiement) BETWEEN @debut AND @fin";
-                    using (MySqlCommand cmd = new MySqlCommand(queryPaiement, con, tr))
-                    {
-                        cmd.Parameters.AddWithValue("@debut",dt_debut.Value.ToString("yyyy-MM-dd"));
-                        cmd.Parameters.AddWithValue("@fin",dt_fin.Value.ToString("yyyy-MM-dd"));
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                encaisse = Convert.ToDecimal(reader["total"]);
-                                operation = Convert.ToInt32(reader["nb"]);
-                            }
-                            reader.Close();
-                        }
-                    }
-
-                    // ===================================== DEPENSES =============================================
-                    string queryDepense = "SELECT COUNT(*) nb, IFNULL(SUM(montant),0) total FROM depenses WHERE DATE(date_depense) BETWEEN @debut AND @fin";
-                    using (MySqlCommand cmd = new MySqlCommand(queryDepense, con, tr))
-                    {
-                        cmd.Parameters.AddWithValue("@debut",dt_debut.Value.ToString("yyyy-MM-dd"));
-                        cmd.Parameters.AddWithValue("@fin",dt_fin.Value.ToString("yyyy-MM-dd"));
-
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                depense = Convert.ToDecimal(reader["total"]);
-                                operation += Convert.ToInt32(reader["nb"]);
-                            }
-                            reader.Close();
-                        }
-                    }
-
-                    // =================================== CALCUL DU SOLDE  ==========================================
-                    decimal solde = encaisse - depense;
-                    lb_solde_jour.Text = solde.ToString() + " $";
-                    lb_total_depense.Text = depense.ToString()+" $";
-                    lb_total_entree.Text = encaisse.ToString() + " $";
-                    lb_nombre_operation.Text = operation.ToString();
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Erreur : "+ex.Message);
-                }
+                MessageBox.Show("Erreur : " +ex.Message);
             }
         }
 
-        private void dt_debut_ValueChanged(object sender, EventArgs e)
+        private void InitCBXPeriode()
         {
-            LoadResumeLivreCaisse();
+            cbxPeriode.Items.Clear();
+            cbxPeriode.Items.Add("Toutes les opérations");
+            cbxPeriode.Items.Add("Aujourd'hui");
+            cbxPeriode.Items.Add("Hier");
+            cbxPeriode.Items.Add("Cette semaine");
+            cbxPeriode.Items.Add("Ce mois");
+            cbxPeriode.Items.Add("Cette année");
+
+            cbxPeriode.SelectedIndex = 0;
         }
 
-        private void dt_fin_ValueChanged(object sender, EventArgs e)
+        private void AfficherDernierSolde()
         {
-            LoadResumeLivreCaisse();
+            try
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    string query = "SELECT solde FROM livre_caisse WHERE DATE(date) < CURDATE() ORDER BY date DESC LIMIT 1";
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        object result = cmd.ExecuteScalar();
+                        decimal dernierSolde = Convert.ToDecimal(result);
+                        lb_dernier_solde.Text = dernierSolde.ToString("N2") + "$";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur lors du calcul du dernier solde :\n"+ex.Message,"Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
-      
     }
 }

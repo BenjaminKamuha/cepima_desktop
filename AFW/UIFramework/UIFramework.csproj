@@ -31,26 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LiveCharts">
-      <HintPath>..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net40\LiveCharts.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCharts.WinForms">
-      <HintPath>..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\lib\net40\LiveCharts.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCharts.Wpf">
-      <HintPath>..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net40\LiveCharts.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\Cepima\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\Cepima\packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\Cepima\packages\Microsoft.TeamFoundation.VersionControl.All.12.0.30723.2\lib\net45\Microsoft.TeamFoundation.VersionControl.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.TeamFoundation.VersionControl.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\Cepima\packages\Microsoft.TeamFoundation.VersionControl.All.12.0.30723.2\lib\net45\Microsoft.TeamFoundation.VersionControl.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.VersionControl.Common.Integration, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\Cepima\packages\Microsoft.TeamFoundation.VersionControl.All.12.0.30723.2\lib\net45\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll</HintPath>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using UIFramework.Controls;
+//using UIFramework.Controls;
 using Cepima.MesClasses;
 
  class ProgressiveDisplay

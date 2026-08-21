@@ -10,7 +10,8 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 //using LiveCharts;
 //using LiveCharts.WinForms;
-using UIFramework;
+
+//using UIFramework.Controls;
 namespace Cepima.MesUserCases
 {
     public partial class User_Stock_hospitalisation : UserControl

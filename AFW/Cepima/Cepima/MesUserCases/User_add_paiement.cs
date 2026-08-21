@@ -79,6 +79,9 @@ namespace Cepima.MesUserCases
                         cmdUpdate.ExecuteNonQuery();
                     }
 
+                    // Méthode pour inserer dans le livre de caisse
+                    AjouterRecetteLivreCaisse(montantPaye,"GENERALE","Paiement facture N° :"+FactureID,con,tr);
+
                     tr.Commit();
                     MessageBox.Show("Paiement enregistré");
                     tb_mode_paiement.Clear();
@@ -97,6 +100,41 @@ namespace Cepima.MesUserCases
         private void bt_add_paiement_Click(object sender, EventArgs e)
         {
             ValiderPaiement();
+        }
+
+        // insertion dans le livre de caisse via la méthode AjouterRecetteLivreCaisse
+        private static void AjouterRecetteLivreCaisse(decimal montant,string provenance,string description,MySqlConnection con,MySqlTransaction tr)
+        {
+
+            MessageBox.Show("Je suis dans le livre de caisse deja");
+            // Récupérer le dernier solde avnt toute chose
+            string querySolde = "SELECT IFNULL(solde, 0) FROM livre_caisse ORDER BY date DESC LIMIT 1";
+
+            decimal dernierSolde = 0;
+
+            using (MySqlCommand cmd = new MySqlCommand(querySolde, con, tr))
+            {
+                object result = cmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                    dernierSolde = Convert.ToDecimal(result);
+            }
+
+            // Calcul du Nouveau solde
+            decimal nouveauSolde = dernierSolde + montant;
+
+            // Insérer la recette
+            string query = "INSERT INTO livre_caisse(date, recette, depasse, solde, provenance, description)VALUES (NOW(), @recette, 0, @solde, @provenance, @description)";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@recette", montant);
+                cmd.Parameters.AddWithValue("@solde", nouveauSolde);
+                cmd.Parameters.AddWithValue("@provenance", provenance);
+                cmd.Parameters.AddWithValue("@description", description);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         private void tb_montant_paye_TextChanged(object sender, EventArgs e)

@@ -53,29 +53,27 @@
             this.lb_nombre_operation = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.dt_fin = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lbl_tous = new System.Windows.Forms.Label();
-            this.lbl_entrees = new System.Windows.Forms.Label();
-            this.lbl_depenses = new System.Windows.Forms.Label();
-            this.dgv_livre = new ModernDataGridView();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDesignation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colResponsable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelSelection = new System.Windows.Forms.Panel();
-            this.dt_debut = new System.Windows.Forms.DateTimePicker();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbxPeriode = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dgv_caisse = new ModernDataGridView();
+            this.customRoundedPanel5 = new CustomRoundedPanel();
+            this.customRoundedPanel6 = new CustomRoundedPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lb_dernier_solde = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_livre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_caisse)).BeginInit();
+            this.customRoundedPanel5.SuspendLayout();
+            this.customRoundedPanel6.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -337,195 +335,6 @@
             this.label16.TabIndex = 19;
             this.label16.Text = "NOMBRE  D\'OPERATIONS";
             // 
-            // dt_fin
-            // 
-            this.dt_fin.Font = new System.Drawing.Font("Calibri", 10F);
-            this.dt_fin.Location = new System.Drawing.Point(880, 34);
-            this.dt_fin.Name = "dt_fin";
-            this.dt_fin.Size = new System.Drawing.Size(212, 24);
-            this.dt_fin.TabIndex = 3;
-            this.dt_fin.ValueChanged += new System.EventHandler(this.dt_fin_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(833, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Au : ";
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.panel1.Location = new System.Drawing.Point(6, 227);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1086, 4);
-            this.panel1.TabIndex = 5;
-            // 
-            // lbl_tous
-            // 
-            this.lbl_tous.AutoSize = true;
-            this.lbl_tous.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tous.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_tous.Location = new System.Drawing.Point(5, 195);
-            this.lbl_tous.Name = "lbl_tous";
-            this.lbl_tous.Size = new System.Drawing.Size(123, 15);
-            this.lbl_tous.TabIndex = 1;
-            this.lbl_tous.Text = "Toutes les opérations";
-            this.lbl_tous.Click += new System.EventHandler(this.lbl_tous_Click);
-            // 
-            // lbl_entrees
-            // 
-            this.lbl_entrees.AutoSize = true;
-            this.lbl_entrees.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_entrees.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_entrees.Location = new System.Drawing.Point(181, 195);
-            this.lbl_entrees.Name = "lbl_entrees";
-            this.lbl_entrees.Size = new System.Drawing.Size(118, 15);
-            this.lbl_entrees.TabIndex = 1;
-            this.lbl_entrees.Text = "Entrées (Paiements)";
-            this.lbl_entrees.Click += new System.EventHandler(this.lbl_entrees_Click);
-            // 
-            // lbl_depenses
-            // 
-            this.lbl_depenses.AutoSize = true;
-            this.lbl_depenses.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_depenses.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbl_depenses.Location = new System.Drawing.Point(332, 195);
-            this.lbl_depenses.Name = "lbl_depenses";
-            this.lbl_depenses.Size = new System.Drawing.Size(109, 15);
-            this.lbl_depenses.TabIndex = 1;
-            this.lbl_depenses.Text = "Sorties (Dépenses)";
-            this.lbl_depenses.Click += new System.EventHandler(this.lbl_depenses_Click);
-            // 
-            // dgv_livre
-            // 
-            this.dgv_livre.AllowUserToAddRows = false;
-            this.dgv_livre.AllowUserToDeleteRows = false;
-            this.dgv_livre.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgv_livre.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_livre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv_livre.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_livre.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_livre.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_livre.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgv_livre.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_livre.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_livre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_livre.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colDate,
-            this.colType,
-            this.colReference,
-            this.colDesignation,
-            this.colMode,
-            this.colMontant,
-            this.colResponsable});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_livre.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv_livre.EnableHeadersVisualStyles = false;
-            this.dgv_livre.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_livre.Location = new System.Drawing.Point(8, 237);
-            this.dgv_livre.Name = "dgv_livre";
-            this.dgv_livre.RowHeadersVisible = false;
-            this.dgv_livre.Size = new System.Drawing.Size(1082, 307);
-            this.dgv_livre.TabIndex = 6;
-            // 
-            // colDate
-            // 
-            this.colDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDate.HeaderText = "Date / Heure";
-            this.colDate.MinimumWidth = 50;
-            this.colDate.Name = "colDate";
-            // 
-            // colType
-            // 
-            this.colType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colType.HeaderText = "Type";
-            this.colType.MinimumWidth = 50;
-            this.colType.Name = "colType";
-            // 
-            // colReference
-            // 
-            this.colReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colReference.HeaderText = "Référence";
-            this.colReference.MinimumWidth = 50;
-            this.colReference.Name = "colReference";
-            // 
-            // colDesignation
-            // 
-            this.colDesignation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDesignation.HeaderText = "Désignation";
-            this.colDesignation.MinimumWidth = 50;
-            this.colDesignation.Name = "colDesignation";
-            // 
-            // colMode
-            // 
-            this.colMode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMode.HeaderText = "Mode de paiement";
-            this.colMode.MinimumWidth = 50;
-            this.colMode.Name = "colMode";
-            // 
-            // colMontant
-            // 
-            this.colMontant.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMontant.HeaderText = "Montant";
-            this.colMontant.MinimumWidth = 50;
-            this.colMontant.Name = "colMontant";
-            // 
-            // colResponsable
-            // 
-            this.colResponsable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colResponsable.HeaderText = "Responsable";
-            this.colResponsable.MinimumWidth = 50;
-            this.colResponsable.Name = "colResponsable";
-            // 
-            // panelSelection
-            // 
-            this.panelSelection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.panelSelection.Location = new System.Drawing.Point(6, 224);
-            this.panelSelection.Name = "panelSelection";
-            this.panelSelection.Size = new System.Drawing.Size(157, 4);
-            this.panelSelection.TabIndex = 7;
-            // 
-            // dt_debut
-            // 
-            this.dt_debut.Font = new System.Drawing.Font("Calibri", 10F);
-            this.dt_debut.Location = new System.Drawing.Point(592, 32);
-            this.dt_debut.Name = "dt_debut";
-            this.dt_debut.Size = new System.Drawing.Size(212, 24);
-            this.dt_debut.TabIndex = 3;
-            this.dt_debut.ValueChanged += new System.EventHandler(this.dt_debut_ValueChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(545, 39);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 15);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Du : ";
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -536,26 +345,186 @@
             this.panel2.Size = new System.Drawing.Size(1086, 4);
             this.panel2.TabIndex = 5;
             // 
+            // cbxPeriode
+            // 
+            this.cbxPeriode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPeriode.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxPeriode.FormattingEnabled = true;
+            this.cbxPeriode.Location = new System.Drawing.Point(899, 33);
+            this.cbxPeriode.Name = "cbxPeriode";
+            this.cbxPeriode.Size = new System.Drawing.Size(189, 23);
+            this.cbxPeriode.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(823, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 19);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Période : ";
+            // 
+            // dgv_caisse
+            // 
+            this.dgv_caisse.AllowUserToAddRows = false;
+            this.dgv_caisse.AllowUserToDeleteRows = false;
+            this.dgv_caisse.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.dgv_caisse.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_caisse.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_caisse.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_caisse.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_caisse.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv_caisse.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgv_caisse.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_caisse.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_caisse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_caisse.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv_caisse.EnableHeadersVisualStyles = false;
+            this.dgv_caisse.GridColor = System.Drawing.Color.LightGray;
+            this.dgv_caisse.Location = new System.Drawing.Point(3, 27);
+            this.dgv_caisse.Name = "dgv_caisse";
+            this.dgv_caisse.RowHeadersVisible = false;
+            this.dgv_caisse.Size = new System.Drawing.Size(718, 300);
+            this.dgv_caisse.TabIndex = 8;
+            // 
+            // customRoundedPanel5
+            // 
+            this.customRoundedPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.customRoundedPanel5.BorderRadius = 8;
+            this.customRoundedPanel5.BorderSize = 1;
+            this.customRoundedPanel5.Controls.Add(this.panel4);
+            this.customRoundedPanel5.Controls.Add(this.label5);
+            this.customRoundedPanel5.Controls.Add(this.dgv_caisse);
+            this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.customRoundedPanel5.Location = new System.Drawing.Point(6, 180);
+            this.customRoundedPanel5.Name = "customRoundedPanel5";
+            this.customRoundedPanel5.Size = new System.Drawing.Size(724, 364);
+            this.customRoundedPanel5.TabIndex = 9;
+            // 
+            // customRoundedPanel6
+            // 
+            this.customRoundedPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.customRoundedPanel6.BorderRadius = 8;
+            this.customRoundedPanel6.BorderSize = 1;
+            this.customRoundedPanel6.Controls.Add(this.panel3);
+            this.customRoundedPanel6.Controls.Add(this.panel1);
+            this.customRoundedPanel6.Controls.Add(this.label4);
+            this.customRoundedPanel6.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel6.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.customRoundedPanel6.Location = new System.Drawing.Point(736, 180);
+            this.customRoundedPanel6.Name = "customRoundedPanel6";
+            this.customRoundedPanel6.Size = new System.Drawing.Size(361, 361);
+            this.customRoundedPanel6.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(8, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(142, 15);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Ajouter un bon de sortie";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(8, 6);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 15);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Livre de Caisse";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Location = new System.Drawing.Point(3, 26);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(355, 160);
+            this.panel1.TabIndex = 20;
+            // 
+            // panel3
+            // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel3.Location = new System.Drawing.Point(4, 206);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(355, 148);
+            this.panel3.TabIndex = 20;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.lb_dernier_solde);
+            this.panel4.Controls.Add(this.label6);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 330);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(724, 34);
+            this.panel4.TabIndex = 20;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(578, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Dernier solde : ";
+            // 
+            // lb_dernier_solde
+            // 
+            this.lb_dernier_solde.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_dernier_solde.AutoSize = true;
+            this.lb_dernier_solde.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            this.lb_dernier_solde.Location = new System.Drawing.Point(684, 9);
+            this.lb_dernier_solde.Name = "lb_dernier_solde";
+            this.lb_dernier_solde.Size = new System.Drawing.Size(15, 17);
+            this.lb_dernier_solde.TabIndex = 0;
+            this.lb_dernier_solde.Text = "0";
+            // 
             // User_livre_caisse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.Controls.Add(this.panelSelection);
-            this.Controls.Add(this.dgv_livre);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.customRoundedPanel6);
+            this.Controls.Add(this.customRoundedPanel5);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dt_debut);
-            this.Controls.Add(this.dt_fin);
+            this.Controls.Add(this.cbxPeriode);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.customRoundedPanel4);
             this.Controls.Add(this.customRoundedPanel3);
             this.Controls.Add(this.customRoundedPanel2);
             this.Controls.Add(this.customRoundedPanel1);
-            this.Controls.Add(this.lbl_depenses);
-            this.Controls.Add(this.lbl_entrees);
-            this.Controls.Add(this.lbl_tous);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "User_livre_caisse";
@@ -568,7 +537,13 @@
             this.customRoundedPanel3.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_livre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_caisse)).EndInit();
+            this.customRoundedPanel5.ResumeLayout(false);
+            this.customRoundedPanel5.PerformLayout();
+            this.customRoundedPanel6.ResumeLayout(false);
+            this.customRoundedPanel6.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -582,8 +557,6 @@
         private CustomRoundedPanel customRoundedPanel2;
         private CustomRoundedPanel customRoundedPanel3;
         private CustomRoundedPanel customRoundedPanel4;
-        private System.Windows.Forms.DateTimePicker dt_fin;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lb_total_entree;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lb_total_depense;
@@ -600,21 +573,18 @@
         private AvatarControl avatarControl2;
         private AvatarControl avatarControl3;
         private AvatarControl avatarControl4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lbl_tous;
-        private System.Windows.Forms.Label lbl_entrees;
-        private System.Windows.Forms.Label lbl_depenses;
-        private ModernDataGridView dgv_livre;
-        private System.Windows.Forms.Panel panelSelection;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colReference;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDesignation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMontant;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colResponsable;
-        private System.Windows.Forms.DateTimePicker dt_debut;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox cbxPeriode;
+        private System.Windows.Forms.Label label3;
+        private ModernDataGridView dgv_caisse;
+        private CustomRoundedPanel customRoundedPanel5;
+        private System.Windows.Forms.Label label5;
+        private CustomRoundedPanel customRoundedPanel6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lb_dernier_solde;
+        private System.Windows.Forms.Label label6;
     }
 }
