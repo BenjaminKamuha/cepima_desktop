@@ -18,7 +18,7 @@ namespace Cepima.MesUserCases
         {
             InitializeComponent();
             LoadPatient();
-            MesClasses.ReceptionManager.MoveLabel(label1,panel1);
+            //MesClasses.ReceptionManager.MoveLabel(label1,panel1);
         }
 
         private void LoadPatient(params string [] args)
@@ -28,50 +28,77 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT id_patient,CONCAT(nom,' ',post_nom) AS Patient FROM patients WHERE CONCAT(nom,' ',post_nom) LIKE @search OR nom LIKE @search OR post_nom";
+                    string query = "SELECT id_patient,nom,post_nom,numero_fiche FROM patients WHERE nom LIKE @search OR post_nom LIKE @search ";
                     MesClasses.ManagerClasse.request_params.Clear();
                     MesClasses.ManagerClasse.request_params.Add("@search", "%" + args[0] + "%");
                     using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
                     {
+                        int i = 0;
                         if (reader.HasRows)
                         {
+                           
                             while (reader.Read())
                             {
                                 string idPatient = reader["id_patient"].ToString();
-                                string patient = reader["Patient"].ToString();
-                                Panel panPatient = new Panel();
-                                panPatient.Size = new Size(140, 130);
-                                panPatient.BorderStyle = BorderStyle.FixedSingle;
-                                MesClasses.ManagerClasse.AddControl(panel_patient, panPatient, 15, 10);
+                                string nom = reader["nom"].ToString();
+                                string postnom = reader["post_nom"].ToString();
+                                string numero = reader["numero_fiche"].ToString();
 
-                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(30, 2),
-                                    new Size(80, 80));
+                                CustomRoundedPanel panPatient = new CustomRoundedPanel();
+                                panPatient.Size = new Size(160, 130);
+                                panPatient.BorderRadius = 8;
+                                panPatient.BorderColor = Color.Silver;
+                                panPatient.BorderSize = 1;
+                                panPatient.Tag = idPatient;
+                                MesClasses.ManagerClasse.AddControl(panel_patient, panPatient, 10, 8);
+
+
+                                // evenement Hover du panel pour déclencher l'ouverture du Formulaire détail
+                                panPatient.MouseHover += (s, e) =>
+                                    {
+                                        MesForms.FormDetailPatient detail = new MesForms.FormDetailPatient(idPatient);
+                                        detail.ShowDialog();
+                                    };
+                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(2, 5),
+                                    new Size(70, 70));
                                 panPatient.Controls.Add(picture);
 
-                                Label lbNom = MesClasses.ManagerClasse.CustomLabel(patient, new Point(20, 85));
+                                Label lbNom = MesClasses.ManagerClasse.CustomLabel(nom, new Point(70, 20));
                                 lbNom.AutoSize = true;
-                                lbNom.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                                lbNom.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
                                 panPatient.Controls.Add(lbNom);
 
-                                RoundedButton bt_details = MesClasses.ManagerClasse.Rbutton("Détails", new Point(30, 105), new Size(80, 20), Color.FromArgb(7, 51, 131), Color.White);
-                                bt_details.BorderRadius = 4;
-                                bt_details.BorderSize = 0;
-                                bt_details.BorderColor = Color.FromArgb(44, 123, 229);
-                                bt_details.HoverBackColor = Color.FromArgb(44, 123, 229);
-                                bt_details.Tag = idPatient;
-                                bt_details.Click += (s, e) =>
+                                Label lbPost = MesClasses.ManagerClasse.CustomLabel(postnom, new Point(70, 40));
+                                lbPost.AutoSize = true;
+                                lbPost.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
+                                panPatient.Controls.Add(lbPost);
+
+                                Label lbFiche = MesClasses.ManagerClasse.CustomLabel(numero, new Point(10, 75));
+                                lbFiche.AutoSize = true;
+                                lbFiche.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
+                                panPatient.Controls.Add(lbFiche);
+
+                                RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Fiche de suivi", new Point(40, 100), new Size(95, 25), Color.FromArgb(44, 123, 229), Color.White);
+                                btnSuivi.BorderRadius = 4;
+                                btnSuivi.BorderSize = 0;
+                                btnSuivi.BorderColor = Color.FromArgb(44, 123, 229);
+                                btnSuivi.HoverBackColor = Color.FromArgb(7, 51, 131);
+                                panPatient.Controls.Add(btnSuivi);
+
+                                btnSuivi.Click += (e, s) =>
                                 {
-                                    User_detail_patient details = new User_detail_patient(idPatient);
-                                    details.Dock = DockStyle.None;
-                                    panel_patient.Controls.Clear();
-                                    panel_patient.Controls.Add(details);
-                                    tb_search_patient.Enabled = false;
+                                    //ouverture de la fiche de suivi du patient
                                 };
-                                panPatient.Controls.Add(bt_details);
+
+                                i++;
                             }
+                          
                             reader.Close();
+                            lb_nombres.Text = i.ToString() + "Patient(s) trouvé(s)";
                             ProgressiveDisplay pd = new ProgressiveDisplay(panel_patient, 100);
                             pd.Start();
+                            
+
                         }
                         else
                         {
@@ -79,6 +106,7 @@ namespace Cepima.MesUserCases
                             lb_not_found.Text = "Aucun nom ne correspond aux terme de recherche '" + args[0] + "'";
                             panel_patient.Controls.Add(lb_not_found);
                             lb_not_found.Visible = true;
+                            lb_nombres.Text = i.ToString()+" Patient(s) trouvé(s)";
                         }
                      
                     }
@@ -93,46 +121,70 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT id_patient,CONCAT(nom,' ',post_nom) AS Patient FROM patients ORDER BY nom ASC";
+                    string query = "SELECT id_patient,nom,post_nom,numero_fiche FROM patients ORDER BY nom ASC";
                     using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, null, true))
                     {
                         if (reader.HasRows)
                         {
+                            int i = 0;
                             while (reader.Read())
                             {
                                 string idPatient = reader["id_patient"].ToString();
-                                string patient = reader["Patient"].ToString();
-                                Panel panPatient = new Panel();
-                                panPatient.Size = new Size(140, 130);
-                                panPatient.BorderStyle = BorderStyle.FixedSingle;
-                                MesClasses.ManagerClasse.AddControl(panel_patient, panPatient, 15, 10);
+                                string nom = reader["nom"].ToString();
+                                string postnom = reader["post_nom"].ToString();
+                                string numero = reader["numero_fiche"].ToString();
 
-                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(30, 2),
-                                    new Size(80, 80));
+                                CustomRoundedPanel panPatient = new CustomRoundedPanel();
+                                panPatient.Size = new Size(160, 130);
+                                panPatient.BorderRadius = 8;
+                                panPatient.BorderColor = Color.Silver;
+                                panPatient.BorderSize = 1;
+                                panPatient.Tag = idPatient;
+                               
+                                MesClasses.ManagerClasse.AddControl(panel_patient, panPatient, 10, 8);
+
+                                // evenement Hover du panel pour déclencher l'ouverture du Formulaire détail
+                                panPatient.MouseHover += (s, e) =>
+                                {
+                                    MesForms.FormDetailPatient details = new MesForms.FormDetailPatient(idPatient);
+                                    details.ShowDialog();
+                                };
+
+                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(2, 5),
+                                    new Size(70, 70));
                                 panPatient.Controls.Add(picture);
 
-                                Label lbNom = MesClasses.ManagerClasse.CustomLabel(patient, new Point(20, 85));
+                                Label lbNom = MesClasses.ManagerClasse.CustomLabel(nom, new Point(70, 20));
                                 lbNom.AutoSize = true;
-                                lbNom.Font = new System.Drawing.Font("Calibri", 9, FontStyle.Bold);
+                                lbNom.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
                                 panPatient.Controls.Add(lbNom);
 
-                                RoundedButton bt_details = MesClasses.ManagerClasse.Rbutton("Détails", new Point(30, 105), new Size(80, 20), Color.FromArgb(7, 51, 131), Color.White);
-                                bt_details.BorderRadius = 4;
-                                bt_details.BorderSize = 0;
-                                bt_details.BorderColor = Color.FromArgb(44, 123, 229);
-                                bt_details.HoverBackColor = Color.FromArgb(44, 123, 229);
-                                bt_details.Tag = idPatient;
-                                bt_details.Click += (s, e) =>
-                                {
-                                    User_detail_patient details = new User_detail_patient(idPatient);
-                                    details.Dock = DockStyle.None;
-                                    panel_patient.Controls.Clear();
-                                    panel_patient.Controls.Add(details);
-                                    tb_search_patient.Enabled = false;
-                                };
-                                panPatient.Controls.Add(bt_details);
+                                Label lbPost = MesClasses.ManagerClasse.CustomLabel(postnom, new Point(70, 40));
+                                lbPost.AutoSize = true;
+                                lbPost.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
+                                panPatient.Controls.Add(lbPost);
+
+                                Label lbFiche = MesClasses.ManagerClasse.CustomLabel(numero, new Point(10, 75));
+                                lbFiche.AutoSize = true;
+                                lbFiche.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
+                                panPatient.Controls.Add(lbFiche);
+                        
+                                RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Fiche de suivi", new Point(40, 100), new Size(95, 25), Color.FromArgb(44, 123, 229), Color.White);
+                                btnSuivi.BorderRadius = 4;
+                                btnSuivi.BorderSize = 0;
+                                btnSuivi.BorderColor = Color.FromArgb(44, 123, 229);
+                                btnSuivi.HoverBackColor = Color.FromArgb(7, 51, 131);
+                                panPatient.Controls.Add(btnSuivi);
+
+                                btnSuivi.Click += (e, s) =>
+                                    {
+                                        
+                                    };
+                                i++;
                             }
+                          
                             reader.Close();
+                            lb_nombres.Text = i.ToString() + " Patient(s)";
                             ProgressiveDisplay pd = new ProgressiveDisplay(panel_patient, 100);
                             pd.Start();
                         }
