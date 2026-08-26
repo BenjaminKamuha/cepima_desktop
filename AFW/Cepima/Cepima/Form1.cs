@@ -25,6 +25,9 @@ namespace Cepima
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
+
+            lb_test.ForeColor = UI.Theme.Primary;
+            lb_test.Font = UI.Theme.FontCardValue;
         }
 
         /// <summary>

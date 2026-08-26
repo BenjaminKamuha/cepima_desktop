@@ -115,7 +115,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="UIFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\UIFramework\bin\Release\UIFramework.dll</HintPath>
+      <HintPath>..\..\UIFramework\obj\Debug\UIFramework.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
