@@ -67,6 +67,9 @@
             this.bt_pharmacie = new System.Windows.Forms.Button();
             this.bt_reception = new System.Windows.Forms.Button();
             this.bt_acceuil = new System.Windows.Forms.Button();
+
+            this.lb_test = new System.Windows.Forms.Label();
+
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel9.SuspendLayout();
@@ -83,6 +86,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.panel1.Controls.Add(this.lb_test);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.label1);
@@ -96,7 +100,11 @@
             // 
             // pictureBox4
             // 
+
             this.pictureBox4.Image = global::Cepima.Properties.Resources.plus___25px;
+
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.wallet_25px;
+
             this.pictureBox4.Location = new System.Drawing.Point(262, 12);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 50);
@@ -563,6 +571,18 @@
             this.bt_acceuil.UseVisualStyleBackColor = true;
             this.bt_acceuil.Click += new System.EventHandler(this.bt_acceuil_Click);
             // 
+
+
+            // lb_test
+            // 
+            this.lb_test.AutoSize = true;
+            this.lb_test.Location = new System.Drawing.Point(701, 48);
+            this.lb_test.Name = "lb_test";
+            this.lb_test.Size = new System.Drawing.Size(35, 13);
+            this.lb_test.TabIndex = 5;
+            this.lb_test.Text = "label2";
+            // 
+
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -640,6 +660,7 @@
         private System.Windows.Forms.Button bt_hospitalisation;
         private System.Windows.Forms.Button bt_consultation;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label lb_test;
 
     }
 }
