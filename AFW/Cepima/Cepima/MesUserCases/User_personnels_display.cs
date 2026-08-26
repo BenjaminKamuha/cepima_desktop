@@ -16,7 +16,7 @@ namespace Cepima.MesUserCases
         {
             InitializeComponent();
             LoadPersonnel();
-            MesClasses.ReceptionManager.MoveLabel(label1,panel1);
+            //MesClasses.ReceptionManager.MoveLabel(label1,panel1);
         }
 
         public  void LoadPersonnel(params string[] args)

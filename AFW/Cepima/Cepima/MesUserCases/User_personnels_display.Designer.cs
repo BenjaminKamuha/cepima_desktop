@@ -31,16 +31,12 @@
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.panel_personnel_display = new System.Windows.Forms.Panel();
             this.lb_not_found = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tb_search_personnel = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
             this.panel_personnel_display.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -55,9 +51,9 @@
             this.customRoundedPanel1.Controls.Add(this.panel_personnel_display);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(257, 36);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(3, 36);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(771, 462);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(1025, 474);
             this.customRoundedPanel1.TabIndex = 0;
             // 
             // panel_personnel_display
@@ -69,7 +65,7 @@
             this.panel_personnel_display.Controls.Add(this.lb_not_found);
             this.panel_personnel_display.Location = new System.Drawing.Point(15, 17);
             this.panel_personnel_display.Name = "panel_personnel_display";
-            this.panel_personnel_display.Size = new System.Drawing.Size(743, 430);
+            this.panel_personnel_display.Size = new System.Drawing.Size(997, 442);
             this.panel_personnel_display.TabIndex = 0;
             // 
             // lb_not_found
@@ -82,37 +78,6 @@
             this.lb_not_found.TabIndex = 0;
             this.lb_not_found.Visible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(23, 129);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(228, 248);
-            this.panel1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(64, 201);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Personnel";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.staff_90px;
-            this.pictureBox1.Location = new System.Drawing.Point(41, 18);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(147, 128);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // customRoundedPanel2
             // 
             this.customRoundedPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -124,7 +89,7 @@
             this.customRoundedPanel2.Controls.Add(this.tb_search_personnel);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(665, 3);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(139, 3);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
             this.customRoundedPanel2.Size = new System.Drawing.Size(296, 28);
             this.customRoundedPanel2.TabIndex = 0;
@@ -153,26 +118,34 @@
             this.tb_search_personnel.TabIndex = 0;
             this.tb_search_personnel.TextChanged += new System.EventHandler(this.tb_search_personnel_TextChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(51, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Rechercher";
+            // 
             // User_personnels_display
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.customRoundedPanel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.customRoundedPanel1);
             this.Name = "User_personnels_display";
             this.Size = new System.Drawing.Size(1031, 526);
             this.customRoundedPanel1.ResumeLayout(false);
             this.panel_personnel_display.ResumeLayout(false);
             this.panel_personnel_display.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -180,13 +153,11 @@
 
         private CustomRoundedPanel customRoundedPanel1;
         private System.Windows.Forms.Panel panel_personnel_display;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private CustomRoundedPanel customRoundedPanel2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.TextBox tb_search_personnel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lb_not_found;
+        private System.Windows.Forms.Label label1;
 
     }
 }

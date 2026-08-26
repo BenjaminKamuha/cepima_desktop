@@ -132,7 +132,7 @@ namespace Cepima.MesForms
                         if (cb_remember.Checked)
                         {
                             File.WriteAllText("session.dat", username);
-                            SauvegarderSession(username, pass, 2);
+                            SauvegarderSession(username, pass,15);
                         }
                         
                     }

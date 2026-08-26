@@ -294,14 +294,14 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(patient);
                 }),
-                new MenuItem("    Signes vitaux",Properties.Resources.heart_monitor_20px,(s,ev) => 
-                {
-                    //instructions
-                    MesUserCases.User_signes_vitaux signes = new MesUserCases.User_signes_vitaux();
-                    signes.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(signes);
-                }),
+                //new MenuItem("    Signes vitaux",Properties.Resources.heart_monitor_20px,(s,ev) => 
+                //{
+                //    //instructions
+                //    MesUserCases.User_signes_vitaux signes = new MesUserCases.User_signes_vitaux();
+                //    signes.Dock = DockStyle.Fill;
+                //    panel_center_main.Controls.Clear();
+                //    panel_center_main.Controls.Add(signes);
+                //}),
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -442,6 +442,10 @@ namespace Cepima
                         panel_center_main.Controls.Add(caisse);
                     }),
 
+                    new MenuItem("  Bon de sortie",Properties.Resources.export_20px, (s,ev) =>
+                    {
+                        
+                    }),
                      new MenuItem(" Rapport financier",Properties.Resources.analytics_25px, (s,ev) =>
                     {
 
