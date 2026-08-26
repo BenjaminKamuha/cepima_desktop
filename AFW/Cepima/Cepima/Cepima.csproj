@@ -261,6 +261,12 @@
     <Compile Include="MesUserCases\User_DashBord_pharmacie.Designer.cs">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_Dash_patient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_Dash_patient.Designer.cs">
+      <DependentUpon>User_Dash_patient.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_detail_patient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -459,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_DashBord_pharmacie.resx">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_Dash_patient.resx">
+      <DependentUpon>User_Dash_patient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_detail_patient.resx">
       <DependentUpon>User_detail_patient.cs</DependentUpon>
@@ -1038,6 +1047,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\invisible_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_+_35px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_+_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_+_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_+_25px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
