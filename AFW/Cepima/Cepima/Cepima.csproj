@@ -153,6 +153,12 @@
     <Compile Include="MesForms\FormDetailFacture.Designer.cs">
       <DependentUpon>FormDetailFacture.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\FormDetailPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\FormDetailPatient.Designer.cs">
+      <DependentUpon>FormDetailPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\FormFacturePrint.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormDetailFacture.resx">
       <DependentUpon>FormDetailFacture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\FormDetailPatient.resx">
+      <DependentUpon>FormDetailPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormFacturePrint.resx">
       <DependentUpon>FormFacturePrint.cs</DependentUpon>
