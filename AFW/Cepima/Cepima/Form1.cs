@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.MesClasses;
+using Cepima.Data;
 
 namespace Cepima
 {
@@ -17,6 +18,8 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
+        private Database database = new Database();
+
         public Form1()
         {
             InitializeComponent();
@@ -28,6 +31,8 @@ namespace Cepima
 
             lb_test.ForeColor = UI.Theme.Primary;
             lb_test.Font = UI.Theme.FontCardValue;
+            MessageBox.Show(database.Count("patients").ToString());
+
         }
 
         /// <summary>
