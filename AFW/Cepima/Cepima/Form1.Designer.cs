@@ -67,7 +67,9 @@
             this.bt_pharmacie = new System.Windows.Forms.Button();
             this.bt_reception = new System.Windows.Forms.Button();
             this.bt_acceuil = new System.Windows.Forms.Button();
+
             this.lb_test = new System.Windows.Forms.Label();
+
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel9.SuspendLayout();
@@ -98,7 +100,11 @@
             // 
             // pictureBox4
             // 
+
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.plus___25px;
+
             this.pictureBox4.Image = global::Cepima.Properties.Resources.wallet_25px;
+
             this.pictureBox4.Location = new System.Drawing.Point(262, 12);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 50);
@@ -565,6 +571,8 @@
             this.bt_acceuil.UseVisualStyleBackColor = true;
             this.bt_acceuil.Click += new System.EventHandler(this.bt_acceuil_Click);
             // 
+
+
             // lb_test
             // 
             this.lb_test.AutoSize = true;
@@ -574,6 +582,7 @@
             this.lb_test.TabIndex = 5;
             this.lb_test.Text = "label2";
             // 
+
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);

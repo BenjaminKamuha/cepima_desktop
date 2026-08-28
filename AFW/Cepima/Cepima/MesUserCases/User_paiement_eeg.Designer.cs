@@ -97,16 +97,16 @@
             this.label16 = new System.Windows.Forms.Label();
             this.cbx_filtrer = new System.Windows.Forms.ComboBox();
 
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut_examen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colPrix = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colStatut_examen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            //this.colMedecin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.colEncaisser = new System.Windows.Forms.DataGridViewImageColumn();
+            //this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            //this.colEncaisser = new System.Windows.Forms.DataGridViewImageColumn();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();

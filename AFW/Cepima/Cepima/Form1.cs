@@ -199,7 +199,7 @@ namespace Cepima
 
             // Appliquer nouveau style
             currentSubMenu = btn;
-            currentSubMenu.BackColor = Color.FromArgb(80, 80, 80); // gris (effet focus)
+            currentSubMenu.BackColor = Color.FromArgb(180, 220,235); // gris (effet focus) 80,80,80
             currentSubMenu.ForeColor = Color.White;
         }
         //méthode pour creer un sous menu
@@ -277,12 +277,17 @@ namespace Cepima
             lb_sous_menu.Text = "Reception";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
+
             var items = new List<MenuItem>()
             {
                 new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
                 {
-                    //instructions
+                    MesUserCases.User_Dash_patient dash = new MesUserCases.User_Dash_patient();
+                    dash.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(dash);
                 }),
+
                 new MenuItem("    Patients",Properties.Resources.being_sick_20px,(s,ev) =>
                 {
                     //instructions
@@ -291,7 +296,8 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(display);
                 }),
-                new MenuItem("    Ajouter patient",Properties.Resources.add_user_male_20px,(s,ev) =>
+
+                new MenuItem("    Nouveau",Properties.Resources.plus___25px,(s,ev) =>
                 {
                     //instructions
                     MesUserCases.User_patient patient = new MesUserCases.User_patient();
@@ -299,19 +305,12 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(patient);
                 }),
-                //new MenuItem("    Signes vitaux",Properties.Resources.heart_monitor_20px,(s,ev) => 
-                //{
-                //    //instructions
-                //    MesUserCases.User_signes_vitaux signes = new MesUserCases.User_signes_vitaux();
-                //    signes.Dock = DockStyle.Fill;
-                //    panel_center_main.Controls.Clear();
-                //    panel_center_main.Controls.Add(signes);
-                //}),
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7,51,131), Color.FromArgb(44, 123, 229));
         }
+
         private void bt_pharmacie_Click(object sender, EventArgs e)
         {
             picture_image_menu.Image = Properties.Resources.doctors_bag_90px;

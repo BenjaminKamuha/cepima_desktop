@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
-
 namespace Cepima.Data
 {
     class Database
@@ -88,7 +87,7 @@ namespace Cepima.Data
         }
 
         // Récuperer la plus grande valeur
-        public bool Exists(string tableName, string columnName, object value)
+        public int GetMax(string tableName, string columnName)
         {
             try
             {
@@ -96,15 +95,16 @@ namespace Cepima.Data
                 {
                     connection.Open();
 
-                    string query = "SELECT EXISTS(" +
-                                   "SELECT 1 FROM " + tableName +
-                                   " WHERE " + columnName + " = @value)";
+                    string query = "SELECT MAX(" + columnName + ") FROM " + tableName;
 
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@value", value);
+                        object result = command.ExecuteScalar();
 
-                        return Convert.ToBoolean(command.ExecuteScalar());
+                        if (result == DBNull.Value || result == null)
+                            return 0;
+
+                        return Convert.ToInt32(result);
                     }
                 }
             }
@@ -112,12 +112,12 @@ namespace Cepima.Data
             {
                 MessageBox.Show(
                     ex.Message,
-                    "Erreur Exists()",
+                    "Erreur GetMax()",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
 
-                return false;
+                return 0;
             }
         }
 
@@ -292,7 +292,44 @@ namespace Cepima.Data
             }
 
         // Récuperer les données dans un DataGridView
+    //    public DataTable GetDataTable(
+    //string query,
+    //params MySqlParameter[] parameters)
+    //    {
+    //        try
+    //        {
+    //            using (MySqlConnection connection = GetConnection())
+    //            {
+    //                connection.Open();
 
+    //                using (MySqlCommand command = new MySqlCommand(query, connection))
+    //                {
+    //                    command.Parameters.AddRange(parameters);
+
+    //                    using (MySqlDataAdapter adapter =
+    //                           new MySqlDataAdapter(command))
+    //                    {
+    //                        DataTable table = new DataTable();
+
+    //                        adapter.Fill(table);
+
+    //                        return table;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            MessageBox.Show(
+    //                ex.Message,
+    //                "Erreur GetDataTable()",
+    //                MessageBoxButtons.OK,
+    //                MessageBoxIcon.Error
+    //            );
+
+    //            return null;
+    //        }
+    //    }
     }
         
 }

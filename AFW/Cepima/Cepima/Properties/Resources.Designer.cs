@@ -73,6 +73,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_black {
+            get {
+                object obj = ResourceManager.GetObject("add_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_file_20px {
             get {
                 object obj = ResourceManager.GetObject("add_file_20px", resourceCulture);
@@ -1126,6 +1136,46 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap planner_20px {
             get {
                 object obj = ResourceManager.GetObject("planner_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus___20px {
+            get {
+                object obj = ResourceManager.GetObject("plus_+_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus___25px {
+            get {
+                object obj = ResourceManager.GetObject("plus_+_25px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus___30px {
+            get {
+                object obj = ResourceManager.GetObject("plus_+_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus___35px {
+            get {
+                object obj = ResourceManager.GetObject("plus_+_35px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
