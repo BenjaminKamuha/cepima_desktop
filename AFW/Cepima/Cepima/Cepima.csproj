@@ -113,13 +113,90 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="UIFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\UIFramework\bin\Release\UIFramework.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseControls\BaseAnimatedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseControls\BaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseControls\CardControl.cs" />
+    <Compile Include="BaseControls\ShadowPanel.cs" />
+    <Compile Include="Controls\AvatarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BadgeControl.cs" />
+    <Compile Include="Controls\BarChartControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Bunifu_rounded.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ButtonEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ChartPoint.cs" />
+    <Compile Include="Controls\Columns\DataGridViewControlColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Columns\DataGridViewDynamicComboBoxColumn.cs" />
+    <Compile Include="Controls\Columns\DataGridViewNumericUpDownColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Columns\DataGridViewProgressBarColumn.cs" />
+    <Compile Include="Controls\Columns\DataGridViewToggleColumn.cs" />
+    <Compile Include="Controls\Component1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Component1.Designer.cs">
+      <DependentUpon>Component1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Control.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomRoundedButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DonutChartControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\LineChartControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ModernDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\RoundedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Rounded_button.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Rounded_TextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SideBarMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\StatCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TopBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\ColorPalette.cs" />
+    <Compile Include="Core\FontManager.cs" />
+    <Compile Include="Core\IThemeAware.cs" />
+    <Compile Include="Core\Theme.cs" />
+    <Compile Include="Core\ThemeManager.cs" />
+    <Compile Include="Core\ThemeMode.cs" />
+    <Compile Include="Core\UIConfig.cs" />
+    <Compile Include="Data\Database.cs" />
     <Compile Include="ds_facture.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -136,6 +213,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AnimationHelper.cs" />
+    <Compile Include="Helpers\GraphicsHelper.cs" />
+    <Compile Include="Interfaces\IThemeable.cs" />
     <Compile Include="MesClasses\ImageHelper.cs" />
     <Compile Include="MesClasses\ManagerClasse.cs" />
     <Compile Include="MesClasses\Progressive.cs" />

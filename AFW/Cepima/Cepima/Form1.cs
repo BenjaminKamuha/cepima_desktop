@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.MesClasses;
+using Cepima.Data;
 
 namespace Cepima
 {
@@ -26,6 +27,8 @@ namespace Cepima
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
+
+
         }
 
         /// <summary>
