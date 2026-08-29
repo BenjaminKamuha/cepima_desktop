@@ -137,7 +137,9 @@
     <Compile Include="Controls\ButtonEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CardControl.cs" />
+    <Compile Include="Controls\CardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\ChartPoint.cs" />
     <Compile Include="Controls\Columns\DataGridViewControlColumn.cs">
       <SubType>Component</SubType>
