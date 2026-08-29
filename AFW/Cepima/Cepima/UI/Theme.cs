@@ -32,11 +32,11 @@ namespace Cepima.UI
         // POLICES
         // ===========================================
 
-        public static Font FontNormal = new Font("Segoe UI", 9);
-        public static Font FontMedium = new Font("Segoe UI", 10);
-        public static Font FontTitle = new Font("Segoe UI", 18, FontStyle.Bold);
-        public static Font FontCardTitle = new Font("Segoe UI", 9, FontStyle.Regular);
-        public static Font FontCardValue = new Font("Segoe UI", 20, FontStyle.Bold);
+        public static Font FontNormal = new Font("Calibri", 9);
+        public static Font FontMedium = new Font("Calibri", 10,FontStyle.Bold);
+        public static Font FontTitle = new Font("Calibri", 18, FontStyle.Bold);
+        public static Font FontCardTitle = new Font("Calibri", 9, FontStyle.Regular);
+        public static Font FontCardValue = new Font("Calibri", 20, FontStyle.Bold);
 
 
         

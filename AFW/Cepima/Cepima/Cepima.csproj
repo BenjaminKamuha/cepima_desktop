@@ -183,23 +183,23 @@
     <Compile Include="MesForms\Form_add_medoc.Designer.cs">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Form_add_patient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Form_add_patient.Designer.cs">
+      <DependentUpon>Form_add_patient.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Form_add_suivi_hospitalisation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Form_add_suivi_hospitalisation.Designer.cs">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_Display_prescription.cs">
+    <Compile Include="MesForms\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_Display_prescription.Designer.cs">
-      <DependentUpon>Form_Display_prescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesForms\Form_New_prescription.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\Form_New_prescription.Designer.cs">
-      <DependentUpon>Form_New_prescription.cs</DependentUpon>
+    <Compile Include="MesForms\Form_signes_vitaux.Designer.cs">
+      <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\UC_add_medoc.cs">
       <SubType>UserControl</SubType>
@@ -249,6 +249,12 @@
     <Compile Include="MesUserCases\User_consultation.Designer.cs">
       <DependentUpon>User_consultation.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_DashBoard_consultation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_DashBoard_consultation.Designer.cs">
+      <DependentUpon>User_DashBoard_consultation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_Dashboard_RH.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -291,6 +297,12 @@
     <Compile Include="MesUserCases\User_facture_all.Designer.cs">
       <DependentUpon>User_facture_all.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\User_finish_consultation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\User_finish_consultation.Designer.cs">
+      <DependentUpon>User_finish_consultation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\User_horaires.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -320,12 +332,6 @@
     </Compile>
     <Compile Include="MesUserCases\User_paiement_facture.Designer.cs">
       <DependentUpon>User_paiement_facture.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_patient.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_patient.Designer.cs">
-      <DependentUpon>User_patient.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_patients_hospitalises.cs">
       <SubType>UserControl</SubType>
@@ -368,12 +374,6 @@
     </Compile>
     <Compile Include="MesUserCases\User_service.Designer.cs">
       <DependentUpon>User_service.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_signes_vitaux.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_signes_vitaux.Designer.cs">
-      <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_sortie_pharmacie.cs">
       <SubType>UserControl</SubType>
@@ -427,14 +427,14 @@
     <EmbeddedResource Include="MesForms\Form_add_medoc.resx">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Form_add_patient.resx">
+      <DependentUpon>Form_add_patient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_add_suivi_hospitalisation.resx">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_Display_prescription.resx">
-      <DependentUpon>Form_Display_prescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_New_prescription.resx">
-      <DependentUpon>Form_New_prescription.cs</DependentUpon>
+    <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
+      <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\UC_add_medoc.resx">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>
@@ -460,6 +460,9 @@
     <EmbeddedResource Include="MesUserCases\User_consultation.resx">
       <DependentUpon>User_consultation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_DashBoard_consultation.resx">
+      <DependentUpon>User_DashBoard_consultation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_Dashboard_RH.resx">
       <DependentUpon>User_Dashboard_RH.cs</DependentUpon>
     </EmbeddedResource>
@@ -481,6 +484,9 @@
     <EmbeddedResource Include="MesUserCases\User_facture_all.resx">
       <DependentUpon>User_facture_all.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\User_finish_consultation.resx">
+      <DependentUpon>User_finish_consultation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_horaires.resx">
       <DependentUpon>User_horaires.cs</DependentUpon>
     </EmbeddedResource>
@@ -495,9 +501,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_paiement_facture.resx">
       <DependentUpon>User_paiement_facture.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_patient.resx">
-      <DependentUpon>User_patient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_patients_hospitalises.resx">
       <DependentUpon>User_patients_hospitalises.cs</DependentUpon>
@@ -519,9 +522,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_service.resx">
       <DependentUpon>User_service.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_signes_vitaux.resx">
-      <DependentUpon>User_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_sortie_pharmacie.resx">
       <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
@@ -1062,6 +1062,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\plus_+_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capsule_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\finish_flag_20px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

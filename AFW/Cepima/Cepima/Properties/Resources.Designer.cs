@@ -263,6 +263,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap capsule_20px {
+            get {
+                object obj = ResourceManager.GetObject("capsule_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap capsules_100px {
             get {
                 object obj = ResourceManager.GetObject("capsules_100px", resourceCulture);
@@ -613,6 +623,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap eye_20px {
+            get {
+                object obj = ResourceManager.GetObject("eye_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eye_checked_20px {
             get {
                 object obj = ResourceManager.GetObject("eye_checked_20px", resourceCulture);
@@ -636,6 +656,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap fingerprint_20px {
             get {
                 object obj = ResourceManager.GetObject("fingerprint_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap finish_flag_20px {
+            get {
+                object obj = ResourceManager.GetObject("finish_flag_20px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -17,6 +17,7 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -25,9 +26,6 @@ namespace Cepima
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
-
-            lb_test.ForeColor = UI.Theme.Primary;
-            lb_test.Font = UI.Theme.FontCardValue;
         }
 
         /// <summary>
@@ -89,7 +87,6 @@ namespace Cepima
             grid.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
 
-
             panel_center_main.Controls.Add(grid);
 
             // =========================
@@ -126,8 +123,7 @@ namespace Cepima
                 new DataGridViewImageColumn();
 
             imgCol.HeaderText = "Photo";
-            imgCol.ImageLayout =
-                DataGridViewImageCellLayout.Zoom;
+            imgCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
 
             grid.Columns.Add(imgCol);
 
@@ -295,10 +291,8 @@ namespace Cepima
                 new MenuItem("    Nouveau",Properties.Resources.plus___25px,(s,ev) =>
                 {
                     //instructions
-                    MesUserCases.User_patient patient = new MesUserCases.User_patient();
-                    patient.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(patient);
+                    MesForms.Form_add_patient add = new MesForms.Form_add_patient();
+                    add.ShowDialog();
                 }),
             };
             Create_sous_menu(items);
@@ -627,10 +621,13 @@ namespace Cepima
             panel11.Visible = true;
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                new MenuItem("      Acceuil",Properties.Resources.home_20px,(s,ev) =>  
                 {
                     //instructions
-                   
+                   MesUserCases.User_DashBoard_consultation dash = new MesUserCases.User_DashBoard_consultation();
+                    dash.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(dash);
                 }),
 
                   new MenuItem("    Consultation",Properties.Resources.counselor_25px,(s,ev) =>  
@@ -639,6 +636,18 @@ namespace Cepima
                     consultation.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(consultation);
+                }),
+
+                     new MenuItem("     Terminées",Properties.Resources.finish_flag_20px,(s,ev) =>  
+                {
+                    MesUserCases.User_finish_consultation finish = new MesUserCases.User_finish_consultation();
+                    finish.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(finish);
+                }),
+                   new MenuItem("     Préscription",Properties.Resources.capsule_20px,(s,ev) =>  
+                {
+                    
                 }),
             };
             Create_sous_menu(items);
@@ -658,6 +667,11 @@ namespace Cepima
             {
                 lbl2.Text = message;
             }
+        }
+
+        private void bt_presc_Click(object sender, EventArgs e)
+        {
+
         }
     }
     public class MenuItem
