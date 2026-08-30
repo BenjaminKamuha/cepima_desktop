@@ -310,6 +310,13 @@ namespace Cepima
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
+
+            // Affichage du dashboard
+            MesUserCases.User_DashBord_pharmacie dashbord_ph1 = new MesUserCases.User_DashBord_pharmacie();
+            dashbord_ph1.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(dashbord_ph1);
+
             var items = new List<MenuItem>()
             {
 
@@ -347,6 +354,7 @@ namespace Cepima
                 }),
 
             };
+
             Create_sous_menu(items);
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
