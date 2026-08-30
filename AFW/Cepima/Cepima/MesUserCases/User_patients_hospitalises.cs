@@ -834,22 +834,12 @@ namespace Cepima.MesUserCases
         }
         private void bt_display_prescription_Click(object sender, EventArgs e)
         {
-            if (hospitalisationID == null)
-            {
-                MessageBox.Show("Veuillez sélectionner un patient");
-                return;
-            }
-            else
-            {
-                MesForms.Form_Display_prescription prescription = new MesForms.Form_Display_prescription(hospitalisationID);
-                prescription.ShowDialog();
-            }
+           
         }
 
         private void bt_new_prescription_Click(object sender, EventArgs e)
         {
-            MesForms.Form_New_prescription presc = new MesForms.Form_New_prescription(hospitalisationID,ID_PATIENT);
-            presc.ShowDialog();
+           
         }
 
         private void dgv_consultation_CellClick(object sender, DataGridViewCellEventArgs e)
