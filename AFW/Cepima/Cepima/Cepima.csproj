@@ -141,6 +141,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ChartPoint.cs" />
+    <Compile Include="Controls\ColorPickerTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\Columns\DataGridViewControlColumn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -159,8 +162,11 @@
     <Compile Include="Controls\Control.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\CustomRoundedButton.cs">
+    <Compile Include="Controls\CustomCombox.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CustomRoundedButton.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\DonutChartControl.cs">
       <SubType>Component</SubType>
@@ -170,6 +176,12 @@
     </Compile>
     <Compile Include="Controls\ModernDataGridView.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ModernListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\RoundedNumericUpDown.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\RoundedPanel.cs">
       <SubType>Component</SubType>
@@ -257,10 +269,16 @@
     <Compile Include="MesForms\FormRecu.Designer.cs">
       <DependentUpon>FormRecu.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_add_medoc.cs">
+    <Compile Include="MesForms\Pharmacie\Form_add_category_med.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_add_medoc.Designer.cs">
+    <Compile Include="MesForms\Pharmacie\Form_add_category_med.Designer.cs">
+      <DependentUpon>Form_add_category_med.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_add_medoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_add_medoc.Designer.cs">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Form_add_patient.cs">
@@ -275,23 +293,53 @@
     <Compile Include="MesForms\Form_add_suivi_hospitalisation.Designer.cs">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_add_unity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_add_unity.Designer.cs">
+      <DependentUpon>Form_add_unity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_detail_produit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_detail_produit.Designer.cs">
+      <DependentUpon>Form_detail_produit.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Form_signes_vitaux.Designer.cs">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\UC_add_medoc.cs">
+    <Compile Include="MesForms\Pharmacie\Form_reception_stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_reception_stock.Designer.cs">
+      <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_add_medoc.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MesUserCases\UC_add_medoc.Designer.cs">
+    <Compile Include="MesUserCases\Pharmacie\UC_add_medoc.Designer.cs">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_detail_produit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_detail_produit.Designer.cs">
+      <DependentUpon>UC_detail_produit.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\UC_detail_personnel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\UC_detail_personnel.Designer.cs">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_stock_pharmacie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_stock_pharmacie.Designer.cs">
+      <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\User_add_paiement.cs">
       <SubType>UserControl</SubType>
@@ -395,12 +443,6 @@
     <Compile Include="MesUserCases\User_livre_caisse.Designer.cs">
       <DependentUpon>User_livre_caisse.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\User_medicament.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_medicament.designer.cs">
-      <DependentUpon>User_medicament.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\User_paiement_eeg.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -481,6 +523,7 @@
     <Compile Include="UC_logo_cepima.Designer.cs">
       <DependentUpon>UC_logo_cepima.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Position.cs" />
     <Compile Include="UI\Theme.cs" />
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
@@ -504,7 +547,10 @@
     <EmbeddedResource Include="MesForms\FormRecu.resx">
       <DependentUpon>FormRecu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_add_medoc.resx">
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_add_category_med.resx">
+      <DependentUpon>Form_add_category_med.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_add_medoc.resx">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_add_patient.resx">
@@ -513,14 +559,29 @@
     <EmbeddedResource Include="MesForms\Form_add_suivi_hospitalisation.resx">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_add_unity.resx">
+      <DependentUpon>Form_add_unity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
+      <DependentUpon>Form_detail_produit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\UC_add_medoc.resx">
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
+      <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_add_medoc.resx">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_detail_produit.resx">
+      <DependentUpon>UC_detail_produit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\UC_detail_personnel.resx">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_stock_pharmacie.resx">
+      <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
@@ -572,9 +633,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_livre_caisse.resx">
       <DependentUpon>User_livre_caisse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_medicament.resx">
-      <DependentUpon>User_medicament.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_paiement_eeg.resx">
       <DependentUpon>User_paiement_eeg.cs</DependentUpon>
@@ -1151,6 +1209,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\finish_flag_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_25px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\UIFramework\UIFramework.csproj">
+      <Project>{CCC43331-D3E0-46DB-98D9-96892205D586}</Project>
+      <Name>UIFramework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capsule_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit_property_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Clock_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_25px1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

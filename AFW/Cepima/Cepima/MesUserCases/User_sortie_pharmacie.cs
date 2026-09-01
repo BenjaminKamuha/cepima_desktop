@@ -255,7 +255,7 @@ namespace Cepima.MesUserCases
             RoundedButton btn_cancel_presc = new RoundedButton();
             btn_cancel_presc.ButtonText = "Annuler";
             btn_cancel_presc.BorderColor = Color.Transparent;
-            btn_cancel_presc.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            //btn_cancel_presc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             btn_cancel_presc.BorderRadius = 5;
             btn_cancel_presc.Size = new Size(72, 24);
             btn_cancel_presc.Location = new Point(2, 2);
