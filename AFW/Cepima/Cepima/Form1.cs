@@ -328,9 +328,9 @@ namespace Cepima
                     panel_center_main.Controls.Add(dashbord_ph);
                 }),
               
-                new MenuItem("    Médicaments",Properties.Resources.pill_20px,(s,ev) => {
+                new MenuItem("    Stock",Properties.Resources.capsule_30px,(s,ev) => {
 
-                    MesUserCases.User_medicament user_med = new MesUserCases.User_medicament();
+                    MesUserCases.UC_stock_pharmacie user_med = new MesUserCases.UC_stock_pharmacie();
                     panel_center_main.Controls.Clear();
                     user_med.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Add(user_med);

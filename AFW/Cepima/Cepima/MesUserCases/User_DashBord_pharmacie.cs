@@ -18,13 +18,12 @@ namespace Cepima.MesUserCases
         public User_DashBord_pharmacie()
         {
             InitializeComponent();
-            MessageBox.Show(db.Count("medicaments").ToString());
-                        
         }
 
         private void User_DashBord_pharmacie_Load(object sender, EventArgs e)
         {
-
+            // Chargement médicament dispensé 
+            //string query_disp_ambulatoire = "SELECT 
         }
     }
 }
