@@ -293,6 +293,15 @@
     <Compile Include="MesForms\Form_add_suivi_hospitalisation.Designer.cs">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="MesForms\Form_Fiche_suivie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    
+    <Compile Include="MesForms\Form_Fiche_suivie.Designer.cs">
+      <DependentUpon>Form_Fiche_suivie.cs</DependentUpon>
+    </Compile>
+    
     <Compile Include="MesForms\Pharmacie\Form_add_unity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +313,7 @@
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_detail_produit.Designer.cs">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
+
     </Compile>
     <Compile Include="MesForms\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
@@ -571,11 +581,16 @@
     <EmbeddedResource Include="MesForms\Form_add_suivi_hospitalisation.resx">
       <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="MesForms\Form_Fiche_suivie.resx">
+      <DependentUpon>Form_Fiche_suivie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_add_unity.resx">
       <DependentUpon>Form_add_unity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
