@@ -16,9 +16,13 @@ namespace Cepima.MesForms
 {
     public partial class Form_add_medoc : Form
     {
+        Database db = new Database();
 
         public static MyRoundedComboBox CBX_CATEGORIE { get; set; }
         public static MyRoundedComboBox CBX_UNITE { get; set; }
+
+        int PROD_ID = UC_stock_pharmacie.PROD_ID;
+        string query;
 
         public Form_add_medoc()
         {
@@ -29,6 +33,96 @@ namespace Cepima.MesForms
 
             ChargerCategories();
             ChargerUnites();
+
+
+            if (PROD_ID != 0)
+            {
+                ChargerInfoProduit();
+                query = @"
+                UPDATE medicament
+                SET nom = @nom,
+                    categorie_id = @categorie_id,
+                    unite_gestion_id = @categorie_id,
+                    seuil_minimum = @seuil_minimum, 
+                    prix_vente = @prix_vente,
+                    prix_achat = @prix_vente
+
+                    WHERE id = @id_med;";
+            }
+            else
+            {
+                query = @"
+                INSERT INTO medicament
+                (
+                    nom,
+                    categorie_id,
+                    unite_gestion_id,
+                    seuil_minimum,
+                    prix_vente,
+                    prix_achat
+                )
+                VALUES
+                (
+                    @nom,
+                    @categorie_id,
+                    @unite_gestion_id,
+                    @seuil_minimum,
+                    @prix_vente,
+                    @prix_vente
+                )";
+            }
+        }
+
+        private void ChargerInfoProduit()
+        {
+            try
+            {
+                using (MySqlConnection con = db.GetConnection())
+                {
+                    con.Open();
+                    string query = @"
+                        SELECT
+                            m.id,
+                            m.nom,
+                            m.unite_gestion_id,
+                            m.prix_achat,
+                            m.prix_vente,
+                            m.categorie_id
+                            
+                        FROM medicament m 
+                        WHERE m.id=@med_id";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@med_id", PROD_ID);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                tb_medoc_name.Text = reader["nom"].ToString();
+                                cbx_category.SelectedValue = Convert.ToInt32(reader["categorie_id"].ToString());
+                                cbx_unity.SelectedValue = Convert.ToInt32(reader["unite_gestion_id"].ToString());
+                                try
+                                {
+                                    ud_prix_achat.Value = Convert.ToDecimal(reader["prix_achat"].ToString());
+                                    ud_prix_vente.Value = Convert.ToDecimal(reader["prix_vente"].ToString());
+                                }
+                                catch
+                                {
+                                    // Si le produit n'a pas de prix
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur de chargement produit " + ex.Message);
+            }
         }
 
         public static void ChargerCategories()
@@ -218,68 +312,51 @@ namespace Cepima.MesForms
                     // VÉRIFIER SI LE MÉDICAMENT EXISTE
                     // =================================================
 
-                    string checkQuery = @"
-                SELECT COUNT(*)
-                FROM medicament
-                WHERE nom = @nom
-                  AND categorie_id = @categorie_id";
-
-                    using (MySqlCommand checkCommand =
-                           new MySqlCommand(
-                               checkQuery,
-                               connection))
+                    if (PROD_ID == 0)
                     {
-                        checkCommand.Parameters.AddWithValue(
-                            "@nom",
-                            nom);
+                        string checkQuery = @"
+                            SELECT COUNT(*)
+                            FROM medicament
+                            WHERE nom = @nom
+                              AND categorie_id = @categorie_id";
 
-                        checkCommand.Parameters.AddWithValue(
-                            "@categorie_id",
-                            categorieId);
-
-                        int existe =
-                            Convert.ToInt32(
-                                checkCommand.ExecuteScalar());
-
-                        if (existe > 0)
+                        using (MySqlCommand checkCommand =
+                               new MySqlCommand(
+                                   checkQuery,
+                                   connection))
                         {
-                            MessageBox.Show(
-                                "Ce médicament existe déjà dans cette catégorie.",
-                                "Doublon",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                            checkCommand.Parameters.AddWithValue(
+                                "@nom",
+                                nom);
 
-                            tb_medoc_name.Focus();
+                            checkCommand.Parameters.AddWithValue(
+                                "@categorie_id",
+                                categorieId);
 
-                            return;
+                            int existe =
+                                Convert.ToInt32(
+                                    checkCommand.ExecuteScalar());
+
+                            if (existe > 0)
+                            {
+                                MessageBox.Show(
+                                    "Ce médicament existe déjà dans cette catégorie.",
+                                    "Doublon",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+
+                                tb_medoc_name.Focus();
+
+                                return;
+                            }
                         }
                     }
+                    
 
 
                     // =================================================
                     // INSERTION
                     // =================================================
-
-                    string query = @"
-                INSERT INTO medicament
-                (
-                    nom,
-                    categorie_id,
-                    unite_gestion_id,
-                    seuil_minimum,
-                    prix_vente,
-                    prix_achat
-                )
-                VALUES
-                (
-                    @nom,
-                    @categorie_id,
-                    @unite_gestion_id,
-                    @seuil_minimum,
-                    @prix_vente,
-                    @prix_vente
-                )";
-
 
                     using (MySqlCommand command =
                            new MySqlCommand(
@@ -306,6 +383,10 @@ namespace Cepima.MesForms
                         command.Parameters.AddWithValue(
                             "@prix_vente", prix_vente);
 
+                        if (PROD_ID != 0) 
+                        {
+                            command.Parameters.AddWithValue("@id_med", PROD_ID);
+                        }
                         command.ExecuteNonQuery();
                     }
                 }
@@ -315,25 +396,34 @@ namespace Cepima.MesForms
                 // SUCCÈS
                 // =====================================================
 
-                DialogResult result = MessageBox.Show(
-                    "Le médicament a été enregistré avec succès.",
-                    "Enregistrement",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                if (PROD_ID != 0)
                 {
-                    // Réinitialiser le formulaire
-                    ViderFormulaireMedicament();
-
-                    // Garder le formulaire ouvert
-                    tb_medoc_name.Focus();
+                    MessageBox.Show("Produit modifié avec succès", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
-
                 else
                 {
-                    // Fermer le formulaire
-                    this.Close();
+
+                    DialogResult result = MessageBox.Show(
+                        "Le médicament a été enregistré avec succès. Enregistrer un autre ?",
+                        "Enregistrement",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        // Réinitialiser le formulaire
+                        ViderFormulaireMedicament();
+
+                        // Garder le formulaire ouvert
+                        tb_medoc_name.Focus();
+                    }
+
+                    else
+                    {
+                        // Fermer le formulaire
+                        this.Close();
+                    }
                 }
 
 

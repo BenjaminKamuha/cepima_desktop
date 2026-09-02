@@ -17,6 +17,9 @@ namespace Cepima.MesForms
     public partial class Form_detail_produit : Form
 
     {
+        Database db = new Database();
+        int PROD_ID = UC_stock_pharmacie.PROD_ID;
+
         public static ModernListItem ITEM_PRODUCT;
         public static Button BT_REFRESH;
 
@@ -67,7 +70,6 @@ namespace Cepima.MesForms
 
         private void loadProd()
         {
-            Database db = new Database();
             try
             {
                 using (MySqlConnection con = db.GetConnection())
@@ -87,7 +89,7 @@ namespace Cepima.MesForms
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue("@med_id", UC_stock_pharmacie.PROD_ID);
+                        cmd.Parameters.AddWithValue("@med_id", PROD_ID);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -147,6 +149,50 @@ namespace Cepima.MesForms
             MesUserCases.Pharmacie.UC_detail_produit uc = new MesUserCases.Pharmacie.UC_detail_produit();
             uc.Dock = DockStyle.Fill;
             main_pan.Controls.Add(uc);
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                   "Le médicament va être supprimé.",
+                   "Suppression",
+                   MessageBoxButtons.YesNo,
+                   MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Suppression d'un produit
+                string query = "UPDATE medicament SET actif = 0 WHERE id = @id_med";
+                try
+                {
+                    using (MySqlConnection con = db.GetConnection())
+                    {
+                        con.Open();
+
+                        using (MySqlCommand cmd = new MySqlCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@id_med", PROD_ID);
+
+                            cmd.ExecuteNonQuery();
+
+                            MessageBox.Show("Produit supprimé avec succès!");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de suppression du produit" + ex.Message);
+                }
+            }
+
+           
+            
+        }
+
+        private void btn_edit_Click(object sender, EventArgs e)
+        {
+            Form_add_medoc frm_medoc = new Form_add_medoc();
+            frm_medoc.ShowDialog();
         }
 
     }

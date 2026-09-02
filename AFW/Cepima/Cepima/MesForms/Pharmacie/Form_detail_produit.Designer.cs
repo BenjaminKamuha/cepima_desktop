@@ -31,12 +31,11 @@
             this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
             this.main_pan = new System.Windows.Forms.Panel();
             this.pnl_header = new System.Windows.Forms.Panel();
+            this.item_medoc = new ModernListItem();
             this.btn_refresh = new RoundedButton();
-            this.btn_history = new RoundedButton();
             this.btn_delete = new RoundedButton();
             this.btn_edit = new RoundedButton();
             this.btn_stock_plus = new RoundedButton();
-            this.item_medoc = new ModernListItem();
             this.bunifuRoundedPanel1.SuspendLayout();
             this.pnl_header.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +65,6 @@
             // 
             this.pnl_header.Controls.Add(this.item_medoc);
             this.pnl_header.Controls.Add(this.btn_refresh);
-            this.pnl_header.Controls.Add(this.btn_history);
             this.pnl_header.Controls.Add(this.btn_delete);
             this.pnl_header.Controls.Add(this.btn_edit);
             this.pnl_header.Controls.Add(this.btn_stock_plus);
@@ -74,6 +72,21 @@
             this.pnl_header.Name = "pnl_header";
             this.pnl_header.Size = new System.Drawing.Size(973, 73);
             this.pnl_header.TabIndex = 0;
+            // 
+            // item_medoc
+            // 
+            this.item_medoc.BackColor = System.Drawing.Color.Transparent;
+            this.item_medoc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.item_medoc.IndicatorColor = System.Drawing.Color.LightBlue;
+            this.item_medoc.IndicatorShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.item_medoc.Location = new System.Drawing.Point(3, 6);
+            this.item_medoc.Name = "item_medoc";
+            this.item_medoc.Size = new System.Drawing.Size(160, 60);
+            this.item_medoc.SubtitleColor = System.Drawing.Color.Gray;
+            this.item_medoc.SubtitleFont = new System.Drawing.Font("Segoe UI", 7F);
+            this.item_medoc.TabIndex = 9;
+            this.item_medoc.TitleColor = System.Drawing.Color.Black;
+            this.item_medoc.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
             // 
             // btn_refresh
             // 
@@ -91,7 +104,7 @@
             this.btn_refresh.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_refresh.Image = global::Cepima.Properties.Resources.refresh_25px1;
             this.btn_refresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_refresh.Location = new System.Drawing.Point(191, 22);
+            this.btn_refresh.Location = new System.Drawing.Point(335, 22);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(58, 34);
             this.btn_refresh.TabIndex = 8;
@@ -99,31 +112,6 @@
             this.btn_refresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_refresh.UseVisualStyleBackColor = false;
             this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
-            // 
-            // btn_history
-            // 
-            this.btn_history.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_history.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btn_history.BorderRadius = 8;
-            this.btn_history.BorderSize = 0;
-            this.btn_history.ButtonText = "Historique";
-            this.btn_history.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_history.DefaultBackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_history.FlatAppearance.BorderSize = 0;
-            this.btn_history.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_history.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_history.ForeColor = System.Drawing.Color.White;
-            this.btn_history.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.btn_history.Image = global::Cepima.Properties.Resources.Clock_25px;
-            this.btn_history.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_history.Location = new System.Drawing.Point(478, 22);
-            this.btn_history.Name = "btn_history";
-            this.btn_history.Size = new System.Drawing.Size(151, 34);
-            this.btn_history.TabIndex = 6;
-            this.btn_history.Text = "Historique";
-            this.btn_history.TextColor = System.Drawing.Color.White;
-            this.btn_history.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_history.UseVisualStyleBackColor = false;
             // 
             // btn_delete
             // 
@@ -141,7 +129,7 @@
             this.btn_delete.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_delete.Image = global::Cepima.Properties.Resources.trash_25px;
             this.btn_delete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_delete.Location = new System.Drawing.Point(824, 22);
+            this.btn_delete.Location = new System.Drawing.Point(822, 22);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(140, 34);
             this.btn_delete.TabIndex = 5;
@@ -149,6 +137,7 @@
             this.btn_delete.TextColor = System.Drawing.Color.White;
             this.btn_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_delete.UseVisualStyleBackColor = false;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
             // 
             // btn_edit
             // 
@@ -166,7 +155,7 @@
             this.btn_edit.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_edit.Image = global::Cepima.Properties.Resources.edit_property_25px;
             this.btn_edit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_edit.Location = new System.Drawing.Point(654, 22);
+            this.btn_edit.Location = new System.Drawing.Point(642, 22);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(145, 34);
             this.btn_edit.TabIndex = 4;
@@ -174,6 +163,7 @@
             this.btn_edit.TextColor = System.Drawing.Color.White;
             this.btn_edit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_edit.UseVisualStyleBackColor = false;
+            this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
             // btn_stock_plus
             // 
@@ -191,7 +181,7 @@
             this.btn_stock_plus.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_stock_plus.Image = global::Cepima.Properties.Resources.add_25px1;
             this.btn_stock_plus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_stock_plus.Location = new System.Drawing.Point(274, 22);
+            this.btn_stock_plus.Location = new System.Drawing.Point(428, 22);
             this.btn_stock_plus.Name = "btn_stock_plus";
             this.btn_stock_plus.Size = new System.Drawing.Size(179, 34);
             this.btn_stock_plus.TabIndex = 3;
@@ -200,21 +190,6 @@
             this.btn_stock_plus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_stock_plus.UseVisualStyleBackColor = false;
             this.btn_stock_plus.Click += new System.EventHandler(this.btn_stock_plus_Click);
-            // 
-            // item_medoc
-            // 
-            this.item_medoc.BackColor = System.Drawing.Color.Transparent;
-            this.item_medoc.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.item_medoc.IndicatorColor = System.Drawing.Color.LightBlue;
-            this.item_medoc.IndicatorShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.item_medoc.Location = new System.Drawing.Point(3, 6);
-            this.item_medoc.Name = "item_medoc";
-            this.item_medoc.Size = new System.Drawing.Size(160, 60);
-            this.item_medoc.SubtitleColor = System.Drawing.Color.Gray;
-            this.item_medoc.SubtitleFont = new System.Drawing.Font("Segoe UI", 7F);
-            this.item_medoc.TabIndex = 9;
-            this.item_medoc.TitleColor = System.Drawing.Color.Black;
-            this.item_medoc.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
             // 
             // Form_detail_produit
             // 
@@ -241,7 +216,6 @@
         private RoundedButton btn_edit;
         private RoundedButton btn_stock_plus;
         private System.Windows.Forms.Panel main_pan;
-        private RoundedButton btn_history;
         private RoundedButton btn_refresh;
         private ModernListItem item_medoc;
 

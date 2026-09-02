@@ -530,6 +530,7 @@ namespace Cepima.MesUserCases
 
         private void btn_add_med_Click(object sender, EventArgs e)
         {
+            UC_stock_pharmacie.PROD_ID = 0;
             Form_add_medoc frm_medoc = new Form_add_medoc();
             frm_medoc.ShowDialog();
         }
