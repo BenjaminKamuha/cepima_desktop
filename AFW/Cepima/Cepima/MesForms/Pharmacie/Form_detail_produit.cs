@@ -174,8 +174,8 @@ namespace Cepima.MesForms
                             cmd.Parameters.AddWithValue("@id_med", PROD_ID);
 
                             cmd.ExecuteNonQuery();
-
-                            MessageBox.Show("Produit supprimé avec succès!");
+                            this.Close();
+                            UC_stock_pharmacie.ChargerMedicaments();
                         }
                     }
                 }
@@ -185,8 +185,6 @@ namespace Cepima.MesForms
                 }
             }
 
-           
-            
         }
 
         private void btn_edit_Click(object sender, EventArgs e)

@@ -315,39 +315,66 @@ namespace Cepima.MesForms
                     if (PROD_ID == 0)
                     {
                         string checkQuery = @"
-                            SELECT COUNT(*)
-                            FROM medicament
-                            WHERE nom = @nom
-                              AND categorie_id = @categorie_id";
+    SELECT id, actif
+    FROM medicament
+    WHERE nom = @nom
+      AND categorie_id = @categorie_id
+    LIMIT 1";
 
                         using (MySqlCommand checkCommand =
-                               new MySqlCommand(
-                                   checkQuery,
-                                   connection))
+                               new MySqlCommand(checkQuery, connection))
                         {
-                            checkCommand.Parameters.AddWithValue(
-                                "@nom",
-                                nom);
+                            checkCommand.Parameters.AddWithValue("@nom", nom);
+                            checkCommand.Parameters.AddWithValue("@categorie_id", categorieId);
 
-                            checkCommand.Parameters.AddWithValue(
-                                "@categorie_id",
-                                categorieId);
-
-                            int existe =
-                                Convert.ToInt32(
-                                    checkCommand.ExecuteScalar());
-
-                            if (existe > 0)
+                            using (MySqlDataReader reader = checkCommand.ExecuteReader())
                             {
-                                MessageBox.Show(
-                                    "Ce médicament existe déjà dans cette catégorie.",
-                                    "Doublon",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning);
+                                if (reader.Read())
+                                {
+                                    int medicamentId = Convert.ToInt32(reader["id"]);
+                                    int actif = Convert.ToInt32(reader["actif"]);
 
-                                tb_medoc_name.Focus();
+                                    reader.Close();
 
-                                return;
+                                    if (actif == 1)
+                                    {
+                                        MessageBox.Show(
+                                            "Ce médicament existe déjà dans cette catégorie.",
+                                            "Doublon",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Warning);
+
+                                        tb_medoc_name.Focus();
+
+                                        return;
+                                    }
+                                    else
+                                    {
+                                        // Le médicament existe mais est désactivé
+                                        string activateQuery = @"
+                    UPDATE medicament
+                    SET actif = 1
+                    WHERE id = @id";
+
+                                        using (MySqlCommand activateCommand =
+                                               new MySqlCommand(activateQuery, connection))
+                                        {
+                                            activateCommand.Parameters.AddWithValue(
+                                                "@id",
+                                                medicamentId);
+
+                                            activateCommand.ExecuteNonQuery();
+                                        }
+
+                                        MessageBox.Show(
+                                            "Ce médicament existait déjà et a été réactivé.",
+                                            "Médicament réactivé",
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information);
+
+                                        return;
+                                    }
+                                }
                             }
                         }
                     }

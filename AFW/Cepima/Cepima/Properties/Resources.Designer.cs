@@ -163,6 +163,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap adjust_30px {
+            get {
+                object obj = ResourceManager.GetObject("adjust_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap analytics_25px {
             get {
                 object obj = ResourceManager.GetObject("analytics_25px", resourceCulture);
@@ -783,6 +793,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hand_with_a_pill_30px {
+            get {
+                object obj = ResourceManager.GetObject("hand_with_a_pill_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap health_checkup_40px {
             get {
                 object obj = ResourceManager.GetObject("health_checkup_40px", resourceCulture);
@@ -836,6 +856,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap home_20px {
             get {
                 object obj = ResourceManager.GetObject("home_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home_30px {
+            get {
+                object obj = ResourceManager.GetObject("home_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
