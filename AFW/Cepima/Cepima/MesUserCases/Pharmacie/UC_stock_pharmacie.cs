@@ -161,7 +161,8 @@ namespace Cepima.MesUserCases
                     c.couleur
                 FROM medicament m
                 INNER JOIN medicament_categorie c
-                    ON m.categorie_id = c.id
+                    ON m.categorie_id = c.id 
+                    WHERE m.actif = 1
                 ORDER BY m.nom ASC";
 
                     using (MySqlCommand command =
