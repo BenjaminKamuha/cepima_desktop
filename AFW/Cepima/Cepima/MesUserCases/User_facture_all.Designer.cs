@@ -34,17 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.cbx_filter_periode = new System.Windows.Forms.ComboBox();
-            this.cbx_statut_facture = new System.Windows.Forms.ComboBox();
-            this.cbx_type_facture = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tb_search = new System.Windows.Forms.TextBox();
-            this.tb_tarif = new MyRoundedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.bt_actualiser = new test_arrondissement2012.PerfectRoundedButton();
@@ -66,12 +55,21 @@
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn4 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cbx_filter_periode = new System.Windows.Forms.ComboBox();
+            this.cbx_statut_facture = new System.Windows.Forms.ComboBox();
+            this.cbx_type_facture = new System.Windows.Forms.ComboBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tb_search = new System.Windows.Forms.TextBox();
+            this.tb_tarif = new MyRoundedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            this.customRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_facture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -104,141 +102,6 @@
             this.panel1.Size = new System.Drawing.Size(1118, 44);
             this.panel1.TabIndex = 0;
             // 
-            // customRoundedPanel1
-            // 
-            this.customRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
-            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel1.BorderRadius = 8;
-            this.customRoundedPanel1.BorderSize = 1;
-            this.customRoundedPanel1.Controls.Add(this.cbx_filter_periode);
-            this.customRoundedPanel1.Controls.Add(this.cbx_statut_facture);
-            this.customRoundedPanel1.Controls.Add(this.cbx_type_facture);
-            this.customRoundedPanel1.Controls.Add(this.pictureBox1);
-            this.customRoundedPanel1.Controls.Add(this.tb_search);
-            this.customRoundedPanel1.Controls.Add(this.tb_tarif);
-            this.customRoundedPanel1.Controls.Add(this.label5);
-            this.customRoundedPanel1.Controls.Add(this.label4);
-            this.customRoundedPanel1.Controls.Add(this.label3);
-            this.customRoundedPanel1.Controls.Add(this.label2);
-            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(3, 48);
-            this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1111, 80);
-            this.customRoundedPanel1.TabIndex = 1;
-            // 
-            // cbx_filter_periode
-            // 
-            this.cbx_filter_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_filter_periode.Font = new System.Drawing.Font("Calibri", 10F);
-            this.cbx_filter_periode.FormattingEnabled = true;
-            this.cbx_filter_periode.Location = new System.Drawing.Point(900, 33);
-            this.cbx_filter_periode.Name = "cbx_filter_periode";
-            this.cbx_filter_periode.Size = new System.Drawing.Size(165, 23);
-            this.cbx_filter_periode.TabIndex = 17;
-            this.cbx_filter_periode.SelectedIndexChanged += new System.EventHandler(this.cbx_statut_facture_SelectedIndexChanged);
-            // 
-            // cbx_statut_facture
-            // 
-            this.cbx_statut_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_statut_facture.Font = new System.Drawing.Font("Calibri", 10F);
-            this.cbx_statut_facture.FormattingEnabled = true;
-            this.cbx_statut_facture.Location = new System.Drawing.Point(625, 33);
-            this.cbx_statut_facture.Name = "cbx_statut_facture";
-            this.cbx_statut_facture.Size = new System.Drawing.Size(163, 23);
-            this.cbx_statut_facture.TabIndex = 17;
-            this.cbx_statut_facture.SelectedIndexChanged += new System.EventHandler(this.cbx_statut_facture_SelectedIndexChanged);
-            // 
-            // cbx_type_facture
-            // 
-            this.cbx_type_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_type_facture.Font = new System.Drawing.Font("Calibri", 10F);
-            this.cbx_type_facture.FormattingEnabled = true;
-            this.cbx_type_facture.Location = new System.Drawing.Point(387, 33);
-            this.cbx_type_facture.Name = "cbx_type_facture";
-            this.cbx_type_facture.Size = new System.Drawing.Size(145, 23);
-            this.cbx_type_facture.TabIndex = 17;
-            this.cbx_type_facture.SelectedIndexChanged += new System.EventHandler(this.cbx_type_facture_SelectedIndexChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(218, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
-            // tb_search
-            // 
-            this.tb_search.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_search.Font = new System.Drawing.Font("Calibri", 12F);
-            this.tb_search.Location = new System.Drawing.Point(26, 30);
-            this.tb_search.Multiline = true;
-            this.tb_search.Name = "tb_search";
-            this.tb_search.Size = new System.Drawing.Size(194, 22);
-            this.tb_search.TabIndex = 15;
-            this.tb_search.TextChanged += new System.EventHandler(this.tb_search_TextChanged);
-            // 
-            // tb_tarif
-            // 
-            this.tb_tarif.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tb_tarif.BorderRadius = 4;
-            this.tb_tarif.BorderSize = 0;
-            this.tb_tarif.Enabled = false;
-            this.tb_tarif.FocusBorderColor = System.Drawing.Color.Orange;
-            this.tb_tarif.Location = new System.Drawing.Point(22, 28);
-            this.tb_tarif.Name = "tb_tarif";
-            this.tb_tarif.PasswordChar = '\0';
-            this.tb_tarif.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_tarif.PlaceholderText = "";
-            this.tb_tarif.Size = new System.Drawing.Size(219, 28);
-            this.tb_tarif.TabIndex = 16;
-            this.tb_tarif.UseSystemPasswordChar = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(897, 17);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 15);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Période : ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(622, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 15);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Statut";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(384, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Type de facture";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(32, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 15);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Rechercher ";
-            // 
             // customRoundedPanel2
             // 
             this.customRoundedPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -248,14 +111,24 @@
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel2.BorderRadius = 8;
             this.customRoundedPanel2.BorderSize = 1;
+            this.customRoundedPanel2.Controls.Add(this.cbx_filter_periode);
+            this.customRoundedPanel2.Controls.Add(this.cbx_statut_facture);
+            this.customRoundedPanel2.Controls.Add(this.cbx_type_facture);
+            this.customRoundedPanel2.Controls.Add(this.pictureBox1);
+            this.customRoundedPanel2.Controls.Add(this.tb_search);
+            this.customRoundedPanel2.Controls.Add(this.tb_tarif);
+            this.customRoundedPanel2.Controls.Add(this.label5);
+            this.customRoundedPanel2.Controls.Add(this.label4);
+            this.customRoundedPanel2.Controls.Add(this.label3);
+            this.customRoundedPanel2.Controls.Add(this.label2);
             this.customRoundedPanel2.Controls.Add(this.customRoundedPanel4);
             this.customRoundedPanel2.Controls.Add(this.dgv_facture);
             this.customRoundedPanel2.Controls.Add(this.label7);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(3, 134);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(3, 50);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(1111, 410);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(1111, 494);
             this.customRoundedPanel2.TabIndex = 2;
             // 
             // customRoundedPanel4
@@ -269,7 +142,7 @@
             this.customRoundedPanel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel4.Location = new System.Drawing.Point(0, 375);
+            this.customRoundedPanel4.Location = new System.Drawing.Point(0, 459);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
             this.customRoundedPanel4.Size = new System.Drawing.Size(1111, 35);
             this.customRoundedPanel4.TabIndex = 2;
@@ -357,10 +230,10 @@
             this.dgv_facture.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_facture.EnableHeadersVisualStyles = false;
             this.dgv_facture.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_facture.Location = new System.Drawing.Point(3, 30);
+            this.dgv_facture.Location = new System.Drawing.Point(3, 98);
             this.dgv_facture.Name = "dgv_facture";
             this.dgv_facture.RowHeadersVisible = false;
-            this.dgv_facture.Size = new System.Drawing.Size(1106, 341);
+            this.dgv_facture.Size = new System.Drawing.Size(1106, 357);
             this.dgv_facture.TabIndex = 1;
             // 
             // colPatient
@@ -446,7 +319,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(15, 8);
+            this.label7.Location = new System.Drawing.Point(12, 76);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(124, 19);
             this.label7.TabIndex = 0;
@@ -484,26 +357,129 @@
             this.dataGridViewImageColumn4.MinimumWidth = 50;
             this.dataGridViewImageColumn4.Name = "dataGridViewImageColumn4";
             // 
+            // cbx_filter_periode
+            // 
+            this.cbx_filter_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_filter_periode.Font = new System.Drawing.Font("Calibri", 10F);
+            this.cbx_filter_periode.FormattingEnabled = true;
+            this.cbx_filter_periode.Location = new System.Drawing.Point(897, 36);
+            this.cbx_filter_periode.Name = "cbx_filter_periode";
+            this.cbx_filter_periode.Size = new System.Drawing.Size(165, 23);
+            this.cbx_filter_periode.TabIndex = 25;
+            // 
+            // cbx_statut_facture
+            // 
+            this.cbx_statut_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_statut_facture.Font = new System.Drawing.Font("Calibri", 10F);
+            this.cbx_statut_facture.FormattingEnabled = true;
+            this.cbx_statut_facture.Location = new System.Drawing.Point(622, 36);
+            this.cbx_statut_facture.Name = "cbx_statut_facture";
+            this.cbx_statut_facture.Size = new System.Drawing.Size(163, 23);
+            this.cbx_statut_facture.TabIndex = 26;
+            // 
+            // cbx_type_facture
+            // 
+            this.cbx_type_facture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_type_facture.Font = new System.Drawing.Font("Calibri", 10F);
+            this.cbx_type_facture.FormattingEnabled = true;
+            this.cbx_type_facture.Location = new System.Drawing.Point(384, 36);
+            this.cbx_type_facture.Name = "cbx_type_facture";
+            this.cbx_type_facture.Size = new System.Drawing.Size(145, 23);
+            this.cbx_type_facture.TabIndex = 27;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.search;
+            this.pictureBox1.Location = new System.Drawing.Point(215, 32);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 23);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // tb_search
+            // 
+            this.tb_search.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tb_search.Font = new System.Drawing.Font("Calibri", 12F);
+            this.tb_search.Location = new System.Drawing.Point(23, 33);
+            this.tb_search.Multiline = true;
+            this.tb_search.Name = "tb_search";
+            this.tb_search.Size = new System.Drawing.Size(194, 22);
+            this.tb_search.TabIndex = 23;
+            // 
+            // tb_tarif
+            // 
+            this.tb_tarif.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tb_tarif.BorderRadius = 4;
+            this.tb_tarif.BorderSize = 0;
+            this.tb_tarif.Enabled = false;
+            this.tb_tarif.FocusBorderColor = System.Drawing.Color.Orange;
+            this.tb_tarif.Location = new System.Drawing.Point(19, 31);
+            this.tb_tarif.Name = "tb_tarif";
+            this.tb_tarif.PasswordChar = '\0';
+            this.tb_tarif.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_tarif.PlaceholderText = "";
+            this.tb_tarif.Size = new System.Drawing.Size(219, 28);
+            this.tb_tarif.TabIndex = 24;
+            this.tb_tarif.UseSystemPasswordChar = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(894, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 15);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Période : ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(619, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 15);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Statut";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(381, 15);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 15);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "Type de facture";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(29, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(72, 15);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Rechercher ";
+            // 
             // User_facture_all
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
             this.Controls.Add(this.customRoundedPanel2);
-            this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel1);
             this.Name = "User_facture_all";
             this.Size = new System.Drawing.Size(1118, 548);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.customRoundedPanel1.ResumeLayout(false);
-            this.customRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_facture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -513,16 +489,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
-        private CustomRoundedPanel customRoundedPanel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox tb_search;
-        private MyRoundedTextBox tb_tarif;
-        private System.Windows.Forms.ComboBox cbx_statut_facture;
-        private System.Windows.Forms.ComboBox cbx_type_facture;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private CustomRoundedPanel customRoundedPanel2;
         private CustomRoundedPanel customRoundedPanel4;
         private System.Windows.Forms.Label lb_nombre_facture;
@@ -532,7 +498,6 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private test_arrondissement2012.PerfectRoundedButton bt_actualiser;
-        private System.Windows.Forms.ComboBox cbx_filter_periode;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn3;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPatient;
@@ -545,6 +510,16 @@
         private System.Windows.Forms.DataGridViewImageColumn colDetail;
         private System.Windows.Forms.DataGridViewImageColumn colPayement;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.ComboBox cbx_filter_periode;
+        private System.Windows.Forms.ComboBox cbx_statut_facture;
+        private System.Windows.Forms.ComboBox cbx_type_facture;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox tb_search;
+        private MyRoundedTextBox tb_tarif;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
 
     }
 }

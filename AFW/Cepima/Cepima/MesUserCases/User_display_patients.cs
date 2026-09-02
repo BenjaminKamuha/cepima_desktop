@@ -56,8 +56,8 @@ namespace Cepima.MesUserCases
                                 // evenement Hover du panel pour déclencher l'ouverture du Formulaire détail
                                 panPatient.MouseHover += (s, e) =>
                                     {
-                                        MesForms.FormDetailPatient detail = new MesForms.FormDetailPatient(idPatient);
-                                        detail.ShowDialog();
+                                        //MesForms.FormDetailPatient detail = new MesForms.FormDetailPatient(idPatient);
+                                        //detail.ShowDialog();
                                     };
                                 PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(2, 5),
                                     new Size(70, 70));
@@ -88,6 +88,10 @@ namespace Cepima.MesUserCases
                                 btnSuivi.Click += (e, s) =>
                                 {
                                     //ouverture de la fiche de suivi du patient
+                                    Form1.GlobalPanel_main.Visible = false;
+                                    MesForms.Form_Fiche_suivie fiche = new MesForms.Form_Fiche_suivie(idPatient);
+                                    fiche.ShowDialog();
+                                    Form1.GlobalPanel_main.Visible = true;
                                 };
 
                                 i++;
@@ -146,8 +150,8 @@ namespace Cepima.MesUserCases
                                 // evenement Hover du panel pour déclencher l'ouverture du Formulaire détail
                                 panPatient.MouseHover += (s, e) =>
                                 {
-                                    MesForms.FormDetailPatient details = new MesForms.FormDetailPatient(idPatient);
-                                    details.ShowDialog();
+                                    //MesForms.FormDetailPatient details = new MesForms.FormDetailPatient(idPatient);
+                                    //details.ShowDialog();
                                 };
 
                                 PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(2, 5),
@@ -178,7 +182,11 @@ namespace Cepima.MesUserCases
 
                                 btnSuivi.Click += (e, s) =>
                                     {
-                                        
+                                        //ouverture de la fiche de suivi du patient
+                                        Form1.GlobalPanel_main.Visible = false;
+                                        MesForms.Form_Fiche_suivie fiche = new MesForms.Form_Fiche_suivie(idPatient);
+                                        fiche.ShowDialog();
+                                        Form1.GlobalPanel_main.Visible = true;
                                     };
                                 i++;
                             }
