@@ -861,7 +861,7 @@ CREATE TABLE `lot_medicament` (
   `quantite` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `medicament_id` (`medicament_id`,`numero_lot`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -870,7 +870,6 @@ CREATE TABLE `lot_medicament` (
 
 LOCK TABLES `lot_medicament` WRITE;
 /*!40000 ALTER TABLE `lot_medicament` DISABLE KEYS */;
-INSERT INTO `lot_medicament` VALUES (1,36,'REC2342','2027-09-01',12),(2,24,'LOT-23SDF','2027-09-01',23),(3,24,'98SDF','2027-09-01',3),(4,46,'34FDSF','2027-09-01',8),(5,4,'32DFD','2027-09-01',5),(6,4,'334dfd','2027-09-01',3),(7,1,'23EE','2027-09-01',54);
 /*!40000 ALTER TABLE `lot_medicament` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -884,20 +883,14 @@ DROP TABLE IF EXISTS `medicament`;
 CREATE TABLE `medicament` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
-  `dosage` varchar(100) DEFAULT NULL,
-  `FORME` varchar(100) DEFAULT NULL,
+  `dosage` varchar(50) NOT NULL,
+  `forme` varchar(50) NOT NULL,
+  `unite` varchar(30) NOT NULL,
   `seuil_minimum` int(11) NOT NULL DEFAULT '0',
   `actif` tinyint(1) NOT NULL DEFAULT '1',
-  `categorie_id` int(11) DEFAULT NULL,
-  `prix_achat` decimal(12,2) DEFAULT NULL,
-  `prix_vente` decimal(12,2) DEFAULT NULL,
-  `unite_gestion_id` int(11) DEFAULT NULL,
-  `unite_gestion` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nom` (`nom`,`dosage`,`FORME`),
-  KEY `fk_medicament_categorie` (`categorie_id`),
-  KEY `fk_medicament_unite_gestion` (`unite_gestion_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `nom` (`nom`,`dosage`,`forme`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -906,34 +899,7 @@ CREATE TABLE `medicament` (
 
 LOCK TABLES `medicament` WRITE;
 /*!40000 ALTER TABLE `medicament` DISABLE KEYS */;
-INSERT INTO `medicament` VALUES (1,'Antiramide',NULL,NULL,0,1,2,0.00,0.00,2,NULL),(2,'Antalpi',NULL,NULL,9,1,21,0.00,0.00,21,NULL),(3,'Diazepan',NULL,NULL,0,1,22,0.00,0.00,22,NULL),(4,'Autre',NULL,NULL,4,1,8,2.00,2.00,8,NULL),(5,'Aspirine',NULL,NULL,20,1,4,0.00,0.00,4,NULL),(6,'Décaris',NULL,NULL,85,1,3,20.00,20.00,3,NULL),(7,'zerzerzer',NULL,NULL,85,1,2,0.00,0.00,2,NULL),(8,'ZARA',NULL,NULL,8,1,2,0.00,0.00,2,NULL),(9,'Kibabe',NULL,NULL,0,1,23,0.00,0.00,23,NULL),(10,'Paracetamol','500 mg','Comprimé',0,1,1,NULL,NULL,1,NULL),(11,'Ibuprofène','400 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(12,'Amoxicilline','500 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(13,'Metronidazole','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(14,'Oméprazole','20 mg','Gélule',0,1,4,NULL,NULL,1,NULL),(15,'Diclofénac','50 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(16,'Ceftriaxone','1 g','Injection',0,1,3,NULL,NULL,2,NULL),(17,'Sirop Paracetamol','120 mg/5 ml','Sirop',0,1,1,NULL,NULL,3,NULL),(18,'Vitamine C','500 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(19,'Loratadine','10 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(20,'Salbutamol','100 µg/dose','Inhalateur',0,1,7,NULL,NULL,4,NULL),(21,'Hydrocortisone','100 mg','Injection',0,1,8,NULL,NULL,2,NULL),(22,'Fer','200 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(23,'Azithromycine','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(24,'Aspirine','100 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(25,'Amoxicilline + Acide clavulanique','1 g','Comprimé',0,1,3,NULL,NULL,1,NULL),(26,'Ciprofloxacine','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(27,'Doxycycline','100 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(28,'Clindamycine','300 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(29,'Gentamicine','80 mg/2 ml','Injection',0,1,3,NULL,NULL,2,NULL),(30,'Paracetamol','1 g','Comprimé',0,1,1,NULL,NULL,1,NULL),(31,'Paracetamol','100 mg/ml','Solution buvable',0,1,1,NULL,NULL,3,NULL),(32,'Naproxène','500 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(33,'Kétoprofène','100 mg','Gélule',0,1,2,NULL,NULL,1,NULL),(34,'Tramadol','50 mg','Gélule',0,1,9,NULL,NULL,1,NULL),(35,'Morphine','10 mg/ml','Injection',0,1,9,NULL,NULL,2,NULL),(36,'Amlodipine','5 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(37,'Losartan','50 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(38,'Captopril','25 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(39,'Furosémide','40 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(40,'Metformine','500 mg','Comprimé',0,1,11,NULL,NULL,1,NULL),(41,'Glibenclamide','5 mg','Comprimé',0,1,11,NULL,NULL,1,NULL),(42,'Insuline humaine','100 UI/ml','Injection',0,1,11,NULL,NULL,2,NULL),(43,'Salbutamol','2 mg/5 ml','Sirop',0,1,7,NULL,NULL,3,NULL),(44,'Budesonide','200 µg/dose','Inhalateur',0,1,7,NULL,NULL,4,NULL),(45,'Cetirizine','10 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(46,'Chlorphenamine','4 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(47,'Prednisolone','20 mg','Comprimé',0,1,8,NULL,NULL,1,NULL),(48,'Dexamethasone','4 mg/ml','Injection',0,1,8,NULL,NULL,2,NULL),(49,'Oméprazole','40 mg','Gélule',0,1,4,NULL,NULL,1,NULL),(50,'Pantoprazole','40 mg','Comprimé',0,1,4,NULL,NULL,1,NULL),(51,'Aluminium hydroxide','500 mg','Comprimé',0,1,4,NULL,NULL,1,NULL),(52,'Fer + Acide folique','200 mg + 400 µg','Comprimé',0,1,5,NULL,NULL,1,NULL),(53,'Acide folique','5 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(54,'Vitamine B12','1000 µg','Comprimé',0,1,5,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `medicament` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `medicament_categorie`
---
-
-DROP TABLE IF EXISTS `medicament_categorie`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `medicament_categorie` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `couleur` varchar(20) NOT NULL,
-  `actif` tinyint(1) DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `medicament_categorie`
---
-
-LOCK TABLES `medicament_categorie` WRITE;
-/*!40000 ALTER TABLE `medicament_categorie` DISABLE KEYS */;
-INSERT INTO `medicament_categorie` VALUES (1,'Antipsychotique','#9B59B6',1),(2,'Antidépresseur','#3498DB',1),(3,'Anxiolytique','#2ECC71',1),(4,'Anticonvulsivant','#E67E22',1),(5,'Hypnotique','#1ABC9C',1),(6,'Thymorégulateur','#E74C3C',1),(7,'Correcteur','#F1C40F',1),(8,'Antalgique','#95A5A6',1),(9,'Antibiotique','#16A085',1),(10,'Autre','#7F8C8D',1),(11,'Bichubichu','#20FD31',1),(12,'xyz','#1E90FF',1),(13,'xyz','#1E90FF',1),(14,'rfhdfdgh','#C744D9',1),(15,'zersf','#1E90FF',1),(16,'sdfzaerdsf','#1E90FF',1),(17,'sdfsgsdf','#BBFF1E',1),(18,'rrrrrrrrrrrrrrrrrrrrrrrrr','#1E90FF',1),(19,'fdcfh','#1E90FF',1),(20,'zzzzzzzzzzzzzzzzzzzz','#7B7EA2',1),(21,'&&&&&&','#1E90FF',1),(22,'oooooooooooooooo','#E13C7A',1),(23,'MyCategory','#FF8811',1);
-/*!40000 ALTER TABLE `medicament_categorie` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -954,7 +920,7 @@ CREATE TABLE `mouvement_stock` (
   `observation` text,
   PRIMARY KEY (`id`),
   KEY `lot_id` (`lot_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -963,7 +929,6 @@ CREATE TABLE `mouvement_stock` (
 
 LOCK TABLES `mouvement_stock` WRITE;
 /*!40000 ALTER TABLE `mouvement_stock` DISABLE KEYS */;
-INSERT INTO `mouvement_stock` VALUES (1,1,'ENTREE',12,'2026-09-01 21:03:19','REC2342',NULL,'Réception de stock'),(2,2,'ENTREE',23,'2026-09-01 21:05:29','LOT-23SDF',NULL,'Réception de stock'),(3,3,'ENTREE',3,'2026-09-01 21:24:41','98SDF',NULL,'Réception de stock'),(4,4,'ENTREE',8,'2026-09-01 21:37:13','34FDSF',NULL,'Réception de stock'),(5,5,'ENTREE',5,'2026-09-01 21:42:38','32DFD',NULL,'Réception de stock'),(6,6,'ENTREE',3,'2026-09-01 21:43:03','334dfd',NULL,'Réception de stock'),(7,7,'ENTREE',54,'2026-09-01 21:47:04','23EE',NULL,'Réception de stock');
 /*!40000 ALTER TABLE `mouvement_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1623,34 +1588,6 @@ LOCK TABLES `suivi_hospitalisation` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `unite_gestion`
---
-
-DROP TABLE IF EXISTS `unite_gestion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `unite_gestion` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(100) NOT NULL,
-  `abreviation` varchar(20) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `actif` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nom` (`nom`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `unite_gestion`
---
-
-LOCK TABLES `unite_gestion` WRITE;
-/*!40000 ALTER TABLE `unite_gestion` DISABLE KEYS */;
-INSERT INTO `unite_gestion` VALUES (1,'Comprimé','cp','Médicament sous forme de comprimé',1),(2,'Gélule','gél','Médicament sous forme de gélule',1),(3,'Capsule','caps','Médicament sous forme de capsule',1),(4,'Flacon','fl','Médicament conditionné dans un flacon',1),(5,'Ampoule','amp','Médicament conditionné dans une ampoule',1),(6,'Tube','tube','Médicament conditionné dans un tube',1),(7,'Boîte','bte','Médicament conditionné dans une boîte',1),(8,'Sachet','sach','Médicament conditionné dans un sachet',1),(9,'Poche','poche','Médicament conditionné dans une poche',1),(10,'Suppositoire','supp','Médicament sous forme de suppositoire',1),(11,'Dose','dose','Médicament distribué par dose',1),(12,'Unité','unité','Unité générale de gestion',1),(13,'popcorn','ppc','Unité du popcorn',1),(14,'Autrement','atr','Autre unité',1),(15,'zero','zr','zero description',1),(16,'ppp','p','Only p',1),(17,'dfgsfgsdf','sdgsdfer','ssdfzr',1),(18,'d','dtgsdftg','sdsdf',1),(19,'sfsdf','sdfs','fsdfsdfsdf',1),(20,'xxxxxxxxxxxxxxxxxxx','aa','srzsr',1),(21,'qqqqqqqqqqqqqqqqqq','qqqqqqqqq','rrrrr',1),(22,'wwwwwwwwwwwwwwww',NULL,NULL,1),(23,'sd','fsdsdf','sdsdfsdf',1),(24,'&&&&&&','&&&&&&','&&',1);
-/*!40000 ALTER TABLE `unite_gestion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `utilisateurs`
 --
 
@@ -1689,4 +1626,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-01 21:49:14
+-- Dump completed on 2026-08-30 13:07:20
