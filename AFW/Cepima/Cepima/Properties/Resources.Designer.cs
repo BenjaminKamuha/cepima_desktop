@@ -1213,6 +1213,26 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ok_30px {
+            get {
+                object obj = ResourceManager.GetObject("ok_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ok_30px1 {
+            get {
+                object obj = ResourceManager.GetObject("ok_30px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap out_patient_department_25px {
             get {
                 object obj = ResourceManager.GetObject("out_patient_department_25px", resourceCulture);
@@ -1426,6 +1446,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap retard {
             get {
                 object obj = ResourceManager.GetObject("retard", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap return_30px {
+            get {
+                object obj = ResourceManager.GetObject("return_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

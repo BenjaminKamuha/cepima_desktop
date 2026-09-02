@@ -311,6 +311,12 @@
     <Compile Include="MesForms\Form_signes_vitaux.Designer.cs">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_inventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_inventory.Designer.cs">
+      <DependentUpon>Form_inventory.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Pharmacie\Form_reception_stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +334,12 @@
     </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_detail_produit.Designer.cs">
       <DependentUpon>UC_detail_produit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_inventory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_inventory.Designer.cs">
+      <DependentUpon>UC_inventory.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\UC_detail_personnel.cs">
       <SubType>UserControl</SubType>
@@ -568,6 +580,9 @@
     <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_inventory.resx">
+      <DependentUpon>Form_inventory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
     </EmbeddedResource>
@@ -576,6 +591,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_detail_produit.resx">
       <DependentUpon>UC_detail_produit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_inventory.resx">
+      <DependentUpon>UC_inventory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\UC_detail_personnel.resx">
       <DependentUpon>UC_detail_personnel.cs</DependentUpon>
@@ -1260,6 +1278,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\hand_with_a_pill_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_30px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return_30px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.MesClasses;
+using Cepima.MesUserCases;
+using Cepima.MesForms;
 using Cepima.Data;
 
 namespace Cepima
@@ -338,7 +340,11 @@ namespace Cepima
                 }),
                 new MenuItem("    Invetaire",Properties.Resources.adjust_30px,(s,ev) => {
 
-                    MessageBox.Show("En cours de développement");
+                    MesUserCases.Pharmacie.UC_inventory uc_inventory = new MesUserCases.Pharmacie.UC_inventory();
+                    panel_center_main.Controls.Clear();
+                    uc_inventory.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(uc_inventory);
+
                 }),
             
                 new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px,(s,ev) => {
