@@ -37,7 +37,7 @@ namespace Cepima.MesForms.Pharmacie
 
         void btn_save_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            MessageBox.Show("Enregistrement en cours de dev");
         }
 
         private void ChargerPatients()
@@ -74,10 +74,14 @@ namespace Cepima.MesForms.Pharmacie
                         cmd.Parameters.AddWithValue("@id_p", ObtenirIdPatient());
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            int age = DateTime.Now.Date.Year - Convert.ToInt32(reader["annee_naissance"].ToString());
-                            lb_nom_patient.Text = reader["patient"].ToString();
-                            lb_sexe_age.Text = reader["sexe"].ToString() + "-" + age.ToString() + " ans";
-                            lb_num_fiche.Text = reader["numero_fiche"].ToString();
+                            if (reader.Read())
+                            {
+                                int age = DateTime.Now.Date.Year - Convert.ToInt32(reader["annee_naissance"].ToString());
+                                lb_nom_patient.Text = reader["patient"].ToString();
+                                lb_sexe_age.Text = reader["sexe"].ToString() + "-" + age.ToString() + " ans";
+                                lb_num_fiche.Text = reader["numero_fiche"].ToString();
+                            }
+                            
                         }
                     }
                 }
@@ -104,7 +108,7 @@ namespace Cepima.MesForms.Pharmacie
 
         private int ObtenirIdPatient()
         {
-            return UC_demandes_eeg.PATIENT_ID;
+            return Form1.PATIENT_ID;
         }
 
         private string fichierEEGSelectionne = "";

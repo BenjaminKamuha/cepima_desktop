@@ -34,9 +34,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lb_nom_patient = new System.Windows.Forms.Label();
-            this.lb_sexe_age = new System.Windows.Forms.Label();
             this.lb_num_fiche = new System.Windows.Forms.Label();
+            this.lb_sexe_age = new System.Windows.Forms.Label();
             this.dtp_eeg = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.rd_sommeil = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.lb_fichier = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_cancel = new RoundedButton();
             this.btn_import_file = new RoundedButton();
             this.btn_save = new RoundedButton();
@@ -142,6 +142,16 @@
             this.bunifuRoundedPanel1.Size = new System.Drawing.Size(649, 80);
             this.bunifuRoundedPanel1.TabIndex = 38;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.user;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(79, 71);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            // 
             // lb_nom_patient
             // 
             this.lb_nom_patient.AutoSize = true;
@@ -152,16 +162,6 @@
             this.lb_nom_patient.TabIndex = 29;
             this.lb_nom_patient.Text = "Kambale Jean ";
             // 
-            // lb_sexe_age
-            // 
-            this.lb_sexe_age.AutoSize = true;
-            this.lb_sexe_age.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_sexe_age.Location = new System.Drawing.Point(119, 49);
-            this.lb_sexe_age.Name = "lb_sexe_age";
-            this.lb_sexe_age.Size = new System.Drawing.Size(117, 18);
-            this.lb_sexe_age.TabIndex = 23;
-            this.lb_sexe_age.Text = "HOMME - 32 ans";
-            // 
             // lb_num_fiche
             // 
             this.lb_num_fiche.AutoSize = true;
@@ -171,6 +171,16 @@
             this.lb_num_fiche.Size = new System.Drawing.Size(70, 18);
             this.lb_num_fiche.TabIndex = 23;
             this.lb_num_fiche.Text = "CEP-0023";
+            // 
+            // lb_sexe_age
+            // 
+            this.lb_sexe_age.AutoSize = true;
+            this.lb_sexe_age.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_sexe_age.Location = new System.Drawing.Point(119, 49);
+            this.lb_sexe_age.Name = "lb_sexe_age";
+            this.lb_sexe_age.Size = new System.Drawing.Size(117, 18);
+            this.lb_sexe_age.TabIndex = 23;
+            this.lb_sexe_age.Text = "HOMME - 32 ans";
             // 
             // dtp_eeg
             // 
@@ -254,16 +264,6 @@
             this.lb_fichier.Name = "lb_fichier";
             this.lb_fichier.Size = new System.Drawing.Size(0, 17);
             this.lb_fichier.TabIndex = 23;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(79, 71);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
             // 
             // btn_cancel
             // 
@@ -392,6 +392,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label);
             this.Name = "Form_new_eeg";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form_new_eeg";
             this.bunifuRoundedPanel1.ResumeLayout(false);
             this.bunifuRoundedPanel1.PerformLayout();

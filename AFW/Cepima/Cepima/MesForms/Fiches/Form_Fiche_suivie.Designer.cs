@@ -100,17 +100,18 @@
             // 
             // sectionEEG
             // 
+            this.sectionEEG.AutoScroll = true;
             this.sectionEEG.BackColor = System.Drawing.Color.White;
             this.sectionEEG.Location = new System.Drawing.Point(3, 674);
             this.sectionEEG.Name = "sectionEEG";
-            this.sectionEEG.Size = new System.Drawing.Size(796, 215);
+            this.sectionEEG.Size = new System.Drawing.Size(796, 300);
             this.sectionEEG.TabIndex = 3;
             this.sectionEEG.Titre = "EEG";
             // 
             // sectionPrescription
             // 
             this.sectionPrescription.BackColor = System.Drawing.Color.White;
-            this.sectionPrescription.Location = new System.Drawing.Point(3, 895);
+            this.sectionPrescription.Location = new System.Drawing.Point(3, 980);
             this.sectionPrescription.Name = "sectionPrescription";
             this.sectionPrescription.Size = new System.Drawing.Size(796, 215);
             this.sectionPrescription.TabIndex = 4;
@@ -119,7 +120,7 @@
             // sectionNoteClinique
             // 
             this.sectionNoteClinique.BackColor = System.Drawing.Color.White;
-            this.sectionNoteClinique.Location = new System.Drawing.Point(3, 1116);
+            this.sectionNoteClinique.Location = new System.Drawing.Point(3, 1201);
             this.sectionNoteClinique.Name = "sectionNoteClinique";
             this.sectionNoteClinique.Size = new System.Drawing.Size(796, 215);
             this.sectionNoteClinique.TabIndex = 1;
@@ -128,7 +129,7 @@
             // sectionDocument
             // 
             this.sectionDocument.BackColor = System.Drawing.Color.White;
-            this.sectionDocument.Location = new System.Drawing.Point(3, 1337);
+            this.sectionDocument.Location = new System.Drawing.Point(3, 1422);
             this.sectionDocument.Name = "sectionDocument";
             this.sectionDocument.Size = new System.Drawing.Size(796, 215);
             this.sectionDocument.TabIndex = 5;
@@ -144,7 +145,6 @@
             this.Name = "Form_Fiche_suivie";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fiche de suivie du patient";
-            //this.Load += new System.EventHandler(this.Form_Fiche_suivie_Load);
             this.flowSections.ResumeLayout(false);
             this.panelPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);

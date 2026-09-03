@@ -40,7 +40,7 @@ namespace Cepima.MesForms.Fiches
             {
                 try
                 {
-                    string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS Patient,CONCAT('PAT-',YEAR(p.date_creation),'-',p.numero_fiche) AS dossier,p.nom_garde,p.telephone_garde,p.date_naissance,p.sexe,c.diagnostic,c.date_consultation FROM patientS p LEFT JOIN consultation c ON p.id_patient = c.id_patient WHERE p.id_patient = @id ORDER BY c.date_consultation DESC LIMIT 1";
+                    string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS Patient,CONCAT('PAT-',YEAR(p.date_creation),'-',p.numero_fiche) AS dossier,p.nom_garde,p.telephone_garde,p.date_naissance,p.sexe,c.date_consultation,d.libelle AS diagnostic FROM patients p LEFT JOIN consultation c ON p.id_patient = c.patient_id LEFT JOIN diagnostic d ON c.diagnostic_id = d.id WHERE p.id_patient = @id ORDER BY c.date_consultation DESC LIMIT 1";
                     MesClasses.ManagerClasse.request_params.Clear();
                     MesClasses.ManagerClasse.request_params.Add("@id",ID_PATIENT);
                     using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))

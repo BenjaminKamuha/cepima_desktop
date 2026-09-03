@@ -7,20 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using System.IO;
 
-namespace Cepima.MesUserCases
+namespace Cepima.MesUserCases.EEG
 {
-    public partial class User_consultation : UserControl
+    public partial class User_DashBoard : UserControl
     {
-
-        public User_consultation()
+        public User_DashBoard()
         {
             InitializeComponent();
-         
         }
-        //======================================= SAVE EEG =========================================
-      
     }
 }
