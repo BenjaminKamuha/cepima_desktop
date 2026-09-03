@@ -58,17 +58,17 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(924, 72);
+            this.panel1.Size = new System.Drawing.Size(1032, 72);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(349, 16);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(403, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 33);
+            this.label1.Size = new System.Drawing.Size(226, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Connectez-vous";
             // 
@@ -78,7 +78,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Cepima.Properties.Resources.close_black;
-            this.button1.Location = new System.Drawing.Point(876, 22);
+            this.button1.Location = new System.Drawing.Point(984, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(37, 31);
             this.button1.TabIndex = 1;
@@ -101,16 +101,16 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 68);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(924, 4);
+            this.panel2.Size = new System.Drawing.Size(1032, 4);
             this.panel2.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 506);
+            this.panel4.Location = new System.Drawing.Point(0, 537);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(924, 6);
+            this.panel4.Size = new System.Drawing.Size(1032, 6);
             this.panel4.TabIndex = 1;
             // 
             // customRoundedPanel1
@@ -130,9 +130,17 @@
             this.customRoundedPanel1.Controls.Add(this.pictureBox2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(374, 78);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(345, 93);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(288, 438);
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(342, 438);
             this.customRoundedPanel1.TabIndex = 2;
             // 
             // link_forgot
@@ -141,7 +149,7 @@
             this.link_forgot.AutoSize = true;
             this.link_forgot.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.link_forgot.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.link_forgot.Location = new System.Drawing.Point(93, 325);
+            this.link_forgot.Location = new System.Drawing.Point(108, 325);
             this.link_forgot.Name = "link_forgot";
             this.link_forgot.Size = new System.Drawing.Size(106, 14);
             this.link_forgot.TabIndex = 16;
@@ -158,9 +166,9 @@
             this.bt_connexion.BorderSize = 0;
             this.bt_connexion.ButtonText = "Se connecter";
             this.bt_connexion.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_connexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_connexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_connexion.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_connexion.Location = new System.Drawing.Point(82, 395);
+            this.bt_connexion.Location = new System.Drawing.Point(109, 395);
             this.bt_connexion.Name = "bt_connexion";
             this.bt_connexion.Size = new System.Drawing.Size(124, 30);
             this.bt_connexion.TabIndex = 15;
@@ -169,10 +177,10 @@
             // cb_remember
             // 
             this.cb_remember.AutoSize = true;
-            this.cb_remember.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_remember.Location = new System.Drawing.Point(85, 355);
+            this.cb_remember.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_remember.Location = new System.Drawing.Point(100, 355);
             this.cb_remember.Name = "cb_remember";
-            this.cb_remember.Size = new System.Drawing.Size(118, 18);
+            this.cb_remember.Size = new System.Drawing.Size(142, 20);
             this.cb_remember.TabIndex = 14;
             this.cb_remember.Text = "Se souvenir de moi";
             this.cb_remember.UseVisualStyleBackColor = true;
@@ -180,58 +188,64 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(46, 251);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(68, 252);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 15);
+            this.label3.Size = new System.Drawing.Size(90, 16);
             this.label3.TabIndex = 13;
             this.label3.Text = "Mot de passe";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(46, 184);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(68, 185);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 15);
+            this.label2.Size = new System.Drawing.Size(107, 16);
             this.label2.TabIndex = 13;
             this.label2.Text = "Nom d\'utilisateur";
             // 
             // tb_password
             // 
+            this.tb_password.BackColor = System.Drawing.Color.White;
             this.tb_password.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tb_password.BorderRadius = 8;
-            this.tb_password.BorderSize = 0;
+            this.tb_password.BorderSize = 1;
             this.tb_password.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tb_password.Location = new System.Drawing.Point(32, 269);
+            this.tb_password.ForeColor = System.Drawing.Color.Black;
+            this.tb_password.Image = null;
+            this.tb_password.Location = new System.Drawing.Point(54, 270);
+            this.tb_password.MaxLength = 32767;
             this.tb_password.Name = "tb_password";
+            this.tb_password.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_password.PasswordChar = '●';
             this.tb_password.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_password.PlaceholderText = "";
             this.tb_password.Size = new System.Drawing.Size(241, 30);
             this.tb_password.TabIndex = 3;
-            this.tb_password.UseSystemPasswordChar = true;
             // 
             // tb_username
             // 
             this.tb_username.BackColor = System.Drawing.Color.White;
             this.tb_username.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tb_username.BorderRadius = 8;
-            this.tb_username.BorderSize = 0;
+            this.tb_username.BorderSize = 1;
             this.tb_username.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tb_username.Location = new System.Drawing.Point(32, 202);
+            this.tb_username.ForeColor = System.Drawing.Color.Black;
+            this.tb_username.Image = null;
+            this.tb_username.Location = new System.Drawing.Point(54, 203);
+            this.tb_username.MaxLength = 32767;
             this.tb_username.Name = "tb_username";
-            this.tb_username.PasswordChar = '\0';
+            this.tb_username.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_username.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_username.PlaceholderText = "";
             this.tb_username.Size = new System.Drawing.Size(241, 28);
             this.tb_username.TabIndex = 3;
-            this.tb_username.UseSystemPasswordChar = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.male_user_100px;
-            this.pictureBox2.Location = new System.Drawing.Point(78, 30);
+            this.pictureBox2.Image = global::Cepima.Properties.Resources.user;
+            this.pictureBox2.Location = new System.Drawing.Point(105, 30);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(132, 125);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -242,8 +256,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
-            this.ClientSize = new System.Drawing.Size(924, 512);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1032, 543);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);

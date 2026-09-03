@@ -68,9 +68,10 @@
             // lb_titre
             // 
             this.lb_titre.AutoSize = true;
-            this.lb_titre.Location = new System.Drawing.Point(229, 9);
+            this.lb_titre.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_titre.Location = new System.Drawing.Point(281, 5);
             this.lb_titre.Name = "lb_titre";
-            this.lb_titre.Size = new System.Drawing.Size(90, 13);
+            this.lb_titre.Size = new System.Drawing.Size(175, 24);
             this.lb_titre.TabIndex = 0;
             this.lb_titre.Text = "Ajouter un patient";
             // 
@@ -114,8 +115,16 @@
             this.customRoundedPanel1.Controls.Add(this.label2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Arrow;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(57, 49);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(57, 37);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
             this.customRoundedPanel1.Size = new System.Drawing.Size(622, 460);
             this.customRoundedPanel1.TabIndex = 2;
             // 
@@ -142,27 +151,30 @@
             // 
             // myRoundedTextBox6
             // 
+            this.myRoundedTextBox6.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox6.BorderRadius = 4;
             this.myRoundedTextBox6.BorderSize = 1;
             this.myRoundedTextBox6.Enabled = false;
             this.myRoundedTextBox6.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox6.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox6.Image = null;
             this.myRoundedTextBox6.Location = new System.Drawing.Point(500, 36);
+            this.myRoundedTextBox6.MaxLength = 32767;
             this.myRoundedTextBox6.Name = "myRoundedTextBox6";
-            this.myRoundedTextBox6.PasswordChar = '\0';
+            this.myRoundedTextBox6.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox6.PlaceholderColor = System.Drawing.Color.Beige;
             this.myRoundedTextBox6.PlaceholderText = "";
             this.myRoundedTextBox6.Size = new System.Drawing.Size(101, 27);
             this.myRoundedTextBox6.TabIndex = 10;
-            this.myRoundedTextBox6.UseSystemPasswordChar = false;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(498, 20);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label8.Location = new System.Drawing.Point(497, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 14);
+            this.label8.Size = new System.Drawing.Size(112, 17);
             this.label8.TabIndex = 8;
             this.label8.Text = "Numéro Fiche  : ";
             // 
@@ -261,7 +273,7 @@
             this.bt_save_patient.BorderSize = 0;
             this.bt_save_patient.ButtonText = "Enregistrer";
             this.bt_save_patient.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_save_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_save_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.bt_save_patient.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.bt_save_patient.Location = new System.Drawing.Point(233, 421);
             this.bt_save_patient.Name = "bt_save_patient";
@@ -272,7 +284,7 @@
             // dt_naissance
             // 
             this.dt_naissance.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_naissance.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dt_naissance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.dt_naissance.Location = new System.Drawing.Point(197, 200);
             this.dt_naissance.Name = "dt_naissance";
             this.dt_naissance.Size = new System.Drawing.Size(288, 23);
@@ -282,214 +294,235 @@
             // 
             this.cbx_genre.BackColor = System.Drawing.Color.White;
             this.cbx_genre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_genre.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_genre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cbx_genre.FormattingEnabled = true;
             this.cbx_genre.Items.AddRange(new object[] {
             "Homme",
             "Femme"});
             this.cbx_genre.Location = new System.Drawing.Point(197, 156);
             this.cbx_genre.Name = "cbx_genre";
-            this.cbx_genre.Size = new System.Drawing.Size(288, 23);
+            this.cbx_genre.Size = new System.Drawing.Size(288, 24);
             this.cbx_genre.TabIndex = 4;
             // 
             // myRoundedTextBox4
             // 
+            this.myRoundedTextBox4.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox4.BorderRadius = 4;
             this.myRoundedTextBox4.BorderSize = 1;
             this.myRoundedTextBox4.Enabled = false;
             this.myRoundedTextBox4.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox4.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox4.Image = null;
             this.myRoundedTextBox4.Location = new System.Drawing.Point(197, 241);
+            this.myRoundedTextBox4.MaxLength = 32767;
             this.myRoundedTextBox4.Name = "myRoundedTextBox4";
-            this.myRoundedTextBox4.PasswordChar = '\0';
+            this.myRoundedTextBox4.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox4.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox4.PlaceholderText = "";
             this.myRoundedTextBox4.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox4.TabIndex = 6;
-            this.myRoundedTextBox4.UseSystemPasswordChar = false;
             // 
             // myRoundedTextBox8
             // 
+            this.myRoundedTextBox8.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox8.BorderRadius = 4;
             this.myRoundedTextBox8.BorderSize = 1;
             this.myRoundedTextBox8.Enabled = false;
             this.myRoundedTextBox8.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox8.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox8.Image = null;
             this.myRoundedTextBox8.Location = new System.Drawing.Point(199, 380);
+            this.myRoundedTextBox8.MaxLength = 32767;
             this.myRoundedTextBox8.Name = "myRoundedTextBox8";
-            this.myRoundedTextBox8.PasswordChar = '\0';
+            this.myRoundedTextBox8.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox8.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox8.PlaceholderText = "";
             this.myRoundedTextBox8.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox8.TabIndex = 6;
-            this.myRoundedTextBox8.UseSystemPasswordChar = false;
             // 
             // myRoundedTextBox7
             // 
+            this.myRoundedTextBox7.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox7.BorderRadius = 4;
             this.myRoundedTextBox7.BorderSize = 1;
             this.myRoundedTextBox7.Enabled = false;
             this.myRoundedTextBox7.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox7.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox7.Image = null;
             this.myRoundedTextBox7.Location = new System.Drawing.Point(197, 331);
+            this.myRoundedTextBox7.MaxLength = 32767;
             this.myRoundedTextBox7.Name = "myRoundedTextBox7";
-            this.myRoundedTextBox7.PasswordChar = '\0';
+            this.myRoundedTextBox7.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox7.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox7.PlaceholderText = "";
             this.myRoundedTextBox7.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox7.TabIndex = 6;
-            this.myRoundedTextBox7.UseSystemPasswordChar = false;
             // 
             // myRoundedTextBox5
             // 
+            this.myRoundedTextBox5.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox5.BorderRadius = 4;
             this.myRoundedTextBox5.BorderSize = 1;
             this.myRoundedTextBox5.Enabled = false;
             this.myRoundedTextBox5.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox5.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox5.Image = null;
             this.myRoundedTextBox5.Location = new System.Drawing.Point(197, 285);
+            this.myRoundedTextBox5.MaxLength = 32767;
             this.myRoundedTextBox5.Name = "myRoundedTextBox5";
-            this.myRoundedTextBox5.PasswordChar = '\0';
+            this.myRoundedTextBox5.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox5.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox5.PlaceholderText = "";
             this.myRoundedTextBox5.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox5.TabIndex = 6;
-            this.myRoundedTextBox5.UseSystemPasswordChar = false;
             // 
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label.Location = new System.Drawing.Point(59, 251);
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label.Location = new System.Drawing.Point(38, 248);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(69, 14);
+            this.label.Size = new System.Drawing.Size(92, 17);
             this.label.TabIndex = 0;
             this.label.Text = "Téléphone  : ";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(61, 390);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label9.Location = new System.Drawing.Point(38, 387);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(84, 14);
+            this.label9.Size = new System.Drawing.Size(109, 17);
             this.label9.TabIndex = 0;
             this.label9.Text = "Contact garde : ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(59, 341);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label1.Location = new System.Drawing.Point(38, 338);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 14);
+            this.label1.Size = new System.Drawing.Size(114, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nom du garde  : ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(59, 295);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.Location = new System.Drawing.Point(38, 292);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 14);
+            this.label6.Size = new System.Drawing.Size(76, 17);
             this.label6.TabIndex = 0;
             this.label6.Text = "Adresse  : ";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(59, 206);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label7.Location = new System.Drawing.Point(38, 203);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(111, 14);
+            this.label7.Size = new System.Drawing.Size(144, 17);
             this.label7.TabIndex = 0;
             this.label7.Text = "Date de Naissance  : ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(59, 159);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label5.Location = new System.Drawing.Point(38, 156);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 14);
+            this.label5.Size = new System.Drawing.Size(64, 17);
             this.label5.TabIndex = 0;
             this.label5.Text = "Genre  : ";
             // 
             // myRoundedTextBox3
             // 
+            this.myRoundedTextBox3.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox3.BorderRadius = 4;
             this.myRoundedTextBox3.BorderSize = 1;
             this.myRoundedTextBox3.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox3.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox3.Image = null;
             this.myRoundedTextBox3.Location = new System.Drawing.Point(198, 106);
+            this.myRoundedTextBox3.MaxLength = 32767;
             this.myRoundedTextBox3.Name = "myRoundedTextBox3";
-            this.myRoundedTextBox3.PasswordChar = '\0';
+            this.myRoundedTextBox3.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox3.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox3.PlaceholderText = "";
             this.myRoundedTextBox3.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox3.TabIndex = 3;
-            this.myRoundedTextBox3.UseSystemPasswordChar = false;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(59, 112);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label4.Location = new System.Drawing.Point(38, 109);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 14);
+            this.label4.Size = new System.Drawing.Size(73, 17);
             this.label4.TabIndex = 0;
             this.label4.Text = "Prenom  : ";
             // 
             // myRoundedTextBox2
             // 
+            this.myRoundedTextBox2.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox2.BorderRadius = 4;
             this.myRoundedTextBox2.BorderSize = 1;
             this.myRoundedTextBox2.Enabled = false;
             this.myRoundedTextBox2.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox2.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox2.Image = null;
             this.myRoundedTextBox2.Location = new System.Drawing.Point(198, 59);
+            this.myRoundedTextBox2.MaxLength = 32767;
             this.myRoundedTextBox2.Name = "myRoundedTextBox2";
-            this.myRoundedTextBox2.PasswordChar = '\0';
+            this.myRoundedTextBox2.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox2.PlaceholderColor = System.Drawing.Color.Gray;
             this.myRoundedTextBox2.PlaceholderText = "";
             this.myRoundedTextBox2.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox2.TabIndex = 2;
-            this.myRoundedTextBox2.UseSystemPasswordChar = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(59, 68);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(38, 65);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 14);
+            this.label3.Size = new System.Drawing.Size(81, 17);
             this.label3.TabIndex = 0;
             this.label3.Text = "PostNom  : ";
             // 
             // myRoundedTextBox1
             // 
+            this.myRoundedTextBox1.BackColor = System.Drawing.Color.White;
             this.myRoundedTextBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.myRoundedTextBox1.BorderRadius = 4;
             this.myRoundedTextBox1.BorderSize = 1;
             this.myRoundedTextBox1.Enabled = false;
             this.myRoundedTextBox1.FocusBorderColor = System.Drawing.Color.Orange;
+            this.myRoundedTextBox1.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox1.Image = null;
             this.myRoundedTextBox1.Location = new System.Drawing.Point(197, 13);
+            this.myRoundedTextBox1.MaxLength = 32767;
             this.myRoundedTextBox1.Name = "myRoundedTextBox1";
-            this.myRoundedTextBox1.PasswordChar = '\0';
+            this.myRoundedTextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Beige;
             this.myRoundedTextBox1.PlaceholderText = "";
             this.myRoundedTextBox1.Size = new System.Drawing.Size(288, 27);
             this.myRoundedTextBox1.TabIndex = 1;
-            this.myRoundedTextBox1.UseSystemPasswordChar = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(59, 25);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(40, 18);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 14);
+            this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Nom  : ";
             // 
@@ -497,7 +530,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(737, 513);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.lb_titre);

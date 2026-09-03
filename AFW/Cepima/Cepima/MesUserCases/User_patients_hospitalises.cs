@@ -332,13 +332,7 @@ namespace Cepima.MesUserCases
 
         private void bt_add_suivie_Click(object sender, EventArgs e)
         {
-            if (hospitalisationID == null)
-            {
-                MessageBox.Show("Veuillez sélectionner un patient avant d'effectuer son suivi");
-                return;
-            }
-            MesForms.Form_add_suivi_hospitalisation suivi = new MesForms.Form_add_suivi_hospitalisation(hospitalisationID);
-            suivi.ShowDialog();
+           
         }
         // ============================== HISTORIQUE DE CONSULTATION DU PATIENT HOSPITALISE ============================
         private void LoadHistoriqueConsultation(string filtre = "Tous")

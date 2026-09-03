@@ -17,7 +17,6 @@ namespace Cepima.MesForms
         public Form_add_patient()
         {
             InitializeComponent();
-            lb_titre.Font = UI.Theme.FontCardValue;
         }
 
         // ============================== Méthode pour génerer le numéro de la fiche ===========================

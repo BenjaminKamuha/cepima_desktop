@@ -65,6 +65,9 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.TeamFoundation.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.TeamFoundation.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.TeamFoundation.Diff, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.TeamFoundation.VersionControl.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.TeamFoundation.VersionControl.All.12.0.30723.2\lib\net45\Microsoft.TeamFoundation.VersionControl.Client.dll</HintPath>
     </Reference>
@@ -128,9 +131,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\BadgeControl.cs" />
-    <Compile Include="Controls\BarChartControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\BarChartControl.cs" />
     <Compile Include="Controls\Bunifu_rounded.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -192,9 +193,7 @@
     <Compile Include="Controls\Rounded_TextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\SideBarMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Controls\SideBarMenu.cs" />
     <Compile Include="Controls\StatCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -233,6 +232,42 @@
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
     <Compile Include="MesClasses\RH_manager.cs" />
+    <Compile Include="MesForms\Fiches\SectionRepliable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\SectionRepliable.Designer.cs">
+      <DependentUpon>SectionRepliable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_AdminInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_AdminInfo.Designer.cs">
+      <DependentUpon>User_AdminInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_consultation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_consultation.Designer.cs">
+      <DependentUpon>User_consultation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_EEG_fiche.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_EEG_fiche.Designer.cs">
+      <DependentUpon>User_EEG_fiche.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_note_clinique.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_note_clinique.Designer.cs">
+      <DependentUpon>User_note_clinique.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_prescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\User_prescription.Designer.cs">
+      <DependentUpon>User_prescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\FormConnexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,21 +322,12 @@
     <Compile Include="MesForms\Form_add_patient.Designer.cs">
       <DependentUpon>Form_add_patient.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_add_suivi_hospitalisation.cs">
+    <Compile Include="MesForms\Fiches\Form_Fiche_suivie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_add_suivi_hospitalisation.Designer.cs">
-      <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
-    </Compile>
-
-    <Compile Include="MesForms\Form_Fiche_suivie.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    
-    <Compile Include="MesForms\Form_Fiche_suivie.Designer.cs">
+    <Compile Include="MesForms\Fiches\Form_Fiche_suivie.Designer.cs">
       <DependentUpon>Form_Fiche_suivie.cs</DependentUpon>
     </Compile>
-    
     <Compile Include="MesForms\Pharmacie\Form_add_unity.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,7 +339,6 @@
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_detail_produit.Designer.cs">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
-
     </Compile>
     <Compile Include="MesForms\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
@@ -326,6 +351,12 @@
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_inventory.Designer.cs">
       <DependentUpon>Form_inventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_new_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_new_eeg.Designer.cs">
+      <DependentUpon>Form_new_eeg.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_reception_stock.cs">
       <SubType>Form</SubType>
@@ -551,6 +582,27 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_new_eeg.resx">
+      <DependentUpon>Form_new_eeg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\SectionRepliable.resx">
+      <DependentUpon>SectionRepliable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\User_AdminInfo.resx">
+      <DependentUpon>User_AdminInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\User_consultation.resx">
+      <DependentUpon>User_consultation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\User_EEG_fiche.resx">
+      <DependentUpon>User_EEG_fiche.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\User_note_clinique.resx">
+      <DependentUpon>User_note_clinique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\User_prescription.resx">
+      <DependentUpon>User_prescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormConnexion.resx">
       <DependentUpon>FormConnexion.cs</DependentUpon>
     </EmbeddedResource>
@@ -578,11 +630,7 @@
     <EmbeddedResource Include="MesForms\Form_add_patient.resx">
       <DependentUpon>Form_add_patient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_add_suivi_hospitalisation.resx">
-      <DependentUpon>Form_add_suivi_hospitalisation.cs</DependentUpon>
-    </EmbeddedResource>
-
-    <EmbeddedResource Include="MesForms\Form_Fiche_suivie.resx">
+    <EmbeddedResource Include="MesForms\Fiches\Form_Fiche_suivie.resx">
       <DependentUpon>Form_Fiche_suivie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_add_unity.resx">
@@ -590,7 +638,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
@@ -1295,6 +1342,34 @@
     <None Include="Resources\hand_with_a_pill_30px.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\user.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\activity_history_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pulse_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stethoscope_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pulse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_male_user_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nurse_call_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home_30px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_user_male_30px.png" />
     <None Include="Resources\home_30px.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1305,6 +1380,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\return_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_30px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

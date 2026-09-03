@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cepima.MesUserCases.Pharmacie
+namespace Cepima.MesForms.Fiches
 {
-    public partial class UC_EEG : UserControl
+    public partial class User_prescription : UserControl
     {
-        public UC_EEG()
+        public User_prescription()
         {
             InitializeComponent();
         }
