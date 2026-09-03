@@ -733,6 +733,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap file_30px {
+            get {
+                object obj = ResourceManager.GetObject("file_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fingerprint_20px {
             get {
                 object obj = ResourceManager.GetObject("fingerprint_20px", resourceCulture);
@@ -1836,6 +1846,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap Us_Dollar_Circled_20px {
             get {
                 object obj = ResourceManager.GetObject("Us Dollar Circled_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_80px {
+            get {
+                object obj = ResourceManager.GetObject("user_80px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
