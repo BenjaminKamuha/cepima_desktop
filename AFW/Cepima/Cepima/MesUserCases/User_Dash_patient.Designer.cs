@@ -31,19 +31,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.customRoundedPanel2 = new CustomRoundedPanel();
-            this.lb_patient_now = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.lb_hospitalise = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.customRoundedPanel3 = new CustomRoundedPanel();
-            this.lb_attente = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.customRoundedPanel4 = new CustomRoundedPanel();
-            this.lb_sorti = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.bt_add_patient = new System.Windows.Forms.Button();
             this.customRoundedPanel5 = new CustomRoundedPanel();
             this.dgv_patient = new ModernDataGridView();
@@ -55,167 +45,52 @@
             this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.action = new System.Windows.Forms.DataGridViewImageColumn();
             this.colSignes = new System.Windows.Forms.DataGridViewImageColumn();
-            this.customRoundedPanel2.SuspendLayout();
-            this.customRoundedPanel1.SuspendLayout();
-            this.customRoundedPanel3.SuspendLayout();
-            this.customRoundedPanel4.SuspendLayout();
+            this.customRoundedPanel4 = new CustomRoundedPanel();
+            this.lb_sorti = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.customRoundedPanel3 = new CustomRoundedPanel();
+            this.lb_attente = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.lb_hospitalise = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.customRoundedPanel2 = new CustomRoundedPanel();
+            this.lb_patient_now = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.customRoundedPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_patient)).BeginInit();
+            this.customRoundedPanel4.SuspendLayout();
+            this.customRoundedPanel3.SuspendLayout();
+            this.customRoundedPanel1.SuspendLayout();
+            this.customRoundedPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // customRoundedPanel2
-            // 
-            this.customRoundedPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
-            this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
-            this.customRoundedPanel2.BorderRadius = 10;
-            this.customRoundedPanel2.BorderSize = 2;
-            this.customRoundedPanel2.Controls.Add(this.lb_patient_now);
-            this.customRoundedPanel2.Controls.Add(this.label4);
-            this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(24, 49);
-            this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
-            this.customRoundedPanel2.TabIndex = 2;
-            // 
-            // lb_patient_now
-            // 
-            this.lb_patient_now.AutoSize = true;
-            this.lb_patient_now.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_patient_now.Location = new System.Drawing.Point(88, 49);
-            this.lb_patient_now.Name = "lb_patient_now";
-            this.lb_patient_now.Size = new System.Drawing.Size(22, 16);
-            this.lb_patient_now.TabIndex = 0;
-            this.lb_patient_now.Text = "46";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(45, 14);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 17);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Patient aujourd\'hui";
-            // 
-            // customRoundedPanel1
-            // 
-            this.customRoundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(180)))), ((int)(((byte)(195)))));
-            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(180)))), ((int)(((byte)(195)))));
-            this.customRoundedPanel1.BorderRadius = 10;
-            this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.lb_hospitalise);
-            this.customRoundedPanel1.Controls.Add(this.label1);
-            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(276, 49);
-            this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(212, 100);
-            this.customRoundedPanel1.TabIndex = 2;
-            // 
-            // lb_hospitalise
-            // 
-            this.lb_hospitalise.AutoSize = true;
-            this.lb_hospitalise.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_hospitalise.Location = new System.Drawing.Point(88, 49);
-            this.lb_hospitalise.Name = "lb_hospitalise";
-            this.lb_hospitalise.Size = new System.Drawing.Size(22, 16);
-            this.lb_hospitalise.TabIndex = 0;
-            this.lb_hospitalise.Text = "22";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(42, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Patients hospitalisés";
-            // 
-            // customRoundedPanel3
-            // 
-            this.customRoundedPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this.customRoundedPanel3.BorderRadius = 10;
-            this.customRoundedPanel3.BorderSize = 2;
-            this.customRoundedPanel3.Controls.Add(this.lb_attente);
-            this.customRoundedPanel3.Controls.Add(this.label2);
-            this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(543, 49);
-            this.customRoundedPanel3.Name = "customRoundedPanel3";
-            this.customRoundedPanel3.Size = new System.Drawing.Size(212, 100);
-            this.customRoundedPanel3.TabIndex = 2;
-            // 
-            // lb_attente
-            // 
-            this.lb_attente.AutoSize = true;
-            this.lb_attente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_attente.Location = new System.Drawing.Point(94, 49);
-            this.lb_attente.Name = "lb_attente";
-            this.lb_attente.Size = new System.Drawing.Size(15, 16);
-            this.lb_attente.TabIndex = 0;
-            this.lb_attente.Text = "5";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(46, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 17);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Patients en attente";
-            // 
-            // customRoundedPanel4
-            // 
-            this.customRoundedPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.customRoundedPanel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
-            this.customRoundedPanel4.BorderRadius = 10;
-            this.customRoundedPanel4.BorderSize = 2;
-            this.customRoundedPanel4.Controls.Add(this.lb_sorti);
-            this.customRoundedPanel4.Controls.Add(this.label3);
-            this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel4.Location = new System.Drawing.Point(785, 49);
-            this.customRoundedPanel4.Name = "customRoundedPanel4";
-            this.customRoundedPanel4.Size = new System.Drawing.Size(212, 100);
-            this.customRoundedPanel4.TabIndex = 2;
-            // 
-            // lb_sorti
-            // 
-            this.lb_sorti.AutoSize = true;
-            this.lb_sorti.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_sorti.Location = new System.Drawing.Point(94, 49);
-            this.lb_sorti.Name = "lb_sorti";
-            this.lb_sorti.Size = new System.Drawing.Size(15, 16);
-            this.lb_sorti.TabIndex = 0;
-            this.lb_sorti.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(23, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(166, 17);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Patients sortie aujourd\'hui";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(6, 177);
+            this.label5.Location = new System.Drawing.Point(3, 169);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(244, 19);
+            this.label5.Size = new System.Drawing.Size(333, 24);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Dernier enregistrement de paients";
+            this.label5.Text = "Dernier enregistrement de patients";
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewImageColumn1.HeaderText = "Fiche de suivie";
+            this.dataGridViewImageColumn1.Image = global::Cepima.Properties.Resources.activity_history_20px;
+            this.dataGridViewImageColumn1.MinimumWidth = 50;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            // 
+            // dataGridViewImageColumn2
+            // 
+            this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewImageColumn2.HeaderText = "Signes vitaux";
+            this.dataGridViewImageColumn2.Image = global::Cepima.Properties.Resources.pulse_20px;
+            this.dataGridViewImageColumn2.MinimumWidth = 50;
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             // 
             // bt_add_patient
             // 
@@ -228,6 +103,7 @@
             this.bt_add_patient.Size = new System.Drawing.Size(33, 32);
             this.bt_add_patient.TabIndex = 0;
             this.bt_add_patient.UseVisualStyleBackColor = true;
+            this.bt_add_patient.Click += new System.EventHandler(this.bt_add_patient_Click);
             // 
             // customRoundedPanel5
             // 
@@ -242,6 +118,14 @@
             this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel5.Location = new System.Drawing.Point(3, 199);
             this.customRoundedPanel5.Name = "customRoundedPanel5";
+            this.customRoundedPanel5.ShadowBlur = 10;
+            this.customRoundedPanel5.ShadowBorderRadius = -1;
+            this.customRoundedPanel5.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel5.ShadowEnabled = false;
+            this.customRoundedPanel5.ShadowOffsetX = 0;
+            this.customRoundedPanel5.ShadowOffsetY = 4;
+            this.customRoundedPanel5.ShadowOpacity = 60;
+            this.customRoundedPanel5.ShadowSpread = 0;
             this.customRoundedPanel5.Size = new System.Drawing.Size(1015, 317);
             this.customRoundedPanel5.TabIndex = 3;
             // 
@@ -259,13 +143,13 @@
             this.dgv_patient.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv_patient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_patient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_patient.ColumnHeadersHeight = 35;
             this.dgv_patient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
             this.colNumero,
@@ -277,7 +161,7 @@
             this.colSignes});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightBlue;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
@@ -289,6 +173,7 @@
             this.dgv_patient.Location = new System.Drawing.Point(0, 0);
             this.dgv_patient.Name = "dgv_patient";
             this.dgv_patient.RowHeadersVisible = false;
+            this.dgv_patient.RowTemplate.Height = 35;
             this.dgv_patient.Size = new System.Drawing.Size(1015, 317);
             this.dgv_patient.TabIndex = 0;
             // 
@@ -337,17 +222,193 @@
             // action
             // 
             this.action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.action.HeaderText = "";
-            this.action.Image = global::Cepima.Properties.Resources.eye_20px;
+            this.action.HeaderText = "Action/Fiche";
+            this.action.Image = global::Cepima.Properties.Resources.activity_history_20px;
             this.action.MinimumWidth = 50;
             this.action.Name = "action";
             // 
             // colSignes
             // 
             this.colSignes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSignes.HeaderText = "";
+            this.colSignes.HeaderText = "Action/Signes";
+            this.colSignes.Image = global::Cepima.Properties.Resources.pulse;
             this.colSignes.MinimumWidth = 50;
             this.colSignes.Name = "colSignes";
+            // 
+            // customRoundedPanel4
+            // 
+            this.customRoundedPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.customRoundedPanel4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(232)))), ((int)(((byte)(225)))));
+            this.customRoundedPanel4.BorderRadius = 10;
+            this.customRoundedPanel4.BorderSize = 2;
+            this.customRoundedPanel4.Controls.Add(this.lb_sorti);
+            this.customRoundedPanel4.Controls.Add(this.label3);
+            this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
+            this.customRoundedPanel4.Location = new System.Drawing.Point(783, 49);
+            this.customRoundedPanel4.Name = "customRoundedPanel4";
+            this.customRoundedPanel4.ShadowBlur = 10;
+            this.customRoundedPanel4.ShadowBorderRadius = -1;
+            this.customRoundedPanel4.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel4.ShadowEnabled = false;
+            this.customRoundedPanel4.ShadowOffsetX = 0;
+            this.customRoundedPanel4.ShadowOffsetY = 4;
+            this.customRoundedPanel4.ShadowOpacity = 60;
+            this.customRoundedPanel4.ShadowSpread = 0;
+            this.customRoundedPanel4.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel4.TabIndex = 2;
+            // 
+            // lb_sorti
+            // 
+            this.lb_sorti.AutoSize = true;
+            this.lb_sorti.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_sorti.Location = new System.Drawing.Point(94, 49);
+            this.lb_sorti.Name = "lb_sorti";
+            this.lb_sorti.Size = new System.Drawing.Size(21, 24);
+            this.lb_sorti.TabIndex = 0;
+            this.lb_sorti.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(13, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(187, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Patients sortie aujourd\'hui";
+            // 
+            // customRoundedPanel3
+            // 
+            this.customRoundedPanel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
+            this.customRoundedPanel3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
+            this.customRoundedPanel3.BorderRadius = 10;
+            this.customRoundedPanel3.BorderSize = 2;
+            this.customRoundedPanel3.Controls.Add(this.lb_attente);
+            this.customRoundedPanel3.Controls.Add(this.label2);
+            this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
+            this.customRoundedPanel3.Location = new System.Drawing.Point(530, 49);
+            this.customRoundedPanel3.Name = "customRoundedPanel3";
+            this.customRoundedPanel3.ShadowBlur = 10;
+            this.customRoundedPanel3.ShadowBorderRadius = -1;
+            this.customRoundedPanel3.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel3.ShadowEnabled = false;
+            this.customRoundedPanel3.ShadowOffsetX = 0;
+            this.customRoundedPanel3.ShadowOffsetY = 4;
+            this.customRoundedPanel3.ShadowOpacity = 60;
+            this.customRoundedPanel3.ShadowSpread = 0;
+            this.customRoundedPanel3.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel3.TabIndex = 2;
+            // 
+            // lb_attente
+            // 
+            this.lb_attente.AutoSize = true;
+            this.lb_attente.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_attente.Location = new System.Drawing.Point(94, 49);
+            this.lb_attente.Name = "lb_attente";
+            this.lb_attente.Size = new System.Drawing.Size(21, 24);
+            this.lb_attente.TabIndex = 0;
+            this.lb_attente.Text = "5";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(38, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(136, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Patients en attente";
+            // 
+            // customRoundedPanel1
+            // 
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(180)))), ((int)(((byte)(195)))));
+            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(180)))), ((int)(((byte)(195)))));
+            this.customRoundedPanel1.BorderRadius = 10;
+            this.customRoundedPanel1.BorderSize = 2;
+            this.customRoundedPanel1.Controls.Add(this.lb_hospitalise);
+            this.customRoundedPanel1.Controls.Add(this.label1);
+            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
+            this.customRoundedPanel1.Location = new System.Drawing.Point(277, 49);
+            this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel1.TabIndex = 2;
+            // 
+            // lb_hospitalise
+            // 
+            this.lb_hospitalise.AutoSize = true;
+            this.lb_hospitalise.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_hospitalise.Location = new System.Drawing.Point(88, 49);
+            this.lb_hospitalise.Name = "lb_hospitalise";
+            this.lb_hospitalise.Size = new System.Drawing.Size(32, 24);
+            this.lb_hospitalise.TabIndex = 0;
+            this.lb_hospitalise.Text = "22";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(30, 14);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(152, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Patients hospitalisés";
+            // 
+            // customRoundedPanel2
+            // 
+            this.customRoundedPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(220)))), ((int)(((byte)(235)))));
+            this.customRoundedPanel2.BorderRadius = 10;
+            this.customRoundedPanel2.BorderSize = 2;
+            this.customRoundedPanel2.Controls.Add(this.lb_patient_now);
+            this.customRoundedPanel2.Controls.Add(this.label4);
+            this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
+            this.customRoundedPanel2.Location = new System.Drawing.Point(24, 49);
+            this.customRoundedPanel2.Name = "customRoundedPanel2";
+            this.customRoundedPanel2.ShadowBlur = 10;
+            this.customRoundedPanel2.ShadowBorderRadius = -1;
+            this.customRoundedPanel2.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel2.ShadowEnabled = false;
+            this.customRoundedPanel2.ShadowOffsetX = 0;
+            this.customRoundedPanel2.ShadowOffsetY = 4;
+            this.customRoundedPanel2.ShadowOpacity = 60;
+            this.customRoundedPanel2.ShadowSpread = 0;
+            this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel2.TabIndex = 2;
+            // 
+            // lb_patient_now
+            // 
+            this.lb_patient_now.AutoSize = true;
+            this.lb_patient_now.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_patient_now.Location = new System.Drawing.Point(88, 49);
+            this.lb_patient_now.Name = "lb_patient_now";
+            this.lb_patient_now.Size = new System.Drawing.Size(32, 24);
+            this.lb_patient_now.TabIndex = 0;
+            this.lb_patient_now.Text = "46";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(38, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 16);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Patient aujourd\'hui";
             // 
             // User_Dash_patient
             // 
@@ -363,16 +424,16 @@
             this.Controls.Add(this.customRoundedPanel2);
             this.Name = "User_Dash_patient";
             this.Size = new System.Drawing.Size(1021, 519);
-            this.customRoundedPanel2.ResumeLayout(false);
-            this.customRoundedPanel2.PerformLayout();
-            this.customRoundedPanel1.ResumeLayout(false);
-            this.customRoundedPanel1.PerformLayout();
-            this.customRoundedPanel3.ResumeLayout(false);
-            this.customRoundedPanel3.PerformLayout();
-            this.customRoundedPanel4.ResumeLayout(false);
-            this.customRoundedPanel4.PerformLayout();
             this.customRoundedPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_patient)).EndInit();
+            this.customRoundedPanel4.ResumeLayout(false);
+            this.customRoundedPanel4.PerformLayout();
+            this.customRoundedPanel3.ResumeLayout(false);
+            this.customRoundedPanel3.PerformLayout();
+            this.customRoundedPanel1.ResumeLayout(false);
+            this.customRoundedPanel1.PerformLayout();
+            this.customRoundedPanel2.ResumeLayout(false);
+            this.customRoundedPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,6 +457,8 @@
         private System.Windows.Forms.Label lb_sorti;
         private CustomRoundedPanel customRoundedPanel5;
         private ModernDataGridView dgv_patient;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNumero;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNom;

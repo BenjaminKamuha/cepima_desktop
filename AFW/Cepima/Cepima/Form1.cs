@@ -272,9 +272,15 @@ namespace Cepima
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
+            // Affichage du dashboard reception
+            MesUserCases.User_Dash_patient patient = new MesUserCases.User_Dash_patient();
+            patient.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(patient);
+
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>  
                 {
                     MesUserCases.User_Dash_patient dash = new MesUserCases.User_Dash_patient();
                     dash.Dock = DockStyle.Fill;
@@ -282,7 +288,7 @@ namespace Cepima
                     panel_center_main.Controls.Add(dash);
                 }),
 
-                new MenuItem("    Patients",Properties.Resources.being_sick_20px,(s,ev) =>
+                new MenuItem("    Patients",Properties.Resources.nurse_call_30px,(s,ev) =>
                 {
                     //instructions
                     MesUserCases.User_display_patients display = new MesUserCases.User_display_patients();
@@ -291,7 +297,7 @@ namespace Cepima
                     panel_center_main.Controls.Add(display);
                 }),
 
-                new MenuItem("    Nouveau",Properties.Resources.plus___25px,(s,ev) =>
+                new MenuItem("    Nouveau",Properties.Resources.add_user_male_30px,(s,ev) =>
                 {
                     //instructions
                     MesForms.Form_add_patient add = new MesForms.Form_add_patient();
@@ -302,7 +308,6 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7,51,131), Color.FromArgb(44, 123, 229));
         }
-
         private void bt_pharmacie_Click(object sender, EventArgs e)
         {
             picture_image_menu.Image = Properties.Resources.doctors_bag_90px;

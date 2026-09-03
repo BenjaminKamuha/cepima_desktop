@@ -18,11 +18,6 @@ namespace Cepima.MesForms
         {
             InitializeComponent();
             PatientID = idPatient;
-            lb_titre.Font = UI.Theme.FontTitle;
-            lb_nom.Font = UI.Theme.FontMedium;
-            lb_postnom.Font = UI.Theme.FontMedium;
-            lb_prenom.Font = UI.Theme.FontMedium;
-            lb_fiche.Font = UI.Theme.FontMedium;
         }
 
         private void Form_signes_vitaux_Load(object sender, EventArgs e)

@@ -52,14 +52,13 @@ namespace Cepima.MesUserCases
                                 panPatient.Tag = idPatient;
                                 MesClasses.ManagerClasse.AddControl(panel_patient, panPatient, 10, 8);
 
-
                                 // evenement Hover du panel pour déclencher l'ouverture du Formulaire détail
                                 panPatient.MouseHover += (s, e) =>
                                     {
                                         //MesForms.FormDetailPatient detail = new MesForms.FormDetailPatient(idPatient);
                                         //detail.ShowDialog();
                                     };
-                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(2, 5),
+                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.user, new Point(2, 5),
                                     new Size(70, 70));
                                 panPatient.Controls.Add(picture);
 
@@ -78,7 +77,7 @@ namespace Cepima.MesUserCases
                                 lbFiche.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
                                 panPatient.Controls.Add(lbFiche);
 
-                                RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Fiche de suivi", new Point(40, 100), new Size(95, 25), Color.FromArgb(44, 123, 229), Color.White);
+                                RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Fiche de suivi", new Point(30, 100), new Size(95, 25), Color.FromArgb(44, 123, 229), Color.White);
                                 btnSuivi.BorderRadius = 4;
                                 btnSuivi.BorderSize = 0;
                                 btnSuivi.BorderColor = Color.FromArgb(44, 123, 229);
@@ -154,7 +153,7 @@ namespace Cepima.MesUserCases
                                     //details.ShowDialog();
                                 };
 
-                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.male_user_90px, new Point(2, 5),
+                                PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.user, new Point(2, 5),
                                     new Size(70, 70));
                                 panPatient.Controls.Add(picture);
 
@@ -173,7 +172,7 @@ namespace Cepima.MesUserCases
                                 lbFiche.Font = new System.Drawing.Font("Calibri", 10, FontStyle.Bold);
                                 panPatient.Controls.Add(lbFiche);
                         
-                                RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Fiche de suivi", new Point(40, 100), new Size(95, 25), Color.FromArgb(44, 123, 229), Color.White);
+                                RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Fiche de suivi", new Point(30, 100), new Size(95, 25), Color.FromArgb(44, 123, 229), Color.White);
                                 btnSuivi.BorderRadius = 4;
                                 btnSuivi.BorderSize = 0;
                                 btnSuivi.BorderColor = Color.FromArgb(44, 123, 229);

@@ -17,14 +17,9 @@ namespace Cepima.MesUserCases
         public User_Dash_patient()
         {
             InitializeComponent();
-            lb_attente.Font = UI.Theme.FontCardValue;
-            lb_hospitalise.Font = UI.Theme.FontCardValue;
-            lb_patient_now.Font = UI.Theme.FontCardValue;
-            lb_sorti.Font = UI.Theme.FontCardValue;
             LoadPatient();
             dgv_patient.CellContentClick += dgv_patient_CellContentClick;
             LoadResume();
-
         }
 
         // charger les patients recentes
@@ -34,7 +29,7 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    using (MySqlCommand cmd = new MySqlCommand("SELECT id_patient,nom,post_nom,prenom,numero_fiche,telephone FROM patients ORDER BY date_creation DESC LIMIT 8  ",con))
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT id_patient,nom,post_nom,prenom,numero_fiche,telephone FROM patients ORDER BY date_creation DESC LIMIT 11 ",con))
                     {
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -50,6 +45,9 @@ namespace Cepima.MesUserCases
                                  dgv_patient.Rows[row].Cells["colPhone"].Value = reader["telephone"].ToString();
                             }
                             reader.Close();
+
+                            ApplyStyle();
+
                         }
                     }
                 }
@@ -62,6 +60,12 @@ namespace Cepima.MesUserCases
 
         }
 
+        private void ApplyStyle()
+        {
+            dgv_patient.Columns["colSignes"].Width = 100;
+            dgv_patient.Columns["action"].Width = 100;
+            dgv_patient.Columns["colID"].Width = 30;
+        }
         void dgv_patient_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -83,8 +87,8 @@ namespace Cepima.MesUserCases
             {
                 Form1.GlobalPanel_main.Visible = false;
                  ID_PATIENT = Convert.ToInt32(dgv_patient.Rows[e.RowIndex].Tag);
-                 MesForms.FormDetailPatient details = new MesForms.FormDetailPatient(ID_PATIENT.ToString());
-                 details.ShowDialog();
+                 MesForms.Form_Fiche_suivie fiche = new MesForms.Form_Fiche_suivie(ID_PATIENT.ToString());
+                 fiche.ShowDialog();
                  Form1.GlobalPanel_main.Visible = true;
             }
         }
@@ -143,6 +147,12 @@ namespace Cepima.MesUserCases
                 
                 throw;
             }
+        }
+
+        private void bt_add_patient_Click(object sender, EventArgs e)
+        {
+            MesForms.Form_add_patient add = new MesForms.Form_add_patient();
+            add.ShowDialog();
         }
     }
 }
