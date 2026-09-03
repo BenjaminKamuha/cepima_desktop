@@ -249,6 +249,8 @@ namespace Cepima
             uc_lg.Dock = DockStyle.Fill;
             panel_center_main.Controls.Add(uc_lg);
 
+            
+
 
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
