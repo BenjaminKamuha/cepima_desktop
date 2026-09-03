@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Cepima.MesUserCases
+namespace Cepima.MesUserCases.EEG
 {
-    public partial class User_DashBoard_consultation : UserControl
+    public partial class User_DashBoard : UserControl
     {
-        public User_DashBoard_consultation()
+        public User_DashBoard()
         {
             InitializeComponent();
         }

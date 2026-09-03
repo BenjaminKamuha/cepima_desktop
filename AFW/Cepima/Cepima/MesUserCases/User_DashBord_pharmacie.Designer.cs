@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.customRoundedPanel6 = new CustomRoundedPanel();
-            this.tb_search_patient = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.bt_save_patient = new test_arrondissement2012.PerfectRoundedButton();
             this.lb_patient_now = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
@@ -49,62 +45,11 @@
             this.customRoundedPanel5 = new CustomRoundedPanel();
             this.customRoundedPanel7 = new CustomRoundedPanel();
             this.label6 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.customRoundedPanel6.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.search1;
-            this.pictureBox2.Location = new System.Drawing.Point(216, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            // 
-            // customRoundedPanel6
-            // 
-            this.customRoundedPanel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.customRoundedPanel6.BackColor = System.Drawing.SystemColors.Window;
-            this.customRoundedPanel6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel6.BorderRadius = 5;
-            this.customRoundedPanel6.BorderSize = 2;
-            this.customRoundedPanel6.Controls.Add(this.pictureBox2);
-            this.customRoundedPanel6.Controls.Add(this.tb_search_patient);
-            this.customRoundedPanel6.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel6.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel6.Location = new System.Drawing.Point(747, 134);
-            this.customRoundedPanel6.Name = "customRoundedPanel6";
-            this.customRoundedPanel6.Size = new System.Drawing.Size(250, 28);
-            this.customRoundedPanel6.TabIndex = 30;
-            // 
-            // tb_search_patient
-            // 
-            this.tb_search_patient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tb_search_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_search_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_search_patient.Location = new System.Drawing.Point(5, 4);
-            this.tb_search_patient.Multiline = true;
-            this.tb_search_patient.Name = "tb_search_patient";
-            this.tb_search_patient.Size = new System.Drawing.Size(205, 20);
-            this.tb_search_patient.TabIndex = 0;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(531, 139);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(168, 23);
-            this.comboBox1.TabIndex = 29;
             // 
             // bt_save_patient
             // 
@@ -143,6 +88,14 @@
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
             this.customRoundedPanel2.Location = new System.Drawing.Point(24, 15);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
+            this.customRoundedPanel2.ShadowBlur = 10;
+            this.customRoundedPanel2.ShadowBorderRadius = -1;
+            this.customRoundedPanel2.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel2.ShadowEnabled = false;
+            this.customRoundedPanel2.ShadowOffsetX = 0;
+            this.customRoundedPanel2.ShadowOffsetY = 4;
+            this.customRoundedPanel2.ShadowOpacity = 60;
+            this.customRoundedPanel2.ShadowSpread = 0;
             this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel2.TabIndex = 26;
             // 
@@ -168,6 +121,14 @@
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
             this.customRoundedPanel1.Location = new System.Drawing.Point(276, 15);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
             this.customRoundedPanel1.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel1.TabIndex = 25;
             // 
@@ -204,6 +165,14 @@
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
             this.customRoundedPanel3.Location = new System.Drawing.Point(543, 15);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
+            this.customRoundedPanel3.ShadowBlur = 10;
+            this.customRoundedPanel3.ShadowBorderRadius = -1;
+            this.customRoundedPanel3.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel3.ShadowEnabled = false;
+            this.customRoundedPanel3.ShadowOffsetX = 0;
+            this.customRoundedPanel3.ShadowOffsetY = 4;
+            this.customRoundedPanel3.ShadowOpacity = 60;
+            this.customRoundedPanel3.ShadowSpread = 0;
             this.customRoundedPanel3.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel3.TabIndex = 24;
             // 
@@ -240,6 +209,14 @@
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
             this.customRoundedPanel4.Location = new System.Drawing.Point(785, 15);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
+            this.customRoundedPanel4.ShadowBlur = 10;
+            this.customRoundedPanel4.ShadowBorderRadius = -1;
+            this.customRoundedPanel4.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel4.ShadowEnabled = false;
+            this.customRoundedPanel4.ShadowOffsetX = 0;
+            this.customRoundedPanel4.ShadowOffsetY = 4;
+            this.customRoundedPanel4.ShadowOpacity = 60;
+            this.customRoundedPanel4.ShadowSpread = 0;
             this.customRoundedPanel4.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel4.TabIndex = 23;
             // 
@@ -287,6 +264,14 @@
             this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel5.Location = new System.Drawing.Point(3, 170);
             this.customRoundedPanel5.Name = "customRoundedPanel5";
+            this.customRoundedPanel5.ShadowBlur = 10;
+            this.customRoundedPanel5.ShadowBorderRadius = -1;
+            this.customRoundedPanel5.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel5.ShadowEnabled = false;
+            this.customRoundedPanel5.ShadowOffsetX = 0;
+            this.customRoundedPanel5.ShadowOffsetY = 4;
+            this.customRoundedPanel5.ShadowOpacity = 60;
+            this.customRoundedPanel5.ShadowSpread = 0;
             this.customRoundedPanel5.Size = new System.Drawing.Size(1015, 144);
             this.customRoundedPanel5.TabIndex = 27;
             // 
@@ -302,6 +287,14 @@
             this.customRoundedPanel7.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel7.Location = new System.Drawing.Point(0, 341);
             this.customRoundedPanel7.Name = "customRoundedPanel7";
+            this.customRoundedPanel7.ShadowBlur = 10;
+            this.customRoundedPanel7.ShadowBorderRadius = -1;
+            this.customRoundedPanel7.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel7.ShadowEnabled = false;
+            this.customRoundedPanel7.ShadowOffsetX = 0;
+            this.customRoundedPanel7.ShadowOffsetY = 4;
+            this.customRoundedPanel7.ShadowOpacity = 60;
+            this.customRoundedPanel7.ShadowSpread = 0;
             this.customRoundedPanel7.Size = new System.Drawing.Size(1015, 175);
             this.customRoundedPanel7.TabIndex = 27;
             // 
@@ -321,8 +314,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.customRoundedPanel6);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.bt_save_patient);
             this.Controls.Add(this.customRoundedPanel2);
             this.Controls.Add(this.customRoundedPanel1);
@@ -335,9 +326,6 @@
             this.Name = "User_DashBord_pharmacie";
             this.Size = new System.Drawing.Size(1021, 519);
             this.Load += new System.EventHandler(this.User_DashBord_pharmacie_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.customRoundedPanel6.ResumeLayout(false);
-            this.customRoundedPanel6.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
@@ -353,10 +341,6 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private CustomRoundedPanel customRoundedPanel6;
-        private System.Windows.Forms.TextBox tb_search_patient;
-        private System.Windows.Forms.ComboBox comboBox1;
         private test_arrondissement2012.PerfectRoundedButton bt_save_patient;
         private System.Windows.Forms.Label lb_patient_now;
         private CustomRoundedPanel customRoundedPanel2;

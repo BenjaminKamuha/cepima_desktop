@@ -158,7 +158,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.male_user_90px;
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.user;
             this.pictureBox1.Location = new System.Drawing.Point(8, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(90, 82);
