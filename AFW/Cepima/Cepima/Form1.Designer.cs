@@ -501,7 +501,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Cepima.Properties.Resources.finish_flag_20px;
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.ok_30px;
             this.pictureBox4.Location = new System.Drawing.Point(262, 12);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 50);

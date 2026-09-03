@@ -70,7 +70,7 @@ namespace Cepima.MesUserCases
                     }
 
                     //============================= filtre par date ========================================================
-                    query += " AND DATE(pa.date_paiement) BETWEEN @debut AND @fin";
+                    query += " AND DATE(pa.date_paiement) = @debut ";
 
                     // ========================================= order ============================================
                     query += " ORDER BY pa.date_paiement DESC";
@@ -91,7 +91,6 @@ namespace Cepima.MesUserCases
 
                     // ================================ paramètre par date ==============================================
                     cmd.Parameters.AddWithValue("@debut",dt_debut.Value.ToString("yyyy-MM-dd"));
-                    cmd.Parameters.AddWithValue("@fin",dt_final.Value.ToString("yyyy-MM-dd"));
 
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {

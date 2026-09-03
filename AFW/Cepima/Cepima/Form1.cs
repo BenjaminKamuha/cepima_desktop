@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.MesClasses;
+using Cepima.MesUserCases;
+using Cepima.MesForms;
 using Cepima.Data;
 
 namespace Cepima
@@ -320,7 +322,7 @@ namespace Cepima
             var items = new List<MenuItem>()
             {
 
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                new MenuItem("    Acceuil",Properties.Resources.home_30px,(s,ev) =>
                 {
                     MesUserCases.User_DashBord_pharmacie dashbord_ph = new MesUserCases.User_DashBord_pharmacie();
                     dashbord_ph.Dock = DockStyle.Fill;
@@ -336,21 +338,18 @@ namespace Cepima
                     panel_center_main.Controls.Add(user_med);
                 
                 }),
-                new MenuItem("    Entreé stock",Properties.Resources.add_file_20px,(s,ev) => {
+                new MenuItem("    Invetaire",Properties.Resources.adjust_30px,(s,ev) => {
 
-                    MesUserCases.UC_add_medoc add_med = new MesUserCases.UC_add_medoc();
+                    MesUserCases.Pharmacie.UC_inventory uc_inventory = new MesUserCases.Pharmacie.UC_inventory();
                     panel_center_main.Controls.Clear();
-                    add_med.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Add(add_med);
-                
+                    uc_inventory.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(uc_inventory);
+
                 }),
             
-                new MenuItem("    Sortie stock",Properties.Resources.export_20px,(s,ev) => {
-                    
-                    MesUserCases.User_sortie_pharmacie sortie = new MesUserCases.User_sortie_pharmacie();
-                    sortie.Dock = DockStyle.Fill;
-                    Form1.GlobalPanel_main.Controls.Clear();
-                    Form1.GlobalPanel_main.Controls.Add(sortie);
+                new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px,(s,ev) => {
+
+                    MessageBox.Show("En cours de dévelopement");
                 }),
 
             };

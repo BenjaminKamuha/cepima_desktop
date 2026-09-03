@@ -222,20 +222,35 @@ DROP TABLE IF EXISTS `consultation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `consultation` (
-  `id_consultation` int(11) NOT NULL AUTO_INCREMENT,
-  `id_patient` int(11) DEFAULT NULL,
-  `id_centre` int(11) DEFAULT NULL,
-  `id_personnel` int(11) DEFAULT NULL,
-  `date_consultation` date DEFAULT NULL,
-  `frais_consultation` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `motif` varchar(255) DEFAULT NULL,
-  `diagnostic` varchar(255) DEFAULT NULL,
-  `statut_presc` enum('Livrée','Non livrée') DEFAULT 'Non livrée',
-  PRIMARY KEY (`id_consultation`),
-  KEY `id_patient` (`id_patient`),
-  KEY `id_centre` (`id_centre`),
-  KEY `id_personnel` (`id_personnel`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `patient_id` int(11) NOT NULL,
+  `type_consultation` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `motif` text COLLATE utf8mb4_unicode_ci,
+  `symptomes_depuis` date DEFAULT NULL,
+  `symptome_insomnie` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_anxiete` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_agitation` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_tristesse` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_idees_delirantes` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_hallucinations` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_perte_memoire` tinyint(1) NOT NULL DEFAULT '0',
+  `symptome_autre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `evolution_symptomes` text COLLATE utf8mb4_unicode_ci,
+  `facteurs_declenchants` text COLLATE utf8mb4_unicode_ci,
+  `risque_suicidaire` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `risque_agression` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `risque_fugue` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `autres_risques` text COLLATE utf8mb4_unicode_ci,
+  `diagnostic_id` int(11) DEFAULT NULL,
+  `prochaine_consultation` date DEFAULT NULL,
+  `date_consultation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `utilisateur_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_consultation_patient` (`patient_id`),
+  KEY `idx_consultation_diagnostic` (`diagnostic_id`),
+  KEY `idx_consultation_date` (`date_consultation`),
+  CONSTRAINT `fk_consultation_diagnostic` FOREIGN KEY (`diagnostic_id`) REFERENCES `diagnostic` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +259,6 @@ CREATE TABLE `consultation` (
 
 LOCK TABLES `consultation` WRITE;
 /*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
-INSERT INTO `consultation` VALUES (1,19,1,1,'2026-08-12',30.00,'Maux de mutwe','Aucun diagnostic','Livrée'),(2,19,1,1,'2026-08-20',20.00,'Pas de motif','Aucun diagnostic','Livrée');
 /*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,6 +458,34 @@ CREATE TABLE `details_soins` (
 LOCK TABLES `details_soins` WRITE;
 /*!40000 ALTER TABLE `details_soins` DISABLE KEYS */;
 /*!40000 ALTER TABLE `details_soins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `diagnostic`
+--
+
+DROP TABLE IF EXISTS `diagnostic`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `diagnostic` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) DEFAULT NULL,
+  `libelle` varchar(255) NOT NULL,
+  `description` text,
+  `actif` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `idx_diagnostic_libelle` (`libelle`(100))
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `diagnostic`
+--
+
+LOCK TABLES `diagnostic` WRITE;
+/*!40000 ALTER TABLE `diagnostic` DISABLE KEYS */;
+INSERT INTO `diagnostic` VALUES (1,'F00','Démence dans la maladie d?Alzheimer',NULL,1),(2,'F01','Démence vasculaire',NULL,1),(3,'F02','Démence dans d?autres maladies',NULL,1),(4,'F05','Delirium, non induit par l?alcool ou d?autres substances',NULL,1),(5,'F10','Troubles mentaux et du comportement liés à l?utilisation d?alcool',NULL,1),(6,'F20','Schizophrénie',NULL,1),(7,'F21','Trouble schizotypique',NULL,1),(8,'F22','Trouble délirant persistant',NULL,1),(9,'F23','Trouble psychotique aigu et transitoire',NULL,1),(10,'F25','Trouble schizo-affectif',NULL,1),(11,'F30','Épisode maniaque',NULL,1),(12,'F31','Trouble affectif bipolaire',NULL,1),(13,'F32','Épisode dépressif',NULL,1),(14,'F33','Trouble dépressif récurrent',NULL,1),(15,'F40','Troubles anxieux phobiques',NULL,1),(16,'F41','Autres troubles anxieux',NULL,1),(17,'F42','Trouble obsessionnel-compulsif',NULL,1),(18,'F43','Réaction à un facteur de stress et troubles de l?adaptation',NULL,1),(19,'F44','Troubles dissociatifs',NULL,1),(20,'F45','Troubles somatoformes',NULL,1),(21,'F51','Troubles non organiques du sommeil',NULL,1),(22,'F60','Troubles spécifiques de la personnalité',NULL,1),(23,'F70','Déficience intellectuelle légère',NULL,1),(24,'F79','Déficience intellectuelle, sans précision',NULL,1);
+/*!40000 ALTER TABLE `diagnostic` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -752,7 +794,7 @@ CREATE TABLE `inventaire` (
   `statut` varchar(30) NOT NULL DEFAULT 'EN_COURS',
   `observation` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -761,6 +803,7 @@ CREATE TABLE `inventaire` (
 
 LOCK TABLES `inventaire` WRITE;
 /*!40000 ALTER TABLE `inventaire` DISABLE KEYS */;
+INSERT INTO `inventaire` VALUES (1,'2026-09-02 13:00:05','2026-09-02 17:05:20',1,'COMPLET','TERMINE',''),(2,'2026-09-02 15:05:16',NULL,1,'COMPLET','EN_COURS',''),(3,'2026-09-02 15:06:43',NULL,1,'COMPLET','EN_COURS','Trop d\'écart'),(4,'2026-09-02 17:16:50','2026-09-02 17:18:30',1,'COMPLET','TERMINE',''),(5,'2026-09-02 17:22:51','2026-09-02 17:23:01',1,'COMPLET','TERMINE','');
 /*!40000 ALTER TABLE `inventaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -781,7 +824,7 @@ CREATE TABLE `inventaire_ligne` (
   PRIMARY KEY (`id`),
   KEY `inventaire_id` (`inventaire_id`),
   KEY `lot_id` (`lot_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -790,6 +833,7 @@ CREATE TABLE `inventaire_ligne` (
 
 LOCK TABLES `inventaire_ligne` WRITE;
 /*!40000 ALTER TABLE `inventaire_ligne` DISABLE KEYS */;
+INSERT INTO `inventaire_ligne` VALUES (1,1,7,54,50,-4),(2,1,2,23,25,2),(3,1,3,3,3,0),(4,1,6,3,3,0),(5,1,5,5,5,0),(6,1,4,8,8,0),(7,2,7,54,44,-10),(8,2,2,23,65,42),(9,2,3,3,23,20),(10,2,6,3,2,-1),(11,2,5,5,34,29),(12,2,4,8,5,-3),(13,3,7,54,44,-10),(14,3,2,23,65,42),(15,3,3,3,23,20),(16,3,6,3,2,-1),(17,3,5,5,34,29),(18,3,4,8,5,-3),(19,4,7,50,60,10),(20,4,2,25,32,7),(21,4,3,3,21,18),(22,4,6,3,2,-1),(23,4,5,5,5,0),(24,4,4,8,9,1),(25,5,7,60,70,10),(26,5,2,32,12,-20),(27,5,3,21,24,3),(28,5,6,2,20,18),(29,5,5,5,7,2),(30,5,4,9,8,-1);
 /*!40000 ALTER TABLE `inventaire_ligne` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -870,7 +914,7 @@ CREATE TABLE `lot_medicament` (
 
 LOCK TABLES `lot_medicament` WRITE;
 /*!40000 ALTER TABLE `lot_medicament` DISABLE KEYS */;
-INSERT INTO `lot_medicament` VALUES (1,36,'REC2342','2027-09-01',12),(2,24,'LOT-23SDF','2027-09-01',23),(3,24,'98SDF','2027-09-01',3),(4,46,'34FDSF','2027-09-01',8),(5,4,'32DFD','2027-09-01',5),(6,4,'334dfd','2027-09-01',3),(7,1,'23EE','2027-09-01',54);
+INSERT INTO `lot_medicament` VALUES (1,36,'REC2342','2027-09-01',12),(2,24,'LOT-23SDF','2027-09-01',12),(3,24,'98SDF','2027-09-01',24),(4,46,'34FDSF','2027-09-01',8),(5,4,'32DFD','2027-09-01',7),(6,4,'334dfd','2027-09-01',20),(7,1,'23EE','2027-09-01',70);
 /*!40000 ALTER TABLE `lot_medicament` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -906,7 +950,7 @@ CREATE TABLE `medicament` (
 
 LOCK TABLES `medicament` WRITE;
 /*!40000 ALTER TABLE `medicament` DISABLE KEYS */;
-INSERT INTO `medicament` VALUES (1,'Antiramide',NULL,NULL,0,1,2,0.00,0.00,2,NULL),(2,'Antalpi',NULL,NULL,9,1,21,0.00,0.00,21,NULL),(3,'Diazepan',NULL,NULL,0,1,22,0.00,0.00,22,NULL),(4,'Autre',NULL,NULL,4,1,8,2.00,2.00,8,NULL),(5,'Aspirine',NULL,NULL,20,1,4,0.00,0.00,4,NULL),(6,'Décaris',NULL,NULL,85,1,3,20.00,20.00,3,NULL),(7,'zerzerzer',NULL,NULL,85,1,2,0.00,0.00,2,NULL),(8,'ZARA',NULL,NULL,8,1,2,0.00,0.00,2,NULL),(9,'Kibabe',NULL,NULL,0,1,23,0.00,0.00,23,NULL),(10,'Paracetamol','500 mg','Comprimé',0,1,1,NULL,NULL,1,NULL),(11,'Ibuprofène','400 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(12,'Amoxicilline','500 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(13,'Metronidazole','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(14,'Oméprazole','20 mg','Gélule',0,1,4,NULL,NULL,1,NULL),(15,'Diclofénac','50 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(16,'Ceftriaxone','1 g','Injection',0,1,3,NULL,NULL,2,NULL),(17,'Sirop Paracetamol','120 mg/5 ml','Sirop',0,1,1,NULL,NULL,3,NULL),(18,'Vitamine C','500 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(19,'Loratadine','10 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(20,'Salbutamol','100 µg/dose','Inhalateur',0,1,7,NULL,NULL,4,NULL),(21,'Hydrocortisone','100 mg','Injection',0,1,8,NULL,NULL,2,NULL),(22,'Fer','200 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(23,'Azithromycine','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(24,'Aspirine','100 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(25,'Amoxicilline + Acide clavulanique','1 g','Comprimé',0,1,3,NULL,NULL,1,NULL),(26,'Ciprofloxacine','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(27,'Doxycycline','100 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(28,'Clindamycine','300 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(29,'Gentamicine','80 mg/2 ml','Injection',0,1,3,NULL,NULL,2,NULL),(30,'Paracetamol','1 g','Comprimé',0,1,1,NULL,NULL,1,NULL),(31,'Paracetamol','100 mg/ml','Solution buvable',0,1,1,NULL,NULL,3,NULL),(32,'Naproxène','500 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(33,'Kétoprofène','100 mg','Gélule',0,1,2,NULL,NULL,1,NULL),(34,'Tramadol','50 mg','Gélule',0,1,9,NULL,NULL,1,NULL),(35,'Morphine','10 mg/ml','Injection',0,1,9,NULL,NULL,2,NULL),(36,'Amlodipine','5 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(37,'Losartan','50 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(38,'Captopril','25 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(39,'Furosémide','40 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(40,'Metformine','500 mg','Comprimé',0,1,11,NULL,NULL,1,NULL),(41,'Glibenclamide','5 mg','Comprimé',0,1,11,NULL,NULL,1,NULL),(42,'Insuline humaine','100 UI/ml','Injection',0,1,11,NULL,NULL,2,NULL),(43,'Salbutamol','2 mg/5 ml','Sirop',0,1,7,NULL,NULL,3,NULL),(44,'Budesonide','200 µg/dose','Inhalateur',0,1,7,NULL,NULL,4,NULL),(45,'Cetirizine','10 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(46,'Chlorphenamine','4 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(47,'Prednisolone','20 mg','Comprimé',0,1,8,NULL,NULL,1,NULL),(48,'Dexamethasone','4 mg/ml','Injection',0,1,8,NULL,NULL,2,NULL),(49,'Oméprazole','40 mg','Gélule',0,1,4,NULL,NULL,1,NULL),(50,'Pantoprazole','40 mg','Comprimé',0,1,4,NULL,NULL,1,NULL),(51,'Aluminium hydroxide','500 mg','Comprimé',0,1,4,NULL,NULL,1,NULL),(52,'Fer + Acide folique','200 mg + 400 µg','Comprimé',0,1,5,NULL,NULL,1,NULL),(53,'Acide folique','5 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(54,'Vitamine B12','1000 µg','Comprimé',0,1,5,NULL,NULL,1,NULL);
+INSERT INTO `medicament` VALUES (1,'Antiramide',NULL,NULL,0,1,2,0.00,0.00,2,NULL),(2,'Ant',NULL,NULL,0,1,2,0.00,0.00,2,NULL),(3,'Diazepan',NULL,NULL,0,0,22,0.00,0.00,22,NULL),(4,'Autre',NULL,NULL,4,1,8,2.00,2.00,8,NULL),(5,'Aspirine',NULL,NULL,20,1,4,0.00,0.00,4,NULL),(6,'Décaris',NULL,NULL,85,1,3,20.00,20.00,3,NULL),(7,'zerzerzer',NULL,NULL,85,0,2,0.00,0.00,2,NULL),(8,'ZARA',NULL,NULL,8,1,2,0.00,0.00,2,NULL),(9,'Kibabe',NULL,NULL,0,0,23,0.00,0.00,23,NULL),(10,'Paracetamol','500 mg','Comprimé',0,1,1,NULL,NULL,1,NULL),(11,'Ibuprofène','400 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(12,'Amoxicilline','500 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(13,'Metronidazole','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(14,'Oméprazole','20 mg','Gélule',0,1,4,NULL,NULL,1,NULL),(15,'Diclofénac','50 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(16,'Ceftriaxone','1 g','Injection',0,1,3,NULL,NULL,2,NULL),(17,'Sirop Paracetamol','120 mg/5 ml','Sirop',0,1,1,NULL,NULL,3,NULL),(18,'Vitamine C','500 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(19,'Loratadine','10 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(20,'Salbutamol','100 µg/dose','Inhalateur',0,1,7,NULL,NULL,4,NULL),(21,'Hydrocortisone','100 mg','Injection',0,1,8,NULL,NULL,2,NULL),(22,'Fer','200 mg','Comprimé',0,1,5,NULL,NULL,1,NULL),(23,'Azithromycine','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(24,'Aspirine','100 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(25,'Amoxicilline + Acide clavulanique','1 g','Comprimé',0,1,3,NULL,NULL,1,NULL),(26,'Ciprofloxacine','500 mg','Comprimé',0,1,3,NULL,NULL,1,NULL),(27,'Doxycycline','100 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(28,'Clindamycine','300 mg','Gélule',0,1,3,NULL,NULL,1,NULL),(29,'Gentamicine','80 mg/2 ml','Injection',0,1,3,NULL,NULL,2,NULL),(30,'Paracetamol','1 g','Comprimé',0,1,1,NULL,NULL,1,NULL),(31,'Paracetamol','100 mg/ml','Solution buvable',0,1,1,NULL,NULL,3,NULL),(32,'Naproxène','500 mg','Comprimé',0,1,2,NULL,NULL,1,NULL),(33,'Kétoprofène','100 mg','Gélule',0,1,2,NULL,NULL,1,NULL),(34,'Tramadol','50 mg','Gélule',0,1,9,NULL,NULL,1,NULL),(35,'Morphine','10 mg/ml','Injection',0,1,9,NULL,NULL,2,NULL),(36,'Amlodipine','5 mg','Comprimé',0,0,10,NULL,NULL,1,NULL),(37,'Losartan','50 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(38,'Captopril','25 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(39,'Furosémide','40 mg','Comprimé',0,1,10,NULL,NULL,1,NULL),(40,'Metformine','500 mg','Comprimé',0,1,11,NULL,NULL,1,NULL),(41,'Glibenclamide','5 mg','Comprimé',0,1,11,NULL,NULL,1,NULL),(42,'Insuline humaine','100 UI/ml','Injection',0,1,11,NULL,NULL,2,NULL),(43,'Salbutamol','2 mg/5 ml','Sirop',0,1,7,NULL,NULL,3,NULL),(44,'Budesonide','200 µg/dose','Inhalateur',0,1,7,NULL,NULL,4,NULL),(45,'Cetirizine','10 mg','Comprimé',0,1,5,16.00,16.00,5,NULL),(46,'Chlorphenamine','4 mg','Comprimé',0,1,6,NULL,NULL,1,NULL),(47,'Prednisolone','20 mg','Comprimé',0,1,8,NULL,NULL,1,NULL),(48,'Dexamethasone e','4 mg/ml','Injection',0,0,8,0.00,0.00,8,NULL),(49,'Oméprazole','40 mg','Gélule',0,1,4,NULL,NULL,1,NULL),(50,'Pantoprazole','40 mg','Comprimé',0,1,4,NULL,NULL,1,NULL),(51,'Aluminium hydroxide','500 mg','Comprimé',0,0,4,NULL,NULL,1,NULL),(52,'Fer + Acide folique','200 mg + 400 µg','Comprimé',0,1,5,NULL,NULL,1,NULL),(53,'Acide folique','5 mg','Comprimé',0,0,5,NULL,NULL,1,NULL),(54,'Vitamine B12','1000 µg','Comprimé',0,1,5,NULL,NULL,1,NULL);
 /*!40000 ALTER TABLE `medicament` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -954,7 +998,7 @@ CREATE TABLE `mouvement_stock` (
   `observation` text,
   PRIMARY KEY (`id`),
   KEY `lot_id` (`lot_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -963,7 +1007,7 @@ CREATE TABLE `mouvement_stock` (
 
 LOCK TABLES `mouvement_stock` WRITE;
 /*!40000 ALTER TABLE `mouvement_stock` DISABLE KEYS */;
-INSERT INTO `mouvement_stock` VALUES (1,1,'ENTREE',12,'2026-09-01 21:03:19','REC2342',NULL,'Réception de stock'),(2,2,'ENTREE',23,'2026-09-01 21:05:29','LOT-23SDF',NULL,'Réception de stock'),(3,3,'ENTREE',3,'2026-09-01 21:24:41','98SDF',NULL,'Réception de stock'),(4,4,'ENTREE',8,'2026-09-01 21:37:13','34FDSF',NULL,'Réception de stock'),(5,5,'ENTREE',5,'2026-09-01 21:42:38','32DFD',NULL,'Réception de stock'),(6,6,'ENTREE',3,'2026-09-01 21:43:03','334dfd',NULL,'Réception de stock'),(7,7,'ENTREE',54,'2026-09-01 21:47:04','23EE',NULL,'Réception de stock');
+INSERT INTO `mouvement_stock` VALUES (1,1,'ENTREE',12,'2026-09-01 21:03:19','REC2342',NULL,'Réception de stock'),(2,2,'ENTREE',23,'2026-09-01 21:05:29','LOT-23SDF',NULL,'Réception de stock'),(3,3,'ENTREE',3,'2026-09-01 21:24:41','98SDF',NULL,'Réception de stock'),(4,4,'ENTREE',8,'2026-09-01 21:37:13','34FDSF',NULL,'Réception de stock'),(5,5,'ENTREE',5,'2026-09-01 21:42:38','32DFD',NULL,'Réception de stock'),(6,6,'ENTREE',3,'2026-09-01 21:43:03','334dfd',NULL,'Réception de stock'),(7,7,'ENTREE',54,'2026-09-01 21:47:04','23EE',NULL,'Réception de stock'),(8,7,'AJUSTEMENT',-4,'2026-09-02 17:05:19','INVENTAIRE-1',NULL,'Ajustement suite à l\'inventaire #1'),(9,2,'AJUSTEMENT',2,'2026-09-02 17:05:20','INVENTAIRE-1',NULL,'Ajustement suite à l\'inventaire #1'),(10,7,'AJUSTEMENT',10,'2026-09-02 17:18:30','INVENTAIRE-4',NULL,'Ajustement suite à l\'inventaire #4'),(11,2,'AJUSTEMENT',7,'2026-09-02 17:18:30','INVENTAIRE-4',NULL,'Ajustement suite à l\'inventaire #4'),(12,3,'AJUSTEMENT',18,'2026-09-02 17:18:30','INVENTAIRE-4',NULL,'Ajustement suite à l\'inventaire #4'),(13,6,'AJUSTEMENT',-1,'2026-09-02 17:18:30','INVENTAIRE-4',NULL,'Ajustement suite à l\'inventaire #4'),(14,4,'AJUSTEMENT',1,'2026-09-02 17:18:30','INVENTAIRE-4',NULL,'Ajustement suite à l\'inventaire #4'),(15,7,'AJUSTEMENT',10,'2026-09-02 17:23:01','INVENTAIRE-5',NULL,'Ajustement suite à l\'inventaire #5'),(16,2,'AJUSTEMENT',-20,'2026-09-02 17:23:01','INVENTAIRE-5',NULL,'Ajustement suite à l\'inventaire #5'),(17,3,'AJUSTEMENT',3,'2026-09-02 17:23:01','INVENTAIRE-5',NULL,'Ajustement suite à l\'inventaire #5'),(18,6,'AJUSTEMENT',18,'2026-09-02 17:23:01','INVENTAIRE-5',NULL,'Ajustement suite à l\'inventaire #5'),(19,5,'AJUSTEMENT',2,'2026-09-02 17:23:01','INVENTAIRE-5',NULL,'Ajustement suite à l\'inventaire #5'),(20,4,'AJUSTEMENT',-1,'2026-09-02 17:23:01','INVENTAIRE-5',NULL,'Ajustement suite à l\'inventaire #5');
 /*!40000 ALTER TABLE `mouvement_stock` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1623,6 +1667,38 @@ LOCK TABLES `suivi_hospitalisation` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tarif_service`
+--
+
+DROP TABLE IF EXISTS `tarif_service`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tarif_service` (
+  `id_tarif` int(11) NOT NULL AUTO_INCREMENT,
+  `id_service` int(11) NOT NULL,
+  `libelle` varchar(150) NOT NULL,
+  `montant` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `devise` varchar(10) NOT NULL DEFAULT 'USD',
+  `actif` tinyint(1) NOT NULL DEFAULT '1',
+  `date_debut` date NOT NULL,
+  `date_fin` date DEFAULT NULL,
+  PRIMARY KEY (`id_tarif`),
+  KEY `idx_tarif_service` (`id_service`),
+  CONSTRAINT `fk_tarif_service` FOREIGN KEY (`id_service`) REFERENCES `services` (`id_service`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tarif_service`
+--
+
+LOCK TABLES `tarif_service` WRITE;
+/*!40000 ALTER TABLE `tarif_service` DISABLE KEYS */;
+INSERT INTO `tarif_service` VALUES (1,1,'Consultation psychiatrique',10.00,'USD',1,'2026-01-01',NULL),(2,1,'Consultation de suivi',8.00,'USD',1,'2026-01-01',NULL),(3,2,'Hospitalisation par jour',20.00,'USD',1,'2026-01-01',NULL),(4,3,'Analyse laboratoire',5.00,'USD',1,'2026-01-01',NULL),(5,4,'EEG',25.00,'USD',1,'2026-01-01',NULL),(6,5,'Séance de psychologie',10.00,'USD',1,'2026-01-01',NULL);
+/*!40000 ALTER TABLE `tarif_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `unite_gestion`
 --
 
@@ -1689,4 +1765,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-01 21:49:14
+-- Dump completed on 2026-09-03  5:44:09
