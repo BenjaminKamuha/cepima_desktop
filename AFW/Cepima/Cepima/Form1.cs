@@ -17,6 +17,8 @@ namespace Cepima
 {
     public partial class Form1 : Form
     {
+        public static Int32 PATIENT_ID { get; set; }
+        public static Int32 DEMANDE_ID { get; set; }
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
@@ -29,7 +31,10 @@ namespace Cepima
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
-
+            PATIENT_ID = 0;
+            DEMANDE_ID = 0;
+            //Form_demander_service frm_demande = new Form_demander_service();
+            //frm_demande.ShowDialog();
 
         }
 
@@ -249,6 +254,8 @@ namespace Cepima
             uc_lg.Dock = DockStyle.Fill;
             panel_center_main.Controls.Add(uc_lg);
 
+            
+
 
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
@@ -385,9 +392,9 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(dash_);
                 }),
-                new MenuItem("    Terminés",Properties.Resources.finish_flag_30px, (s,ev) =>
+                new MenuItem("    Examens",Properties.Resources.finish_flag_30px, (s,ev) =>
                 {
-                    MesUserCases.EEG.User_finish_eeg finish = new MesUserCases.EEG.User_finish_eeg();
+                    MesUserCases.EEG.User_examens finish = new MesUserCases.EEG.User_examens();
                     finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(finish);

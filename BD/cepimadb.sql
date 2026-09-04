@@ -263,6 +263,47 @@ LOCK TABLES `consultation` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `demande_service`
+--
+
+DROP TABLE IF EXISTS `demande_service`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `demande_service` (
+  `id_demande` int(11) NOT NULL AUTO_INCREMENT,
+  `id_patient` int(11) NOT NULL,
+  `id_service` int(11) NOT NULL,
+  `id_consultation` int(11) DEFAULT NULL,
+  `id_personnel` int(11) DEFAULT NULL,
+  `date_demande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `priorite` enum('Normale','Urgente') NOT NULL DEFAULT 'Normale',
+  `motif` text,
+  `statut` enum('Demandée','Acceptée','En cours','Terminée','Annulée') NOT NULL DEFAULT 'Demandée',
+  `observation` text,
+  PRIMARY KEY (`id_demande`),
+  KEY `idx_demande_patient` (`id_patient`),
+  KEY `idx_demande_service` (`id_service`),
+  KEY `idx_demande_consultation` (`id_consultation`),
+  KEY `idx_demande_personnel` (`id_personnel`),
+  KEY `idx_demande_date` (`date_demande`),
+  KEY `idx_demande_statut` (`statut`),
+  CONSTRAINT `fk_demande_consultation` FOREIGN KEY (`id_consultation`) REFERENCES `consultation` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `fk_demande_patient` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON UPDATE CASCADE,
+  CONSTRAINT `fk_demande_service` FOREIGN KEY (`id_service`) REFERENCES `service` (`id_service`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `demande_service`
+--
+
+LOCK TABLES `demande_service` WRITE;
+/*!40000 ALTER TABLE `demande_service` DISABLE KEYS */;
+INSERT INTO `demande_service` VALUES (1,2,1,NULL,NULL,'2026-09-03 20:45:53','Urgente','Crises convulsives répétées','Demandée','Le patient soufre beaucoup'),(2,20,2,NULL,NULL,'2026-09-04 06:32:35','Urgente','Troube psycopatique','Annulée',NULL),(3,20,4,NULL,NULL,'2026-09-04 06:36:47','Normale','sdfsdf','Annulée','zer'),(4,20,1,NULL,NULL,'2026-09-04 08:53:00','Urgente','Parler trop sans arrêt','Annulée','Le patient parle beaucoup. On dirais il est bracher sur une source 240 v kkkk'),(5,20,1,NULL,NULL,'2026-09-04 09:05:15','Normale','fsf','Terminée','zerfsdf');
+/*!40000 ALTER TABLE `demande_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `depenses`
 --
 
@@ -607,18 +648,31 @@ DROP TABLE IF EXISTS `examens_eeg`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `examens_eeg` (
   `id_examens` int(11) NOT NULL AUTO_INCREMENT,
+  `id_demande` int(11) DEFAULT NULL,
   `id_patient` int(11) DEFAULT NULL,
   `id_consultation` int(11) DEFAULT NULL,
   `date_examen` date DEFAULT NULL,
   `type_EEG` enum('18_cannaux','32_cannaux') DEFAULT NULL,
+  `indication` text,
+  `etat_patient` enum('Éveil','Somnolence','Sommeil') DEFAULT NULL,
+  `privation_sommeil` tinyint(1) NOT NULL DEFAULT '0',
+  `duree_enregistrement` int(11) DEFAULT NULL,
+  `medicaments_avant_examen` text,
   `prix_examen` decimal(12,2) DEFAULT NULL,
-  `resultat` varchar(255) DEFAULT NULL,
+  `resultat` text,
   `statut` enum('Demande','En cours','Terminé') DEFAULT 'Demande',
-  `interpretation` varchar(255) DEFAULT NULL,
+  `interpretation` text,
+  `observations` text,
+  `nom_fichier` varchar(255) DEFAULT NULL,
+  `chemin_fichier` varchar(500) DEFAULT NULL,
+  `extension_fichier` varchar(20) DEFAULT NULL,
+  `taille_fichier` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id_examens`),
   KEY `id_patient` (`id_patient`),
-  KEY `id_consultation` (`id_consultation`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `id_consultation` (`id_consultation`),
+  KEY `idx_examens_eeg_demande` (`id_demande`),
+  CONSTRAINT `fk_examens_eeg_demande` FOREIGN KEY (`id_demande`) REFERENCES `demande_service` (`id_demande`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -627,6 +681,7 @@ CREATE TABLE `examens_eeg` (
 
 LOCK TABLES `examens_eeg` WRITE;
 /*!40000 ALTER TABLE `examens_eeg` DISABLE KEYS */;
+INSERT INTO `examens_eeg` VALUES (1,5,20,NULL,'2026-09-04','18_cannaux','Autre','Éveil',0,NULL,NULL,NULL,NULL,'Terminé',NULL,'Autre','fiche test enregistrement eeg.edf','D:\\2026\\CEPIMA\\cepima_desktop\\AFW\\Cepima\\Cepima\\bin\\Release\\FichiersEEG\\20_20260904100149_fiche test enregistrement eeg.edf','.edf',NULL);
 /*!40000 ALTER TABLE `examens_eeg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1408,30 +1463,30 @@ INSERT INTO `salaires` VALUES (1,1,'Janvier',200.00,'2026-04-18','Payé');
 UNLOCK TABLES;
 
 --
--- Table structure for table `services`
+-- Table structure for table `service`
 --
 
-DROP TABLE IF EXISTS `services`;
+DROP TABLE IF EXISTS `service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `services` (
+CREATE TABLE `service` (
   `id_service` int(11) NOT NULL AUTO_INCREMENT,
-  `id_centre` int(11) DEFAULT NULL,
-  `nom_service` varchar(50) DEFAULT NULL,
-  `description` varchar(100) DEFAULT NULL,
+  `nom` varchar(150) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `actif` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_service`),
-  KEY `id_centre` (`id_centre`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `uk_service_nom` (`nom`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `services`
+-- Dumping data for table `service`
 --
 
-LOCK TABLES `services` WRITE;
-/*!40000 ALTER TABLE `services` DISABLE KEYS */;
-INSERT INTO `services` VALUES (1,1,'Pediatrie ','blabdbdzjdzjijjndduhduhzuhdud'),(2,1,'Consultation externe',''),(3,1,'Laboratoire',''),(4,1,'Urgences',''),(5,1,'Psychothérapie',''),(6,1,'Addictologie',''),(7,1,'Service social',''),(8,1,'Kynesithérapie','');
-/*!40000 ALTER TABLE `services` ENABLE KEYS */;
+LOCK TABLES `service` WRITE;
+/*!40000 ALTER TABLE `service` DISABLE KEYS */;
+INSERT INTO `service` VALUES (1,'EEG','Électroencéphalogramme',1),(2,'Laboratoire','Examens de laboratoire',1),(3,'Psychologie','Consultation et suivi psychologique',1),(4,'Imagerie','Examens d?imagerie médicale',1);
+/*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1453,7 +1508,7 @@ CREATE TABLE `signes_vitaux` (
   `is_counsel` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_signe`),
   KEY `id_patient` (`id_patient`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1462,7 +1517,7 @@ CREATE TABLE `signes_vitaux` (
 
 LOCK TABLES `signes_vitaux` WRITE;
 /*!40000 ALTER TABLE `signes_vitaux` DISABLE KEYS */;
-INSERT INTO `signes_vitaux` VALUES (1,19,35.00,'120Hmmg','70Bpm',55.00,1.00,'2026-08-20 00:00:00',1),(2,18,45.00,'45','12',45.00,1.00,'2026-08-21 00:00:00',0),(3,19,32.00,'120/80Hmmg','70Bpm',52.00,1.00,'2026-08-28 00:00:00',0),(4,20,45.00,'522','41',52.00,1.00,'2026-08-28 00:00:00',0);
+INSERT INTO `signes_vitaux` VALUES (1,19,35.00,'120Hmmg','70Bpm',55.00,1.00,'2026-08-20 00:00:00',1),(2,18,45.00,'45','12',45.00,1.00,'2026-08-21 00:00:00',0),(3,19,32.00,'120/80Hmmg','70Bpm',52.00,1.00,'2026-08-28 00:00:00',0),(4,20,45.00,'522','41',52.00,1.00,'2026-08-28 00:00:00',0),(5,20,23.00,'10','34',56.00,1.80,'2026-09-04 00:00:00',0),(6,20,45.00,'12','6',23.00,53.00,'2026-09-04 00:00:00',0),(7,20,23.00,'12','23',54.00,33.00,'2026-09-04 00:00:00',0);
 /*!40000 ALTER TABLE `signes_vitaux` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1765,4 +1820,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-03  5:44:09
+-- Dump completed on 2026-09-04 11:47:13

@@ -232,6 +232,12 @@
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
     <Compile Include="MesClasses\RH_manager.cs" />
+    <Compile Include="MesForms\EEG\Form_realisation_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_realisation_eeg.Designer.cs">
+      <DependentUpon>Form_realisation_eeg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Fiches\SectionRepliable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -304,6 +310,12 @@
     <Compile Include="MesForms\FormRecu.Designer.cs">
       <DependentUpon>FormRecu.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Form_demander_service.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Form_demander_service.Designer.cs">
+      <DependentUpon>Form_demander_service.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Pharmacie\Form_add_category_med.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,6 +364,12 @@
     <Compile Include="MesForms\Pharmacie\Form_inventory.Designer.cs">
       <DependentUpon>Form_inventory.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\EEG\Form_new_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_new_eeg.Designer.cs">
+      <DependentUpon>Form_new_eeg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Pharmacie\Form_reception_stock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -364,11 +382,11 @@
     <Compile Include="MesUserCases\EEG\User_DashBoard.Designer.cs">
       <DependentUpon>User_DashBoard.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\EEG\User_finish_eeg.cs">
+    <Compile Include="MesUserCases\EEG\User_examens.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MesUserCases\EEG\User_finish_eeg.Designer.cs">
-      <DependentUpon>User_finish_eeg.cs</DependentUpon>
+    <Compile Include="MesUserCases\EEG\User_examens.Designer.cs">
+      <DependentUpon>User_examens.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_add_medoc.cs">
       <SubType>UserControl</SubType>
@@ -564,6 +582,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UC_logo_cepima.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -575,6 +598,12 @@
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_new_eeg.resx">
+      <DependentUpon>Form_new_eeg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_realisation_eeg.resx">
+      <DependentUpon>Form_realisation_eeg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Fiches\SectionRepliable.resx">
       <DependentUpon>SectionRepliable.cs</DependentUpon>
@@ -612,6 +641,9 @@
     <EmbeddedResource Include="MesForms\FormRecu.resx">
       <DependentUpon>FormRecu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Form_demander_service.resx">
+      <DependentUpon>Form_demander_service.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_add_category_med.resx">
       <DependentUpon>Form_add_category_med.cs</DependentUpon>
     </EmbeddedResource>
@@ -642,8 +674,8 @@
     <EmbeddedResource Include="MesUserCases\EEG\User_DashBoard.resx">
       <DependentUpon>User_DashBoard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\EEG\User_finish_eeg.resx">
-      <DependentUpon>User_finish_eeg.cs</DependentUpon>
+    <EmbeddedResource Include="MesUserCases\EEG\User_examens.resx">
+      <DependentUpon>User_examens.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_add_medoc.resx">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>
@@ -779,11 +811,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -1373,6 +1400,7 @@
     <None Include="Resources\return_30px.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\folder_30px.png" />
     <None Include="Resources\file_invoice_50px.png" />
   </ItemGroup>
   <ItemGroup>
@@ -1383,6 +1411,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\play_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paper_plane_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email_send_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email_send_25px1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
