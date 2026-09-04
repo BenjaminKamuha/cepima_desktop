@@ -32,7 +32,7 @@
             this.title = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.rd_priorite_normal = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rd_priorite_urgente = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -93,17 +93,17 @@
             this.rd_priorite_normal.Text = "Normale";
             this.rd_priorite_normal.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rd_priorite_urgente
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(357, 240);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(77, 21);
-            this.radioButton1.TabIndex = 41;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Urgente";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rd_priorite_urgente.AutoSize = true;
+            this.rd_priorite_urgente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rd_priorite_urgente.Location = new System.Drawing.Point(357, 240);
+            this.rd_priorite_urgente.Name = "rd_priorite_urgente";
+            this.rd_priorite_urgente.Size = new System.Drawing.Size(77, 21);
+            this.rd_priorite_urgente.TabIndex = 41;
+            this.rd_priorite_urgente.TabStop = true;
+            this.rd_priorite_urgente.Text = "Urgente";
+            this.rd_priorite_urgente.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -140,7 +140,8 @@
             this.tb_observation.BackColor = System.Drawing.Color.White;
             this.tb_observation.BorderColor = System.Drawing.Color.Silver;
             this.tb_observation.BorderRadius = 8;
-            this.tb_observation.FocusBorderColor = System.Drawing.Color.Orange;
+            this.tb_observation.FocusBorderColor = System.Drawing.Color.DodgerBlue;
+            this.tb_observation.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_observation.ForeColor = System.Drawing.Color.Black;
             this.tb_observation.Image = null;
             this.tb_observation.Location = new System.Drawing.Point(211, 480);
@@ -158,7 +159,8 @@
             this.tb_indicateur.BackColor = System.Drawing.Color.White;
             this.tb_indicateur.BorderColor = System.Drawing.Color.Silver;
             this.tb_indicateur.BorderRadius = 8;
-            this.tb_indicateur.FocusBorderColor = System.Drawing.Color.Orange;
+            this.tb_indicateur.FocusBorderColor = System.Drawing.Color.DodgerBlue;
+            this.tb_indicateur.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
             this.tb_indicateur.ForeColor = System.Drawing.Color.Black;
             this.tb_indicateur.Image = null;
             this.tb_indicateur.Location = new System.Drawing.Point(211, 291);
@@ -180,11 +182,12 @@
             this.bunifuRoundedPanel1.Controls.Add(this.lb_nom_patient);
             this.bunifuRoundedPanel1.Controls.Add(this.lb_num_fiche);
             this.bunifuRoundedPanel1.Controls.Add(this.lb_sexe_age);
-            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(12, 11);
+            this.bunifuRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(0, 0);
             this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
             this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
-            this.bunifuRoundedPanel1.ShadowDepth = 10;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(519, 80);
+            this.bunifuRoundedPanel1.ShadowDepth = 5;
+            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(543, 80);
             this.bunifuRoundedPanel1.TabIndex = 40;
             // 
             // pictureBox1
@@ -241,7 +244,7 @@
             this.cbx_consultation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_consultation.DropDownWidth = 250;
             this.cbx_consultation.FocusBorderColor = System.Drawing.Color.DodgerBlue;
-            this.cbx_consultation.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_consultation.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
             this.cbx_consultation.Location = new System.Drawing.Point(211, 408);
             this.cbx_consultation.MinimumSize = new System.Drawing.Size(80, 36);
             this.cbx_consultation.Name = "cbx_consultation";
@@ -264,7 +267,7 @@
             this.cbx_service.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_service.DropDownWidth = 250;
             this.cbx_service.FocusBorderColor = System.Drawing.Color.DodgerBlue;
-            this.cbx_service.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_service.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
             this.cbx_service.Location = new System.Drawing.Point(211, 160);
             this.cbx_service.MinimumSize = new System.Drawing.Size(80, 36);
             this.cbx_service.Name = "cbx_service";
@@ -272,6 +275,7 @@
             this.cbx_service.SelectedValue = null;
             this.cbx_service.Size = new System.Drawing.Size(238, 42);
             this.cbx_service.TabIndex = 34;
+            this.cbx_service.SelectedIndexChanged += new System.EventHandler(this.cbx_service_SelectedIndexChanged);
             // 
             // btn_cancel
             // 
@@ -331,7 +335,7 @@
             this.ClientSize = new System.Drawing.Size(543, 678);
             this.Controls.Add(this.tb_observation);
             this.Controls.Add(this.tb_indicateur);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rd_priorite_urgente);
             this.Controls.Add(this.rd_priorite_normal);
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Controls.Add(this.cbx_consultation);
@@ -369,7 +373,7 @@
         private System.Windows.Forms.Label lb_num_fiche;
         private System.Windows.Forms.Label lb_sexe_age;
         private System.Windows.Forms.RadioButton rd_priorite_normal;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rd_priorite_urgente;
         private MyRoundedTextBox tb_indicateur;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

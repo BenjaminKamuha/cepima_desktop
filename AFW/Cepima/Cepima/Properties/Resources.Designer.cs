@@ -723,6 +723,26 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap email_send_25px {
+            get {
+                object obj = ResourceManager.GetObject("email_send_25px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap email_send_25px1 {
+            get {
+                object obj = ResourceManager.GetObject("email_send_25px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap encaissement_mois {
             get {
                 object obj = ResourceManager.GetObject("encaissement_mois", resourceCulture);

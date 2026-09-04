@@ -232,6 +232,12 @@
     <Compile Include="MesClasses\Progressive.cs" />
     <Compile Include="MesClasses\ReceptionManager.cs" />
     <Compile Include="MesClasses\RH_manager.cs" />
+    <Compile Include="MesForms\EEG\Form_realisation_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_realisation_eeg.Designer.cs">
+      <DependentUpon>Form_realisation_eeg.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Fiches\SectionRepliable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -595,6 +601,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\EEG\Form_new_eeg.resx">
       <DependentUpon>Form_new_eeg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_realisation_eeg.resx">
+      <DependentUpon>Form_realisation_eeg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Fiches\SectionRepliable.resx">
       <DependentUpon>SectionRepliable.cs</DependentUpon>
@@ -1405,6 +1414,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\paper_plane_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email_send_25px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email_send_25px1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -166,5 +166,10 @@ namespace Cepima.MesForms
 
             return true;
         }
+
+        private void bt_save_patient_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

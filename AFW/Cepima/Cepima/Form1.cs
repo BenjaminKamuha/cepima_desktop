@@ -18,6 +18,7 @@ namespace Cepima
     public partial class Form1 : Form
     {
         public static Int32 PATIENT_ID { get; set; }
+        public static Int32 DEMANDE_ID { get; set; }
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
@@ -30,7 +31,8 @@ namespace Cepima
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
-            PATIENT_ID = 2;
+            PATIENT_ID = 0;
+            DEMANDE_ID = 0;
             //Form_demander_service frm_demande = new Form_demander_service();
             //frm_demande.ShowDialog();
 
