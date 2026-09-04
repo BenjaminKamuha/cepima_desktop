@@ -635,18 +635,24 @@ namespace Cepima
             lb_sous_menu.Text = "Consultation";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
+
+            MesUserCases.User_DashBoard_consultation dash = new MesUserCases.User_DashBoard_consultation();
+            dash.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(dash);
+
             var items = new List<MenuItem>()
             {
-                new MenuItem("      Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>  
                 {
                     //instructions
-                   MesUserCases.User_DashBoard_consultation dash = new MesUserCases.User_DashBoard_consultation();
-                    dash.Dock = DockStyle.Fill;
+                   MesUserCases.User_DashBoard_consultation dash_ = new MesUserCases.User_DashBoard_consultation();
+                    dash_.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(dash);
+                    panel_center_main.Controls.Add(dash_);
                 }),
 
-                     new MenuItem("     Terminées",Properties.Resources.finish_flag_20px,(s,ev) =>  
+                     new MenuItem("     Terminées",Properties.Resources.finish_flag_30px,(s,ev) =>  
                 {
                     MesUserCases.User_finish_consultation finish = new MesUserCases.User_finish_consultation();
                     finish.Dock = DockStyle.Fill;

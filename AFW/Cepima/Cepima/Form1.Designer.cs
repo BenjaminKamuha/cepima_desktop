@@ -317,7 +317,7 @@
             this.panel_center_main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel_center_main.BackColor = System.Drawing.Color.Transparent;
+            this.panel_center_main.BackColor = System.Drawing.Color.White;
             this.panel_center_main.Location = new System.Drawing.Point(262, 79);
             this.panel_center_main.Name = "panel_center_main";
             this.panel_center_main.Size = new System.Drawing.Size(822, 593);

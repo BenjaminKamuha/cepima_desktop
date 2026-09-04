@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.dgv_consult = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSexe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAdresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHeure = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_Patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgv_consultations = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,22 +41,30 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bt_start = new RoundedButton();
-            this.tb_search_ = new MyRoundedTextBox();
+            this.txt_recherche = new MyRoundedTextBox();
             this.cbx_filtrer = new MyRoundedComboBox();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSexe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMotif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_Patient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customRoundedPanel4 = new CustomRoundedPanel();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lb_urgences = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lb_termine = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lb_attente = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lb_consultation = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_consult)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_consultations)).BeginInit();
             this.customRoundedPanel4.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
@@ -77,87 +77,46 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.dgv_consult);
+            this.panel1.Controls.Add(this.dgv_consultations);
             this.panel1.Location = new System.Drawing.Point(11, 202);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(997, 314);
             this.panel1.TabIndex = 2;
             // 
-            // dgv_consult
+            // dgv_consultations
             // 
-            this.dgv_consult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv_consult.BackgroundColor = System.Drawing.Color.White;
-            this.dgv_consult.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv_consult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_consult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgv_consult.ColumnHeadersHeight = 30;
-            this.dgv_consult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgv_consultations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_consultations.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_consultations.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv_consultations.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_consultations.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_consultations.ColumnHeadersHeight = 30;
+            this.dgv_consultations.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
             this.colPatient,
             this.colSexe,
-            this.colAdresse,
+            this.colAge,
             this.colType,
-            this.colHeure,
+            this.colMotif,
             this.colStatut,
             this.ID_Patient});
-            this.dgv_consult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv_consult.EnableHeadersVisualStyles = false;
-            this.dgv_consult.Location = new System.Drawing.Point(0, 0);
-            this.dgv_consult.Name = "dgv_consult";
-            this.dgv_consult.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgv_consult.RowHeadersVisible = false;
-            this.dgv_consult.RowTemplate.Height = 30;
-            this.dgv_consult.Size = new System.Drawing.Size(995, 312);
-            this.dgv_consult.TabIndex = 0;
-            this.dgv_consult.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_consult_CellClick);
-            // 
-            // colID
-            // 
-            this.colID.HeaderText = "N°";
-            this.colID.Name = "colID";
-            // 
-            // colPatient
-            // 
-            this.colPatient.HeaderText = "Patient";
-            this.colPatient.Name = "colPatient";
-            // 
-            // colSexe
-            // 
-            this.colSexe.HeaderText = "Sexe";
-            this.colSexe.Name = "colSexe";
-            // 
-            // colAdresse
-            // 
-            this.colAdresse.HeaderText = "Adresse";
-            this.colAdresse.Name = "colAdresse";
-            // 
-            // colType
-            // 
-            this.colType.HeaderText = "Type";
-            this.colType.Name = "colType";
-            // 
-            // colHeure
-            // 
-            this.colHeure.HeaderText = "Heure";
-            this.colHeure.Name = "colHeure";
-            // 
-            // colStatut
-            // 
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.Name = "colStatut";
-            // 
-            // ID_Patient
-            // 
-            this.ID_Patient.HeaderText = "";
-            this.ID_Patient.Name = "ID_Patient";
-            this.ID_Patient.Visible = false;
+            this.dgv_consultations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_consultations.EnableHeadersVisualStyles = false;
+            this.dgv_consultations.Location = new System.Drawing.Point(0, 0);
+            this.dgv_consultations.Name = "dgv_consultations";
+            this.dgv_consultations.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv_consultations.RowHeadersVisible = false;
+            this.dgv_consultations.RowTemplate.Height = 30;
+            this.dgv_consultations.Size = new System.Drawing.Size(995, 312);
+            this.dgv_consultations.TabIndex = 0;
+            this.dgv_consultations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_consult_CellClick);
             // 
             // label9
             // 
@@ -245,26 +204,28 @@
             this.bt_start.Visible = false;
             this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
             // 
-            // tb_search_
+            // txt_recherche
             // 
-            this.tb_search_.BackColor = System.Drawing.Color.White;
-            this.tb_search_.BorderColor = System.Drawing.Color.Silver;
-            this.tb_search_.BorderRadius = 6;
-            this.tb_search_.BorderSize = 1;
-            this.tb_search_.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_search_.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_search_.ForeColor = System.Drawing.Color.Black;
-            this.tb_search_.Image = global::Cepima.Properties.Resources.search;
-            this.tb_search_.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_search_.Location = new System.Drawing.Point(585, 169);
-            this.tb_search_.MaxLength = 32767;
-            this.tb_search_.Name = "tb_search_";
-            this.tb_search_.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_search_.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_search_.PlaceholderText = "";
-            this.tb_search_.Size = new System.Drawing.Size(243, 30);
-            this.tb_search_.TabIndex = 1;
-            this.tb_search_.Text = "Search";
+            this.txt_recherche.BackColor = System.Drawing.Color.White;
+            this.txt_recherche.BorderColor = System.Drawing.Color.Silver;
+            this.txt_recherche.BorderRadius = 6;
+            this.txt_recherche.BorderSize = 1;
+            this.txt_recherche.FocusBorderColor = System.Drawing.Color.Silver;
+            this.txt_recherche.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_recherche.ForeColor = System.Drawing.Color.Black;
+            this.txt_recherche.Image = global::Cepima.Properties.Resources.search;
+            this.txt_recherche.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.txt_recherche.ImagePadding = 2;
+            this.txt_recherche.Location = new System.Drawing.Point(585, 169);
+            this.txt_recherche.MaxLength = 32767;
+            this.txt_recherche.Name = "txt_recherche";
+            this.txt_recherche.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txt_recherche.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txt_recherche.PlaceholderText = "";
+            this.txt_recherche.Size = new System.Drawing.Size(243, 30);
+            this.txt_recherche.TabIndex = 1;
+            this.txt_recherche.Text = "Search";
+            this.txt_recherche.TextChanged += new System.EventHandler(this.txt_recherche_TextChanged);
             // 
             // cbx_filtrer
             // 
@@ -276,23 +237,66 @@
             this.cbx_filtrer.BorderSize = 1;
             this.cbx_filtrer.DropDownBackColor = System.Drawing.Color.White;
             this.cbx_filtrer.DropDownForeColor = System.Drawing.Color.Black;
-            this.cbx_filtrer.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.cbx_filtrer.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.cbx_filtrer.DropDownSelectedForeColor = System.Drawing.Color.White;
             this.cbx_filtrer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_filtrer.FocusBorderColor = System.Drawing.Color.Silver;
+            this.cbx_filtrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbx_filtrer.Location = new System.Drawing.Point(306, 170);
             this.cbx_filtrer.Name = "cbx_filtrer";
             this.cbx_filtrer.SelectedItem = null;
             this.cbx_filtrer.SelectedValue = null;
             this.cbx_filtrer.Size = new System.Drawing.Size(192, 28);
             this.cbx_filtrer.TabIndex = 1;
+            this.cbx_filtrer.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "N°";
+            this.colID.Name = "colID";
+            // 
+            // colPatient
+            // 
+            this.colPatient.HeaderText = "Patient";
+            this.colPatient.Name = "colPatient";
+            // 
+            // colSexe
+            // 
+            this.colSexe.HeaderText = "Sexe";
+            this.colSexe.Name = "colSexe";
+            // 
+            // colAge
+            // 
+            this.colAge.HeaderText = "Age";
+            this.colAge.Name = "colAge";
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "Type";
+            this.colType.Name = "colType";
+            // 
+            // colMotif
+            // 
+            this.colMotif.HeaderText = "Motif ";
+            this.colMotif.Name = "colMotif";
+            // 
+            // colStatut
+            // 
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.Name = "colStatut";
+            // 
+            // ID_Patient
+            // 
+            this.ID_Patient.HeaderText = "";
+            this.ID_Patient.Name = "ID_Patient";
+            this.ID_Patient.Visible = false;
             // 
             // customRoundedPanel4
             // 
             this.customRoundedPanel4.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel4.BorderRadius = 10;
             this.customRoundedPanel4.BorderSize = 2;
-            this.customRoundedPanel4.Controls.Add(this.label8);
+            this.customRoundedPanel4.Controls.Add(this.lb_urgences);
             this.customRoundedPanel4.Controls.Add(this.label4);
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -309,15 +313,15 @@
             this.customRoundedPanel4.Size = new System.Drawing.Size(232, 100);
             this.customRoundedPanel4.TabIndex = 1;
             // 
-            // label8
+            // lb_urgences
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(104, 55);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(25, 25);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "2";
+            this.lb_urgences.AutoSize = true;
+            this.lb_urgences.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_urgences.Location = new System.Drawing.Point(104, 55);
+            this.lb_urgences.Name = "lb_urgences";
+            this.lb_urgences.Size = new System.Drawing.Size(25, 25);
+            this.lb_urgences.TabIndex = 0;
+            this.lb_urgences.Text = "2";
             // 
             // label4
             // 
@@ -334,7 +338,7 @@
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel3.BorderRadius = 10;
             this.customRoundedPanel3.BorderSize = 2;
-            this.customRoundedPanel3.Controls.Add(this.label7);
+            this.customRoundedPanel3.Controls.Add(this.lb_termine);
             this.customRoundedPanel3.Controls.Add(this.label3);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -351,15 +355,15 @@
             this.customRoundedPanel3.Size = new System.Drawing.Size(232, 100);
             this.customRoundedPanel3.TabIndex = 1;
             // 
-            // label7
+            // lb_termine
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(97, 55);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 25);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "10";
+            this.lb_termine.AutoSize = true;
+            this.lb_termine.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_termine.Location = new System.Drawing.Point(97, 55);
+            this.lb_termine.Name = "lb_termine";
+            this.lb_termine.Size = new System.Drawing.Size(38, 25);
+            this.lb_termine.TabIndex = 0;
+            this.lb_termine.Text = "10";
             // 
             // label3
             // 
@@ -376,7 +380,7 @@
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel2.BorderRadius = 10;
             this.customRoundedPanel2.BorderSize = 2;
-            this.customRoundedPanel2.Controls.Add(this.label6);
+            this.customRoundedPanel2.Controls.Add(this.lb_attente);
             this.customRoundedPanel2.Controls.Add(this.label2);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -393,15 +397,15 @@
             this.customRoundedPanel2.Size = new System.Drawing.Size(232, 100);
             this.customRoundedPanel2.TabIndex = 1;
             // 
-            // label6
+            // lb_attente
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(97, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 25);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "11";
+            this.lb_attente.AutoSize = true;
+            this.lb_attente.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_attente.Location = new System.Drawing.Point(97, 55);
+            this.lb_attente.Name = "lb_attente";
+            this.lb_attente.Size = new System.Drawing.Size(38, 25);
+            this.lb_attente.TabIndex = 0;
+            this.lb_attente.Text = "11";
             // 
             // label2
             // 
@@ -418,7 +422,7 @@
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.label5);
+            this.customRoundedPanel1.Controls.Add(this.lb_consultation);
             this.customRoundedPanel1.Controls.Add(this.label1);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -435,15 +439,15 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(232, 100);
             this.customRoundedPanel1.TabIndex = 1;
             // 
-            // label5
+            // lb_consultation
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(97, 55);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 25);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "14";
+            this.lb_consultation.AutoSize = true;
+            this.lb_consultation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_consultation.Location = new System.Drawing.Point(97, 55);
+            this.lb_consultation.Name = "lb_consultation";
+            this.lb_consultation.Size = new System.Drawing.Size(38, 25);
+            this.lb_consultation.TabIndex = 0;
+            this.lb_consultation.Text = "14";
             // 
             // label1
             // 
@@ -461,7 +465,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.bt_start);
-            this.Controls.Add(this.tb_search_);
+            this.Controls.Add(this.txt_recherche);
             this.Controls.Add(this.cbx_filtrer);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label9);
@@ -472,7 +476,7 @@
             this.Name = "User_DashBoard_consultation";
             this.Size = new System.Drawing.Size(1021, 519);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_consult)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_consultations)).EndInit();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
             this.customRoundedPanel3.ResumeLayout(false);
@@ -496,22 +500,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lb_urgences;
+        private System.Windows.Forms.Label lb_termine;
+        private System.Windows.Forms.Label lb_attente;
+        private System.Windows.Forms.Label lb_consultation;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dgv_consult;
+        private System.Windows.Forms.DataGridView dgv_consultations;
         private MyRoundedComboBox cbx_filtrer;
-        private MyRoundedTextBox tb_search_;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPatient;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSexe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAdresse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colHeure;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
+        private MyRoundedTextBox txt_recherche;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -521,6 +518,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private RoundedButton bt_start;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPatient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSexe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMotif;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_Patient;
 
     }

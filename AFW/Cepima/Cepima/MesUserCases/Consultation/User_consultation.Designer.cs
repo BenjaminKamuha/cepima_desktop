@@ -29,22 +29,26 @@
         private void InitializeComponent()
         {
             this.customRoundedPanel2 = new CustomRoundedPanel();
+            this.dt_after_ = new System.Windows.Forms.DateTimePicker();
+            this.rich_facteurs = new System.Windows.Forms.RichTextBox();
+            this.rich_evolution = new System.Windows.Forms.RichTextBox();
+            this.myRoundedTextBox1 = new MyRoundedTextBox();
             this.tb_diagnostic_principal = new MyRoundedTextBox();
             this.tb_autre = new MyRoundedTextBox();
             this.tb_autre_evaluation = new MyRoundedTextBox();
             this.tb_motif = new MyRoundedTextBox();
             this.btn_save_category = new RoundedButton();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelFugue = new System.Windows.Forms.Panel();
             this.rb_f_eleve = new System.Windows.Forms.RadioButton();
             this.rb_f_modere = new System.Windows.Forms.RadioButton();
             this.rb_f_faible = new System.Windows.Forms.RadioButton();
             this.rb_f_aucun = new System.Windows.Forms.RadioButton();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelAgression = new System.Windows.Forms.Panel();
             this.rb_a_eleve = new System.Windows.Forms.RadioButton();
             this.rb_a_modere = new System.Windows.Forms.RadioButton();
             this.rb_a_faible = new System.Windows.Forms.RadioButton();
             this.rb_a_aucun = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelSuicidaire = new System.Windows.Forms.Panel();
             this.rb_s_eleve = new System.Windows.Forms.RadioButton();
             this.rb_s_modere = new System.Windows.Forms.RadioButton();
             this.rb_s_faible = new System.Windows.Forms.RadioButton();
@@ -80,21 +84,17 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lb_postnom = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lb_adresse = new System.Windows.Forms.Label();
             this.lb_dossier = new System.Windows.Forms.Label();
             this.lb_nom = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lb_titre = new System.Windows.Forms.Label();
-            this.rich_evolution = new System.Windows.Forms.RichTextBox();
-            this.rich_facteurs = new System.Windows.Forms.RichTextBox();
-            this.dt_after_ = new System.Windows.Forms.DateTimePicker();
-            this.myRoundedTextBox1 = new MyRoundedTextBox();
-            this.lb_adresse = new System.Windows.Forms.Label();
             this.customRoundedPanel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelFugue.SuspendLayout();
+            this.panelAgression.SuspendLayout();
+            this.panelSuicidaire.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -116,9 +116,9 @@
             this.customRoundedPanel2.Controls.Add(this.tb_autre_evaluation);
             this.customRoundedPanel2.Controls.Add(this.tb_motif);
             this.customRoundedPanel2.Controls.Add(this.btn_save_category);
-            this.customRoundedPanel2.Controls.Add(this.panel3);
-            this.customRoundedPanel2.Controls.Add(this.panel2);
-            this.customRoundedPanel2.Controls.Add(this.panel1);
+            this.customRoundedPanel2.Controls.Add(this.panelFugue);
+            this.customRoundedPanel2.Controls.Add(this.panelAgression);
+            this.customRoundedPanel2.Controls.Add(this.panelSuicidaire);
             this.customRoundedPanel2.Controls.Add(this.autre);
             this.customRoundedPanel2.Controls.Add(this.perte_memoire);
             this.customRoundedPanel2.Controls.Add(this.hallucination);
@@ -159,6 +159,51 @@
             this.customRoundedPanel2.ShadowSpread = 0;
             this.customRoundedPanel2.Size = new System.Drawing.Size(1050, 481);
             this.customRoundedPanel2.TabIndex = 0;
+            // 
+            // dt_after_
+            // 
+            this.dt_after_.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dt_after_.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.dt_after_.Location = new System.Drawing.Point(494, 442);
+            this.dt_after_.Name = "dt_after_";
+            this.dt_after_.Size = new System.Drawing.Size(246, 23);
+            this.dt_after_.TabIndex = 26;
+            // 
+            // rich_facteurs
+            // 
+            this.rich_facteurs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rich_facteurs.Location = new System.Drawing.Point(428, 231);
+            this.rich_facteurs.Name = "rich_facteurs";
+            this.rich_facteurs.Size = new System.Drawing.Size(289, 50);
+            this.rich_facteurs.TabIndex = 25;
+            this.rich_facteurs.Text = "";
+            // 
+            // rich_evolution
+            // 
+            this.rich_evolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rich_evolution.Location = new System.Drawing.Point(20, 226);
+            this.rich_evolution.Name = "rich_evolution";
+            this.rich_evolution.Size = new System.Drawing.Size(289, 50);
+            this.rich_evolution.TabIndex = 25;
+            this.rich_evolution.Text = "";
+            // 
+            // myRoundedTextBox1
+            // 
+            this.myRoundedTextBox1.BackColor = System.Drawing.Color.White;
+            this.myRoundedTextBox1.BorderColor = System.Drawing.Color.LightGray;
+            this.myRoundedTextBox1.BorderRadius = 6;
+            this.myRoundedTextBox1.BorderSize = 1;
+            this.myRoundedTextBox1.FocusBorderColor = System.Drawing.SystemColors.ActiveCaption;
+            this.myRoundedTextBox1.ForeColor = System.Drawing.Color.Black;
+            this.myRoundedTextBox1.Image = null;
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(491, 439);
+            this.myRoundedTextBox1.MaxLength = 32767;
+            this.myRoundedTextBox1.Name = "myRoundedTextBox1";
+            this.myRoundedTextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Gray;
+            this.myRoundedTextBox1.PlaceholderText = "";
+            this.myRoundedTextBox1.Size = new System.Drawing.Size(251, 28);
+            this.myRoundedTextBox1.TabIndex = 24;
             // 
             // tb_diagnostic_principal
             // 
@@ -257,17 +302,17 @@
             this.btn_save_category.UseVisualStyleBackColor = false;
             this.btn_save_category.Click += new System.EventHandler(this.btn_save_category_Click);
             // 
-            // panel3
+            // panelFugue
             // 
-            this.panel3.Controls.Add(this.rb_f_eleve);
-            this.panel3.Controls.Add(this.rb_f_modere);
-            this.panel3.Controls.Add(this.rb_f_faible);
-            this.panel3.Controls.Add(this.rb_f_aucun);
-            this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.panel3.Location = new System.Drawing.Point(578, 311);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(103, 97);
-            this.panel3.TabIndex = 17;
+            this.panelFugue.Controls.Add(this.rb_f_eleve);
+            this.panelFugue.Controls.Add(this.rb_f_modere);
+            this.panelFugue.Controls.Add(this.rb_f_faible);
+            this.panelFugue.Controls.Add(this.rb_f_aucun);
+            this.panelFugue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.panelFugue.Location = new System.Drawing.Point(578, 311);
+            this.panelFugue.Name = "panelFugue";
+            this.panelFugue.Size = new System.Drawing.Size(103, 97);
+            this.panelFugue.TabIndex = 17;
             // 
             // rb_f_eleve
             // 
@@ -317,17 +362,17 @@
             this.rb_f_aucun.Text = "Aucun";
             this.rb_f_aucun.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // panelAgression
             // 
-            this.panel2.Controls.Add(this.rb_a_eleve);
-            this.panel2.Controls.Add(this.rb_a_modere);
-            this.panel2.Controls.Add(this.rb_a_faible);
-            this.panel2.Controls.Add(this.rb_a_aucun);
-            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.panel2.Location = new System.Drawing.Point(367, 311);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(103, 97);
-            this.panel2.TabIndex = 17;
+            this.panelAgression.Controls.Add(this.rb_a_eleve);
+            this.panelAgression.Controls.Add(this.rb_a_modere);
+            this.panelAgression.Controls.Add(this.rb_a_faible);
+            this.panelAgression.Controls.Add(this.rb_a_aucun);
+            this.panelAgression.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.panelAgression.Location = new System.Drawing.Point(367, 311);
+            this.panelAgression.Name = "panelAgression";
+            this.panelAgression.Size = new System.Drawing.Size(103, 97);
+            this.panelAgression.TabIndex = 17;
             // 
             // rb_a_eleve
             // 
@@ -377,17 +422,17 @@
             this.rb_a_aucun.Text = "Aucun";
             this.rb_a_aucun.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panelSuicidaire
             // 
-            this.panel1.Controls.Add(this.rb_s_eleve);
-            this.panel1.Controls.Add(this.rb_s_modere);
-            this.panel1.Controls.Add(this.rb_s_faible);
-            this.panel1.Controls.Add(this.rb_s_aucun);
-            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.panel1.Location = new System.Drawing.Point(142, 311);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(103, 105);
-            this.panel1.TabIndex = 17;
+            this.panelSuicidaire.Controls.Add(this.rb_s_eleve);
+            this.panelSuicidaire.Controls.Add(this.rb_s_modere);
+            this.panelSuicidaire.Controls.Add(this.rb_s_faible);
+            this.panelSuicidaire.Controls.Add(this.rb_s_aucun);
+            this.panelSuicidaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.panelSuicidaire.Location = new System.Drawing.Point(142, 311);
+            this.panelSuicidaire.Name = "panelSuicidaire";
+            this.panelSuicidaire.Size = new System.Drawing.Size(103, 105);
+            this.panelSuicidaire.TabIndex = 17;
             // 
             // rb_s_eleve
             // 
@@ -564,6 +609,7 @@
             this.rb_urgence.TabStop = true;
             this.rb_urgence.Text = "Consultation d\'urgence";
             this.rb_urgence.UseVisualStyleBackColor = true;
+            this.rb_urgence.CheckedChanged += new System.EventHandler(this.rb_urgence_CheckedChanged);
             // 
             // rb_control
             // 
@@ -576,6 +622,7 @@
             this.rb_control.TabStop = true;
             this.rb_control.Text = "Consultation de contrôle";
             this.rb_control.UseVisualStyleBackColor = true;
+            this.rb_control.CheckedChanged += new System.EventHandler(this.rb_control_CheckedChanged);
             // 
             // label15
             // 
@@ -598,6 +645,7 @@
             this.rb_consultation.TabStop = true;
             this.rb_consultation.Text = "Première consultation";
             this.rb_consultation.UseVisualStyleBackColor = true;
+            this.rb_consultation.CheckedChanged += new System.EventHandler(this.rb_consultation_CheckedChanged);
             // 
             // rb_suivi
             // 
@@ -610,6 +658,7 @@
             this.rb_suivi.TabStop = true;
             this.rb_suivi.Text = "Consultation de suivi";
             this.rb_suivi.UseVisualStyleBackColor = true;
+            this.rb_suivi.CheckedChanged += new System.EventHandler(this.rb_suivi_CheckedChanged);
             // 
             // label10
             // 
@@ -625,11 +674,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label14.Location = new System.Drawing.Point(515, 311);
+            this.label14.Location = new System.Drawing.Point(514, 311);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(55, 17);
+            this.label14.Size = new System.Drawing.Size(60, 17);
             this.label14.TabIndex = 0;
-            this.label14.Text = "Figue : ";
+            this.label14.Text = "Fugue : ";
             // 
             // label13
             // 
@@ -786,6 +835,17 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Age : ";
             // 
+            // lb_adresse
+            // 
+            this.lb_adresse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_adresse.AutoSize = true;
+            this.lb_adresse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lb_adresse.Location = new System.Drawing.Point(869, 29);
+            this.lb_adresse.Name = "lb_adresse";
+            this.lb_adresse.Size = new System.Drawing.Size(48, 17);
+            this.lb_adresse.TabIndex = 2;
+            this.lb_adresse.Text = "Aucun";
+            // 
             // lb_dossier
             // 
             this.lb_dossier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -847,62 +907,6 @@
             this.lb_titre.TabIndex = 0;
             this.lb_titre.Text = "Nouvelle consultation";
             // 
-            // rich_evolution
-            // 
-            this.rich_evolution.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rich_evolution.Location = new System.Drawing.Point(20, 226);
-            this.rich_evolution.Name = "rich_evolution";
-            this.rich_evolution.Size = new System.Drawing.Size(289, 50);
-            this.rich_evolution.TabIndex = 25;
-            this.rich_evolution.Text = "";
-            // 
-            // rich_facteurs
-            // 
-            this.rich_facteurs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rich_facteurs.Location = new System.Drawing.Point(428, 231);
-            this.rich_facteurs.Name = "rich_facteurs";
-            this.rich_facteurs.Size = new System.Drawing.Size(289, 50);
-            this.rich_facteurs.TabIndex = 25;
-            this.rich_facteurs.Text = "";
-            // 
-            // dt_after_
-            // 
-            this.dt_after_.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dt_after_.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.dt_after_.Location = new System.Drawing.Point(494, 442);
-            this.dt_after_.Name = "dt_after_";
-            this.dt_after_.Size = new System.Drawing.Size(246, 23);
-            this.dt_after_.TabIndex = 26;
-            // 
-            // myRoundedTextBox1
-            // 
-            this.myRoundedTextBox1.BackColor = System.Drawing.Color.White;
-            this.myRoundedTextBox1.BorderColor = System.Drawing.Color.LightGray;
-            this.myRoundedTextBox1.BorderRadius = 6;
-            this.myRoundedTextBox1.BorderSize = 1;
-            this.myRoundedTextBox1.FocusBorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.myRoundedTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.myRoundedTextBox1.Image = null;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(491, 439);
-            this.myRoundedTextBox1.MaxLength = 32767;
-            this.myRoundedTextBox1.Name = "myRoundedTextBox1";
-            this.myRoundedTextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.myRoundedTextBox1.PlaceholderColor = System.Drawing.Color.Gray;
-            this.myRoundedTextBox1.PlaceholderText = "";
-            this.myRoundedTextBox1.Size = new System.Drawing.Size(251, 28);
-            this.myRoundedTextBox1.TabIndex = 24;
-            // 
-            // lb_adresse
-            // 
-            this.lb_adresse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lb_adresse.AutoSize = true;
-            this.lb_adresse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_adresse.Location = new System.Drawing.Point(869, 29);
-            this.lb_adresse.Name = "lb_adresse";
-            this.lb_adresse.Size = new System.Drawing.Size(48, 17);
-            this.lb_adresse.TabIndex = 2;
-            this.lb_adresse.Text = "Aucun";
-            // 
             // User_consultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -914,12 +918,12 @@
             this.Size = new System.Drawing.Size(1059, 601);
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelFugue.ResumeLayout(false);
+            this.panelFugue.PerformLayout();
+            this.panelAgression.ResumeLayout(false);
+            this.panelAgression.PerformLayout();
+            this.panelSuicidaire.ResumeLayout(false);
+            this.panelSuicidaire.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -961,17 +965,17 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panelFugue;
         private System.Windows.Forms.RadioButton rb_f_eleve;
         private System.Windows.Forms.RadioButton rb_f_modere;
         private System.Windows.Forms.RadioButton rb_f_faible;
         private System.Windows.Forms.RadioButton rb_f_aucun;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panelAgression;
         private System.Windows.Forms.RadioButton rb_a_eleve;
         private System.Windows.Forms.RadioButton rb_a_modere;
         private System.Windows.Forms.RadioButton rb_a_faible;
         private System.Windows.Forms.RadioButton rb_a_aucun;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelSuicidaire;
         private System.Windows.Forms.RadioButton rb_s_eleve;
         private System.Windows.Forms.RadioButton rb_s_modere;
         private System.Windows.Forms.RadioButton rb_s_faible;
