@@ -28,10 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,14 +48,8 @@
             this.cbx_filter_statut = new MyRoundedComboBox();
             this.cbx_filtrer_periode = new MyRoundedComboBox();
             this.tb_search_ = new MyRoundedTextBox();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customRoundedPanel2 = new CustomRoundedPanel();
-            this.lb_patient_now = new System.Windows.Forms.Label();
+            this.lb_eeg_now = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.lb_attente = new System.Windows.Forms.Label();
@@ -80,30 +80,20 @@
             this.panel1.Size = new System.Drawing.Size(973, 290);
             this.panel1.TabIndex = 31;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 205);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(191, 16);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "EXAMENS EEG RECENTS";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
@@ -120,6 +110,46 @@
             this.dataGridView1.RowTemplate.Height = 30;
             this.dataGridView1.Size = new System.Drawing.Size(971, 288);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "N°";
+            this.colID.Name = "colID";
+            // 
+            // colPatient
+            // 
+            this.colPatient.HeaderText = "Patient";
+            this.colPatient.Name = "colPatient";
+            // 
+            // colDate
+            // 
+            this.colDate.HeaderText = "Date";
+            this.colDate.Name = "colDate";
+            // 
+            // colType
+            // 
+            this.colType.HeaderText = "Type EEG";
+            this.colType.Name = "colType";
+            // 
+            // colFile
+            // 
+            this.colFile.HeaderText = "Fichier";
+            this.colFile.Name = "colFile";
+            // 
+            // colStatut
+            // 
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.Name = "colStatut";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(26, 205);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(191, 16);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "EXAMENS EEG RECENTS";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -245,43 +275,13 @@
             this.tb_search_.TabIndex = 32;
             this.tb_search_.Text = "Search";
             // 
-            // colID
-            // 
-            this.colID.HeaderText = "N°";
-            this.colID.Name = "colID";
-            // 
-            // colPatient
-            // 
-            this.colPatient.HeaderText = "Patient";
-            this.colPatient.Name = "colPatient";
-            // 
-            // colDate
-            // 
-            this.colDate.HeaderText = "Date";
-            this.colDate.Name = "colDate";
-            // 
-            // colType
-            // 
-            this.colType.HeaderText = "Type EEG";
-            this.colType.Name = "colType";
-            // 
-            // colFile
-            // 
-            this.colFile.HeaderText = "Fichier";
-            this.colFile.Name = "colFile";
-            // 
-            // colStatut
-            // 
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.Name = "colStatut";
-            // 
             // customRoundedPanel2
             // 
             this.customRoundedPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(225)))), ((int)(((byte)(218)))));
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel2.BorderRadius = 10;
             this.customRoundedPanel2.BorderSize = 2;
-            this.customRoundedPanel2.Controls.Add(this.lb_patient_now);
+            this.customRoundedPanel2.Controls.Add(this.lb_eeg_now);
             this.customRoundedPanel2.Controls.Add(this.label4);
             this.customRoundedPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
@@ -299,15 +299,15 @@
             this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel2.TabIndex = 30;
             // 
-            // lb_patient_now
+            // lb_eeg_now
             // 
-            this.lb_patient_now.AutoSize = true;
-            this.lb_patient_now.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_patient_now.Location = new System.Drawing.Point(88, 49);
-            this.lb_patient_now.Name = "lb_patient_now";
-            this.lb_patient_now.Size = new System.Drawing.Size(32, 24);
-            this.lb_patient_now.TabIndex = 0;
-            this.lb_patient_now.Text = "46";
+            this.lb_eeg_now.AutoSize = true;
+            this.lb_eeg_now.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_eeg_now.Location = new System.Drawing.Point(88, 49);
+            this.lb_eeg_now.Name = "lb_eeg_now";
+            this.lb_eeg_now.Size = new System.Drawing.Size(32, 24);
+            this.lb_eeg_now.TabIndex = 0;
+            this.lb_eeg_now.Text = "46";
             // 
             // label4
             // 
@@ -486,7 +486,7 @@
         #endregion
 
         private CustomRoundedPanel customRoundedPanel2;
-        private System.Windows.Forms.Label lb_patient_now;
+        private System.Windows.Forms.Label lb_eeg_now;
         private System.Windows.Forms.Label label4;
         private CustomRoundedPanel customRoundedPanel1;
         private System.Windows.Forms.Label lb_attente;

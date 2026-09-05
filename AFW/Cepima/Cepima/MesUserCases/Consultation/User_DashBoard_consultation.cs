@@ -68,6 +68,20 @@ namespace Cepima.MesUserCases
                         int nombre = Convert.ToInt32(cmd.ExecuteScalar());
                         lb_consultation.Text = nombre.ToString();
                     }
+
+                    //consultation en attente
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(DISTINCT id_consultation) AS nombre FROM demande_service WHERE statut = 'Terminée'AND id_consultation IS NOT NULL AND date_demande = CURDATE()", con))
+                    {
+                        int nombre = Convert.ToInt32(cmd.ExecuteScalar());
+                        lb_termine.Text = nombre.ToString();
+                    }
+
+                    //consultation terminées
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT COUNT(DISTINCT id_consultation) AS nombre FROM demande_service WHERE statut = 'Demandée' AND id_consultation IS NOT NULL AND date_demande = CURDATE()",con))
+                    {
+                        int nombre = Convert.ToInt32(cmd.ExecuteScalar());
+                        lb_attente.Text = nombre.ToString();
+                    }
                 }
                 catch (Exception ex)
                 {
