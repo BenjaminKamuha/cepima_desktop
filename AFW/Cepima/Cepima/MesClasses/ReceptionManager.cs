@@ -116,7 +116,22 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@taille", taille.ToString());
                     ManagerClasse.CRUD(query,ManagerClasse.request_params);
                     tr.Commit();
-                    MessageBox.Show("Les signes vitaux ont été ajoutés","Enregistrement");
+
+                    DialogResult result = MessageBox.Show(
+                       "Les signes vitaux ont été ajoutés; Voulez-vous recommander un service à ce patient ?","Enregistrement.",
+                       MessageBoxButtons.YesNo,
+                       MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        Form1.PATIENT_ID = Convert.ToInt32(patient_id);
+                        MesForms.Form_demander_service frm_service = new MesForms.Form_demander_service();
+                        frm_service.ShowDialog();
+                    }
+                    else
+                    {
+                        
+                    }
                 }
                 catch (Exception ex)
                 {

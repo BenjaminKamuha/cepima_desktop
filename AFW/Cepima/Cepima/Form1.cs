@@ -17,6 +17,8 @@ namespace Cepima
 {
     public partial class Form1 : Form
     {
+        public static Int32 PATIENT_ID { get; set; }
+        public static Int32 DEMANDE_ID { get; set; }
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
@@ -29,7 +31,10 @@ namespace Cepima
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
-
+            PATIENT_ID = 0;
+            DEMANDE_ID = 0;
+            //Form_demander_service frm_demande = new Form_demander_service();
+            //frm_demande.ShowDialog();
 
         }
 
@@ -249,6 +254,8 @@ namespace Cepima
             uc_lg.Dock = DockStyle.Fill;
             panel_center_main.Controls.Add(uc_lg);
 
+            
+
 
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
@@ -370,26 +377,27 @@ namespace Cepima
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
+            //affichage du dashboard pour eeg
+            MesUserCases.EEG.User_DashBoard dash = new MesUserCases.EEG.User_DashBoard();
+            dash.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(dash);
+
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>
                 {
-
-                }),
-                new MenuItem("    Examens EEG",Properties.Resources.brain_20px, (s,ev) =>
-                {
-                    MesUserCases.User_Examen_EEG eeg = new MesUserCases.User_Examen_EEG();
-                    eeg.Dock = DockStyle.Fill;
+                    MesUserCases.EEG.User_DashBoard dash_ = new MesUserCases.EEG.User_DashBoard();
+                    dash_.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(eeg);
+                    panel_center_main.Controls.Add(dash_);
                 }),
-
-                new MenuItem("    Paiement EEG",Properties.Resources.cost_25px, (s,ev) =>
+                new MenuItem("    Examens",Properties.Resources.finish_flag_30px, (s,ev) =>
                 {
-                    MesUserCases.User_paiement_eeg eeg_paiement = new MesUserCases.User_paiement_eeg();
-                    eeg_paiement.Dock = DockStyle.Fill;
+                    MesUserCases.EEG.User_examens finish = new MesUserCases.EEG.User_examens();
+                    finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(eeg_paiement);
+                    panel_center_main.Controls.Add(finish);
                 }),
 
             };
@@ -634,36 +642,31 @@ namespace Cepima
             lb_sous_menu.Text = "Consultation";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
+
+            MesUserCases.User_DashBoard_consultation dash = new MesUserCases.User_DashBoard_consultation();
+            dash.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(dash);
+
             var items = new List<MenuItem>()
             {
-                new MenuItem("      Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>  
                 {
                     //instructions
-                   MesUserCases.User_DashBoard_consultation dash = new MesUserCases.User_DashBoard_consultation();
-                    dash.Dock = DockStyle.Fill;
+                   MesUserCases.User_DashBoard_consultation dash_ = new MesUserCases.User_DashBoard_consultation();
+                    dash_.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(dash);
+                    panel_center_main.Controls.Add(dash_);
                 }),
 
-                  new MenuItem("    Consultation",Properties.Resources.counselor_25px,(s,ev) =>  
-                {
-                    MesUserCases.User_consultation consultation = new MesUserCases.User_consultation();
-                    consultation.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(consultation);
-                }),
-
-                     new MenuItem("     Terminées",Properties.Resources.finish_flag_20px,(s,ev) =>  
+                     new MenuItem("     Terminées",Properties.Resources.finish_flag_30px,(s,ev) =>  
                 {
                     MesUserCases.User_finish_consultation finish = new MesUserCases.User_finish_consultation();
                     finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(finish);
                 }),
-                   new MenuItem("     Préscription",Properties.Resources.capsule_20px,(s,ev) =>  
-                {
-                    
-                }),
+                  
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

@@ -50,7 +50,7 @@
             this.panelSection.Name = "panelSection";
             this.panelSection.ShadowColor = System.Drawing.Color.Gray;
             this.panelSection.ShadowDepth = 5;
-            this.panelSection.Size = new System.Drawing.Size(796, 215);
+            this.panelSection.Size = new System.Drawing.Size(796, 300);
             this.panelSection.TabIndex = 2;
             // 
             // panelContent
@@ -63,7 +63,7 @@
             this.panelContent.Name = "panelContent";
             this.panelContent.ShadowColor = System.Drawing.Color.Gray;
             this.panelContent.ShadowDepth = 10;
-            this.panelContent.Size = new System.Drawing.Size(796, 170);
+            this.panelContent.Size = new System.Drawing.Size(796, 255);
             this.panelContent.TabIndex = 1;
             // 
             // panelHeader
@@ -112,7 +112,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.panelSection);
             this.Name = "SectionRepliable";
-            this.Size = new System.Drawing.Size(796, 215);
+            this.Size = new System.Drawing.Size(796, 300);
             this.panelSection.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

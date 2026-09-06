@@ -228,7 +228,8 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Name = "Form_reception_stock";
-            this.Text = "Form_reception_stock";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Reception stock";
             this.Load += new System.EventHandler(this.Form_reception_stock_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

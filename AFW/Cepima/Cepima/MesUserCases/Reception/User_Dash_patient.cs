@@ -91,6 +91,16 @@ namespace Cepima.MesUserCases
                  fiche.ShowDialog();
                  Form1.GlobalPanel_main.Visible = true;
             }
+
+            else if (dgv_patient.Columns[e.ColumnIndex].Name == "colService")
+            {
+                Form1.GlobalPanel_main.Visible = false;
+                ID_PATIENT = Convert.ToInt32(dgv_patient.Rows[e.RowIndex].Tag);
+                Form1.PATIENT_ID = ID_PATIENT;
+                MesForms.Form_demander_service service = new MesForms.Form_demander_service();
+                service.ShowDialog();
+                Form1.GlobalPanel_main.Visible = true;
+            }
         }
 
         //méthode pour charger le résume

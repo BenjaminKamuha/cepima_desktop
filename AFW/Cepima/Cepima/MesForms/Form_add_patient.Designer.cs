@@ -279,6 +279,7 @@
             this.bt_save_patient.Name = "bt_save_patient";
             this.bt_save_patient.Size = new System.Drawing.Size(156, 30);
             this.bt_save_patient.TabIndex = 2;
+            this.bt_save_patient.Load += new System.EventHandler(this.bt_save_patient_Load);
             this.bt_save_patient.Click += new System.EventHandler(this.bt_save_patient_Click);
             // 
             // dt_naissance

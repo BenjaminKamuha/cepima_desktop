@@ -57,12 +57,22 @@ namespace Cepima.MesForms
         private void bt_save_signe_Click(object sender, EventArgs e)
         {
             string tension = tb_tension.Text;
-            decimal poid = Convert.ToDecimal(tb_poids.Text);
-            decimal taille = Convert.ToDecimal(tb_taille.Text);
-            string frequence = tb_frequence.Text;
-            decimal temp = Convert.ToDecimal(tb_temperature.Text);
-            MesClasses.ReceptionManager.SaveSigneVitaux(PatientID.ToString(),temp,tension,frequence,poid,taille);
-            ViderChamps();
+            try
+            {
+                decimal poid = Convert.ToDecimal(tb_poids.Text);
+                decimal taille = Convert.ToDecimal(tb_taille.Text);
+
+                string frequence = tb_frequence.Text;
+                decimal temp = Convert.ToDecimal(tb_temperature.Text);
+                MesClasses.ReceptionManager.SaveSigneVitaux(PatientID.ToString(), temp, tension, frequence, poid, taille);
+                ViderChamps();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur d'enreigstrement. Vérifier vos inforamtions", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
         //vider les champs
         private void ViderChamps()
