@@ -130,7 +130,7 @@
             this.customRoundedPanel1.Controls.Add(this.pictureBox2);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(374, 93);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(343, 93);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.ShadowBlur = 10;
             this.customRoundedPanel1.ShadowBorderRadius = -1;
@@ -140,7 +140,7 @@
             this.customRoundedPanel1.ShadowOffsetY = 4;
             this.customRoundedPanel1.ShadowOpacity = 60;
             this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(285, 438);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(340, 438);
             this.customRoundedPanel1.TabIndex = 2;
             // 
             // link_forgot
@@ -149,7 +149,7 @@
             this.link_forgot.AutoSize = true;
             this.link_forgot.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.link_forgot.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.link_forgot.Location = new System.Drawing.Point(83, 318);
+            this.link_forgot.Location = new System.Drawing.Point(105, 318);
             this.link_forgot.Name = "link_forgot";
             this.link_forgot.Size = new System.Drawing.Size(106, 14);
             this.link_forgot.TabIndex = 16;
@@ -168,7 +168,7 @@
             this.bt_connexion.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
             this.bt_connexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_connexion.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_connexion.Location = new System.Drawing.Point(84, 388);
+            this.bt_connexion.Location = new System.Drawing.Point(106, 388);
             this.bt_connexion.Name = "bt_connexion";
             this.bt_connexion.Size = new System.Drawing.Size(124, 30);
             this.bt_connexion.TabIndex = 15;
@@ -178,7 +178,7 @@
             // 
             this.cb_remember.AutoSize = true;
             this.cb_remember.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_remember.Location = new System.Drawing.Point(75, 348);
+            this.cb_remember.Location = new System.Drawing.Point(97, 348);
             this.cb_remember.Name = "cb_remember";
             this.cb_remember.Size = new System.Drawing.Size(142, 20);
             this.cb_remember.TabIndex = 14;
@@ -189,7 +189,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(39, 247);
+            this.label3.Location = new System.Drawing.Point(61, 247);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 16);
             this.label3.TabIndex = 13;
@@ -199,7 +199,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 180);
+            this.label2.Location = new System.Drawing.Point(61, 180);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(107, 16);
             this.label2.TabIndex = 13;
@@ -214,7 +214,7 @@
             this.tb_password.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tb_password.ForeColor = System.Drawing.Color.Black;
             this.tb_password.Image = null;
-            this.tb_password.Location = new System.Drawing.Point(25, 265);
+            this.tb_password.Location = new System.Drawing.Point(47, 265);
             this.tb_password.MaxLength = 32767;
             this.tb_password.Name = "tb_password";
             this.tb_password.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -233,7 +233,7 @@
             this.tb_username.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tb_username.ForeColor = System.Drawing.Color.Black;
             this.tb_username.Image = null;
-            this.tb_username.Location = new System.Drawing.Point(25, 198);
+            this.tb_username.Location = new System.Drawing.Point(47, 198);
             this.tb_username.MaxLength = 32767;
             this.tb_username.Name = "tb_username";
             this.tb_username.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -245,9 +245,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Cepima.Properties.Resources.user;
-            this.pictureBox2.Location = new System.Drawing.Point(76, 30);
+            this.pictureBox2.Location = new System.Drawing.Point(93, 17);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(132, 108);
+            this.pictureBox2.Size = new System.Drawing.Size(154, 135);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;

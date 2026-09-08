@@ -40,6 +40,7 @@ namespace Cepima.MesUserCases
         {
             // appel du User_consultation
             MesUserCases.User_consultation cons = new User_consultation(idPatient);
+            cons.Dock = DockStyle.Fill;
             Form1.GlobalPanel_main.Controls.Clear();
             Form1.GlobalPanel_main.Controls.Add(cons);
         }

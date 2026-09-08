@@ -478,17 +478,23 @@ namespace Cepima
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
+            MesUserCases.Personnels.User_DashBord_Personnel acceuil_rh = new MesUserCases.Personnels.User_DashBord_Personnel();
+            acceuil_rh.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(acceuil_rh);
+
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>
                     {
                         //control acceuil du personnel
-                        MesUserCases.User_Dashboard_RH acceuil_rh = new MesUserCases.User_Dashboard_RH();
-                        acceuil_rh.Dock = DockStyle.Fill;
+                        MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
+                        acceuil.Dock = DockStyle.Fill;
                         panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(acceuil_rh);
+                        panel_center_main.Controls.Add(acceuil);
                     }),
-                new MenuItem("    Liste personnel",Properties.Resources.add_file_20px,(s,ev) =>
+
+                new MenuItem("    Personnel",Properties.Resources.people_40px,(s,ev) =>
                     {
                         //control autre
                         MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
@@ -497,50 +503,8 @@ namespace Cepima
                         panel_center_main.Controls.Add(personnel);
                     }),
                
-                new MenuItem("    Horaires",Properties.Resources.planner_20px,(s,ev) =>
-                    {
-                        //instructions
-                        MesUserCases.User_horaires horaire = new MesUserCases.User_horaires();
-                        horaire.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(horaire);
-                    }),
-                new MenuItem("    Salaires",Properties.Resources.us_dollar_20px,(s,ev) =>
-                    {
-                       //instructions
-                        MesUserCases.User_add_salaire salaire = new MesUserCases.User_add_salaire();
-                        salaire.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(salaire);
-                    }),
-                    new MenuItem("    Avance salaire",Properties.Resources.avance_salaire,(s,ev) =>
-                    {
-                        //instructions
-                        MesUserCases.User_avance avance = new MesUserCases.User_avance();
-                        avance.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(avance);
-                        
-                    }),
-                new MenuItem("    Primes de risque",Properties.Resources.increase_20px,(s,ev) =>
-                    {
-                        //instructions
-                        MesUserCases.User_prime prime = new MesUserCases.User_prime();
-                        prime.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(prime);
-
-                    }),
-                new MenuItem("    Retenu",Properties.Resources.decrease_20px,(s,ev) =>
-                    {
-                       //instructions
-                        MesUserCases.User_retenue retenue = new MesUserCases.User_retenue();
-                        retenue.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(retenue);
-                     
-                    }),
-                     new MenuItem("    Présences",Properties.Resources.clock_20px,(s,ev) =>
+            
+                     new MenuItem("    Présences",Properties.Resources.attendance_30px,(s,ev) =>
                     {
                         MesUserCases.User_presences presence = new MesUserCases.User_presences();
                         presence.Dock = DockStyle.Fill;

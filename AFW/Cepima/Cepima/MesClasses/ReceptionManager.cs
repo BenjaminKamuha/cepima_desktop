@@ -38,6 +38,19 @@ namespace Cepima.MesClasses
             }
         }
 
+        // fonction de calcul de l'age
+        public  static int CalculerAge(DateTime dateNaissence)
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - dateNaissence.Year;
+
+            if (dateNaissence.Date > now.AddYears(-age))
+            {
+                age--;
+            }
+            return age;
+
+        }
         //===============================Enregistrement du patient ===============================
         public  static void SavePatient(string numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse,string idCentre)
         {

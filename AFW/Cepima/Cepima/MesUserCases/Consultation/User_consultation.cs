@@ -25,19 +25,7 @@ namespace Cepima.MesUserCases
         }
       
         //Charger les informations du patient à consulter
-        // fonction de calcul de l'age
-        private int CalculerAge(DateTime dateNaissence)
-        {
-            DateTime now = DateTime.Today;
-            int age = now.Year - dateNaissence.Year;
-
-            if (dateNaissence.Date > now.AddYears(-age))
-            {
-                age--;
-            }
-            return age;
-
-        }
+    
         //méthode pour charger les informations administratives du patient
         private void LoadDataAdministratives()
         {
@@ -56,7 +44,7 @@ namespace Cepima.MesUserCases
                             lb_postnom.Text = reader["post_nom"].ToString();
                             lb_dossier.Text = reader["dossier"].ToString();
                             DateTime date = Convert.ToDateTime(reader["date_naissance"]);
-                            int annee = CalculerAge(date);
+                            int annee = MesClasses.ReceptionManager.CalculerAge(date);
                             lb_age.Text = annee.ToString() + " ans" + " - " + reader["sexe"];
                             lb_adresse.Text = reader["telephone"].ToString();
                         }
