@@ -37,6 +37,15 @@
             this.bt_add_patient = new System.Windows.Forms.Button();
             this.customRoundedPanel5 = new CustomRoundedPanel();
             this.dgv_patient = new ModernDataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPostnom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.action = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colSignes = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colService = new System.Windows.Forms.DataGridViewImageColumn();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.lb_sorti = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,15 +58,6 @@
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.lb_patient_now = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPostnom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrenom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.action = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colSignes = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colService = new System.Windows.Forms.DataGridViewImageColumn();
             this.customRoundedPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_patient)).BeginInit();
             this.customRoundedPanel4.SuspendLayout();
@@ -111,6 +111,7 @@
             this.customRoundedPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel5.BackColor = System.Drawing.Color.White;
             this.customRoundedPanel5.BorderColor = System.Drawing.Color.Transparent;
             this.customRoundedPanel5.BorderRadius = 8;
             this.customRoundedPanel5.BorderSize = 0;
@@ -143,7 +144,7 @@
             this.dgv_patient.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_patient.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SteelBlue;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -184,6 +185,74 @@
             this.dgv_patient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_patient.Size = new System.Drawing.Size(1015, 317);
             this.dgv_patient.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colID.HeaderText = "N°";
+            this.colID.MinimumWidth = 50;
+            this.colID.Name = "colID";
+            // 
+            // colNumero
+            // 
+            this.colNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colNumero.HeaderText = "Numéro Fiche";
+            this.colNumero.MinimumWidth = 50;
+            this.colNumero.Name = "colNumero";
+            // 
+            // colNom
+            // 
+            this.colNom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colNom.HeaderText = "Nom";
+            this.colNom.MinimumWidth = 50;
+            this.colNom.Name = "colNom";
+            // 
+            // colPostnom
+            // 
+            this.colPostnom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPostnom.HeaderText = "Post-Nom";
+            this.colPostnom.MinimumWidth = 50;
+            this.colPostnom.Name = "colPostnom";
+            // 
+            // colPrenom
+            // 
+            this.colPrenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPrenom.HeaderText = "Prenom";
+            this.colPrenom.MinimumWidth = 50;
+            this.colPrenom.Name = "colPrenom";
+            // 
+            // colPhone
+            // 
+            this.colPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPhone.HeaderText = "Téléphone";
+            this.colPhone.MinimumWidth = 50;
+            this.colPhone.Name = "colPhone";
+            // 
+            // action
+            // 
+            this.action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.action.HeaderText = "Action/Fiche";
+            this.action.Image = global::Cepima.Properties.Resources.activity_history_20px;
+            this.action.MinimumWidth = 50;
+            this.action.Name = "action";
+            // 
+            // colSignes
+            // 
+            this.colSignes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colSignes.HeaderText = "Action/Signes";
+            this.colSignes.Image = global::Cepima.Properties.Resources.pulse;
+            this.colSignes.MinimumWidth = 50;
+            this.colSignes.Name = "colSignes";
+            // 
+            // colService
+            // 
+            this.colService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colService.HeaderText = "Action/Service";
+            this.colService.Image = global::Cepima.Properties.Resources.email_send_25px1;
+            this.colService.MinimumWidth = 50;
+            this.colService.Name = "colService";
+            this.colService.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colService.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // customRoundedPanel4
             // 
@@ -360,79 +429,11 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Patient aujourd\'hui";
             // 
-            // colID
-            // 
-            this.colID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colID.HeaderText = "N°";
-            this.colID.MinimumWidth = 50;
-            this.colID.Name = "colID";
-            // 
-            // colNumero
-            // 
-            this.colNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colNumero.HeaderText = "Numéro Fiche";
-            this.colNumero.MinimumWidth = 50;
-            this.colNumero.Name = "colNumero";
-            // 
-            // colNom
-            // 
-            this.colNom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colNom.HeaderText = "Nom";
-            this.colNom.MinimumWidth = 50;
-            this.colNom.Name = "colNom";
-            // 
-            // colPostnom
-            // 
-            this.colPostnom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPostnom.HeaderText = "Post-Nom";
-            this.colPostnom.MinimumWidth = 50;
-            this.colPostnom.Name = "colPostnom";
-            // 
-            // colPrenom
-            // 
-            this.colPrenom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPrenom.HeaderText = "Prenom";
-            this.colPrenom.MinimumWidth = 50;
-            this.colPrenom.Name = "colPrenom";
-            // 
-            // colPhone
-            // 
-            this.colPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPhone.HeaderText = "Téléphone";
-            this.colPhone.MinimumWidth = 50;
-            this.colPhone.Name = "colPhone";
-            // 
-            // action
-            // 
-            this.action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.action.HeaderText = "Action/Fiche";
-            this.action.Image = global::Cepima.Properties.Resources.activity_history_20px;
-            this.action.MinimumWidth = 50;
-            this.action.Name = "action";
-            // 
-            // colSignes
-            // 
-            this.colSignes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSignes.HeaderText = "Action/Signes";
-            this.colSignes.Image = global::Cepima.Properties.Resources.pulse;
-            this.colSignes.MinimumWidth = 50;
-            this.colSignes.Name = "colSignes";
-            // 
-            // colService
-            // 
-            this.colService.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colService.HeaderText = "Action/Service";
-            this.colService.Image = global::Cepima.Properties.Resources.email_send_25px1;
-            this.colService.MinimumWidth = 50;
-            this.colService.Name = "colService";
-            this.colService.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colService.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // User_Dash_patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(242)))));
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.customRoundedPanel5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.bt_add_patient);

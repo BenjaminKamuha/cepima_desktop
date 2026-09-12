@@ -37,8 +37,6 @@ namespace Cepima.UI
         public static Font FontTitle = new Font("Calibri", 18, FontStyle.Bold);
         public static Font FontCardTitle = new Font("Calibri", 9, FontStyle.Regular);
         public static Font FontCardValue = new Font("Calibri", 20, FontStyle.Bold);
-
-
         
     }
 }

@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
 namespace Cepima.MesUserCases
 {
-    public partial class User_display_patients : UserControl
+    public partial class User_personnels_display : UserControl
     {
-        public static Panel GlobalPanel_detail { get; set; }
-        public User_display_patients()
+        public User_personnels_display()
         {
             InitializeComponent();
+            LoadPersonnel();
+            //MesClasses.ReceptionManager.MoveLabel(label1,panel1);
         }
 
-        private void LoadPatient(params string[] args)
+        private void LoadPersonnel(params string[] args)
         {
             panel_patient.Controls.Clear();
 
@@ -39,22 +39,13 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    string query = "SELECT id_patient, nom, post_nom, numero_fiche " +
-                                   "FROM patients " +
-                                   "WHERE nom LIKE @search OR post_nom LIKE @search";
+                    string query = "SELECT id_personnel, nom, post_nom FROM personnels WHERE nom LIKE @search OR post_nom LIKE @search";
 
                     MesClasses.ManagerClasse.request_params.Clear();
 
-                    MesClasses.ManagerClasse.request_params.Add(
-                        "@search",
-                        "%" + args[0] + "%"
-                    );
+                    MesClasses.ManagerClasse.request_params.Add("@search","%" + args[0] + "%");
 
-                    using (MySqlDataReader reader =
-                           MesClasses.ManagerClasse.CRUD(
-                               query,
-                               MesClasses.ManagerClasse.request_params,
-                               true))
+                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
                     {
                         int i = 0;
 
@@ -62,18 +53,16 @@ namespace Cepima.MesUserCases
                         {
                             while (reader.Read())
                             {
-                                string idPatient = reader["id_patient"].ToString();
+                                string idPatient = reader["id_personnel"].ToString();
                                 string nom = reader["nom"].ToString();
                                 string postnom = reader["post_nom"].ToString();
-                                string numero = reader["numero_fiche"].ToString();
 
                                 // Création de la carte patient
                                 CustomRoundedPanel panPatient =
                                     CreerPanelPatient(
                                         idPatient,
                                         nom,
-                                        postnom,
-                                        numero
+                                        postnom
                                     );
 
                                 // Ajout au FlowLayoutPanel
@@ -85,7 +74,7 @@ namespace Cepima.MesUserCases
                             reader.Close();
 
                             lb_nombres.Text =
-                                i.ToString() + " Patient(s) trouvé(s)";
+                                i.ToString() + " Personnel(s) trouvé(s)";
 
                             ProgressiveDisplay pd =
                                 new ProgressiveDisplay(panel_patient, 100);
@@ -103,7 +92,7 @@ namespace Cepima.MesUserCases
                             lb_not_found.Visible = true;
 
                             lb_nombres.Text =
-                                i.ToString() + " Patient(s) trouvé(s)";
+                                i.ToString() + " Personnel(s) trouvé(s)";
                         }
                     }
                 }
@@ -122,8 +111,8 @@ namespace Cepima.MesUserCases
                 try
                 {
                     string query =
-                        "SELECT id_patient, nom, post_nom, numero_fiche " +
-                        "FROM patients ORDER BY nom ASC";
+                        "SELECT id_personnel, nom, post_nom " +
+                        "FROM personnels ORDER BY nom ASC";
 
                     using (MySqlDataReader reader =
                            MesClasses.ManagerClasse.CRUD(
@@ -138,7 +127,7 @@ namespace Cepima.MesUserCases
                             while (reader.Read())
                             {
                                 string idPatient =
-                                    reader["id_patient"].ToString();
+                                    reader["id_personnel"].ToString();
 
                                 string nom =
                                     reader["nom"].ToString();
@@ -146,16 +135,12 @@ namespace Cepima.MesUserCases
                                 string postnom =
                                     reader["post_nom"].ToString();
 
-                                string numero =
-                                    reader["numero_fiche"].ToString();
-
                                 // Création de la carte patient
                                 CustomRoundedPanel panPatient =
                                     CreerPanelPatient(
                                         idPatient,
                                         nom,
-                                        postnom,
-                                        numero
+                                        postnom
                                     );
 
                                 // Ajout au FlowLayoutPanel
@@ -167,7 +152,7 @@ namespace Cepima.MesUserCases
                             reader.Close();
 
                             lb_nombres.Text =
-                                i.ToString() + " Patient(s)";
+                                i.ToString() + " Personnel(s)";
 
                             ProgressiveDisplay pd =
                                 new ProgressiveDisplay(panel_patient, 100);
@@ -177,7 +162,7 @@ namespace Cepima.MesUserCases
                         else
                         {
                             lb_not_found.Text =
-                                "Aucun patient dans le registre";
+                                "Aucun personnel dans le registre";
 
                             lb_not_found.Visible = true;
                         }
@@ -190,7 +175,7 @@ namespace Cepima.MesUserCases
             }
         }
 
-        private CustomRoundedPanel CreerPanelPatient(string idPatient,string nom,string postnom,string numero)
+        private CustomRoundedPanel CreerPanelPatient(string idPatient, string nom, string postnom)
         {
             // ---------------------------------------------------------
             // PANEL PRINCIPAL
@@ -214,7 +199,7 @@ namespace Cepima.MesUserCases
             // PHOTO
             // ---------------------------------------------------------
 
-            PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.user,new Point(2, 5),new Size(70, 70));
+            PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.user, new Point(2, 5), new Size(70, 70));
 
             panPatient.Controls.Add(picture);
 
@@ -262,36 +247,13 @@ namespace Cepima.MesUserCases
 
             panPatient.Controls.Add(lbPost);
 
-
-            // ---------------------------------------------------------
-            // NUMERO DE FICHE
-            // ---------------------------------------------------------
-
-            Label lbFiche =
-                MesClasses.ManagerClasse.CustomLabel(
-                    numero,
-                    new Point(10, 75)
-                );
-
-            lbFiche.AutoSize = true;
-
-            lbFiche.Font =
-                new System.Drawing.Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold
-                );
-
-            panPatient.Controls.Add(lbFiche);
-
-
             // ---------------------------------------------------------
             // BOUTON FICHE DE SUIVI
             // ---------------------------------------------------------
 
             RoundedButton btnSuivi =
                 MesClasses.ManagerClasse.Rbutton(
-                    "Fiche de suivi",
+                    "Afficher détail",
                     new Point(30, 100),
                     new Size(95, 25),
                     Color.FromArgb(44, 123, 229),
@@ -315,15 +277,11 @@ namespace Cepima.MesUserCases
 
             btnSuivi.Click += (e, s) =>
             {
-                // Ouverture de la fiche de suivi du patient
+                // Ouverture du formulaire de détail du personnel sélectionné
 
                 Form1.GlobalPanel_main.Visible = false;
-
-                MesForms.Form_Fiche_suivie fiche =
-                    new MesForms.Form_Fiche_suivie(idPatient);
-
-                fiche.ShowDialog();
-
+                MesForms.Personnel.Detail_Personnel detail = new MesForms.Personnel.Detail_Personnel(idPatient);
+                detail.ShowDialog();
                 Form1.GlobalPanel_main.Visible = true;
             };
 
@@ -335,15 +293,14 @@ namespace Cepima.MesUserCases
             return panPatient;
         }
 
-        private void tb_search_demande_TextChanged(object sender, EventArgs e)
+        private void User_personnels_display_Load(object sender, EventArgs e)
         {
-            LoadPatient(tb_search_demande.Text);
+
         }
 
-        private void User_display_patients_Load(object sender, EventArgs e)
+        private void tb_search_demande_TextChanged(object sender, EventArgs e)
         {
-            LoadPatient();
+            LoadPersonnel(tb_search_demande.Text);
         }
-          
     }
 }
