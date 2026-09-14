@@ -41,7 +41,8 @@
             this.lb_actif = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel4 = new CustomRoundedPanel();
-            this.lb_fonctions = new System.Windows.Forms.Label();
+            this.lbl_mois_salaire = new System.Windows.Forms.Label();
+            this.lbl_total_salaire = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.lb_inactif = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bt_start = new RoundedButton();
             this.dgv_personnel = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,8 +72,10 @@
             this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_personnel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbx_filtrer = new MyRoundedComboBox();
+            this.cbx_annee = new MyRoundedComboBox();
+            this.cbx_mois = new MyRoundedComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.bunifuRoundedPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -84,7 +86,6 @@
             this.bunifuRoundedPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_personnel)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_paiement)).BeginInit();
@@ -198,7 +199,7 @@
             // 
             this.lb_actif.AutoSize = true;
             this.lb_actif.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_actif.Location = new System.Drawing.Point(99, 59);
+            this.lb_actif.Location = new System.Drawing.Point(114, 59);
             this.lb_actif.Name = "lb_actif";
             this.lb_actif.Size = new System.Drawing.Size(32, 24);
             this.lb_actif.TabIndex = 0;
@@ -221,7 +222,8 @@
             this.customRoundedPanel4.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel4.BorderRadius = 10;
             this.customRoundedPanel4.BorderSize = 2;
-            this.customRoundedPanel4.Controls.Add(this.lb_fonctions);
+            this.customRoundedPanel4.Controls.Add(this.lbl_mois_salaire);
+            this.customRoundedPanel4.Controls.Add(this.lbl_total_salaire);
             this.customRoundedPanel4.Controls.Add(this.label5);
             this.customRoundedPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
@@ -239,26 +241,36 @@
             this.customRoundedPanel4.Size = new System.Drawing.Size(261, 118);
             this.customRoundedPanel4.TabIndex = 27;
             // 
-            // lb_fonctions
+            // lbl_mois_salaire
             // 
-            this.lb_fonctions.AutoSize = true;
-            this.lb_fonctions.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_fonctions.Location = new System.Drawing.Point(120, 59);
-            this.lb_fonctions.Name = "lb_fonctions";
-            this.lb_fonctions.Size = new System.Drawing.Size(21, 24);
-            this.lb_fonctions.TabIndex = 0;
-            this.lb_fonctions.Text = "0";
+            this.lbl_mois_salaire.AutoSize = true;
+            this.lbl_mois_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_mois_salaire.Location = new System.Drawing.Point(128, 83);
+            this.lbl_mois_salaire.Name = "lbl_mois_salaire";
+            this.lbl_mois_salaire.Size = new System.Drawing.Size(16, 16);
+            this.lbl_mois_salaire.TabIndex = 0;
+            this.lbl_mois_salaire.Text = "0";
+            // 
+            // lbl_total_salaire
+            // 
+            this.lbl_total_salaire.AutoSize = true;
+            this.lbl_total_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_total_salaire.Location = new System.Drawing.Point(120, 49);
+            this.lbl_total_salaire.Name = "lbl_total_salaire";
+            this.lbl_total_salaire.Size = new System.Drawing.Size(21, 24);
+            this.lbl_total_salaire.TabIndex = 0;
+            this.lbl_total_salaire.Text = "0";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(81, 14);
+            this.label5.Location = new System.Drawing.Point(87, 14);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 20);
+            this.label5.Size = new System.Drawing.Size(86, 20);
             this.label5.TabIndex = 0;
-            this.label5.Text = "FONCTION";
+            this.label5.Text = "SALAIRE";
             // 
             // customRoundedPanel3
             // 
@@ -340,7 +352,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.bt_start);
             this.panel1.Controls.Add(this.dgv_personnel);
             this.panel1.Controls.Add(this.label1);
@@ -349,17 +360,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1067, 195);
             this.panel1.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.attendance_40px;
-            this.pictureBox1.Location = new System.Drawing.Point(396, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 44);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
             // 
             // bt_start
             // 
@@ -491,8 +491,10 @@
             // 
             this.panel2.Controls.Add(this.txt_recherche);
             this.panel2.Controls.Add(this.dgv_paiement);
+            this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.cbx_filtrer);
+            this.panel2.Controls.Add(this.cbx_annee);
+            this.panel2.Controls.Add(this.cbx_mois);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 204);
@@ -512,7 +514,7 @@
             this.txt_recherche.Image = global::Cepima.Properties.Resources.search;
             this.txt_recherche.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.txt_recherche.ImagePadding = 2;
-            this.txt_recherche.Location = new System.Drawing.Point(444, 7);
+            this.txt_recherche.Location = new System.Drawing.Point(292, 7);
             this.txt_recherche.MaxLength = 32767;
             this.txt_recherche.Name = "txt_recherche";
             this.txt_recherche.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -628,41 +630,77 @@
             this.id_personnel.ReadOnly = true;
             this.id_personnel.Visible = false;
             // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(818, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 20);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Année : ";
+            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(752, 11);
+            this.label7.Location = new System.Drawing.Point(564, 13);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 20);
+            this.label7.Size = new System.Drawing.Size(54, 20);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Type salaire : ";
+            this.label7.Text = "Mois : ";
             // 
-            // cbx_filtrer
+            // cbx_annee
             // 
-            this.cbx_filtrer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbx_filtrer.ArrowColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cbx_filtrer.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.cbx_filtrer.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.cbx_filtrer.BorderColor = System.Drawing.Color.Silver;
-            this.cbx_filtrer.BorderRadius = 6;
-            this.cbx_filtrer.BorderSize = 1;
-            this.cbx_filtrer.DropDownBackColor = System.Drawing.Color.White;
-            this.cbx_filtrer.DropDownForeColor = System.Drawing.Color.Black;
-            this.cbx_filtrer.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.cbx_filtrer.DropDownSelectedForeColor = System.Drawing.Color.White;
-            this.cbx_filtrer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_filtrer.FocusBorderColor = System.Drawing.Color.Silver;
-            this.cbx_filtrer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbx_filtrer.Location = new System.Drawing.Point(869, 7);
-            this.cbx_filtrer.Name = "cbx_filtrer";
-            this.cbx_filtrer.SelectedItem = null;
-            this.cbx_filtrer.SelectedValue = null;
-            this.cbx_filtrer.Size = new System.Drawing.Size(192, 28);
-            this.cbx_filtrer.TabIndex = 2;
-            this.cbx_filtrer.SelectedIndexChanged += new System.EventHandler(this.cbx_filtrer_SelectedIndexChanged);
+            this.cbx_annee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbx_annee.ArrowColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cbx_annee.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbx_annee.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbx_annee.BorderColor = System.Drawing.Color.Silver;
+            this.cbx_annee.BorderRadius = 6;
+            this.cbx_annee.BorderSize = 1;
+            this.cbx_annee.DropDownBackColor = System.Drawing.Color.White;
+            this.cbx_annee.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbx_annee.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.cbx_annee.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbx_annee.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_annee.FocusBorderColor = System.Drawing.Color.Silver;
+            this.cbx_annee.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cbx_annee.Location = new System.Drawing.Point(888, 7);
+            this.cbx_annee.Name = "cbx_annee";
+            this.cbx_annee.SelectedItem = null;
+            this.cbx_annee.SelectedValue = null;
+            this.cbx_annee.Size = new System.Drawing.Size(153, 28);
+            this.cbx_annee.TabIndex = 2;
+            this.cbx_annee.SelectedIndexChanged += new System.EventHandler(this.cbx_annee_SelectedIndexChanged);
+            // 
+            // cbx_mois
+            // 
+            this.cbx_mois.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbx_mois.ArrowColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cbx_mois.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbx_mois.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbx_mois.BorderColor = System.Drawing.Color.Silver;
+            this.cbx_mois.BorderRadius = 6;
+            this.cbx_mois.BorderSize = 1;
+            this.cbx_mois.DropDownBackColor = System.Drawing.Color.White;
+            this.cbx_mois.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbx_mois.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.cbx_mois.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbx_mois.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_mois.FocusBorderColor = System.Drawing.Color.Silver;
+            this.cbx_mois.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cbx_mois.Location = new System.Drawing.Point(634, 8);
+            this.cbx_mois.Name = "cbx_mois";
+            this.cbx_mois.SelectedItem = null;
+            this.cbx_mois.SelectedValue = null;
+            this.cbx_mois.Size = new System.Drawing.Size(153, 28);
+            this.cbx_mois.TabIndex = 2;
+            this.cbx_mois.SelectedIndexChanged += new System.EventHandler(this.cbx_mois_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -670,9 +708,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(5, 11);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(326, 20);
+            this.label6.Size = new System.Drawing.Size(244, 20);
             this.label6.TabIndex = 0;
-            this.label6.Text = "HISTORIQUE DE PAIEMENT SALAIRE";
+            this.label6.Text = "HISTORIQUE DE PAIEMENT";
             // 
             // User_DashBord_Personnel
             // 
@@ -697,7 +735,6 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_personnel)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -720,7 +757,7 @@
         private System.Windows.Forms.Label lb_inactif;
         private System.Windows.Forms.Label label3;
         private CustomRoundedPanel customRoundedPanel4;
-        private System.Windows.Forms.Label lb_fonctions;
+        private System.Windows.Forms.Label lbl_total_salaire;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -729,7 +766,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgv_paiement;
         private System.Windows.Forms.Label label6;
-        private MyRoundedComboBox cbx_filtrer;
+        private MyRoundedComboBox cbx_mois;
         private RoundedButton bt_start;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPerson;
@@ -747,9 +784,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAdresse;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFonction;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private MyRoundedTextBox txt_recherche;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_personnel;
+        private System.Windows.Forms.Label label8;
+        private MyRoundedComboBox cbx_annee;
+        private System.Windows.Forms.Label lbl_mois_salaire;
     }
 }

@@ -280,7 +280,7 @@ namespace Cepima.MesUserCases
                 // Ouverture du formulaire de détail du personnel sélectionné
 
                 Form1.GlobalPanel_main.Visible = false;
-                MesForms.Personnel.Detail_Personnel detail = new MesForms.Personnel.Detail_Personnel(idPatient);
+                MesForms.Personnel.Detail_Test detail = new MesForms.Personnel.Detail_Test(idPatient);
                 detail.ShowDialog();
                 Form1.GlobalPanel_main.Visible = true;
             };

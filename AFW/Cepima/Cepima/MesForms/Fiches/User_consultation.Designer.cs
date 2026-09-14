@@ -48,6 +48,7 @@
             this.bunifuRoundedPanel1.ShadowDepth = 10;
             this.bunifuRoundedPanel1.Size = new System.Drawing.Size(796, 170);
             this.bunifuRoundedPanel1.TabIndex = 0;
+            this.bunifuRoundedPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.bunifuRoundedPanel1_Paint);
             // 
             // btn_new_consualor
             // 
@@ -62,16 +63,17 @@
             this.btn_new_consualor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_new_consualor.ForeColor = System.Drawing.Color.White;
             this.btn_new_consualor.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.btn_new_consualor.Image = global::Cepima.Properties.Resources.counselor_40px;
+            this.btn_new_consualor.Image = global::Cepima.Properties.Resources.play_30px;
             this.btn_new_consualor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_new_consualor.Location = new System.Drawing.Point(282, 106);
+            this.btn_new_consualor.Location = new System.Drawing.Point(289, 122);
             this.btn_new_consualor.Name = "btn_new_consualor";
-            this.btn_new_consualor.Size = new System.Drawing.Size(241, 38);
+            this.btn_new_consualor.Size = new System.Drawing.Size(213, 38);
             this.btn_new_consualor.TabIndex = 8;
             this.btn_new_consualor.Text = "Nouvelle consultation";
             this.btn_new_consualor.TextColor = System.Drawing.Color.White;
             this.btn_new_consualor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_new_consualor.UseVisualStyleBackColor = false;
+            this.btn_new_consualor.Click += new System.EventHandler(this.btn_new_consualor_Click);
             // 
             // label1
             // 

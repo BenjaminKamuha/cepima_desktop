@@ -100,7 +100,7 @@ namespace Cepima.MesUserCases
                         }
 
                         //insertion dans la table consultation
-                        string queryConsultation = "INSERT INTO consultation(patient_id,type_consultation,motif,symptome_depuis,symptome_insomnie,symptome_anxiete,symptome_agitation,symptome_tristesse,symptome_idees_delirantes,symptome_hallucinations,symptome_perte_memoire,symptome_autre,evolution_symptomes,facteurs_declenchants,risque_suicidaire,risque_agression,risque_fugue,autres_risques,diagnostic_id,prochaine_consultation,date_consultation,utilisateur_id)VALUES(@patient,@type,@motif,@depuis,@insomnie,@anxiete,@agitation,@tristesse,@delire,@hallucination,@perte,@autre,@evolution,@declencheurs,@suicidaire,@agression,@fugue,@autres_risque,@id_diagnostic,@prochaine,CURDATE(),@user)";
+                        string queryConsultation = "INSERT INTO consultation(patient_id,type_consultation,motif,symptomes_depuis,symptome_insomnie,symptome_anxiete,symptome_agitation,symptome_tristesse,symptome_idees_delirantes,symptome_hallucinations,symptome_perte_memoire,symptome_autre,evolution_symptomes,facteurs_declenchants,risque_suicidaire,risque_agression,risque_fugue,autres_risques,diagnostic_id,prochaine_consultation,date_consultation,utilisateur_id)VALUES(@patient,@type,@motif,@depuis,@insomnie,@anxiete,@agitation,@tristesse,@delire,@hallucination,@perte,@autre,@evolution,@declencheurs,@suicidaire,@agression,@fugue,@autres_risque,@id_diagnostic,@prochaine,CURDATE(),@user)";
                         using (MySqlCommand cmd = new MySqlCommand(queryConsultation, con, tr))
                         {
                             cmd.Parameters.AddWithValue("@patient",ID_PATIENT);

@@ -316,17 +316,77 @@
     <Compile Include="MesForms\Form_demander_service.Designer.cs">
       <DependentUpon>Form_demander_service.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Hospitalisation\Add_chambre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Add_chambre.Designer.cs">
+      <DependentUpon>Add_chambre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Detail_Chambre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Detail_Chambre.Designer.cs">
+      <DependentUpon>Detail_Chambre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Hospitalisation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Hospitalisation.Designer.cs">
+      <DependentUpon>Hospitalisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Update_chambre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Update_chambre.Designer.cs">
+      <DependentUpon>Update_chambre.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Personnel\Add_salaire.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Personnel\Add_salaire.Designer.cs">
       <DependentUpon>Add_salaire.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Personnel\Detail_Personnel.cs">
+    <Compile Include="MesForms\Personnel\Ajouter_avance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Personnel\Detail_Personnel.Designer.cs">
-      <DependentUpon>Detail_Personnel.cs</DependentUpon>
+    <Compile Include="MesForms\Personnel\Ajouter_avance.Designer.cs">
+      <DependentUpon>Ajouter_avance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_prime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_prime.Designer.cs">
+      <DependentUpon>Ajouter_prime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_retenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_retenue.Designer.cs">
+      <DependentUpon>Ajouter_retenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Detail_presence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Detail_presence.Designer.cs">
+      <DependentUpon>Detail_presence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Detail_salaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Detail_salaire.Designer.cs">
+      <DependentUpon>Detail_salaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Detail_Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Detail_Test.Designer.cs">
+      <DependentUpon>Detail_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Update_personnel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Update_personnel.Designer.cs">
+      <DependentUpon>Update_personnel.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_add_category_med.cs">
       <SubType>Form</SubType>
@@ -400,6 +460,30 @@
     <Compile Include="MesUserCases\EEG\User_examens.Designer.cs">
       <DependentUpon>User_examens.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_patient_hospitalise.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_patient_hospitalise.Designer.cs">
+      <DependentUpon>User_patient_hospitalise.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_DashBoard_Hospi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_DashBoard_Hospi.Designer.cs">
+      <DependentUpon>User_DashBoard_Hospi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_chambre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_chambre.Designer.cs">
+      <DependentUpon>User_chambre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_Termine_hospi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Hospitalisation\User_Termine_hospi.Designer.cs">
+      <DependentUpon>User_Termine_hospi.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Personnels\User_DashBord_Personnel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -424,12 +508,6 @@
     <Compile Include="MesUserCases\Pharmacie\UC_inventory.Designer.cs">
       <DependentUpon>UC_inventory.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\Personnels\UC_detail_personnel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\Personnels\UC_detail_personnel.Designer.cs">
-      <DependentUpon>UC_detail_personnel.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_stock_pharmacie.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -441,30 +519,6 @@
     </Compile>
     <Compile Include="MesUserCases\User_add_paiement.Designer.cs">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_add_salaire.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_add_salaire.Designer.cs">
-      <DependentUpon>User_add_salaire.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_affectation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_affectation.Designer.cs">
-      <DependentUpon>User_affectation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_avance.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_avance.Designer.cs">
-      <DependentUpon>User_avance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_chambres.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_chambres.Designer.cs">
-      <DependentUpon>User_chambres.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\Consultation\User_consultation.cs">
       <SubType>UserControl</SubType>
@@ -478,10 +532,10 @@
     <Compile Include="MesUserCases\Consultation\User_DashBoard_consultation.Designer.cs">
       <DependentUpon>User_DashBoard_consultation.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\User_DashBord_pharmacie.cs">
+    <Compile Include="MesUserCases\Pharmacie\User_DashBord_pharmacie.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MesUserCases\User_DashBord_pharmacie.Designer.cs">
+    <Compile Include="MesUserCases\Pharmacie\User_DashBord_pharmacie.Designer.cs">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\Reception\User_Dash_patient.cs">
@@ -514,12 +568,6 @@
     <Compile Include="MesUserCases\Consultation\User_finish_consultation.Designer.cs">
       <DependentUpon>User_finish_consultation.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\User_horaires.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_horaires.Designer.cs">
-      <DependentUpon>User_horaires.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\User_livre_caisse.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -532,65 +580,17 @@
     <Compile Include="MesUserCases\User_paiement_facture.Designer.cs">
       <DependentUpon>User_paiement_facture.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\User_patients_hospitalises.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_patients_hospitalises.Designer.cs">
-      <DependentUpon>User_patients_hospitalises.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\Personnels\User_personnels_display.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\Personnels\User_personnels_display.Designer.cs">
       <DependentUpon>User_personnels_display.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\User_prescription.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_prescription.Designer.cs">
-      <DependentUpon>User_prescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_presences.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_presences.Designer.cs">
-      <DependentUpon>User_presences.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_prime.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_prime.Designer.cs">
-      <DependentUpon>User_prime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_retenue.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_retenue.Designer.cs">
-      <DependentUpon>User_retenue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_service.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_service.Designer.cs">
-      <DependentUpon>User_service.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\User_sortie_pharmacie.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\User_sortie_pharmacie.Designer.cs">
       <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_Stock_hospitalisation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_Stock_hospitalisation.Designer.cs">
-      <DependentUpon>User_Stock_hospitalisation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesUserCases\User_test_sous_menu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\User_test_sous_menu.Designer.cs">
-      <DependentUpon>User_test_sous_menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -656,11 +656,41 @@
     <EmbeddedResource Include="MesForms\Form_demander_service.resx">
       <DependentUpon>Form_demander_service.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Hospitalisation\Add_chambre.resx">
+      <DependentUpon>Add_chambre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Hospitalisation\Detail_Chambre.resx">
+      <DependentUpon>Detail_Chambre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Hospitalisation\Hospitalisation.resx">
+      <DependentUpon>Hospitalisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Hospitalisation\Update_chambre.resx">
+      <DependentUpon>Update_chambre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Add_salaire.resx">
       <DependentUpon>Add_salaire.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Personnel\Detail_Personnel.resx">
-      <DependentUpon>Detail_Personnel.cs</DependentUpon>
+    <EmbeddedResource Include="MesForms\Personnel\Ajouter_avance.resx">
+      <DependentUpon>Ajouter_avance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Ajouter_prime.resx">
+      <DependentUpon>Ajouter_prime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Ajouter_retenue.resx">
+      <DependentUpon>Ajouter_retenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Detail_presence.resx">
+      <DependentUpon>Detail_presence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Detail_salaire.resx">
+      <DependentUpon>Detail_salaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Detail_Test.resx">
+      <DependentUpon>Detail_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Update_personnel.resx">
+      <DependentUpon>Update_personnel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_add_category_med.resx">
       <DependentUpon>Form_add_category_med.cs</DependentUpon>
@@ -695,6 +725,18 @@
     <EmbeddedResource Include="MesUserCases\EEG\User_examens.resx">
       <DependentUpon>User_examens.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Hospitalisation\User_DashBoard_Hospi.resx">
+      <DependentUpon>User_DashBoard_Hospi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Hospitalisation\User_chambre.resx">
+      <DependentUpon>User_chambre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Hospitalisation\User_patient_hospitalise.resx">
+      <DependentUpon>User_patient_hospitalise.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Hospitalisation\User_Termine_hospi.resx">
+      <DependentUpon>User_Termine_hospi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_DashBord_Personnel.resx">
       <DependentUpon>User_DashBord_Personnel.cs</DependentUpon>
     </EmbeddedResource>
@@ -707,26 +749,11 @@
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_inventory.resx">
       <DependentUpon>UC_inventory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\Personnels\UC_detail_personnel.resx">
-      <DependentUpon>UC_detail_personnel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_stock_pharmacie.resx">
       <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_add_salaire.resx">
-      <DependentUpon>User_add_salaire.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_affectation.resx">
-      <DependentUpon>User_affectation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_avance.resx">
-      <DependentUpon>User_avance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_chambres.resx">
-      <DependentUpon>User_chambres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Consultation\User_consultation.resx">
       <DependentUpon>User_consultation.cs</DependentUpon>
@@ -734,7 +761,7 @@
     <EmbeddedResource Include="MesUserCases\Consultation\User_DashBoard_consultation.resx">
       <DependentUpon>User_DashBoard_consultation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_DashBord_pharmacie.resx">
+    <EmbeddedResource Include="MesUserCases\Pharmacie\User_DashBord_pharmacie.resx">
       <DependentUpon>User_DashBord_pharmacie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Reception\User_Dash_patient.resx">
@@ -752,44 +779,17 @@
     <EmbeddedResource Include="MesUserCases\Consultation\User_finish_consultation.resx">
       <DependentUpon>User_finish_consultation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_horaires.resx">
-      <DependentUpon>User_horaires.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_livre_caisse.resx">
       <DependentUpon>User_livre_caisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_paiement_facture.resx">
       <DependentUpon>User_paiement_facture.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_patients_hospitalises.resx">
-      <DependentUpon>User_patients_hospitalises.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_personnels_display.resx">
       <DependentUpon>User_personnels_display.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_prescription.resx">
-      <DependentUpon>User_prescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_presences.resx">
-      <DependentUpon>User_presences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_prime.resx">
-      <DependentUpon>User_prime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_retenue.resx">
-      <DependentUpon>User_retenue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_service.resx">
-      <DependentUpon>User_service.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_sortie_pharmacie.resx">
       <DependentUpon>User_sortie_pharmacie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_Stock_hospitalisation.resx">
-      <DependentUpon>User_Stock_hospitalisation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\User_test_sous_menu.resx">
-      <DependentUpon>User_test_sous_menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1480,6 +1480,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\withdrawal_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chambre.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icone_chambre.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Check Circle_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_30px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel_30px2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\in_progress_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ok_30px2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sleeping_in_bed_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bed_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paycheque_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\time_machine_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\us_dollar_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_bag_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\view_details_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\select_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lightning_bolt_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gift_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users_30px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

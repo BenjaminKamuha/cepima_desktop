@@ -28,149 +28,180 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.panel_patient = new System.Windows.Forms.Panel();
+            this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
+            this.flow_consultation = new System.Windows.Forms.FlowLayoutPanel();
             this.lb_not_found = new System.Windows.Forms.Label();
-            this.customRoundedPanel2 = new CustomRoundedPanel();
-            this.tb_search_patient = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lb_title = new System.Windows.Forms.Label();
-            this.customRoundedPanel1.SuspendLayout();
-            this.panel_patient.SuspendLayout();
-            this.customRoundedPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.combo_statut = new MyRoundedComboBox();
+            this.lb_nombres_consultation = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.tb_recherche_chambre = new MyRoundedTextBox();
+            this.bunifuRoundedPanel1.SuspendLayout();
+            this.flow_consultation.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // customRoundedPanel1
+            // bunifuRoundedPanel1
             // 
-            this.customRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
+            this.bunifuRoundedPanel1.BorderRadius = 8;
+            this.bunifuRoundedPanel1.BorderSize = 0;
+            this.bunifuRoundedPanel1.Controls.Add(this.flow_consultation);
+            this.bunifuRoundedPanel1.Controls.Add(this.panel1);
+            this.bunifuRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(0, 0);
+            this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
+            this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
+            this.bunifuRoundedPanel1.ShadowDepth = 10;
+            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(1057, 573);
+            this.bunifuRoundedPanel1.TabIndex = 1;
+            // 
+            // flow_consultation
+            // 
+            this.flow_consultation.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
-            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel1.BorderRadius = 10;
-            this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.panel_patient);
-            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(14, 38);
-            this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1003, 485);
-            this.customRoundedPanel1.TabIndex = 5;
-            // 
-            // panel_patient
-            // 
-            this.panel_patient.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel_patient.AutoScroll = true;
-            this.panel_patient.Controls.Add(this.lb_not_found);
-            this.panel_patient.Location = new System.Drawing.Point(15, 17);
-            this.panel_patient.Name = "panel_patient";
-            this.panel_patient.Size = new System.Drawing.Size(975, 453);
-            this.panel_patient.TabIndex = 0;
+            this.flow_consultation.AutoScroll = true;
+            this.flow_consultation.Controls.Add(this.lb_not_found);
+            this.flow_consultation.Location = new System.Drawing.Point(13, 79);
+            this.flow_consultation.Name = "flow_consultation";
+            this.flow_consultation.Size = new System.Drawing.Size(1030, 486);
+            this.flow_consultation.TabIndex = 1;
             // 
             // lb_not_found
             // 
+            this.lb_not_found.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_not_found.AutoSize = true;
-            this.lb_not_found.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_not_found.Location = new System.Drawing.Point(198, 230);
+            this.lb_not_found.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_not_found.Location = new System.Drawing.Point(3, 0);
             this.lb_not_found.Name = "lb_not_found";
-            this.lb_not_found.Size = new System.Drawing.Size(0, 16);
-            this.lb_not_found.TabIndex = 0;
-            this.lb_not_found.Visible = false;
+            this.lb_not_found.Padding = new System.Windows.Forms.Padding(400, 250, 0, 0);
+            this.lb_not_found.Size = new System.Drawing.Size(400, 270);
+            this.lb_not_found.TabIndex = 6;
             // 
-            // customRoundedPanel2
+            // panel1
             // 
-            this.customRoundedPanel2.BackColor = System.Drawing.SystemColors.Window;
-            this.customRoundedPanel2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel2.BorderRadius = 5;
-            this.customRoundedPanel2.BorderSize = 2;
-            this.customRoundedPanel2.Controls.Add(this.pictureBox2);
-            this.customRoundedPanel2.Controls.Add(this.tb_search_patient);
-            this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(339, 8);
-            this.customRoundedPanel2.Name = "customRoundedPanel2";
-            this.customRoundedPanel2.Size = new System.Drawing.Size(296, 28);
-            this.customRoundedPanel2.TabIndex = 6;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.combo_statut);
+            this.panel1.Controls.Add(this.lb_nombres_consultation);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.tb_recherche_chambre);
+            this.panel1.Location = new System.Drawing.Point(13, 11);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1030, 62);
+            this.panel1.TabIndex = 0;
             // 
-            // tb_search_patient
+            // label7
             // 
-            this.tb_search_patient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tb_search_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tb_search_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_search_patient.Location = new System.Drawing.Point(10, 4);
-            this.tb_search_patient.Multiline = true;
-            this.tb_search_patient.Name = "tb_search_patient";
-            this.tb_search_patient.Size = new System.Drawing.Size(247, 20);
-            this.tb_search_patient.TabIndex = 0;
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(455, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 20);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "Période  : ";
             // 
-            // pictureBox2
+            // combo_statut
             // 
-            this.pictureBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.search1;
-            this.pictureBox2.Location = new System.Drawing.Point(262, 2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 24);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
+            this.combo_statut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.combo_statut.ArrowColor = System.Drawing.SystemColors.ActiveCaption;
+            this.combo_statut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.combo_statut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.combo_statut.BorderColor = System.Drawing.Color.Silver;
+            this.combo_statut.BorderRadius = 6;
+            this.combo_statut.BorderSize = 1;
+            this.combo_statut.DropDownBackColor = System.Drawing.Color.White;
+            this.combo_statut.DropDownForeColor = System.Drawing.Color.Black;
+            this.combo_statut.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.combo_statut.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.combo_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_statut.FocusBorderColor = System.Drawing.Color.Silver;
+            this.combo_statut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.combo_statut.Location = new System.Drawing.Point(556, 15);
+            this.combo_statut.Name = "combo_statut";
+            this.combo_statut.SelectedItem = null;
+            this.combo_statut.SelectedValue = null;
+            this.combo_statut.Size = new System.Drawing.Size(211, 30);
+            this.combo_statut.TabIndex = 40;
+            this.combo_statut.SelectedIndexChanged += new System.EventHandler(this.combo_statut_SelectedIndexChanged);
             // 
-            // comboBox1
+            // lb_nombres_consultation
             // 
-            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(768, 8);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(168, 23);
-            this.comboBox1.TabIndex = 21;
+            this.lb_nombres_consultation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_nombres_consultation.AutoSize = true;
+            this.lb_nombres_consultation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nombres_consultation.Location = new System.Drawing.Point(896, 29);
+            this.lb_nombres_consultation.Name = "lb_nombres_consultation";
+            this.lb_nombres_consultation.Size = new System.Drawing.Size(24, 16);
+            this.lb_nombres_consultation.TabIndex = 38;
+            this.lb_nombres_consultation.Text = "34";
             // 
-            // lb_title
+            // panel2
             // 
-            this.lb_title.AutoSize = true;
-            this.lb_title.Font = new System.Drawing.Font("Calibri", 14F, System.Drawing.FontStyle.Bold);
-            this.lb_title.Location = new System.Drawing.Point(73, 8);
-            this.lb_title.Name = "lb_title";
-            this.lb_title.Size = new System.Drawing.Size(170, 23);
-            this.lb_title.TabIndex = 22;
-            this.lb_title.Text = "PATIENT CONSULTES";
+            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 58);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1030, 4);
+            this.panel2.TabIndex = 7;
+            // 
+            // tb_recherche_chambre
+            // 
+            this.tb_recherche_chambre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tb_recherche_chambre.BackColor = System.Drawing.Color.White;
+            this.tb_recherche_chambre.BorderColor = System.Drawing.Color.Silver;
+            this.tb_recherche_chambre.BorderRadius = 8;
+            this.tb_recherche_chambre.BorderSize = 1;
+            this.tb_recherche_chambre.FocusBorderColor = System.Drawing.Color.DodgerBlue;
+            this.tb_recherche_chambre.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
+            this.tb_recherche_chambre.ForeColor = System.Drawing.Color.Black;
+            this.tb_recherche_chambre.Image = global::Cepima.Properties.Resources.search_25px;
+            this.tb_recherche_chambre.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tb_recherche_chambre.ImagePadding = 4;
+            this.tb_recherche_chambre.Location = new System.Drawing.Point(3, 15);
+            this.tb_recherche_chambre.MaxLength = 32767;
+            this.tb_recherche_chambre.Name = "tb_recherche_chambre";
+            this.tb_recherche_chambre.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tb_recherche_chambre.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_recherche_chambre.PlaceholderText = "Search room";
+            this.tb_recherche_chambre.Size = new System.Drawing.Size(256, 34);
+            this.tb_recherche_chambre.TabIndex = 11;
+            this.tb_recherche_chambre.TextChanged += new System.EventHandler(this.tb_recherche_chambre_TextChanged);
             // 
             // User_finish_consultation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.lb_title);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.customRoundedPanel1);
-            this.Controls.Add(this.customRoundedPanel2);
+            this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "User_finish_consultation";
-            this.Size = new System.Drawing.Size(1031, 526);
-            this.customRoundedPanel1.ResumeLayout(false);
-            this.panel_patient.ResumeLayout(false);
-            this.panel_patient.PerformLayout();
-            this.customRoundedPanel2.ResumeLayout(false);
-            this.customRoundedPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.Size = new System.Drawing.Size(1057, 573);
+            this.Load += new System.EventHandler(this.User_finish_consultation_Load);
+            this.bunifuRoundedPanel1.ResumeLayout(false);
+            this.flow_consultation.ResumeLayout(false);
+            this.flow_consultation.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private CustomRoundedPanel customRoundedPanel1;
-        private System.Windows.Forms.Panel panel_patient;
+        private BunifuRoundedPanel bunifuRoundedPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flow_consultation;
         private System.Windows.Forms.Label lb_not_found;
-        private CustomRoundedPanel customRoundedPanel2;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.TextBox tb_search_patient;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label lb_title;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lb_nombres_consultation;
+        private System.Windows.Forms.Panel panel2;
+        private MyRoundedTextBox tb_recherche_chambre;
+        private System.Windows.Forms.Label label7;
+        private MyRoundedComboBox combo_statut;
+
     }
 }
