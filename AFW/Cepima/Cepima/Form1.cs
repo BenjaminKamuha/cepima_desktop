@@ -541,17 +541,9 @@ namespace Cepima
             bt_acceuil.PerformClick();
 
             UpdateManager manager = new UpdateManager();
+            lb_version.Text = manager.GetCurrentVersion();
 
-            MessageBox.Show("Version actuelle: " + manager.CurrentVersion);
-
-            bool update = await manager.CheckLocalUpdateAsync(
-                "http://localhost:8000/version.txt",
-                "http://localhost:8000/CEPIMA_Update.zip");
-
-            MessageBox.Show(
-                update ? "Mise à jour détecttée et lancée." : "Aucune mise jours.");
-                
-            
+            await manager.CheckForUpdateAsync();
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
