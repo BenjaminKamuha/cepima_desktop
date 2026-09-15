@@ -14,7 +14,8 @@ namespace Cepima.Updater
         public void Run(string[] args)
         {
             if (args == null || args.Length < 2)
-                throw new Exception("Paramètres de mise à jour manquants.");
+                throw new Exception(
+                    "Paramètres de mise à jour manquants.");
 
             string applicationPath = args[0];
             string updatePath = args[1];
@@ -26,20 +27,21 @@ namespace Cepima.Updater
 
             if (!Directory.Exists(updatePath))
                 throw new DirectoryNotFoundException(
-                    "Dossier de mise à jour introuvable : " + updatePath);
+                    "Dossier de mise à jour introuvable : " +
+                    updatePath);
 
             string applicationDirectory =
                 Path.GetDirectoryName(applicationPath);
 
-            // -------------------------------------------------
-            // 1. Attendre que CEPIMA soit complètement fermé
-            // -------------------------------------------------
+            // =====================================================
+            // 1. ATTENDRE LA FERMETURE DE CEPIMA
+            // =====================================================
 
-            WaitForApplicationToClose(applicationPath);
+            WaitForCepimaToClose(applicationPath);
 
-            // -------------------------------------------------
-            // 2. Créer un dossier de sauvegarde
-            // -------------------------------------------------
+            // =====================================================
+            // 2. DOSSIER DE SAUVEGARDE
+            // =====================================================
 
             string backupDirectory = Path.Combine(
                 Path.GetTempPath(),
@@ -50,10 +52,6 @@ namespace Cepima.Updater
 
             Directory.CreateDirectory(backupDirectory);
 
-            // -------------------------------------------------
-            // 3. Copier les fichiers avec sauvegarde
-            // -------------------------------------------------
-
             List<string> copiedFiles =
                 new List<string>();
 
@@ -62,6 +60,10 @@ namespace Cepima.Updater
 
             try
             {
+                // =================================================
+                // 3. INSTALLER LA NOUVELLE VERSION
+                // =================================================
+
                 UpdateDirectory(
                     updatePath,
                     applicationDirectory,
@@ -69,24 +71,26 @@ namespace Cepima.Updater
                     copiedFiles,
                     newFiles);
 
-                // -------------------------------------------------
-                // 4. Nettoyer la sauvegarde après succès
-                // -------------------------------------------------
+                // =================================================
+                // 4. SUPPRIMER LA SAUVEGARDE
+                // =================================================
 
                 if (Directory.Exists(backupDirectory))
-                    Directory.Delete(backupDirectory, true);
+                    Directory.Delete(
+                        backupDirectory,
+                        true);
 
-                // -------------------------------------------------
-                // 5. Relancer CEPIMA
-                // -------------------------------------------------
+                // =================================================
+                // 5. RELANCER CEPIMA
+                // =================================================
 
                 Process.Start(applicationPath);
             }
             catch (Exception ex)
             {
-                // -------------------------------------------------
-                // ÉCHEC → ROLLBACK
-                // -------------------------------------------------
+                // =================================================
+                // ROLLBACK
+                // =================================================
 
                 try
                 {
@@ -99,11 +103,12 @@ namespace Cepima.Updater
                 catch (Exception rollbackException)
                 {
                     throw new Exception(
-                        "La mise à jour a échoué et la restauration " +
-                        "automatique a également échoué.\r\n\r\n" +
+                        "La mise à jour a échoué et la " +
+                        "restauration a également échoué.\r\n\r\n" +
                         "Erreur mise à jour :\r\n" +
                         ex.Message +
-                        "\r\n\r\nErreur restauration :\r\n" +
+                        "\r\n\r\n" +
+                        "Erreur restauration :\r\n" +
                         rollbackException.Message);
                 }
 
@@ -114,9 +119,77 @@ namespace Cepima.Updater
             }
         }
 
-        // =====================================================
+
+        // =========================================================
+        // ATTENDRE QUE CEPIMA SOIT FERMÉ
+        // =========================================================
+
+        private void WaitForCepimaToClose(
+            string applicationPath)
+        {
+            string processName =
+                Path.GetFileNameWithoutExtension(
+                    applicationPath);
+
+            const int maxAttempts = 60;
+
+            for (int i = 0; i < maxAttempts; i++)
+            {
+                Process[] processes;
+
+                try
+                {
+                    processes =
+                        Process.GetProcessesByName(
+                            processName);
+                }
+                catch
+                {
+                    processes = new Process[0];
+                }
+
+                bool cepimaRunning = false;
+
+                foreach (Process process in processes)
+                {
+                    try
+                    {
+                        if (!process.HasExited)
+                        {
+                            cepimaRunning = true;
+                            process.Dispose();
+                            break;
+                        }
+                    }
+                    catch
+                    {
+                        // Le processus vient peut-être
+                        // de se fermer.
+                    }
+
+                    process.Dispose();
+                }
+
+                if (!cepimaRunning)
+                {
+                    // Petite pause de sécurité
+                    Thread.Sleep(500);
+
+                    return;
+                }
+
+                Thread.Sleep(500);
+            }
+
+            throw new IOException(
+                "CEPIMA est toujours en cours d'exécution. " +
+                "La mise à jour ne peut pas continuer.");
+        }
+
+
+        // =========================================================
         // MISE À JOUR D'UN DOSSIER
-        // =====================================================
+        // =========================================================
 
         private void UpdateDirectory(
             string sourceDirectory,
@@ -136,11 +209,7 @@ namespace Cepima.Updater
                 string fileName =
                     Path.GetFileName(sourceFile);
 
-                // ---------------------------------------------
-                // Ne jamais remplacer l'Updater actuellement
-                // en cours d'exécution.
-                // ---------------------------------------------
-
+                // Ne jamais remplacer l'Updater
                 if (string.Equals(
                     fileName,
                     UpdaterFileName,
@@ -149,10 +218,7 @@ namespace Cepima.Updater
                     continue;
                 }
 
-                // ---------------------------------------------
-                // Ne jamais remplacer la configuration locale.
-                // ---------------------------------------------
-
+                // Ne jamais remplacer la configuration locale
                 if (string.Equals(
                     fileName,
                     ConfigFileName,
@@ -166,9 +232,9 @@ namespace Cepima.Updater
                         destinationDirectory,
                         fileName);
 
-                // ---------------------------------------------
-                // Sauvegarder l'ancien fichier
-                // ---------------------------------------------
+                // =================================================
+                // SAUVEGARDER L'ANCIEN FICHIER
+                // =================================================
 
                 if (File.Exists(destinationFile))
                 {
@@ -179,10 +245,12 @@ namespace Cepima.Updater
                             backupDirectory);
 
                     string backupFolder =
-                        Path.GetDirectoryName(backupFile);
+                        Path.GetDirectoryName(
+                            backupFile);
 
                     if (!Directory.Exists(backupFolder))
-                        Directory.CreateDirectory(backupFolder);
+                        Directory.CreateDirectory(
+                            backupFolder);
 
                     File.Copy(
                         destinationFile,
@@ -191,33 +259,33 @@ namespace Cepima.Updater
                 }
                 else
                 {
-                    // Nouveau fichier
                     newFiles.Add(destinationFile);
                 }
 
-                // ---------------------------------------------
-                // Copier la nouvelle version
-                // ---------------------------------------------
+                // =================================================
+                // COPIER AVEC RETRIES
+                // =================================================
 
-                File.Copy(
+                CopyFileWithRetry(
                     sourceFile,
-                    destinationFile,
-                    true);
+                    destinationFile);
 
                 copiedFiles.Add(destinationFile);
             }
 
-            // ---------------------------------------------
-            // Sous-dossiers
-            // ---------------------------------------------
+            // =====================================================
+            // SOUS-DOSSIERS
+            // =====================================================
 
             string[] directories =
-                Directory.GetDirectories(sourceDirectory);
+                Directory.GetDirectories(
+                    sourceDirectory);
 
             foreach (string sourceSubDirectory in directories)
             {
                 string directoryName =
-                    Path.GetFileName(sourceSubDirectory);
+                    Path.GetFileName(
+                        sourceSubDirectory);
 
                 string destinationSubDirectory =
                     Path.Combine(
@@ -233,9 +301,42 @@ namespace Cepima.Updater
             }
         }
 
-        // =====================================================
-        // CHEMIN DE SAUVEGARDE
-        // =====================================================
+
+        // =========================================================
+        // COPIE AVEC RETRIES
+        // =========================================================
+
+        private void CopyFileWithRetry(
+            string sourceFile,
+            string destinationFile)
+        {
+            const int maxAttempts = 10;
+
+            for (int i = 0; i < maxAttempts; i++)
+            {
+                try
+                {
+                    File.Copy(
+                        sourceFile,
+                        destinationFile,
+                        true);
+
+                    return;
+                }
+                catch
+                {
+                    if (i == maxAttempts - 1)
+                        throw;
+
+                    Thread.Sleep(500);
+                }
+            }
+        }
+
+
+        // =========================================================
+        // CHEMIN BACKUP
+        // =========================================================
 
         private string GetBackupPath(
             string filePath,
@@ -254,9 +355,10 @@ namespace Cepima.Updater
                 relativePath);
         }
 
-        // =====================================================
+
+        // =========================================================
         // ROLLBACK
-        // =====================================================
+        // =========================================================
 
         private void Rollback(
             string applicationDirectory,
@@ -264,14 +366,20 @@ namespace Cepima.Updater
             List<string> copiedFiles,
             List<string> newFiles)
         {
-            // Supprimer les fichiers nouvellement créés
+            // Supprimer les nouveaux fichiers
             foreach (string file in newFiles)
             {
-                if (File.Exists(file))
-                    File.Delete(file);
+                try
+                {
+                    if (File.Exists(file))
+                        File.Delete(file);
+                }
+                catch
+                {
+                    // Continuer le rollback
+                }
             }
 
-            // Restaurer les anciens fichiers
             if (!Directory.Exists(backupDirectory))
                 return;
 
@@ -296,62 +404,17 @@ namespace Cepima.Updater
                         relativePath);
 
                 string destinationDirectory =
-                    Path.GetDirectoryName(destinationFile);
+                    Path.GetDirectoryName(
+                        destinationFile);
 
                 if (!Directory.Exists(destinationDirectory))
-                    Directory.CreateDirectory(destinationDirectory);
+                    Directory.CreateDirectory(
+                        destinationDirectory);
 
                 File.Copy(
                     backupFile,
                     destinationFile,
                     true);
-            }
-        }
-
-        // =====================================================
-        // ATTENDRE LA FERMETURE DE CEPIMA
-        // =====================================================
-
-        private void WaitForApplicationToClose(
-            string applicationPath)
-        {
-            const int maxAttempts = 30;
-
-            for (int i = 0; i < maxAttempts; i++)
-            {
-                if (CanAccessFile(applicationPath))
-                    return;
-
-                Thread.Sleep(500);
-            }
-
-            throw new IOException(
-                "CEPIMA est toujours en cours d'utilisation. " +
-                "Impossible de continuer la mise à jour.");
-        }
-
-        // =====================================================
-        // TEST D'ACCÈS AU FICHIER
-        // =====================================================
-
-        private bool CanAccessFile(
-            string filePath)
-        {
-            try
-            {
-                using (FileStream stream =
-                    new FileStream(
-                        filePath,
-                        FileMode.Open,
-                        FileAccess.Read,
-                        FileShare.None))
-                {
-                    return true;
-                }
-            }
-            catch
-            {
-                return false;
             }
         }
     }
