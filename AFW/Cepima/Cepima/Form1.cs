@@ -12,6 +12,10 @@ using Cepima.MesClasses;
 using Cepima.MesUserCases;
 using Cepima.MesForms;
 using Cepima.Data;
+using Cepima.Services;
+
+
+
 
 namespace Cepima
 {
@@ -22,6 +26,7 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
+     
 
         public Form1()
         {
@@ -33,6 +38,8 @@ namespace Cepima
             LoadUserConnect(lb_username,"Connecté",lb_statut);
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
+
+
         }
 
         /// <summary>
@@ -529,9 +536,22 @@ namespace Cepima
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             bt_acceuil.PerformClick();
+
+            UpdateManager manager = new UpdateManager();
+
+            MessageBox.Show("Version actuelle: " + manager.CurrentVersion);
+
+            bool update = await manager.CheckLocalUpdateAsync(
+                "http://localhost:8000/version.txt",
+                "http://localhost:8000/CEPIMA_Update.zip");
+
+            MessageBox.Show(
+                update ? "Mise à jour détecttée et lancée." : "Aucune mise jours.");
+                
+            
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)

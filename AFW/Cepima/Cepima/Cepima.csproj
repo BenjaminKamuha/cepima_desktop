@@ -102,6 +102,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
@@ -200,6 +202,7 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />
     <Compile Include="Core\IThemeAware.cs" />
@@ -1543,6 +1546,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\users_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

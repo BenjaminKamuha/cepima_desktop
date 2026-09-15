@@ -171,7 +171,7 @@
             this.bt_connexion.Location = new System.Drawing.Point(106, 388);
             this.bt_connexion.Name = "bt_connexion";
             this.bt_connexion.Size = new System.Drawing.Size(124, 30);
-            this.bt_connexion.TabIndex = 15;
+            this.bt_connexion.TabIndex = 2;
             this.bt_connexion.Click += new System.EventHandler(this.bt_connexion_Click);
             // 
             // cb_remember
@@ -181,7 +181,7 @@
             this.cb_remember.Location = new System.Drawing.Point(97, 348);
             this.cb_remember.Name = "cb_remember";
             this.cb_remember.Size = new System.Drawing.Size(142, 20);
-            this.cb_remember.TabIndex = 14;
+            this.cb_remember.TabIndex = 2;
             this.cb_remember.Text = "Se souvenir de moi";
             this.cb_remember.UseVisualStyleBackColor = true;
             // 
@@ -222,7 +222,7 @@
             this.tb_password.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_password.PlaceholderText = "";
             this.tb_password.Size = new System.Drawing.Size(241, 30);
-            this.tb_password.TabIndex = 3;
+            this.tb_password.TabIndex = 1;
             // 
             // tb_username
             // 
@@ -240,7 +240,7 @@
             this.tb_username.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_username.PlaceholderText = "";
             this.tb_username.Size = new System.Drawing.Size(241, 28);
-            this.tb_username.TabIndex = 3;
+            this.tb_username.TabIndex = 0;
             // 
             // pictureBox2
             // 
