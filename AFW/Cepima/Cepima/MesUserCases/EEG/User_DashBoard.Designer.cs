@@ -60,12 +60,14 @@
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.lb_count = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -75,9 +77,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(19, 226);
+            this.panel1.Location = new System.Drawing.Point(3, 197);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(973, 290);
+            this.panel1.Size = new System.Drawing.Size(1012, 319);
             this.panel1.TabIndex = 31;
             // 
             // dataGridView1
@@ -108,7 +110,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(971, 288);
+            this.dataGridView1.Size = new System.Drawing.Size(1010, 317);
             this.dataGridView1.TabIndex = 0;
             // 
             // colID
@@ -145,7 +147,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 205);
+            this.label5.Location = new System.Drawing.Point(25, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(191, 16);
             this.label5.TabIndex = 0;
@@ -203,7 +205,7 @@
             this.roundedButton1.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.roundedButton1.Image = global::Cepima.Properties.Resources.add_30px;
             this.roundedButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.roundedButton1.Location = new System.Drawing.Point(835, 185);
+            this.roundedButton1.Location = new System.Drawing.Point(834, 155);
             this.roundedButton1.Name = "roundedButton1";
             this.roundedButton1.Size = new System.Drawing.Size(157, 35);
             this.roundedButton1.TabIndex = 34;
@@ -226,7 +228,7 @@
             this.cbx_filter_statut.DropDownSelectedForeColor = System.Drawing.Color.White;
             this.cbx_filter_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_filter_statut.FocusBorderColor = System.Drawing.Color.Silver;
-            this.cbx_filter_statut.Location = new System.Drawing.Point(690, 190);
+            this.cbx_filter_statut.Location = new System.Drawing.Point(689, 160);
             this.cbx_filter_statut.Name = "cbx_filter_statut";
             this.cbx_filter_statut.SelectedItem = null;
             this.cbx_filter_statut.SelectedValue = null;
@@ -247,7 +249,7 @@
             this.cbx_filtrer_periode.DropDownSelectedForeColor = System.Drawing.Color.White;
             this.cbx_filtrer_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_filtrer_periode.FocusBorderColor = System.Drawing.Color.Silver;
-            this.cbx_filtrer_periode.Location = new System.Drawing.Point(515, 190);
+            this.cbx_filtrer_periode.Location = new System.Drawing.Point(514, 160);
             this.cbx_filtrer_periode.Name = "cbx_filtrer_periode";
             this.cbx_filtrer_periode.SelectedItem = null;
             this.cbx_filtrer_periode.SelectedValue = null;
@@ -265,7 +267,7 @@
             this.tb_search_.ForeColor = System.Drawing.Color.Black;
             this.tb_search_.Image = global::Cepima.Properties.Resources.search;
             this.tb_search_.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_search_.Location = new System.Drawing.Point(240, 191);
+            this.tb_search_.Location = new System.Drawing.Point(239, 161);
             this.tb_search_.MaxLength = 32767;
             this.tb_search_.Name = "tb_search_";
             this.tb_search_.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -283,10 +285,11 @@
             this.customRoundedPanel2.BorderSize = 2;
             this.customRoundedPanel2.Controls.Add(this.lb_eeg_now);
             this.customRoundedPanel2.Controls.Add(this.label4);
+            this.customRoundedPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(24, 40);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(3, 3);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
             this.customRoundedPanel2.ShadowBlur = 10;
             this.customRoundedPanel2.ShadowBorderRadius = -1;
@@ -296,7 +299,7 @@
             this.customRoundedPanel2.ShadowOffsetY = 4;
             this.customRoundedPanel2.ShadowOpacity = 60;
             this.customRoundedPanel2.ShadowSpread = 0;
-            this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(247, 126);
             this.customRoundedPanel2.TabIndex = 30;
             // 
             // lb_eeg_now
@@ -327,9 +330,10 @@
             this.customRoundedPanel1.BorderSize = 2;
             this.customRoundedPanel1.Controls.Add(this.lb_attente);
             this.customRoundedPanel1.Controls.Add(this.label1);
+            this.customRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(271, 40);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(256, 3);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.ShadowBlur = 10;
             this.customRoundedPanel1.ShadowBorderRadius = -1;
@@ -339,7 +343,7 @@
             this.customRoundedPanel1.ShadowOffsetY = 4;
             this.customRoundedPanel1.ShadowOpacity = 60;
             this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(247, 126);
             this.customRoundedPanel1.TabIndex = 29;
             // 
             // lb_attente
@@ -371,9 +375,10 @@
             this.customRoundedPanel3.BorderSize = 2;
             this.customRoundedPanel3.Controls.Add(this.lb_realise);
             this.customRoundedPanel3.Controls.Add(this.label2);
+            this.customRoundedPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(529, 40);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(509, 3);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
             this.customRoundedPanel3.ShadowBlur = 10;
             this.customRoundedPanel3.ShadowBorderRadius = -1;
@@ -383,7 +388,7 @@
             this.customRoundedPanel3.ShadowOffsetY = 4;
             this.customRoundedPanel3.ShadowOpacity = 60;
             this.customRoundedPanel3.ShadowSpread = 0;
-            this.customRoundedPanel3.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(247, 126);
             this.customRoundedPanel3.TabIndex = 28;
             // 
             // lb_realise
@@ -415,9 +420,10 @@
             this.customRoundedPanel4.BorderSize = 2;
             this.customRoundedPanel4.Controls.Add(this.lb_count);
             this.customRoundedPanel4.Controls.Add(this.label3);
+            this.customRoundedPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel4.Location = new System.Drawing.Point(785, 40);
+            this.customRoundedPanel4.Location = new System.Drawing.Point(762, 3);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
             this.customRoundedPanel4.ShadowBlur = 10;
             this.customRoundedPanel4.ShadowBorderRadius = -1;
@@ -427,7 +433,7 @@
             this.customRoundedPanel4.ShadowOffsetY = 4;
             this.customRoundedPanel4.ShadowOpacity = 60;
             this.customRoundedPanel4.ShadowSpread = 0;
-            this.customRoundedPanel4.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel4.Size = new System.Drawing.Size(250, 126);
             this.customRoundedPanel4.TabIndex = 27;
             // 
             // lb_count
@@ -451,21 +457,38 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Comptes";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel4, 3, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1015, 132);
+            this.tableLayoutPanel1.TabIndex = 35;
+            // 
             // User_DashBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.roundedButton1);
             this.Controls.Add(this.cbx_filter_statut);
             this.Controls.Add(this.cbx_filtrer_periode);
             this.Controls.Add(this.tb_search_);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.customRoundedPanel2);
-            this.Controls.Add(this.customRoundedPanel1);
-            this.Controls.Add(this.customRoundedPanel3);
-            this.Controls.Add(this.customRoundedPanel4);
             this.Name = "User_DashBoard";
             this.Size = new System.Drawing.Size(1021, 519);
             this.panel1.ResumeLayout(false);
@@ -478,6 +501,7 @@
             this.customRoundedPanel3.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -516,5 +540,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

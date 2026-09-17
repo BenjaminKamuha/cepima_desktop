@@ -12,6 +12,10 @@ using Cepima.MesClasses;
 using Cepima.MesUserCases;
 using Cepima.MesForms;
 using Cepima.Data;
+using Cepima.Services;
+
+
+
 
 namespace Cepima
 {
@@ -22,6 +26,7 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
+     
 
         public Form1()
         {
@@ -33,8 +38,7 @@ namespace Cepima
             LoadUserConnect(lb_username,"Connecté",lb_statut);
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
-            //Form_demander_service frm_demande = new Form_demander_service();
-            //frm_demande.ShowDialog();
+
 
         }
 
@@ -485,7 +489,7 @@ namespace Cepima
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>
+                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>
                     {
                         //control acceuil du personnel
                         MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
@@ -494,7 +498,7 @@ namespace Cepima
                         panel_center_main.Controls.Add(acceuil);
                     }),
 
-                new MenuItem("    Personnel",Properties.Resources.people_40px,(s,ev) =>
+                new MenuItem("      Personnel",Properties.Resources.users_30px,(s,ev) =>
                     {
                         //control autre
                         MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
@@ -504,12 +508,9 @@ namespace Cepima
                     }),
                
             
-                     new MenuItem("    Présences",Properties.Resources.attendance_30px,(s,ev) =>
+                     new MenuItem("     Présences",Properties.Resources.attendance_30px,(s,ev) =>
                     {
-                        MesUserCases.User_presences presence = new MesUserCases.User_presences();
-                        presence.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(presence);
+                       
                     }),
 
             };
@@ -535,9 +536,14 @@ namespace Cepima
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             bt_acceuil.PerformClick();
+
+            UpdateManager manager = new UpdateManager();
+            lb_version.Text = manager.GetCurrentVersion();
+
+            await manager.CheckForUpdateAsync();
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
@@ -546,55 +552,52 @@ namespace Cepima
             lb_sous_menu.Text = "Hospitalisation";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
+
+            //Acceuil 
+            MesUserCases.Hospitalisation.User_DashBoard_Hospi hospi = new MesUserCases.Hospitalisation.User_DashBoard_Hospi();
+            hospi.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(hospi);
+
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>  
+                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>  
                 {
                     //instructions
-                   
+                   MesUserCases.Hospitalisation.User_DashBoard_Hospi h = new MesUserCases.Hospitalisation.User_DashBoard_Hospi();
+                   h.Dock = DockStyle.Fill;
+                   panel_center_main.Controls.Clear();
+                   panel_center_main.Controls.Add(h);
                 }),
 
-                   new MenuItem("    Affectation",Properties.Resources.send_hot_list_20px,(s,ev) =>
-                {
-                    //Instructions
-                    MesUserCases.User_affectation affectation = new MesUserCases.User_affectation();
-                    affectation.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(affectation);
-                }),
-
-                new MenuItem(" Patients hospitalisés",Properties.Resources.home_20px,(s,ev) =>  
+                new MenuItem("    Demandés",Properties.Resources.finish_flag_30px,(s,ev) =>  
                 {
                     //instructions
-                    MesUserCases.User_patients_hospitalises patient = new MesUserCases.User_patients_hospitalises();
-                    patient.Dock = DockStyle.Fill;
+                    MesUserCases.Hospitalisation.User_Termine_hospi finish = new MesUserCases.Hospitalisation.User_Termine_hospi();
+                    finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(patient);
+                    panel_center_main.Controls.Add(finish);
                 }),
-                new MenuItem ("     Stock soin",Properties.Resources.stock_ph, (s,ev) =>
+
+                new MenuItem("    Chambres",Properties.Resources.chambre,(s,ev) =>  
                 {
-                    MesUserCases.User_Stock_hospitalisation stock = new MesUserCases.User_Stock_hospitalisation();
-                    stock.Dock = DockStyle.Fill;
+                    //instructions
+                    MesUserCases.Hospitalisation.User_chambre finish = new MesUserCases.Hospitalisation.User_chambre();
+                    finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(stock);
+                    panel_center_main.Controls.Add(finish);
                 }),
-                 new MenuItem("    Services",Properties.Resources.unit_20px,(s,ev) =>
+
+                 new MenuItem("    Hospitalisés",Properties.Resources.bed_black,(s,ev) =>  
                 {
-                    //Instructions
-                    MesUserCases.User_service service = new MesUserCases.User_service();
-                    service.Dock = DockStyle.Fill;
+                    //instructions
+                    MesUserCases.Hospitalisation.User_patient_hospitalise finish = new MesUserCases.Hospitalisation.User_patient_hospitalise();
+                    finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(service);
-                }),
-                 new MenuItem("    Chambres",Properties.Resources.waiting_room_20px,(s,ev) =>
-                {
-                    //Instructions
-                    MesUserCases.User_chambres chambre = new MesUserCases.User_chambres();
-                    chambre.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(chambre);
+                    panel_center_main.Controls.Add(finish);
                 }),
             };
+
             Create_sous_menu(items);
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));

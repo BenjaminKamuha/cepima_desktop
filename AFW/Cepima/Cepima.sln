@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepima", "Cepima\Cepima.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIFramework", "..\UIFramework\UIFramework.csproj", "{CCC43331-D3E0-46DB-98D9-96892205D586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepima.Updater", "Cepima.Updater\Cepima.Updater.csproj", "{1CA419CB-1FED-42F3-A677-908C9C3EBA2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{CCC43331-D3E0-46DB-98D9-96892205D586}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC43331-D3E0-46DB-98D9-96892205D586}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC43331-D3E0-46DB-98D9-96892205D586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA419CB-1FED-42F3-A677-908C9C3EBA2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA419CB-1FED-42F3-A677-908C9C3EBA2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA419CB-1FED-42F3-A677-908C9C3EBA2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA419CB-1FED-42F3-A677-908C9C3EBA2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

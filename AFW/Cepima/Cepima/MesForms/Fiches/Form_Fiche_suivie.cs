@@ -25,12 +25,12 @@ namespace Cepima.MesForms
         private void ChargerSection()
         {
             //  (Information administratives)
-            MesForms.Fiches.User_AdminInfo info = new Fiches.User_AdminInfo(PatientID);
+            MesForms.Fiches.User_AdminInfo info = new Fiches.User_AdminInfo(PatientID.ToString());
             info.Dock = DockStyle.Fill;
             sectionAdministratif.Contenu.Controls.Add(info);
 
             // section consultation
-            MesForms.Fiches.User_consultation cons = new Fiches.User_consultation();
+            MesForms.Fiches.User_consultation cons = new Fiches.User_consultation(PatientID);
             cons.Dock = DockStyle.Fill;
             sectionConsultation.Contenu.Controls.Add(cons);
 

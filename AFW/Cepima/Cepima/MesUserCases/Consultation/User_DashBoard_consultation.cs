@@ -22,20 +22,7 @@ namespace Cepima.MesUserCases
             LoadConsultations();
         }
 
-        private void dgv_consult_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgv_consultations.CurrentRow != null)
-            {
-               bt_start.Visible = true;
-               idPatient = Convert.ToInt32(dgv_consultations.CurrentRow.Cells["ID_Patient"].Value);
-            }
-            else
-            {
-                bt_start.Visible = false;
-                return;
-            }
-        }
-
+  
         private void bt_start_Click(object sender, EventArgs e)
         {
             // appel du User_consultation
@@ -115,7 +102,7 @@ namespace Cepima.MesUserCases
                     typeFiltre = "Consultation d'urgence";
                 }
 
-                string query = "SELECT c.id,p.id_patient,p.nom,p.post_nom,p.prenom,p.sexe,p.date_naissance,c.type_consultation,c.motif,c.date_consultation FROM patients p INNER JOIN consultation c ON p.id_patient = c.patient_id WHERE (p.nom LIKE @recherche OR p.post_nom LIKE @recherche OR p.prenom LIKE @recherche OR p.numero_fiche LIKE @recherche )";
+                string query = "SELECT c.id,p.id_patient,p.nom,p.post_nom,p.prenom,p.sexe,p.date_naissance,p.adresse,c.type_consultation,c.motif,c.date_consultation FROM patients p INNER JOIN consultation c ON p.id_patient = c.patient_id WHERE (p.nom LIKE @recherche OR p.post_nom LIKE @recherche OR p.prenom LIKE @recherche )";
 
                 // Ajouter le filtre du type de consultation
                 if (typeFiltre != "")
@@ -125,14 +112,14 @@ namespace Cepima.MesUserCases
 
                 query += " ORDER BY c.date_consultation DESC";
 
-                // Paramètre recherche
+                //// Paramètre recherche
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@recherche", "%" + recherche + "%");
 
                 // Paramètre du filtre
                 if (typeFiltre != "")
                 {
-                    MesClasses.ManagerClasse.request_params.Add("@type_consultation",typeFiltre);
+                    MesClasses.ManagerClasse.request_params.Add("@type_consultation", typeFiltre);
                 }
 
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
@@ -142,6 +129,8 @@ namespace Cepima.MesUserCases
                     while (reader.Read())
                     {
                         int numero = Convert.ToInt32(reader["id"]);
+                        int PATIENT_ID = Convert.ToInt32(reader["id_patient"]);
+                        //dgv_consultations.Columns["ID_Patient"].Visible = true;
                         string patient = reader["nom"].ToString() + " " +reader["post_nom"].ToString() + " " +reader["prenom"].ToString();
 
                         string sexe = reader["sexe"].ToString();
@@ -166,11 +155,11 @@ namespace Cepima.MesUserCases
                             numero,
                             patient,
                             sexe,
-                            age,
+                            age+" ans",
                             typeConsultation,
-                            adresse,
                             motif,
-                            statut
+                            statut,
+                            PATIENT_ID
                         );
 
                     }
@@ -211,6 +200,19 @@ namespace Cepima.MesUserCases
         private void txt_recherche_TextChanged(object sender, EventArgs e)
         {
             LoadConsultations();
+        }
+
+        private void dgv_consultations_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv_consultations.Columns.Contains("ID_Patient"))
+            {
+                idPatient = Convert.ToInt32(dgv_consultations.Rows[e.RowIndex].Cells["ID_Patient"].Value);
+                bt_start.Visible = true;
+            }
+            else
+            {
+                bt_start.Visible = false;
+            }
         }
     }
 }
