@@ -350,55 +350,37 @@ namespace Cepima.MesClasses
         }
 
         // ==================================== Payement ========================================================
-        private static void PayementFacture(int idFacture, DateTime date, decimal montant, decimal reste, MySqlConnection con, MySqlTransaction tr)
+        private static void PayementFacture(int idFacture, DateTime date, decimal montant, MySqlConnection con, MySqlTransaction tr)
         {
-            decimal total = 0;
-
-            string query = "INSERT INTO paiement (id_facture, date_paiement, montant, reste) VALUES(@id_facture, @date, @montant, @reste)";
+            string query = @"
+                INSERT INTO paiement
+                    (id_facture, date_paiement, montant, reste)
+                SELECT
+                    f.id_facture,
+                    @date,
+                    @montant,
+                    f.montant_total
+                        - COALESCE(
+                            (SELECT SUM(p.montant)
+                            FROM paiement p
+                            WHERE p.id_facture = f.id_facture),
+                            0
+                        )
+                        - @montant
+                FROM facture f
+                WHERE f.id_facture = @id_facture;
+            ";
 
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
                 cmd.Parameters.AddWithValue("@id_facture", idFacture);
                 cmd.Parameters.AddWithValue("@date", date);
                 cmd.Parameters.AddWithValue("@montant", montant);
-                cmd.Parameters.AddWithValue("@reste", reste);
-
-                cmd.ExecuteNonQuery();
-            }
-
-
-
-
-            string query_total = @"SELECT montant_total FROM facture WHERE id_facture=@id";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
-            {
-                cmd.Parameters.AddWithValue("@id", idFacture);
-
-                total = Convert.ToDecimal(cmd.ExecuteScalar());
-            }
-
-
-            query = "UPDATE facture SET montant_total=@total WHERE id_facture=@id";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
-            {
-                cmd.Parameters.AddWithValue("@total", total);
-                cmd.Parameters.AddWithValue("@id", idFacture);
-
-                cmd.ExecuteNonQuery();
-            }
-
-            query = "UPDATE facture SET montant_total=@total WHERE id_facture=@id";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
-            {
-                cmd.Parameters.AddWithValue("@total", total);
-                cmd.Parameters.AddWithValue("@id", idFacture);
 
                 cmd.ExecuteNonQuery();
             }
         }
+    
 
     }
 }
