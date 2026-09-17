@@ -320,8 +320,9 @@ namespace Cepima.MesUserCases.EEG
                             Form1.PATIENT_ID = Convert.ToInt32(idPatient);
                             Form1.DEMANDE_ID = Convert.ToInt32(idDemande);
 
-                            Form_caisse_eeg form = new Form_caisse_eeg(idPatient);
+                            Form_caisse_eeg form = new Form_caisse_eeg(idPatient, idDemande);
                             form.ShowDialog();
+                            ChargerDemandesEEG();
 
                        
                     }

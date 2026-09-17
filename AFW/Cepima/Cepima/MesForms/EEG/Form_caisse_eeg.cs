@@ -15,12 +15,14 @@ namespace Cepima.MesForms.EEG
     public partial class Form_caisse_eeg : Form
     {
         string ID_PATIENT;
+        string ID_DEMANDE;
 
-        public Form_caisse_eeg(string patient)
+        public Form_caisse_eeg(string patient, string demande)
         {
             InitializeComponent();
 
             ID_PATIENT = patient;
+            ID_DEMANDE = demande;
         }
 
         private void bt_confirmer_Click(object sender, EventArgs e)
@@ -30,26 +32,54 @@ namespace Cepima.MesForms.EEG
 
             decimal montant = Convert.ToDecimal(tb_montant.Text);
             int id_facture = 0;
+
             using (MySqlConnection con = db.GetConnection())
             {
+                con.Open();
+
                 MySqlTransaction tr = con.BeginTransaction();
-
-                string query = "SELECT id_facture FROM facture WHERE id_patient = @idPatient AND (statut='Non payé' OR statut='Partiellement payé') ";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@idPatient", ID_PATIENT);
 
-                    id_facture = Convert.ToInt32(cmd.ExecuteScalar());
+                    // Création de la facture
+                    id_facture = MesClasses.ReceptionManager.CreerFactureSiInexistante(ID_PATIENT, con, tr);
+
+                    // Facture
+                    MesClasses.ReceptionManager.MettreAJourPrestation(id_facture, "EEG", 1, montant, montant, con, tr);
+
+                    // Payement EEG
+                    MesClasses.ReceptionManager.PayementFacture(id_facture, dtp_date.Value.Date, montant, con, tr);
+
+                    // Changer statut demande
+                    string query_update_demande = "UPDATE demande_service SET statut='Demandée' WHERE id_demande=@id_demande AND id_patient=@id_patient";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query_update_demande, con, tr))
+                    {
+                        cmd.Parameters.AddWithValue("@id_demande", ID_DEMANDE);
+                        cmd.Parameters.AddWithValue("@id_patient", ID_PATIENT);
+
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Payement enregistré avec succès");
+
+                    }
+                    tr.Commit();
+                    this.Close();
 
                 }
+                catch (Exception ex)
+                {
+                    tr.Rollback();
+                    MessageBox.Show("Erreur");
+                }
 
-                // Facture
-                MesClasses.ReceptionManager.MettreAJourPrestation(id_facture, "EEG", 1, montant, montant, con, tr);
-
-                // Payement EEG
                 
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }

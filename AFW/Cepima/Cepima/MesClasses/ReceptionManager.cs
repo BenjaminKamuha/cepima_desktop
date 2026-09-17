@@ -287,6 +287,8 @@ namespace Cepima.MesClasses
                 cmd.ExecuteNonQuery();
 
                 RecalculerFacture(idFacture, con, tr);
+
+                // Enregistrer payement
             }
         }
 
@@ -350,7 +352,7 @@ namespace Cepima.MesClasses
         }
 
         // ==================================== Payement ========================================================
-        private static void PayementFacture(int idFacture, DateTime date, decimal montant, MySqlConnection con, MySqlTransaction tr)
+        public static void PayementFacture(int idFacture, DateTime date, decimal montant, MySqlConnection con, MySqlTransaction tr)
         {
             string query = @"
                 INSERT INTO paiement
