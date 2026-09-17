@@ -9,64 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.Data;
-using Cepima.MesForms.Pharmacie;
 using Cepima.MesForms.EEG;
 
 namespace Cepima.MesUserCases.EEG
 {
-    public partial class User_examens : UserControl
+    public partial class User_caisse : UserControl
     {
-        // =========================================================
-        // CONSTRUCTEUR
-        // =========================================================
-
-        public User_examens()
+        public User_caisse()
         {
             InitializeComponent();
-
-            // -----------------------------------------------------
-            // RADIO BUTTON PAR DEFAUT
-            // -----------------------------------------------------
-
-            rd_tout.Checked = true;
-
-
-            // -----------------------------------------------------
-            // EVENEMENT RECHERCHE
-            // -----------------------------------------------------
-
-            tb_search_demande.TextChanged +=
-                tb_search_demande_TextChanged;
-
-
-            // -----------------------------------------------------
-            // EVENEMENTS RADIO BUTTON
-            // -----------------------------------------------------
-
-            rd_tout.CheckedChanged +=
-                rd_statut_CheckedChanged;
-
-            rd_statut_demande.CheckedChanged +=
-                rd_statut_CheckedChanged;
-
-            rd_statut_termine.CheckedChanged +=
-                rd_statut_CheckedChanged;
-
-            rd_statut_annule.CheckedChanged +=
-                rd_statut_CheckedChanged;
-
-
-            // -----------------------------------------------------
-            // CHARGEMENT INITIAL
-            // -----------------------------------------------------
+            Database db = new Database();
 
             ChargerDemandesEEG();
+
         }
-
-
-        // =========================================================
-        // CHARGER LES DEMANDES EEG
-        // =========================================================
 
         private void ChargerDemandesEEG()
         {
@@ -94,14 +50,6 @@ namespace Cepima.MesUserCases.EEG
 
                     string recherche =
                         tb_search_demande.Text.Trim();
-
-
-                    // =================================================
-                    // STATUT SELECTIONNE
-                    // =================================================
-
-                    string statut =
-                        ObtenirStatutSelectionne();
 
 
                     // =================================================
@@ -137,13 +85,8 @@ namespace Cepima.MesUserCases.EEG
                         INNER JOIN service s
                             ON s.id_service = ds.id_service
 
-                        WHERE s.nom = 'EEG' AND statut IS NOT NULL
+                        WHERE s.nom = 'EEG' AND statut IS NULL
 
-                        AND
-                        (
-                            @statut = 'Tous'
-                            OR ds.statut = @statut
-                        )
 
                         AND
                         (
@@ -163,10 +106,6 @@ namespace Cepima.MesUserCases.EEG
                         // -------------------------------------------------
                         // PARAMETRES
                         // -------------------------------------------------
-
-                        cmd.Parameters.AddWithValue(
-                            "@statut",
-                            statut);
 
 
                         cmd.Parameters.AddWithValue(
@@ -286,98 +225,6 @@ namespace Cepima.MesUserCases.EEG
         }
 
 
-        // =========================================================
-        // OBTENIR LE STATUT SELECTIONNE
-        // =========================================================
-
-        private string ObtenirStatutSelectionne()
-        {
-            // -----------------------------------------------------
-            // TOUT
-            // -----------------------------------------------------
-
-            if (rd_tout.Checked)
-            {
-                return "Tous";
-            }
-
-
-            // -----------------------------------------------------
-            // DEMANDE
-            // -----------------------------------------------------
-
-            if (rd_statut_demande.Checked)
-            {
-                return "Demandée";
-            }
-
-
-            // -----------------------------------------------------
-            // TERMINE
-            // -----------------------------------------------------
-
-            if (rd_statut_termine.Checked)
-            {
-                return "Terminée";
-            }
-
-
-            // -----------------------------------------------------
-            // ANNULE
-            // -----------------------------------------------------
-
-            if (rd_statut_annule.Checked)
-            {
-                return "Annulée";
-            }
-
-
-            // -----------------------------------------------------
-            // PAR DEFAUT
-            // -----------------------------------------------------
-
-            return "Tous";
-        }
-
-
-        // =========================================================
-        // EVENEMENT RECHERCHE
-        // =========================================================
-
-        private void tb_search_demande_TextChanged(
-            object sender,
-            EventArgs e)
-        {
-            ChargerDemandesEEG();
-        }
-
-
-        // =========================================================
-        // EVENEMENT RADIO BUTTON
-        // =========================================================
-
-        private void rd_statut_CheckedChanged(
-            object sender,
-            EventArgs e)
-        {
-            RadioButton radio =
-                sender as RadioButton;
-
-
-            // On recharge uniquement le RadioButton
-            // qui vient d'être sélectionné.
-
-            if (radio != null &&
-                radio.Checked)
-            {
-                ChargerDemandesEEG();
-            }
-        }
-
-
-        // =========================================================
-        // CREER LE PANEL D'UNE DEMANDE
-        // =========================================================
 
         private void Create_pan_examen(
             string idDemande,
@@ -470,45 +317,13 @@ namespace Cepima.MesUserCases.EEG
                         // ---------------------------------------------
                         // DEMANDE EEG
                         // ---------------------------------------------
-
-                        if (status == "Demandée")
-                        {
                             Form1.PATIENT_ID = Convert.ToInt32(idPatient);
                             Form1.DEMANDE_ID = Convert.ToInt32(idDemande);
 
-                            Form_new_eeg form = new Form_new_eeg();
+                            Form_caisse_eeg form = new Form_caisse_eeg(idPatient);
                             form.ShowDialog();
 
-                            ChargerDemandesEEG();
-                        }
-                        else if (status == "En cours")
-                        {
-                            Form1.PATIENT_ID = Convert.ToInt32(idPatient);
-                            Form1.DEMANDE_ID = Convert.ToInt32(idDemande);
-
-                            Form_realisation_eeg form = new Form_realisation_eeg();
-
-                            form.ShowDialog();
-
-                            ChargerDemandesEEG();
-                        }
-                        else if (status == "Terminée")
-                        {
-                            MesForms.Form_Fiche_suivie form =
-                                new MesForms.Form_Fiche_suivie(idPatient);
-
-                            form.ShowDialog();
-
-                            ChargerDemandesEEG();
-                        }
-                        else if (status == "Annulée")
-                        {
-                            MessageBox.Show(
-                                "Cette demande EEG a été annulée.",
-                                "EEG",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-                        }
+                       
                     }
                     catch (Exception ex)
                     {
@@ -738,55 +553,10 @@ namespace Cepima.MesUserCases.EEG
                 couleurNormale);
         }
 
-
-        // =========================================================
-        // AJOUTER LE CLICK AUX CONTROLES ENFANTS
-        // =========================================================
-
-        private void AjouterClickAuxEnfants(
-            Control parent,
-            EventHandler clickHandler)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                // -------------------------------------------------
-                // CLICK
-                // -------------------------------------------------
-
-                control.Click +=
-                    clickHandler;
-
-
-                // -------------------------------------------------
-                // CURSEUR
-                // -------------------------------------------------
-
-                control.Cursor =
-                    Cursors.Hand;
-
-
-                // -------------------------------------------------
-                // CONTROLES ENFANTS
-                // -------------------------------------------------
-
-                if (control.Controls.Count > 0)
-                {
-                    AjouterClickAuxEnfants(
-                        control,
-                        clickHandler);
-                }
-            }
-        }
-
-
-        // =========================================================
-        // AJOUTER LE HOVER AUX CONTROLES ENFANTS
-        // =========================================================
-
         private void AjouterHoverAuxEnfants(
-            Control parent,
-            Color couleurHover,
-            Color couleurNormale)
+    Control parent,
+    Color couleurHover,
+    Color couleurNormale)
         {
             foreach (Control control in parent.Controls)
             {
@@ -836,5 +606,48 @@ namespace Cepima.MesUserCases.EEG
                 }
             }
         }
+
+        private void AjouterClickAuxEnfants(
+            Control parent,
+            EventHandler clickHandler)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                // -------------------------------------------------
+                // CLICK
+                // -------------------------------------------------
+
+                control.Click +=
+                    clickHandler;
+
+
+                // -------------------------------------------------
+                // CURSEUR
+                // -------------------------------------------------
+
+                control.Cursor =
+                    Cursors.Hand;
+
+
+                // -------------------------------------------------
+                // CONTROLES ENFANTS
+                // -------------------------------------------------
+
+                if (control.Controls.Count > 0)
+                {
+                    AjouterClickAuxEnfants(
+                        control,
+                        clickHandler);
+                }
+            }
+        }
+
+
+        private void User_caisse_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

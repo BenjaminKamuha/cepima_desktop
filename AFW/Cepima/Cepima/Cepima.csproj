@@ -207,6 +207,18 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
+      <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\EEG\User_caisse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\EEG\User_caisse.Designer.cs">
+      <DependentUpon>User_caisse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />
@@ -432,10 +444,10 @@
     <Compile Include="MesForms\Pharmacie\Form_detail_produit.Designer.cs">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_signes_vitaux.cs">
+    <Compile Include="MesForms\Reception\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_signes_vitaux.Designer.cs">
+    <Compile Include="MesForms\Reception\Form_signes_vitaux.Designer.cs">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_inventory.cs">
@@ -619,6 +631,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_caisse_eeg.resx">
+      <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\EEG\Form_new_eeg.resx">
       <DependentUpon>Form_new_eeg.cs</DependentUpon>
     </EmbeddedResource>
@@ -718,7 +733,7 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
+    <EmbeddedResource Include="MesForms\Reception\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_inventory.resx">
@@ -726,6 +741,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
+      <DependentUpon>User_caisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_DashBoard.resx">
       <DependentUpon>User_DashBoard.cs</DependentUpon>

@@ -863,7 +863,6 @@ namespace Cepima.MesForms
                             date_demande,
                             priorite,
                             motif,
-                            statut,
                             observation
                         )
                         VALUES
@@ -875,7 +874,6 @@ namespace Cepima.MesForms
                             NOW(),
                             @priorite,
                             @motif,
-                            'Demandée',
                             @observation
                         )";
 
