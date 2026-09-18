@@ -866,7 +866,7 @@ namespace Cepima.MesForms
                             observation
                         )
                         VALUES
-                        (
+                        (q
                             @id_patient,
                             @id_service,
                             @id_consultation,
@@ -884,6 +884,7 @@ namespace Cepima.MesForms
                             "@id_patient",
                             Form1.PATIENT_ID);
 
+            
                         cmd.Parameters.AddWithValue(
                             "@id_service",
                             idService);
