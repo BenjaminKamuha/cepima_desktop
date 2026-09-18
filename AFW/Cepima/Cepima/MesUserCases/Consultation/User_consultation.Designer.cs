@@ -91,6 +91,8 @@
             this.tb_autre = new MyRoundedTextBox();
             this.tb_autre_evaluation = new MyRoundedTextBox();
             this.tb_motif = new MyRoundedTextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tb_montant = new RoundedNumericUpDown();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelSuicidaire.SuspendLayout();
@@ -306,7 +308,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label16.Location = new System.Drawing.Point(98, 420);
+            this.label16.Location = new System.Drawing.Point(52, 427);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(124, 17);
             this.label16.TabIndex = 0;
@@ -317,7 +319,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label17.Location = new System.Drawing.Point(488, 419);
+            this.label17.Location = new System.Drawing.Point(326, 426);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(152, 17);
             this.label17.TabIndex = 0;
@@ -777,7 +779,7 @@
             this.dt_after_.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dt_after_.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dt_after_.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.dt_after_.Location = new System.Drawing.Point(494, 442);
+            this.dt_after_.Location = new System.Drawing.Point(332, 449);
             this.dt_after_.Name = "dt_after_";
             this.dt_after_.Size = new System.Drawing.Size(246, 23);
             this.dt_after_.TabIndex = 26;
@@ -790,6 +792,8 @@
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel2.BorderRadius = 8;
             this.customRoundedPanel2.BorderSize = 1;
+            this.customRoundedPanel2.Controls.Add(this.tb_montant);
+            this.customRoundedPanel2.Controls.Add(this.label18);
             this.customRoundedPanel2.Controls.Add(this.dt_after_);
             this.customRoundedPanel2.Controls.Add(this.rich_facteurs);
             this.customRoundedPanel2.Controls.Add(this.rich_evolution);
@@ -853,7 +857,7 @@
             this.myRoundedTextBox1.FocusBorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.myRoundedTextBox1.ForeColor = System.Drawing.Color.Black;
             this.myRoundedTextBox1.Image = null;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(491, 439);
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(330, 446);
             this.myRoundedTextBox1.MaxLength = 32767;
             this.myRoundedTextBox1.Name = "myRoundedTextBox1";
             this.myRoundedTextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -872,7 +876,7 @@
             this.tb_diagnostic_principal.FocusBorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.tb_diagnostic_principal.ForeColor = System.Drawing.Color.Black;
             this.tb_diagnostic_principal.Image = null;
-            this.tb_diagnostic_principal.Location = new System.Drawing.Point(95, 442);
+            this.tb_diagnostic_principal.Location = new System.Drawing.Point(49, 449);
             this.tb_diagnostic_principal.MaxLength = 32767;
             this.tb_diagnostic_principal.Name = "tb_diagnostic_principal";
             this.tb_diagnostic_principal.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -935,6 +939,35 @@
             this.tb_motif.PlaceholderText = "";
             this.tb_motif.Size = new System.Drawing.Size(280, 29);
             this.tb_motif.TabIndex = 21;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label18.Location = new System.Drawing.Point(616, 423);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 17);
+            this.label18.TabIndex = 27;
+            this.label18.Text = "Prix:";
+            // 
+            // tb_montant
+            // 
+            this.tb_montant.BackColor = System.Drawing.Color.White;
+            this.tb_montant.BorderColor = System.Drawing.Color.LightGray;
+            this.tb_montant.ButtonBackColor = System.Drawing.Color.White;
+            this.tb_montant.ButtonFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.tb_montant.ButtonForeColor = System.Drawing.Color.DimGray;
+            this.tb_montant.ButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.tb_montant.DecimalPlaces = 2;
+            this.tb_montant.FocusBorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.tb_montant.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.tb_montant.ForeColor = System.Drawing.Color.Black;
+            this.tb_montant.Location = new System.Drawing.Point(617, 443);
+            this.tb_montant.MinimumSize = new System.Drawing.Size(77, 32);
+            this.tb_montant.Name = "tb_montant";
+            this.tb_montant.Size = new System.Drawing.Size(150, 32);
+            this.tb_montant.TabIndex = 28;
             // 
             // User_consultation
             // 
@@ -1025,6 +1058,8 @@
         private MyRoundedTextBox tb_autre;
         private MyRoundedTextBox tb_autre_evaluation;
         private MyRoundedTextBox tb_motif;
+        private RoundedNumericUpDown tb_montant;
+        private System.Windows.Forms.Label label18;
 
     }
 }

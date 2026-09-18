@@ -404,6 +404,14 @@ namespace Cepima
                     panel_center_main.Controls.Add(finish);
                 }),
 
+                new MenuItem("    Caisse",Properties.Resources.add_dollar_30px, (s,ev) =>
+                {
+                    MesUserCases.EEG.User_caisse finish = new MesUserCases.EEG.User_caisse();
+                    finish.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(finish);
+                }),
+
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

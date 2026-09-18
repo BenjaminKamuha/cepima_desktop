@@ -385,6 +385,7 @@
             this.bt_save_signe.Name = "bt_save_signe";
             this.bt_save_signe.Size = new System.Drawing.Size(148, 33);
             this.bt_save_signe.TabIndex = 9;
+            this.bt_save_signe.Load += new System.EventHandler(this.bt_save_signe_Load);
             this.bt_save_signe.Click += new System.EventHandler(this.bt_save_signe_Click);
             // 
             // Form_signes_vitaux

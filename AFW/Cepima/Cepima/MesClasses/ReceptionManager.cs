@@ -128,6 +128,10 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@poids", poids.ToString());
                     ManagerClasse.request_params.Add("@taille", taille.ToString());
                     ManagerClasse.CRUD(query,ManagerClasse.request_params);
+
+                    // Initialisation facture
+                    CreerFactureSiInexistante(patient_id, con, tr);
+                     
                     tr.Commit();
 
                     DialogResult result = MessageBox.Show(
@@ -283,6 +287,8 @@ namespace Cepima.MesClasses
                 cmd.ExecuteNonQuery();
 
                 RecalculerFacture(idFacture, con, tr);
+
+                // Enregistrer payement
             }
         }
 
@@ -311,14 +317,14 @@ namespace Cepima.MesClasses
             }
         }
         // ================================== creer une facture s'il n'existe pas =============================================
-        public static int CreerFactureSiInexistante(int idConsultation,int idPatient,string typeFacture,MySqlConnection con,MySqlTransaction tr)
+        public static int CreerFactureSiInexistante(string idPatient, MySqlConnection con,MySqlTransaction tr)
         {
             // Vérifier si la facture existe déjà
-            string query = "SELECT id_facture FROM facture WHERE id_consultation=@id";
+            string query = "SELECT id_facture FROM facture WHERE id_patient = @idPatient AND (statut='Non payé' OR statut='Partiellement payé') ";
 
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
-                cmd.Parameters.AddWithValue("@id", idConsultation);
+                cmd.Parameters.AddWithValue("@idPatient", idPatient);
 
                 object result = cmd.ExecuteScalar();
 
@@ -327,17 +333,14 @@ namespace Cepima.MesClasses
             }
 
             //================ Création =================
-
+            
             int idFacture = 0;
 
-            string insert = "INSERT INTO facture(id_patient,id_consultation,id_centre,type_facture,date_facture,montant_total,statut)VALUES(@patient,@consultation,@centre,@type,CURDATE(),0,'Non payé')";
+            string insert = "INSERT INTO facture(id_patient, id_centre,date_facture,montant_total,statut)VALUES(@patient,@centre,CURDATE(),0,'Non payé')";
             using (MySqlCommand cmd = new MySqlCommand(insert, con, tr))
             {
                 cmd.Parameters.AddWithValue("@patient", idPatient);
-                cmd.Parameters.AddWithValue("@consultation", idConsultation);
                 cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
-                cmd.Parameters.AddWithValue("@type", typeFacture);
-
                 cmd.ExecuteNonQuery();
 
                 idFacture = Convert.ToInt32(cmd.LastInsertedId);
@@ -348,16 +351,38 @@ namespace Cepima.MesClasses
             return idFacture;
         }
 
-    }
-    class Event
-    {
-        public static void SaveHistorique(string idHospitalisation, string evenement)
+        // ==================================== Payement ========================================================
+        public static void PayementFacture(int idFacture, DateTime date, decimal montant, MySqlConnection con, MySqlTransaction tr)
         {
-            string query = "INSERT INTO historique_sejour(id_hospitalisation,evenement,date_evenement)VALUES(@id,@ev,NOW())";
-            MesClasses.ManagerClasse.request_params.Clear();
-            MesClasses.ManagerClasse.request_params.Add("@id", idHospitalisation);
-            MesClasses.ManagerClasse.request_params.Add("@ev", evenement);
-            MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
+            string query = @"
+                INSERT INTO paiement
+                    (id_facture, date_paiement, montant, reste)
+                SELECT
+                    f.id_facture,
+                    @date,
+                    @montant,
+                    f.montant_total
+                        - COALESCE(
+                            (SELECT SUM(p.montant)
+                            FROM paiement p
+                            WHERE p.id_facture = f.id_facture),
+                            0
+                        )
+                        - @montant
+                FROM facture f
+                WHERE f.id_facture = @id_facture;
+            ";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@date", date);
+                cmd.Parameters.AddWithValue("@montant", montant);
+
+                cmd.ExecuteNonQuery();
+            }
         }
+    
+
     }
 }
