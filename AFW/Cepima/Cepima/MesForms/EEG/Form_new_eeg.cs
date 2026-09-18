@@ -284,7 +284,6 @@ namespace Cepima.MesForms.Pharmacie
                     (
                         id_demande,
                         id_patient,
-                        id_consultation,
                         date_examen,
                         type_EEG,
                         indication,
@@ -305,7 +304,6 @@ namespace Cepima.MesForms.Pharmacie
                     SELECT
                         @id_demande,
                         @id_patient,
-                        ds.id_consultation,
                         @date_examen,
                         @type_EEG,
                         @indication,

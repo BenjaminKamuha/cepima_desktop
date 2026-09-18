@@ -113,7 +113,6 @@ namespace Cepima.MesUserCases.EEG
                             ds.id_demande,
                             ds.id_patient,
                             ds.id_service,
-                            ds.id_consultation,
 
                             p.nom,
                             p.post_nom,
@@ -137,7 +136,7 @@ namespace Cepima.MesUserCases.EEG
                         INNER JOIN service s
                             ON s.id_service = ds.id_service
 
-                        WHERE s.nom = 'EEG'
+                        WHERE s.nom = 'EEG' AND statut NOT IN ('En attente', 'Annulé')
 
                         AND
                         (

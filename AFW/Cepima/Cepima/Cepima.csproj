@@ -78,21 +78,25 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportViewer.WebForms.v12.12.0.0.0\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.WinForms.DLL</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.TeamFoundation.Client, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.TeamFoundation.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -131,10 +135,13 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -229,6 +236,49 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
+      <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_prescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_prescription.Designer.cs">
+      <DependentUpon>Form_prescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_prestation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
+      <DependentUpon>Form_prestation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\EEG\User_caisse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\EEG\User_caisse.Designer.cs">
+      <DependentUpon>User_caisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_service.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_service.Designer.cs">
+      <DependentUpon>Form_service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_prescription.Designer.cs">
+      <DependentUpon>UC_prescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Services\User_services.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Services\User_services.Designer.cs">
+      <DependentUpon>User_services.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />
     <Compile Include="Core\IThemeAware.cs" />
@@ -483,10 +533,10 @@
     <Compile Include="MesForms\Pharmacie\Form_detail_produit.Designer.cs">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_signes_vitaux.cs">
+    <Compile Include="MesForms\Reception\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_signes_vitaux.Designer.cs">
+    <Compile Include="MesForms\Reception\Form_signes_vitaux.Designer.cs">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_inventory.cs">
@@ -664,6 +714,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\UpdateProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Services\UpdateProgressForm.Designer.cs">
+      <DependentUpon>UpdateProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_logo_cepima.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -675,6 +731,9 @@
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_caisse_eeg.resx">
+      <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\EEG\Form_new_eeg.resx">
       <DependentUpon>Form_new_eeg.cs</DependentUpon>
@@ -790,7 +849,10 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_prescription.resx">
+      <DependentUpon>Form_prescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Reception\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_inventory.resx">
@@ -798,6 +860,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
+      <DependentUpon>User_caisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_DashBoard.resx">
       <DependentUpon>User_DashBoard.cs</DependentUpon>
@@ -832,8 +897,14 @@
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_inventory.resx">
       <DependentUpon>UC_inventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_prescription.resx">
+      <DependentUpon>UC_prescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_stock_pharmacie.resx">
       <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Services\User_services.resx">
+      <DependentUpon>User_services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
@@ -1629,6 +1700,7 @@
     <None Include="Resources\users_30px.png" />
   </ItemGroup>
   <ItemGroup>
+
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
@@ -1661,6 +1733,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\treatment_100px.png" />
+
+    <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_25px2.png" />
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

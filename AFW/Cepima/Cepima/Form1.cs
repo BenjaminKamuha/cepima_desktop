@@ -12,6 +12,10 @@ using Cepima.MesClasses;
 using Cepima.MesUserCases;
 using Cepima.MesForms;
 using Cepima.Data;
+using Cepima.Services;
+
+
+
 
 namespace Cepima
 {
@@ -22,6 +26,7 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
+     
 
         public Form1()
         {
@@ -32,6 +37,8 @@ namespace Cepima
             LoadUserConnect(lb_username,"Connecté",lb_statut);
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
+
+
         }
 
         /// <summary>
@@ -355,7 +362,11 @@ namespace Cepima
             
                 new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px,(s,ev) => {
 
-                    MessageBox.Show("En cours de dévelopement");
+                    MesUserCases.Pharmacie.UC_prescription prescription = new MesUserCases.Pharmacie.UC_prescription();
+                    panel_center_main.Controls.Clear();
+                    prescription.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(prescription);
+
                 }),
 
             };
@@ -389,6 +400,14 @@ namespace Cepima
                 new MenuItem("    Examens",Properties.Resources.finish_flag_30px, (s,ev) =>
                 {
                     MesUserCases.EEG.User_examens finish = new MesUserCases.EEG.User_examens();
+                    finish.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(finish);
+                }),
+
+                new MenuItem("    Caisse",Properties.Resources.add_dollar_30px, (s,ev) =>
+                {
+                    MesUserCases.EEG.User_caisse finish = new MesUserCases.EEG.User_caisse();
                     finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(finish);
@@ -468,6 +487,7 @@ namespace Cepima
       
         private void bt_setting_Click(object sender, EventArgs e)
         {
+            
             picture_image_menu.Image = Properties.Resources.settings_90px;
             lb_sous_menu.Text = "Paramètres";
             lb_sous_menu.Visible = true;
@@ -477,16 +497,25 @@ namespace Cepima
             {
                 new MenuItem("   Géneraux",Properties.Resources.maintenance_20px,(s,ev) => {}),
                 new MenuItem("   Apparence",Properties.Resources.eye_checked_20px,(s, ev) => {}),
-                new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {})
+                new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {}),
+                new MenuItem("   Services",Properties.Resources.gift_30px, (s, ev) => {
+                    MesUserCases.Services.User_services uc_service = new MesUserCases.Services.User_services();
+                    panel_center_main.Controls.Clear();
+                    uc_service.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(uc_service);
+                })
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             bt_acceuil.PerformClick();
+
+            UpdateManager manager = new UpdateManager();
+            lb_version.Text = manager.GetCurrentVersion();
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
@@ -602,6 +631,7 @@ namespace Cepima
 
         }
 
+
         private void bt_personnel_Click(object sender, EventArgs e)
         {
             picture_image_menu.Image = Properties.Resources.staff_90px;
@@ -648,6 +678,14 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
+
+
+        private async void btn_update_Click(object sender, EventArgs e)
+        {
+            UpdateManager manager = new UpdateManager();
+            await manager.CheckForUpdateAsync();
+        }
+
 
     }
     public class MenuItem
