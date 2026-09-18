@@ -27,7 +27,6 @@ namespace Cepima
         {
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
-            bt_personnel.Click += bt_personnel_Click;
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
@@ -251,9 +250,7 @@ namespace Cepima
             uc_lg.Dock = DockStyle.Fill;
             panel_center_main.Controls.Add(uc_lg);
 
-            
-
-
+           
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
             lb_sous_menu.Visible = true;
@@ -468,49 +465,7 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
-        private void bt_personnel_Click(object sender, EventArgs e)
-        {
-            picture_image_menu.Image = Properties.Resources.staff_90px;
-            lb_sous_menu.Text = "Personnels";
-            lb_sous_menu.Visible = true;
-            panel11.Visible = true;
-
-            MesUserCases.Personnels.User_DashBord_Personnel acceuil_rh = new MesUserCases.Personnels.User_DashBord_Personnel();
-            acceuil_rh.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(acceuil_rh);
-
-            var items = new List<MenuItem>()
-            {
-                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>
-                    {
-                        //control acceuil du personnel
-                        MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
-                        acceuil.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(acceuil);
-                    }),
-
-                new MenuItem("      Personnel",Properties.Resources.users_30px,(s,ev) =>
-                    {
-                        //control autre
-                        MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
-                        personnel.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(personnel);
-                    }),
-               
-            
-                     new MenuItem("     Présences",Properties.Resources.attendance_30px,(s,ev) =>
-                    {
-                       
-                    }),
-
-            };
-            Create_sous_menu(items);
-            Button bt = sender as Button;
-            MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
-        }
+      
         private void bt_setting_Click(object sender, EventArgs e)
         {
             picture_image_menu.Image = Properties.Resources.settings_90px;
@@ -646,6 +601,54 @@ namespace Cepima
         {
 
         }
+
+        private void bt_personnel_Click(object sender, EventArgs e)
+        {
+            picture_image_menu.Image = Properties.Resources.staff_90px;
+            lb_sous_menu.Text = "Personnels";
+            lb_sous_menu.Visible = true;
+            panel11.Visible = true;
+
+            MesUserCases.Personnels.User_DashBord_Personnel acceuil_rh = new MesUserCases.Personnels.User_DashBord_Personnel();
+            acceuil_rh.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(acceuil_rh);
+
+            var items = new List<MenuItem>()
+            {
+                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>
+                    {
+                        //control acceuil du personnel
+                        MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
+                        acceuil.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(acceuil);
+                    }),
+
+                new MenuItem("      Personnel",Properties.Resources.users_30px,(s,ev) =>
+                    {
+                        //control autre
+                        MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
+                        personnel.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(personnel);
+                    }),
+
+                     //Troisième sous menu
+                     new MenuItem("     Présences",Properties.Resources.attendance_30px,(s,ev) =>
+                    {
+                        MesUserCases.Personnels.User_Presence presence = new MesUserCases.Personnels.User_Presence();
+                        presence.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(presence);
+                    }),
+
+            };
+            Create_sous_menu(items);
+            Button bt = sender as Button;
+            MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
+        }
+
     }
     public class MenuItem
     {

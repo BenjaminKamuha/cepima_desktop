@@ -24,7 +24,7 @@ namespace Cepima.MesUserCases
             lb_not_found.Visible = false;
             try
             {
-                string query = "SELECT d.id_demande,p.nom,p.post_nom,p.prenom,p.sexe,p.date_naissance,d.statut,d.date_demande FROM demande_service d INNER JOIN patients p ON d.id_patient = p.id_patient JOIN service s ON s.id_service = d.id_service WHERE 1 = 1";
+                string query = "SELECT d.id_demande,p.id_patient,p.nom,p.post_nom,p.prenom,p.sexe,p.date_naissance,d.statut,d.date_demande FROM demande_service d INNER JOIN patients p ON d.id_patient = p.id_patient JOIN service s ON s.id_service = d.id_service WHERE 1 = 1";
 
                 MesClasses.ManagerClasse.request_params.Clear();
 
@@ -77,7 +77,7 @@ namespace Cepima.MesUserCases
                     {
                         while (reader.Read())
                         {
-                            string idDemande = reader["id_demande"].ToString();
+                            string idDemande = reader["id_patient"].ToString();
 
                             string nom = reader["nom"].ToString();
 
@@ -143,6 +143,14 @@ namespace Cepima.MesUserCases
                 new Point(15, 15),
                 new Size(60, 60)
             );
+
+            panDemande.Click += (s, e) =>
+                {
+                    MesUserCases.User_consultation cons = new User_consultation(Convert.ToInt32(idDemande));
+                    cons.Dock = DockStyle.Fill;
+                    Form1.GlobalPanel_main.Controls.Clear();
+                    Form1.GlobalPanel_main.Controls.Add(cons);
+                };
 
             panDemande.Controls.Add(picture);
 

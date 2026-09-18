@@ -68,9 +68,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(403, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 31);
+            this.label1.Size = new System.Drawing.Size(234, 31);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Connectez-vous";
+            this.label1.Text = "Connectez-vous ";
             // 
             // button1
             // 

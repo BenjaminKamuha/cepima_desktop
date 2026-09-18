@@ -453,6 +453,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Capture {
+            get {
+                object obj = ResourceManager.GetObject("Capture", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Capture_1 {
             get {
                 object obj = ResourceManager.GetObject("Capture_1", resourceCulture);
@@ -2256,6 +2266,36 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap trash_red1 {
             get {
                 object obj = ResourceManager.GetObject("trash_red1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap treatment_100px {
+            get {
+                object obj = ResourceManager.GetObject("treatment_100px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap treatment_20px {
+            get {
+                object obj = ResourceManager.GetObject("treatment_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap treatment_50px {
+            get {
+                object obj = ResourceManager.GetObject("treatment_50px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -385,6 +385,7 @@
             this.bt_start.TextColor = System.Drawing.Color.White;
             this.bt_start.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bt_start.UseVisualStyleBackColor = false;
+            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
             // 
             // dgv_personnel
             // 

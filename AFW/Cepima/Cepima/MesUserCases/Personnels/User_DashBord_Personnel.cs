@@ -140,7 +140,18 @@ namespace Cepima.MesUserCases.Personnels
             {
                 dgv_personnel.Rows.Clear();
 
-                string query = "SELECT id_personnel,nom,post_nom,prenom,date_naissance,sexe,adresse,fonction,date_naissance FROM personnels ORDER BY id_personnel ASC LIMIT 10";
+                string query = @"SELECT 
+                            id_personnel,
+                            nom,
+                            post_nom,
+                            prenom,
+                            date_naissance,
+                            sexe,
+                            adresse,
+                            fonction
+                         FROM personnels
+                         ORDER BY id_personnel ASC
+                         LIMIT 10";
 
                 using (MySqlDataReader reader =
                        MesClasses.ManagerClasse.CRUD(query, null, true))
@@ -154,21 +165,51 @@ namespace Cepima.MesUserCases.Personnels
                             reader["post_nom"].ToString() + " " +
                             reader["prenom"].ToString();
 
-                        int age = CalculerAge(Convert.ToDateTime(reader["date_naissance"]));
+                        // ==========================================
+                        // AGE ET DATE DE NAISSANCE
+                        // ==========================================
+
+                        int age = -1;
+                        string date = "Non renseignée";
+
+                        if (reader["date_naissance"] != DBNull.Value)
+                        {
+                            DateTime dateNaissance =
+                                Convert.ToDateTime(reader["date_naissance"]);
+
+                            age = CalculerAge(dateNaissance);
+
+                            date = dateNaissance.ToString("dd/MM/yyyy");
+                        }
+
+                        // ==========================================
+                        // AUTRES INFORMATIONS
+                        // ==========================================
 
                         string sexe = reader["sexe"].ToString();
+
                         string adresse = reader["adresse"].ToString();
+
                         string fonction = reader["fonction"].ToString();
-                        string date = Convert.ToDateTime(reader["date_naissance"]).ToString("dd/MM/yyyy");
+
+                        // ==========================================
+                        // AJOUT DANS LE DATAGRIDVIEW
+                        // ==========================================
+
+                        string affichageAge = age >= 0
+                            ? age + " ans"
+                            : "Non renseigné";
+
                         dgv_personnel.Rows.Add(
                             id,
                             personnel,
-                            age +" ans",
+                            affichageAge,
                             sexe,
                             adresse,
                             fonction,
                             date
                         );
+
                         ApplyStytle();
                     }
                 }
@@ -176,7 +217,18 @@ namespace Cepima.MesUserCases.Personnels
             catch (MySqlException ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement du personnel : " + ex.Message,
+                    "Erreur lors du chargement du personnel : " +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Une erreur est survenue lors du chargement du personnel : " +
+                    ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -807,6 +859,12 @@ namespace Cepima.MesUserCases.Personnels
         private void cbx_annee_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadHistoriquePaiement();
+        }
+
+        private void bt_start_Click(object sender, EventArgs e)
+        {
+            MesForms.Personnel.Ajout_personnel personnel = new MesForms.Personnel.Ajout_personnel();
+            personnel.ShowDialog();
         }
     }
 }
