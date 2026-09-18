@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
+using System.ComponentModel;
 
 namespace Cepima.Services
 {
@@ -277,9 +278,59 @@ namespace Cepima.Services
                         "User-Agent",
                         "CEPIMA-Desktop");
 
-                    await client.DownloadFileTaskAsync(
-                        updateAsset.browser_download_url,
-                        zipPath);
+                    UpdateProgressForm progressForm =
+                    new UpdateProgressForm();
+
+                    progressForm.Show();
+
+                    try
+                    {
+                        using (WebClient downloadClient = new WebClient())
+                        {
+                            downloadClient.DownloadProgressChanged +=
+                                delegate(object sender,
+                                    DownloadProgressChangedEventArgs e)
+                                {
+                                    progressForm.SetProgress(
+                                        e.ProgressPercentage,
+                                        e.BytesReceived,
+                                        e.TotalBytesToReceive);
+                                };
+
+                            downloadClient.DownloadFileCompleted +=
+                                delegate(object sender,
+                                    AsyncCompletedEventArgs e)
+                                {
+                                    if (e.Error != null)
+                                    {
+                                        progressForm.SetStatus(
+                                            "Erreur pendant le téléchargement.");
+                                    }
+                                };
+
+                            progressForm.SetStatus(
+                                "Téléchargement de la mise à jour...");
+
+                            await downloadClient.DownloadFileTaskAsync(
+                                updateAsset.browser_download_url,
+                                zipPath);
+                        }
+
+                        progressForm.SetProgress(
+                            100,
+                            new FileInfo(zipPath).Length,
+                            new FileInfo(zipPath).Length);
+
+                        progressForm.SetStatus(
+                            "Téléchargement terminé.");
+
+                        await Task.Delay(500);
+                    }
+                    finally
+                    {
+                        progressForm.Close();
+                        progressForm.Dispose();
+                    }
                 }
 
                 // -------------------------------------------------
