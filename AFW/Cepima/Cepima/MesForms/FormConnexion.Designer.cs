@@ -68,9 +68,15 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(403, 16);
             this.label1.Name = "label1";
+
+            this.label1.Size = new System.Drawing.Size(234, 31);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Connectez-vous ";
+
             this.label1.Size = new System.Drawing.Size(291, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Connectez-vous SVP";
+
             // 
             // button1
             // 
@@ -165,9 +171,9 @@
             this.bt_connexion.BorderRadius = 5;
             this.bt_connexion.BorderSize = 0;
             this.bt_connexion.ButtonText = "Se connecter";
-            this.bt_connexion.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.bt_connexion.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.bt_connexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_connexion.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.bt_connexion.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.bt_connexion.Location = new System.Drawing.Point(106, 388);
             this.bt_connexion.Name = "bt_connexion";
             this.bt_connexion.Size = new System.Drawing.Size(124, 30);

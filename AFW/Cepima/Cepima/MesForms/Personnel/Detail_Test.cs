@@ -51,18 +51,52 @@ namespace Cepima.MesForms.Personnel
                         lb_fonction.Text = reader["fonction"].ToString();
                         lb_genre.Text = reader["sexe"].ToString();
                         lb_dossier.Text = reader["dossier"].ToString();
-                        lb_date_embauche.Text = Convert.ToDateTime(reader["date_embauche"]).ToString("dd/MM/yyyy");
-                        lb_date.Text = Convert.ToDateTime(reader["date_naissance"]).ToString("dd/MM/yyyy");
+                        if (reader["date_embauche"] != DBNull.Value)
+                        {
+                            lb_date_embauche.Text =
+                                Convert.ToDateTime(reader["date_embauche"])
+                                .ToString("dd/MM/yyyy");
+                        }
+                        else
+                        {
+                            lb_date_embauche.Text = "Non renseignée";
+                        }
+
+
+                        if (reader["date_naissance"] != DBNull.Value)
+                        {
+                            lb_date.Text =
+                                Convert.ToDateTime(reader["date_naissance"])
+                                .ToString("dd/MM/yyyy");
+                        }
+                        else
+                        {
+                            lb_date.Text = "Non renseignée";
+                        }
                         lb_adresse.Text = reader["adresse"].ToString();
                         lb_phone.Text = reader["telephone"].ToString();
                         lb_centre.Text = reader["nom_centre"].ToString();
                         lb_sifa.Text = reader["situation_familliale"].ToString();
-                        DateTime dt = Convert.ToDateTime(reader["date_naissance"]);
-                        int age = MesClasses.ReceptionManager.CalculerAge(dt);
-                        //int  statut = Convert.ToInt32(reader["statut"]);
-                        lb_age.Text = age.ToString() + " ans";
 
-                        if (reader["statut"] != DBNull.Value && Convert.ToBoolean(reader["statut"]) == true)
+                        int age = -1;
+
+                        if (reader["date_naissance"] != DBNull.Value)
+                        {
+                            age = MesClasses.ReceptionManager.CalculerAge(
+                                Convert.ToDateTime(reader["date_naissance"])
+                            );
+                        }
+
+                        if (age >= 0)
+                        {
+                            lb_age.Text = age + " ans";
+                        }
+                        else
+                        {
+                            lb_age.Text = "Non renseigné";
+                        }
+                        string statut = reader["statut"].ToString();
+                        if (statut == "Actif")
                         {
                             lb_statut.Text = "Actif";
                             pn_statut.BackColor = Color.FromArgb(27, 94, 32);
@@ -567,6 +601,18 @@ namespace Cepima.MesForms.Personnel
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private void bt_horaire_Click(object sender, EventArgs e)
+        {
+            Horaire horaire = new Horaire(personnelID);
+            horaire.ShowDialog();
+        }
+
+        private void btn_horaire_Click(object sender, EventArgs e)
+        {
+            Horaire_detail detail = new Horaire_detail(personnelID);
+            detail.ShowDialog();
         }
     }
 }

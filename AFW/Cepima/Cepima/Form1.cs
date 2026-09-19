@@ -32,7 +32,6 @@ namespace Cepima
         {
             InitializeComponent();
             GlobalPanel_main = panel_center_main;
-            bt_personnel.Click += bt_personnel_Click;
             //LoadDataGrid();
             InfoBull();
             LoadUserConnect(lb_username,"Connecté",lb_statut);
@@ -258,9 +257,7 @@ namespace Cepima
             uc_lg.Dock = DockStyle.Fill;
             panel_center_main.Controls.Add(uc_lg);
 
-            
-
-
+           
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
             lb_sous_menu.Visible = true;
@@ -365,7 +362,11 @@ namespace Cepima
             
                 new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px,(s,ev) => {
 
-                    MessageBox.Show("En cours de dévelopement");
+                    MesUserCases.Pharmacie.UC_prescription prescription = new MesUserCases.Pharmacie.UC_prescription();
+                    panel_center_main.Controls.Clear();
+                    prescription.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(prescription);
+
                 }),
 
             };
@@ -399,6 +400,14 @@ namespace Cepima
                 new MenuItem("    Examens",Properties.Resources.finish_flag_30px, (s,ev) =>
                 {
                     MesUserCases.EEG.User_examens finish = new MesUserCases.EEG.User_examens();
+                    finish.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Clear();
+                    panel_center_main.Controls.Add(finish);
+                }),
+
+                new MenuItem("    Caisse",Properties.Resources.add_dollar_30px, (s,ev) =>
+                {
+                    MesUserCases.EEG.User_caisse finish = new MesUserCases.EEG.User_caisse();
                     finish.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Clear();
                     panel_center_main.Controls.Add(finish);
@@ -475,51 +484,10 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
-        private void bt_personnel_Click(object sender, EventArgs e)
-        {
-            picture_image_menu.Image = Properties.Resources.staff_90px;
-            lb_sous_menu.Text = "Personnels";
-            lb_sous_menu.Visible = true;
-            panel11.Visible = true;
-
-            MesUserCases.Personnels.User_DashBord_Personnel acceuil_rh = new MesUserCases.Personnels.User_DashBord_Personnel();
-            acceuil_rh.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(acceuil_rh);
-
-            var items = new List<MenuItem>()
-            {
-                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>
-                    {
-                        //control acceuil du personnel
-                        MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
-                        acceuil.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(acceuil);
-                    }),
-
-                new MenuItem("      Personnel",Properties.Resources.users_30px,(s,ev) =>
-                    {
-                        //control autre
-                        MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
-                        personnel.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(personnel);
-                    }),
-               
-            
-                     new MenuItem("     Présences",Properties.Resources.attendance_30px,(s,ev) =>
-                    {
-                       
-                    }),
-
-            };
-            Create_sous_menu(items);
-            Button bt = sender as Button;
-            MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
-        }
+      
         private void bt_setting_Click(object sender, EventArgs e)
         {
+            
             picture_image_menu.Image = Properties.Resources.settings_90px;
             lb_sous_menu.Text = "Paramètres";
             lb_sous_menu.Visible = true;
@@ -529,7 +497,13 @@ namespace Cepima
             {
                 new MenuItem("   Géneraux",Properties.Resources.maintenance_20px,(s,ev) => {}),
                 new MenuItem("   Apparence",Properties.Resources.eye_checked_20px,(s, ev) => {}),
-                new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {})
+                new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {}),
+                new MenuItem("   Services",Properties.Resources.gift_30px, (s, ev) => {
+                    MesUserCases.Services.User_services uc_service = new MesUserCases.Services.User_services();
+                    panel_center_main.Controls.Clear();
+                    uc_service.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(uc_service);
+                })
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -542,8 +516,6 @@ namespace Cepima
 
             UpdateManager manager = new UpdateManager();
             lb_version.Text = manager.GetCurrentVersion();
-
-            await manager.CheckForUpdateAsync();
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
@@ -658,6 +630,63 @@ namespace Cepima
         {
 
         }
+
+
+        private void bt_personnel_Click(object sender, EventArgs e)
+        {
+            picture_image_menu.Image = Properties.Resources.staff_90px;
+            lb_sous_menu.Text = "Personnels";
+            lb_sous_menu.Visible = true;
+            panel11.Visible = true;
+
+            MesUserCases.Personnels.User_DashBord_Personnel acceuil_rh = new MesUserCases.Personnels.User_DashBord_Personnel();
+            acceuil_rh.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(acceuil_rh);
+
+            var items = new List<MenuItem>()
+            {
+                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>
+                    {
+                        //control acceuil du personnel
+                        MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
+                        acceuil.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(acceuil);
+                    }),
+
+                new MenuItem("      Personnel",Properties.Resources.users_30px,(s,ev) =>
+                    {
+                        //control autre
+                        MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
+                        personnel.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(personnel);
+                    }),
+
+                     //Troisième sous menu
+                     new MenuItem("     Présences",Properties.Resources.attendance_30px,(s,ev) =>
+                    {
+                        MesUserCases.Personnels.User_Presence presence = new MesUserCases.Personnels.User_Presence();
+                        presence.Dock = DockStyle.Fill;
+                        panel_center_main.Controls.Clear();
+                        panel_center_main.Controls.Add(presence);
+                    }),
+
+            };
+            Create_sous_menu(items);
+            Button bt = sender as Button;
+            MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
+        }
+
+
+        private async void btn_update_Click(object sender, EventArgs e)
+        {
+            UpdateManager manager = new UpdateManager();
+            await manager.CheckForUpdateAsync();
+        }
+
+
     }
     public class MenuItem
     {

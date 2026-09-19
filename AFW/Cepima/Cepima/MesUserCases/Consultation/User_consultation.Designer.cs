@@ -306,7 +306,7 @@
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label16.Location = new System.Drawing.Point(98, 420);
+            this.label16.Location = new System.Drawing.Point(52, 427);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(124, 17);
             this.label16.TabIndex = 0;
@@ -317,7 +317,7 @@
             this.label17.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label17.Location = new System.Drawing.Point(488, 419);
+            this.label17.Location = new System.Drawing.Point(326, 426);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(152, 17);
             this.label17.TabIndex = 0;
@@ -777,7 +777,7 @@
             this.dt_after_.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dt_after_.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dt_after_.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.dt_after_.Location = new System.Drawing.Point(494, 442);
+            this.dt_after_.Location = new System.Drawing.Point(332, 449);
             this.dt_after_.Name = "dt_after_";
             this.dt_after_.Size = new System.Drawing.Size(246, 23);
             this.dt_after_.TabIndex = 26;
@@ -853,7 +853,7 @@
             this.myRoundedTextBox1.FocusBorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.myRoundedTextBox1.ForeColor = System.Drawing.Color.Black;
             this.myRoundedTextBox1.Image = null;
-            this.myRoundedTextBox1.Location = new System.Drawing.Point(491, 439);
+            this.myRoundedTextBox1.Location = new System.Drawing.Point(330, 446);
             this.myRoundedTextBox1.MaxLength = 32767;
             this.myRoundedTextBox1.Name = "myRoundedTextBox1";
             this.myRoundedTextBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -872,7 +872,7 @@
             this.tb_diagnostic_principal.FocusBorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.tb_diagnostic_principal.ForeColor = System.Drawing.Color.Black;
             this.tb_diagnostic_principal.Image = null;
-            this.tb_diagnostic_principal.Location = new System.Drawing.Point(95, 442);
+            this.tb_diagnostic_principal.Location = new System.Drawing.Point(49, 449);
             this.tb_diagnostic_principal.MaxLength = 32767;
             this.tb_diagnostic_principal.Name = "tb_diagnostic_principal";
             this.tb_diagnostic_principal.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);

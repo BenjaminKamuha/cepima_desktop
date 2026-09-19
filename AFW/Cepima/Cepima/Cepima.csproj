@@ -12,6 +12,23 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\Projects\Project_2026\CEPIMA_Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Background</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <InstallUrl>\\localhost\CEPIMA_Publish\</InstallUrl>
+    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +53,18 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Cepima.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2953EC15C2D352E1E8310A92E5C10498E0B14D93</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Cepima_CléTemporaire.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts">
@@ -207,6 +236,48 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
+      <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_prescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_prescription.Designer.cs">
+      <DependentUpon>Form_prescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_prestation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
+      <DependentUpon>Form_prestation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\EEG\User_caisse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\EEG\User_caisse.Designer.cs">
+      <DependentUpon>User_caisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_service.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_service.Designer.cs">
+      <DependentUpon>Form_service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_prescription.Designer.cs">
+      <DependentUpon>UC_prescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Services\User_services.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Services\User_services.Designer.cs">
+      <DependentUpon>User_services.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />
@@ -330,11 +401,23 @@
     <Compile Include="MesForms\Hospitalisation\Add_chambre.Designer.cs">
       <DependentUpon>Add_chambre.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Hospitalisation\Delivrance_Medoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Delivrance_Medoc.Designer.cs">
+      <DependentUpon>Delivrance_Medoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Hospitalisation\Detail_Chambre.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Hospitalisation\Detail_Chambre.Designer.cs">
       <DependentUpon>Detail_Chambre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Detail_hospitalisation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Hospitalisation\Detail_hospitalisation.Designer.cs">
+      <DependentUpon>Detail_hospitalisation.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Hospitalisation\Hospitalisation.cs">
       <SubType>Form</SubType>
@@ -372,6 +455,12 @@
     <Compile Include="MesForms\Personnel\Ajouter_retenue.Designer.cs">
       <DependentUpon>Ajouter_retenue.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Personnel\Ajout_personnel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajout_personnel.Designer.cs">
+      <DependentUpon>Ajout_personnel.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Personnel\Detail_presence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -389,6 +478,18 @@
     </Compile>
     <Compile Include="MesForms\Personnel\Detail_Test.Designer.cs">
       <DependentUpon>Detail_Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Horaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Horaire.Designer.cs">
+      <DependentUpon>Horaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Horaire_detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Horaire_detail.Designer.cs">
+      <DependentUpon>Horaire_detail.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Personnel\Update_personnel.cs">
       <SubType>Form</SubType>
@@ -432,10 +533,10 @@
     <Compile Include="MesForms\Pharmacie\Form_detail_produit.Designer.cs">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_signes_vitaux.cs">
+    <Compile Include="MesForms\Reception\Form_signes_vitaux.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_signes_vitaux.Designer.cs">
+    <Compile Include="MesForms\Reception\Form_signes_vitaux.Designer.cs">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_inventory.cs">
@@ -497,6 +598,12 @@
     </Compile>
     <Compile Include="MesUserCases\Personnels\User_DashBord_Personnel.Designer.cs">
       <DependentUpon>User_DashBord_Personnel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_Presence.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_Presence.Designer.cs">
+      <DependentUpon>User_Presence.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_add_medoc.cs">
       <SubType>UserControl</SubType>
@@ -607,6 +714,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Services\UpdateProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Services\UpdateProgressForm.Designer.cs">
+      <DependentUpon>UpdateProgressForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_logo_cepima.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -618,6 +731,9 @@
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\EEG\Form_caisse_eeg.resx">
+      <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\EEG\Form_new_eeg.resx">
       <DependentUpon>Form_new_eeg.cs</DependentUpon>
@@ -667,8 +783,14 @@
     <EmbeddedResource Include="MesForms\Hospitalisation\Add_chambre.resx">
       <DependentUpon>Add_chambre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Hospitalisation\Delivrance_Medoc.resx">
+      <DependentUpon>Delivrance_Medoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Hospitalisation\Detail_Chambre.resx">
       <DependentUpon>Detail_Chambre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Hospitalisation\Detail_hospitalisation.resx">
+      <DependentUpon>Detail_hospitalisation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Hospitalisation\Hospitalisation.resx">
       <DependentUpon>Hospitalisation.cs</DependentUpon>
@@ -688,6 +810,9 @@
     <EmbeddedResource Include="MesForms\Personnel\Ajouter_retenue.resx">
       <DependentUpon>Ajouter_retenue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Ajout_personnel.resx">
+      <DependentUpon>Ajout_personnel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Detail_presence.resx">
       <DependentUpon>Detail_presence.cs</DependentUpon>
     </EmbeddedResource>
@@ -696,6 +821,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Detail_Test.resx">
       <DependentUpon>Detail_Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Horaire.resx">
+      <DependentUpon>Horaire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Horaire_detail.resx">
+      <DependentUpon>Horaire_detail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Update_personnel.resx">
       <DependentUpon>Update_personnel.cs</DependentUpon>
@@ -718,7 +849,10 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_signes_vitaux.resx">
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_prescription.resx">
+      <DependentUpon>Form_prescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Reception\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_inventory.resx">
@@ -726,6 +860,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
+      <DependentUpon>User_caisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_DashBoard.resx">
       <DependentUpon>User_DashBoard.cs</DependentUpon>
@@ -748,6 +885,9 @@
     <EmbeddedResource Include="MesUserCases\Personnels\User_DashBord_Personnel.resx">
       <DependentUpon>User_DashBord_Personnel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\User_Presence.resx">
+      <DependentUpon>User_Presence.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_add_medoc.resx">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -757,8 +897,14 @@
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_inventory.resx">
       <DependentUpon>UC_inventory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_prescription.resx">
+      <DependentUpon>UC_prescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_stock_pharmacie.resx">
       <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Services\User_services.resx">
+      <DependentUpon>User_services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
@@ -810,6 +956,7 @@
     <EmbeddedResource Include="UC_logo_cepima.resx">
       <DependentUpon>UC_logo_cepima.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Cepima_CléTemporaire.pfx" />
     <None Include="ds_facture.xsc">
       <DependentUpon>ds_facture.xsd</DependentUpon>
     </None>
@@ -1553,7 +1700,45 @@
     <None Include="Resources\users_30px.png" />
   </ItemGroup>
   <ItemGroup>
+
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.ReportViewer.11.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft Report Viewer 2012 Runtime</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Capture.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treatment_20px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treatment_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\treatment_100px.png" />
+
     <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_25px2.png" />
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

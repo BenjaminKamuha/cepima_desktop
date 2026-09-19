@@ -125,6 +125,8 @@ namespace Cepima.MesUserCases
                             cmd.Parameters.AddWithValue("@prochaine",dt_after_.Value.Date);
                             cmd.Parameters.AddWithValue("@user", MesClasses.SessionUtilisateur.idUser);
                             cmd.ExecuteNonQuery();
+
+
                         }
                         tr.Commit();
                         MessageBox.Show("Consultation crée avec succès !!","Enregistrement");

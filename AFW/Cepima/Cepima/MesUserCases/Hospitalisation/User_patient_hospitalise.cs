@@ -107,12 +107,21 @@ namespace Cepima.MesUserCases.Hospitalisation
             panDemande.BorderSize = 1;
             panDemande.ShadowColor = Color.Gray;
             panDemande.ShadowDepth = 10;
-            panDemande.Tag = idDemande;
+            panDemande.Tag = new DemandeInfo
+            {
+                IdDemande = idDemande,
+                IdPatient = id_patient
+            };
 
             panDemande.Click += (s, e) =>
             {
+                //récuperer les informations stockées
+                DemandeInfo info = (DemandeInfo)panDemande.Tag;
+                string patient = info.IdPatient;
+                string Hospi = info.IdDemande;
                 //Afficher le fomulaire de détail de l'hospitalisation
-               
+                MesForms.Hospitalisation.Detail_hospitalisation hospi = new MesForms.Hospitalisation.Detail_hospitalisation(patient,Hospi);
+                hospi.ShowDialog();
             };
             // Espace entre les cartes
             panDemande.Margin = new Padding(8, 10, 12, 10);
@@ -243,5 +252,11 @@ namespace Cepima.MesUserCases.Hospitalisation
         {
             LoadPatientsHospitalises(textBox_reseach.Text);
         }
+    }
+
+    public class DemandeInfo
+    {
+        public string IdDemande { get; set; }
+        public string IdPatient { get; set; }
     }
 }

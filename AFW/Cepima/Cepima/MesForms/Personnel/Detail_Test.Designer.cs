@@ -44,7 +44,6 @@
             this.lb_date_embauche = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.customRoundedPanel2 = new CustomRoundedPanel();
@@ -65,17 +64,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.customRoundedPanel5 = new CustomRoundedPanel();
-            this.bt_add_salaire = new RoundedButton();
             this.customRoundedPanel8 = new CustomRoundedPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label23 = new System.Windows.Forms.Label();
             this.lblSalaireNet = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label29 = new System.Windows.Forms.Label();
             this.lllll = new System.Windows.Forms.Label();
             this.lblSalaireBase = new System.Windows.Forms.Label();
@@ -85,13 +80,10 @@
             this.lblTotalAvances = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.customRoundedPanel6 = new CustomRoundedPanel();
-            this.roundedButton1 = new RoundedButton();
             this.customRoundedPanel9 = new CustomRoundedPanel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.lblStatutPresence = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label21 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label26 = new System.Windows.Forms.Label();
             this.lblHeureSortie = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -100,19 +92,10 @@
             this.lblHeureEntree = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.customRoundedPanel7 = new CustomRoundedPanel();
-            this.roundedButton4 = new RoundedButton();
-            this.bt_add_avance = new RoundedButton();
-            this.bt_add_retenue = new RoundedButton();
-            this.bt_ad_prime = new RoundedButton();
-            this.bt_salaire = new RoundedButton();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label22 = new System.Windows.Forms.Label();
             this.customRoundedPanel10 = new CustomRoundedPanel();
-            this.bt_delete = new RoundedButton();
-            this.bt_modifier = new RoundedButton();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label27 = new System.Windows.Forms.Label();
             this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
             this.bt_refresh = new System.Windows.Forms.Button();
@@ -121,35 +104,54 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lb_age = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.bt_horaire = new RoundedButton();
+            this.roundedButton4 = new RoundedButton();
+            this.bt_add_avance = new RoundedButton();
+            this.bt_add_retenue = new RoundedButton();
+            this.bt_ad_prime = new RoundedButton();
+            this.bt_salaire = new RoundedButton();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.bt_delete = new RoundedButton();
+            this.bt_modifier = new RoundedButton();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.bt_add_salaire = new RoundedButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.btn_horaire = new RoundedButton();
+            this.roundedButton1 = new RoundedButton();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
             this.pn_statut.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             this.customRoundedPanel5.SuspendLayout();
             this.customRoundedPanel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.customRoundedPanel6.SuspendLayout();
             this.customRoundedPanel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.customRoundedPanel7.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.customRoundedPanel10.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.bunifuRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -349,16 +351,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(501, 41);
             this.panel2.TabIndex = 0;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = global::Cepima.Properties.Resources.view_details_30px;
-            this.pictureBox5.Location = new System.Drawing.Point(7, 6);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 41;
-            this.pictureBox5.TabStop = false;
             // 
             // label3
             // 
@@ -606,16 +598,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Informations personnelles";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::Cepima.Properties.Resources.user_80px;
-            this.pictureBox2.Location = new System.Drawing.Point(6, 6);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 38;
-            this.pictureBox2.TabStop = false;
-            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -665,31 +647,6 @@
             this.customRoundedPanel5.Size = new System.Drawing.Size(499, 287);
             this.customRoundedPanel5.TabIndex = 0;
             // 
-            // bt_add_salaire
-            // 
-            this.bt_add_salaire.BackColor = System.Drawing.Color.Transparent;
-            this.bt_add_salaire.BorderColor = System.Drawing.Color.Empty;
-            this.bt_add_salaire.BorderRadius = 8;
-            this.bt_add_salaire.ButtonText = "Voir l\'historique de paie";
-            this.bt_add_salaire.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bt_add_salaire.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
-            this.bt_add_salaire.FlatAppearance.BorderSize = 0;
-            this.bt_add_salaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_add_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_add_salaire.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.bt_add_salaire.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            this.bt_add_salaire.Image = global::Cepima.Properties.Resources.time_machine_30px;
-            this.bt_add_salaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_add_salaire.Location = new System.Drawing.Point(115, 233);
-            this.bt_add_salaire.Name = "bt_add_salaire";
-            this.bt_add_salaire.Size = new System.Drawing.Size(264, 40);
-            this.bt_add_salaire.TabIndex = 37;
-            this.bt_add_salaire.Text = "Voir l\'historique de paie";
-            this.bt_add_salaire.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.bt_add_salaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_add_salaire.UseVisualStyleBackColor = false;
-            this.bt_add_salaire.Click += new System.EventHandler(this.bt_add_salaire_Click);
-            // 
             // customRoundedPanel8
             // 
             this.customRoundedPanel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
@@ -714,16 +671,6 @@
             this.customRoundedPanel8.ShadowSpread = 0;
             this.customRoundedPanel8.Size = new System.Drawing.Size(428, 39);
             this.customRoundedPanel8.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.us_dollar_30px;
-            this.pictureBox1.Location = new System.Drawing.Point(9, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
             // 
             // label23
             // 
@@ -767,16 +714,6 @@
             this.label19.Size = new System.Drawing.Size(192, 23);
             this.label19.TabIndex = 1;
             this.label19.Text = "Informations du salaire";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Cepima.Properties.Resources.money_bag_30px;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 1);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 39;
-            this.pictureBox3.TabStop = false;
             // 
             // label29
             // 
@@ -863,6 +800,7 @@
             this.customRoundedPanel6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
             this.customRoundedPanel6.BorderRadius = 8;
             this.customRoundedPanel6.BorderSize = 1;
+            this.customRoundedPanel6.Controls.Add(this.btn_horaire);
             this.customRoundedPanel6.Controls.Add(this.roundedButton1);
             this.customRoundedPanel6.Controls.Add(this.customRoundedPanel9);
             this.customRoundedPanel6.Controls.Add(this.panel4);
@@ -888,32 +826,6 @@
             this.customRoundedPanel6.Size = new System.Drawing.Size(499, 287);
             this.customRoundedPanel6.TabIndex = 0;
             // 
-            // roundedButton1
-            // 
-            this.roundedButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.roundedButton1.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton1.BorderColor = System.Drawing.Color.Empty;
-            this.roundedButton1.BorderRadius = 8;
-            this.roundedButton1.ButtonText = "Voir les présences";
-            this.roundedButton1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.roundedButton1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
-            this.roundedButton1.FlatAppearance.BorderSize = 0;
-            this.roundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundedButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.roundedButton1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
-            this.roundedButton1.Image = global::Cepima.Properties.Resources.eye_30px;
-            this.roundedButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.roundedButton1.Location = new System.Drawing.Point(108, 233);
-            this.roundedButton1.Name = "roundedButton1";
-            this.roundedButton1.Size = new System.Drawing.Size(264, 40);
-            this.roundedButton1.TabIndex = 37;
-            this.roundedButton1.Text = "Voir les présences";
-            this.roundedButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.roundedButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.roundedButton1.UseVisualStyleBackColor = false;
-            this.roundedButton1.Click += new System.EventHandler(this.roundedButton1_Click);
-            // 
             // customRoundedPanel9
             // 
             this.customRoundedPanel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
@@ -937,16 +849,6 @@
             this.customRoundedPanel9.ShadowSpread = 0;
             this.customRoundedPanel9.Size = new System.Drawing.Size(428, 39);
             this.customRoundedPanel9.TabIndex = 17;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = global::Cepima.Properties.Resources.select_30px;
-            this.pictureBox7.Location = new System.Drawing.Point(9, 5);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 16;
-            this.pictureBox7.TabStop = false;
             // 
             // lblStatutPresence
             // 
@@ -978,19 +880,9 @@
             this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(71)))), ((int)(((byte)(161)))));
             this.label21.Location = new System.Drawing.Point(49, 4);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(91, 23);
+            this.label21.Size = new System.Drawing.Size(175, 23);
             this.label21.TabIndex = 1;
-            this.label21.Text = "Présences";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::Cepima.Properties.Resources.clock_90px;
-            this.pictureBox4.Location = new System.Drawing.Point(3, 1);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 40;
-            this.pictureBox4.TabStop = false;
+            this.label21.Text = "Présences / Horaires";
             // 
             // label26
             // 
@@ -1061,7 +953,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 356F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 340F));
             this.tableLayoutPanel3.Controls.Add(this.customRoundedPanel7, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.customRoundedPanel10, 1, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 634);
@@ -1076,6 +968,7 @@
             this.customRoundedPanel7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(190)))), ((int)(((byte)(231)))));
             this.customRoundedPanel7.BorderRadius = 8;
             this.customRoundedPanel7.BorderSize = 1;
+            this.customRoundedPanel7.Controls.Add(this.bt_horaire);
             this.customRoundedPanel7.Controls.Add(this.roundedButton4);
             this.customRoundedPanel7.Controls.Add(this.bt_add_avance);
             this.customRoundedPanel7.Controls.Add(this.bt_add_retenue);
@@ -1095,137 +988,8 @@
             this.customRoundedPanel7.ShadowOffsetY = 4;
             this.customRoundedPanel7.ShadowOpacity = 60;
             this.customRoundedPanel7.ShadowSpread = 0;
-            this.customRoundedPanel7.Size = new System.Drawing.Size(648, 97);
+            this.customRoundedPanel7.Size = new System.Drawing.Size(664, 97);
             this.customRoundedPanel7.TabIndex = 0;
-            // 
-            // roundedButton4
-            // 
-            this.roundedButton4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.roundedButton4.BackColor = System.Drawing.Color.Transparent;
-            this.roundedButton4.BorderColor = System.Drawing.Color.Gray;
-            this.roundedButton4.BorderRadius = 8;
-            this.roundedButton4.ButtonText = "Avance";
-            this.roundedButton4.Cursor = System.Windows.Forms.Cursors.Default;
-            this.roundedButton4.DefaultBackColor = System.Drawing.Color.Gray;
-            this.roundedButton4.FlatAppearance.BorderSize = 0;
-            this.roundedButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.roundedButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundedButton4.ForeColor = System.Drawing.Color.White;
-            this.roundedButton4.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.roundedButton4.Image = global::Cepima.Properties.Resources.withdrawal_30px;
-            this.roundedButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.roundedButton4.Location = new System.Drawing.Point(494, 45);
-            this.roundedButton4.Name = "roundedButton4";
-            this.roundedButton4.Size = new System.Drawing.Size(139, 40);
-            this.roundedButton4.TabIndex = 41;
-            this.roundedButton4.Text = "Avance";
-            this.roundedButton4.TextColor = System.Drawing.Color.White;
-            this.roundedButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.roundedButton4.UseVisualStyleBackColor = false;
-            this.roundedButton4.Click += new System.EventHandler(this.roundedButton4_Click);
-            // 
-            // bt_add_avance
-            // 
-            this.bt_add_avance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_add_avance.BackColor = System.Drawing.Color.Transparent;
-            this.bt_add_avance.BorderColor = System.Drawing.Color.Gray;
-            this.bt_add_avance.BorderRadius = 8;
-            this.bt_add_avance.ButtonText = "Ajouter une avance";
-            this.bt_add_avance.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_add_avance.DefaultBackColor = System.Drawing.Color.Gray;
-            this.bt_add_avance.FlatAppearance.BorderSize = 0;
-            this.bt_add_avance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_add_avance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_add_avance.ForeColor = System.Drawing.Color.White;
-            this.bt_add_avance.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_add_avance.Image = global::Cepima.Properties.Resources.withdrawal_30px;
-            this.bt_add_avance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_add_avance.Location = new System.Drawing.Point(345, 28);
-            this.bt_add_avance.Name = "bt_add_avance";
-            this.bt_add_avance.Size = new System.Drawing.Size(0, 0);
-            this.bt_add_avance.TabIndex = 39;
-            this.bt_add_avance.Text = "Ajouter une avance";
-            this.bt_add_avance.TextColor = System.Drawing.Color.White;
-            this.bt_add_avance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_add_avance.UseVisualStyleBackColor = false;
-            // 
-            // bt_add_retenue
-            // 
-            this.bt_add_retenue.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_add_retenue.BackColor = System.Drawing.Color.Transparent;
-            this.bt_add_retenue.BorderColor = System.Drawing.Color.Maroon;
-            this.bt_add_retenue.BorderRadius = 8;
-            this.bt_add_retenue.ButtonText = "Retenue";
-            this.bt_add_retenue.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bt_add_retenue.DefaultBackColor = System.Drawing.Color.Maroon;
-            this.bt_add_retenue.FlatAppearance.BorderSize = 0;
-            this.bt_add_retenue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_add_retenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_add_retenue.ForeColor = System.Drawing.Color.White;
-            this.bt_add_retenue.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_add_retenue.Image = global::Cepima.Properties.Resources.decline_30px;
-            this.bt_add_retenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_add_retenue.Location = new System.Drawing.Point(332, 45);
-            this.bt_add_retenue.Name = "bt_add_retenue";
-            this.bt_add_retenue.Size = new System.Drawing.Size(139, 40);
-            this.bt_add_retenue.TabIndex = 40;
-            this.bt_add_retenue.Text = "Retenue";
-            this.bt_add_retenue.TextColor = System.Drawing.Color.White;
-            this.bt_add_retenue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_add_retenue.UseVisualStyleBackColor = false;
-            this.bt_add_retenue.Click += new System.EventHandler(this.bt_add_retenue_Click);
-            // 
-            // bt_ad_prime
-            // 
-            this.bt_ad_prime.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_ad_prime.BackColor = System.Drawing.Color.Transparent;
-            this.bt_ad_prime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
-            this.bt_ad_prime.BorderRadius = 8;
-            this.bt_ad_prime.ButtonText = "Prime";
-            this.bt_ad_prime.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bt_ad_prime.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
-            this.bt_ad_prime.FlatAppearance.BorderSize = 0;
-            this.bt_ad_prime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_ad_prime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_ad_prime.ForeColor = System.Drawing.Color.White;
-            this.bt_ad_prime.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_ad_prime.Image = global::Cepima.Properties.Resources.gift_30px;
-            this.bt_ad_prime.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_ad_prime.Location = new System.Drawing.Point(170, 47);
-            this.bt_ad_prime.Name = "bt_ad_prime";
-            this.bt_ad_prime.Size = new System.Drawing.Size(139, 40);
-            this.bt_ad_prime.TabIndex = 37;
-            this.bt_ad_prime.Text = "Prime";
-            this.bt_ad_prime.TextColor = System.Drawing.Color.White;
-            this.bt_ad_prime.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.bt_ad_prime.UseVisualStyleBackColor = false;
-            this.bt_ad_prime.Click += new System.EventHandler(this.bt_ad_prime_Click);
-            // 
-            // bt_salaire
-            // 
-            this.bt_salaire.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bt_salaire.BackColor = System.Drawing.Color.Transparent;
-            this.bt_salaire.BorderColor = System.Drawing.Color.ForestGreen;
-            this.bt_salaire.BorderRadius = 8;
-            this.bt_salaire.ButtonText = "Salaire";
-            this.bt_salaire.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bt_salaire.DefaultBackColor = System.Drawing.Color.ForestGreen;
-            this.bt_salaire.FlatAppearance.BorderSize = 0;
-            this.bt_salaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_salaire.ForeColor = System.Drawing.Color.White;
-            this.bt_salaire.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_salaire.Image = global::Cepima.Properties.Resources.add_dollar_30px;
-            this.bt_salaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_salaire.Location = new System.Drawing.Point(8, 47);
-            this.bt_salaire.Name = "bt_salaire";
-            this.bt_salaire.Size = new System.Drawing.Size(139, 40);
-            this.bt_salaire.TabIndex = 38;
-            this.bt_salaire.Text = "Salaire";
-            this.bt_salaire.TextColor = System.Drawing.Color.White;
-            this.bt_salaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_salaire.UseVisualStyleBackColor = false;
-            this.bt_salaire.Click += new System.EventHandler(this.bt_salaire_Click);
             // 
             // panel5
             // 
@@ -1235,18 +999,8 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(648, 30);
+            this.panel5.Size = new System.Drawing.Size(664, 30);
             this.panel5.TabIndex = 1;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = global::Cepima.Properties.Resources.database_30px;
-            this.pictureBox6.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 38;
-            this.pictureBox6.TabStop = false;
             // 
             // label22
             // 
@@ -1270,7 +1024,7 @@
             this.customRoundedPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel10.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel10.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel10.Location = new System.Drawing.Point(657, 3);
+            this.customRoundedPanel10.Location = new System.Drawing.Point(673, 3);
             this.customRoundedPanel10.Name = "customRoundedPanel10";
             this.customRoundedPanel10.ShadowBlur = 10;
             this.customRoundedPanel10.ShadowBorderRadius = -1;
@@ -1280,61 +1034,9 @@
             this.customRoundedPanel10.ShadowOffsetY = 4;
             this.customRoundedPanel10.ShadowOpacity = 60;
             this.customRoundedPanel10.ShadowSpread = 0;
-            this.customRoundedPanel10.Size = new System.Drawing.Size(350, 97);
+            this.customRoundedPanel10.Size = new System.Drawing.Size(334, 97);
             this.customRoundedPanel10.TabIndex = 1;
             this.customRoundedPanel10.Paint += new System.Windows.Forms.PaintEventHandler(this.customRoundedPanel10_Paint);
-            // 
-            // bt_delete
-            // 
-            this.bt_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_delete.BackColor = System.Drawing.Color.Transparent;
-            this.bt_delete.BorderColor = System.Drawing.Color.Red;
-            this.bt_delete.BorderRadius = 8;
-            this.bt_delete.ButtonText = "Supprimer";
-            this.bt_delete.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bt_delete.DefaultBackColor = System.Drawing.Color.Red;
-            this.bt_delete.FlatAppearance.BorderSize = 0;
-            this.bt_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_delete.ForeColor = System.Drawing.Color.White;
-            this.bt_delete.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_delete.Image = global::Cepima.Properties.Resources.trash_30px;
-            this.bt_delete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_delete.Location = new System.Drawing.Point(200, 45);
-            this.bt_delete.Name = "bt_delete";
-            this.bt_delete.Size = new System.Drawing.Size(142, 40);
-            this.bt_delete.TabIndex = 37;
-            this.bt_delete.Text = "Supprimer";
-            this.bt_delete.TextColor = System.Drawing.Color.White;
-            this.bt_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_delete.UseVisualStyleBackColor = false;
-            this.bt_delete.Click += new System.EventHandler(this.bt_delete_Click);
-            // 
-            // bt_modifier
-            // 
-            this.bt_modifier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_modifier.BackColor = System.Drawing.Color.Transparent;
-            this.bt_modifier.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_modifier.BorderRadius = 8;
-            this.bt_modifier.ButtonText = "Modifier";
-            this.bt_modifier.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bt_modifier.DefaultBackColor = System.Drawing.Color.DodgerBlue;
-            this.bt_modifier.FlatAppearance.BorderSize = 0;
-            this.bt_modifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_modifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_modifier.ForeColor = System.Drawing.Color.White;
-            this.bt_modifier.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_modifier.Image = global::Cepima.Properties.Resources.update_left_rotation_30px;
-            this.bt_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_modifier.Location = new System.Drawing.Point(12, 45);
-            this.bt_modifier.Name = "bt_modifier";
-            this.bt_modifier.Size = new System.Drawing.Size(139, 40);
-            this.bt_modifier.TabIndex = 38;
-            this.bt_modifier.Text = "Modifier";
-            this.bt_modifier.TextColor = System.Drawing.Color.White;
-            this.bt_modifier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_modifier.UseVisualStyleBackColor = false;
-            this.bt_modifier.Click += new System.EventHandler(this.bt_modifier_Click);
             // 
             // panel6
             // 
@@ -1344,18 +1046,8 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(350, 30);
+            this.panel6.Size = new System.Drawing.Size(334, 30);
             this.panel6.TabIndex = 2;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = global::Cepima.Properties.Resources.lightning_bolt_30px;
-            this.pictureBox8.Location = new System.Drawing.Point(3, 0);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(34, 29);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 38;
-            this.pictureBox8.TabStop = false;
             // 
             // label27
             // 
@@ -1447,6 +1139,370 @@
             this.label14.TabIndex = 3;
             this.label14.Text = "Age : ";
             // 
+            // bt_horaire
+            // 
+            this.bt_horaire.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_horaire.BackColor = System.Drawing.Color.Transparent;
+            this.bt_horaire.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.bt_horaire.BorderRadius = 8;
+            this.bt_horaire.ButtonText = "Horaire";
+            this.bt_horaire.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_horaire.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.bt_horaire.FlatAppearance.BorderSize = 0;
+            this.bt_horaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_horaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_horaire.ForeColor = System.Drawing.Color.White;
+            this.bt_horaire.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_horaire.Image = global::Cepima.Properties.Resources.Clock_25px;
+            this.bt_horaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_horaire.Location = new System.Drawing.Point(543, 47);
+            this.bt_horaire.Name = "bt_horaire";
+            this.bt_horaire.Size = new System.Drawing.Size(107, 40);
+            this.bt_horaire.TabIndex = 41;
+            this.bt_horaire.Text = "Horaire";
+            this.bt_horaire.TextColor = System.Drawing.Color.White;
+            this.bt_horaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_horaire.UseVisualStyleBackColor = false;
+            this.bt_horaire.Click += new System.EventHandler(this.bt_horaire_Click);
+            // 
+            // roundedButton4
+            // 
+            this.roundedButton4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.roundedButton4.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton4.BorderColor = System.Drawing.Color.Gray;
+            this.roundedButton4.BorderRadius = 8;
+            this.roundedButton4.ButtonText = "Avance";
+            this.roundedButton4.Cursor = System.Windows.Forms.Cursors.Default;
+            this.roundedButton4.DefaultBackColor = System.Drawing.Color.Gray;
+            this.roundedButton4.FlatAppearance.BorderSize = 0;
+            this.roundedButton4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roundedButton4.ForeColor = System.Drawing.Color.White;
+            this.roundedButton4.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.roundedButton4.Image = global::Cepima.Properties.Resources.withdrawal_30px;
+            this.roundedButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.roundedButton4.Location = new System.Drawing.Point(419, 47);
+            this.roundedButton4.Name = "roundedButton4";
+            this.roundedButton4.Size = new System.Drawing.Size(107, 40);
+            this.roundedButton4.TabIndex = 41;
+            this.roundedButton4.Text = "Avance";
+            this.roundedButton4.TextColor = System.Drawing.Color.White;
+            this.roundedButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.roundedButton4.UseVisualStyleBackColor = false;
+            this.roundedButton4.Click += new System.EventHandler(this.roundedButton4_Click);
+            // 
+            // bt_add_avance
+            // 
+            this.bt_add_avance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_add_avance.BackColor = System.Drawing.Color.Transparent;
+            this.bt_add_avance.BorderColor = System.Drawing.Color.Gray;
+            this.bt_add_avance.BorderRadius = 8;
+            this.bt_add_avance.ButtonText = "Ajouter une avance";
+            this.bt_add_avance.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_add_avance.DefaultBackColor = System.Drawing.Color.Gray;
+            this.bt_add_avance.FlatAppearance.BorderSize = 0;
+            this.bt_add_avance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_add_avance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_add_avance.ForeColor = System.Drawing.Color.White;
+            this.bt_add_avance.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_add_avance.Image = global::Cepima.Properties.Resources.withdrawal_30px;
+            this.bt_add_avance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_add_avance.Location = new System.Drawing.Point(361, 28);
+            this.bt_add_avance.Name = "bt_add_avance";
+            this.bt_add_avance.Size = new System.Drawing.Size(0, 0);
+            this.bt_add_avance.TabIndex = 39;
+            this.bt_add_avance.Text = "Ajouter une avance";
+            this.bt_add_avance.TextColor = System.Drawing.Color.White;
+            this.bt_add_avance.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_add_avance.UseVisualStyleBackColor = false;
+            // 
+            // bt_add_retenue
+            // 
+            this.bt_add_retenue.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_add_retenue.BackColor = System.Drawing.Color.Transparent;
+            this.bt_add_retenue.BorderColor = System.Drawing.Color.Maroon;
+            this.bt_add_retenue.BorderRadius = 8;
+            this.bt_add_retenue.ButtonText = "Retenue";
+            this.bt_add_retenue.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_add_retenue.DefaultBackColor = System.Drawing.Color.Maroon;
+            this.bt_add_retenue.FlatAppearance.BorderSize = 0;
+            this.bt_add_retenue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_add_retenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_add_retenue.ForeColor = System.Drawing.Color.White;
+            this.bt_add_retenue.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_add_retenue.Image = global::Cepima.Properties.Resources.decline_30px;
+            this.bt_add_retenue.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_add_retenue.Location = new System.Drawing.Point(287, 47);
+            this.bt_add_retenue.Name = "bt_add_retenue";
+            this.bt_add_retenue.Size = new System.Drawing.Size(111, 40);
+            this.bt_add_retenue.TabIndex = 40;
+            this.bt_add_retenue.Text = "Retenue";
+            this.bt_add_retenue.TextColor = System.Drawing.Color.White;
+            this.bt_add_retenue.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_add_retenue.UseVisualStyleBackColor = false;
+            this.bt_add_retenue.Click += new System.EventHandler(this.bt_add_retenue_Click);
+            // 
+            // bt_ad_prime
+            // 
+            this.bt_ad_prime.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_ad_prime.BackColor = System.Drawing.Color.Transparent;
+            this.bt_ad_prime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
+            this.bt_ad_prime.BorderRadius = 8;
+            this.bt_ad_prime.ButtonText = "Prime";
+            this.bt_ad_prime.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_ad_prime.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(156)))), ((int)(((byte)(18)))));
+            this.bt_ad_prime.FlatAppearance.BorderSize = 0;
+            this.bt_ad_prime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_ad_prime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_ad_prime.ForeColor = System.Drawing.Color.White;
+            this.bt_ad_prime.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_ad_prime.Image = global::Cepima.Properties.Resources.gift_30px;
+            this.bt_ad_prime.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_ad_prime.Location = new System.Drawing.Point(149, 45);
+            this.bt_ad_prime.Name = "bt_ad_prime";
+            this.bt_ad_prime.Size = new System.Drawing.Size(121, 40);
+            this.bt_ad_prime.TabIndex = 37;
+            this.bt_ad_prime.Text = "Prime";
+            this.bt_ad_prime.TextColor = System.Drawing.Color.White;
+            this.bt_ad_prime.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.bt_ad_prime.UseVisualStyleBackColor = false;
+            this.bt_ad_prime.Click += new System.EventHandler(this.bt_ad_prime_Click);
+            // 
+            // bt_salaire
+            // 
+            this.bt_salaire.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bt_salaire.BackColor = System.Drawing.Color.Transparent;
+            this.bt_salaire.BorderColor = System.Drawing.Color.ForestGreen;
+            this.bt_salaire.BorderRadius = 8;
+            this.bt_salaire.ButtonText = "Salaire";
+            this.bt_salaire.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_salaire.DefaultBackColor = System.Drawing.Color.ForestGreen;
+            this.bt_salaire.FlatAppearance.BorderSize = 0;
+            this.bt_salaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_salaire.ForeColor = System.Drawing.Color.White;
+            this.bt_salaire.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_salaire.Image = global::Cepima.Properties.Resources.add_dollar_30px;
+            this.bt_salaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_salaire.Location = new System.Drawing.Point(14, 47);
+            this.bt_salaire.Name = "bt_salaire";
+            this.bt_salaire.Size = new System.Drawing.Size(113, 40);
+            this.bt_salaire.TabIndex = 38;
+            this.bt_salaire.Text = "Salaire";
+            this.bt_salaire.TextColor = System.Drawing.Color.White;
+            this.bt_salaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_salaire.UseVisualStyleBackColor = false;
+            this.bt_salaire.Click += new System.EventHandler(this.bt_salaire_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::Cepima.Properties.Resources.database_30px;
+            this.pictureBox6.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 38;
+            this.pictureBox6.TabStop = false;
+            // 
+            // bt_delete
+            // 
+            this.bt_delete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_delete.BackColor = System.Drawing.Color.Transparent;
+            this.bt_delete.BorderColor = System.Drawing.Color.Red;
+            this.bt_delete.BorderRadius = 8;
+            this.bt_delete.ButtonText = "Supprimer";
+            this.bt_delete.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_delete.DefaultBackColor = System.Drawing.Color.Red;
+            this.bt_delete.FlatAppearance.BorderSize = 0;
+            this.bt_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_delete.ForeColor = System.Drawing.Color.White;
+            this.bt_delete.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_delete.Image = global::Cepima.Properties.Resources.trash_30px;
+            this.bt_delete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_delete.Location = new System.Drawing.Point(184, 45);
+            this.bt_delete.Name = "bt_delete";
+            this.bt_delete.Size = new System.Drawing.Size(142, 40);
+            this.bt_delete.TabIndex = 37;
+            this.bt_delete.Text = "Supprimer";
+            this.bt_delete.TextColor = System.Drawing.Color.White;
+            this.bt_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_delete.UseVisualStyleBackColor = false;
+            this.bt_delete.Click += new System.EventHandler(this.bt_delete_Click);
+            // 
+            // bt_modifier
+            // 
+            this.bt_modifier.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bt_modifier.BackColor = System.Drawing.Color.Transparent;
+            this.bt_modifier.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_modifier.BorderRadius = 8;
+            this.bt_modifier.ButtonText = "Modifier";
+            this.bt_modifier.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_modifier.DefaultBackColor = System.Drawing.Color.DodgerBlue;
+            this.bt_modifier.FlatAppearance.BorderSize = 0;
+            this.bt_modifier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_modifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_modifier.ForeColor = System.Drawing.Color.White;
+            this.bt_modifier.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_modifier.Image = global::Cepima.Properties.Resources.update_left_rotation_30px;
+            this.bt_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_modifier.Location = new System.Drawing.Point(10, 45);
+            this.bt_modifier.Name = "bt_modifier";
+            this.bt_modifier.Size = new System.Drawing.Size(144, 40);
+            this.bt_modifier.TabIndex = 38;
+            this.bt_modifier.Text = "Modifier";
+            this.bt_modifier.TextColor = System.Drawing.Color.White;
+            this.bt_modifier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_modifier.UseVisualStyleBackColor = false;
+            this.bt_modifier.Click += new System.EventHandler(this.bt_modifier_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = global::Cepima.Properties.Resources.lightning_bolt_30px;
+            this.pictureBox8.Location = new System.Drawing.Point(3, 0);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 38;
+            this.pictureBox8.TabStop = false;
+            // 
+            // bt_add_salaire
+            // 
+            this.bt_add_salaire.BackColor = System.Drawing.Color.Transparent;
+            this.bt_add_salaire.BorderColor = System.Drawing.Color.Empty;
+            this.bt_add_salaire.BorderRadius = 8;
+            this.bt_add_salaire.ButtonText = "Voir l\'historique de paie";
+            this.bt_add_salaire.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bt_add_salaire.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
+            this.bt_add_salaire.FlatAppearance.BorderSize = 0;
+            this.bt_add_salaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_add_salaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_add_salaire.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.bt_add_salaire.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            this.bt_add_salaire.Image = global::Cepima.Properties.Resources.time_machine_30px;
+            this.bt_add_salaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_add_salaire.Location = new System.Drawing.Point(115, 233);
+            this.bt_add_salaire.Name = "bt_add_salaire";
+            this.bt_add_salaire.Size = new System.Drawing.Size(264, 40);
+            this.bt_add_salaire.TabIndex = 37;
+            this.bt_add_salaire.Text = "Voir l\'historique de paie";
+            this.bt_add_salaire.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.bt_add_salaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_add_salaire.UseVisualStyleBackColor = false;
+            this.bt_add_salaire.Click += new System.EventHandler(this.bt_add_salaire_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.us_dollar_30px;
+            this.pictureBox1.Location = new System.Drawing.Point(9, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Cepima.Properties.Resources.money_bag_30px;
+            this.pictureBox3.Location = new System.Drawing.Point(4, 1);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 39;
+            this.pictureBox3.TabStop = false;
+            // 
+            // btn_horaire
+            // 
+            this.btn_horaire.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_horaire.BackColor = System.Drawing.Color.Transparent;
+            this.btn_horaire.BorderColor = System.Drawing.Color.Empty;
+            this.btn_horaire.BorderRadius = 8;
+            this.btn_horaire.ButtonText = "Voir les horaires";
+            this.btn_horaire.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btn_horaire.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
+            this.btn_horaire.FlatAppearance.BorderSize = 0;
+            this.btn_horaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_horaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_horaire.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btn_horaire.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            this.btn_horaire.Image = global::Cepima.Properties.Resources.clock_20px;
+            this.btn_horaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_horaire.Location = new System.Drawing.Point(13, 233);
+            this.btn_horaire.Name = "btn_horaire";
+            this.btn_horaire.Size = new System.Drawing.Size(191, 40);
+            this.btn_horaire.TabIndex = 37;
+            this.btn_horaire.Text = "Voir les horaires";
+            this.btn_horaire.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.btn_horaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_horaire.UseVisualStyleBackColor = false;
+            this.btn_horaire.Click += new System.EventHandler(this.btn_horaire_Click);
+            // 
+            // roundedButton1
+            // 
+            this.roundedButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.roundedButton1.BackColor = System.Drawing.Color.Transparent;
+            this.roundedButton1.BorderColor = System.Drawing.Color.Empty;
+            this.roundedButton1.BorderRadius = 8;
+            this.roundedButton1.ButtonText = "Voir les présences";
+            this.roundedButton1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.roundedButton1.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(222)))), ((int)(((byte)(251)))));
+            this.roundedButton1.FlatAppearance.BorderSize = 0;
+            this.roundedButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.roundedButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roundedButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.roundedButton1.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(202)))), ((int)(((byte)(249)))));
+            this.roundedButton1.Image = global::Cepima.Properties.Resources.eye_30px;
+            this.roundedButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.roundedButton1.Location = new System.Drawing.Point(280, 233);
+            this.roundedButton1.Name = "roundedButton1";
+            this.roundedButton1.Size = new System.Drawing.Size(211, 40);
+            this.roundedButton1.TabIndex = 37;
+            this.roundedButton1.Text = "Voir les présences";
+            this.roundedButton1.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.roundedButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.roundedButton1.UseVisualStyleBackColor = false;
+            this.roundedButton1.Click += new System.EventHandler(this.roundedButton1_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = global::Cepima.Properties.Resources.select_30px;
+            this.pictureBox7.Location = new System.Drawing.Point(9, 5);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 16;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.clock_90px;
+            this.pictureBox4.Location = new System.Drawing.Point(3, 1);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 40;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Cepima.Properties.Resources.view_details_30px;
+            this.pictureBox5.Location = new System.Drawing.Point(7, 6);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 41;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Cepima.Properties.Resources.user_80px;
+            this.pictureBox2.Location = new System.Drawing.Point(6, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(34, 29);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 38;
+            this.pictureBox2.TabStop = false;
+            // 
             // Detail_Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1468,42 +1524,42 @@
             this.pn_statut.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.customRoundedPanel1.ResumeLayout(false);
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel3.ResumeLayout(false);
             this.customRoundedPanel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.customRoundedPanel5.ResumeLayout(false);
             this.customRoundedPanel5.PerformLayout();
             this.customRoundedPanel8.ResumeLayout(false);
             this.customRoundedPanel8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.customRoundedPanel6.ResumeLayout(false);
             this.customRoundedPanel6.PerformLayout();
             this.customRoundedPanel9.ResumeLayout(false);
             this.customRoundedPanel9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.customRoundedPanel7.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.customRoundedPanel10.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.bunifuRoundedPanel1.ResumeLayout(false);
             this.bunifuRoundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1603,5 +1659,7 @@
         private RoundedButton roundedButton4;
         private System.Windows.Forms.Button bt_refresh;
         private CustomRoundedPanel pn_statut;
+        private RoundedButton bt_horaire;
+        private RoundedButton btn_horaire;
     }
 }

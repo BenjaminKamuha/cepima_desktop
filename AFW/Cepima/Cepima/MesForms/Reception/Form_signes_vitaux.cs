@@ -66,6 +66,7 @@ namespace Cepima.MesForms
                 decimal temp = Convert.ToDecimal(tb_temperature.Text);
                 MesClasses.ReceptionManager.SaveSigneVitaux(PatientID.ToString(), temp, tension, frequence, poid, taille);
                 ViderChamps();
+
                 this.Close();
             }
             catch (Exception ex)
@@ -83,6 +84,11 @@ namespace Cepima.MesForms
             tb_temperature.Clear();
             tb_tension.Clear();
             tb_frequence.Clear();
+        }
+
+        private void bt_save_signe_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

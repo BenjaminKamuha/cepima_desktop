@@ -12,7 +12,7 @@ namespace Cepima.MesClasses
 {
     class ReceptionManager
     {
-        
+
         // Enregistrement du patient
         public static void ServiceCepima(string centre_id, string name_centre, string description)
         {
@@ -39,7 +39,7 @@ namespace Cepima.MesClasses
         }
 
         // fonction de calcul de l'age
-        public  static int CalculerAge(DateTime dateNaissence)
+        public static int CalculerAge(DateTime dateNaissence)
         {
             DateTime now = DateTime.Today;
             int age = now.Year - dateNaissence.Year;
@@ -52,7 +52,7 @@ namespace Cepima.MesClasses
 
         }
         //===============================Enregistrement du patient ===============================
-        public  static void SavePatient(string numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse,string idCentre)
+        public static void SavePatient(string numeroFiche, string nom, string postnom, string prenom, string genre, DateTime dateNaissance, string phoneNumber, string adresse, string idCentre)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
@@ -70,7 +70,7 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@naissance", dateNaissance.ToString("yyyy-MM-dd"));
                     ManagerClasse.request_params.Add("@phone", phoneNumber);
                     ManagerClasse.request_params.Add("@adresse", adresse);
-                    ManagerClasse.request_params.Add("@centre",idCentre);
+                    ManagerClasse.request_params.Add("@centre", idCentre);
                     ManagerClasse.CRUD(queryInsertPatient, ManagerClasse.request_params);
                     tr.Commit();
                     MessageBox.Show("Patient enregistré avec succès !!", "Enregistrement du patient");
@@ -84,7 +84,7 @@ namespace Cepima.MesClasses
         }
 
         // ==============================Enregistrer la consultation =====================================
-        public static void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string frais_consultation,string motif, string diagnostic)
+        public static void EnregistrerConsultation(string patient_id, string centre_id, string personnel_id, string frais_consultation, string motif, string diagnostic)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
@@ -93,15 +93,15 @@ namespace Cepima.MesClasses
                 {
                     string queryConsultation = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,frais_consultation,motif,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@frais,@motif,@diagnostic)";
                     ManagerClasse.request_params.Clear();
-                    ManagerClasse.request_params.Add("@patient",patient_id);
-                    ManagerClasse.request_params.Add("@centre",centre_id);
-                    ManagerClasse.request_params.Add("@personnel",personnel_id);
-                    ManagerClasse.request_params.Add("@frais",frais_consultation);
-                    ManagerClasse.request_params.Add("@motif",motif);
-                    ManagerClasse.request_params.Add("@diagnostic",diagnostic);
-                    ManagerClasse.CRUD(queryConsultation,ManagerClasse.request_params);
+                    ManagerClasse.request_params.Add("@patient", patient_id);
+                    ManagerClasse.request_params.Add("@centre", centre_id);
+                    ManagerClasse.request_params.Add("@personnel", personnel_id);
+                    ManagerClasse.request_params.Add("@frais", frais_consultation);
+                    ManagerClasse.request_params.Add("@motif", motif);
+                    ManagerClasse.request_params.Add("@diagnostic", diagnostic);
+                    ManagerClasse.CRUD(queryConsultation, ManagerClasse.request_params);
                     tr.Commit();
-                    MessageBox.Show("Consultation ajoutée avec succès !!","Consultation");
+                    MessageBox.Show("Consultation ajoutée avec succès !!", "Consultation");
                 }
                 catch (MySqlException ex)
                 {
@@ -112,7 +112,7 @@ namespace Cepima.MesClasses
         }
 
         //================================ Save signes vitaux =======================================================
-        public static void SaveSigneVitaux(string patient_id,decimal temperature,string tension,string frequence,decimal poids,decimal taille)
+        public static void SaveSigneVitaux(string patient_id, decimal temperature, string tension, string frequence, decimal poids, decimal taille)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
@@ -127,11 +127,15 @@ namespace Cepima.MesClasses
                     ManagerClasse.request_params.Add("@frequency", frequence.ToString());
                     ManagerClasse.request_params.Add("@poids", poids.ToString());
                     ManagerClasse.request_params.Add("@taille", taille.ToString());
-                    ManagerClasse.CRUD(query,ManagerClasse.request_params);
+                    ManagerClasse.CRUD(query, ManagerClasse.request_params);
+
+                    // Initialisation facture
+                    CreerFactureSiInexistante(patient_id, con, tr);
+
                     tr.Commit();
 
                     DialogResult result = MessageBox.Show(
-                       "Les signes vitaux ont été ajoutés; Voulez-vous recommander un service à ce patient ?","Enregistrement.",
+                       "Les signes vitaux ont été ajoutés; Voulez-vous recommander un service à ce patient ?", "Enregistrement.",
                        MessageBoxButtons.YesNo,
                        MessageBoxIcon.Question);
 
@@ -143,20 +147,20 @@ namespace Cepima.MesClasses
                     }
                     else
                     {
-                        
+
                     }
                 }
                 catch (Exception ex)
                 {
                     tr.Rollback();
-                    MessageBox.Show("Erreur d'ajout des signes vitaux : "+ex.Message);
+                    MessageBox.Show("Erreur d'ajout des signes vitaux : " + ex.Message);
                 }
-               
+
             }
         }
 
         // ======================================= move the label =================================
-        public static void MoveLabel(Label lbMove, Panel panelMove,int vitesse = 2)
+        public static void MoveLabel(Label lbMove, Panel panelMove, int vitesse = 2)
         {
             Timer existingTimer = lbMove.Tag as Timer;
             if (existingTimer != null)
@@ -182,7 +186,7 @@ namespace Cepima.MesClasses
 
         // Charger les services dans le datagaridview
         public static void ChargerServicesInDatagridview(DataGridView dgv)
-        { 
+        {
             try
             {
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
@@ -203,7 +207,7 @@ namespace Cepima.MesClasses
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erreur de chargement de données : "+ex.Message);
+                MessageBox.Show("Erreur de chargement de données : " + ex.Message);
             }
         }
 
@@ -212,9 +216,9 @@ namespace Cepima.MesClasses
         {
             string queryUpdate = "UPDATE services SET nom_service =@name WHERE id_service =@id";
             MesClasses.ManagerClasse.request_params.Clear();
-            MesClasses.ManagerClasse.request_params.Add("@name",service);
-            MesClasses.ManagerClasse.request_params.Add("@id",id_service.ToString());
-            MesClasses.ManagerClasse.CRUD(queryUpdate,MesClasses.ManagerClasse.request_params);
+            MesClasses.ManagerClasse.request_params.Add("@name", service);
+            MesClasses.ManagerClasse.request_params.Add("@id", id_service.ToString());
+            MesClasses.ManagerClasse.CRUD(queryUpdate, MesClasses.ManagerClasse.request_params);
             MessageBox.Show("Modification réussie !!");
 
         }
@@ -224,8 +228,8 @@ namespace Cepima.MesClasses
         {
             string queryDelete = "DELETE FROM services WHERE id_service =@id";
             MesClasses.ManagerClasse.request_params.Clear();
-            MesClasses.ManagerClasse.request_params.Add("@id",id_service.ToString());
-            MesClasses.ManagerClasse.CRUD(queryDelete,MesClasses.ManagerClasse.request_params);
+            MesClasses.ManagerClasse.request_params.Add("@id", id_service.ToString());
+            MesClasses.ManagerClasse.CRUD(queryDelete, MesClasses.ManagerClasse.request_params);
             MessageBox.Show("Service supprimé avc succès !!");
         }
 
@@ -237,127 +241,638 @@ namespace Cepima.MesClasses
                 string queryInsert = "INSERT INTO consultation(id_patient,id_centre,id_personnel,date_consultation,motif,diagnostic)VALUES(@patient,@centre,@personnel,CURDATE(),@motif,@diagnostic)";
                 using (MySqlCommand cmd = new MySqlCommand(queryInsert, con))
                 {
-                    cmd.Parameters.AddWithValue("@patient",id_patient);
-                    cmd.Parameters.AddWithValue("@centre",id_centre);
-                    cmd.Parameters.AddWithValue("@personnel",id_personnel);
-                    cmd.Parameters.AddWithValue("@motif",motif);
-                    cmd.Parameters.AddWithValue("@diagnostic",diagnostic);
+                    cmd.Parameters.AddWithValue("@patient", id_patient);
+                    cmd.Parameters.AddWithValue("@centre", id_centre);
+                    cmd.Parameters.AddWithValue("@personnel", id_personnel);
+                    cmd.Parameters.AddWithValue("@motif", motif);
+                    cmd.Parameters.AddWithValue("@diagnostic", diagnostic);
                 }
 
                 MessageBox.Show("Consultation crée avec succès !!");
             }
         }
 
-        private static void InitialiserDetailFacture(int idFacture,MySqlConnection con, MySqlTransaction tr)
+        // ============================================================
+        // RECUPERER LE TARIF ACTIF D'UNE PRESTATION
+        // ============================================================
+        public static decimal ObtenirTarifActif(
+            int idPrestation,
+            DateTime date,
+            MySqlConnection con,
+            MySqlTransaction tr)
         {
-            string[] prestations = 
-            {"Consultation","Médicaments","EEG","Laboratoire","Hospitalisation","Nursing","Séance psychosociale","Imprimés","Autres"};
+            string query = @"
+                SELECT prix
+                FROM tarif_prestation
+                WHERE id_prestation = @id_prestation
+                  AND actif = 1
+                  AND date_debut <= @date
+                  AND (date_fin IS NULL OR date_fin >= @date)
+                ORDER BY date_debut DESC, id_tarif DESC
+                LIMIT 1";
 
-            foreach (string p in prestations)
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
-                string query = "INSERT INTO detail_facture(id_facture,description,quantite,prix_unitaire,montant)VALUES(@facture,@description,@qte,@prix,@montant)";
+                cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                cmd.Parameters.AddWithValue("@date", date.Date);
 
-                using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("Aucun tarif actif n'est défini pour cette prestation.");
+
+                return Convert.ToDecimal(result);
+            }
+        }
+
+        // ============================================================
+        // AJOUTER UNE PRESTATION A LA FACTURE
+        // ============================================================
+        public static int AjouterPrestationFacture(
+            int idFacture,
+            int idPrestation,
+            int quantite,
+            decimal prixUnitaire,
+            MySqlConnection con,
+            MySqlTransaction tr)
+        {
+            if (idFacture <= 0)
+                throw new Exception("Facture invalide.");
+            if (idPrestation <= 0)
+                throw new Exception("Prestation invalide.");
+            if (quantite <= 0)
+                throw new Exception("La quantité doit être supérieure à zéro.");
+            if (prixUnitaire <= 0)
+                throw new Exception("Le prix de la prestation est invalide.");
+
+            string query = @"
+                SELECT libelle
+                FROM prestation
+                WHERE id_prestation = @id_prestation
+                  AND actif = 1
+                LIMIT 1";
+
+            string libelle;
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                object result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("La prestation n'existe pas ou est inactive.");
+                libelle = result.ToString();
+            }
+
+            int existant = TrouverDetailPrestation(idFacture, idPrestation, con, tr);
+            if (existant > 0)
+                return existant;
+
+            decimal montant = quantite * prixUnitaire;
+
+            query = @"
+                INSERT INTO detail_facture
+                (
+                    id_facture,
+                    id_prestation,
+                    description,
+                    quantite,
+                    prix_unitaire,
+                    montant
+                )
+                VALUES
+                (
+                    @id_facture,
+                    @id_prestation,
+                    @description,
+                    @quantite,
+                    @prix_unitaire,
+                    @montant
+                )";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                cmd.Parameters.AddWithValue("@description", libelle);
+                cmd.Parameters.AddWithValue("@quantite", quantite);
+                cmd.Parameters.AddWithValue("@prix_unitaire", prixUnitaire);
+                cmd.Parameters.AddWithValue("@montant", montant);
+                cmd.ExecuteNonQuery();
+                int idDetail = Convert.ToInt32(cmd.LastInsertedId);
+                RecalculerFacture(idFacture, con, tr);
+                return idDetail;
+            }
+        }
+
+        // ============================================================
+        // TROUVER UNE PRESTATION DANS UNE FACTURE
+        // ============================================================
+        public static int TrouverDetailPrestation(
+            int idFacture,
+            int idPrestation,
+            MySqlConnection con,
+            MySqlTransaction tr)
+        {
+            string query = @"
+                SELECT id_detail_facture
+                FROM detail_facture
+                WHERE id_facture = @id_facture
+                  AND id_prestation = @id_prestation
+                ORDER BY id_detail_facture DESC
+                LIMIT 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                object result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
+                    return 0;
+                return Convert.ToInt32(result);
+            }
+        }
+
+        // ============================================================
+        // RECUPERER LE TARIF ACTUEL
+        // ============================================================
+        public static decimal ObtenirTarifPrestation(
+            int idPrestation,
+            DateTime date,
+            MySqlConnection con,
+            MySqlTransaction tr)
+        {
+            string query = @"
+                SELECT prix
+                FROM tarif_prestation
+                WHERE id_prestation = @id_prestation
+                  AND actif = 1
+                  AND date_debut <= @date
+                  AND (date_fin IS NULL OR date_fin >= @date)
+                ORDER BY date_debut DESC, id_tarif DESC
+                LIMIT 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                cmd.Parameters.AddWithValue("@date", date.Date);
+                object result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("Aucun tarif actif n'est défini pour cette prestation.");
+                return Convert.ToDecimal(result);
+            }
+        }
+
+        // ============================================================
+        // PAIEMENT EEG
+        // ============================================================
+        public static void PayerEEG(
+            int idFacture,
+            int idDetailFacture,
+            decimal montantPaiement,
+            DateTime datePaiement,
+            MySqlConnection con,
+            MySqlTransaction tr)
+        {
+            if (montantPaiement <= 0)
+                throw new Exception("Le montant du paiement EEG doit être supérieur à zéro.");
+
+            int idPrestation;
+            decimal montantEEG;
+
+            string query = @"
+                SELECT id_prestation, COALESCE(montant, 0)
+                FROM detail_facture
+                WHERE id_detail_facture = @id_detail
+                  AND id_facture = @id_facture
+                LIMIT 1
+                FOR UPDATE";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_detail", idDetailFacture);
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("@facture", idFacture);
-                    cmd.Parameters.AddWithValue("@description", p);
-                    cmd.Parameters.AddWithValue("@qte",DBNull.Value);
-                    cmd.Parameters.AddWithValue("@prix",DBNull.Value);
-                    cmd.Parameters.AddWithValue("@montant",DBNull.Value);
-                    cmd.ExecuteNonQuery();
+                    if (!reader.Read())
+                        throw new Exception("Le détail EEG est introuvable dans la facture.");
+
+                    idPrestation = Convert.ToInt32(reader.GetValue(0));
+                    montantEEG = Convert.ToDecimal(reader.GetValue(1));
                 }
             }
-        }
-        // ================================== mettre en jour la prestation (consultationn,EEG,Laboratoire,Hospitalisation ============
-        public static void MettreAJourPrestation(int idFacture, string description, int? quantite, decimal? prixUnitaire, decimal? montant, MySqlConnection con, MySqlTransaction tr)
-        {
 
-            string query = "UPDATE detail_facture SET quantite = @qte,prix_unitaire = @prix,montant = @montant WHERE id_facture = @facture AND description = @description";
+            query = @"
+                SELECT COUNT(*)
+                FROM prestation p
+                INNER JOIN service s ON s.id_service = p.id_service
+                WHERE p.id_prestation = @id_prestation
+                  AND s.nom = 'EEG'
+                  AND p.actif = 1
+                  AND s.actif = 1";
+
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
-                cmd.Parameters.AddWithValue("@facture", idFacture);
-                cmd.Parameters.AddWithValue("@description", description);
-                cmd.Parameters.AddWithValue("@qte", quantite.HasValue ? (object)quantite.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@prix", prixUnitaire.HasValue ? (object)prixUnitaire.Value : DBNull.Value);
-                cmd.Parameters.AddWithValue("@montant", montant.HasValue ? (object)montant.Value : DBNull.Value);
-                cmd.ExecuteNonQuery();
-
-                RecalculerFacture(idFacture, con, tr);
+                cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                if (Convert.ToInt32(cmd.ExecuteScalar()) == 0)
+                    throw new Exception("Cette prestation n'appartient pas au service EEG.");
             }
-        }
 
-        // ==================================== recalculer le montant ========================================================
-        private  static void RecalculerFacture(int idFacture,MySqlConnection con,MySqlTransaction tr)
-        {
-            decimal total = 0;
-
-            string query = @"SELECT IFNULL(SUM(montant),0) FROM detail_facture WHERE id_facture=@id";
+            decimal dejaPayeEEG;
+            query = @"
+                SELECT COALESCE(SUM(montant), 0)
+                FROM paiement
+                WHERE id_facture = @id_facture
+                  AND id_detail_facture = @id_detail";
 
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
-                cmd.Parameters.AddWithValue("@id", idFacture);
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@id_detail", idDetailFacture);
+                dejaPayeEEG = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
 
+            decimal resteEEG = montantEEG - dejaPayeEEG;
+
+            if (resteEEG <= 0)
+                throw new Exception("Cette prestation EEG est déjà entièrement payée.");
+
+            if (montantPaiement > resteEEG)
+                throw new Exception("Le paiement EEG dépasse le montant restant de l'EEG.");
+
+            // Le champ reste de paiement = reste GLOBAL de la facture.
+            decimal totalFacture;
+            decimal dejaPayeFacture;
+
+            query = @"
+                SELECT COALESCE(montant_total, 0)
+                FROM facture
+                WHERE id_facture = @id_facture
+                  AND statut <> 'Clôturée'
+                FOR UPDATE";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                object result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("Facture introuvable ou déjà clôturée.");
+                totalFacture = Convert.ToDecimal(result);
+            }
+
+            query = @"
+                SELECT COALESCE(SUM(montant), 0)
+                FROM paiement
+                WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                dejaPayeFacture = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal nouveauResteFacture = totalFacture - dejaPayeFacture - montantPaiement;
+
+            if (nouveauResteFacture < 0)
+                throw new Exception("Le paiement EEG dépasse le reste global de la facture.");
+
+            string typePaiement = nouveauResteFacture == 0 ? "Complet" : "Partiel";
+
+            query = @"
+                INSERT INTO paiement
+                (
+                    id_facture,
+                    id_detail_facture,
+                    date_paiement,
+                    montant,
+                    reste,
+                    type_paiement
+                )
+                VALUES
+                (
+                    @id_facture,
+                    @id_detail,
+                    @date_paiement,
+                    @montant,
+                    @reste,
+                    @type_paiement
+                )";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@id_detail", idDetailFacture);
+                cmd.Parameters.AddWithValue("@date_paiement", datePaiement.Date);
+                cmd.Parameters.AddWithValue("@montant", montantPaiement);
+                cmd.Parameters.AddWithValue("@reste", nouveauResteFacture);
+                cmd.Parameters.AddWithValue("@type_paiement", typePaiement);
+                cmd.ExecuteNonQuery();
+            }
+
+            RecalculerFacture(idFacture, con, tr);
+        }
+
+        // ============================================================
+        // RECALCULER LES INFORMATIONS DE LA FACTURE
+        // ============================================================
+        public static void RecalculerFacture(
+            int idFacture,
+            MySqlConnection con,
+            MySqlTransaction tr)
+        {
+            decimal total;
+            decimal paye;
+
+            string query = @"
+                SELECT COALESCE(SUM(montant), 0)
+                FROM detail_facture
+                WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
                 total = Convert.ToDecimal(cmd.ExecuteScalar());
             }
 
-            query = "UPDATE facture SET montant_total=@total WHERE id_facture=@id";
+            query = @"
+                SELECT COALESCE(SUM(montant), 0)
+                FROM paiement
+                WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                paye = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal reste = total - paye;
+            if (reste < 0) reste = 0;
+
+            string statut;
+            if (paye <= 0)
+                statut = "Non payé";
+            else if (reste > 0)
+                statut = "Partiellement payé";
+            else
+                statut = "Payé";
+
+            query = @"
+                UPDATE facture
+                SET montant_total = @total,
+                    montant_paye = @paye,
+                    reste = @reste,
+                    statut = CASE
+                        WHEN statut = 'Clôturée' THEN 'Clôturée'
+                        ELSE @statut
+                    END
+                WHERE id_facture = @id_facture";
 
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
                 cmd.Parameters.AddWithValue("@total", total);
-                cmd.Parameters.AddWithValue("@id", idFacture);
-
+                cmd.Parameters.AddWithValue("@paye", paye);
+                cmd.Parameters.AddWithValue("@reste", reste);
+                cmd.Parameters.AddWithValue("@statut", statut);
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
                 cmd.ExecuteNonQuery();
             }
         }
-        // ================================== creer une facture s'il n'existe pas =============================================
-        public static int CreerFactureSiInexistante(int idConsultation,int idPatient,string typeFacture,MySqlConnection con,MySqlTransaction tr)
+
+        // ============================================================
+        // CREER OU RECUPERER LA FACTURE OUVERTE DU PATIENT
+        // ============================================================
+        public static int CreerFactureSiInexistante(
+            string idPatient,
+            MySqlConnection con,
+            MySqlTransaction tr)
         {
-            // Vérifier si la facture existe déjà
-            string query = "SELECT id_facture FROM facture WHERE id_consultation=@id";
+            string query = @"
+                SELECT id_facture
+                FROM facture
+                WHERE id_patient = @id_patient
+                  AND statut <> 'Clôturée'
+                ORDER BY id_facture DESC
+                LIMIT 1";
 
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
-                cmd.Parameters.AddWithValue("@id", idConsultation);
+                cmd.Parameters.AddWithValue("@id_patient", idPatient);
 
                 object result = cmd.ExecuteScalar();
 
-                if (result != null)
+                if (result != null && result != DBNull.Value)
                     return Convert.ToInt32(result);
             }
 
-            //================ Création =================
+            query = @"
+                INSERT INTO facture
+                (
+                    id_patient,
+                    id_centre,
+                    date_facture,
+                    montant_total,
+                    montant_paye,
+                    reste,
+                    statut
+                )
+                VALUES
+                (
+                    @id_patient,
+                    @id_centre,
+                    CURDATE(),
+                    0,
+                    0,
+                    0,
+                    'Non payé'
+                )";
 
-            int idFacture = 0;
-
-            string insert = "INSERT INTO facture(id_patient,id_consultation,id_centre,type_facture,date_facture,montant_total,statut)VALUES(@patient,@consultation,@centre,@type,CURDATE(),0,'Non payé')";
-            using (MySqlCommand cmd = new MySqlCommand(insert, con, tr))
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
-                cmd.Parameters.AddWithValue("@patient", idPatient);
-                cmd.Parameters.AddWithValue("@consultation", idConsultation);
-                cmd.Parameters.AddWithValue("@centre", MesForms.SessionUtilisateur.idCentre);
-                cmd.Parameters.AddWithValue("@type", typeFacture);
+                cmd.Parameters.AddWithValue("@id_patient", idPatient);
+                cmd.Parameters.AddWithValue("@id_centre", MesForms.SessionUtilisateur.idCentre);
 
                 cmd.ExecuteNonQuery();
-
-                idFacture = Convert.ToInt32(cmd.LastInsertedId);
+                return Convert.ToInt32(cmd.LastInsertedId);
             }
-
-            InitialiserDetailFacture(idFacture, con, tr);
-
-            return idFacture;
         }
 
-    }
-    class Event
-    {
-        public static void SaveHistorique(string idHospitalisation, string evenement)
+
+
+        public static void PayerFactureGenerale(
+            int idFacture,
+            decimal montantPaiement,
+            DateTime datePaiement,
+            MySqlConnection con,
+            MySqlTransaction tr)
         {
-            string query = "INSERT INTO historique_sejour(id_hospitalisation,evenement,date_evenement)VALUES(@id,@ev,NOW())";
-            MesClasses.ManagerClasse.request_params.Clear();
-            MesClasses.ManagerClasse.request_params.Add("@id", idHospitalisation);
-            MesClasses.ManagerClasse.request_params.Add("@ev", evenement);
-            MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params);
+            if (montantPaiement <= 0)
+            {
+                throw new Exception(
+                    "Le montant du paiement doit être supérieur à zéro.");
+            }
+
+            // ============================================================
+            // 1. Récupérer le montant total de la facture
+            // ============================================================
+
+            decimal montantTotal = 0;
+
+            string query = @"
+        SELECT COALESCE(montant_total, 0)
+        FROM facture
+        WHERE id_facture = @id_facture
+        LIMIT 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                {
+                    throw new Exception("La facture est introuvable.");
+                }
+
+                montantTotal = Convert.ToDecimal(result);
+            }
+
+
+            // ============================================================
+            // 2. Calculer tout ce qui a déjà été payé sur la facture
+            // ============================================================
+
+            decimal montantDejaPaye = 0;
+
+            query = @"
+        SELECT COALESCE(SUM(montant), 0)
+        FROM paiement
+        WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                montantDejaPaye = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+
+            // ============================================================
+            // 3. Calculer le reste avant le nouveau paiement
+            // ============================================================
+
+            decimal resteAvantPaiement =
+                montantTotal - montantDejaPaye;
+
+            if (resteAvantPaiement <= 0)
+            {
+                throw new Exception(
+                    "Cette facture est déjà entièrement payée.");
+            }
+
+
+            // ============================================================
+            // 4. Vérifier que le paiement ne dépasse pas le reste
+            // ============================================================
+
+            if (montantPaiement > resteAvantPaiement)
+            {
+                throw new Exception(
+                    "Le montant du paiement (" +
+                    montantPaiement.ToString("0.00") +
+                    ") dépasse le reste à payer (" +
+                    resteAvantPaiement.ToString("0.00") +
+                    ").");
+            }
+
+
+            // ============================================================
+            // 5. Calculer le nouveau reste
+            // ============================================================
+
+            decimal nouveauReste =
+                resteAvantPaiement - montantPaiement;
+
+
+            // ============================================================
+            // 6. Type de paiement
+            // ============================================================
+
+            string typePaiement =
+                nouveauReste == 0
+                    ? "Complet"
+                    : "Partiel";
+
+
+            // ============================================================
+            // 7. Enregistrer le paiement GENERAL
+            //
+            // IMPORTANT :
+            // id_detail_facture = NULL
+            //
+            // Car la caisse générale paie le RESTE GLOBAL
+            // de la facture et non une prestation particulière.
+            // ============================================================
+
+            query = @"
+        INSERT INTO paiement
+        (
+            id_facture,
+            id_detail_facture,
+            date_paiement,
+            montant,
+            reste,
+            type_paiement
+        )
+        VALUES
+        (
+            @id_facture,
+            NULL,
+            @date_paiement,
+            @montant,
+            @reste,
+            @type_paiement
+        )";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@id_facture",
+                    idFacture);
+
+                cmd.Parameters.AddWithValue(
+                    "@date_paiement",
+                    datePaiement.Date);
+
+                cmd.Parameters.AddWithValue(
+                    "@montant",
+                    montantPaiement);
+
+                cmd.Parameters.AddWithValue(
+                    "@reste",
+                    nouveauReste);
+
+                cmd.Parameters.AddWithValue(
+                    "@type_paiement",
+                    typePaiement);
+
+                cmd.ExecuteNonQuery();
+            }
+
+
+            // ============================================================
+            // 8. Recalculer la facture
+            //
+            // Cela met à jour :
+            // montant_total
+            // montant_paye
+            // reste
+            // statut
+            // ============================================================
+
+            RecalculerFacture(
+                idFacture,
+                con,
+                tr);
         }
     }
 }
