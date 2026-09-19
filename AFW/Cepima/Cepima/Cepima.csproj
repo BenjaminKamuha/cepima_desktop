@@ -213,11 +213,29 @@
     <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
       <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Services\Form_prestation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
+      <DependentUpon>Form_prestation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\EEG\User_caisse.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\EEG\User_caisse.Designer.cs">
       <DependentUpon>User_caisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_service.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_service.Designer.cs">
+      <DependentUpon>Form_service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Services\User_services.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Services\User_services.Designer.cs">
+      <DependentUpon>User_services.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
@@ -783,6 +801,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_stock_pharmacie.resx">
       <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Services\User_services.resx">
+      <DependentUpon>User_services.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
@@ -1578,6 +1599,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_25px2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

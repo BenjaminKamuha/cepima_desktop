@@ -15,6 +15,7 @@ namespace Cepima.MesUserCases.EEG
 {
     public partial class User_caisse : UserControl
     {
+        int id_prestation = 0;
         public User_caisse()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace Cepima.MesUserCases.EEG
 
         private void ChargerDemandesEEG()
         {
+            
             try
             {
                 // -------------------------------------------------
@@ -61,7 +63,7 @@ namespace Cepima.MesUserCases.EEG
                             ds.id_demande,
                             ds.id_patient,
                             ds.id_service,
-                            ds.id_consultation,
+                            ds.id_prestation,
 
                             p.nom,
                             p.post_nom,
@@ -85,7 +87,7 @@ namespace Cepima.MesUserCases.EEG
                         INNER JOIN service s
                             ON s.id_service = ds.id_service
 
-                        WHERE s.nom = 'EEG' AND statut IS NULL
+                        WHERE s.nom = 'EEG' AND statut = 'En attente'
 
 
                         AND
@@ -177,6 +179,7 @@ namespace Cepima.MesUserCases.EEG
                                         ? ""
                                         : reader["motif"].ToString();
 
+                                id_prestation = Convert.ToInt32(reader["id_prestation"].ToString());
 
                                 // -------------------------------------------------
                                 // CREATION DU PANEL
@@ -312,29 +315,20 @@ namespace Cepima.MesUserCases.EEG
             EventHandler clickDemande =
                 delegate(object sender, EventArgs e)
                 {
-                    try
-                    {
+                    //try
+                    //{
                         // ---------------------------------------------
                         // DEMANDE EEG
                         // ---------------------------------------------
                             Form1.PATIENT_ID = Convert.ToInt32(idPatient);
                             Form1.DEMANDE_ID = Convert.ToInt32(idDemande);
 
-                            Form_caisse_eeg form = new Form_caisse_eeg(idPatient, idDemande);
-                            form.ShowDialog();
+                            Form_caisse_eeg form = new Form_caisse_eeg(idPatient, idDemande, id_prestation);
+                            form.ShowDialog();      
                             ChargerDemandesEEG();
 
                        
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(
-                            "Erreur lors de l'ouverture de la demande.\n\n" +
-                            ex.Message,
-                            "Demande EEG",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
+    
                 };
 
 

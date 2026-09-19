@@ -28,53 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bt_save_patient = new test_arrondissement2012.PerfectRoundedButton();
-            this.lb_patient_now = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.label6 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
+            this.lb_quantite_delivre = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.lb_hospitalise = new System.Windows.Forms.Label();
+            this.lb_nb_ordonance_en_attente = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
-            this.lb_attente = new System.Windows.Forms.Label();
+            this.lb_nombre_stock_faible = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel4 = new CustomRoundedPanel();
-            this.lb_sorti = new System.Windows.Forms.Label();
+            this.lb_nombre_expiration = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.customRoundedPanel5 = new CustomRoundedPanel();
             this.customRoundedPanel7 = new CustomRoundedPanel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.dgv_disp = new System.Windows.Forms.DataGridView();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
+            this.customRoundedPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_disp)).BeginInit();
             this.SuspendLayout();
             // 
-            // bt_save_patient
+            // label6
             // 
-            this.bt_save_patient.BackColor = System.Drawing.Color.Transparent;
-            this.bt_save_patient.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_patient.BorderRadius = 5;
-            this.bt_save_patient.BorderSize = 0;
-            this.bt_save_patient.ButtonText = "Commencer";
-            this.bt_save_patient.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
-            this.bt_save_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_save_patient.HoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.bt_save_patient.Location = new System.Drawing.Point(330, 133);
-            this.bt_save_patient.Name = "bt_save_patient";
-            this.bt_save_patient.Size = new System.Drawing.Size(135, 29);
-            this.bt_save_patient.TabIndex = 28;
-            // 
-            // lb_patient_now
-            // 
-            this.lb_patient_now.AutoSize = true;
-            this.lb_patient_now.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_patient_now.Location = new System.Drawing.Point(88, 49);
-            this.lb_patient_now.Name = "lb_patient_now";
-            this.lb_patient_now.Size = new System.Drawing.Size(22, 16);
-            this.lb_patient_now.TabIndex = 0;
-            this.lb_patient_now.Text = "46";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(9, 159);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(235, 19);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "DISPENSATION HOSPITALISATION";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // customRoundedPanel2
             // 
@@ -82,7 +71,7 @@
             this.customRoundedPanel2.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel2.BorderRadius = 10;
             this.customRoundedPanel2.BorderSize = 2;
-            this.customRoundedPanel2.Controls.Add(this.lb_patient_now);
+            this.customRoundedPanel2.Controls.Add(this.lb_quantite_delivre);
             this.customRoundedPanel2.Controls.Add(this.label4);
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -98,6 +87,16 @@
             this.customRoundedPanel2.ShadowSpread = 0;
             this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel2.TabIndex = 26;
+            // 
+            // lb_quantite_delivre
+            // 
+            this.lb_quantite_delivre.AutoSize = true;
+            this.lb_quantite_delivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_quantite_delivre.Location = new System.Drawing.Point(88, 49);
+            this.lb_quantite_delivre.Name = "lb_quantite_delivre";
+            this.lb_quantite_delivre.Size = new System.Drawing.Size(22, 16);
+            this.lb_quantite_delivre.TabIndex = 0;
+            this.lb_quantite_delivre.Text = "46";
             // 
             // label4
             // 
@@ -115,7 +114,7 @@
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel1.BorderRadius = 10;
             this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.lb_hospitalise);
+            this.customRoundedPanel1.Controls.Add(this.lb_nb_ordonance_en_attente);
             this.customRoundedPanel1.Controls.Add(this.label1);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -132,15 +131,15 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel1.TabIndex = 25;
             // 
-            // lb_hospitalise
+            // lb_nb_ordonance_en_attente
             // 
-            this.lb_hospitalise.AutoSize = true;
-            this.lb_hospitalise.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_hospitalise.Location = new System.Drawing.Point(88, 49);
-            this.lb_hospitalise.Name = "lb_hospitalise";
-            this.lb_hospitalise.Size = new System.Drawing.Size(22, 16);
-            this.lb_hospitalise.TabIndex = 0;
-            this.lb_hospitalise.Text = "22";
+            this.lb_nb_ordonance_en_attente.AutoSize = true;
+            this.lb_nb_ordonance_en_attente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nb_ordonance_en_attente.Location = new System.Drawing.Point(88, 49);
+            this.lb_nb_ordonance_en_attente.Name = "lb_nb_ordonance_en_attente";
+            this.lb_nb_ordonance_en_attente.Size = new System.Drawing.Size(22, 16);
+            this.lb_nb_ordonance_en_attente.TabIndex = 0;
+            this.lb_nb_ordonance_en_attente.Text = "22";
             // 
             // label1
             // 
@@ -159,7 +158,7 @@
             this.customRoundedPanel3.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel3.BorderRadius = 10;
             this.customRoundedPanel3.BorderSize = 2;
-            this.customRoundedPanel3.Controls.Add(this.lb_attente);
+            this.customRoundedPanel3.Controls.Add(this.lb_nombre_stock_faible);
             this.customRoundedPanel3.Controls.Add(this.label2);
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -176,15 +175,15 @@
             this.customRoundedPanel3.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel3.TabIndex = 24;
             // 
-            // lb_attente
+            // lb_nombre_stock_faible
             // 
-            this.lb_attente.AutoSize = true;
-            this.lb_attente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_attente.Location = new System.Drawing.Point(94, 49);
-            this.lb_attente.Name = "lb_attente";
-            this.lb_attente.Size = new System.Drawing.Size(15, 16);
-            this.lb_attente.TabIndex = 0;
-            this.lb_attente.Text = "5";
+            this.lb_nombre_stock_faible.AutoSize = true;
+            this.lb_nombre_stock_faible.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nombre_stock_faible.Location = new System.Drawing.Point(94, 49);
+            this.lb_nombre_stock_faible.Name = "lb_nombre_stock_faible";
+            this.lb_nombre_stock_faible.Size = new System.Drawing.Size(15, 16);
+            this.lb_nombre_stock_faible.TabIndex = 0;
+            this.lb_nombre_stock_faible.Text = "5";
             // 
             // label2
             // 
@@ -203,7 +202,7 @@
             this.customRoundedPanel4.BorderColor = System.Drawing.Color.Silver;
             this.customRoundedPanel4.BorderRadius = 10;
             this.customRoundedPanel4.BorderSize = 2;
-            this.customRoundedPanel4.Controls.Add(this.lb_sorti);
+            this.customRoundedPanel4.Controls.Add(this.lb_nombre_expiration);
             this.customRoundedPanel4.Controls.Add(this.label3);
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
@@ -220,15 +219,15 @@
             this.customRoundedPanel4.Size = new System.Drawing.Size(212, 100);
             this.customRoundedPanel4.TabIndex = 23;
             // 
-            // lb_sorti
+            // lb_nombre_expiration
             // 
-            this.lb_sorti.AutoSize = true;
-            this.lb_sorti.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_sorti.Location = new System.Drawing.Point(94, 49);
-            this.lb_sorti.Name = "lb_sorti";
-            this.lb_sorti.Size = new System.Drawing.Size(15, 16);
-            this.lb_sorti.TabIndex = 0;
-            this.lb_sorti.Text = "0";
+            this.lb_nombre_expiration.AutoSize = true;
+            this.lb_nombre_expiration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_nombre_expiration.Location = new System.Drawing.Point(94, 49);
+            this.lb_nombre_expiration.Name = "lb_nombre_expiration";
+            this.lb_nombre_expiration.Size = new System.Drawing.Size(15, 16);
+            this.lb_nombre_expiration.TabIndex = 0;
+            this.lb_nombre_expiration.Text = "0";
             // 
             // label3
             // 
@@ -241,40 +240,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "EXPIRATION";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(6, 143);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(213, 19);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "DISPENSATION AMBULATOIRE";
-            // 
-            // customRoundedPanel5
-            // 
-            this.customRoundedPanel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customRoundedPanel5.BorderColor = System.Drawing.Color.Transparent;
-            this.customRoundedPanel5.BorderRadius = 4;
-            this.customRoundedPanel5.BorderSize = 0;
-            this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel5.Location = new System.Drawing.Point(3, 170);
-            this.customRoundedPanel5.Name = "customRoundedPanel5";
-            this.customRoundedPanel5.ShadowBlur = 10;
-            this.customRoundedPanel5.ShadowBorderRadius = -1;
-            this.customRoundedPanel5.ShadowColor = System.Drawing.Color.Black;
-            this.customRoundedPanel5.ShadowEnabled = false;
-            this.customRoundedPanel5.ShadowOffsetX = 0;
-            this.customRoundedPanel5.ShadowOffsetY = 4;
-            this.customRoundedPanel5.ShadowOpacity = 60;
-            this.customRoundedPanel5.ShadowSpread = 0;
-            this.customRoundedPanel5.Size = new System.Drawing.Size(1015, 144);
-            this.customRoundedPanel5.TabIndex = 27;
-            // 
             // customRoundedPanel7
             // 
             this.customRoundedPanel7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -283,9 +248,10 @@
             this.customRoundedPanel7.BorderColor = System.Drawing.Color.Transparent;
             this.customRoundedPanel7.BorderRadius = 4;
             this.customRoundedPanel7.BorderSize = 0;
+            this.customRoundedPanel7.Controls.Add(this.dgv_disp);
             this.customRoundedPanel7.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel7.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel7.Location = new System.Drawing.Point(0, 341);
+            this.customRoundedPanel7.Location = new System.Drawing.Point(3, 196);
             this.customRoundedPanel7.Name = "customRoundedPanel7";
             this.customRoundedPanel7.ShadowBlur = 10;
             this.customRoundedPanel7.ShadowBorderRadius = -1;
@@ -295,34 +261,58 @@
             this.customRoundedPanel7.ShadowOffsetY = 4;
             this.customRoundedPanel7.ShadowOpacity = 60;
             this.customRoundedPanel7.ShadowSpread = 0;
-            this.customRoundedPanel7.Size = new System.Drawing.Size(1015, 175);
+            this.customRoundedPanel7.Size = new System.Drawing.Size(1015, 320);
             this.customRoundedPanel7.TabIndex = 27;
             // 
-            // label6
+            // dgv_disp
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(6, 317);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(235, 19);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "DISPENSATION HOSPITALISATION";
+            this.dgv_disp.AllowUserToAddRows = false;
+            this.dgv_disp.AllowUserToDeleteRows = false;
+            this.dgv_disp.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv_disp.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_disp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgv_disp.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgv_disp.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_disp.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_disp.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_disp.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv_disp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgv_disp.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgv_disp.EnableHeadersVisualStyles = false;
+            this.dgv_disp.Location = new System.Drawing.Point(0, 0);
+            this.dgv_disp.Name = "dgv_disp";
+            this.dgv_disp.ReadOnly = true;
+            this.dgv_disp.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv_disp.RowHeadersVisible = false;
+            this.dgv_disp.RowTemplate.Height = 30;
+            this.dgv_disp.Size = new System.Drawing.Size(1015, 320);
+            this.dgv_disp.TabIndex = 10;
             // 
             // User_DashBord_pharmacie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.bt_save_patient);
             this.Controls.Add(this.customRoundedPanel2);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.customRoundedPanel3);
             this.Controls.Add(this.customRoundedPanel4);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.customRoundedPanel7);
-            this.Controls.Add(this.customRoundedPanel5);
             this.Name = "User_DashBord_pharmacie";
             this.Size = new System.Drawing.Size(1021, 519);
             this.Load += new System.EventHandler(this.User_DashBord_pharmacie_Load);
@@ -334,6 +324,8 @@
             this.customRoundedPanel3.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
+            this.customRoundedPanel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_disp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -341,23 +333,21 @@
 
         #endregion
 
-        private test_arrondissement2012.PerfectRoundedButton bt_save_patient;
-        private System.Windows.Forms.Label lb_patient_now;
+        private System.Windows.Forms.Label lb_quantite_delivre;
         private CustomRoundedPanel customRoundedPanel2;
         private System.Windows.Forms.Label label4;
         private CustomRoundedPanel customRoundedPanel1;
-        private System.Windows.Forms.Label lb_hospitalise;
+        private System.Windows.Forms.Label lb_nb_ordonance_en_attente;
         private System.Windows.Forms.Label label1;
         private CustomRoundedPanel customRoundedPanel3;
-        private System.Windows.Forms.Label lb_attente;
+        private System.Windows.Forms.Label lb_nombre_stock_faible;
         private System.Windows.Forms.Label label2;
         private CustomRoundedPanel customRoundedPanel4;
-        private System.Windows.Forms.Label lb_sorti;
+        private System.Windows.Forms.Label lb_nombre_expiration;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private CustomRoundedPanel customRoundedPanel5;
         private CustomRoundedPanel customRoundedPanel7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dgv_disp;
 
     }
 }

@@ -42,6 +42,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btn_update = new RoundedButton();
             this.lb_version = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -227,6 +228,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btn_update);
             this.panel5.Controls.Add(this.lb_version);
             this.panel5.Controls.Add(this.label6);
             this.panel5.Controls.Add(this.pictureBox3);
@@ -240,12 +242,35 @@
             this.panel5.Size = new System.Drawing.Size(1002, 41);
             this.panel5.TabIndex = 3;
             // 
+            // btn_update
+            // 
+            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update.BackColor = System.Drawing.Color.Transparent;
+            this.btn_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btn_update.ButtonText = "";
+            this.btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_update.DefaultBackColor = System.Drawing.Color.White;
+            this.btn_update.FlatAppearance.BorderSize = 0;
+            this.btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_update.ForeColor = System.Drawing.Color.White;
+            this.btn_update.HoverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_update.Image = global::Cepima.Properties.Resources.refresh_25px2;
+            this.btn_update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_update.Location = new System.Drawing.Point(949, 9);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(40, 22);
+            this.btn_update.TabIndex = 0;
+            this.btn_update.TextColor = System.Drawing.Color.Wheat;
+            this.btn_update.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_update.UseVisualStyleBackColor = false;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+            // 
             // lb_version
             // 
             this.lb_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_version.AutoSize = true;
             this.lb_version.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_version.Location = new System.Drawing.Point(953, 16);
+            this.lb_version.Location = new System.Drawing.Point(909, 15);
             this.lb_version.Name = "lb_version";
             this.lb_version.Size = new System.Drawing.Size(31, 14);
             this.lb_version.TabIndex = 4;
@@ -277,7 +302,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(894, 16);
+            this.label5.Location = new System.Drawing.Point(850, 15);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 15);
             this.label5.TabIndex = 5;
@@ -641,6 +666,7 @@
         private System.Windows.Forms.Button bt_hospitalisation;
         private System.Windows.Forms.Button bt_consultation;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private RoundedButton btn_update;
 
     }
 }

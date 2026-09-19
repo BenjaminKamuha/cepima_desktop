@@ -156,7 +156,7 @@
             this.Controls.Add(this.tb_search_demande);
             this.Name = "User_caisse";
             this.Size = new System.Drawing.Size(1021, 519);
-            this.Load += new System.EventHandler(this.User_caisse_Load);
+
             this.customRoundedPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -528,6 +528,7 @@ namespace Cepima
         }
         private void bt_setting_Click(object sender, EventArgs e)
         {
+            
             picture_image_menu.Image = Properties.Resources.settings_90px;
             lb_sous_menu.Text = "Paramètres";
             lb_sous_menu.Visible = true;
@@ -537,7 +538,13 @@ namespace Cepima
             {
                 new MenuItem("   Géneraux",Properties.Resources.maintenance_20px,(s,ev) => {}),
                 new MenuItem("   Apparence",Properties.Resources.eye_checked_20px,(s, ev) => {}),
-                new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {})
+                new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {}),
+                new MenuItem("   Services",Properties.Resources.gift_30px, (s, ev) => {
+                    MesUserCases.Services.User_services uc_service = new MesUserCases.Services.User_services();
+                    panel_center_main.Controls.Clear();
+                    uc_service.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(uc_service);
+                })
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -550,8 +557,6 @@ namespace Cepima
 
             UpdateManager manager = new UpdateManager();
             lb_version.Text = manager.GetCurrentVersion();
-
-            await manager.CheckForUpdateAsync();
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
@@ -666,6 +671,14 @@ namespace Cepima
         {
 
         }
+
+        private async void btn_update_Click(object sender, EventArgs e)
+        {
+            UpdateManager manager = new UpdateManager();
+            await manager.CheckForUpdateAsync();
+        }
+
+
     }
     public class MenuItem
     {
