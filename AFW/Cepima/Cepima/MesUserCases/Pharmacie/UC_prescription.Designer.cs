@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.fl_medoc = new System.Windows.Forms.FlowLayoutPanel();
+            this.fl_prescription = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_add_med = new RoundedButton();
             this.tb_search = new MyRoundedTextBox();
-            this.rd_tout = new System.Windows.Forms.RadioButton();
             this.rd_ambulatoire = new System.Windows.Forms.RadioButton();
             this.rd_delivree = new System.Windows.Forms.RadioButton();
             this.rd_en_attente = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rd_hospitalisation = new System.Windows.Forms.RadioButton();
+            this.rd_tout = new System.Windows.Forms.RadioButton();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +49,7 @@
             this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.customRoundedPanel1.BorderRadius = 5;
             this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.fl_medoc);
+            this.customRoundedPanel1.Controls.Add(this.fl_prescription);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
             this.customRoundedPanel1.Location = new System.Drawing.Point(11, 70);
@@ -66,14 +66,14 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(1008, 443);
             this.customRoundedPanel1.TabIndex = 9;
             // 
-            // fl_medoc
+            // fl_prescription
             // 
-            this.fl_medoc.AutoScroll = true;
-            this.fl_medoc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fl_medoc.Location = new System.Drawing.Point(10, 10);
-            this.fl_medoc.Name = "fl_medoc";
-            this.fl_medoc.Size = new System.Drawing.Size(988, 419);
-            this.fl_medoc.TabIndex = 3;
+            this.fl_prescription.AutoScroll = true;
+            this.fl_prescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fl_prescription.Location = new System.Drawing.Point(10, 10);
+            this.fl_prescription.Name = "fl_prescription";
+            this.fl_prescription.Size = new System.Drawing.Size(988, 419);
+            this.fl_prescription.TabIndex = 3;
             // 
             // btn_add_med
             // 
@@ -117,27 +117,15 @@
             this.tb_search.Name = "tb_search";
             this.tb_search.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_search.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_search.PlaceholderText = "Rechercher par nom du patient";
+            this.tb_search.PlaceholderText = "Rechercher";
             this.tb_search.Size = new System.Drawing.Size(273, 34);
             this.tb_search.TabIndex = 7;
-            // 
-            // rd_tout
-            // 
-            this.rd_tout.AutoSize = true;
-            this.rd_tout.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_tout.Location = new System.Drawing.Point(312, 26);
-            this.rd_tout.Name = "rd_tout";
-            this.rd_tout.Size = new System.Drawing.Size(55, 22);
-            this.rd_tout.TabIndex = 43;
-            this.rd_tout.TabStop = true;
-            this.rd_tout.Text = "Tous";
-            this.rd_tout.UseVisualStyleBackColor = true;
             // 
             // rd_ambulatoire
             // 
             this.rd_ambulatoire.AutoSize = true;
             this.rd_ambulatoire.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_ambulatoire.Location = new System.Drawing.Point(622, 27);
+            this.rd_ambulatoire.Location = new System.Drawing.Point(618, 27);
             this.rd_ambulatoire.Name = "rd_ambulatoire";
             this.rd_ambulatoire.Size = new System.Drawing.Size(101, 21);
             this.rd_ambulatoire.TabIndex = 44;
@@ -149,7 +137,7 @@
             // 
             this.rd_delivree.AutoSize = true;
             this.rd_delivree.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_delivree.Location = new System.Drawing.Point(514, 27);
+            this.rd_delivree.Location = new System.Drawing.Point(510, 27);
             this.rd_delivree.Name = "rd_delivree";
             this.rd_delivree.Size = new System.Drawing.Size(95, 21);
             this.rd_delivree.TabIndex = 45;
@@ -161,7 +149,7 @@
             // 
             this.rd_en_attente.AutoSize = true;
             this.rd_en_attente.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_en_attente.Location = new System.Drawing.Point(382, 27);
+            this.rd_en_attente.Location = new System.Drawing.Point(389, 27);
             this.rd_en_attente.Name = "rd_en_attente";
             this.rd_en_attente.Size = new System.Drawing.Size(108, 21);
             this.rd_en_attente.TabIndex = 46;
@@ -169,27 +157,39 @@
             this.rd_en_attente.Text = "En attente(s)";
             this.rd_en_attente.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rd_hospitalisation
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(734, 27);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(118, 21);
-            this.radioButton1.TabIndex = 44;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Hospitalisation";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rd_hospitalisation.AutoSize = true;
+            this.rd_hospitalisation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rd_hospitalisation.Location = new System.Drawing.Point(732, 27);
+            this.rd_hospitalisation.Name = "rd_hospitalisation";
+            this.rd_hospitalisation.Size = new System.Drawing.Size(118, 21);
+            this.rd_hospitalisation.TabIndex = 44;
+            this.rd_hospitalisation.TabStop = true;
+            this.rd_hospitalisation.Text = "Hospitalisation";
+            this.rd_hospitalisation.UseVisualStyleBackColor = true;
+            // 
+            // rd_tout
+            // 
+            this.rd_tout.AutoSize = true;
+            this.rd_tout.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rd_tout.Location = new System.Drawing.Point(318, 27);
+            this.rd_tout.Name = "rd_tout";
+            this.rd_tout.Size = new System.Drawing.Size(58, 21);
+            this.rd_tout.TabIndex = 46;
+            this.rd_tout.TabStop = true;
+            this.rd_tout.Text = "Tous";
+            this.rd_tout.UseVisualStyleBackColor = true;
             // 
             // UC_prescription
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.rd_tout);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rd_hospitalisation);
             this.Controls.Add(this.rd_ambulatoire);
             this.Controls.Add(this.rd_delivree);
+            this.Controls.Add(this.rd_tout);
             this.Controls.Add(this.rd_en_attente);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.btn_add_med);
@@ -205,13 +205,13 @@
         #endregion
 
         private CustomRoundedPanel customRoundedPanel1;
-        private System.Windows.Forms.FlowLayoutPanel fl_medoc;
+        private System.Windows.Forms.FlowLayoutPanel fl_prescription;
         private RoundedButton btn_add_med;
         private MyRoundedTextBox tb_search;
-        private System.Windows.Forms.RadioButton rd_tout;
         private System.Windows.Forms.RadioButton rd_ambulatoire;
         private System.Windows.Forms.RadioButton rd_delivree;
         private System.Windows.Forms.RadioButton rd_en_attente;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rd_hospitalisation;
+        private System.Windows.Forms.RadioButton rd_tout;
     }
 }

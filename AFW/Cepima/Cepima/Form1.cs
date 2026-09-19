@@ -365,7 +365,11 @@ namespace Cepima
             
                 new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px,(s,ev) => {
 
-                    MessageBox.Show("En cours de dévelopement");
+                    MesUserCases.Pharmacie.UC_prescription prescription = new MesUserCases.Pharmacie.UC_prescription();
+                    panel_center_main.Controls.Clear();
+                    prescription.Dock = DockStyle.Fill;
+                    panel_center_main.Controls.Add(prescription);
+
                 }),
 
             };

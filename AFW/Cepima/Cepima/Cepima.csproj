@@ -213,6 +213,12 @@
     <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
       <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_prescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Pharmacie\Form_prescription.Designer.cs">
+      <DependentUpon>Form_prescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Services\Form_prestation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -762,6 +768,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_detail_produit.resx">
       <DependentUpon>Form_detail_produit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Pharmacie\Form_prescription.resx">
+      <DependentUpon>Form_prescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Reception\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
