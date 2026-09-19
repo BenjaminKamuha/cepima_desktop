@@ -231,6 +231,12 @@
     <Compile Include="MesForms\Services\Form_service.Designer.cs">
       <DependentUpon>Form_service.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Pharmacie\UC_prescription.Designer.cs">
+      <DependentUpon>UC_prescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Services\User_services.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -798,6 +804,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_inventory.resx">
       <DependentUpon>UC_inventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Pharmacie\UC_prescription.resx">
+      <DependentUpon>UC_prescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_stock_pharmacie.resx">
       <DependentUpon>UC_stock_pharmacie.cs</DependentUpon>

@@ -1227,6 +1227,7 @@ namespace Cepima.MesForms
                     con.Open();
 
                     string query = @"
+
                 SELECT id_demande
                 FROM demande_service
                 WHERE id_patient = @id_patient
@@ -1235,6 +1236,30 @@ namespace Cepima.MesForms
                 ORDER BY id_demande DESC
                 LIMIT 1";
 
+                        //INSERT INTO demande_service
+                        //(
+                        //    id_patient,
+                        //    id_service,
+                        //    id_consultation,
+                        //    id_personnel,
+                        //    date_demande,
+                        //    priorite,
+                        //    motif,
+                        //    observation
+                        //)
+                        //VALUES
+                        //(q
+                        //    @id_patient,
+                        //    @id_service,
+                        //    @id_consultation,
+                        //    @id_personnel,
+                        //    NOW(),
+                        //    @priorite,
+                        //    @motif,
+                        //    @observation
+                        //)";
+
+
                     using (MySqlCommand cmd =
                         new MySqlCommand(query, con))
                     {
@@ -1242,6 +1267,7 @@ namespace Cepima.MesForms
                             "@id_patient",
                             Form1.PATIENT_ID);
 
+            
                         cmd.Parameters.AddWithValue(
                             "@id_service",
                             idService);
