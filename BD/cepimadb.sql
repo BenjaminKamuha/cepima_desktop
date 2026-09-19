@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- MariaDB dump 10.19  Distrib 10.4.28-MariaDB, for Win64 (AMD64)
 --
 -- Host: localhost    Database: cepimadb
 -- ------------------------------------------------------
--- Server version	5.7.36
+-- Server version	5.6.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `affectation_chambre`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `affectation_chambre` (
   `id_affectation` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) DEFAULT NULL,
@@ -50,7 +50,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `avances_salaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `avances_salaire` (
   `id_avance` int(11) NOT NULL AUTO_INCREMENT,
   `id_salaire` int(11) DEFAULT NULL,
@@ -78,7 +78,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `bon_sortie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bon_sortie` (
   `id_bon` int(11) NOT NULL AUTO_INCREMENT,
   `nom_resp` varchar(50) DEFAULT NULL,
@@ -104,7 +104,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `centres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `centres` (
   `id_centre` int(11) NOT NULL AUTO_INCREMENT,
   `nom_centre` varchar(255) DEFAULT NULL,
@@ -133,7 +133,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `chambre`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `chambre` (
   `id_chambre` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -164,7 +164,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `commande_achat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `commande_achat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fournisseur_id` int(11) NOT NULL,
@@ -193,7 +193,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `commande_achat_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `commande_achat_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commande_id` int(11) NOT NULL,
@@ -220,7 +220,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `consultation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `consultation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_id` int(11) NOT NULL,
@@ -268,7 +268,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `demande_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `demande_service` (
   `id_demande` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) NOT NULL,
@@ -309,7 +309,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `depenses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `depenses` (
   `id_depense` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -337,7 +337,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detail_entree_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detail_entree_stock` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_entree` int(11) DEFAULT NULL,
@@ -365,7 +365,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detail_facture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detail_facture` (
   `id_detail_facture` int(11) NOT NULL AUTO_INCREMENT,
   `id_facture` int(11) DEFAULT NULL,
@@ -397,7 +397,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detail_sortie_ph_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detail_sortie_ph_service` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -424,7 +424,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detail_sortie_s_pa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detail_sortie_s_pa` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -452,7 +452,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `detail_sortie_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detail_sortie_stock` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -484,7 +484,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `details_soins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `details_soins` (
   `id_detail_soin` int(11) NOT NULL AUTO_INCREMENT,
   `id_consultation` int(11) DEFAULT NULL,
@@ -511,7 +511,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `diagnostic`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `diagnostic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) DEFAULT NULL,
@@ -539,7 +539,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dispensation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dispensation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prescription_id` int(11) NOT NULL,
@@ -568,7 +568,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `dispensation_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dispensation_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dispensation_id` int(11) NOT NULL,
@@ -597,7 +597,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `empreinte`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `empreinte` (
   `id_empreint` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -623,7 +623,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `entree_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `entree_stock` (
   `id_entre` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -649,7 +649,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `examens_eeg`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examens_eeg` (
   `id_examens` int(11) NOT NULL AUTO_INCREMENT,
   `id_demande` int(11) DEFAULT NULL,
@@ -695,7 +695,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `facture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `facture` (
   `id_facture` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) DEFAULT NULL,
@@ -730,7 +730,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `fournisseur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fournisseur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
@@ -756,7 +756,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `historique_sejour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `historique_sejour` (
   `id_historique` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) DEFAULT NULL,
@@ -782,7 +782,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `horaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `horaire` (
   `id_horaire` int(11) NOT NULL AUTO_INCREMENT,
   `heure_entree_normal` time DEFAULT NULL,
@@ -811,7 +811,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `hospitalisation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hospitalisation` (
   `id_hospitalisation` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) DEFAULT NULL,
@@ -828,7 +828,7 @@ CREATE TABLE `hospitalisation` (
   KEY `id_service` (`id_service`),
   KEY `id_service_2` (`id_service`),
   KEY `id_consultation` (`id_consultation`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -837,6 +837,7 @@ CREATE TABLE `hospitalisation` (
 
 LOCK TABLES `hospitalisation` WRITE;
 /*!40000 ALTER TABLE `hospitalisation` DISABLE KEYS */;
+INSERT INTO `hospitalisation` VALUES (1,20,1,1,1,'2026-09-19',NULL,'Hospitalisation de test','Hospitalisé');
 /*!40000 ALTER TABLE `hospitalisation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -846,7 +847,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `inventaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `inventaire` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_debut` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -875,7 +876,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `inventaire_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `inventaire_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `inventaire_id` int(11) NOT NULL,
@@ -905,7 +906,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `livre_caisse`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `livre_caisse` (
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   `recette` decimal(10,2) DEFAULT NULL,
@@ -931,7 +932,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logs` (
   `id_logs` int(11) NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int(11) DEFAULT NULL,
@@ -958,7 +959,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `lot_medicament`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `lot_medicament` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `medicament_id` int(11) NOT NULL,
@@ -986,7 +987,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `medicament`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicament` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
@@ -1022,7 +1023,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `medicament_categorie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `medicament_categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
@@ -1048,7 +1049,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `mouvement_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mouvement_stock` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lot_id` int(11) NOT NULL,
@@ -1079,7 +1080,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `paiement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `paiement` (
   `id_paiement` int(11) NOT NULL AUTO_INCREMENT,
   `id_facture` int(11) DEFAULT NULL,
@@ -1111,7 +1112,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `paiement_eeg`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `paiement_eeg` (
   `id_paiement_eeg` int(11) NOT NULL AUTO_INCREMENT,
   `id_examen` int(11) DEFAULT NULL,
@@ -1138,7 +1139,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `patients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patients` (
   `id_patient` int(11) NOT NULL AUTO_INCREMENT,
   `numero_fiche` varchar(20) DEFAULT NULL,
@@ -1176,7 +1177,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `personnels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `personnels` (
   `id_personnel` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1190,7 +1191,8 @@ CREATE TABLE `personnels` (
   `telephone` varchar(20) DEFAULT NULL,
   `adresse` varchar(50) DEFAULT NULL,
   `salaire_base` decimal(12,2) DEFAULT NULL,
-  `actif` tinyint(1) DEFAULT NULL,
+  `actif` enum('Actif','Non actif') DEFAULT NULL,
+  `situation_familliale` enum('Marié','Célibataire','Divorce') DEFAULT NULL,
   PRIMARY KEY (`id_personnel`),
   KEY `id_centre` (`id_centre`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -1202,7 +1204,7 @@ CREATE TABLE `personnels` (
 
 LOCK TABLES `personnels` WRITE;
 /*!40000 ALTER TABLE `personnels` DISABLE KEYS */;
-INSERT INTO `personnels` VALUES (1,1,'KABAMBA','MWILU','Jean','M','1985-03-12','2020-01-15','Psychiatre','+243 989 567 434','Goma',1200.00,NULL),(2,1,'MUKENDI','LUBOYA','Aline','F','1990-07-22','2021-05-10','Psychologue','0991000002','Goma',900.00,NULL),(3,1,'KALONJI','MUKUNA','David','M','1988-11-05','2019-09-01','Psychiatre','0991000003','Goma',600.00,NULL),(4,1,'NSIMBA','KABUYA','Sarah','Féminin','1992-02-18','2022-03-20','Ass. Sociale','0991000004','Goma',700.00,NULL),(5,1,'MBUYI','TSHIBANGU','Patrick','Masculin','1980-06-30','2018-07-12','Généraliste','0991000005','Goma',1100.00,NULL),(6,1,'KASONGO','MULUMBA','Grace','F','1995-09-14','2023-01-05','Psychologue','0991000006','Goma',850.00,NULL),(7,1,'ILUNGA','KABEYA','Michel','M','1983-12-01','2017-11-23','Laboratoire','0991000007','Goma',650.00,NULL),(8,1,'KABONGO','MWANA','Chantal','F','1991-04-09','2020-06-18','Infirmière','0991000008','Goma',580.00,NULL),(9,1,'MULANGA','KATUMBA','Eric','M','1987-08-25','2019-02-14','Psychologue','0991000009','Goma',500.00,NULL);
+INSERT INTO `personnels` VALUES (1,1,'KABAMBA','MWILU','Jean','M','1985-03-12','2020-01-15','Psychiatre','+243 989 567 434','Goma',1200.00,NULL,NULL),(2,1,'MUKENDI','LUBOYA','Aline','F','1990-07-22','2021-05-10','Psychologue','0991000002','Goma',900.00,NULL,NULL),(3,1,'KALONJI','MUKUNA','David','M','1988-11-05','2019-09-01','Psychiatre','0991000003','Goma',600.00,NULL,NULL),(4,1,'NSIMBA','KABUYA','Sarah','Féminin','1992-02-18','2022-03-20','Ass. Sociale','0991000004','Goma',700.00,NULL,NULL),(5,1,'MBUYI','TSHIBANGU','Patrick','Masculin','1980-06-30','2018-07-12','Généraliste','0991000005','Goma',1100.00,NULL,NULL),(6,1,'KASONGO','MULUMBA','Grace','F','1995-09-14','2023-01-05','Psychologue','0991000006','Goma',850.00,NULL,NULL),(7,1,'ILUNGA','KABEYA','Michel','M','1983-12-01','2017-11-23','Laboratoire','0991000007','Goma',650.00,NULL,NULL),(8,1,'KABONGO','MWANA','Chantal','F','1991-04-09','2020-06-18','Infirmière','0991000008','Goma',580.00,NULL,NULL),(9,1,'MULANGA','KATUMBA','Eric','M','1987-08-25','2019-02-14','Psychologue','0991000009','Goma',500.00,NULL,NULL);
 /*!40000 ALTER TABLE `personnels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1212,7 +1214,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prescription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prescription` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_id` int(11) NOT NULL,
@@ -1221,7 +1223,7 @@ CREATE TABLE `prescription` (
   `statut` varchar(30) NOT NULL DEFAULT 'ACTIVE',
   `observation` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1230,6 +1232,7 @@ CREATE TABLE `prescription` (
 
 LOCK TABLES `prescription` WRITE;
 /*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
+INSERT INTO `prescription` VALUES (1,20,1,'2026-09-19 10:55:12','ACTIVE','Prescription de test - médicaments ambulatoires'),(2,20,1,'2026-09-19 10:55:18','ACTIVE','Prescription de test numéro 2'),(3,20,1,'2026-09-19 10:55:26','DELIVREE','Prescription déjà délivrée - test'),(4,20,1,'2026-09-19 10:55:31','ACTIVE','Test prescription patient 20'),(5,21,1,'2026-09-19 10:55:31','ACTIVE','Test prescription patient 21'),(6,22,1,'2026-09-19 10:55:31','ACTIVE','Test prescription patient 22'),(7,20,1,'2026-09-19 12:40:29','ACTIVE','Prescription de test pour la pharmacie');
 /*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1239,7 +1242,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prescription_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prescription_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prescription_id` int(11) NOT NULL,
@@ -1251,7 +1254,7 @@ CREATE TABLE `prescription_ligne` (
   PRIMARY KEY (`id`),
   KEY `prescription_id` (`prescription_id`),
   KEY `medicament_id` (`medicament_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1260,6 +1263,7 @@ CREATE TABLE `prescription_ligne` (
 
 LOCK TABLES `prescription_ligne` WRITE;
 /*!40000 ALTER TABLE `prescription_ligne` DISABLE KEYS */;
+INSERT INTO `prescription_ligne` VALUES (1,7,1,'500 mg','2 fois par jour','5 jours',10),(2,7,2,'500 mg','3 fois par jour','5 jours',15),(3,7,3,'1 comprimé','2 fois par jour','7 jours',14),(4,7,1,'500 mg','2 fois par jour','5 jours',10),(5,7,2,'500 mg','3 fois par jour','5 jours',15),(6,7,3,'1 comprimé','2 fois par jour','7 jours',14);
 /*!40000 ALTER TABLE `prescription_ligne` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1269,7 +1273,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prescriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prescriptions` (
   `id_prescription` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -1303,7 +1307,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `presences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `presences` (
   `id_presence` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -1333,7 +1337,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prestation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prestation` (
   `id_prestation` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) NOT NULL,
@@ -1362,7 +1366,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `prime`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `prime` (
   `id_prime` int(11) NOT NULL AUTO_INCREMENT,
   `id_salaire` int(11) DEFAULT NULL,
@@ -1390,7 +1394,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `reception_achat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reception_achat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commande_id` int(11) DEFAULT NULL,
@@ -1419,7 +1423,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `reception_achat_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reception_achat_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `reception_id` int(11) NOT NULL,
@@ -1448,7 +1452,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `retenue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `retenue` (
   `id_retenue` int(11) NOT NULL AUTO_INCREMENT,
   `id_salaire` int(11) DEFAULT NULL,
@@ -1475,7 +1479,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `salaires`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `salaires` (
   `id_salaire` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -1504,7 +1508,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `service` (
   `id_service` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
@@ -1531,7 +1535,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `signes_vitaux`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `signes_vitaux` (
   `id_signe` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) DEFAULT NULL,
@@ -1563,7 +1567,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `soins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `soins` (
   `id_soin` int(11) NOT NULL AUTO_INCREMENT,
   `nom_soin` varchar(25) DEFAULT NULL,
@@ -1588,7 +1592,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sortie_ph_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sortie_ph_service` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1615,7 +1619,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sortie_s_pa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sortie_s_pa` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) DEFAULT NULL,
@@ -1642,7 +1646,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `sorties_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sorties_stock` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1674,7 +1678,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `stock_pharmacie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stock_pharmacie` (
   `id_stock` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1705,7 +1709,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `stock_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stock_service` (
   `id_stock_service` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) DEFAULT NULL,
@@ -1733,7 +1737,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `suivi_hospitalisation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `suivi_hospitalisation` (
   `id_suivi` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) NOT NULL,
@@ -1763,7 +1767,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tarif_prestation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tarif_prestation` (
   `id_tarif` int(11) NOT NULL AUTO_INCREMENT,
   `id_prestation` int(11) NOT NULL,
@@ -1792,7 +1796,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tarif_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tarif_service` (
   `id_tarif` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) NOT NULL,
@@ -1821,7 +1825,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `unite_gestion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `unite_gestion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
@@ -1849,7 +1853,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `utilisateurs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `utilisateurs` (
   `id_utilisateurs` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -1882,4 +1886,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-19 10:03:29
+-- Dump completed on 2026-09-19 12:57:25
