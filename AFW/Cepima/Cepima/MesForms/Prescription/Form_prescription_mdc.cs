@@ -1,32 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cepima.Data;
 using MySql.Data.MySqlClient;
-using Cepima.MesForms;
+using Cepima.MesClasses;
 
-namespace Cepima.MesUserCases
+namespace Cepima.MesForms.Prescription
 {
-    public partial class UC_stock_pharmacie : UserControl
+    public partial class Form_prescription_mdc : Form
     {
         public static FlowLayoutPanel FL_MEDOC { get; set; }
-        public static Int32 PROD_ID;
 
-        public UC_stock_pharmacie()
+
+
+        private static FlowLayoutPanel FL_PRESCRIPTION { get; set; }
+        private static RoundedButton BT_SAVE_PRESC { get; set; }
+        public static Int32 PROD_ID;
+        private static int PATIENT_ID;
+
+
+
+        private static List<PrescriptionLigneData> lignes = new List<PrescriptionLigneData>();
+
+        public Form_prescription_mdc(int patient_id)
         {
             InitializeComponent();
+
+            PATIENT_ID = patient_id;
+
+            FL_PRESCRIPTION = fl_prescription_ligne;
+
+            BT_SAVE_PRESC = btn_save_prescription;
 
             FL_MEDOC = fl_medoc;
             ChargerMedicaments();
             ChargerCategories();
-            ChargerCatCard();
+            ChargerPrescription();
+            ChargerPatients();
+
+            
         }
+
+        private void ChargerPatients()
+        {
+            try
+            {
+                Database db = new Database();
+
+                using (MySqlConnection con = db.GetConnection())
+                {
+                    con.Open();
+
+                    string query = @"
+                        SELECT 
+                            id_patient,
+                            YEAR(date_naissance) AS annee_naissance,
+                            numero_fiche,
+                            sexe,
+                            CONCAT(
+                                nom,
+                                ' ',
+                                post_nom,
+                                CASE 
+                                    WHEN prenom IS NOT NULL
+                                         AND prenom <> ''
+                                    THEN CONCAT(' ', prenom)
+                                    ELSE ''
+                                END
+                            ) AS patient
+                        FROM patients
+                        WHERE id_patient = @id_p";
+
+                    using (MySqlCommand cmd =
+                        new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue(
+                            "@id_p", PATIENT_ID);
+
+                        using (MySqlDataReader reader =
+                            cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int anneeNaissance =
+                                    Convert.ToInt32(
+                                        reader["annee_naissance"]
+                                        .ToString());
+
+                                int age =
+                                    DateTime.Now.Date.Year -
+                                    anneeNaissance;
+
+                                lb_nom_patient.Text =
+                                    reader["patient"].ToString();
+
+                                lb_sexe_age.Text =
+                                    reader["sexe"].ToString() +
+                                    "-" +
+                                    age.ToString() +
+                                    " ans";
+
+                                lb_num_fiche.Text =
+                                    reader["numero_fiche"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement du patient :\n" +
+                    ex.Message,
+                    "EEG",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
 
         public static void CenterFlowLayoutItems(FlowLayoutPanel flowLayoutPanel1)
         {
@@ -162,7 +259,7 @@ namespace Cepima.MesUserCases
                 FROM medicament m
                 INNER JOIN medicament_categorie c
                     ON m.categorie_id = c.id 
-                    WHERE m.actif = 1
+                    WHERE m.actif = 1 AND m.prix_vente IS NOT NULL
                 ORDER BY m.nom ASC";
 
                     using (MySqlCommand command =
@@ -207,7 +304,7 @@ namespace Cepima.MesUserCases
 
                                 FL_MEDOC.Controls.Add(item);
 
-                                
+
                             }
                         }
                     }
@@ -224,77 +321,97 @@ namespace Cepima.MesUserCases
             }
         }
 
-        private void ChargerCatCard()
+        static void ChargerPrescription()
         {
+            Database db = new Database();
             // Réunitialisation du panel 
-            fl_med_category.Controls.Clear();
-
-            Database database = new Database();
+            FL_PRESCRIPTION.Controls.Clear();
 
             try
             {
-                using (MySqlConnection connection = database.GetConnection())
+                string query = "SELECT m.nom, c.couleur FROM medicament m JOIN medicament_categorie c ON m.categorie_id = c.id WHERE m.id = @id";
+
+                if (lignes.Count() != 0)
                 {
-                    connection.Open();
-
-                    string query = @"
-                SELECT
-                    c.id,
-                    c.nom,
-                    c.couleur,
-                    COUNT(m.id) AS nombre_medicaments
-                FROM medicament_categorie c
-                LEFT JOIN medicament m
-                    ON m.categorie_id = c.id
-                GROUP BY
-                    c.id,
-                    c.nom,
-                    c.couleur
-                ORDER BY
-                    c.nom ASC";
-
-                    using (MySqlCommand command =
-                           new MySqlCommand(query, connection))
+                    foreach (PrescriptionLigneData ligne in lignes)
                     {
-                        using (MySqlDataReader reader = command.ExecuteReader())
+                        Label lb_title = new Label();
+                        lb_title.Font = new Font("verdana", 10, FontStyle.Regular);
+                        lb_title.TextAlign = ContentAlignment.MiddleCenter;
+
+
+                        Color color = Color.SkyBlue;
+
+                        using (MySqlConnection con = db.GetConnection())
                         {
-                            while (reader.Read())
+                            con.Open();
+                            using (MySqlCommand cmd = new MySqlCommand(query, con))
                             {
-                                Color color = UC_stock_pharmacie.ConvertirCouleur(reader["couleur"].ToString());
+                                cmd.Parameters.AddWithValue("@id", ligne.MedicamentId);
 
-                                Label lb_title = new Label();
-                                lb_title.Text = reader["nom"].ToString();
-                                lb_title.Font = new Font("verdana", 10, FontStyle.Regular);
-                                lb_title.TextAlign = ContentAlignment.MiddleCenter;
+                                MySqlDataReader reader = cmd.ExecuteReader();
 
-                                Label lb_value = new Label();
-                                lb_value.Text = reader["nombre_medicaments"].ToString();
-                                lb_value.TextAlign = ContentAlignment.MiddleCenter;
-                                lb_value.Font = new Font("verdana", 14, FontStyle.Bold);
-                                // Création des cards
-                                CustomRoundedPanel c_pnl = new CustomRoundedPanel();
-                                c_pnl.Size = new Size(180, 80);
-                                c_pnl.BorderRadius = 15;
-                                c_pnl.BorderSize = 0;
-                                c_pnl.BackColor = color;
-                                c_pnl.ForeColor = Color.White;
-                                c_pnl.Margin = new Padding(15);
-                                
-                                // Ajout des panels
-                                c_pnl.Controls.Add(lb_title);
-                                c_pnl.Controls.Add(lb_value);
-                                
-                                // Centrage des elements sur le panel
-                                UI.Position.CenterControl(lb_title, c_pnl, 5);
-                                UI.Position.CenterControl(lb_value, c_pnl, 35);
+                                reader.Read();
 
-                                fl_med_category.Controls.Add(c_pnl);
-
+                                if (reader.HasRows)
+                                {
+                                    lb_title.Text = reader["nom"].ToString();
+                                    color = ConvertirCouleur(reader["couleur"].ToString());
+                                }
                             }
                         }
+
+
+
+                        Label lb_quantite = new Label();
+                        lb_quantite.Text = ligne.Quantite.ToString();
+                        lb_quantite.TextAlign = ContentAlignment.MiddleLeft;
+                        lb_quantite.Font = new Font("verdana", 12, FontStyle.Bold);
+
+
+                        Label lb_frequence = new Label();
+                        lb_quantite.Text = ligne.Frequence;
+                        lb_quantite.TextAlign = ContentAlignment.BottomLeft;
+                        lb_quantite.Font = new Font("verdana", 10, FontStyle.Bold);
+                        // Création des cards
+
+                        CustomRoundedPanel c_pnl = new CustomRoundedPanel();
+                        c_pnl.Size = new Size(180, 80);
+                        c_pnl.BorderRadius = 15;
+                        c_pnl.BorderSize = 0;
+                        c_pnl.BackColor = color;
+                        c_pnl.ForeColor = Color.White;
+                        c_pnl.Margin = new Padding(15);
+
+                        // Ajout des panels
+                        c_pnl.Controls.Add(lb_title);
+                        c_pnl.Controls.Add(lb_quantite);
+                        c_pnl.Controls.Add(lb_frequence);
+
+                        // Centrage des elements sur le panel
+                        UI.Position.CenterControl(lb_title, c_pnl, 5);
+                        UI.Position.CenterControl(lb_quantite, c_pnl, 35);
+
+                        FL_PRESCRIPTION.Controls.Add(c_pnl);
+
                     }
+
+                    BT_SAVE_PRESC.Enabled = true;
                 }
+
+                else
+                {
+                    Label lb_info = new Label();
+                    lb_info.Text = "Selectionner un produit pour ajouter";
+                    lb_info.Size = new Size(500, 50);
+                    lb_info.TextAlign = ContentAlignment.BottomLeft;
+                    lb_info.Font = new Font("verdana", 9, FontStyle.Regular);
+                    FL_PRESCRIPTION.Controls.Add(lb_info);
+                    BT_SAVE_PRESC.Enabled = false;
+                }
+                
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show(
@@ -313,8 +430,9 @@ namespace Cepima.MesUserCases
 
             PROD_ID = Convert.ToInt32(item.Tag);
 
-            Form_detail_produit frm_detail = new Form_detail_produit();
-            frm_detail.ShowDialog();
+            Form_add_ligne new_ligne = new Form_add_ligne(PROD_ID, PATIENT_ID, lignes);
+            new_ligne.ShowDialog();
+            ChargerPrescription();
         }
 
         public static Color ConvertirCouleur(string hex)
@@ -495,7 +613,7 @@ namespace Cepima.MesUserCases
 
         private void tb_search_TextChanged(object sender, EventArgs e)
         {
-            RechercherMedicaments(tb_search.Text);
+
         }
 
         private void cbx_filter_category_SelectedIndexChanged(object sender, EventArgs e)
@@ -529,17 +647,40 @@ namespace Cepima.MesUserCases
             }
         }
 
-        private void btn_add_med_Click(object sender, EventArgs e)
+        private void tb_search_TextChanged_1(object sender, EventArgs e)
         {
-            UC_stock_pharmacie.PROD_ID = 0;
-            Form_add_medoc frm_medoc = new Form_add_medoc();
-            frm_medoc.ShowDialog();
+            RechercherMedicaments(tb_search.Text);
         }
 
-        private void customRoundedPanel1_Paint(object sender, PaintEventArgs e)
+        private void btn_save_prescription_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int idPrescription = PrescriptionManager.EnregistrerPrescription(
+                Convert.ToInt32(PATIENT_ID),
+                MesClasses.SessionUtilisateur.idUser,
+                "",
+                lignes);
+                MessageBox.Show("Prescription enregistrée", "Prinscription", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lignes.Clear();
+                this.Close();
 
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                "Erreur lors de l'enregistrement :\n\n" +
+                ex.Message,
+                "Erreur",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+            }
+            finally
+            {
+                lignes.Clear();
+                ChargerPrescription();
+            }
         }
-
     }
 }

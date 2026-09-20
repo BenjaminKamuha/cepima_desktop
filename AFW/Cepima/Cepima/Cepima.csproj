@@ -236,6 +236,7 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesClasses\PrescriptionManager.cs" />
     <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,11 +249,29 @@
     <Compile Include="MesForms\Pharmacie\Form_prescription.Designer.cs">
       <DependentUpon>Form_prescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Prescription\Form_add_ligne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Prescription\Form_add_ligne.Designer.cs">
+      <DependentUpon>Form_add_ligne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Prescription\Form_prescription_mdc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Prescription\Form_prescription_mdc.Designer.cs">
+      <DependentUpon>Form_prescription_mdc.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Services\Form_prestation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
       <DependentUpon>Form_prestation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Consultation\UC_cons_demande.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Consultation\UC_cons_demande.Designer.cs">
+      <DependentUpon>UC_cons_demande.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\EEG\User_caisse.cs">
       <SubType>UserControl</SubType>
@@ -677,12 +696,6 @@
     <Compile Include="MesUserCases\User_facture_all.Designer.cs">
       <DependentUpon>User_facture_all.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesUserCases\Consultation\User_finish_consultation.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MesUserCases\Consultation\User_finish_consultation.Designer.cs">
-      <DependentUpon>User_finish_consultation.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesUserCases\User_livre_caisse.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -852,6 +865,12 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_prescription.resx">
       <DependentUpon>Form_prescription.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Prescription\Form_add_ligne.resx">
+      <DependentUpon>Form_add_ligne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Prescription\Form_prescription_mdc.resx">
+      <DependentUpon>Form_prescription_mdc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Reception\Form_signes_vitaux.resx">
       <DependentUpon>Form_signes_vitaux.cs</DependentUpon>
     </EmbeddedResource>
@@ -860,6 +879,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Consultation\UC_cons_demande.resx">
+      <DependentUpon>UC_cons_demande.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
       <DependentUpon>User_caisse.cs</DependentUpon>
@@ -929,9 +951,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_facture_all.resx">
       <DependentUpon>User_facture_all.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesUserCases\Consultation\User_finish_consultation.resx">
-      <DependentUpon>User_finish_consultation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_livre_caisse.resx">
       <DependentUpon>User_livre_caisse.cs</DependentUpon>
@@ -1700,7 +1719,6 @@
     <None Include="Resources\users_30px.png" />
   </ItemGroup>
   <ItemGroup>
-
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
@@ -1733,12 +1751,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\treatment_100px.png" />
-
-    <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\refresh_25px2.png" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

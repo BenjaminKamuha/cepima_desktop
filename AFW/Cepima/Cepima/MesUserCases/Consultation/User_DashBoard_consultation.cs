@@ -40,13 +40,13 @@ namespace Cepima.MesUserCases
                 return;
             }
 
-            User_consultation cons =
-                new User_consultation(idPatient);
+            //User_consultation cons =
+            //    new User_consultation(idPatient);
 
-            cons.Dock = DockStyle.Fill;
+            //cons.Dock = DockStyle.Fill;
 
-            Form1.GlobalPanel_main.Controls.Clear();
-            Form1.GlobalPanel_main.Controls.Add(cons);
+            //Form1.GlobalPanel_main.Controls.Clear();
+            //Form1.GlobalPanel_main.Controls.Add(cons);
         }
 
         // ============================================================
