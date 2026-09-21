@@ -857,5 +857,10 @@ namespace Cepima.MesUserCases.Pharmacie
             // Elle pourra servir à ajouter une prescription
             // lorsque le module correspondant sera prêt.
         }
+
+        private void btn_add_med_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

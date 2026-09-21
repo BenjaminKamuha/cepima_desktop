@@ -440,45 +440,47 @@ namespace Cepima
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
+            //afficher le dashboard
+            MesUserCases.Comptabilité.DashBoard_comptability dash = new MesUserCases.Comptabilité.DashBoard_comptability();
+            dash.Dock = DockStyle.Fill;
+            panel_center_main.Controls.Clear();
+            panel_center_main.Controls.Add(dash);
+
             var items = new List<MenuItem>()
             {
-                    new MenuItem("    Acceuil",Properties.Resources.home_20px,(s,ev) =>
+                    new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>
                     {
-                        
+                          //afficher le dashboard
+                            MesUserCases.Comptabilité.DashBoard_comptability da = new MesUserCases.Comptabilité.DashBoard_comptability();
+                            da.Dock = DockStyle.Fill;
+                            panel_center_main.Controls.Clear();
+                            panel_center_main.Controls.Add(da);
                     }),
 
-                    new MenuItem("  Facturation",Properties.Resources.facture,(s,ev) =>
+                    new MenuItem("  Livre de caisse",Properties.Resources.open_book_30px,(s,ev) =>
                     {
-                        MesUserCases.User_facture_all facturation = new MesUserCases.User_facture_all();
-                        facturation.Dock = DockStyle.Fill;
+                        MesUserCases.Comptabilité.Livre_Caisse livre = new MesUserCases.Comptabilité.Livre_Caisse();
+                        livre.Dock = DockStyle.Fill;
                         panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(facturation);
+                        panel_center_main.Controls.Add(livre);
                     }),
 
-                    new MenuItem("  Paiements",Properties.Resources.cost_25px, (s,ev) =>
+                    new MenuItem("  Factures",Properties.Resources.bill, (s,ev) =>
                     {
-                        MesUserCases.User_paiement_facture paiement = new MesUserCases.User_paiement_facture();
-                        paiement.Dock = DockStyle.Fill;
+                            MesUserCases.Comptabilité.Facturation da = new MesUserCases.Comptabilité.Facturation();
+                            da.Dock = DockStyle.Fill;
+                            panel_center_main.Controls.Clear();
+                            panel_center_main.Controls.Add(da);
+                    }),
+
+                    new MenuItem("  Bon de sortie",Properties.Resources.export_30px, (s,ev) =>
+                    {
+                        MesUserCases.Comptabilité.Bon_de_sortie bon = new MesUserCases.Comptabilité.Bon_de_sortie();
+                        bon.Dock = DockStyle.Fill;
                         panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(paiement);
+                        panel_center_main.Controls.Add(bon);
                     }),
-
-                     new MenuItem(" Caisse du jour",Properties.Resources.wallet_25px, (s,ev) =>
-                    {
-                        MesUserCases.User_livre_caisse caisse = new MesUserCases.User_livre_caisse();
-                        caisse.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(caisse);
-                    }),
-
-                    new MenuItem("  Bon de sortie",Properties.Resources.export_20px, (s,ev) =>
-                    {
-                        
-                    }),
-                     new MenuItem(" Rapport financier",Properties.Resources.analytics_25px, (s,ev) =>
-                    {
-
-                    }),
+                   
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

@@ -143,6 +143,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_dollar_30px1 {
+            get {
+                object obj = ResourceManager.GetObject("add_dollar_30px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_file_20px {
             get {
                 object obj = ResourceManager.GetObject("add_file_20px", resourceCulture);
@@ -296,6 +306,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap being_sick_20px {
             get {
                 object obj = ResourceManager.GetObject("being_sick_20px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bill {
+            get {
+                object obj = ResourceManager.GetObject("bill", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -893,6 +913,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap export_30px {
+            get {
+                object obj = ResourceManager.GetObject("export_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eye_20px {
             get {
                 object obj = ResourceManager.GetObject("eye_20px", resourceCulture);
@@ -1303,6 +1333,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap invoice_30px {
+            get {
+                object obj = ResourceManager.GetObject("invoice_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap invoice_paid_50px {
             get {
                 object obj = ResourceManager.GetObject("invoice_paid_50px", resourceCulture);
@@ -1593,6 +1633,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap open_book_30px {
+            get {
+                object obj = ResourceManager.GetObject("open_book_30px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap out_patient_department_25px {
             get {
                 object obj = ResourceManager.GetObject("out_patient_department_25px", resourceCulture);
@@ -1756,6 +1806,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap print_25px {
             get {
                 object obj = ResourceManager.GetObject("print_25px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_30px {
+            get {
+                object obj = ResourceManager.GetObject("print_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

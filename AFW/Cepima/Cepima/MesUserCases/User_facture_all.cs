@@ -86,15 +86,15 @@ namespace Cepima.MesUserCases
                 // Afficher les détails de la facture sélectionnée
                 if (dgv_facture.Columns[e.ColumnIndex].Name == "colDetail")
                 {
-                    MesForms.FormDetailFacture detail = new MesForms.FormDetailFacture(idFacture);
-                    detail.Show();
+                    //MesForms.FormDetailFacture detail = new MesForms.FormDetailFacture(idFacture);
+                    //detail.Show();
                 }
 
                 // Afficher le formulaire de paiement de la facture
                 if (dgv_facture.Columns[e.ColumnIndex].Name == "colPayement")
                 {
-                    MesForms.FormPaiement pay = new MesForms.FormPaiement(MONTANT,idFacture);
-                    pay.Show();
+                    //MesForms.FormPaiement pay = new MesForms.FormPaiement(MONTANT,idFacture);
+                    //pay.Show();
                 }
             }
         }

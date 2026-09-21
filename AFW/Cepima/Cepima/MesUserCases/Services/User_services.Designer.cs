@@ -196,7 +196,7 @@
             this.tb_search_prestation.Name = "tb_search_prestation";
             this.tb_search_prestation.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_search_prestation.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_search_prestation.PlaceholderText = "Rechercher un produit";
+            this.tb_search_prestation.PlaceholderText = "Rechercher un service";
             this.tb_search_prestation.Size = new System.Drawing.Size(273, 34);
             this.tb_search_prestation.TabIndex = 7;
             // 
@@ -242,7 +242,7 @@
             this.tb_search_service.Name = "tb_search_service";
             this.tb_search_service.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_search_service.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_search_service.PlaceholderText = "Rechercher un produit";
+            this.tb_search_service.PlaceholderText = "Rechercher un service";
             this.tb_search_service.Size = new System.Drawing.Size(273, 34);
             this.tb_search_service.TabIndex = 7;
             // 

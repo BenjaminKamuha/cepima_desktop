@@ -99,6 +99,7 @@
             this.btn_add_med.TextColor = System.Drawing.Color.White;
             this.btn_add_med.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_add_med.UseVisualStyleBackColor = false;
+            this.btn_add_med.Click += new System.EventHandler(this.btn_add_med_Click_1);
             // 
             // tb_search
             // 

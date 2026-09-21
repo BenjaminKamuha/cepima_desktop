@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.Data;
+using System.Collections.Generic;
+using Cepima.MesForms.Hospitalisation;
 
 namespace Cepima.MesForms.Pharmacie
 {
@@ -15,7 +17,7 @@ namespace Cepima.MesForms.Pharmacie
 
         private int ID_PRESCRIPTION = 0;
 
-
+        private int ID_PATIENT = 0;
         // =========================================================
         // CONSTRUCTEUR
         // =========================================================
@@ -220,7 +222,8 @@ namespace Cepima.MesForms.Pharmacie
                                 return;
                             }
 
-
+                            ID_PATIENT =
+    Convert.ToInt32(reader["patient_id"]);
                             // -------------------------------------------------
                             // NOM DU PATIENT
                             // -------------------------------------------------
@@ -620,42 +623,37 @@ namespace Cepima.MesForms.Pharmacie
                 MessageBoxIcon.Information);
 
 
-            /*
-             * PROCHAINE ETAPE
-             * ----------------
-             *
-             * Ici nous ouvrirons le formulaire de dispensation.
-             *
-             * Ce formulaire devra :
-             *
-             * 1. Recevoir ID_PRESCRIPTION
-             *
-             * 2. Charger les médicaments restant à délivrer.
-             *
-             * 3. Calculer :
-             *
-             *    quantité restante =
-             *    quantité prescrite - quantité déjà délivrée
-             *
-             * 4. Chercher les lots du médicament
-             *    par ordre FIFO.
-             *
-             * 5. Prendre d'abord le premier lot.
-             *
-             * 6. Si le lot est insuffisant :
-             *       passer au lot suivant.
-             *
-             * 7. Insérer les lignes dans :
-             *
-             *       dispensation
-             *       dispensation_ligne
-             *
-             * 8. Décrémenter :
-             *
-             *       lot_medicament.quantite
-             *
-             * 9. Recharger cette fenêtre.
-             */
+            // =========================================================
+            // CHARGER LES MÉDICAMENTS À DÉLIVRER
+            // =========================================================
+
+            List<MedicamentADeLivrer> medicaments = ChargerMedicamentsADeLivrer();
+
+            if (medicaments.Count == 0)
+            {
+                MessageBox.Show(
+                    "Aucun médicament ne reste à délivrer.",
+                    "Dispensation",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+
+            // =========================================================
+            // OUVRIR LE FORMULAIRE DE DÉLIVRANCE
+            // =========================================================
+
+            using (MesForms.Hospitalisation.Delivrance_Medoc formulaire = new Hospitalisation.Delivrance_Medoc(ID_PATIENT.ToString(),ID_PRESCRIPTION,medicaments))
+            {
+                if (formulaire.ShowDialog() ==
+                    DialogResult.OK)
+                {
+                    // Recharger la prescription
+                    ChargerPrescription();
+                }
+            }
+        
         }
 
 
@@ -715,6 +713,117 @@ namespace Cepima.MesForms.Pharmacie
                 "Détail",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+
+
+        private void Form_prescription_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private List<MedicamentADeLivrer>ChargerMedicamentsADeLivrer()
+        {
+            List<MedicamentADeLivrer> liste = new List<MedicamentADeLivrer>();
+
+            try
+            {
+                Database db = new Database();
+
+                using (MySqlConnection con = db.GetConnection())
+                {
+                    con.Open();
+
+                    string query = @"
+                SELECT
+                    pl.id AS id_ligne,
+                    pl.prescription_id,
+                    pl.medicament_id,
+
+                    m.nom AS produit,
+
+                    pl.quantite_prescrite,
+
+                    COALESCE(
+                        (
+                            SELECT SUM(dl.quantite)
+                            FROM dispensation_ligne dl
+
+                            INNER JOIN dispensation d
+                                ON d.id = dl.dispensation_id
+
+                            WHERE d.prescription_id =
+                                  pl.prescription_id
+
+                              AND dl.medicament_id =
+                                  pl.medicament_id
+                        ),
+                        0
+                    ) AS quantite_delivree
+
+                FROM prescription_ligne pl
+
+                INNER JOIN medicament m
+                    ON m.id = pl.medicament_id
+
+                WHERE pl.prescription_id =
+                      @idPrescription
+
+                ORDER BY pl.id";
+
+                    using (MySqlCommand cmd =
+                        new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue(
+                            "@idPrescription",
+                            ID_PRESCRIPTION);
+
+                        using (MySqlDataReader reader =
+                            cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                MedicamentADeLivrer medicament = new MedicamentADeLivrer();
+
+                                medicament.IdPrescription =
+                                    Convert.ToInt32(
+                                        reader["prescription_id"]);
+
+                                medicament.IdMedicament =
+                                    Convert.ToInt32(
+                                        reader["medicament_id"]);
+
+                                medicament.Nom =
+                                    reader["produit"].ToString();
+
+                                medicament.QuantitePrescrite =
+                                    Convert.ToInt32(
+                                        reader["quantite_prescrite"]);
+
+                                medicament.QuantiteDelivree =
+                                    Convert.ToInt32(
+                                        reader["quantite_delivree"]);
+
+                                // Ajouter seulement ce qui reste
+                                if (medicament.QuantiteRestante > 0)
+                                {
+                                    liste.Add(medicament);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Impossible de charger les médicaments à délivrer.\n\n" +
+                    ex.Message,
+                    "Délivrance",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            return liste;
         }
     }
 }

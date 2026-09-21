@@ -236,6 +236,18 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesForms\Compt\DisplayFactureCaisse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Compt\DisplayFactureCaisse.Designer.cs">
+      <DependentUpon>DisplayFactureCaisse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Compt\Payement_Facture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Compt\Payement_Facture.Designer.cs">
+      <DependentUpon>Payement_Facture.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +265,30 @@
     </Compile>
     <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
       <DependentUpon>Form_prestation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\Bon_de_sortie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\Bon_de_sortie.Designer.cs">
+      <DependentUpon>Bon_de_sortie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\DashBoard_comptability.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\DashBoard_comptability.Designer.cs">
+      <DependentUpon>DashBoard_comptability.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\Facturation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\Facturation.Designer.cs">
+      <DependentUpon>Facturation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\Livre_Caisse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Comptabilité\Livre_Caisse.Designer.cs">
+      <DependentUpon>Livre_Caisse.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\EEG\User_caisse.cs">
       <SubType>UserControl</SubType>
@@ -359,34 +395,22 @@
     <Compile Include="MesForms\FormConnexion.Designer.cs">
       <DependentUpon>FormConnexion.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\FormDetailFacture.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\FormDetailFacture.Designer.cs">
-      <DependentUpon>FormDetailFacture.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesForms\FormDetailPatient.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\FormDetailPatient.Designer.cs">
       <DependentUpon>FormDetailPatient.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\FormFacturePrint.cs">
+    <Compile Include="MesForms\Compt\FormFacturePrint.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\FormFacturePrint.Designer.cs">
+    <Compile Include="MesForms\Compt\FormFacturePrint.Designer.cs">
       <DependentUpon>FormFacturePrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\FormPaiement.cs">
+    <Compile Include="MesForms\Compt\FormRecu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\FormPaiement.Designer.cs">
-      <DependentUpon>FormPaiement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesForms\FormRecu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\FormRecu.Designer.cs">
+    <Compile Include="MesForms\Compt\FormRecu.Designer.cs">
       <DependentUpon>FormRecu.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Form_demander_service.cs">
@@ -509,10 +533,10 @@
     <Compile Include="MesForms\Pharmacie\Form_add_medoc.Designer.cs">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Form_add_patient.cs">
+    <Compile Include="MesForms\Reception\Form_add_patient.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MesForms\Form_add_patient.Designer.cs">
+    <Compile Include="MesForms\Reception\Form_add_patient.Designer.cs">
       <DependentUpon>Form_add_patient.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Fiches\Form_Fiche_suivie.cs">
@@ -732,6 +756,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Compt\DisplayFactureCaisse.resx">
+      <DependentUpon>DisplayFactureCaisse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Compt\Payement_Facture.resx">
+      <DependentUpon>Payement_Facture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\EEG\Form_caisse_eeg.resx">
       <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
     </EmbeddedResource>
@@ -762,19 +792,13 @@
     <EmbeddedResource Include="MesForms\FormConnexion.resx">
       <DependentUpon>FormConnexion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\FormDetailFacture.resx">
-      <DependentUpon>FormDetailFacture.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\FormDetailPatient.resx">
       <DependentUpon>FormDetailPatient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\FormFacturePrint.resx">
+    <EmbeddedResource Include="MesForms\Compt\FormFacturePrint.resx">
       <DependentUpon>FormFacturePrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\FormPaiement.resx">
-      <DependentUpon>FormPaiement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\FormRecu.resx">
+    <EmbeddedResource Include="MesForms\Compt\FormRecu.resx">
       <DependentUpon>FormRecu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Form_demander_service.resx">
@@ -837,7 +861,7 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_add_medoc.resx">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Form_add_patient.resx">
+    <EmbeddedResource Include="MesForms\Reception\Form_add_patient.resx">
       <DependentUpon>Form_add_patient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Fiches\Form_Fiche_suivie.resx">
@@ -860,6 +884,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Comptabilité\Bon_de_sortie.resx">
+      <DependentUpon>Bon_de_sortie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Comptabilité\DashBoard_comptability.resx">
+      <DependentUpon>DashBoard_comptability.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Comptabilité\Facturation.resx">
+      <DependentUpon>Facturation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Comptabilité\Livre_Caisse.resx">
+      <DependentUpon>Livre_Caisse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
       <DependentUpon>User_caisse.cs</DependentUpon>
@@ -1700,7 +1736,6 @@
     <None Include="Resources\users_30px.png" />
   </ItemGroup>
   <ItemGroup>
-
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 et x64%29</ProductName>
@@ -1733,12 +1768,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\treatment_100px.png" />
-
-    <Folder Include="Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\refresh_25px2.png" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invoice_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\export_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open_book_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\print_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_dollar_30px1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

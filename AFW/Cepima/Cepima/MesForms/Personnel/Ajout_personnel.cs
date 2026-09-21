@@ -19,7 +19,13 @@ namespace Cepima.MesForms.Personnel
 
         private void Ajout_personnel_Load(object sender, EventArgs e)
         {
+            cbx_sifa.Items.Clear();
+            cbx_sifa.Items.Add("-----Sélectionner le statut-----");
+            cbx_sifa.Items.Add("Marié");
+            cbx_sifa.Items.Add("Célibataire");
+            cbx_sifa.Items.Add("Divorce");
 
+            cbx_sifa.SelectedIndex = 0;
         }
 
         private void btn_save_personnel_Click(object sender, EventArgs e)
@@ -28,19 +34,19 @@ namespace Cepima.MesForms.Personnel
             {
                 try
                 {
-                    string queryInsert = "INSERT INTO personnels(nom,post_nom,prenom,sexe,situation_familliale,date_naissance,date_embauche,fonction,telephone,adresse)VALUES(@nom,@post,@prenom,@sexe,@sifa,@naissance,@embauche,@fonction,@phone,@adresse)";
+                    string queryInsert = "INSERT INTO personnels(nom,post_nom,prenom,sexe,date_naissance,date_embauche,fonction,telephone,adresse,situation_familliale)VALUES(@nom,@post,@prenom,@sexe,@naissance,@embauche,@fonction,@phone,@adresse,@sifa)";
                     using (MySqlCommand cmd = new MySqlCommand(queryInsert,con))
                     {
                         cmd.Parameters.AddWithValue("@nom",tb_nom.Text);
                         cmd.Parameters.AddWithValue("@post", tb_post_nom.Text);
                         cmd.Parameters.AddWithValue("@prenom", tb_prenom.Text);
-                        cmd.Parameters.AddWithValue("@sexe", cbx_sexe.Text);
-                        cmd.Parameters.AddWithValue("@sifa", cbx_sifa.Text);
+                        cmd.Parameters.AddWithValue("@sexe", tb_sexe.Text);
                         cmd.Parameters.AddWithValue("@naissance",  dt_naisance.Value.Date);
                         cmd.Parameters.AddWithValue("@embauche", dt_embauche.Value.Date);
                         cmd.Parameters.AddWithValue("@fonction", tb_fonction.Text);
                         cmd.Parameters.AddWithValue("@phone", tb_phone.Text);
                         cmd.Parameters.AddWithValue("@adresse", tb_adresse.Text);
+                        cmd.Parameters.AddWithValue("@sifa", cbx_sifa.Text);
                         cmd.ExecuteNonQuery();
 
                         ClearTextFill();
@@ -67,8 +73,8 @@ namespace Cepima.MesForms.Personnel
             tb_nom.Text = "";
             tb_post_nom.Text = "";
             tb_prenom.Text = "";
-            cbx_sexe.SelectedIndex = -1;
             cbx_sifa.SelectedIndex = -1;
+            tb_sexe.Text = "";
             tb_fonction.Text = "";
             tb_phone.Text = "";
             tb_adresse.Text = "";

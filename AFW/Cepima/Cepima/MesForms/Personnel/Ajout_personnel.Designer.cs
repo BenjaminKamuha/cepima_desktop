@@ -45,7 +45,7 @@
             this.dt_embauche = new System.Windows.Forms.DateTimePicker();
             this.dt_naisance = new System.Windows.Forms.DateTimePicker();
             this.cbx_sifa = new MyRoundedComboBox();
-            this.cbx_sexe = new MyRoundedComboBox();
+            this.tb_sexe = new MyRoundedTextBox();
             this.tb_adresse = new MyRoundedTextBox();
             this.tb_phone = new MyRoundedTextBox();
             this.tb_fonction = new MyRoundedTextBox();
@@ -78,7 +78,7 @@
             this.bunifuRoundedPanel1.Controls.Add(this.dt_embauche);
             this.bunifuRoundedPanel1.Controls.Add(this.dt_naisance);
             this.bunifuRoundedPanel1.Controls.Add(this.cbx_sifa);
-            this.bunifuRoundedPanel1.Controls.Add(this.cbx_sexe);
+            this.bunifuRoundedPanel1.Controls.Add(this.tb_sexe);
             this.bunifuRoundedPanel1.Controls.Add(this.tb_adresse);
             this.bunifuRoundedPanel1.Controls.Add(this.tb_phone);
             this.bunifuRoundedPanel1.Controls.Add(this.tb_fonction);
@@ -128,7 +128,7 @@
             this.btn_save_personnel.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_save_personnel.Image = global::Cepima.Properties.Resources.save_30px;
             this.btn_save_personnel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_save_personnel.Location = new System.Drawing.Point(325, 495);
+            this.btn_save_personnel.Location = new System.Drawing.Point(325, 500);
             this.btn_save_personnel.Name = "btn_save_personnel";
             this.btn_save_personnel.Size = new System.Drawing.Size(178, 39);
             this.btn_save_personnel.TabIndex = 47;
@@ -172,7 +172,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(475, 391);
+            this.label11.Location = new System.Drawing.Point(473, 325);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(72, 17);
             this.label11.TabIndex = 46;
@@ -182,7 +182,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(475, 315);
+            this.label10.Location = new System.Drawing.Point(473, 249);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(88, 17);
             this.label10.TabIndex = 46;
@@ -192,7 +192,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(475, 239);
+            this.label9.Location = new System.Drawing.Point(473, 173);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 17);
             this.label9.TabIndex = 46;
@@ -202,7 +202,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(465, 166);
+            this.label8.Location = new System.Drawing.Point(463, 100);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(131, 17);
             this.label8.TabIndex = 46;
@@ -212,7 +212,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(465, 92);
+            this.label7.Location = new System.Drawing.Point(60, 412);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(138, 17);
             this.label7.TabIndex = 46;
@@ -222,7 +222,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(60, 394);
+            this.label6.Location = new System.Drawing.Point(463, 403);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 17);
             this.label6.TabIndex = 46;
@@ -242,7 +242,7 @@
             // 
             this.dt_embauche.CalendarFont = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_embauche.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_embauche.Location = new System.Drawing.Point(468, 186);
+            this.dt_embauche.Location = new System.Drawing.Point(466, 120);
             this.dt_embauche.Name = "dt_embauche";
             this.dt_embauche.Size = new System.Drawing.Size(288, 27);
             this.dt_embauche.TabIndex = 45;
@@ -251,7 +251,7 @@
             // 
             this.dt_naisance.CalendarFont = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_naisance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_naisance.Location = new System.Drawing.Point(468, 112);
+            this.dt_naisance.Location = new System.Drawing.Point(63, 432);
             this.dt_naisance.Name = "dt_naisance";
             this.dt_naisance.Size = new System.Drawing.Size(288, 27);
             this.dt_naisance.TabIndex = 45;
@@ -272,7 +272,7 @@
             this.cbx_sifa.DropDownWidth = 250;
             this.cbx_sifa.FocusBorderColor = System.Drawing.Color.DodgerBlue;
             this.cbx_sifa.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
-            this.cbx_sifa.Location = new System.Drawing.Point(63, 414);
+            this.cbx_sifa.Location = new System.Drawing.Point(466, 432);
             this.cbx_sifa.MinimumSize = new System.Drawing.Size(80, 36);
             this.cbx_sifa.Name = "cbx_sifa";
             this.cbx_sifa.SelectedItem = null;
@@ -280,29 +280,25 @@
             this.cbx_sifa.Size = new System.Drawing.Size(288, 36);
             this.cbx_sifa.TabIndex = 44;
             // 
-            // cbx_sexe
+            // tb_sexe
             // 
-            this.cbx_sexe.ArrowColor = System.Drawing.Color.DimGray;
-            this.cbx_sexe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.cbx_sexe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.cbx_sexe.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.cbx_sexe.BorderRadius = 8;
-            this.cbx_sexe.BorderSize = 1;
-            this.cbx_sexe.DropDownBackColor = System.Drawing.Color.White;
-            this.cbx_sexe.DropDownForeColor = System.Drawing.Color.Black;
-            this.cbx_sexe.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.cbx_sexe.DropDownSelectedForeColor = System.Drawing.Color.White;
-            this.cbx_sexe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_sexe.DropDownWidth = 250;
-            this.cbx_sexe.FocusBorderColor = System.Drawing.Color.DodgerBlue;
-            this.cbx_sexe.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
-            this.cbx_sexe.Location = new System.Drawing.Point(61, 345);
-            this.cbx_sexe.MinimumSize = new System.Drawing.Size(80, 36);
-            this.cbx_sexe.Name = "cbx_sexe";
-            this.cbx_sexe.SelectedItem = null;
-            this.cbx_sexe.SelectedValue = null;
-            this.cbx_sexe.Size = new System.Drawing.Size(288, 39);
-            this.cbx_sexe.TabIndex = 44;
+            this.tb_sexe.BackColor = System.Drawing.Color.White;
+            this.tb_sexe.BorderColor = System.Drawing.Color.Silver;
+            this.tb_sexe.BorderRadius = 8;
+            this.tb_sexe.BorderSize = 1;
+            this.tb_sexe.FocusBorderColor = System.Drawing.Color.DodgerBlue;
+            this.tb_sexe.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_sexe.ForeColor = System.Drawing.Color.Black;
+            this.tb_sexe.Image = null;
+            this.tb_sexe.Location = new System.Drawing.Point(61, 345);
+            this.tb_sexe.MaxLength = 32767;
+            this.tb_sexe.Multiline = true;
+            this.tb_sexe.Name = "tb_sexe";
+            this.tb_sexe.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tb_sexe.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_sexe.PlaceholderText = "";
+            this.tb_sexe.Size = new System.Drawing.Size(288, 36);
+            this.tb_sexe.TabIndex = 43;
             // 
             // tb_adresse
             // 
@@ -314,14 +310,14 @@
             this.tb_adresse.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_adresse.ForeColor = System.Drawing.Color.Black;
             this.tb_adresse.Image = null;
-            this.tb_adresse.Location = new System.Drawing.Point(468, 411);
+            this.tb_adresse.Location = new System.Drawing.Point(466, 345);
             this.tb_adresse.MaxLength = 32767;
             this.tb_adresse.Multiline = true;
             this.tb_adresse.Name = "tb_adresse";
             this.tb_adresse.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_adresse.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_adresse.PlaceholderText = "";
-            this.tb_adresse.Size = new System.Drawing.Size(288, 39);
+            this.tb_adresse.Size = new System.Drawing.Size(288, 36);
             this.tb_adresse.TabIndex = 43;
             // 
             // tb_phone
@@ -334,14 +330,14 @@
             this.tb_phone.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_phone.ForeColor = System.Drawing.Color.Black;
             this.tb_phone.Image = null;
-            this.tb_phone.Location = new System.Drawing.Point(468, 335);
+            this.tb_phone.Location = new System.Drawing.Point(466, 269);
             this.tb_phone.MaxLength = 32767;
             this.tb_phone.Multiline = true;
             this.tb_phone.Name = "tb_phone";
             this.tb_phone.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_phone.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_phone.PlaceholderText = "";
-            this.tb_phone.Size = new System.Drawing.Size(288, 39);
+            this.tb_phone.Size = new System.Drawing.Size(288, 36);
             this.tb_phone.TabIndex = 43;
             // 
             // tb_fonction
@@ -354,14 +350,14 @@
             this.tb_fonction.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_fonction.ForeColor = System.Drawing.Color.Black;
             this.tb_fonction.Image = null;
-            this.tb_fonction.Location = new System.Drawing.Point(468, 259);
+            this.tb_fonction.Location = new System.Drawing.Point(466, 193);
             this.tb_fonction.MaxLength = 32767;
             this.tb_fonction.Multiline = true;
             this.tb_fonction.Name = "tb_fonction";
             this.tb_fonction.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_fonction.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_fonction.PlaceholderText = "";
-            this.tb_fonction.Size = new System.Drawing.Size(288, 39);
+            this.tb_fonction.Size = new System.Drawing.Size(288, 36);
             this.tb_fonction.TabIndex = 43;
             // 
             // tb_prenom
@@ -381,7 +377,7 @@
             this.tb_prenom.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_prenom.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_prenom.PlaceholderText = "";
-            this.tb_prenom.Size = new System.Drawing.Size(288, 39);
+            this.tb_prenom.Size = new System.Drawing.Size(288, 36);
             this.tb_prenom.TabIndex = 43;
             // 
             // tb_post_nom
@@ -401,7 +397,7 @@
             this.tb_post_nom.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_post_nom.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_post_nom.PlaceholderText = "";
-            this.tb_post_nom.Size = new System.Drawing.Size(288, 39);
+            this.tb_post_nom.Size = new System.Drawing.Size(288, 36);
             this.tb_post_nom.TabIndex = 43;
             // 
             // tb_nom
@@ -421,7 +417,7 @@
             this.tb_nom.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.tb_nom.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_nom.PlaceholderText = "";
-            this.tb_nom.Size = new System.Drawing.Size(288, 39);
+            this.tb_nom.Size = new System.Drawing.Size(288, 36);
             this.tb_nom.TabIndex = 43;
             // 
             // label1
@@ -461,10 +457,9 @@
         private MyRoundedTextBox tb_nom;
         private System.Windows.Forms.DateTimePicker dt_embauche;
         private System.Windows.Forms.DateTimePicker dt_naisance;
-        private MyRoundedComboBox cbx_sexe;
+        private MyRoundedComboBox cbx_sifa;
         private MyRoundedTextBox tb_phone;
         private MyRoundedTextBox tb_fonction;
-        private MyRoundedComboBox cbx_sifa;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -479,5 +474,6 @@
         private RoundedButton btn_save_personnel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox picture_finger;
+        private MyRoundedTextBox tb_sexe;
     }
 }
