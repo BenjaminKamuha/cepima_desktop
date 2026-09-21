@@ -23,11 +23,13 @@ namespace Cepima.MesForms
         // =========================================================
         // CONSTRUCTEUR
         // =========================================================
-
-        public Form_demander_service()
+        string ID_PATIENT;
+        int DEMANDE_ID;
+        public Form_demander_service(string id_patient, int demande_id)
         {
             InitializeComponent();
-
+            ID_PATIENT = id_patient;
+            DEMANDE_ID = demande_id;
             Configurer();
 
             ChargerPatients();
@@ -37,12 +39,12 @@ namespace Cepima.MesForms
             // MODE MODIFICATION
             // -----------------------------------------------------
 
-            if (Form1.DEMANDE_ID != 0)
+            if (DEMANDE_ID != 0)
             {
                 btn_send_request.Text = "Modifier";
 
                 ChargerDemande(
-                    Form1.DEMANDE_ID);
+                    DEMANDE_ID);
             }
             else
             {
@@ -149,7 +151,7 @@ namespace Cepima.MesForms
                     {
                         cmd.Parameters.AddWithValue(
                             "@id_patient",
-                            Form1.PATIENT_ID);
+                            ID_PATIENT);
 
                         using (MySqlDataReader reader =
                             cmd.ExecuteReader())
@@ -438,11 +440,11 @@ namespace Cepima.MesForms
             // NOUVELLE DEMANDE
             // =====================================================
 
-            if (Form1.DEMANDE_ID == 0)
+            if (DEMANDE_ID == 0)
             {
                 int idDemande =
                     VerifierDemandeExistante(
-                        Form1.PATIENT_ID,
+                        Convert.ToInt32(ID_PATIENT),
                         idService);
 
                 if (idDemande <= 0)
@@ -461,7 +463,7 @@ namespace Cepima.MesForms
 
                 if (choix == DialogResult.Yes)
                 {
-                    Form1.DEMANDE_ID =
+                    DEMANDE_ID =
                         idDemande;
 
                     btn_send_request.Text =
@@ -502,11 +504,11 @@ namespace Cepima.MesForms
             // =====================================================
 
             int demandeActuelle =
-                Form1.DEMANDE_ID;
+                DEMANDE_ID;
 
             int autreDemande =
                 VerifierAutreDemandeExistante(
-                    Form1.PATIENT_ID,
+                    Convert.ToInt32(ID_PATIENT),
                     idService,
                     demandeActuelle);
 
@@ -570,7 +572,7 @@ namespace Cepima.MesForms
 
                         cmd.Parameters.AddWithValue(
                             "@id_patient",
-                            Form1.PATIENT_ID);
+                            ID_PATIENT);
 
                         using (MySqlDataReader reader =
                             cmd.ExecuteReader())
@@ -584,7 +586,7 @@ namespace Cepima.MesForms
                                     MessageBoxButtons.OK,
                                     MessageBoxIcon.Warning);
 
-                                Form1.DEMANDE_ID = 0;
+                                DEMANDE_ID = 0;
 
                                 return;
                             }
@@ -905,7 +907,7 @@ namespace Cepima.MesForms
 
                         cmd.Parameters.AddWithValue(
                             "@id_patient",
-                            Form1.PATIENT_ID);
+                            ID_PATIENT);
 
                         using (MySqlDataReader reader =
                             cmd.ExecuteReader())
@@ -1197,10 +1199,10 @@ namespace Cepima.MesForms
             // MODE MODIFICATION
             // ============================================================
 
-            if (Form1.DEMANDE_ID != 0)
+            if (DEMANDE_ID != 0)
             {
                 ModifierDemande(
-                    Form1.DEMANDE_ID,
+                    DEMANDE_ID,
                     idService,
                     idPrestation,
                     priorite,
@@ -1265,7 +1267,7 @@ namespace Cepima.MesForms
                     {
                         cmd.Parameters.AddWithValue(
                             "@id_patient",
-                            Form1.PATIENT_ID);
+                            ID_PATIENT);
 
             
                         cmd.Parameters.AddWithValue(
@@ -1318,7 +1320,7 @@ namespace Cepima.MesForms
 
                 if (choix == DialogResult.Yes)
                 {
-                    Form1.DEMANDE_ID =
+                    DEMANDE_ID =
                         demandeExistante;
 
                     btn_send_request.Text =
@@ -1391,7 +1393,7 @@ namespace Cepima.MesForms
                             {
                                 cmd.Parameters.AddWithValue(
                                     "@id_patient",
-                                    Form1.PATIENT_ID);
+                                    ID_PATIENT);
 
                                 cmd.Parameters.AddWithValue(
                                     "@id_service",
@@ -1433,7 +1435,7 @@ namespace Cepima.MesForms
 
                             int idFacture =
                                 MesClasses.ReceptionManager.CreerFactureSiInexistante(
-                                    Form1.PATIENT_ID.ToString(),
+                                     ID_PATIENT.ToString(),
                                     con,
                                     tr);
 
@@ -1457,7 +1459,7 @@ namespace Cepima.MesForms
                             // CONSERVER LES IDS
                             // ====================================================
 
-                            Form1.DEMANDE_ID =
+                            DEMANDE_ID =
                                 idDemande;
 
 
@@ -1557,7 +1559,7 @@ namespace Cepima.MesForms
 
                         cmd.Parameters.AddWithValue(
                             "@id_patient",
-                            Form1.PATIENT_ID);
+                            ID_PATIENT);
 
                         cmd.Parameters.AddWithValue(
                             "@id_service",
@@ -1617,7 +1619,7 @@ namespace Cepima.MesForms
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
 
-                        Form1.DEMANDE_ID = 0;
+                        DEMANDE_ID = 0;
 
                         DialogResult =
                             DialogResult.OK;
@@ -1683,7 +1685,7 @@ namespace Cepima.MesForms
 
                         cmd.Parameters.AddWithValue(
                             "@id_patient",
-                            Form1.PATIENT_ID);
+                            ID_PATIENT);
 
                         int lignes =
                             cmd.ExecuteNonQuery();
@@ -1696,7 +1698,7 @@ namespace Cepima.MesForms
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
 
-                            Form1.DEMANDE_ID = 0;
+                            DEMANDE_ID = 0;
 
                             DialogResult =
                                 DialogResult.Cancel;
@@ -1736,10 +1738,10 @@ namespace Cepima.MesForms
             object sender,
             EventArgs e)
         {
-            if (Form1.DEMANDE_ID != 0)
+            if (DEMANDE_ID != 0)
             {
                 AnnulerDemande(
-                    Form1.DEMANDE_ID);
+                    DEMANDE_ID);
 
                 return;
             }

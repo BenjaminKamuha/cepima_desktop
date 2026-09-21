@@ -33,7 +33,6 @@ namespace Cepima.MesForms.Pharmacie
             ChargerPrescription();
         }
 
-
         // =========================================================
         // CONFIGURATION DU FORMULAIRE
         // =========================================================

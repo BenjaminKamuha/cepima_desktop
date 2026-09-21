@@ -15,12 +15,14 @@ namespace Cepima.MesUserCases
     public partial class User_consultation : UserControl
     {
         int ID_PATIENT;
+        int ID_DEMANDE;
         int id_diagnostic;
         string Type_consultation = "";
-        public User_consultation(int Patient_Id)
+        public User_consultation(int Patient_Id, int Demande_Id)
         {
             InitializeComponent();
             ID_PATIENT = Patient_Id;
+            ID_DEMANDE = Demande_Id;
             LoadDataAdministratives();
         }
       
@@ -80,66 +82,308 @@ namespace Cepima.MesUserCases
 
         private void Save_Consultation()
         {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            using (MySqlConnection con =
+                MesClasses.ManagerClasse.GetConnexion())
             {
+                string risqueSuicidaire =
+                    GetRadioSelection(panelSuicidaire);
 
-                string risqueSuicidaire = GetRadioSelection(panelSuicidaire);
-                string risqueAgression = GetRadioSelection(panelAgression);
-                string risqueFugue = GetRadioSelection(panelFugue);
+                string risqueAgression =
+                    GetRadioSelection(panelAgression);
+
+                string risqueFugue =
+                    GetRadioSelection(panelFugue);
+
 
                 using (MySqlTransaction tr = con.BeginTransaction())
                 {
                     try
                     {
-                        using (MySqlCommand cmd = new MySqlCommand("INSERT INTO diagnostic (libelle,description)VALUES(@lib,@desc)", con,tr))
-                        {
-                            cmd.Parameters.AddWithValue("@lib",tb_diagnostic_principal.Text);
-                            cmd.Parameters.AddWithValue("@desc",tb_motif.Text);
-                            cmd.ExecuteNonQuery();
-                            id_diagnostic = Convert.ToInt32(cmd.LastInsertedId);
-                        }
+                        // =====================================================
+                        // 1. CREATION DU DIAGNOSTIC
+                        // =====================================================
 
-                        //insertion dans la table consultation
-                        string queryConsultation = "INSERT INTO consultation(patient_id,type_consultation,motif,symptomes_depuis,symptome_insomnie,symptome_anxiete,symptome_agitation,symptome_tristesse,symptome_idees_delirantes,symptome_hallucinations,symptome_perte_memoire,symptome_autre,evolution_symptomes,facteurs_declenchants,risque_suicidaire,risque_agression,risque_fugue,autres_risques,diagnostic_id,prochaine_consultation,date_consultation,utilisateur_id)VALUES(@patient,@type,@motif,@depuis,@insomnie,@anxiete,@agitation,@tristesse,@delire,@hallucination,@perte,@autre,@evolution,@declencheurs,@suicidaire,@agression,@fugue,@autres_risque,@id_diagnostic,@prochaine,CURDATE(),@user)";
-                        using (MySqlCommand cmd = new MySqlCommand(queryConsultation, con, tr))
+                        using (MySqlCommand cmd =
+                            new MySqlCommand(
+                                @"INSERT INTO diagnostic
+                        (
+                            libelle,
+                            description
+                        )
+                        VALUES
+                        (
+                            @lib,
+                            @desc
+                        )",
+                                con,
+                                tr))
                         {
-                            cmd.Parameters.AddWithValue("@patient",ID_PATIENT);
-                            cmd.Parameters.AddWithValue("@type", Type_consultation);
-                            cmd.Parameters.AddWithValue("@motif",tb_motif.Text);
-                            cmd.Parameters.AddWithValue("@depuis",dt_depuis.Value.Date);
-                            cmd.Parameters.AddWithValue("@insomnie",insomnie.Checked);
-                            cmd.Parameters.AddWithValue("@anxiete",anxiete.Checked);
-                            cmd.Parameters.AddWithValue("@agitation",agitation.Checked);
-                            cmd.Parameters.AddWithValue("@tristesse",tristesse.Checked);
-                            cmd.Parameters.AddWithValue("@delire",delirante.Checked);
-                            cmd.Parameters.AddWithValue("@hallucination",hallucination.Checked);
-                            cmd.Parameters.AddWithValue("@perte",perte_memoire.Checked);
-                            cmd.Parameters.AddWithValue("@autre",tb_autre.Text);
-                            cmd.Parameters.AddWithValue("@evolution",rich_evolution.Text);
-                            cmd.Parameters.AddWithValue("@declencheurs",rich_facteurs.Text);
-                            cmd.Parameters.AddWithValue("@suicidaire",risqueSuicidaire);
-                            cmd.Parameters.AddWithValue("@agression",risqueAgression);
-                            cmd.Parameters.AddWithValue("@fugue",risqueFugue);
-                            cmd.Parameters.AddWithValue("@autres_risque",tb_autre_evaluation.Text);
-                            cmd.Parameters.AddWithValue("@id_diagnostic",id_diagnostic);
-                            cmd.Parameters.AddWithValue("@prochaine",dt_after_.Value.Date);
-                            cmd.Parameters.AddWithValue("@user", MesClasses.SessionUtilisateur.idUser);
+                            cmd.Parameters.AddWithValue(
+                                "@lib",
+                                tb_diagnostic_principal.Text);
+
+                            cmd.Parameters.AddWithValue(
+                                "@desc",
+                                tb_motif.Text);
+
                             cmd.ExecuteNonQuery();
 
-
+                            id_diagnostic =
+                                Convert.ToInt32(cmd.LastInsertedId);
                         }
+
+
+                        // =====================================================
+                        // 2. CREATION DE LA CONSULTATION
+                        // =====================================================
+
+                        string queryConsultation = @"
+                    INSERT INTO consultation
+                    (
+                        patient_id,
+                        id_demande,
+                        type_consultation,
+                        motif,
+                        symptomes_depuis,
+                        symptome_insomnie,
+                        symptome_anxiete,
+                        symptome_agitation,
+                        symptome_tristesse,
+                        symptome_idees_delirantes,
+                        symptome_hallucinations,
+                        symptome_perte_memoire,
+                        symptome_autre,
+                        evolution_symptomes,
+                        facteurs_declenchants,
+                        risque_suicidaire,
+                        risque_agression,
+                        risque_fugue,
+                        autres_risques,
+                        diagnostic_id,
+                        prochaine_consultation,
+                        date_consultation,
+                        utilisateur_id
+                    )
+                    VALUES
+                    (
+                        @patient,
+                        @id_demande,
+                        @type,
+                        @motif,
+                        @depuis,
+                        @insomnie,
+                        @anxiete,
+                        @agitation,
+                        @tristesse,
+                        @delire,
+                        @hallucination,
+                        @perte,
+                        @autre,
+                        @evolution,
+                        @declencheurs,
+                        @suicidaire,
+                        @agression,
+                        @fugue,
+                        @autres_risque,
+                        @id_diagnostic,
+                        @prochaine,
+                        NOW(),
+                        @user
+                    )";
+
+
+                        using (MySqlCommand cmd =
+                            new MySqlCommand(
+                                queryConsultation,
+                                con,
+                                tr))
+                        {
+                            cmd.Parameters.AddWithValue(
+                                "@patient",
+                                ID_PATIENT);
+
+                            // =================================================
+                            // ID DE LA DEMANDE
+                            // =================================================
+
+                            cmd.Parameters.AddWithValue(
+                                "@id_demande",
+                                ID_DEMANDE);
+
+
+                            cmd.Parameters.AddWithValue(
+                                "@type",
+                                Type_consultation);
+
+                            cmd.Parameters.AddWithValue(
+                                "@motif",
+                                tb_motif.Text);
+
+                            cmd.Parameters.AddWithValue(
+                                "@depuis",
+                                dt_depuis.Value.Date);
+
+                            cmd.Parameters.AddWithValue(
+                                "@insomnie",
+                                insomnie.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@anxiete",
+                                anxiete.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@agitation",
+                                agitation.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@tristesse",
+                                tristesse.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@delire",
+                                delirante.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@hallucination",
+                                hallucination.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@perte",
+                                perte_memoire.Checked);
+
+                            cmd.Parameters.AddWithValue(
+                                "@autre",
+                                tb_autre.Text);
+
+                            cmd.Parameters.AddWithValue(
+                                "@evolution",
+                                rich_evolution.Text);
+
+                            cmd.Parameters.AddWithValue(
+                                "@declencheurs",
+                                rich_facteurs.Text);
+
+                            cmd.Parameters.AddWithValue(
+                                "@suicidaire",
+                                risqueSuicidaire);
+
+                            cmd.Parameters.AddWithValue(
+                                "@agression",
+                                risqueAgression);
+
+                            cmd.Parameters.AddWithValue(
+                                "@fugue",
+                                risqueFugue);
+
+                            cmd.Parameters.AddWithValue(
+                                "@autres_risque",
+                                tb_autre_evaluation.Text);
+
+                            cmd.Parameters.AddWithValue(
+                                "@id_diagnostic",
+                                id_diagnostic);
+
+                            cmd.Parameters.AddWithValue(
+                                "@prochaine",
+                                dt_after_.Value.Date);
+
+                            cmd.Parameters.AddWithValue(
+                                "@user",
+                                MesClasses.SessionUtilisateur.idUser);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+
+                        // =====================================================
+                        // 3. RECUPERER L'ID DE LA CONSULTATION
+                        // =====================================================
+
+                        long idConsultation =
+                            0;
+
+                        using (MySqlCommand cmd =
+                            new MySqlCommand(
+                                "SELECT LAST_INSERT_ID()",
+                                con,
+                                tr))
+                        {
+                            idConsultation =
+                                Convert.ToInt64(
+                                    cmd.ExecuteScalar());
+                        }
+
+
+                        // =====================================================
+                        // 4. METTRE A JOUR LA DEMANDE
+                        // =====================================================
+
+                        string queryDemande = @"
+                    UPDATE demande_service
+                    SET statut = 'Terminée'
+                    WHERE id_demande = @id_demande
+                      AND id_patient = @id_patient";
+
+
+                        using (MySqlCommand cmd =
+                            new MySqlCommand(
+                                queryDemande,
+                                con,
+                                tr))
+                        {
+                            cmd.Parameters.AddWithValue(
+                                "@id_demande",
+                                ID_DEMANDE);
+
+                            cmd.Parameters.AddWithValue(
+                                "@id_patient",
+                                ID_PATIENT);
+
+                            int lignes =
+                                cmd.ExecuteNonQuery();
+
+                            if (lignes == 0)
+                            {
+                                throw new Exception(
+                                    "La demande de service n'existe pas " +
+                                    "ou ne correspond pas au patient.");
+                            }
+                        }
+
+
+                        // =====================================================
+                        // 5. VALIDATION DE LA TRANSACTION
+                        // =====================================================
+
                         tr.Commit();
-                        MessageBox.Show("Consultation crée avec succès !!","Enregistrement");
+
+
+                        MessageBox.Show(
+                            "Consultation créée avec succès !",
+                            "Enregistrement",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
-                        tr.Rollback();
-                        MessageBox.Show("Erreur : " + ex.Message);
+                        try
+                        {
+                            tr.Rollback();
+                        }
+                        catch
+                        {
+                        }
+
+                        MessageBox.Show(
+                            "Erreur lors de l'enregistrement de la consultation :\n\n"
+                            + ex.Message,
+                            "Erreur",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
             }
         }
-
         private void rb_consultation_CheckedChanged(object sender, EventArgs e)
         {
             if (rb_consultation.Checked)

@@ -26,10 +26,10 @@ namespace Cepima.MesForms.Fiches
 
         private void btn_new_consualor_Click(object sender, EventArgs e)
         {
-            MesUserCases.User_consultation cons = new MesUserCases.User_consultation(Convert.ToInt32(PatientID));
-            cons.Dock = DockStyle.Fill;
-            Form1.GlobalPanel_main.Controls.Clear();
-            Form1.GlobalPanel_main.Controls.Add(cons);
+            //MesUserCases.User_consultation cons = new MesUserCases.User_consultation(Convert.ToInt32(PatientID));
+            //cons.Dock = DockStyle.Fill;
+            //Form1.GlobalPanel_main.Controls.Clear();
+            //Form1.GlobalPanel_main.Controls.Add(cons);
         }
     }
 }

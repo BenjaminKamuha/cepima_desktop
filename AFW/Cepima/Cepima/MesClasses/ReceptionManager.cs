@@ -142,7 +142,7 @@ namespace Cepima.MesClasses
                     if (result == DialogResult.Yes)
                     {
                         Form1.PATIENT_ID = Convert.ToInt32(patient_id);
-                        MesForms.Form_demander_service frm_service = new MesForms.Form_demander_service();
+                        MesForms.Form_demander_service frm_service = new MesForms.Form_demander_service(Form1.PATIENT_ID.ToString(), 0);
                         frm_service.ShowDialog();
                     }
                     else

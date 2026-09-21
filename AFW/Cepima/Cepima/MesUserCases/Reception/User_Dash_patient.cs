@@ -97,7 +97,7 @@ namespace Cepima.MesUserCases
                 Form1.GlobalPanel_main.Visible = false;
                 ID_PATIENT = Convert.ToInt32(dgv_patient.Rows[e.RowIndex].Tag);
                 Form1.PATIENT_ID = ID_PATIENT;
-                MesForms.Form_demander_service service = new MesForms.Form_demander_service();
+                MesForms.Form_demander_service service = new MesForms.Form_demander_service(ID_PATIENT.ToString(), 0);
                 service.ShowDialog();
                 Form1.GlobalPanel_main.Visible = true;
             }
