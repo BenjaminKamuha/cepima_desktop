@@ -236,7 +236,6 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
-
     <Compile Include="MesForms\Compt\DisplayFactureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,9 +248,7 @@
     <Compile Include="MesForms\Compt\Payement_Facture.Designer.cs">
       <DependentUpon>Payement_Facture.cs</DependentUpon>
     </Compile>
-
     <Compile Include="MesClasses\PrescriptionManager.cs" />
-
     <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,7 +279,6 @@
     <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
       <DependentUpon>Form_prestation.cs</DependentUpon>
     </Compile>
-
     <Compile Include="MesUserCases\Comptabilité\Bon_de_sortie.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -306,13 +302,12 @@
     </Compile>
     <Compile Include="MesUserCases\Comptabilité\Livre_Caisse.Designer.cs">
       <DependentUpon>Livre_Caisse.cs</DependentUpon>
-</Compile>
+    </Compile>
     <Compile Include="MesUserCases\Consultation\UC_cons_demande.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\Consultation\UC_cons_demande.Designer.cs">
       <DependentUpon>UC_cons_demande.cs</DependentUpon>
-
     </Compile>
     <Compile Include="MesUserCases\EEG\User_caisse.cs">
       <SubType>UserControl</SubType>
@@ -326,6 +321,12 @@
     <Compile Include="MesForms\Services\Form_service.Designer.cs">
       <DependentUpon>Form_service.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Personnels\User_fingerprint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_fingerprint.Designer.cs">
+      <DependentUpon>User_fingerprint.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -338,6 +339,7 @@
     <Compile Include="MesUserCases\Services\User_services.Designer.cs">
       <DependentUpon>User_services.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\FingerprintApi.cs" />
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />
@@ -909,7 +911,6 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="MesUserCases\Comptabilité\Bon_de_sortie.resx">
       <DependentUpon>Bon_de_sortie.cs</DependentUpon>
     </EmbeddedResource>
@@ -921,10 +922,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Comptabilité\Livre_Caisse.resx">
       <DependentUpon>Livre_Caisse.cs</DependentUpon>
-</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Consultation\UC_cons_demande.resx">
       <DependentUpon>UC_cons_demande.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
       <DependentUpon>User_caisse.cs</DependentUpon>
@@ -949,6 +949,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_DashBord_Personnel.resx">
       <DependentUpon>User_DashBord_Personnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\User_fingerprint.resx">
+      <DependentUpon>User_fingerprint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_Presence.resx">
       <DependentUpon>User_Presence.cs</DependentUpon>
@@ -1800,7 +1803,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\invoice_30px.png" />
@@ -1819,7 +1821,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_dollar_30px1.png" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fingerprint.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
