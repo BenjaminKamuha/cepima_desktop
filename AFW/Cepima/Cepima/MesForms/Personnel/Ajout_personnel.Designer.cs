@@ -30,8 +30,6 @@
         {
             this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
             this.label12 = new System.Windows.Forms.Label();
-            this.picture_finger = new System.Windows.Forms.PictureBox();
-            this.btn_save_personnel = new RoundedButton();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,6 +51,9 @@
             this.tb_post_nom = new MyRoundedTextBox();
             this.tb_nom = new MyRoundedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.picture_finger = new System.Windows.Forms.PictureBox();
+            this.btn_save_personnel = new RoundedButton();
+            this.lb_fingerP = new System.Windows.Forms.Label();
             this.bunifuRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picture_finger)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
             this.bunifuRoundedPanel1.BorderRadius = 10;
             this.bunifuRoundedPanel1.BorderSize = 0;
+            this.bunifuRoundedPanel1.Controls.Add(this.lb_fingerP);
             this.bunifuRoundedPanel1.Controls.Add(this.label12);
             this.bunifuRoundedPanel1.Controls.Add(this.picture_finger);
             this.bunifuRoundedPanel1.Controls.Add(this.btn_save_personnel);
@@ -98,45 +100,11 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(669, 60);
+            this.label12.Location = new System.Drawing.Point(600, 46);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 17);
             this.label12.TabIndex = 49;
             this.label12.Text = "Empreinte";
-            // 
-            // picture_finger
-            // 
-            this.picture_finger.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picture_finger.Location = new System.Drawing.Point(747, 12);
-            this.picture_finger.Name = "picture_finger";
-            this.picture_finger.Size = new System.Drawing.Size(93, 65);
-            this.picture_finger.TabIndex = 48;
-            this.picture_finger.TabStop = false;
-            // 
-            // btn_save_personnel
-            // 
-            this.btn_save_personnel.BackColor = System.Drawing.Color.Transparent;
-            this.btn_save_personnel.BorderColor = System.Drawing.Color.White;
-            this.btn_save_personnel.BorderRadius = 10;
-            this.btn_save_personnel.BorderSize = 0;
-            this.btn_save_personnel.ButtonText = "Enregistrer";
-            this.btn_save_personnel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_save_personnel.DefaultBackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_save_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_save_personnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_save_personnel.ForeColor = System.Drawing.Color.White;
-            this.btn_save_personnel.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.btn_save_personnel.Image = global::Cepima.Properties.Resources.save_30px;
-            this.btn_save_personnel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_save_personnel.Location = new System.Drawing.Point(325, 500);
-            this.btn_save_personnel.Name = "btn_save_personnel";
-            this.btn_save_personnel.Size = new System.Drawing.Size(178, 39);
-            this.btn_save_personnel.TabIndex = 47;
-            this.btn_save_personnel.Text = "Enregistrer";
-            this.btn_save_personnel.TextColor = System.Drawing.Color.White;
-            this.btn_save_personnel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_save_personnel.UseVisualStyleBackColor = false;
-            this.btn_save_personnel.Click += new System.EventHandler(this.btn_save_personnel_Click);
             // 
             // label5
             // 
@@ -430,6 +398,52 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "AJOUTER UN PERSONNEL";
             // 
+            // picture_finger
+            // 
+            this.picture_finger.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picture_finger.Image = global::Cepima.Properties.Resources.fingerprint;
+            this.picture_finger.Location = new System.Drawing.Point(678, 31);
+            this.picture_finger.Name = "picture_finger";
+            this.picture_finger.Size = new System.Drawing.Size(59, 46);
+            this.picture_finger.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picture_finger.TabIndex = 48;
+            this.picture_finger.TabStop = false;
+            // 
+            // btn_save_personnel
+            // 
+            this.btn_save_personnel.BackColor = System.Drawing.Color.Transparent;
+            this.btn_save_personnel.BorderColor = System.Drawing.Color.White;
+            this.btn_save_personnel.BorderRadius = 10;
+            this.btn_save_personnel.BorderSize = 0;
+            this.btn_save_personnel.ButtonText = "Enregistrer";
+            this.btn_save_personnel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_save_personnel.DefaultBackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_save_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_save_personnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save_personnel.ForeColor = System.Drawing.Color.White;
+            this.btn_save_personnel.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.btn_save_personnel.Image = global::Cepima.Properties.Resources.save_30px;
+            this.btn_save_personnel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_save_personnel.Location = new System.Drawing.Point(325, 500);
+            this.btn_save_personnel.Name = "btn_save_personnel";
+            this.btn_save_personnel.Size = new System.Drawing.Size(178, 39);
+            this.btn_save_personnel.TabIndex = 47;
+            this.btn_save_personnel.Text = "Enregistrer";
+            this.btn_save_personnel.TextColor = System.Drawing.Color.White;
+            this.btn_save_personnel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_save_personnel.UseVisualStyleBackColor = false;
+            this.btn_save_personnel.Click += new System.EventHandler(this.btn_save_personnel_Click);
+            // 
+            // lb_fingerP
+            // 
+            this.lb_fingerP.AutoSize = true;
+            this.lb_fingerP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_fingerP.Location = new System.Drawing.Point(743, 46);
+            this.lb_fingerP.Name = "lb_fingerP";
+            this.lb_fingerP.Size = new System.Drawing.Size(72, 17);
+            this.lb_fingerP.TabIndex = 49;
+            this.lb_fingerP.Text = "Empreinte";
+            // 
             // Ajout_personnel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,5 +489,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox picture_finger;
         private MyRoundedTextBox tb_sexe;
+        private System.Windows.Forms.Label lb_fingerP;
     }
 }

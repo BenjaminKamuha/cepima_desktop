@@ -26,7 +26,8 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         private Button currentSubMenu = null;
-     
+
+        private FingerprintApi fingerprintApi;
 
         public Form1()
         {
@@ -517,6 +518,11 @@ namespace Cepima
 
             UpdateManager manager = new UpdateManager();
             lb_version.Text = manager.GetCurrentVersion();
+
+            fingerprintApi = new FingerprintApi();
+            fingerprintApi.Start(8000);
+
+            
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
@@ -679,6 +685,16 @@ namespace Cepima
                         panel_center_main.Controls.Add(presence);
                     }),
 
+                    // Quatrième sous menu (Gestion des empreints)
+                    new MenuItem("      Empreints", Properties.Resources.fingerprint_20px, (s, ev) =>
+                        {
+                            //MesUserCases.Personnels.User_fingerprint fingerP = new MesUserCases.Personnels.User_fingerprint();
+                            //fingerP.Dock = DockStyle.Fill;
+                            //panel_center_main.Controls.Clear();
+                            //panel_center_main.Controls.Add(fingerP);
+                            MessageBox.Show("En cours de dev");
+                        }),
+
             };
             Create_sous_menu(items);
             Button bt = sender as Button;
@@ -690,6 +706,14 @@ namespace Cepima
         {
             UpdateManager manager = new UpdateManager();
             await manager.CheckForUpdateAsync();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (fingerprintApi != null)
+            {
+                fingerprintApi.Stop();
+            }
         }
 
 

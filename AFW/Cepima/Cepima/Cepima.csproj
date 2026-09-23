@@ -241,6 +241,7 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+
     <Compile Include="MesForms\Compt\Bon_de_sortie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +254,7 @@
     <Compile Include="MesForms\Compt\DetailBon.Designer.cs">
       <DependentUpon>DetailBon.cs</DependentUpon>
     </Compile>
+
     <Compile Include="MesForms\Compt\DisplayFactureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -349,6 +351,12 @@
     <Compile Include="MesForms\Services\Form_service.Designer.cs">
       <DependentUpon>Form_service.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Personnels\User_fingerprint.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_fingerprint.Designer.cs">
+      <DependentUpon>User_fingerprint.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -361,6 +369,7 @@
     <Compile Include="MesUserCases\Services\User_services.Designer.cs">
       <DependentUpon>User_services.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\FingerprintApi.cs" />
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />
@@ -988,6 +997,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_DashBord_Personnel.resx">
       <DependentUpon>User_DashBord_Personnel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\User_fingerprint.resx">
+      <DependentUpon>User_fingerprint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_Presence.resx">
       <DependentUpon>User_Presence.cs</DependentUpon>
@@ -1871,6 +1883,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_dollar_30px1.png" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fingerprint.png" />
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
