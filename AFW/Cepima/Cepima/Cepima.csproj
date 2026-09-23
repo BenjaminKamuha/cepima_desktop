@@ -68,13 +68,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts">
-      <HintPath>..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net40\LiveCharts.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.WinForms">
-      <HintPath>..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\lib\net40\LiveCharts.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\livecharts.winforms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf">
-      <HintPath>..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net40\LiveCharts.Wpf.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -144,6 +144,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -153,6 +154,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseControls\BaseAnimatedControl.cs">
@@ -208,6 +210,9 @@
     <Compile Include="Controls\DonutChartControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Graphique.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\LineChartControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,7 +241,18 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
-
+    <Compile Include="MesForms\Compt\Bon_de_sortie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Compt\Bon_de_sortie.Designer.cs">
+      <DependentUpon>Bon_de_sortie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Compt\DetailBon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Compt\DetailBon.Designer.cs">
+      <DependentUpon>DetailBon.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Compt\DisplayFactureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,9 +265,7 @@
     <Compile Include="MesForms\Compt\Payement_Facture.Designer.cs">
       <DependentUpon>Payement_Facture.cs</DependentUpon>
     </Compile>
-
     <Compile Include="MesClasses\PrescriptionManager.cs" />
-
     <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,13 +290,23 @@
     <Compile Include="MesForms\Prescription\Form_prescription_mdc.Designer.cs">
       <DependentUpon>Form_prescription_mdc.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Rapport\BonRapport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Rapport\BonRapport.Designer.cs">
+      <DependentUpon>BonRapport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Rapport\Ds_Bon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ds_Bon.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Services\Form_prestation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
       <DependentUpon>Form_prestation.cs</DependentUpon>
     </Compile>
-
     <Compile Include="MesUserCases\Comptabilité\Bon_de_sortie.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -306,13 +330,12 @@
     </Compile>
     <Compile Include="MesUserCases\Comptabilité\Livre_Caisse.Designer.cs">
       <DependentUpon>Livre_Caisse.cs</DependentUpon>
-</Compile>
+    </Compile>
     <Compile Include="MesUserCases\Consultation\UC_cons_demande.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MesUserCases\Consultation\UC_cons_demande.Designer.cs">
       <DependentUpon>UC_cons_demande.cs</DependentUpon>
-
     </Compile>
     <Compile Include="MesUserCases\EEG\User_caisse.cs">
       <SubType>UserControl</SubType>
@@ -762,6 +785,12 @@
     <Compile Include="Services\UpdateProgressForm.Designer.cs">
       <DependentUpon>UpdateProgressForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Test_simple.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Test_simple.Designer.cs">
+      <DependentUpon>Test_simple.cs</DependentUpon>
+    </Compile>
     <Compile Include="UC_logo_cepima.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -773,6 +802,12 @@
     <EmbeddedResource Include="FactureRDLC.rdlc" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Compt\Bon_de_sortie.resx">
+      <DependentUpon>Bon_de_sortie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Compt\DetailBon.resx">
+      <DependentUpon>DetailBon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Compt\DisplayFactureCaisse.resx">
       <DependentUpon>DisplayFactureCaisse.cs</DependentUpon>
@@ -879,6 +914,12 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_add_medoc.resx">
       <DependentUpon>Form_add_medoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Rapport\Bon.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Rapport\BonRapport.resx">
+      <DependentUpon>BonRapport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Reception\Form_add_patient.resx">
       <DependentUpon>Form_add_patient.cs</DependentUpon>
     </EmbeddedResource>
@@ -909,7 +950,6 @@
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
     </EmbeddedResource>
-
     <EmbeddedResource Include="MesUserCases\Comptabilité\Bon_de_sortie.resx">
       <DependentUpon>Bon_de_sortie.cs</DependentUpon>
     </EmbeddedResource>
@@ -921,10 +961,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Comptabilité\Livre_Caisse.resx">
       <DependentUpon>Livre_Caisse.cs</DependentUpon>
-</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Consultation\UC_cons_demande.resx">
       <DependentUpon>UC_cons_demande.cs</DependentUpon>
-
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\EEG\User_caisse.resx">
       <DependentUpon>User_caisse.cs</DependentUpon>
@@ -1015,6 +1054,9 @@
     <EmbeddedResource Include="RecuRDLC.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Test_simple.resx">
+      <DependentUpon>Test_simple.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UC_logo_cepima.resx">
       <DependentUpon>UC_logo_cepima.cs</DependentUpon>
     </EmbeddedResource>
@@ -1040,6 +1082,17 @@
     </None>
     <None Include="ds_recu.xss">
       <DependentUpon>ds_recu.xsd</DependentUpon>
+    </None>
+    <None Include="MesForms\Rapport\Ds_Bon.xsc">
+      <DependentUpon>Ds_Bon.xsd</DependentUpon>
+    </None>
+    <None Include="MesForms\Rapport\Ds_Bon.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ds_Bon.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MesForms\Rapport\Ds_Bon.xss">
+      <DependentUpon>Ds_Bon.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -1800,7 +1853,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test\" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\invoice_30px.png" />
@@ -1819,7 +1871,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_dollar_30px1.png" />
-
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.customRoundedPanel6 = new CustomRoundedPanel();
+            this.monGraphiqueCaisseGenerale = new Cepima.Controls.MonGraphique();
+            this.label8 = new System.Windows.Forms.Label();
+            this.customRoundedPanel5 = new CustomRoundedPanel();
+            this.monGraphiqueEEG = new Cepima.Controls.MonGraphique();
+            this.label6 = new System.Windows.Forms.Label();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.lbl_solde_eeg = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,23 +48,14 @@
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.lb_count = new System.Windows.Forms.Label();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.customRoundedPanel6 = new CustomRoundedPanel();
-            this.chart_caisse_generale = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label8 = new System.Windows.Forms.Label();
-            this.customRoundedPanel5 = new CustomRoundedPanel();
-            this.chart_caisse_eeg = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label6 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.customRoundedPanel6.SuspendLayout();
+            this.customRoundedPanel5.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.customRoundedPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_caisse_generale)).BeginInit();
-            this.customRoundedPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_caisse_eeg)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -85,6 +77,131 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1015, 132);
             this.tableLayoutPanel1.TabIndex = 36;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.customRoundedPanel6, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.customRoundedPanel5, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 141);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1009, 371);
+            this.tableLayoutPanel2.TabIndex = 37;
+            // 
+            // customRoundedPanel6
+            // 
+            this.customRoundedPanel6.BackColor = System.Drawing.Color.White;
+            this.customRoundedPanel6.BorderColor = System.Drawing.Color.Silver;
+            this.customRoundedPanel6.BorderRadius = 10;
+            this.customRoundedPanel6.BorderSize = 2;
+            this.customRoundedPanel6.Controls.Add(this.monGraphiqueCaisseGenerale);
+            this.customRoundedPanel6.Controls.Add(this.label8);
+            this.customRoundedPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customRoundedPanel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customRoundedPanel6.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel6.HoverCursor = System.Windows.Forms.Cursors.Default;
+            this.customRoundedPanel6.Location = new System.Drawing.Point(507, 3);
+            this.customRoundedPanel6.Name = "customRoundedPanel6";
+            this.customRoundedPanel6.ShadowBlur = 10;
+            this.customRoundedPanel6.ShadowBorderRadius = -1;
+            this.customRoundedPanel6.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel6.ShadowEnabled = false;
+            this.customRoundedPanel6.ShadowOffsetX = 0;
+            this.customRoundedPanel6.ShadowOffsetY = 4;
+            this.customRoundedPanel6.ShadowOpacity = 60;
+            this.customRoundedPanel6.ShadowSpread = 0;
+            this.customRoundedPanel6.Size = new System.Drawing.Size(499, 365);
+            this.customRoundedPanel6.TabIndex = 32;
+            // 
+            // monGraphiqueCaisseGenerale
+            // 
+            this.monGraphiqueCaisseGenerale.AfficherGrille = true;
+            this.monGraphiqueCaisseGenerale.AfficherLegende = true;
+            this.monGraphiqueCaisseGenerale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.monGraphiqueCaisseGenerale.AnimationActive = true;
+            this.monGraphiqueCaisseGenerale.BackColor = System.Drawing.Color.White;
+            this.monGraphiqueCaisseGenerale.CouleurFond = System.Drawing.Color.White;
+            this.monGraphiqueCaisseGenerale.CouleurPrincipale = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.monGraphiqueCaisseGenerale.CouleurTitre = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.monGraphiqueCaisseGenerale.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monGraphiqueCaisseGenerale.Location = new System.Drawing.Point(13, 51);
+            this.monGraphiqueCaisseGenerale.Name = "monGraphiqueCaisseGenerale";
+            this.monGraphiqueCaisseGenerale.Size = new System.Drawing.Size(470, 295);
+            this.monGraphiqueCaisseGenerale.TabIndex = 1;
+            this.monGraphiqueCaisseGenerale.Titre = "Graphique Caisse Générale";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(164, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(170, 24);
+            this.label8.TabIndex = 0;
+            this.label8.Text = " Caisse Générale";
+            // 
+            // customRoundedPanel5
+            // 
+            this.customRoundedPanel5.BackColor = System.Drawing.Color.White;
+            this.customRoundedPanel5.BorderColor = System.Drawing.Color.Silver;
+            this.customRoundedPanel5.BorderRadius = 10;
+            this.customRoundedPanel5.BorderSize = 2;
+            this.customRoundedPanel5.Controls.Add(this.monGraphiqueEEG);
+            this.customRoundedPanel5.Controls.Add(this.label6);
+            this.customRoundedPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customRoundedPanel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Default;
+            this.customRoundedPanel5.Location = new System.Drawing.Point(3, 3);
+            this.customRoundedPanel5.Name = "customRoundedPanel5";
+            this.customRoundedPanel5.ShadowBlur = 10;
+            this.customRoundedPanel5.ShadowBorderRadius = -1;
+            this.customRoundedPanel5.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel5.ShadowEnabled = false;
+            this.customRoundedPanel5.ShadowOffsetX = 0;
+            this.customRoundedPanel5.ShadowOffsetY = 4;
+            this.customRoundedPanel5.ShadowOpacity = 60;
+            this.customRoundedPanel5.ShadowSpread = 0;
+            this.customRoundedPanel5.Size = new System.Drawing.Size(498, 365);
+            this.customRoundedPanel5.TabIndex = 31;
+            // 
+            // monGraphiqueEEG
+            // 
+            this.monGraphiqueEEG.AfficherGrille = true;
+            this.monGraphiqueEEG.AfficherLegende = true;
+            this.monGraphiqueEEG.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.monGraphiqueEEG.AnimationActive = true;
+            this.monGraphiqueEEG.BackColor = System.Drawing.Color.White;
+            this.monGraphiqueEEG.CouleurFond = System.Drawing.Color.White;
+            this.monGraphiqueEEG.CouleurPrincipale = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.monGraphiqueEEG.CouleurTitre = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.monGraphiqueEEG.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monGraphiqueEEG.Location = new System.Drawing.Point(12, 51);
+            this.monGraphiqueEEG.Name = "monGraphiqueEEG";
+            this.monGraphiqueEEG.Size = new System.Drawing.Size(470, 295);
+            this.monGraphiqueEEG.TabIndex = 2;
+            this.monGraphiqueEEG.Titre = "Mon graphique";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(186, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(127, 24);
+            this.label6.TabIndex = 0;
+            this.label6.Text = " Caisse EEG";
             // 
             // customRoundedPanel2
             // 
@@ -263,131 +380,6 @@
             this.lb_count.TabIndex = 0;
             this.lb_count.Text = "0";
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.customRoundedPanel6, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.customRoundedPanel5, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(6, 141);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1009, 371);
-            this.tableLayoutPanel2.TabIndex = 37;
-            // 
-            // customRoundedPanel6
-            // 
-            this.customRoundedPanel6.BackColor = System.Drawing.Color.White;
-            this.customRoundedPanel6.BorderColor = System.Drawing.Color.Silver;
-            this.customRoundedPanel6.BorderRadius = 10;
-            this.customRoundedPanel6.BorderSize = 2;
-            this.customRoundedPanel6.Controls.Add(this.chart_caisse_generale);
-            this.customRoundedPanel6.Controls.Add(this.label8);
-            this.customRoundedPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customRoundedPanel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customRoundedPanel6.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel6.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel6.Location = new System.Drawing.Point(507, 3);
-            this.customRoundedPanel6.Name = "customRoundedPanel6";
-            this.customRoundedPanel6.ShadowBlur = 10;
-            this.customRoundedPanel6.ShadowBorderRadius = -1;
-            this.customRoundedPanel6.ShadowColor = System.Drawing.Color.Black;
-            this.customRoundedPanel6.ShadowEnabled = false;
-            this.customRoundedPanel6.ShadowOffsetX = 0;
-            this.customRoundedPanel6.ShadowOffsetY = 4;
-            this.customRoundedPanel6.ShadowOpacity = 60;
-            this.customRoundedPanel6.ShadowSpread = 0;
-            this.customRoundedPanel6.Size = new System.Drawing.Size(499, 365);
-            this.customRoundedPanel6.TabIndex = 32;
-            // 
-            // chart_caisse_generale
-            // 
-            this.chart_caisse_generale.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.chart_caisse_generale.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart_caisse_generale.Legends.Add(legend3);
-            this.chart_caisse_generale.Location = new System.Drawing.Point(8, 46);
-            this.chart_caisse_generale.Name = "chart_caisse_generale";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.chart_caisse_generale.Series.Add(series3);
-            this.chart_caisse_generale.Size = new System.Drawing.Size(479, 309);
-            this.chart_caisse_generale.TabIndex = 2;
-            this.chart_caisse_generale.Text = "chart2";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(164, 14);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(170, 24);
-            this.label8.TabIndex = 0;
-            this.label8.Text = " Caisse Générale";
-            // 
-            // customRoundedPanel5
-            // 
-            this.customRoundedPanel5.BackColor = System.Drawing.Color.White;
-            this.customRoundedPanel5.BorderColor = System.Drawing.Color.Silver;
-            this.customRoundedPanel5.BorderRadius = 10;
-            this.customRoundedPanel5.BorderSize = 2;
-            this.customRoundedPanel5.Controls.Add(this.chart_caisse_eeg);
-            this.customRoundedPanel5.Controls.Add(this.label6);
-            this.customRoundedPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customRoundedPanel5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel5.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel5.Location = new System.Drawing.Point(3, 3);
-            this.customRoundedPanel5.Name = "customRoundedPanel5";
-            this.customRoundedPanel5.ShadowBlur = 10;
-            this.customRoundedPanel5.ShadowBorderRadius = -1;
-            this.customRoundedPanel5.ShadowColor = System.Drawing.Color.Black;
-            this.customRoundedPanel5.ShadowEnabled = false;
-            this.customRoundedPanel5.ShadowOffsetX = 0;
-            this.customRoundedPanel5.ShadowOffsetY = 4;
-            this.customRoundedPanel5.ShadowOpacity = 60;
-            this.customRoundedPanel5.ShadowSpread = 0;
-            this.customRoundedPanel5.Size = new System.Drawing.Size(498, 365);
-            this.customRoundedPanel5.TabIndex = 31;
-            // 
-            // chart_caisse_eeg
-            // 
-            this.chart_caisse_eeg.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea4.Name = "ChartArea1";
-            this.chart_caisse_eeg.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart_caisse_eeg.Legends.Add(legend4);
-            this.chart_caisse_eeg.Location = new System.Drawing.Point(8, 41);
-            this.chart_caisse_eeg.Name = "chart_caisse_eeg";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart_caisse_eeg.Series.Add(series4);
-            this.chart_caisse_eeg.Size = new System.Drawing.Size(479, 309);
-            this.chart_caisse_eeg.TabIndex = 1;
-            this.chart_caisse_eeg.Text = "chart1";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(186, 14);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 24);
-            this.label6.TabIndex = 0;
-            this.label6.Text = " Caisse EEG";
-            // 
             // DashBoard_comptability
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,6 +391,11 @@
             this.Size = new System.Drawing.Size(1021, 519);
             this.Load += new System.EventHandler(this.DashBoard_comptability_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.customRoundedPanel6.ResumeLayout(false);
+            this.customRoundedPanel6.PerformLayout();
+            this.customRoundedPanel5.ResumeLayout(false);
+            this.customRoundedPanel5.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
             this.customRoundedPanel1.ResumeLayout(false);
@@ -407,13 +404,6 @@
             this.customRoundedPanel3.PerformLayout();
             this.customRoundedPanel4.ResumeLayout(false);
             this.customRoundedPanel4.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.customRoundedPanel6.ResumeLayout(false);
-            this.customRoundedPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_caisse_generale)).EndInit();
-            this.customRoundedPanel5.ResumeLayout(false);
-            this.customRoundedPanel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart_caisse_eeg)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -438,7 +428,7 @@
         private System.Windows.Forms.Label label8;
         private CustomRoundedPanel customRoundedPanel5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_caisse_generale;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart_caisse_eeg;
+        private Controls.MonGraphique monGraphiqueCaisseGenerale;
+        private Controls.MonGraphique monGraphiqueEEG;
     }
 }

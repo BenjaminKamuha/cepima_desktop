@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.customRoundedPanel4 = new CustomRoundedPanel();
@@ -45,6 +45,7 @@
             this.lb_solde = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.customRoundedPanel5 = new CustomRoundedPanel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.dgv_caisse = new System.Windows.Forms.DataGridView();
             this.coldate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,12 +53,7 @@
             this.colEntree = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSortie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSolde = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dt_fin = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dt_debut = new System.Windows.Forms.DateTimePicker();
             this.cbx_type = new MyRoundedComboBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
             this.customRoundedPanel4.SuspendLayout();
@@ -288,10 +284,6 @@
             this.customRoundedPanel5.BorderSize = 2;
             this.customRoundedPanel5.Controls.Add(this.linkLabel1);
             this.customRoundedPanel5.Controls.Add(this.dgv_caisse);
-            this.customRoundedPanel5.Controls.Add(this.dt_fin);
-            this.customRoundedPanel5.Controls.Add(this.label8);
-            this.customRoundedPanel5.Controls.Add(this.label6);
-            this.customRoundedPanel5.Controls.Add(this.dt_debut);
             this.customRoundedPanel5.Controls.Add(this.cbx_type);
             this.customRoundedPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel5.HoverBackColor = System.Drawing.Color.Empty;
@@ -309,6 +301,20 @@
             this.customRoundedPanel5.Size = new System.Drawing.Size(1006, 366);
             this.customRoundedPanel5.TabIndex = 30;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkColor = System.Drawing.Color.DodgerBlue;
+            this.linkLabel1.Location = new System.Drawing.Point(809, 23);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(130, 20);
+            this.linkLabel1.TabIndex = 37;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Ajouter paiement";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // dgv_caisse
             // 
             this.dgv_caisse.AllowUserToAddRows = false;
@@ -322,14 +328,14 @@
             this.dgv_caisse.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_caisse.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_caisse.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_caisse.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_caisse.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_caisse.ColumnHeadersHeight = 30;
             this.dgv_caisse.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.coldate,
@@ -338,14 +344,14 @@
             this.colEntree,
             this.colSortie,
             this.colSolde});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_caisse.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_caisse.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_caisse.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgv_caisse.EnableHeadersVisualStyles = false;
             this.dgv_caisse.Location = new System.Drawing.Point(5, 49);
@@ -393,48 +399,6 @@
             this.colSolde.Name = "colSolde";
             this.colSolde.ReadOnly = true;
             // 
-            // dt_fin
-            // 
-            this.dt_fin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dt_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_fin.Location = new System.Drawing.Point(743, 16);
-            this.dt_fin.Name = "dt_fin";
-            this.dt_fin.Size = new System.Drawing.Size(246, 26);
-            this.dt_fin.TabIndex = 35;
-            this.dt_fin.ValueChanged += new System.EventHandler(this.dt_fin_ValueChanged);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(368, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 20);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Du : ";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(687, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 20);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Au :";
-            // 
-            // dt_debut
-            // 
-            this.dt_debut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dt_debut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_debut.Location = new System.Drawing.Point(420, 16);
-            this.dt_debut.Name = "dt_debut";
-            this.dt_debut.Size = new System.Drawing.Size(248, 26);
-            this.dt_debut.TabIndex = 35;
-            this.dt_debut.ValueChanged += new System.EventHandler(this.dt_debut_ValueChanged);
-            // 
             // cbx_type
             // 
             this.cbx_type.ArrowColor = System.Drawing.Color.Silver;
@@ -457,19 +421,6 @@
             this.cbx_type.Size = new System.Drawing.Size(205, 30);
             this.cbx_type.TabIndex = 34;
             this.cbx_type.SelectedIndexChanged += new System.EventHandler(this.cbx_type_SelectedIndexChanged);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(232, 21);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(130, 20);
-            this.linkLabel1.TabIndex = 37;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ajouter paiement";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // Livre_Caisse
             // 
@@ -515,11 +466,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private CustomRoundedPanel customRoundedPanel5;
-        private System.Windows.Forms.DateTimePicker dt_debut;
         private MyRoundedComboBox cbx_type;
-        private System.Windows.Forms.DateTimePicker dt_fin;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgv_caisse;
         private System.Windows.Forms.DataGridViewTextBoxColumn coldate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDesc;

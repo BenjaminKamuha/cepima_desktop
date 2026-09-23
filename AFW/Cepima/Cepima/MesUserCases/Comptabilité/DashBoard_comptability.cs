@@ -17,6 +17,7 @@ namespace Cepima.MesUserCases.Comptabilité
         public DashBoard_comptability()
         {
             InitializeComponent();
+           
         }
 
         private void DashBoard_comptability_Load(object sender, EventArgs e)
@@ -163,49 +164,36 @@ namespace Cepima.MesUserCases.Comptabilité
         {
             try
             {
-                // Nettoyer le graphique
-                chart_caisse_eeg.Series.Clear();
-                chart_caisse_eeg.ChartAreas.Clear();
-
-                // Zone du graphique
-                ChartArea zone = new ChartArea("ZoneEEG");
-                chart_caisse_eeg.ChartAreas.Add(zone);
-
-                // Série
-                Series serie = new Series("Caisse EEG");
-                serie.ChartType = SeriesChartType.Column;
-                serie.IsValueShownAsLabel = true;
-                serie.YValueType = ChartValueType.Double;
-
-                // Les 7 jours de la semaine
-                string[] jours =
+                string[] mois =
         {
-            "Lun",
+            "Jan",
+            "Fév",
             "Mar",
-            "Mer",
-            "Jeu",
-            "Ven",
-            "Sam",
-            "Dim"
+            "Avr",
+            "Mai",
+            "Juin",
+            "Juil",
+            "Aoû",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Déc"
         };
 
-                // Initialiser chaque jour à 0
-                decimal[] soldes = new decimal[7];
+                decimal[] soldes = new decimal[12];
 
                 string query = @"
             SELECT 
-                WEEKDAY(date) AS numero_jour,
+                MONTH(date) AS numero_mois,
                 solde
             FROM livre_caisse
             WHERE provenance = 'EEG'
-              AND DATE(date) >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
-              AND DATE(date) <= CURDATE()
+              AND YEAR(date) = YEAR(CURDATE())
             ORDER BY date ASC";
 
                 using (MySqlConnection connexion =
                     MesClasses.ManagerClasse.GetConnexion())
                 {
-
                     using (MySqlCommand commande =
                         new MySqlCommand(query, connexion))
                     {
@@ -214,56 +202,62 @@ namespace Cepima.MesUserCases.Comptabilité
                         {
                             while (reader.Read())
                             {
-                                int numeroJour =
-                                    Convert.ToInt32(reader["numero_jour"]);
+                                int numeroMois =
+                                    Convert.ToInt32(reader["numero_mois"]);
 
                                 decimal solde =
                                     Convert.ToDecimal(reader["solde"]);
 
-                                // Le dernier solde enregistré
-                                // pour cette journée remplace le précédent
-                                soldes[numeroJour] = solde;
+                                // Le dernier solde du mois
+                                // remplace le précédent
+                                soldes[numeroMois - 1] = solde;
                             }
                         }
                     }
                 }
 
-                // Ajouter les 7 jours au graphique
-                for (int i = 0; i < 7; i++)
+                List<string> etiquettes =
+                    new List<string>(mois);
+
+                List<double> valeurs =
+                    new List<double>();
+
+                for (int i = 0; i < 12; i++)
                 {
-                    DataPoint point = new DataPoint();
-                    point.SetValueXY(jours[i], soldes[i]);
-
-                    // Afficher le montant sur la barre
-                    point.Label = soldes[i].ToString("N0") + " $";
-
-                    serie.Points.Add(point);
+                    valeurs.Add(
+                        Convert.ToDouble(soldes[i])
+                    );
                 }
 
-                chart_caisse_eeg.Series.Add(serie);
+                monGraphiqueEEG.Vider();
 
-                // Configuration de l'axe horizontal
-                zone.AxisX.Title = "Jour";
-                zone.AxisX.Interval = 1;
-                zone.AxisX.LabelStyle.Font = new Font("Segoe UI",12);
-                // Configuration de l'axe vertical
-                zone.AxisY.Title = "Montant ($)";
-                zone.AxisY.LabelStyle.Format = "N0";
-                // Commencer l'axe à zéro
-                zone.AxisY.Minimum = 0;
+                monGraphiqueEEG.CouleurFond =
+                    Color.White;
 
-                // Style général
-                zone.AxisX.MajorGrid.Enabled = false;
-                zone.AxisY.MajorGrid.Enabled = true;
+                monGraphiqueEEG.AfficherLegende =
+                    false;
+
+                monGraphiqueEEG.AfficherGrille =
+                    true;
+
+                monGraphiqueEEG.AnimationActive =
+                    true;
+
+                monGraphiqueEEG.AjouterHistogramme(
+                    "Caisse EEG",
+                    etiquettes,
+                    valeurs
+                );
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement du graphique de la caisse EEG :\n\n" +
+                    "Erreur lors du chargement du graphique mensuel de la caisse EEG :\n\n" +
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -271,50 +265,36 @@ namespace Cepima.MesUserCases.Comptabilité
         {
             try
             {
-                // Nettoyer le graphique
-                chart_caisse_generale.Series.Clear();
-                chart_caisse_generale.ChartAreas.Clear();
-
-                // Zone du graphique
-                ChartArea zone = new ChartArea("ZoneGenerale");
-                chart_caisse_generale.ChartAreas.Add(zone);
-
-                // Série
-                Series serie = new Series("Caisse Générale");
-                serie.ChartType = SeriesChartType.Column;
-                serie.IsValueShownAsLabel = true;
-                serie.YValueType = ChartValueType.Double;
-
-                // Les 7 jours
-                string[] jours =
+                string[] mois =
         {
-            "Lun",
+            "Jan",
+            "Fév",
             "Mar",
-            "Mer",
-            "Jeu",
-            "Ven",
-            "Sam",
-            "Dim"
+            "Avr",
+            "Mai",
+            "Juin",
+            "Juil",
+            "Aoû",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Déc"
         };
 
-                // Tous les jours commencent à 0
-                decimal[] soldes = new decimal[7];
+                decimal[] soldes = new decimal[12];
 
                 string query = @"
             SELECT 
-                WEEKDAY(date) AS numero_jour,
+                MONTH(date) AS numero_mois,
                 solde
             FROM livre_caisse
             WHERE provenance = 'GENERALE'
-              AND DATE(date) >= DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY)
-              AND DATE(date) <= CURDATE()
+              AND YEAR(date) = YEAR(CURDATE())
             ORDER BY date ASC";
 
                 using (MySqlConnection connexion =
                     MesClasses.ManagerClasse.GetConnexion())
                 {
-                    
-
                     using (MySqlCommand commande =
                         new MySqlCommand(query, connexion))
                     {
@@ -323,56 +303,62 @@ namespace Cepima.MesUserCases.Comptabilité
                         {
                             while (reader.Read())
                             {
-                                int numeroJour =
-                                    Convert.ToInt32(reader["numero_jour"]);
+                                int numeroMois =
+                                    Convert.ToInt32(reader["numero_mois"]);
 
                                 decimal solde =
                                     Convert.ToDecimal(reader["solde"]);
 
-                                // Le dernier solde de la journée
-                                // remplace celui trouvé précédemment
-                                soldes[numeroJour] = solde;
+                                // Le dernier solde du mois
+                                // remplace le précédent
+                                soldes[numeroMois - 1] = solde;
                             }
                         }
                     }
                 }
 
-                // Ajouter les 7 jours
-                for (int i = 0; i < 7; i++)
+                List<string> etiquettes =
+                    new List<string>(mois);
+
+                List<double> valeurs =
+                    new List<double>();
+
+                for (int i = 0; i < 12; i++)
                 {
-                    DataPoint point = new DataPoint();
-
-                    point.SetValueXY(jours[i], soldes[i]);
-
-                    // Afficher le montant au-dessus de la barre
-                    point.Label = soldes[i].ToString("N0") + " $";
-
-                    serie.Points.Add(point);
+                    valeurs.Add(
+                        Convert.ToDouble(soldes[i])
+                    );
                 }
 
-                chart_caisse_generale.Series.Add(serie);
+                monGraphiqueCaisseGenerale.Vider();
 
-                // Axe horizontal
-                zone.AxisX.Title = "Jour";
-                zone.AxisX.Interval = 1;
-                zone.AxisX.LabelStyle.Font = new Font("Segoe UI", 12);
-                // Axe vertical
-                zone.AxisY.Title = "Montant ($)";
-                zone.AxisY.LabelStyle.Format = "N0";
-                zone.AxisY.Minimum = 0;
+                monGraphiqueCaisseGenerale.CouleurFond =
+                    Color.White;
 
-                // Grilles
-                zone.AxisX.MajorGrid.Enabled = false;
-                zone.AxisY.MajorGrid.Enabled = true;
+                monGraphiqueCaisseGenerale.AfficherLegende =
+                    false;
+
+                monGraphiqueCaisseGenerale.AfficherGrille =
+                    true;
+
+                monGraphiqueCaisseGenerale.AnimationActive =
+                    true;
+
+                monGraphiqueCaisseGenerale.AjouterHistogramme(
+                    "Caisse Générale",
+                    etiquettes,
+                    valeurs
+                );
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement du graphique de la caisse générale :\n\n" +
+                    "Erreur lors du chargement du graphique mensuel de la caisse générale :\n\n" +
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                    MessageBoxIcon.Error
+                );
             }
         }
     }

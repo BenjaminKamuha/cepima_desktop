@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Lun 21 Septembre 2026 à 04:39
+-- Généré le :  Mer 23 Septembre 2026 à 04:10
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -80,11 +80,21 @@ INSERT INTO `avances_salaire` (`id_avance`, `id_salaire`, `date_avance`, `montan
 CREATE TABLE IF NOT EXISTS `bon_sortie` (
   `id_bon` int(11) NOT NULL AUTO_INCREMENT,
   `nom_resp` varchar(50) DEFAULT NULL,
+  `signature_donneur` varchar(100) DEFAULT NULL,
   `montant` decimal(10,2) DEFAULT NULL,
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
-  `statut` enum('en attente','validé','annulé') DEFAULT NULL,
+  `statut` enum('En attente','Validé','Annulé') NOT NULL DEFAULT 'En attente',
   PRIMARY KEY (`id_bon`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `bon_sortie`
+--
+
+INSERT INTO `bon_sortie` (`id_bon`, `nom_resp`, `signature_donneur`, `montant`, `date`, `statut`) VALUES
+(1, 'Kambale Mukosa', 'Janvie Fabrice', '15.00', '2026-09-22 21:16:19', 'Validé'),
+(2, 'sumuta', 'pas de responsable', '2.00', '2026-09-22 23:54:42', 'Validé'),
+(3, 'Kanyali', 'AGIS 8', '10.00', '2026-09-23 02:53:06', 'Validé');
 
 -- --------------------------------------------------------
 
@@ -263,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `demande_service` (
   KEY `idx_demande_date` (`date_demande`),
   KEY `idx_demande_statut` (`statut`),
   KEY `idx_demande_prestation` (`id_prestation`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `demande_service`
@@ -272,7 +282,9 @@ CREATE TABLE IF NOT EXISTS `demande_service` (
 INSERT INTO `demande_service` (`id_demande`, `id_patient`, `id_service`, `id_prestation`, `id_personnel`, `date_demande`, `priorite`, `motif`, `statut`, `observation`) VALUES
 (1, 20, 1, 1, NULL, '2026-09-19 04:55:19', 'Normale', 'srfaqer', 'Terminée', 'qsdf'),
 (2, 20, 5, 10, NULL, '2026-09-19 04:56:40', 'Normale', 'sfsd', 'En attente', NULL),
-(3, 20, 1, 1, NULL, '2026-09-19 10:00:37', 'Normale', 'sdfdqs', 'En attente', NULL);
+(3, 20, 1, 1, NULL, '2026-09-19 10:00:37', 'Normale', 'sdfdqs', 'En attente', NULL),
+(4, 18, 1, 1, NULL, '2026-09-22 23:51:52', 'Normale', 'jhgfd', 'En cours', NULL),
+(5, 15, 1, 1, NULL, '2026-09-23 02:51:31', 'Normale', 'Pas de motif', 'Demandée', NULL);
 
 -- --------------------------------------------------------
 
@@ -341,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `detail_facture` (
   PRIMARY KEY (`id_detail_facture`),
   KEY `id_facture` (`id_facture`),
   KEY `fk_detail_facture_prestation` (`id_prestation`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Contenu de la table `detail_facture`
@@ -349,7 +361,9 @@ CREATE TABLE IF NOT EXISTS `detail_facture` (
 
 INSERT INTO `detail_facture` (`id_detail_facture`, `id_facture`, `id_prestation`, `description`, `quantite`, `prix_unitaire`, `montant`) VALUES
 (1, 1, 1, 'EEG 18 canaux', 1, '25.00', '25.00'),
-(2, 1, 10, 'Consultation médicale', 1, '20.00', '20.00');
+(2, 1, 10, 'Consultation médicale', 1, '20.00', '20.00'),
+(3, 2, 1, 'EEG 18 canaux', 1, '25.00', '25.00'),
+(4, 3, 1, 'EEG 18 canaux', 1, '25.00', '25.00');
 
 -- --------------------------------------------------------
 
@@ -618,14 +632,15 @@ CREATE TABLE IF NOT EXISTS `examens_eeg` (
   KEY `id_patient` (`id_patient`),
   KEY `id_consultation` (`id_consultation`),
   KEY `idx_examens_eeg_demande` (`id_demande`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Contenu de la table `examens_eeg`
 --
 
 INSERT INTO `examens_eeg` (`id_examens`, `id_demande`, `id_patient`, `id_consultation`, `date_examen`, `type_EEG`, `indication`, `etat_patient`, `privation_sommeil`, `duree_enregistrement`, `medicaments_avant_examen`, `prix_examen`, `resultat`, `statut`, `interpretation`, `observations`, `nom_fichier`, `chemin_fichier`, `extension_fichier`, `taille_fichier`) VALUES
-(1, 1, 20, NULL, '2026-09-19', '18_cannaux', '', 'Éveil', 0, NULL, NULL, NULL, NULL, 'Terminé', NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 1, 20, NULL, '2026-09-19', '18_cannaux', '', 'Éveil', 0, NULL, NULL, NULL, NULL, 'Terminé', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 4, 18, NULL, '2026-09-22', '18_cannaux', '', 'Éveil', 0, NULL, NULL, NULL, NULL, 'En cours', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -648,14 +663,16 @@ CREATE TABLE IF NOT EXISTS `facture` (
   KEY `id_patient` (`id_patient`),
   KEY `id_centre` (`id_centre`),
   KEY `id_consultation` (`id_consultation`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Contenu de la table `facture`
 --
 
 INSERT INTO `facture` (`id_facture`, `id_patient`, `id_consultation`, `id_centre`, `type_facture`, `date_facture`, `montant_total`, `montant_paye`, `reste`, `statut`) VALUES
-(1, 20, NULL, 1, 'Ambulatoire', '2026-09-19', '45.00', '25.00', '20.00', 'Partiellement payé');
+(1, 20, NULL, 1, 'Ambulatoire', '2026-09-19', '45.00', '45.00', '0.00', 'Payé'),
+(2, 18, NULL, 1, 'Ambulatoire', '2026-09-22', '25.00', '25.00', '0.00', 'Payé'),
+(3, 15, NULL, 1, 'Ambulatoire', '2026-09-23', '25.00', '25.00', '0.00', 'Payé');
 
 -- --------------------------------------------------------
 
@@ -853,6 +870,14 @@ CREATE TABLE IF NOT EXISTS `livre_caisse` (
   `provenance` enum('EEG','GENERALE') DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `livre_caisse`
+--
+
+INSERT INTO `livre_caisse` (`date`, `recette`, `depasse`, `solde`, `provenance`, `description`) VALUES
+('2026-09-23 00:00:00', '25.00', '0.00', '25.00', '', 'Paiement d''examen EEG'),
+('2026-09-23 00:00:00', '0.00', '10.00', '-10.00', 'GENERALE', 'Bon de sortie N° 3');
 
 -- --------------------------------------------------------
 
@@ -1088,14 +1113,18 @@ CREATE TABLE IF NOT EXISTS `paiement` (
   PRIMARY KEY (`id_paiement`),
   KEY `id_facture` (`id_facture`),
   KEY `idx_paiement_detail` (`id_detail_facture`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Contenu de la table `paiement`
 --
 
 INSERT INTO `paiement` (`id_paiement`, `id_facture`, `id_detail_facture`, `date_paiement`, `montant`, `reste`, `type_paiement`) VALUES
-(1, 1, 1, '2026-09-19', '25.00', '0.00', 'Complet');
+(1, 1, 1, '2026-09-19', '25.00', '0.00', 'Complet'),
+(2, 1, NULL, '2026-09-21', '10.00', '0.00', 'Partiel'),
+(3, 1, NULL, '2026-09-21', '10.00', '0.00', 'Complet'),
+(4, 2, 3, '2026-09-22', '25.00', '0.00', 'Complet'),
+(5, 3, 4, '2026-09-23', '25.00', '0.00', 'Complet');
 
 -- --------------------------------------------------------
 
@@ -1183,7 +1212,7 @@ CREATE TABLE IF NOT EXISTS `personnels` (
   `telephone` varchar(20) DEFAULT NULL,
   `adresse` varchar(50) DEFAULT NULL,
   `salaire_base` decimal(12,2) DEFAULT NULL,
-  `actif` enum('Actif','Non actif') DEFAULT NULL,
+  `actif` enum('Actif','Non actif') DEFAULT 'Actif',
   `situation_familliale` enum('Marié','Célibataire','Divorce') DEFAULT NULL,
   PRIMARY KEY (`id_personnel`),
   KEY `id_centre` (`id_centre`)

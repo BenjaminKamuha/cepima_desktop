@@ -116,6 +116,7 @@
             this.Name = "DisplayFactureCaisse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DisplayFactureCaisse";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.DisplayFactureCaisse_Load);
             this.customRoundedPanel1.ResumeLayout(false);
             this.panel_facture.ResumeLayout(false);
