@@ -187,8 +187,6 @@ namespace Cepima.MesUserCases.Personnels
 
                 INNER JOIN personnels p
                     ON p.id_personnel = pr.id_personnel
-
-                WHERE p.actif = 'Actif'
             ";
 
                     // ============================================================
@@ -370,8 +368,8 @@ namespace Cepima.MesUserCases.Personnels
                                 // ID CACHÉ
                                 // ------------------------------------------------
 
-                                ligne.Cells["colIDPersonnel"].Value =
-                                    idPersonnel;
+                                //ligne.Cells["colIDPersonnel"].Value =
+                                //    idPersonnel;
 
                                 // ------------------------------------------------
                                 // COLONNES VISIBLES
