@@ -241,7 +241,6 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
-
     <Compile Include="MesForms\Compt\Bon_de_sortie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,7 +253,6 @@
     <Compile Include="MesForms\Compt\DetailBon.Designer.cs">
       <DependentUpon>DetailBon.cs</DependentUpon>
     </Compile>
-
     <Compile Include="MesForms\Compt\DisplayFactureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -268,6 +266,12 @@
       <DependentUpon>Payement_Facture.cs</DependentUpon>
     </Compile>
     <Compile Include="MesClasses\PrescriptionManager.cs" />
+    <Compile Include="MesForms\Creer_compte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Creer_compte.Designer.cs">
+      <DependentUpon>Creer_compte.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\EEG\Form_caisse_eeg.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -823,6 +827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Compt\Payement_Facture.resx">
       <DependentUpon>Payement_Facture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Creer_compte.resx">
+      <DependentUpon>Creer_compte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\EEG\Form_caisse_eeg.resx">
       <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
@@ -1883,11 +1890,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_dollar_30px1.png" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fingerprint.png" />
-
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_user_male_30px1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
