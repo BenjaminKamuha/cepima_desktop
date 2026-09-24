@@ -68,13 +68,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts">
-      <HintPath>..\..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net45\LiveCharts.dll</HintPath>
+      <HintPath>C:\Users\Ben\Desktop\Live\LiveChart\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.WinForms">
-      <HintPath>..\..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\livecharts.winforms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+      <HintPath>C:\Users\Ben\Desktop\Live\livecharts.winforms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf">
-      <HintPath>..\..\..\..\..\..\Soft\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <HintPath>C:\Users\Ben\Desktop\Live\liveChart.wpf\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -241,7 +241,6 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
-
     <Compile Include="MesForms\Compt\Bon_de_sortie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -254,7 +253,6 @@
     <Compile Include="MesForms\Compt\DetailBon.Designer.cs">
       <DependentUpon>DetailBon.cs</DependentUpon>
     </Compile>
-
     <Compile Include="MesForms\Compt\DisplayFactureCaisse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1883,11 +1881,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_dollar_30px1.png" />
-
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\fingerprint.png" />
-
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
