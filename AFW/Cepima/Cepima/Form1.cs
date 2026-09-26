@@ -505,7 +505,14 @@ namespace Cepima
                     panel_center_main.Controls.Clear();
                     uc_service.Dock = DockStyle.Fill;
                     panel_center_main.Controls.Add(uc_service);
-                })
+                }),
+                 new MenuItem("   Utilisateur",Properties.Resources.user_30px, (s, ev) => 
+                 {
+                     MesUserCases.Users.Utilisateurs_user user = new MesUserCases.Users.Utilisateurs_user();
+                     user.Dock = DockStyle.Fill;
+                     panel_center_main.Controls.Clear();
+                     panel_center_main.Controls.Add(user);
+                 }),
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

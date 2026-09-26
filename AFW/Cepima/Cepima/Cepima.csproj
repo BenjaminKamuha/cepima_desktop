@@ -373,6 +373,30 @@
     <Compile Include="MesUserCases\Services\User_services.Designer.cs">
       <DependentUpon>User_services.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Users\Add_role.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Users\Add_role.Designer.cs">
+      <DependentUpon>Add_role.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Users\Update_user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Users\Update_user.Designer.cs">
+      <DependentUpon>Update_user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Users\User_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Users\User_Add.Designer.cs">
+      <DependentUpon>User_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Users\Utilisateurs_user.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Users\Utilisateurs_user.Designer.cs">
+      <DependentUpon>Utilisateurs_user.cs</DependentUpon>
+    </Compile>
     <Compile Include="Services\FingerprintApi.cs" />
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
@@ -1028,6 +1052,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Services\User_services.resx">
       <DependentUpon>User_services.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Users\Add_role.resx">
+      <DependentUpon>Add_role.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Users\Update_user.resx">
+      <DependentUpon>Update_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Users\User_Add.resx">
+      <DependentUpon>User_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Users\Utilisateurs_user.resx">
+      <DependentUpon>Utilisateurs_user.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\User_add_paiement.resx">
       <DependentUpon>User_add_paiement.cs</DependentUpon>
@@ -1896,6 +1932,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add_user_male_30px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_30px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

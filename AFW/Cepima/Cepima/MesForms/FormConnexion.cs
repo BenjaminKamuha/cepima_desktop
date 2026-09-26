@@ -224,22 +224,28 @@ namespace Cepima.MesForms
             try
             {
                 string query = @"
-            SELECT 
-                u.id_utilisateurs,
-                u.username,
-                u.password_hash,
-                u.role,
-                u.id_personnel,
-                p.id_centre,
-                c.nom_centre
-            FROM utilisateurs u
-            LEFT JOIN personnels p 
-                ON p.id_personnel = u.id_personnel
-            LEFT JOIN centres c 
-                ON c.id_centre = p.id_centre
-            WHERE u.username = @username
-            AND u.actif = 1
-            LIMIT 1";
+    SELECT 
+        u.id_utilisateurs,
+        u.username,
+        u.password_hash,
+        u.id_personnel,
+        p.id_centre,
+        c.nom_centre,
+        r.id_role,
+        r.nom_role
+    FROM utilisateurs u
+    LEFT JOIN personnels p 
+        ON p.id_personnel = u.id_personnel
+    LEFT JOIN centres c 
+        ON c.id_centre = p.id_centre
+    LEFT JOIN utilisateur_role ur
+        ON ur.id_utilisateur = u.id_utilisateurs
+    LEFT JOIN role r
+        ON r.id_role = ur.id_role
+        AND r.statut = 'actif'
+    WHERE u.username = @username
+    AND u.actif = 1
+    ORDER BY r.nom_role";
 
                 MesClasses.ManagerClasse.request_params.Clear();
 
@@ -293,7 +299,7 @@ namespace Cepima.MesForms
                         reader["id_utilisateurs"].ToString();
 
                     string role =
-                        reader["role"].ToString();
+                        reader["nom_role"].ToString();
 
                     // Session utilisateur
                     SessionUtilisateur.idUser =
@@ -330,6 +336,7 @@ namespace Cepima.MesForms
                     }
                 }
 
+              
                 // Connexion réussie
                 Form1 frm = new Form1();
 
@@ -373,6 +380,11 @@ namespace Cepima.MesForms
         }
 
         private void link_create_compte_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            
+        }
+
+        private void bt_add_compte_Click(object sender, EventArgs e)
         {
             Creer_compte compte = new Creer_compte();
             compte.ShowDialog();
