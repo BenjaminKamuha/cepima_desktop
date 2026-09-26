@@ -37,6 +37,7 @@
             this.link_create_compte = new System.Windows.Forms.LinkLabel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lb_notice = new System.Windows.Forms.Label();
+            this.bt_add_compte = new RoundedButton();
             this.panel_con = new CustomRoundedPanel();
             this.link_forgot = new System.Windows.Forms.LinkLabel();
             this.bt_connexion = new test_arrondissement2012.PerfectRoundedButton();
@@ -131,6 +132,7 @@
             this.link_create_compte.TabIndex = 17;
             this.link_create_compte.TabStop = true;
             this.link_create_compte.Text = " Créer un compte utilisateur";
+            this.link_create_compte.Visible = false;
             this.link_create_compte.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_create_compte_LinkClicked);
             // 
             // panel3
@@ -149,6 +151,30 @@
             this.lb_notice.Size = new System.Drawing.Size(35, 13);
             this.lb_notice.TabIndex = 0;
             this.lb_notice.Text = "label5";
+            // 
+            // bt_add_compte
+            // 
+            this.bt_add_compte.BackColor = System.Drawing.Color.Transparent;
+            this.bt_add_compte.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_add_compte.BorderRadius = 10;
+            this.bt_add_compte.ButtonText = "Ajouter un compte";
+            this.bt_add_compte.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_add_compte.DefaultBackColor = System.Drawing.Color.DodgerBlue;
+            this.bt_add_compte.FlatAppearance.BorderSize = 0;
+            this.bt_add_compte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_add_compte.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_add_compte.ForeColor = System.Drawing.Color.White;
+            this.bt_add_compte.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_add_compte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_add_compte.Location = new System.Drawing.Point(54, 422);
+            this.bt_add_compte.Name = "bt_add_compte";
+            this.bt_add_compte.Size = new System.Drawing.Size(217, 35);
+            this.bt_add_compte.TabIndex = 19;
+            this.bt_add_compte.Text = "Ajouter un compte";
+            this.bt_add_compte.TextColor = System.Drawing.Color.White;
+            this.bt_add_compte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_add_compte.UseVisualStyleBackColor = false;
+            this.bt_add_compte.Click += new System.EventHandler(this.bt_add_compte_Click);
             // 
             // panel_con
             // 
@@ -298,6 +324,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1159, 631);
+            this.Controls.Add(this.bt_add_compte);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.link_create_compte);
             this.Controls.Add(this.panel_con);
@@ -342,5 +369,6 @@
         private System.Windows.Forms.LinkLabel link_create_compte;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lb_notice;
+        private RoundedButton bt_add_compte;
     }
 }
