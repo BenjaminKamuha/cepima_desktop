@@ -1,13 +1,13 @@
--- MariaDB dump 10.19  Distrib 10.4.28-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cepimadb
 -- ------------------------------------------------------
--- Server version	5.6.17
+-- Server version	5.7.36
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,7 +21,7 @@
 
 DROP TABLE IF EXISTS `affectation_chambre`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `affectation_chambre` (
   `id_affectation` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) DEFAULT NULL,
@@ -35,12 +35,21 @@ CREATE TABLE `affectation_chambre` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `affectation_chambre`
+--
+
+LOCK TABLES `affectation_chambre` WRITE;
+/*!40000 ALTER TABLE `affectation_chambre` DISABLE KEYS */;
+/*!40000 ALTER TABLE `affectation_chambre` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `avances_salaire`
 --
 
 DROP TABLE IF EXISTS `avances_salaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `avances_salaire` (
   `id_avance` int(11) NOT NULL AUTO_INCREMENT,
   `id_salaire` int(11) DEFAULT NULL,
@@ -53,12 +62,21 @@ CREATE TABLE `avances_salaire` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `avances_salaire`
+--
+
+LOCK TABLES `avances_salaire` WRITE;
+/*!40000 ALTER TABLE `avances_salaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `avances_salaire` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `bon_sortie`
 --
 
 DROP TABLE IF EXISTS `bon_sortie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bon_sortie` (
   `id_bon` int(11) NOT NULL AUTO_INCREMENT,
   `nom_resp` varchar(50) DEFAULT NULL,
@@ -71,12 +89,21 @@ CREATE TABLE `bon_sortie` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `bon_sortie`
+--
+
+LOCK TABLES `bon_sortie` WRITE;
+/*!40000 ALTER TABLE `bon_sortie` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bon_sortie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `centres`
 --
 
 DROP TABLE IF EXISTS `centres`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `centres` (
   `id_centre` int(11) NOT NULL AUTO_INCREMENT,
   `nom_centre` varchar(255) DEFAULT NULL,
@@ -90,12 +117,21 @@ CREATE TABLE `centres` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `centres`
+--
+
+LOCK TABLES `centres` WRITE;
+/*!40000 ALTER TABLE `centres` DISABLE KEYS */;
+/*!40000 ALTER TABLE `centres` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `chambre`
 --
 
 DROP TABLE IF EXISTS `chambre`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `chambre` (
   `id_chambre` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -112,12 +148,21 @@ CREATE TABLE `chambre` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `chambre`
+--
+
+LOCK TABLES `chambre` WRITE;
+/*!40000 ALTER TABLE `chambre` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chambre` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `commande_achat`
 --
 
 DROP TABLE IF EXISTS `commande_achat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `commande_achat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fournisseur_id` int(11) NOT NULL,
@@ -132,12 +177,21 @@ CREATE TABLE `commande_achat` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `commande_achat`
+--
+
+LOCK TABLES `commande_achat` WRITE;
+/*!40000 ALTER TABLE `commande_achat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commande_achat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `commande_achat_ligne`
 --
 
 DROP TABLE IF EXISTS `commande_achat_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `commande_achat_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commande_id` int(11) NOT NULL,
@@ -150,12 +204,21 @@ CREATE TABLE `commande_achat_ligne` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `commande_achat_ligne`
+--
+
+LOCK TABLES `commande_achat_ligne` WRITE;
+/*!40000 ALTER TABLE `commande_achat_ligne` DISABLE KEYS */;
+/*!40000 ALTER TABLE `commande_achat_ligne` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `consultation`
 --
 
 DROP TABLE IF EXISTS `consultation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `consultation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_demande` int(11) DEFAULT NULL,
@@ -192,12 +255,21 @@ CREATE TABLE `consultation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `consultation`
+--
+
+LOCK TABLES `consultation` WRITE;
+/*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `demande_service`
 --
 
 DROP TABLE IF EXISTS `demande_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `demande_service` (
   `id_demande` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) NOT NULL,
@@ -223,12 +295,21 @@ CREATE TABLE `demande_service` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `demande_service`
+--
+
+LOCK TABLES `demande_service` WRITE;
+/*!40000 ALTER TABLE `demande_service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `demande_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `depenses`
 --
 
 DROP TABLE IF EXISTS `depenses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `depenses` (
   `id_depense` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -242,12 +323,21 @@ CREATE TABLE `depenses` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `depenses`
+--
+
+LOCK TABLES `depenses` WRITE;
+/*!40000 ALTER TABLE `depenses` DISABLE KEYS */;
+/*!40000 ALTER TABLE `depenses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `detail_entree_stock`
 --
 
 DROP TABLE IF EXISTS `detail_entree_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detail_entree_stock` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_entree` int(11) DEFAULT NULL,
@@ -261,12 +351,21 @@ CREATE TABLE `detail_entree_stock` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `detail_entree_stock`
+--
+
+LOCK TABLES `detail_entree_stock` WRITE;
+/*!40000 ALTER TABLE `detail_entree_stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail_entree_stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `detail_facture`
 --
 
 DROP TABLE IF EXISTS `detail_facture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detail_facture` (
   `id_detail_facture` int(11) NOT NULL AUTO_INCREMENT,
   `id_facture` int(11) DEFAULT NULL,
@@ -283,12 +382,21 @@ CREATE TABLE `detail_facture` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `detail_facture`
+--
+
+LOCK TABLES `detail_facture` WRITE;
+/*!40000 ALTER TABLE `detail_facture` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail_facture` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `detail_sortie_ph_service`
 --
 
 DROP TABLE IF EXISTS `detail_sortie_ph_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detail_sortie_ph_service` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -301,12 +409,21 @@ CREATE TABLE `detail_sortie_ph_service` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `detail_sortie_ph_service`
+--
+
+LOCK TABLES `detail_sortie_ph_service` WRITE;
+/*!40000 ALTER TABLE `detail_sortie_ph_service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail_sortie_ph_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `detail_sortie_s_pa`
 --
 
 DROP TABLE IF EXISTS `detail_sortie_s_pa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detail_sortie_s_pa` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -320,12 +437,21 @@ CREATE TABLE `detail_sortie_s_pa` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `detail_sortie_s_pa`
+--
+
+LOCK TABLES `detail_sortie_s_pa` WRITE;
+/*!40000 ALTER TABLE `detail_sortie_s_pa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail_sortie_s_pa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `detail_sortie_stock`
 --
 
 DROP TABLE IF EXISTS `detail_sortie_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `detail_sortie_stock` (
   `id_detail` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -342,12 +468,21 @@ CREATE TABLE `detail_sortie_stock` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `detail_sortie_stock`
+--
+
+LOCK TABLES `detail_sortie_stock` WRITE;
+/*!40000 ALTER TABLE `detail_sortie_stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail_sortie_stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `details_soins`
 --
 
 DROP TABLE IF EXISTS `details_soins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `details_soins` (
   `id_detail_soin` int(11) NOT NULL AUTO_INCREMENT,
   `id_consultation` int(11) DEFAULT NULL,
@@ -360,12 +495,21 @@ CREATE TABLE `details_soins` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `details_soins`
+--
+
+LOCK TABLES `details_soins` WRITE;
+/*!40000 ALTER TABLE `details_soins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `details_soins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `diagnostic`
 --
 
 DROP TABLE IF EXISTS `diagnostic`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `diagnostic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(20) DEFAULT NULL,
@@ -378,12 +522,21 @@ CREATE TABLE `diagnostic` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `diagnostic`
+--
+
+LOCK TABLES `diagnostic` WRITE;
+/*!40000 ALTER TABLE `diagnostic` DISABLE KEYS */;
+/*!40000 ALTER TABLE `diagnostic` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dispensation`
 --
 
 DROP TABLE IF EXISTS `dispensation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dispensation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prescription_id` int(11) NOT NULL,
@@ -398,12 +551,21 @@ CREATE TABLE `dispensation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `dispensation`
+--
+
+LOCK TABLES `dispensation` WRITE;
+/*!40000 ALTER TABLE `dispensation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dispensation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `dispensation_ligne`
 --
 
 DROP TABLE IF EXISTS `dispensation_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dispensation_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dispensation_id` int(11) NOT NULL,
@@ -418,12 +580,21 @@ CREATE TABLE `dispensation_ligne` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `dispensation_ligne`
+--
+
+LOCK TABLES `dispensation_ligne` WRITE;
+/*!40000 ALTER TABLE `dispensation_ligne` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dispensation_ligne` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `empreinte`
 --
 
 DROP TABLE IF EXISTS `empreinte`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empreinte` (
   `id_empreint` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -435,12 +606,21 @@ CREATE TABLE `empreinte` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `empreinte`
+--
+
+LOCK TABLES `empreinte` WRITE;
+/*!40000 ALTER TABLE `empreinte` DISABLE KEYS */;
+/*!40000 ALTER TABLE `empreinte` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `entree_stock`
 --
 
 DROP TABLE IF EXISTS `entree_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entree_stock` (
   `id_entre` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -452,12 +632,21 @@ CREATE TABLE `entree_stock` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `entree_stock`
+--
+
+LOCK TABLES `entree_stock` WRITE;
+/*!40000 ALTER TABLE `entree_stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `entree_stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `examens_eeg`
 --
 
 DROP TABLE IF EXISTS `examens_eeg`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `examens_eeg` (
   `id_examens` int(11) NOT NULL AUTO_INCREMENT,
   `id_demande` int(11) DEFAULT NULL,
@@ -488,12 +677,21 @@ CREATE TABLE `examens_eeg` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `examens_eeg`
+--
+
+LOCK TABLES `examens_eeg` WRITE;
+/*!40000 ALTER TABLE `examens_eeg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `examens_eeg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `facture`
 --
 
 DROP TABLE IF EXISTS `facture`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `facture` (
   `id_facture` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) DEFAULT NULL,
@@ -513,12 +711,21 @@ CREATE TABLE `facture` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `facture`
+--
+
+LOCK TABLES `facture` WRITE;
+/*!40000 ALTER TABLE `facture` DISABLE KEYS */;
+/*!40000 ALTER TABLE `facture` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `fournisseur`
 --
 
 DROP TABLE IF EXISTS `fournisseur`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fournisseur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
@@ -530,12 +737,21 @@ CREATE TABLE `fournisseur` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `fournisseur`
+--
+
+LOCK TABLES `fournisseur` WRITE;
+/*!40000 ALTER TABLE `fournisseur` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fournisseur` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `historique_sejour`
 --
 
 DROP TABLE IF EXISTS `historique_sejour`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `historique_sejour` (
   `id_historique` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) DEFAULT NULL,
@@ -546,12 +762,21 @@ CREATE TABLE `historique_sejour` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `historique_sejour`
+--
+
+LOCK TABLES `historique_sejour` WRITE;
+/*!40000 ALTER TABLE `historique_sejour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `historique_sejour` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `horaire`
 --
 
 DROP TABLE IF EXISTS `horaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `horaire` (
   `id_horaire` int(11) NOT NULL AUTO_INCREMENT,
   `heure_entree_normal` time DEFAULT NULL,
@@ -565,12 +790,21 @@ CREATE TABLE `horaire` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `horaire`
+--
+
+LOCK TABLES `horaire` WRITE;
+/*!40000 ALTER TABLE `horaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `horaire` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `hospitalisation`
 --
 
 DROP TABLE IF EXISTS `hospitalisation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `hospitalisation` (
   `id_hospitalisation` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) DEFAULT NULL,
@@ -591,12 +825,21 @@ CREATE TABLE `hospitalisation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `hospitalisation`
+--
+
+LOCK TABLES `hospitalisation` WRITE;
+/*!40000 ALTER TABLE `hospitalisation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hospitalisation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `inventaire`
 --
 
 DROP TABLE IF EXISTS `inventaire`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventaire` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_debut` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -610,12 +853,21 @@ CREATE TABLE `inventaire` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `inventaire`
+--
+
+LOCK TABLES `inventaire` WRITE;
+/*!40000 ALTER TABLE `inventaire` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inventaire` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `inventaire_ligne`
 --
 
 DROP TABLE IF EXISTS `inventaire_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inventaire_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `inventaire_id` int(11) NOT NULL,
@@ -630,12 +882,21 @@ CREATE TABLE `inventaire_ligne` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `inventaire_ligne`
+--
+
+LOCK TABLES `inventaire_ligne` WRITE;
+/*!40000 ALTER TABLE `inventaire_ligne` DISABLE KEYS */;
+/*!40000 ALTER TABLE `inventaire_ligne` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `livre_caisse`
 --
 
 DROP TABLE IF EXISTS `livre_caisse`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `livre_caisse` (
   `date` datetime DEFAULT CURRENT_TIMESTAMP,
   `recette` decimal(10,2) DEFAULT NULL,
@@ -647,12 +908,21 @@ CREATE TABLE `livre_caisse` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `livre_caisse`
+--
+
+LOCK TABLES `livre_caisse` WRITE;
+/*!40000 ALTER TABLE `livre_caisse` DISABLE KEYS */;
+/*!40000 ALTER TABLE `livre_caisse` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `logs`
 --
 
 DROP TABLE IF EXISTS `logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `logs` (
   `id_logs` int(11) NOT NULL AUTO_INCREMENT,
   `id_utilisateur` int(11) DEFAULT NULL,
@@ -665,12 +935,21 @@ CREATE TABLE `logs` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `lot_medicament`
 --
 
 DROP TABLE IF EXISTS `lot_medicament`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lot_medicament` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `medicament_id` int(11) NOT NULL,
@@ -683,12 +962,21 @@ CREATE TABLE `lot_medicament` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `lot_medicament`
+--
+
+LOCK TABLES `lot_medicament` WRITE;
+/*!40000 ALTER TABLE `lot_medicament` DISABLE KEYS */;
+/*!40000 ALTER TABLE `lot_medicament` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `medicament`
 --
 
 DROP TABLE IF EXISTS `medicament`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicament` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
@@ -709,12 +997,21 @@ CREATE TABLE `medicament` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `medicament`
+--
+
+LOCK TABLES `medicament` WRITE;
+/*!40000 ALTER TABLE `medicament` DISABLE KEYS */;
+/*!40000 ALTER TABLE `medicament` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `medicament_categorie`
 --
 
 DROP TABLE IF EXISTS `medicament_categorie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medicament_categorie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
@@ -725,12 +1022,21 @@ CREATE TABLE `medicament_categorie` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `medicament_categorie`
+--
+
+LOCK TABLES `medicament_categorie` WRITE;
+/*!40000 ALTER TABLE `medicament_categorie` DISABLE KEYS */;
+/*!40000 ALTER TABLE `medicament_categorie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `mouvement_stock`
 --
 
 DROP TABLE IF EXISTS `mouvement_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mouvement_stock` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `lot_id` int(11) NOT NULL,
@@ -746,12 +1052,21 @@ CREATE TABLE `mouvement_stock` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `mouvement_stock`
+--
+
+LOCK TABLES `mouvement_stock` WRITE;
+/*!40000 ALTER TABLE `mouvement_stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mouvement_stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `paiement`
 --
 
 DROP TABLE IF EXISTS `paiement`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paiement` (
   `id_paiement` int(11) NOT NULL AUTO_INCREMENT,
   `id_facture` int(11) DEFAULT NULL,
@@ -768,12 +1083,21 @@ CREATE TABLE `paiement` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `paiement`
+--
+
+LOCK TABLES `paiement` WRITE;
+/*!40000 ALTER TABLE `paiement` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paiement` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `paiement_eeg`
 --
 
 DROP TABLE IF EXISTS `paiement_eeg`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paiement_eeg` (
   `id_paiement_eeg` int(11) NOT NULL AUTO_INCREMENT,
   `id_examen` int(11) DEFAULT NULL,
@@ -786,12 +1110,21 @@ CREATE TABLE `paiement_eeg` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `paiement_eeg`
+--
+
+LOCK TABLES `paiement_eeg` WRITE;
+/*!40000 ALTER TABLE `paiement_eeg` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paiement_eeg` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `patients`
 --
 
 DROP TABLE IF EXISTS `patients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `patients` (
   `id_patient` int(11) NOT NULL AUTO_INCREMENT,
   `numero_fiche` varchar(20) DEFAULT NULL,
@@ -814,12 +1147,21 @@ CREATE TABLE `patients` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `patients`
+--
+
+LOCK TABLES `patients` WRITE;
+/*!40000 ALTER TABLE `patients` DISABLE KEYS */;
+/*!40000 ALTER TABLE `patients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `personnels`
 --
 
 DROP TABLE IF EXISTS `personnels`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `personnels` (
   `id_personnel` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -841,12 +1183,21 @@ CREATE TABLE `personnels` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `personnels`
+--
+
+LOCK TABLES `personnels` WRITE;
+/*!40000 ALTER TABLE `personnels` DISABLE KEYS */;
+/*!40000 ALTER TABLE `personnels` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `prescription`
 --
 
 DROP TABLE IF EXISTS `prescription`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prescription` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `patient_id` int(11) NOT NULL,
@@ -859,12 +1210,21 @@ CREATE TABLE `prescription` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `prescription`
+--
+
+LOCK TABLES `prescription` WRITE;
+/*!40000 ALTER TABLE `prescription` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prescription` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `prescription_ligne`
 --
 
 DROP TABLE IF EXISTS `prescription_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prescription_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `prescription_id` int(11) NOT NULL,
@@ -880,12 +1240,21 @@ CREATE TABLE `prescription_ligne` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `prescription_ligne`
+--
+
+LOCK TABLES `prescription_ligne` WRITE;
+/*!40000 ALTER TABLE `prescription_ligne` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prescription_ligne` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `prescriptions`
 --
 
 DROP TABLE IF EXISTS `prescriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prescriptions` (
   `id_prescription` int(11) NOT NULL AUTO_INCREMENT,
   `id_sortie` int(11) DEFAULT NULL,
@@ -905,12 +1274,21 @@ CREATE TABLE `prescriptions` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `prescriptions`
+--
+
+LOCK TABLES `prescriptions` WRITE;
+/*!40000 ALTER TABLE `prescriptions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prescriptions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `presences`
 --
 
 DROP TABLE IF EXISTS `presences`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `presences` (
   `id_presence` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -925,12 +1303,21 @@ CREATE TABLE `presences` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `presences`
+--
+
+LOCK TABLES `presences` WRITE;
+/*!40000 ALTER TABLE `presences` DISABLE KEYS */;
+/*!40000 ALTER TABLE `presences` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `prestation`
 --
 
 DROP TABLE IF EXISTS `prestation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prestation` (
   `id_prestation` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) NOT NULL,
@@ -944,12 +1331,21 @@ CREATE TABLE `prestation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `prestation`
+--
+
+LOCK TABLES `prestation` WRITE;
+/*!40000 ALTER TABLE `prestation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prestation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `prime`
 --
 
 DROP TABLE IF EXISTS `prime`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prime` (
   `id_prime` int(11) NOT NULL AUTO_INCREMENT,
   `id_salaire` int(11) DEFAULT NULL,
@@ -962,12 +1358,21 @@ CREATE TABLE `prime` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `prime`
+--
+
+LOCK TABLES `prime` WRITE;
+/*!40000 ALTER TABLE `prime` DISABLE KEYS */;
+/*!40000 ALTER TABLE `prime` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `reception_achat`
 --
 
 DROP TABLE IF EXISTS `reception_achat`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reception_achat` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `commande_id` int(11) DEFAULT NULL,
@@ -982,12 +1387,21 @@ CREATE TABLE `reception_achat` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `reception_achat`
+--
+
+LOCK TABLES `reception_achat` WRITE;
+/*!40000 ALTER TABLE `reception_achat` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reception_achat` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `reception_achat_ligne`
 --
 
 DROP TABLE IF EXISTS `reception_achat_ligne`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reception_achat_ligne` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `reception_id` int(11) NOT NULL,
@@ -1002,12 +1416,21 @@ CREATE TABLE `reception_achat_ligne` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `reception_achat_ligne`
+--
+
+LOCK TABLES `reception_achat_ligne` WRITE;
+/*!40000 ALTER TABLE `reception_achat_ligne` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reception_achat_ligne` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `retenue`
 --
 
 DROP TABLE IF EXISTS `retenue`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `retenue` (
   `id_retenue` int(11) NOT NULL AUTO_INCREMENT,
   `id_salaire` int(11) DEFAULT NULL,
@@ -1020,12 +1443,46 @@ CREATE TABLE `retenue` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `retenue`
+--
+
+LOCK TABLES `retenue` WRITE;
+/*!40000 ALTER TABLE `retenue` DISABLE KEYS */;
+/*!40000 ALTER TABLE `retenue` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role` (
+  `id_role` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_role` varchar(50) DEFAULT NULL,
+  `statut` enum('actif','inactif') DEFAULT 'actif',
+  PRIMARY KEY (`id_role`),
+  UNIQUE KEY `nom_role` (`nom_role`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `salaires`
 --
 
 DROP TABLE IF EXISTS `salaires`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `salaires` (
   `id_salaire` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -1039,12 +1496,21 @@ CREATE TABLE `salaires` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `salaires`
+--
+
+LOCK TABLES `salaires` WRITE;
+/*!40000 ALTER TABLE `salaires` DISABLE KEYS */;
+/*!40000 ALTER TABLE `salaires` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `service`
 --
 
 DROP TABLE IF EXISTS `service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `service` (
   `id_service` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(150) NOT NULL,
@@ -1056,12 +1522,21 @@ CREATE TABLE `service` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `service`
+--
+
+LOCK TABLES `service` WRITE;
+/*!40000 ALTER TABLE `service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `signes_vitaux`
 --
 
 DROP TABLE IF EXISTS `signes_vitaux`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `signes_vitaux` (
   `id_signe` int(11) NOT NULL AUTO_INCREMENT,
   `id_patient` int(11) DEFAULT NULL,
@@ -1078,12 +1553,21 @@ CREATE TABLE `signes_vitaux` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `signes_vitaux`
+--
+
+LOCK TABLES `signes_vitaux` WRITE;
+/*!40000 ALTER TABLE `signes_vitaux` DISABLE KEYS */;
+/*!40000 ALTER TABLE `signes_vitaux` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `soins`
 --
 
 DROP TABLE IF EXISTS `soins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `soins` (
   `id_soin` int(11) NOT NULL AUTO_INCREMENT,
   `nom_soin` varchar(25) DEFAULT NULL,
@@ -1094,12 +1578,21 @@ CREATE TABLE `soins` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `soins`
+--
+
+LOCK TABLES `soins` WRITE;
+/*!40000 ALTER TABLE `soins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `soins` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sortie_ph_service`
 --
 
 DROP TABLE IF EXISTS `sortie_ph_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sortie_ph_service` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1112,12 +1605,21 @@ CREATE TABLE `sortie_ph_service` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `sortie_ph_service`
+--
+
+LOCK TABLES `sortie_ph_service` WRITE;
+/*!40000 ALTER TABLE `sortie_ph_service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sortie_ph_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sortie_s_pa`
 --
 
 DROP TABLE IF EXISTS `sortie_s_pa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sortie_s_pa` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) DEFAULT NULL,
@@ -1130,12 +1632,21 @@ CREATE TABLE `sortie_s_pa` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `sortie_s_pa`
+--
+
+LOCK TABLES `sortie_s_pa` WRITE;
+/*!40000 ALTER TABLE `sortie_s_pa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sortie_s_pa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sorties_stock`
 --
 
 DROP TABLE IF EXISTS `sorties_stock`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sorties_stock` (
   `id_sortie` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1152,12 +1663,21 @@ CREATE TABLE `sorties_stock` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `sorties_stock`
+--
+
+LOCK TABLES `sorties_stock` WRITE;
+/*!40000 ALTER TABLE `sorties_stock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sorties_stock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `stock_pharmacie`
 --
 
 DROP TABLE IF EXISTS `stock_pharmacie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stock_pharmacie` (
   `id_stock` int(11) NOT NULL AUTO_INCREMENT,
   `id_centre` int(11) DEFAULT NULL,
@@ -1173,12 +1693,21 @@ CREATE TABLE `stock_pharmacie` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `stock_pharmacie`
+--
+
+LOCK TABLES `stock_pharmacie` WRITE;
+/*!40000 ALTER TABLE `stock_pharmacie` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock_pharmacie` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `stock_service`
 --
 
 DROP TABLE IF EXISTS `stock_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stock_service` (
   `id_stock_service` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) DEFAULT NULL,
@@ -1192,12 +1721,21 @@ CREATE TABLE `stock_service` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `stock_service`
+--
+
+LOCK TABLES `stock_service` WRITE;
+/*!40000 ALTER TABLE `stock_service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stock_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `suivi_hospitalisation`
 --
 
 DROP TABLE IF EXISTS `suivi_hospitalisation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `suivi_hospitalisation` (
   `id_suivi` int(11) NOT NULL AUTO_INCREMENT,
   `id_hospitalisation` int(11) NOT NULL,
@@ -1213,12 +1751,21 @@ CREATE TABLE `suivi_hospitalisation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `suivi_hospitalisation`
+--
+
+LOCK TABLES `suivi_hospitalisation` WRITE;
+/*!40000 ALTER TABLE `suivi_hospitalisation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `suivi_hospitalisation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tarif_prestation`
 --
 
 DROP TABLE IF EXISTS `tarif_prestation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tarif_prestation` (
   `id_tarif` int(11) NOT NULL AUTO_INCREMENT,
   `id_prestation` int(11) NOT NULL,
@@ -1232,12 +1779,21 @@ CREATE TABLE `tarif_prestation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tarif_prestation`
+--
+
+LOCK TABLES `tarif_prestation` WRITE;
+/*!40000 ALTER TABLE `tarif_prestation` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tarif_prestation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tarif_service`
 --
 
 DROP TABLE IF EXISTS `tarif_service`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tarif_service` (
   `id_tarif` int(11) NOT NULL AUTO_INCREMENT,
   `id_service` int(11) NOT NULL,
@@ -1252,12 +1808,21 @@ CREATE TABLE `tarif_service` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tarif_service`
+--
+
+LOCK TABLES `tarif_service` WRITE;
+/*!40000 ALTER TABLE `tarif_service` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tarif_service` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `unite_gestion`
 --
 
 DROP TABLE IF EXISTS `unite_gestion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `unite_gestion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
@@ -1270,12 +1835,47 @@ CREATE TABLE `unite_gestion` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `unite_gestion`
+--
+
+LOCK TABLES `unite_gestion` WRITE;
+/*!40000 ALTER TABLE `unite_gestion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `unite_gestion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `utilisateur_role`
+--
+
+DROP TABLE IF EXISTS `utilisateur_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `utilisateur_role` (
+  `id_utilisateur_role` int(11) NOT NULL AUTO_INCREMENT,
+  `id_utilisateur` int(11) DEFAULT NULL,
+  `id_role` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_utilisateur_role`),
+  KEY `fk_utilisateur_role` (`id_utilisateur`),
+  KEY `fk_utilisateur_role_role` (`id_role`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `utilisateur_role`
+--
+
+LOCK TABLES `utilisateur_role` WRITE;
+/*!40000 ALTER TABLE `utilisateur_role` DISABLE KEYS */;
+/*!40000 ALTER TABLE `utilisateur_role` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `utilisateurs`
 --
 
 DROP TABLE IF EXISTS `utilisateurs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utilisateurs` (
   `id_utilisateurs` int(11) NOT NULL AUTO_INCREMENT,
   `id_personnel` int(11) DEFAULT NULL,
@@ -1286,8 +1886,18 @@ CREATE TABLE `utilisateurs` (
   `actif` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_utilisateurs`),
   KEY `id_personnel` (`id_personnel`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `utilisateurs`
+--
+
+LOCK TABLES `utilisateurs` WRITE;
+/*!40000 ALTER TABLE `utilisateurs` DISABLE KEYS */;
+INSERT INTO `utilisateurs` VALUES (2,NULL,'user','Uevmazz/YrsUd2j+MI+HYA==:9+XrEvkX7wJAD1pJV+EPOPsQpIexiqC+8Iiiv2doUaQ=',NULL,'2026-09-26',1);
+/*!40000 ALTER TABLE `utilisateurs` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1298,4 +1908,4 @@ CREATE TABLE `utilisateurs` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-24  7:33:59
+-- Dump completed on 2026-09-26 11:28:52
