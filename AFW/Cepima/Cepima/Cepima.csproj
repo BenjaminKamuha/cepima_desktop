@@ -1937,6 +1937,15 @@
   <ItemGroup>
     <None Include="Resources\user_30px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\automation_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_dollar_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\joining_queue_30px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

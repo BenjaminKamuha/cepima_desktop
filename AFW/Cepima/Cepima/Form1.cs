@@ -405,7 +405,7 @@ namespace Cepima
                     panel_center_main.Controls.Add(finish);
                 }),
 
-                new MenuItem("    Caisse",Properties.Resources.add_dollar_30px, (s,ev) =>
+                new MenuItem("    Caisse",Properties.Resources.add_dollar_black, (s,ev) =>
                 {
                     MesUserCases.EEG.User_caisse finish = new MesUserCases.EEG.User_caisse();
                     finish.Dock = DockStyle.Fill;
@@ -500,7 +500,7 @@ namespace Cepima
                 new MenuItem("   Géneraux",Properties.Resources.maintenance_20px,(s,ev) => {}),
                 new MenuItem("   Apparence",Properties.Resources.eye_checked_20px,(s, ev) => {}),
                 new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {}),
-                new MenuItem("   Services",Properties.Resources.gift_30px, (s, ev) => {
+                new MenuItem("   Services",Properties.Resources.automation_30px, (s, ev) => {
                     MesUserCases.Services.User_services uc_service = new MesUserCases.Services.User_services();
                     panel_center_main.Controls.Clear();
                     uc_service.Dock = DockStyle.Fill;
@@ -611,7 +611,7 @@ namespace Cepima
                     panel_center_main.Controls.Add(dash_);
                 }),
 
-                     new MenuItem("     En attente",Properties.Resources.attendance_30px,(s,ev) =>  
+                     new MenuItem("     En attente",Properties.Resources.joining_queue_30px,(s,ev) =>  
                 {
                     MesUserCases.Consultation.UC_cons_demande finish = new MesUserCases.Consultation.UC_cons_demande();
                     finish.Dock = DockStyle.Fill;
@@ -619,10 +619,10 @@ namespace Cepima
                     panel_center_main.Controls.Add(finish);
                 }),
 
-                    new MenuItem("      Terminés", Properties.Resources.finish_flag_30px, (s, ev) => 
-                {
-                    //MesUserCases.User_
-                })
+                //    new MenuItem("      Terminés", Properties.Resources.finish_flag_30px, (s, ev) => 
+                //{
+                //    //MesUserCases.User_
+                //})
                   
             };
             Create_sous_menu(items);

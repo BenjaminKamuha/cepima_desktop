@@ -41,7 +41,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.bt_personnel = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_update = new RoundedButton();
             this.lb_version = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.bt_EEG = new System.Windows.Forms.Button();
+            this.bt_personnel = new System.Windows.Forms.Button();
             this.bt_hospitalisation = new System.Windows.Forms.Button();
             this.bt_setting = new System.Windows.Forms.Button();
             this.bt_consultation = new System.Windows.Forms.Button();
@@ -97,7 +97,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Image = global::Cepima.Properties.Resources.finish_flag_30px;
+            this.pictureBox4.Image = global::Cepima.Properties.Resources.joining_queue_30px;
             this.pictureBox4.Location = new System.Drawing.Point(262, 12);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(100, 50);
@@ -225,23 +225,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1091, 2);
             this.panel2.TabIndex = 1;
-            // 
-            // bt_personnel
-            // 
-            this.bt_personnel.BackColor = System.Drawing.Color.Yellow;
-            this.bt_personnel.FlatAppearance.BorderSize = 0;
-            this.bt_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_personnel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bt_personnel.Image = global::Cepima.Properties.Resources.staff_40px;
-            this.bt_personnel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bt_personnel.Location = new System.Drawing.Point(3, 516);
-            this.bt_personnel.Name = "bt_personnel";
-            this.bt_personnel.Size = new System.Drawing.Size(83, 56);
-            this.bt_personnel.TabIndex = 0;
-            this.bt_personnel.Text = "Personnel";
-            this.bt_personnel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.bt_personnel.UseVisualStyleBackColor = false;
-            this.bt_personnel.Click += new System.EventHandler(this.bt_personnel_Click);
             // 
             // panel5
             // 
@@ -463,6 +446,23 @@
             this.bt_EEG.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bt_EEG.UseVisualStyleBackColor = true;
             this.bt_EEG.Click += new System.EventHandler(this.bt_EEG_Click);
+            // 
+            // bt_personnel
+            // 
+            this.bt_personnel.BackColor = System.Drawing.Color.Yellow;
+            this.bt_personnel.FlatAppearance.BorderSize = 0;
+            this.bt_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_personnel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bt_personnel.Image = global::Cepima.Properties.Resources.staff_40px;
+            this.bt_personnel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.bt_personnel.Location = new System.Drawing.Point(3, 516);
+            this.bt_personnel.Name = "bt_personnel";
+            this.bt_personnel.Size = new System.Drawing.Size(83, 56);
+            this.bt_personnel.TabIndex = 0;
+            this.bt_personnel.Text = "Personnel";
+            this.bt_personnel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bt_personnel.UseVisualStyleBackColor = false;
+            this.bt_personnel.Click += new System.EventHandler(this.bt_personnel_Click);
             // 
             // bt_hospitalisation
             // 

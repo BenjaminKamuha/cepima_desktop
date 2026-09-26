@@ -389,7 +389,6 @@ namespace Cepima.MesUserCases
             if (rb_consultation.Checked)
             {
                 Type_consultation = "Première consultation";
-                MessageBox.Show(Type_consultation);
             }
         }
 
