@@ -373,6 +373,7 @@
     <Compile Include="MesUserCases\Services\User_services.Designer.cs">
       <DependentUpon>User_services.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\EnvConfig.cs" />
     <Compile Include="Services\FingerprintApi.cs" />
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />

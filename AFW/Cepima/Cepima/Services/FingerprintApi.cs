@@ -26,15 +26,21 @@ namespace Cepima.Services
         // CONFIGURATION ESP32
         // ========================================================
 
-        private const string ESP32_IP =
-            "192.168.200.50";
+        private static readonly string ESP32_IP =
+            EnvConfig.Get(
+                "ESP32_IP",
+                "192.168.200.50");
 
-        private const int ESP32_PORT =
-            8080;
+        private static readonly int ESP32_PORT =
+            EnvConfig.GetInt(
+                "ESP32_PORT",
+                8080);
 
-        private const string ESP32_BASE_URL =
-            "http://192.168.200.50:8080";
-
+        private static readonly string ESP32_BASE_URL =
+            "http://" +
+            ESP32_IP +
+            ":" +
+            ESP32_PORT;
 
         // ========================================================
         // START
@@ -76,6 +82,8 @@ namespace Cepima.Services
                 //    MessageBoxButtons.OK,
                 //    MessageBoxIcon.Error);
             }
+
+            MessageBox.Show(ESP32_BASE_URL);
         }
 
 

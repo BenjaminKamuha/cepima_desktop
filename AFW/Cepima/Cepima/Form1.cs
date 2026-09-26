@@ -522,7 +522,6 @@ namespace Cepima
             fingerprintApi = new FingerprintApi();
             fingerprintApi.Start(8000);
 
-            
         }
 
         private void bt_hospitalisation_Click(object sender, EventArgs e)
