@@ -27,13 +27,13 @@ namespace Cepima.Services
         // ========================================================
 
         private const string ESP32_IP =
-            "192.168.239.50";
+            "192.168.200.50";
 
         private const int ESP32_PORT =
             8080;
 
         private const string ESP32_BASE_URL =
-            "http://192.168.239.50:8080";
+            "http://192.168.200.50:8080";
 
 
         // ========================================================
