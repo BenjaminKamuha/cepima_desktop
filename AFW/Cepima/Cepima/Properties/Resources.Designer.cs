@@ -153,6 +153,16 @@ namespace Cepima.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_dollar_black {
+            get {
+                object obj = ResourceManager.GetObject("add_dollar_black", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_file_20px {
             get {
                 object obj = ResourceManager.GetObject("add_file_20px", resourceCulture);
@@ -266,6 +276,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap attendance_40px {
             get {
                 object obj = ResourceManager.GetObject("attendance_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap automation_30px {
+            get {
+                object obj = ResourceManager.GetObject("automation_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1366,6 +1386,16 @@ namespace Cepima.Properties {
         internal static System.Drawing.Bitmap invoice_paid_50px {
             get {
                 object obj = ResourceManager.GetObject("invoice_paid_50px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap joining_queue_30px {
+            get {
+                object obj = ResourceManager.GetObject("joining_queue_30px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
