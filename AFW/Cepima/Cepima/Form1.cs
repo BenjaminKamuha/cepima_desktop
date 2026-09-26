@@ -620,10 +620,10 @@ namespace Cepima
                     panel_center_main.Controls.Add(finish);
                 }),
 
-                    new MenuItem("      Terminés", Properties.Resources.finish_flag_30px, (s, ev) => 
-                {
-                    //MesUserCases.User_
-                })
+                //    new MenuItem("      Terminés", Properties.Resources.finish_flag_30px, (s, ev) => 
+                //{
+                //    //MesUserCases.User_
+                //})
                   
             };
             Create_sous_menu(items);
