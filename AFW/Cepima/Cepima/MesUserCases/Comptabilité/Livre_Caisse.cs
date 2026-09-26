@@ -81,11 +81,76 @@ namespace Cepima.MesUserCases.Comptabilité
 
             cbx_type.SelectedIndex = 0;
 
-            dt_debut.Value = DateTime.Today;
-            dt_fin.Value = DateTime.Today;
-
             ChargerResumeCaisseDuJour();
             ChargerLivreCaisse();
+            dgv_caisse.RowPostPaint += dgv_caisse_RowPostPaint;
+        }
+
+        void dgv_caisse_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+
+            if (dgv == null)
+                return;
+
+            // Vérifier si c'est une ligne de séparation de mois
+            if (dgv.Rows[e.RowIndex].Tag == null)
+                return;
+
+            string nomMois =
+                dgv.Rows[e.RowIndex].Tag.ToString();
+
+            Graphics g = e.Graphics;
+
+            // -----------------------------------------------------
+            // Position verticale du centre de la ligne
+            // -----------------------------------------------------
+
+            int y = e.RowBounds.Top +
+                    (e.RowBounds.Height / 2);
+
+            // -----------------------------------------------------
+            // Dimensions de la ligne
+            // -----------------------------------------------------
+
+            int gauche = e.RowBounds.Left + 5;
+            int droite = e.RowBounds.Right - 5;
+
+            // -----------------------------------------------------
+            // Police du mois
+            // -----------------------------------------------------
+
+            using (Font police = new Font("Segoe UI",10,FontStyle.Bold))
+            {
+                SizeF tailleTexte =
+                    g.MeasureString(nomMois, police);
+
+                float centreX =
+                    (gauche + droite) / 2f;
+
+                float texteGauche =
+                    centreX - (tailleTexte.Width / 2);
+
+                float texteDroite =
+                    centreX + (tailleTexte.Width / 2);
+
+              
+                // -------------------------------------------------
+                // Texte du mois
+                // -------------------------------------------------
+
+                using (Brush pinceau =
+                    new SolidBrush(Color.Black))
+                {
+                    g.DrawString(
+                        nomMois,
+                        police,
+                        pinceau,
+                        texteGauche,
+                        e.RowBounds.Top +
+                        ((e.RowBounds.Height - tailleTexte.Height) / 2));
+                }
+            }
         }
 
         private void ChargerLivreCaisse()
@@ -101,10 +166,14 @@ namespace Cepima.MesUserCases.Comptabilité
                 depasse,
                 solde
             FROM livre_caisse
-            WHERE date >= @date_debut
-              AND date < DATE_ADD(@date_fin, INTERVAL 1 DAY)";
+            WHERE 1 = 1";
 
-                // Filtre sur la caisse
+                // =========================================================
+                // FILTRE PAR CAISSE
+                // =========================================================
+
+                bool toutesLesCaisses = false;
+
                 if (cbx_type.SelectedIndex == 1)
                 {
                     query += " AND provenance = 'EEG'";
@@ -113,78 +182,298 @@ namespace Cepima.MesUserCases.Comptabilité
                 {
                     query += " AND provenance = 'GENERALE'";
                 }
+                else
+                {
+                    toutesLesCaisses = true;
+                }
 
-                query += " ORDER BY date DESC";
+                // =========================================================
+                // ORDRE CHRONOLOGIQUE
+                // =========================================================
+
+                query += " ORDER BY date ASC";
 
                 using (MySqlConnection connexion =
                     MesClasses.ManagerClasse.GetConnexion())
                 {
-
                     using (MySqlCommand commande =
                         new MySqlCommand(query, connexion))
                     {
-                        commande.Parameters.AddWithValue(
-                            "@date_debut",
-                            dt_debut.Value.Date);
-
-                        commande.Parameters.AddWithValue(
-                            "@date_fin",
-                            dt_fin.Value.Date);
-
                         using (MySqlDataReader reader =
                             commande.ExecuteReader())
                         {
-                            // Vider les anciennes lignes
+                            // =====================================================
+                            // VIDER LE TABLEAU
+                            // =====================================================
+
                             dgv_caisse.Rows.Clear();
+
+                            int dernierMois = -1;
+                            int derniereAnnee = -1;
+
+                            // =====================================================
+                            // SOLDE ACTUEL
+                            // =====================================================
+
+                            decimal soldeActuel = 0;
 
                             while (reader.Read())
                             {
-                                int ligne = dgv_caisse.Rows.Add();
+                                // =====================================================
+                                // DATE
+                                // =====================================================
 
-                                // Date
-                                dgv_caisse.Rows[ligne]
+                                DateTime dateOperation =
+                                    Convert.ToDateTime(reader["date"]);
+
+                                int mois = dateOperation.Month;
+                                int annee = dateOperation.Year;
+
+                                // =====================================================
+                                // NOUVEAU MOIS
+                                // =====================================================
+
+                                if (mois != dernierMois ||
+                                    annee != derniereAnnee)
+                                {
+                                    int ligneMois =
+                                        dgv_caisse.Rows.Add();
+
+                                    string nomMois =
+                                        dateOperation.ToString(
+                                            "MMMM yyyy",
+                                            new System.Globalization.CultureInfo("fr-FR")
+                                        ).ToUpper();
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .Cells["colDate"].Value = "";
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .Cells["colDesc"].Value = "";
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .Cells["colProvenance"].Value = "";
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .Cells["colEntree"].Value = "";
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .Cells["colSortie"].Value = "";
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .Cells["colSolde"].Value = "";
+
+                                    // Nom du mois
+                                    dgv_caisse.Rows[ligneMois].Tag =
+                                        nomMois;
+
+                                    // Style
+                                    dgv_caisse.Rows[ligneMois].Height = 32;
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .DefaultCellStyle.BackColor =
+                                        Color.White;
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .DefaultCellStyle.ForeColor =
+                                        Color.Black;
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .DefaultCellStyle.SelectionBackColor =
+                                        Color.White;
+
+                                    dgv_caisse.Rows[ligneMois]
+                                        .DefaultCellStyle.SelectionForeColor =
+                                        Color.Black;
+
+                                    dgv_caisse.Rows[ligneMois].ReadOnly = true;
+
+                                    dernierMois = mois;
+                                    derniereAnnee = annee;
+                                }
+
+                                // =====================================================
+                                // AJOUT DE L'OPÉRATION
+                                // =====================================================
+
+                                int ligneOperation =
+                                    dgv_caisse.Rows.Add();
+
+                                // =====================================================
+                                // DATE
+                                // =====================================================
+
+                                dgv_caisse.Rows[ligneOperation]
                                     .Cells["colDate"].Value =
-                                    Convert.ToDateTime(reader["date"])
-                                    .ToString("dd/MM/yyyy HH:mm");
+                                    dateOperation.ToString(
+                                        "dd/MM/yyyy");
 
-                                // Description
-                                dgv_caisse.Rows[ligne]
+                                // =====================================================
+                                // DESCRIPTION
+                                // =====================================================
+
+                                dgv_caisse.Rows[ligneOperation]
                                     .Cells["colDesc"].Value =
                                     reader["description"] == DBNull.Value
                                     ? ""
                                     : reader["description"].ToString();
 
-                                // Provenance
-                                dgv_caisse.Rows[ligne]
-                                    .Cells["colProvenance"].Value =
+                                // =====================================================
+                                // PROVENANCE
+                                // =====================================================
+
+                                string provenance =
                                     reader["provenance"] == DBNull.Value
                                     ? ""
                                     : reader["provenance"].ToString();
 
-                                // Entrée
-                                dgv_caisse.Rows[ligne]
+                                dgv_caisse.Rows[ligneOperation]
+                                    .Cells["colProvenance"].Value =
+                                    provenance;
+
+                                // =====================================================
+                                // RECETTE
+                                // =====================================================
+
+                                decimal recette = 0;
+
+                                if (reader["recette"] != DBNull.Value)
+                                {
+                                    recette =
+                                        Convert.ToDecimal(
+                                            reader["recette"]);
+                                }
+
+                                dgv_caisse.Rows[ligneOperation]
                                     .Cells["colEntree"].Value =
-                                    reader["recette"] == DBNull.Value
-                                    ? "0,00 $"
-                                    : Convert.ToDecimal(reader["recette"])
-                                        .ToString("N2") + " $";
+                                    recette.ToString("N2") + " $";
 
-                                // Sortie
-                                dgv_caisse.Rows[ligne]
+                                // =====================================================
+                                // DEPENSE
+                                // =====================================================
+
+                                decimal depense = 0;
+
+                                if (reader["depasse"] != DBNull.Value)
+                                {
+                                    depense =
+                                        Convert.ToDecimal(
+                                            reader["depasse"]);
+                                }
+
+                                dgv_caisse.Rows[ligneOperation]
                                     .Cells["colSortie"].Value =
-                                    reader["depasse"] == DBNull.Value
-                                    ? "0,00 $"
-                                    : Convert.ToDecimal(reader["depasse"])
-                                        .ToString("N2") + " $";
+                                    depense.ToString("N2") + " $";
 
-                                // Solde
-                                dgv_caisse.Rows[ligne]
+                                // =====================================================
+                                // SOLDE
+                                // =====================================================
+
+                                decimal soldeOperation = 0;
+
+                                if (toutesLesCaisses)
+                                {
+                                    // -------------------------------------------------
+                                    // TOUTES LES CAISSES
+                                    //
+                                    // On calcule un solde global :
+                                    //
+                                    // solde = recettes - dépenses
+                                    // -------------------------------------------------
+
+                                    soldeActuel += recette - depense;
+
+                                    soldeOperation = soldeActuel;
+                                }
+                                else
+                                {
+                                    // -------------------------------------------------
+                                    // UNE SEULE CAISSE
+                                    //
+                                    // On utilise le solde enregistré dans la table.
+                                    // -------------------------------------------------
+
+                                    if (reader["solde"] != DBNull.Value)
+                                    {
+                                        soldeOperation =
+                                            Convert.ToDecimal(
+                                                reader["solde"]);
+                                    }
+
+                                    soldeActuel = soldeOperation;
+                                }
+
+                                dgv_caisse.Rows[ligneOperation]
                                     .Cells["colSolde"].Value =
-                                    reader["solde"] == DBNull.Value
-                                    ? "0,00 $"
-                                    : Convert.ToDecimal(reader["solde"])
-                                        .ToString("N2") + " $";
+                                    soldeOperation.ToString("N2") + " $";
                             }
+
+                            // =========================================================
+                            // TOTAL DU SOLDE
+                            // =========================================================
+
+                            int ligneTotal =
+                                dgv_caisse.Rows.Add();
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colDate"].Value =
+                                "TOTAL DU SOLDE";
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colDesc"].Value = "";
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colProvenance"].Value = "";
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colEntree"].Value = "";
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colSortie"].Value = "";
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colSolde"].Value =
+                                soldeActuel.ToString("N2") + " $";
+
+                            // =========================================================
+                            // STYLE TOTAL
+                            // =========================================================
+
+                            DataGridViewRow ligneTotalStyle =
+                                dgv_caisse.Rows[ligneTotal];
+
+                            ligneTotalStyle.DefaultCellStyle.Font =
+                                new Font(
+                                    dgv_caisse.Font,
+                                    FontStyle.Bold);
+
+                            ligneTotalStyle.DefaultCellStyle.BackColor =
+                                Color.LightGray;
+
+                            ligneTotalStyle.DefaultCellStyle.ForeColor =
+                                Color.Black;
+
+                            ligneTotalStyle.Height = 35;
+
+                            ligneTotalStyle.ReadOnly = true;
+
+                            // =========================================================
+                            // ALIGNEMENT TITRE
+                            // =========================================================
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colDate"]
+                                .Style.Alignment =
+                                DataGridViewContentAlignment.MiddleLeft;
+
+                            // =========================================================
+                            // ALIGNEMENT SOLDE
+                            // =========================================================
+
+                            dgv_caisse.Rows[ligneTotal]
+                                .Cells["colSolde"]
+                                .Style.Alignment =
+                                DataGridViewContentAlignment.MiddleCenter;
                         }
                     }
                 }
@@ -201,16 +490,6 @@ namespace Cepima.MesUserCases.Comptabilité
         }
 
         private void cbx_type_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ChargerLivreCaisse();
-        }
-
-        private void dt_debut_ValueChanged(object sender, EventArgs e)
-        {
-            ChargerLivreCaisse();
-        }
-
-        private void dt_fin_ValueChanged(object sender, EventArgs e)
         {
             ChargerLivreCaisse();
         }

@@ -460,6 +460,21 @@ namespace Cepima.MesForms.Compt
                 );
 
 
+
+                // =========================================================
+                // 10. Ajouter le paiement dans le livre de caisse
+                // =========================================================
+
+                MesClasses.ReceptionManager.AjouterLivreCaisse(
+                    montant,
+                    0,
+                    "GENERALE",
+                    "Paiement facture N° " + idFacture
+                );
+
+                var result = MessageBox.Show("Imprimer le facture");
+                MesForms.FormRecu recu = new FormRecu(Convert.ToInt32(idFacture));
+                recu.ShowDialog();
                 // =========================================================
                 // 10. Message de confirmation
                 // =========================================================

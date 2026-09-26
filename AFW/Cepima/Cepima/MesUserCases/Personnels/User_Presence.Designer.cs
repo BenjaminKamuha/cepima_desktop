@@ -62,11 +62,7 @@
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHeureEntree = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHeureSortie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHorairePrevu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRetard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIDhoraire = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIDPersonnel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bunifuRoundedPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -246,11 +242,7 @@
             this.colDate,
             this.colHeureEntree,
             this.colHeureSortie,
-            this.colHorairePrevu,
-            this.colRetard,
-            this.colStatut,
-            this.colIDhoraire,
-            this.colIDPersonnel});
+            this.colStatut});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -566,37 +558,11 @@
             this.colHeureSortie.Name = "colHeureSortie";
             this.colHeureSortie.ReadOnly = true;
             // 
-            // colHorairePrevu
-            // 
-            this.colHorairePrevu.HeaderText = "Entré Normale";
-            this.colHorairePrevu.Name = "colHorairePrevu";
-            this.colHorairePrevu.ReadOnly = true;
-            // 
-            // colRetard
-            // 
-            this.colRetard.HeaderText = "Retard";
-            this.colRetard.Name = "colRetard";
-            this.colRetard.ReadOnly = true;
-            // 
             // colStatut
             // 
             this.colStatut.HeaderText = "Statut";
             this.colStatut.Name = "colStatut";
             this.colStatut.ReadOnly = true;
-            // 
-            // colIDhoraire
-            // 
-            this.colIDhoraire.HeaderText = "";
-            this.colIDhoraire.Name = "colIDhoraire";
-            this.colIDhoraire.ReadOnly = true;
-            this.colIDhoraire.Visible = false;
-            // 
-            // colIDPersonnel
-            // 
-            this.colIDPersonnel.HeaderText = "";
-            this.colIDPersonnel.Name = "colIDPersonnel";
-            this.colIDPersonnel.ReadOnly = true;
-            this.colIDPersonnel.Visible = false;
             // 
             // User_Presence
             // 
@@ -661,10 +627,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeureEntree;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeureSortie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colHorairePrevu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRetard;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIDhoraire;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIDPersonnel;
     }
 }

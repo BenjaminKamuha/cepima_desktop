@@ -874,5 +874,130 @@ namespace Cepima.MesClasses
                 con,
                 tr);
         }
+
+        public static void AjouterLivreCaisse(
+    decimal recette,
+    decimal depense,
+    string provenance,
+    string description)
+        {
+            try
+            {
+                // =====================================================
+                // 1. Récupérer le dernier solde de la caisse
+                // =====================================================
+
+                decimal ancienSolde = 0;
+
+                string querySolde = @"
+            SELECT solde
+            FROM livre_caisse
+            WHERE provenance = @provenance
+            ORDER BY date DESC
+            LIMIT 1";
+
+                MesClasses.ManagerClasse.request_params.Clear();
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@provenance",
+                    provenance
+                );
+
+                using (MySqlDataReader reader =
+                       MesClasses.ManagerClasse.CRUD(
+                           querySolde,
+                           MesClasses.ManagerClasse.request_params,
+                           true))
+                {
+                    if (reader.Read())
+                    {
+                        if (reader["solde"] != DBNull.Value)
+                        {
+                            ancienSolde =
+                                Convert.ToDecimal(reader["solde"]);
+                        }
+                    }
+
+                    reader.Close();
+                }
+
+
+                // =====================================================
+                // 2. Calculer le nouveau solde
+                // =====================================================
+
+                decimal nouveauSolde =
+                    ancienSolde + recette - depense;
+
+
+                // =====================================================
+                // 3. Insérer le mouvement dans livre_caisse
+                // =====================================================
+
+                string query = @"
+            INSERT INTO livre_caisse
+            (
+                date,
+                recette,
+                depasse,
+                solde,
+                provenance,
+                description
+            )
+            VALUES
+            (
+                CURDATE(),
+                @recette,
+                @depasse,
+                @solde,
+                @provenance,
+                @description
+            )";
+
+                MesClasses.ManagerClasse.request_params.Clear();
+
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@recette",
+                    recette.ToString()
+                );
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@depasse",
+                    depense.ToString()
+                );
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@solde",
+                    nouveauSolde.ToString()
+                );
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@provenance",
+                    provenance
+                );
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@description",
+                    description
+                );
+
+                MesClasses.ManagerClasse.CRUD(
+                    query,
+                    MesClasses.ManagerClasse.request_params,
+                    false
+                );
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors de l'enregistrement dans le livre de caisse :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
     }
 }

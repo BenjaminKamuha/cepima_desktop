@@ -602,44 +602,10 @@ namespace Cepima.MesForms.Compt
 
 
             // ---------------------------------------------------------
-            // COULEUR DU STATUT
-            // ---------------------------------------------------------
-
-            if (statut == "Non payé")
-            {
-                lbStatut.ForeColor =
-                    Color.Red;
-            }
-            else if (statut == "Payé")
-            {
-                lbStatut.ForeColor =
-                    Color.FromArgb(0, 200, 83);
-            }
-            else if (statut == "Partiellement payé")
-            {
-                lbStatut.ForeColor =
-                    Color.Orange;
-            }
-            else if (statut == "Clôturée")
-            {
-                lbStatut.ForeColor =
-                    Color.FromArgb(44, 123, 229);
-            }
-            else
-            {
-                lbStatut.ForeColor =
-                    Color.Black;
-            }
-
-            panFacture.Controls.Add(lbStatut);
-
-
-            // ---------------------------------------------------------
             // BOUTON PAYER
             // ---------------------------------------------------------
 
-            RoundedButton btnPayer =
-                MesClasses.ManagerClasse.Rbutton(
+            RoundedButton btnPayer = MesClasses.ManagerClasse.Rbutton(
                     "Payer",
                     new Point(105, 190),
                     new Size(90, 28),
@@ -657,6 +623,38 @@ namespace Cepima.MesForms.Compt
                 Color.FromArgb(0, 120, 55);
 
             panFacture.Controls.Add(btnPayer);
+
+            // ---------------------------------------------------------
+            // COULEUR DU STATUT
+            // ---------------------------------------------------------
+
+            if (statut == "Non payé")
+            {
+                lbStatut.ForeColor = Color.Red;
+                btnPayer.Visible = true;
+            }
+            else if (statut == "Payé")
+            {
+                lbStatut.ForeColor = Color.FromArgb(0, 200, 83);
+                btnPayer.Visible = false;
+            }
+            else if (statut == "Partiellement payé")
+            {
+                lbStatut.ForeColor = Color.Orange;
+                btnPayer.Visible = true;
+            }
+            else if (statut == "Clôturée")
+            {
+                lbStatut.ForeColor = Color.FromArgb(44, 123, 229);
+            }
+            else
+            {
+                lbStatut.ForeColor = Color.Black;
+            }
+
+            panFacture.Controls.Add(lbStatut);
+
+
 
 
             // ---------------------------------------------------------

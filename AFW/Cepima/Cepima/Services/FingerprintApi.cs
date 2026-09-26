@@ -69,12 +69,12 @@ namespace Cepima.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Impossible de démarrer Fingerprint API.\n\n" +
-                    ex.Message,
-                    "CEPIMA",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                //MessageBox.Show(
+                //    "Impossible de démarrer Fingerprint API.\n\n" +
+                //    ex.Message,
+                //    "CEPIMA",
+                //    MessageBoxButtons.OK,
+                //    MessageBoxIcon.Error);
             }
         }
 

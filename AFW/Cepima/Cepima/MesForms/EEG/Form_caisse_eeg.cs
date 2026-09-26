@@ -132,6 +132,7 @@ namespace Cepima.MesForms.EEG
                             cmd.ExecuteNonQuery();
                         }
 
+                        MesClasses.ReceptionManager.AjouterLivreCaisse(PRIX_PRESTATION,0,"Caisse EEG","Paiement d'examen EEG");
                         tr.Commit();
 
                         MessageBox.Show(

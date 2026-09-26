@@ -39,7 +39,6 @@ namespace Cepima
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
 
-
         }
 
         /// <summary>

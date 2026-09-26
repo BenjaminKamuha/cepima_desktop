@@ -34,7 +34,7 @@ namespace Cepima.MesForms
             {
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                 {
-                    string query = "SELECT pa.numero_recu,DATE_FORMAT(pa.date_paiement, '%d/%m/%Y') AS date_paiement,f.id_facture,CONCAT(p.nom, ' ',p.post_nom, ' ',p.prenom) AS patient,pa.montant AS montant_paye,pa.type_paiement,pa.reste,df.description,df.quantite,df.prix_unitaire,f.montant_total AS total_facture,df.montant  AS montant_prestation FROM paiement pa INNER JOIN facture f ON pa.id_facture = f.id_facture INNER JOIN patients p ON f.id_patient = p.id_patient LEFT JOIN detail_facture df ON f.id_facture = df.id_facture WHERE pa.id_paiement = @id ORDER BY FIELD(df.description,'Consultation','Médicaments','EEG','Laboratoire','Hospitalisation','Nursing','Séance psychosociale','Imprimés','Autres')";
+                    string query = "SELECT DATE_FORMAT(pa.date_paiement, '%d/%m/%Y') AS date_paiement,f.id_facture,CONCAT(p.nom, ' ',p.post_nom, ' ',p.prenom) AS patient,pa.montant AS montant_paye,pa.type_paiement,f.reste,df.description,df.quantite,df.prix_unitaire,f.montant_total AS total_facture,df.montant  AS montant_prestation FROM paiement pa INNER JOIN facture f ON pa.id_facture = f.id_facture INNER JOIN patients p ON f.id_patient = p.id_patient LEFT JOIN detail_facture df ON f.id_facture = df.id_facture WHERE pa.id_paiement = @id ORDER BY FIELD(df.description,'Consultation','Médicaments','EEG','Laboratoire','Hospitalisation','Nursing','Séance psychosociale','Imprimés','Autres')";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
