@@ -1,306 +1,458 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesUserCases
 {
     public partial class User_personnels_display : UserControl
     {
+        private Timer timerRecherche;
+
         public User_personnels_display()
         {
             InitializeComponent();
+
+            InitialiserRecherche();
+
             LoadPersonnel();
-            //MesClasses.ReceptionManager.MoveLabel(label1,panel1);
         }
+
+        // ============================================================
+        // INITIALISATION RECHERCHE
+        // ============================================================
+
+        private void InitialiserRecherche()
+        {
+            timerRecherche = new Timer();
+            timerRecherche.Interval = 300;
+            timerRecherche.Tick += timerRecherche_Tick;
+
+            tb_search_demande.TextChanged -=
+                tb_search_demande_TextChanged;
+
+            tb_search_demande.TextChanged +=
+                tb_search_demande_TextChanged;
+        }
+
+        private void timerRecherche_Tick(
+            object sender,
+            EventArgs e)
+        {
+            timerRecherche.Stop();
+
+            LoadPersonnel(
+                tb_search_demande.Text);
+        }
+
+        // ============================================================
+        // CHARGEMENT PERSONNEL
+        // ============================================================
 
         private void LoadPersonnel(params string[] args)
         {
-            panel_patient.Controls.Clear();
+            string recherche = "";
 
-            // Configuration du FlowLayoutPanel
-            panel_patient.FlowDirection = FlowDirection.LeftToRight;
-            panel_patient.WrapContents = true;
-            panel_patient.AutoScroll = true;
-            panel_patient.Padding = new Padding(10, 10, 8, 10);
-
-            lb_not_found.Visible = false;
-
-            // =========================================================
-            // RECHERCHE D'UN PATIENT
-            // =========================================================
-
-            if (args.Length != 0)
+            if (args != null &&
+                args.Length > 0 &&
+                args[0] != null)
             {
-                try
-                {
-                    string query = "SELECT id_personnel, nom, post_nom FROM personnels WHERE nom LIKE @search OR post_nom LIKE @search";
-
-                    MesClasses.ManagerClasse.request_params.Clear();
-
-                    MesClasses.ManagerClasse.request_params.Add("@search","%" + args[0] + "%");
-
-                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
-                    {
-                        int i = 0;
-
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string idPatient = reader["id_personnel"].ToString();
-                                string nom = reader["nom"].ToString();
-                                string postnom = reader["post_nom"].ToString();
-
-                                // Création de la carte patient
-                                CustomRoundedPanel panPatient =
-                                    CreerPanelPatient(
-                                        idPatient,
-                                        nom,
-                                        postnom
-                                    );
-
-                                // Ajout au FlowLayoutPanel
-                                panel_patient.Controls.Add(panPatient);
-
-                                i++;
-                            }
-
-                            reader.Close();
-
-                            lb_nombres.Text =
-                                i.ToString() + " Personnel(s) trouvé(s)";
-
-                            ProgressiveDisplay pd =
-                                new ProgressiveDisplay(panel_patient, 100);
-
-                            pd.Start();
-                        }
-                        else
-                        {
-                            lb_not_found.Text =
-                                "Aucun nom ne correspond aux terme de recherche '"
-                                + args[0] + "'";
-
-                            panel_patient.Controls.Add(lb_not_found);
-
-                            lb_not_found.Visible = true;
-
-                            lb_nombres.Text =
-                                i.ToString() + " Personnel(s) trouvé(s)";
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message);
-                }
+                recherche = args[0].Trim();
             }
 
-            // =========================================================
-            // AFFICHAGE DE TOUS LES PATIENTS
-            // =========================================================
-
-            else
+            try
             {
-                try
+                // ----------------------------------------------------
+                // PREPARATION AFFICHAGE
+                // ----------------------------------------------------
+
+                panel_patient.SuspendLayout();
+
+                panel_patient.Controls.Clear();
+
+                panel_patient.FlowDirection =
+                    FlowDirection.LeftToRight;
+
+                panel_patient.WrapContents =
+                    true;
+
+                panel_patient.AutoScroll =
+                    true;
+
+                panel_patient.Padding =
+                    new Padding(10, 10, 8, 10);
+
+                lb_not_found.Visible = false;
+
+                // ----------------------------------------------------
+                // REQUETE UNIQUE
+                // ----------------------------------------------------
+
+                string query = @"
+                    SELECT
+                        id_personnel,
+                        nom,
+                        post_nom
+                    FROM personnels
+                    WHERE 1 = 1
+                ";
+
+                if (recherche.Length > 0)
                 {
-                    string query =
-                        "SELECT id_personnel, nom, post_nom " +
-                        "FROM personnels ORDER BY nom ASC";
+                    query += @"
+                        AND
+                        (
+                            nom LIKE @search
+                            OR post_nom LIKE @search
+                            OR prenom LIKE @search
+                        )
+                    ";
+                }
 
-                    using (MySqlDataReader reader =
-                           MesClasses.ManagerClasse.CRUD(
-                               query,
-                               null,
-                               true))
+                query += @"
+                    ORDER BY
+                        nom ASC,
+                        post_nom ASC,
+                        prenom ASC
+                ";
+
+                // ----------------------------------------------------
+                // EXECUTION
+                // ----------------------------------------------------
+
+                MesClasses.ManagerClasse.request_params.Clear();
+
+                if (recherche.Length > 0)
+                {
+                    MesClasses.ManagerClasse.request_params.Add(
+                        "@search",
+                        "%" + recherche + "%");
+                }
+
+                int nombre = 0;
+
+                using (MySqlDataReader reader =
+                    MesClasses.ManagerClasse.CRUD(
+                        query,
+                        recherche.Length > 0
+                            ? MesClasses.ManagerClasse.request_params
+                            : null,
+                        true))
+                {
+                    while (reader.Read())
                     {
-                        if (reader.HasRows)
-                        {
-                            int i = 0;
+                        string idPersonnel =
+                            GetString(
+                                reader,
+                                "id_personnel");
 
-                            while (reader.Read())
-                            {
-                                string idPatient =
-                                    reader["id_personnel"].ToString();
+                        string nom =
+                            GetString(
+                                reader,
+                                "nom");
 
-                                string nom =
-                                    reader["nom"].ToString();
+                        string postnom =
+                            GetString(
+                                reader,
+                                "post_nom");
 
-                                string postnom =
-                                    reader["post_nom"].ToString();
+                        CustomRoundedPanel panPersonnel =
+                            CreerPanelPersonnel(
+                                idPersonnel,
+                                nom,
+                                postnom);
 
-                                // Création de la carte patient
-                                CustomRoundedPanel panPatient =
-                                    CreerPanelPatient(
-                                        idPatient,
-                                        nom,
-                                        postnom
-                                    );
+                        panel_patient.Controls.Add(
+                            panPersonnel);
 
-                                // Ajout au FlowLayoutPanel
-                                panel_patient.Controls.Add(panPatient);
-
-                                i++;
-                            }
-
-                            reader.Close();
-
-                            lb_nombres.Text =
-                                i.ToString() + " Personnel(s)";
-
-                            ProgressiveDisplay pd =
-                                new ProgressiveDisplay(panel_patient, 100);
-
-                            pd.Start();
-                        }
-                        else
-                        {
-                            lb_not_found.Text =
-                                "Aucun personnel dans le registre";
-
-                            lb_not_found.Visible = true;
-                        }
+                        nombre++;
                     }
                 }
-                catch (MySqlException ex)
+
+                // ----------------------------------------------------
+                // RESULTAT
+                // ----------------------------------------------------
+
+                if (nombre == 0)
                 {
-                    MessageBox.Show("Erreur : " + ex.Message);
+                    if (recherche.Length > 0)
+                    {
+                        lb_not_found.Text =
+                            "Aucun nom ne correspond au terme de recherche '" +
+                            recherche +
+                            "'";
+                    }
+                    else
+                    {
+                        lb_not_found.Text =
+                            "Aucun personnel dans le registre";
+                    }
+
+                    panel_patient.Controls.Add(
+                        lb_not_found);
+
+                    lb_not_found.Visible = true;
                 }
+                else
+                {
+                    ProgressiveDisplay pd =
+                        new ProgressiveDisplay(
+                            panel_patient,
+                            100);
+
+                    pd.Start();
+                }
+
+                lb_nombres.Text =
+                    nombre.ToString() +
+                    (
+                        nombre > 1
+                            ? " Personnel(s)"
+                            : " Personnel"
+                    );
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur MySQL lors du chargement du personnel :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement du personnel :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                panel_patient.ResumeLayout();
             }
         }
 
-        private CustomRoundedPanel CreerPanelPatient(string idPatient, string nom, string postnom)
+        // ============================================================
+        // CREATION CARTE PERSONNEL
+        // ============================================================
+
+        private CustomRoundedPanel CreerPanelPersonnel(
+            string idPersonnel,
+            string nom,
+            string postnom)
         {
-            // ---------------------------------------------------------
-            // PANEL PRINCIPAL
-            // ---------------------------------------------------------
+            CustomRoundedPanel panPersonnel =
+                new CustomRoundedPanel();
 
-            CustomRoundedPanel panPatient = new CustomRoundedPanel();
+            panPersonnel.Size =
+                new Size(160, 130);
 
-            panPatient.Size = new Size(160, 130);
+            panPersonnel.BorderRadius =
+                8;
 
-            panPatient.BorderRadius = 8;
-            panPatient.BorderColor = Color.Silver;
-            panPatient.BorderSize = 1;
+            panPersonnel.BorderColor =
+                Color.Silver;
 
-            panPatient.Tag = idPatient;
+            panPersonnel.BorderSize =
+                1;
 
-            // Marge entre les cartes
-            panPatient.Margin = new Padding(10);
-            panPatient.Padding = new Padding(10, 10, 8, 10);
+            panPersonnel.Tag =
+                idPersonnel;
 
-            // ---------------------------------------------------------
+            panPersonnel.Margin =
+                new Padding(10);
+
+            panPersonnel.Padding =
+                new Padding(
+                    10,
+                    10,
+                    8,
+                    10);
+
+            // ========================================================
             // PHOTO
-            // ---------------------------------------------------------
+            // ========================================================
 
-            PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.user, new Point(2, 5), new Size(70, 70));
+            PictureBox picture =
+                MesClasses.ManagerClasse.AddPicture(
+                    Properties.Resources.user,
+                    new Point(2, 5),
+                    new Size(70, 70));
 
-            panPatient.Controls.Add(picture);
+            panPersonnel.Controls.Add(
+                picture);
 
-
-            // ---------------------------------------------------------
+            // ========================================================
             // NOM
-            // ---------------------------------------------------------
+            // ========================================================
 
             Label lbNom =
                 MesClasses.ManagerClasse.CustomLabel(
                     nom,
-                    new Point(70, 20)
-                );
+                    new Point(70, 20));
 
-            lbNom.AutoSize = true;
+            lbNom.AutoSize =
+                true;
 
             lbNom.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
-            panPatient.Controls.Add(lbNom);
+            panPersonnel.Controls.Add(
+                lbNom);
 
-
-            // ---------------------------------------------------------
+            // ========================================================
             // POST-NOM
-            // ---------------------------------------------------------
+            // ========================================================
 
             Label lbPost =
                 MesClasses.ManagerClasse.CustomLabel(
                     postnom,
-                    new Point(70, 40)
-                );
+                    new Point(70, 40));
 
-            lbPost.AutoSize = true;
+            lbPost.AutoSize =
+                true;
 
             lbPost.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
-            panPatient.Controls.Add(lbPost);
+            panPersonnel.Controls.Add(
+                lbPost);
 
-            // ---------------------------------------------------------
-            // BOUTON FICHE DE SUIVI
-            // ---------------------------------------------------------
+            // ========================================================
+            // BOUTON DETAIL
+            // ========================================================
 
             RoundedButton btnSuivi =
                 MesClasses.ManagerClasse.Rbutton(
                     "Afficher détail",
                     new Point(30, 100),
                     new Size(95, 25),
-                    Color.FromArgb(44, 123, 229),
-                    Color.White
-                );
+                    Color.FromArgb(
+                        44,
+                        123,
+                        229),
+                    Color.White);
 
-            btnSuivi.BorderRadius = 4;
-            btnSuivi.BorderSize = 0;
+            btnSuivi.BorderRadius =
+                4;
+
+            btnSuivi.BorderSize =
+                0;
+
             btnSuivi.BorderColor =
-                Color.FromArgb(44, 123, 229);
+                Color.FromArgb(
+                    44,
+                    123,
+                    229);
 
             btnSuivi.HoverBackColor =
-                Color.FromArgb(7, 51, 131);
+                Color.FromArgb(
+                    7,
+                    51,
+                    131);
 
-            panPatient.Controls.Add(btnSuivi);
+            panPersonnel.Controls.Add(
+                btnSuivi);
 
+            // ========================================================
+            // EVENEMENT
+            // ========================================================
 
-            // ---------------------------------------------------------
-            // EVENEMENT DU BOUTON
-            // ---------------------------------------------------------
+            btnSuivi.Cursor =
+                Cursors.Hand;
 
-            btnSuivi.Click += (e, s) =>
+            btnSuivi.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirDetailPersonnel(
+                        idPersonnel);
+                };
+
+            return panPersonnel;
+        }
+
+        // ============================================================
+        // DETAIL PERSONNEL
+        // ============================================================
+
+        private void OuvrirDetailPersonnel(
+            string idPersonnel)
+        {
+            try
             {
-                // Ouverture du formulaire de détail du personnel sélectionné
+                Form1.GlobalPanel_main.Visible =
+                    false;
 
-                Form1.GlobalPanel_main.Visible = false;
-                MesForms.Personnel.Detail_Test detail = new MesForms.Personnel.Detail_Test(idPatient);
-                detail.ShowDialog();
-                Form1.GlobalPanel_main.Visible = true;
-            };
-
-
-            // ---------------------------------------------------------
-            // RETOUR DU PANEL
-            // ---------------------------------------------------------
-
-            return panPatient;
+                using (
+                    MesForms.Personnel.Detail_Test detail =
+                        new MesForms.Personnel.Detail_Test(
+                            idPersonnel))
+                {
+                    detail.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Impossible d'ouvrir le détail du personnel :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Form1.GlobalPanel_main.Visible =
+                    true;
+            }
         }
 
-        private void User_personnels_display_Load(object sender, EventArgs e)
-        {
+        // ============================================================
+        // RECHERCHE
+        // ============================================================
 
+        private void tb_search_demande_TextChanged(
+            object sender,
+            EventArgs e)
+        {
+            if (timerRecherche == null)
+                return;
+
+            timerRecherche.Stop();
+            timerRecherche.Start();
         }
 
-        private void tb_search_demande_TextChanged(object sender, EventArgs e)
+        // ============================================================
+        // LOAD DU USERCONTROL
+        // ============================================================
+
+        private void User_personnels_display_Load(
+            object sender,
+            EventArgs e)
         {
-            LoadPersonnel(tb_search_demande.Text);
+        }
+
+        // ============================================================
+        // LECTURE SECURISEE
+        // ============================================================
+
+        private string GetString(
+            MySqlDataReader reader,
+            string colonne)
+        {
+            if (reader[colonne] == DBNull.Value)
+                return "";
+
+            return reader[colonne].ToString();
         }
     }
 }

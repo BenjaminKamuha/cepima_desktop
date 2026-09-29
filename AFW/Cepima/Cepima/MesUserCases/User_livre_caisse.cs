@@ -13,130 +13,345 @@ namespace Cepima.MesUserCases
 {
     public partial class User_livre_caisse : UserControl
     {
-
         public User_livre_caisse()
         {
             InitializeComponent();
+
             InitCBXPeriode();
+
             LoadLivreCaisse();
-            AfficherDernierSolde();
+
             cbxPeriode.SelectedIndexChanged += cbxPeriode_SelectedIndexChanged;
         }
 
-        void cbxPeriode_SelectedIndexChanged(object sender, EventArgs e)
+
+        // ============================================================
+        // CHANGEMENT DE PERIODE
+        // ============================================================
+
+        private void cbxPeriode_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
         {
             LoadLivreCaisse();
         }
-       
-        // ========================================== CHARGER TOUTES LES OPERATIONS (LIVRE DE CAISSE ) ======================================
+
+
+        // ============================================================
+        // CHARGER LE LIVRE DE CAISSE
+        // ============================================================
+
         private void LoadLivreCaisse()
         {
             try
             {
-                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlConnection con =
+                    MesClasses.ManagerClasse.GetConnexion())
                 {
-                    string condition = "";
-                    switch (cbxPeriode.Text)
-                    {
-                        case "Aujourd'hui":
-                            condition = "WHERE DATE(date) = CURDATE()";
-                            break;
-                        case "Hier":
-                            condition = "WHERE DATE(date) = CURDATE() - INTERVAL 1 DAY";
-                            break;
-                        case "Cette semaine":
-                            condition = "WHERE YEARWEEK(date,1) = YEARWEEK(CURDATE(),1)";
-                            break;
-                        case "Ce mois":
-                            condition = "WHERE YEAR(date) = YEAR(CURDATE()) AND MONTH(date) = MONTH(CURDATE())";
-                            break;
-                        case "Cette année":
-                            condition = "WHERE YEAR(date) = YEAR(CURDATE())";
-                            break;
-                        case "Toutes les opérations":
-                        default:
-                            condition = "";
-                            break;
-                    } 
+                    // =================================================
+                    // CONDITION DE PERIODE
+                    // =================================================
 
-                    string query = "SELECT date AS Date,recette AS Recette,depasse AS 'Depasse', solde AS Solde,provenance AS Reference,description AS Description FROM livre_caisse WHERE 1 = 1 ORDER BY date DESC";
+                    string condition = GetConditionPeriode();
+
+
+                    // =================================================
+                    // CHARGEMENT DES OPERATIONS
+                    // =================================================
+
+                    string query = @"
+                        SELECT
+                            date AS Date,
+                            recette AS Recette,
+                            depasse AS Depasse,
+                            solde AS Solde,
+                            provenance AS Reference,
+                            description AS Description
+
+                        FROM livre_caisse
+
+                        " + condition + @"
+
+                        ORDER BY date DESC";
+
 
                     DataTable dt = new DataTable();
-                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+
+
+                    using (MySqlCommand cmd =
+                        new MySqlCommand(query, con))
                     {
-                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        using (MySqlDataAdapter da =
+                            new MySqlDataAdapter(cmd))
                         {
                             da.Fill(dt);
                         }
-
-                        // Afficher les données
-
-                        dgv_caisse.DataSource = dt;
-
-                        //calcul des totaux
-                        decimal totalEntree = 0;
-                        decimal totalDepasse = 0;
-
-                        foreach (DataRow row in dt.Rows)
-                        {
-                            if (row["Recette"] != DBNull.Value)
-                            {
-                                totalEntree += Convert.ToDecimal(row["Recette"]);
-                            }
-
-                            if (row["Dépasse"] != DBNull.Value)
-                            {
-                                totalDepasse += Convert.ToDecimal(row["Dépasse"]);
-                            }
-                        }
-                        decimal solde = totalEntree - totalDepasse;
-
-                        //Afficher dans les panels via les labels
-                        lb_total_entree.Text = totalEntree.ToString("N2") + "$";
-                        lb_total_depense.Text = totalDepasse.ToString("N2") + "$";
-                        lb_solde_jour.Text = solde.ToString("N2") + "$";
-                        lb_nombre_operation.Text = dt.Rows.Count.ToString();
                     }
+
+
+                    // =================================================
+                    // AFFICHER LES DONNEES
+                    // =================================================
+
+                    dgv_caisse.DataSource = dt;
+
+
+                    // =================================================
+                    // CALCUL DES TOTAUX
+                    // =================================================
+
+                    decimal totalEntree = 0;
+                    decimal totalDepense = 0;
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        object sommeEntree =
+                            dt.Compute(
+                                "SUM(Recette)",
+                                ""
+                            );
+
+                        object sommeDepense =
+                            dt.Compute(
+                                "SUM(Depasse)",
+                                "");
+
+
+                        if (sommeEntree != null &&
+                            sommeEntree != DBNull.Value)
+                        {
+                            totalEntree =
+                                Convert.ToDecimal(
+                                    sommeEntree);
+                        }
+
+
+                        if (sommeDepense != null &&
+                            sommeDepense != DBNull.Value)
+                        {
+                            totalDepense =
+                                Convert.ToDecimal(
+                                    sommeDepense);
+                        }
+                    }
+
+
+                    decimal solde =
+                        totalEntree - totalDepense;
+
+
+                    // =================================================
+                    // AFFICHER LES TOTAUX
+                    // =================================================
+
+                    lb_total_entree.Text =
+                        totalEntree.ToString("N2") + "$";
+
+
+                    lb_total_depense.Text =
+                        totalDepense.ToString("N2") + "$";
+
+
+                    lb_solde_jour.Text =
+                        solde.ToString("N2") + "$";
+
+
+                    lb_nombre_operation.Text =
+                        dt.Rows.Count.ToString();
+
+
+                    // =================================================
+                    // DERNIER SOLDE AVANT AUJOURD'HUI
+                    // =================================================
+
+                    AfficherDernierSolde(con);
                 }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement du livre de caisse :\n\n" +
+                    ex.Message,
+                    "Erreur MySQL",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur : " +ex.Message);
+                MessageBox.Show(
+                    "Erreur lors du chargement du livre de caisse :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
+
+
+        // ============================================================
+        // CONDITION DE PERIODE
+        // ============================================================
+
+        private string GetConditionPeriode()
+        {
+            switch (cbxPeriode.Text)
+            {
+                case "Aujourd'hui":
+
+                    return @"
+                        WHERE date >= CURDATE()
+                        AND date < CURDATE() + INTERVAL 1 DAY";
+
+
+                case "Hier":
+
+                    return @"
+                        WHERE date >= CURDATE() - INTERVAL 1 DAY
+                        AND date < CURDATE()";
+
+
+                case "Cette semaine":
+
+                    return @"
+                        WHERE date >=
+                            CURDATE() -
+                            INTERVAL WEEKDAY(CURDATE()) DAY
+
+                        AND date <
+                            CURDATE() +
+                            INTERVAL 1 DAY";
+
+
+                case "Ce mois":
+
+                    return @"
+                        WHERE date >=
+                            DATE_FORMAT(
+                                CURDATE(),
+                                '%Y-%m-01'
+                            )
+
+                        AND date <
+                            DATE_FORMAT(
+                                CURDATE() + INTERVAL 1 MONTH,
+                                '%Y-%m-01'
+                            )";
+
+
+                case "Cette année":
+
+                    return @"
+                        WHERE date >=
+                            MAKEDATE(
+                                YEAR(CURDATE()),
+                                1
+                            )
+
+                        AND date <
+                            MAKEDATE(
+                                YEAR(CURDATE()) + 1,
+                                1
+                            )";
+
+
+                case "Toutes les opérations":
+
+                default:
+
+                    return "";
+            }
+        }
+
+
+        // ============================================================
+        // INITIALISER COMBOBOX PERIODE
+        // ============================================================
 
         private void InitCBXPeriode()
         {
             cbxPeriode.Items.Clear();
-            cbxPeriode.Items.Add("Toutes les opérations");
-            cbxPeriode.Items.Add("Aujourd'hui");
-            cbxPeriode.Items.Add("Hier");
-            cbxPeriode.Items.Add("Cette semaine");
-            cbxPeriode.Items.Add("Ce mois");
-            cbxPeriode.Items.Add("Cette année");
+
+            cbxPeriode.Items.Add(
+                "Toutes les opérations");
+
+            cbxPeriode.Items.Add(
+                "Aujourd'hui");
+
+            cbxPeriode.Items.Add(
+                "Hier");
+
+            cbxPeriode.Items.Add(
+                "Cette semaine");
+
+            cbxPeriode.Items.Add(
+                "Ce mois");
+
+            cbxPeriode.Items.Add(
+                "Cette année");
+
 
             cbxPeriode.SelectedIndex = 0;
         }
 
-        private void AfficherDernierSolde()
+
+        // ============================================================
+        // AFFICHER DERNIER SOLDE
+        // ============================================================
+
+        private void AfficherDernierSolde(
+            MySqlConnection con)
         {
             try
             {
-                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                string query = @"
+                    SELECT solde
+
+                    FROM livre_caisse
+
+                    WHERE date < CURDATE()
+
+                    ORDER BY date DESC
+
+                    LIMIT 1";
+
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(query, con))
                 {
-                    string query = "SELECT solde FROM livre_caisse WHERE DATE(date) < CURDATE() ORDER BY date DESC LIMIT 1";
-                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    object result =
+                        cmd.ExecuteScalar();
+
+
+                    if (result != null &&
+                        result != DBNull.Value)
                     {
-                        object result = cmd.ExecuteScalar();
-                        decimal dernierSolde = Convert.ToDecimal(result);
-                        lb_dernier_solde.Text = dernierSolde.ToString("N2") + "$";
+                        decimal dernierSolde =
+                            Convert.ToDecimal(result);
+
+
+                        lb_dernier_solde.Text =
+                            dernierSolde.ToString("N2") +
+                            "$";
+                    }
+                    else
+                    {
+                        lb_dernier_solde.Text =
+                            "0.00$";
                     }
                 }
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
-
-                MessageBox.Show("Erreur lors du calcul du dernier solde :\n"+ex.Message,"Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Erreur lors du calcul du dernier solde :\n\n" +
+                    ex.Message,
+                    "Erreur MySQL",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
     }

@@ -14,6 +14,7 @@ namespace Cepima.MesUserCases
             InitialiserDashboard();
         }
 
+
         // ============================================================
         // INITIALISATION
         // ============================================================
@@ -44,7 +45,9 @@ namespace Cepima.MesUserCases
         // LOAD
         // ============================================================
 
-        private void User_DashBord_pharmacie_Load(object sender, EventArgs e)
+        private void User_DashBord_pharmacie_Load(
+            object sender,
+            EventArgs e)
         {
             InitialiserDashboard();
         }
@@ -62,7 +65,7 @@ namespace Cepima.MesUserCases
             dgv_disp.AutoGenerateColumns = false;
 
             // --------------------------------------------------------
-            // Colonnes
+            // ID
             // --------------------------------------------------------
 
             DataGridViewTextBoxColumn colId =
@@ -75,6 +78,10 @@ namespace Cepima.MesUserCases
             dgv_disp.Columns.Add(colId);
 
 
+            // --------------------------------------------------------
+            // PATIENT
+            // --------------------------------------------------------
+
             DataGridViewTextBoxColumn colPatient =
                 new DataGridViewTextBoxColumn();
 
@@ -84,6 +91,10 @@ namespace Cepima.MesUserCases
 
             dgv_disp.Columns.Add(colPatient);
 
+
+            // --------------------------------------------------------
+            // PRESCRIPTION
+            // --------------------------------------------------------
 
             DataGridViewTextBoxColumn colPrescription =
                 new DataGridViewTextBoxColumn();
@@ -95,6 +106,10 @@ namespace Cepima.MesUserCases
             dgv_disp.Columns.Add(colPrescription);
 
 
+            // --------------------------------------------------------
+            // DATE
+            // --------------------------------------------------------
+
             DataGridViewTextBoxColumn colDate =
                 new DataGridViewTextBoxColumn();
 
@@ -105,6 +120,10 @@ namespace Cepima.MesUserCases
             dgv_disp.Columns.Add(colDate);
 
 
+            // --------------------------------------------------------
+            // AGENT
+            // --------------------------------------------------------
+
             DataGridViewTextBoxColumn colAgent =
                 new DataGridViewTextBoxColumn();
 
@@ -114,6 +133,10 @@ namespace Cepima.MesUserCases
 
             dgv_disp.Columns.Add(colAgent);
 
+
+            // --------------------------------------------------------
+            // OBSERVATION
+            // --------------------------------------------------------
 
             DataGridViewTextBoxColumn colObservation =
                 new DataGridViewTextBoxColumn();
@@ -137,131 +160,155 @@ namespace Cepima.MesUserCases
             {
                 try
                 {
-                    // NE PAS faire con.Open()
+                    // IMPORTANT :
                     // GetConnexion() retourne déjà une connexion ouverte.
+                    // NE PAS faire con.Open() ici.
 
                     // ========================================================
-                    // 1. QUANTITE DELIVREE AUJOURD'HUI
+                    // UNE SEULE REQUETE POUR LES 4 STATISTIQUES
                     // ========================================================
 
-                    string queryDelivre = @"
-                SELECT COALESCE(SUM(quantite), 0)
-                FROM mouvement_stock
-                WHERE UPPER(type) = 'SORTIE'
-                  AND DATE(date_mouvement) = CURDATE()";
+                    string query = @"
+                        SELECT
+
+                            /* ---------------------------------------------
+                               1. QUANTITE DELIVREE AUJOURD'HUI
+                               --------------------------------------------- */
+
+                            (
+                                SELECT COALESCE(
+                                    SUM(ms.quantite),
+                                    0
+                                )
+                                FROM mouvement_stock ms
+                                WHERE ms.type = 'SORTIE'
+                                  AND ms.date_mouvement >= CURDATE()
+                                  AND ms.date_mouvement < CURDATE() + INTERVAL 1 DAY
+                            ) AS quantite_delivree,
+
+
+                            /* ---------------------------------------------
+                               2. ORDONNANCES EN ATTENTE
+                               --------------------------------------------- */
+
+                            (
+                                SELECT COUNT(*)
+                                FROM prescription pr
+                                WHERE pr.statut = 'ACTIVE'
+                            ) AS ordonnances_attente,
+
+
+                            /* ---------------------------------------------
+                               3. STOCK FAIBLE
+                               --------------------------------------------- */
+
+                            (
+                                SELECT COUNT(*)
+                                FROM
+                                (
+                                    SELECT
+                                        m.id,
+                                        m.seuil_minimum,
+                                        COALESCE(
+                                            SUM(l.quantite),
+                                            0
+                                        ) AS stock_total
+
+                                    FROM medicament m
+
+                                    LEFT JOIN lot_medicament l
+                                        ON l.medicament_id = m.id
+
+                                    WHERE m.actif = 1
+
+                                    GROUP BY
+                                        m.id,
+                                        m.seuil_minimum
+
+                                    HAVING stock_total <= m.seuil_minimum
+
+                                ) AS stocks_faibles
+                            ) AS stock_faible,
+
+
+                            /* ---------------------------------------------
+                               4. LOTS EXPIRES
+                               --------------------------------------------- */
+
+                            (
+                                SELECT COUNT(*)
+                                FROM lot_medicament l
+
+                                INNER JOIN medicament m
+                                    ON m.id = l.medicament_id
+
+                                WHERE m.actif = 1
+                                  AND l.date_expiration < CURDATE()
+                            ) AS expiration";
+
 
                     using (MySqlCommand cmd =
-                        new MySqlCommand(queryDelivre, con))
+                        new MySqlCommand(
+                            query,
+                            con))
                     {
-                        object result = cmd.ExecuteScalar();
-
-                        int quantite = 0;
-
-                        if (result != null && result != DBNull.Value)
+                        using (MySqlDataReader reader =
+                            cmd.ExecuteReader())
                         {
-                            quantite = Convert.ToInt32(result);
+                            if (reader.Read())
+                            {
+                                // -----------------------------------------
+                                // QUANTITE DELIVREE
+                                // -----------------------------------------
+
+                                int quantiteDelivree =
+                                    Convert.ToInt32(
+                                        reader[
+                                            "quantite_delivree"]);
+
+                                lb_quantite_delivre.Text =
+                                    quantiteDelivree.ToString();
+
+
+                                // -----------------------------------------
+                                // ORDONNANCES
+                                // -----------------------------------------
+
+                                int ordonnances =
+                                    Convert.ToInt32(
+                                        reader[
+                                            "ordonnances_attente"]);
+
+                                lb_nb_ordonance_en_attente.Text =
+                                    ordonnances.ToString();
+
+
+                                // -----------------------------------------
+                                // STOCK FAIBLE
+                                // -----------------------------------------
+
+                                int stockFaible =
+                                    Convert.ToInt32(
+                                        reader[
+                                            "stock_faible"]);
+
+                                lb_nombre_stock_faible.Text =
+                                    stockFaible.ToString();
+
+
+                                // -----------------------------------------
+                                // EXPIRATION
+                                // -----------------------------------------
+
+                                int expiration =
+                                    Convert.ToInt32(
+                                        reader[
+                                            "expiration"]);
+
+                                lb_nombre_expiration.Text =
+                                    expiration.ToString();
+                            }
                         }
-
-                        lb_quantite_delivre.Text = quantite.ToString();
-                    }
-
-
-                    // ========================================================
-                    // 2. ORDONNANCES EN ATTENTE
-                    // ========================================================
-
-                    string queryAttente = @"
-                SELECT COUNT(*)
-                FROM prescription
-                WHERE UPPER(statut) = 'ACTIVE'";
-
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(queryAttente, con))
-                    {
-                        object result = cmd.ExecuteScalar();
-
-                        int nombre = 0;
-
-                        if (result != null && result != DBNull.Value)
-                        {
-                            nombre = Convert.ToInt32(result);
-                        }
-
-                        lb_nb_ordonance_en_attente.Text = nombre.ToString();
-                    }
-
-
-                    // ========================================================
-                    // 3. STOCK FAIBLE
-                    // ========================================================
-
-                    string queryStockFaible = @"
-                SELECT COUNT(*)
-                FROM
-                (
-                    SELECT
-                        m.id,
-                        m.seuil_minimum,
-                        COALESCE(SUM(l.quantite), 0) AS stock_total
-
-                    FROM medicament m
-
-                    LEFT JOIN lot_medicament l
-                        ON l.medicament_id = m.id
-
-                    WHERE m.actif = 1
-
-                    GROUP BY
-                        m.id,
-                        m.seuil_minimum
-
-                    HAVING
-                        stock_total <= m.seuil_minimum
-                ) AS stocks_faibles";
-
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(queryStockFaible, con))
-                    {
-                        object result = cmd.ExecuteScalar();
-
-                        int nombre = 0;
-
-                        if (result != null && result != DBNull.Value)
-                        {
-                            nombre = Convert.ToInt32(result);
-                        }
-
-                        lb_nombre_stock_faible.Text = nombre.ToString();
-                    }
-
-
-                    // ========================================================
-                    // 4. LOTS EXPIRES
-                    // ========================================================
-
-                    string queryExpiration = @"
-                SELECT COUNT(*)
-                FROM lot_medicament l
-
-                INNER JOIN medicament m
-                    ON m.id = l.medicament_id
-
-                WHERE m.actif = 1
-                  AND l.date_expiration < CURDATE()";
-
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(queryExpiration, con))
-                    {
-                        object result = cmd.ExecuteScalar();
-
-                        int nombre = 0;
-
-                        if (result != null && result != DBNull.Value)
-                        {
-                            nombre = Convert.ToInt32(result);
-                        }
-
-                        lb_nombre_expiration.Text = nombre.ToString();
                     }
                 }
                 catch (Exception ex)
@@ -275,6 +322,8 @@ namespace Cepima.MesUserCases
                 }
             }
         }
+
+
         // ============================================================
         // DISPENSATIONS HOSPITALISATION
         // ============================================================
@@ -283,31 +332,15 @@ namespace Cepima.MesUserCases
         {
             try
             {
+                dgv_disp.SuspendLayout();
+
                 dgv_disp.Rows.Clear();
 
                 using (MySqlConnection con =
                     MesClasses.ManagerClasse.GetConnexion())
                 {
-
-                    /*
-                     * La table dispensation contient :
-                     *
-                     * id
-                     * prescription_id
-                     * patient_id
-                     * type
-                     * date_dispensation
-                     * agent_id
-                     * observation
-                     *
-                     * On récupère donc les dispensations dont le type
-                     * correspond à HOSPITALISATION.
-                     *
-                     * Pour le patient, nous utilisons la table
-                     * patients.
-                     *
-                     * Pour l'ordonnance, nous utilisons prescription.
-                     */
+                    // GetConnexion() retourne déjà une connexion ouverte.
+                    // NE PAS faire con.Open().
 
                     string query = @"
                         SELECT
@@ -327,70 +360,140 @@ namespace Cepima.MesUserCases
                         INNER JOIN patients p
                             ON p.id_patient = d.patient_id
 
-                        WHERE UPPER(d.type) = 'HOSPITALISATION'
+                        WHERE d.type = 'HOSPITALISATION'
 
-                        ORDER BY d.date_dispensation DESC";
+                        ORDER BY
+                            d.date_dispensation DESC";
 
 
                     using (MySqlCommand cmd =
-                        new MySqlCommand(query, con))
+                        new MySqlCommand(
+                            query,
+                            con))
                     {
                         using (MySqlDataReader reader =
                             cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
+                                // -----------------------------------------
+                                // ID
+                                // -----------------------------------------
+
                                 int id =
                                     Convert.ToInt32(
                                         reader["id"]);
 
+
+                                // -----------------------------------------
+                                // PRESCRIPTION
+                                // -----------------------------------------
+
                                 int idPrescription =
                                     Convert.ToInt32(
-                                        reader["prescription_id"]);
+                                        reader[
+                                            "prescription_id"]);
+
+
+                                // -----------------------------------------
+                                // PATIENT
+                                // -----------------------------------------
 
                                 string patient =
                                     reader["nom"].ToString();
 
-                                if (reader["post_nom"] != DBNull.Value)
+
+                                if (reader["post_nom"] !=
+                                    DBNull.Value)
                                 {
-                                    patient += " " +
-                                        reader["post_nom"].ToString();
+                                    string postNom =
+                                        reader[
+                                            "post_nom"]
+                                        .ToString();
+
+                                    if (!string.IsNullOrWhiteSpace(
+                                        postNom))
+                                    {
+                                        patient +=
+                                            " " +
+                                            postNom;
+                                    }
                                 }
 
-                                if (reader["prenom"] != DBNull.Value)
+
+                                if (reader["prenom"] !=
+                                    DBNull.Value)
                                 {
-                                    patient += " " +
-                                        reader["prenom"].ToString();
+                                    string prenom =
+                                        reader[
+                                            "prenom"]
+                                        .ToString();
+
+                                    if (!string.IsNullOrWhiteSpace(
+                                        prenom))
+                                    {
+                                        patient +=
+                                            " " +
+                                            prenom;
+                                    }
                                 }
+
+
+                                // -----------------------------------------
+                                // DATE
+                                // -----------------------------------------
 
                                 DateTime date =
                                     Convert.ToDateTime(
-                                        reader["date_dispensation"]);
+                                        reader[
+                                            "date_dispensation"]);
+
+
+                                // -----------------------------------------
+                                // AGENT
+                                // -----------------------------------------
 
                                 string agent = "";
 
-                                if (reader["agent_id"] != DBNull.Value)
+                                if (reader["agent_id"] !=
+                                    DBNull.Value)
                                 {
                                     agent =
-                                        reader["agent_id"].ToString();
+                                        reader[
+                                            "agent_id"]
+                                        .ToString();
                                 }
+
+
+                                // -----------------------------------------
+                                // OBSERVATION
+                                // -----------------------------------------
 
                                 string observation = "";
 
-                                if (reader["observation"] != DBNull.Value)
+                                if (reader["observation"] !=
+                                    DBNull.Value)
                                 {
                                     observation =
-                                        reader["observation"].ToString();
+                                        reader[
+                                            "observation"]
+                                        .ToString();
                                 }
+
+
+                                // -----------------------------------------
+                                // AJOUT
+                                // -----------------------------------------
 
                                 dgv_disp.Rows.Add(
                                     id,
                                     patient.Trim(),
-                                    "#" + idPrescription,
-                                    date.ToString("dd/MM/yyyy HH:mm"),
+                                    "#" +
+                                    idPrescription,
+                                    date.ToString(
+                                        "dd/MM/yyyy HH:mm"),
                                     agent,
-                                    observation
-                                );
+                                    observation);
                             }
                         }
                     }
@@ -405,6 +508,10 @@ namespace Cepima.MesUserCases
                     "Erreur",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dgv_disp.ResumeLayout();
             }
         }
 
@@ -425,7 +532,9 @@ namespace Cepima.MesUserCases
         // CLICK LABEL
         // ============================================================
 
-        private void label6_Click(object sender, EventArgs e)
+        private void label6_Click(
+            object sender,
+            EventArgs e)
         {
             // Aucun traitement pour le moment.
         }

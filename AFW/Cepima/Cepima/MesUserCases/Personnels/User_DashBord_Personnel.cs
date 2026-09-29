@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -13,161 +7,236 @@ namespace Cepima.MesUserCases.Personnels
 {
     public partial class User_DashBord_Personnel : UserControl
     {
+        private Timer timerRecherche;
+
         public User_DashBord_Personnel()
         {
             InitializeComponent();
-            LoadStatistiquesPersonnel();
-            LoadDerniersPersonnel();
+
+            InitialiserRecherche();
+
+            dgv_paiement.CellMouseDown -= dgv_paiement_CellMouseDown;
+            dgv_paiement.CellMouseDown += dgv_paiement_CellMouseDown;
+
             ChargerMois();
             ChargerAnnees();
+
+            LoadStatistiquesPersonnel();
+            LoadDerniersPersonnel();
             ChargerCarteSalaires();
-            dgv_paiement.CellMouseDown += dgv_paiement_CellMouseDown;
         }
 
-        void dgv_paiement_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        // ============================================================
+        // INITIALISATION DE LA RECHERCHE
+        // ============================================================
+
+        private void InitialiserRecherche()
         {
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0)
+            timerRecherche = new Timer();
+            timerRecherche.Interval = 300;
+            timerRecherche.Tick += timerRecherche_Tick;
+
+            txt_recherche.TextChanged -= txt_recherche_TextChanged;
+            txt_recherche.TextChanged += txt_recherche_TextChanged;
+        }
+
+        private void timerRecherche_Tick(object sender, EventArgs e)
+        {
+            timerRecherche.Stop();
+            LoadHistoriquePaiement();
+        }
+
+        // ============================================================
+        // CLIC DROIT DATAGRIDVIEW
+        // ============================================================
+
+        private void dgv_paiement_CellMouseDown(
+            object sender,
+            DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+                return;
+
+            if (e.RowIndex < 0)
+                return;
+
+            dgv_paiement.ClearSelection();
+
+            dgv_paiement.Rows[e.RowIndex].Selected = true;
+
+            if (dgv_paiement.Rows[e.RowIndex].Cells.Count > 0)
             {
-                dgv_paiement.ClearSelection();
-
-                dgv_paiement.Rows[e.RowIndex].Selected = true;
-
-                dgv_paiement.CurrentCell = dgv_paiement.Rows[e.RowIndex].Cells[0];
+                dgv_paiement.CurrentCell =
+                    dgv_paiement.Rows[e.RowIndex].Cells[0];
             }
         }
+
+        // ============================================================
+        // ID PERSONNEL SELECTIONNE
+        // ============================================================
 
         private int GetIDPersonnelSelectionne()
         {
             if (dgv_paiement.CurrentRow == null)
                 return 0;
 
-            return Convert.ToInt32(dgv_paiement.CurrentRow.Cells["id_personnel"].Value);
+            object value =
+                dgv_paiement.CurrentRow.Cells["id_personnel"].Value;
+
+            if (value == null || value == DBNull.Value)
+                return 0;
+
+            int id;
+
+            if (int.TryParse(value.ToString(), out id))
+                return id;
+
+            return 0;
         }
+
+        // ============================================================
+        // ID SALAIRE SELECTIONNE
+        // ============================================================
 
         private int GetIDSalaireSelectionne()
         {
             if (dgv_paiement.CurrentRow == null)
                 return 0;
 
-            return Convert.ToInt32(dgv_paiement.CurrentRow.Cells["ID"].Value);
+            object value =
+                dgv_paiement.CurrentRow.Cells["ID"].Value;
+
+            if (value == null || value == DBNull.Value)
+                return 0;
+
+            int id;
+
+            if (int.TryParse(value.ToString(), out id))
+                return id;
+
+            return 0;
         }
+
+        // ============================================================
+        // STATISTIQUES PERSONNEL
+        // ============================================================
 
         private void LoadStatistiquesPersonnel()
         {
             try
             {
-                // =====================================================
-                // 1. NOMBRE TOTAL DE PERSONNELS
-                // =====================================================
+                /*
+                 * Les 4 requêtes COUNT ont été regroupées en une seule.
+                 * Cela évite 4 allers-retours MySQL.
+                 */
 
-                string queryTotal =
-                    "SELECT COUNT(*) FROM personnels";
+                string query = @"
+                    SELECT
+                        COUNT(*) AS total,
+                        SUM(CASE WHEN actif = 1 THEN 1 ELSE 0 END) AS actifs,
+                        SUM(CASE WHEN actif = 0 THEN 1 ELSE 0 END) AS inactifs,
+                        COUNT(
+                            DISTINCT
+                            CASE
+                                WHEN fonction IS NOT NULL
+                                AND fonction <> ''
+                                THEN fonction
+                            END
+                        ) AS fonctions
+                    FROM personnels";
 
                 using (MySqlDataReader reader =
-                       MesClasses.ManagerClasse.CRUD(queryTotal, null, true))
+                    MesClasses.ManagerClasse.CRUD(
+                        query,
+                        null,
+                        true))
                 {
                     if (reader.Read())
                     {
-                        lb_total.Text = reader[0].ToString();
-                    }
-                }
+                        lb_total.Text =
+                            GetInt(reader, "total").ToString();
 
+                        lb_actif.Text =
+                            GetInt(reader, "actifs").ToString();
 
-                // =====================================================
-                // 2. NOMBRE DE PERSONNELS ACTIFS
-                // =====================================================
+                        lb_inactif.Text =
+                            GetInt(reader, "inactifs").ToString();
 
-                string queryActif =
-                    "SELECT COUNT(*) FROM personnels WHERE actif = 1";
-
-                using (MySqlDataReader reader =
-                       MesClasses.ManagerClasse.CRUD(queryActif, null, true))
-                {
-                    if (reader.Read())
-                    {
-                        lb_actif.Text = reader[0].ToString();
-                    }
-                }
-
-
-                // =====================================================
-                // 3. NOMBRE DE PERSONNELS INACTIFS
-                // =====================================================
-
-                string queryInactif =
-                    "SELECT COUNT(*) FROM personnels WHERE actif = 0";
-
-                using (MySqlDataReader reader =
-                       MesClasses.ManagerClasse.CRUD(queryInactif, null, true))
-                {
-                    if (reader.Read())
-                    {
-                        lb_inactif.Text = reader[0].ToString();
-                    }
-                }
-
-
-                // =====================================================
-                // 4. NOMBRE DE FONCTIONS
-                // =====================================================
-
-                string queryFonctions = "SELECT COUNT(DISTINCT fonction) FROM personnels WHERE fonction IS NOT NULL AND fonction <> ''";
-
-                using (MySqlDataReader reader =
-                       MesClasses.ManagerClasse.CRUD(queryFonctions, null, true))
-                {
-                    if (reader.Read())
-                    {
-                        lbl_total_salaire.Text = reader[0].ToString();
+                        lbl_total_salaire.Text =
+                            GetInt(reader, "fonctions").ToString();
                     }
                 }
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement des statistiques : "
-                    + ex.Message,
+                    "Erreur lors du chargement des statistiques :\n" +
+                    ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des statistiques :\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
+
+        // ============================================================
+        // DERNIERS PERSONNELS
+        // ============================================================
 
         private void LoadDerniersPersonnel()
         {
             try
             {
+                dgv_personnel.SuspendLayout();
+
                 dgv_personnel.Rows.Clear();
 
-                string query = @"SELECT 
-                            id_personnel,
-                            nom,
-                            post_nom,
-                            prenom,
-                            date_naissance,
-                            sexe,
-                            adresse,
-                            fonction
-                         FROM personnels
-                         ORDER BY id_personnel ASC
-                         LIMIT 10";
+                string query = @"
+                    SELECT
+                        id_personnel,
+                        nom,
+                        post_nom,
+                        prenom,
+                        date_naissance,
+                        sexe,
+                        adresse,
+                        fonction
+                    FROM personnels
+                    ORDER BY id_personnel DESC
+                    LIMIT 10";
 
                 using (MySqlDataReader reader =
-                       MesClasses.ManagerClasse.CRUD(query, null, true))
+                    MesClasses.ManagerClasse.CRUD(
+                        query,
+                        null,
+                        true))
                 {
                     while (reader.Read())
                     {
-                        string id = reader["id_personnel"].ToString();
+                        string id =
+                            GetString(reader, "id_personnel");
+
+                        string nom =
+                            GetString(reader, "nom");
+
+                        string postNom =
+                            GetString(reader, "post_nom");
+
+                        string prenom =
+                            GetString(reader, "prenom");
 
                         string personnel =
-                            reader["nom"].ToString() + " " +
-                            reader["post_nom"].ToString() + " " +
-                            reader["prenom"].ToString();
-
-                        // ==========================================
-                        // AGE ET DATE DE NAISSANCE
-                        // ==========================================
+                            (nom + " " +
+                             postNom + " " +
+                             prenom).Trim();
 
                         int age = -1;
                         string date = "Non renseignée";
@@ -175,30 +244,30 @@ namespace Cepima.MesUserCases.Personnels
                         if (reader["date_naissance"] != DBNull.Value)
                         {
                             DateTime dateNaissance =
-                                Convert.ToDateTime(reader["date_naissance"]);
+                                Convert.ToDateTime(
+                                    reader["date_naissance"]);
 
-                            age = CalculerAge(dateNaissance);
+                            age =
+                                CalculerAge(dateNaissance);
 
-                            date = dateNaissance.ToString("dd/MM/yyyy");
+                            date =
+                                dateNaissance.ToString(
+                                    "dd/MM/yyyy");
                         }
 
-                        // ==========================================
-                        // AUTRES INFORMATIONS
-                        // ==========================================
+                        string sexe =
+                            GetString(reader, "sexe");
 
-                        string sexe = reader["sexe"].ToString();
+                        string adresse =
+                            GetString(reader, "adresse");
 
-                        string adresse = reader["adresse"].ToString();
+                        string fonction =
+                            GetString(reader, "fonction");
 
-                        string fonction = reader["fonction"].ToString();
-
-                        // ==========================================
-                        // AJOUT DANS LE DATAGRIDVIEW
-                        // ==========================================
-
-                        string affichageAge = age >= 0
-                            ? age + " ans"
-                            : "Non renseigné";
+                        string affichageAge =
+                            age >= 0
+                                ? age + " ans"
+                                : "Non renseigné";
 
                         dgv_personnel.Rows.Add(
                             id,
@@ -207,40 +276,50 @@ namespace Cepima.MesUserCases.Personnels
                             sexe,
                             adresse,
                             fonction,
-                            date
-                        );
-
-                        ApplyStytle();
+                            date);
                     }
                 }
+
+                ApplyStytle();
             }
             catch (MySqlException ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement du personnel : " +
+                    "Erreur lors du chargement du personnel :\n" +
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Une erreur est survenue lors du chargement du personnel : " +
+                    "Une erreur est survenue lors du chargement du personnel :\n" +
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dgv_personnel.ResumeLayout();
             }
         }
 
+        // ============================================================
+        // CALCUL AGE
+        // ============================================================
+
         private int CalculerAge(DateTime dateNaissance)
         {
-            int age = DateTime.Now.Year - dateNaissance.Year;
+            DateTime aujourdHui = DateTime.Today;
 
-            if (DateTime.Now < dateNaissance.AddYears(age))
+            int age =
+                aujourdHui.Year -
+                dateNaissance.Year;
+
+            if (dateNaissance.Date >
+                aujourdHui.AddYears(-age))
             {
                 age--;
             }
@@ -248,11 +327,22 @@ namespace Cepima.MesUserCases.Personnels
             return age;
         }
 
+        // ============================================================
+        // STYLE
+        // ============================================================
+
         private void ApplyStytle()
         {
-            dgv_personnel.Columns["colID"].Width = 80;
-            dgv_personnel.Columns["colPersonnel"].Width = 300;
+            if (dgv_personnel.Columns.Contains("colID"))
+                dgv_personnel.Columns["colID"].Width = 80;
+
+            if (dgv_personnel.Columns.Contains("colPersonnel"))
+                dgv_personnel.Columns["colPersonnel"].Width = 300;
         }
+
+        // ============================================================
+        // MOIS
+        // ============================================================
 
         private void ChargerMois()
         {
@@ -276,210 +366,187 @@ namespace Cepima.MesUserCases.Personnels
             cbx_mois.SelectedIndex = 0;
         }
 
+        // ============================================================
+        // HISTORIQUE PAIEMENTS
+        // ============================================================
+
         private void LoadHistoriquePaiement()
         {
             try
             {
+                dgv_paiement.SuspendLayout();
+
                 dgv_paiement.Rows.Clear();
 
-                // =========================================================
-                // RÉCUPÉRER LES FILTRES
-                // =========================================================
+                string recherche =
+                    txt_recherche.Text.Trim();
 
-                string recherche = txt_recherche.Text.Trim();
-                string moisSelectionne = cbx_mois.Text.Trim();
-                string anneeSelectionnee = cbx_annee.Text.Trim();
+                string moisSelectionne =
+                    cbx_mois.Text.Trim();
 
+                string anneeSelectionnee =
+                    cbx_annee.Text.Trim();
 
-                // =========================================================
-                // REQUÊTE PRINCIPALE
-                // =========================================================
+                /*
+                 * IMPORTANT :
+                 * On conserve ici les sous-requêtes de primes,
+                 * retenues et avances pour ne pas multiplier les
+                 * lignes de salaire.
+                 */
 
                 string query = @"
-            SELECT
+                    SELECT
+                        s.id_salaire,
+                        s.id_personnel,
 
-                s.id_salaire,
+                        CONCAT(
+                            COALESCE(p.nom, ''),
+                            ' ',
+                            COALESCE(p.post_nom, ''),
+                            ' ',
+                            COALESCE(p.prenom, '')
+                        ) AS personnel,
 
-                s.id_personnel,
+                        p.fonction,
 
-                CONCAT(
-                    p.nom,
-                    ' ',
-                    p.post_nom,
-                    ' ',
-                    p.prenom
-                ) AS personnel,
+                        s.salaire_base AS salaire,
 
-                p.fonction,
+                        IFNULL(pr.prime, 0) AS prime,
 
-                s.salaire_base AS salaire,
+                        IFNULL(r.retenue, 0) AS retenue,
 
-                IFNULL(pr.prime, 0) AS prime,
+                        IFNULL(a.avance, 0) AS avance,
 
-                IFNULL(r.retenue, 0) AS retenue,
+                        s.statut,
+                        s.mois,
 
-                IFNULL(a.avance, 0) AS avance,
+                        YEAR(s.date_paiement) AS annee,
 
-                s.statut,
+                        s.date_paiement
 
-                s.mois,
+                    FROM salaires s
 
-                YEAR(s.date_paiement) AS annee,
+                    INNER JOIN personnels p
+                        ON p.id_personnel = s.id_personnel
 
-                s.date_paiement
+                    LEFT JOIN
+                    (
+                        SELECT
+                            id_salaire,
+                            SUM(montant) AS prime
+                        FROM prime
+                        GROUP BY id_salaire
+                    ) pr
+                        ON pr.id_salaire = s.id_salaire
 
-            FROM salaires s
+                    LEFT JOIN
+                    (
+                        SELECT
+                            id_salaire,
+                            SUM(montant) AS retenue
+                        FROM retenue
+                        GROUP BY id_salaire
+                    ) r
+                        ON r.id_salaire = s.id_salaire
 
-            INNER JOIN personnels p
-                ON p.id_personnel = s.id_personnel
+                    LEFT JOIN
+                    (
+                        SELECT
+                            id_salaire,
+                            SUM(montant) AS avance
+                        FROM avances_salaire
+                        GROUP BY id_salaire
+                    ) a
+                        ON a.id_salaire = s.id_salaire
 
+                    WHERE 1 = 1
+                ";
 
-            /* =====================================================
-               PRIMES
-               ===================================================== */
+                // ========================================================
+                // RECHERCHE
+                // ========================================================
 
-            LEFT JOIN
-            (
-                SELECT
-                    id_salaire,
-                    SUM(montant) AS prime
-
-                FROM prime
-
-                GROUP BY id_salaire
-
-            ) pr
-                ON pr.id_salaire = s.id_salaire
-
-
-            /* =====================================================
-               RETENUES
-               ===================================================== */
-
-            LEFT JOIN
-            (
-                SELECT
-                    id_salaire,
-                    SUM(montant) AS retenue
-
-                FROM retenue
-
-                GROUP BY id_salaire
-
-            ) r
-                ON r.id_salaire = s.id_salaire
-
-
-            /* =====================================================
-               AVANCES
-               ===================================================== */
-
-            LEFT JOIN
-            (
-                SELECT
-                    id_salaire,
-                    SUM(montant) AS avance
-
-                FROM avances_salaire
-
-                GROUP BY id_salaire
-
-            ) a
-                ON a.id_salaire = s.id_salaire
-
-
-            WHERE
-            (
-                p.nom LIKE @recherche
-                OR p.post_nom LIKE @recherche
-                OR p.prenom LIKE @recherche
-            )
-        ";
-
-
-                // =========================================================
-                // FILTRE PAR MOIS
-                // =========================================================
-
-                if (moisSelectionne != "Tous" &&
-                    moisSelectionne != "")
+                if (recherche != "")
                 {
                     query += @"
-                AND MONTH(s.date_paiement) = @mois
-            ";
+                        AND
+                        (
+                            p.nom LIKE @recherche
+                            OR p.post_nom LIKE @recherche
+                            OR p.prenom LIKE @recherche
+                        )";
                 }
 
+                // ========================================================
+                // MOIS
+                // ========================================================
 
-                // =========================================================
-                // FILTRE PAR ANNÉE
-                // =========================================================
+                int numeroMois =
+                    ObtenirNumeroMois(
+                        moisSelectionne);
 
-                if (anneeSelectionnee != "Toutes" &&
-                    anneeSelectionnee != "")
+                if (numeroMois > 0)
                 {
                     query += @"
-                AND YEAR(s.date_paiement) = @annee
-            ";
+                        AND MONTH(s.date_paiement) = @mois";
                 }
 
+                // ========================================================
+                // ANNEE
+                // ========================================================
 
-                // =========================================================
+                int annee;
+
+                bool anneeValide =
+                    int.TryParse(
+                        anneeSelectionnee,
+                        out annee);
+
+                if (anneeValide)
+                {
+                    query += @"
+                        AND YEAR(s.date_paiement) = @annee";
+                }
+
+                // ========================================================
                 // ORDRE
-                // =========================================================
+                // ========================================================
 
                 query += @"
+                    ORDER BY
+                        s.date_paiement DESC,
+                        s.id_salaire DESC";
 
-            ORDER BY
-                s.date_paiement DESC,
-                s.id_salaire DESC
-        ";
-
-
-                // =========================================================
-                // PARAMÈTRE RECHERCHE
-                // =========================================================
+                // ========================================================
+                // PARAMETRES
+                // ========================================================
 
                 MesClasses.ManagerClasse.request_params.Clear();
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@recherche",
-                    "%" + recherche + "%"
-                );
-
-
-                // =========================================================
-                // PARAMÈTRE MOIS
-                // =========================================================
-
-                if (moisSelectionne != "Tous" &&
-                    moisSelectionne != "")
+                if (recherche != "")
                 {
-                    int numeroMois = ObtenirNumeroMois(moisSelectionne);
-
                     MesClasses.ManagerClasse.request_params.Add(
-                        "@mois",
-                        numeroMois.ToString()
-                    );
+                        "@recherche",
+                        "%" + recherche + "%");
                 }
 
+                if (numeroMois > 0)
+                {
+                    MesClasses.ManagerClasse.request_params.Add(
+                        "@mois",
+                        numeroMois.ToString());
+                }
 
-                // =========================================================
-                // PARAMÈTRE ANNÉE
-                // =========================================================
-
-                if (anneeSelectionnee != "Toutes" &&
-                    anneeSelectionnee != "")
+                if (anneeValide)
                 {
                     MesClasses.ManagerClasse.request_params.Add(
                         "@annee",
-                        anneeSelectionnee
-                    );
+                        annee.ToString());
                 }
 
-
-                // =========================================================
-                // EXÉCUTION
-                // =========================================================
+                // ========================================================
+                // EXECUTION
+                // ========================================================
 
                 using (MySqlDataReader reader =
                     MesClasses.ManagerClasse.CRUD(
@@ -492,170 +559,145 @@ namespace Cepima.MesUserCases.Personnels
 
                     while (reader.Read())
                     {
-                        string mois = reader["mois"].ToString();
+                        string mois =
+                            GetString(reader, "mois");
 
-                        string annee =
-                            reader["annee"].ToString();
+                        string anneeTexte =
+                            GetString(reader, "annee");
 
-
-                        // =====================================================
-                        // CHANGEMENT DE MOIS
-                        // =====================================================
+                        // =================================================
+                        // SEPARATEUR DE GROUPE
+                        // =================================================
 
                         if (dernierMois != "" &&
                             (
                                 dernierMois != mois ||
-                                derniereAnnee != annee
+                                derniereAnnee != anneeTexte
                             ))
                         {
                             int ligneVide =
                                 dgv_paiement.Rows.Add();
 
                             dgv_paiement.Rows[ligneVide].Height = 20;
-
                             dgv_paiement.Rows[ligneVide].ReadOnly = true;
                         }
 
-
-                        // =====================================================
-                        // AJOUT DE LA LIGNE
-                        // =====================================================
+                        // =================================================
+                        // AJOUT LIGNE
+                        // =================================================
 
                         int row =
                             dgv_paiement.Rows.Add();
 
-
-                        // =====================================================
-                        // INFORMATIONS CACHÉES
-                        // =====================================================
+                        // =================================================
+                        // INFORMATIONS CACHEES
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["id_personnel"].Value =
-                            Convert.ToInt32(
-                                reader["id_personnel"]);
-
+                            GetInt(
+                                reader,
+                                "id_personnel");
 
                         dgv_paiement.Rows[row]
                             .Cells["ID"].Value =
-                            Convert.ToInt32(
-                                reader["id_salaire"]);
+                            GetInt(
+                                reader,
+                                "id_salaire");
 
-
-                        // =====================================================
+                        // =================================================
                         // PERSONNEL
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colPerson"].Value =
-                            reader["personnel"].ToString();
+                            GetString(
+                                reader,
+                                "personnel");
 
-
-                        // =====================================================
+                        // =================================================
                         // FONCTION
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colFunction"].Value =
-                            reader["fonction"].ToString();
+                            GetString(
+                                reader,
+                                "fonction");
 
-
-                        // =====================================================
+                        // =================================================
                         // SALAIRE
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colsalaire"].Value =
-                            Convert.ToDecimal(
-                                reader["salaire"])
-                                .ToString("N2");
+                            GetDecimal(
+                                reader,
+                                "salaire")
+                            .ToString("N2");
 
-
-                        // =====================================================
+                        // =================================================
                         // PRIME
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colPrime"].Value =
-                            Convert.ToDecimal(
-                                reader["prime"])
-                                .ToString("N2");
+                            GetDecimal(
+                                reader,
+                                "prime")
+                            .ToString("N2");
 
-
-                        // =====================================================
+                        // =================================================
                         // RETENUE
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colRetenu"].Value =
-                            Convert.ToDecimal(
-                                reader["retenue"])
-                                .ToString("N2");
+                            GetDecimal(
+                                reader,
+                                "retenue")
+                            .ToString("N2");
 
-
-                        // =====================================================
+                        // =================================================
                         // AVANCE
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colAvance"].Value =
-                            Convert.ToDecimal(
-                                reader["avance"])
-                                .ToString("N2");
+                            GetDecimal(
+                                reader,
+                                "avance")
+                            .ToString("N2");
 
-
-                        // =====================================================
+                        // =================================================
                         // STATUT
-                        // =====================================================
+                        // =================================================
 
                         dgv_paiement.Rows[row]
                             .Cells["colStatut"].Value =
-                            reader["statut"].ToString();
+                            GetString(
+                                reader,
+                                "statut");
 
-
-                        // =====================================================
-                        // INFORMATIONS DU MOIS
-                        // =====================================================
+                        // =================================================
+                        // GROUPE
+                        // =================================================
 
                         dgv_paiement.Rows[row].Tag =
-                            new
+                            new GroupeSalaire
                             {
                                 Mois = mois,
-                                Annee = annee
+                                Annee = anneeTexte
                             };
 
-
-                        // =====================================================
-                        // MÉMORISER LE GROUPE
-                        // =====================================================
-
                         dernierMois = mois;
-                        derniereAnnee = annee;
+                        derniereAnnee = anneeTexte;
                     }
                 }
-
-
-                // =========================================================
-                // LARGEUR PERSONNEL
-                // =========================================================
 
                 if (dgv_paiement.Columns.Contains("colPerson"))
                 {
                     dgv_paiement.Columns["colPerson"].Width = 200;
-                }
-
-
-                // =========================================================
-                // AUCUN RÉSULTAT
-                // =========================================================
-
-                if (dgv_paiement.Rows.Count == 0)
-                {
-                    //MessageBox.Show(
-                    //    "Aucun paiement ne correspond aux critères sélectionnés.",
-                    //    "Information",
-                    //    MessageBoxButtons.OK,
-                    //    MessageBoxIcon.Information
-                    //);
                 }
             }
             catch (MySqlException ex)
@@ -665,97 +707,139 @@ namespace Cepima.MesUserCases.Personnels
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement de l'historique des paiements :\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dgv_paiement.ResumeLayout();
             }
         }
+
+        // ============================================================
+        // CARTE SALAIRES
+        // ============================================================
 
         private void ChargerCarteSalaires()
         {
             try
             {
                 string query = @"
-            SELECT
-                SUM(s.salaire_base) AS total_salaire,
-                s.mois,
-                YEAR(s.date_paiement) AS annee
-            FROM salaires s
-            INNER JOIN
-            (
-                SELECT
-                    mois,
-                    YEAR(date_paiement) AS annee
-                FROM salaires
-                ORDER BY date_paiement DESC, id_salaire DESC
-                LIMIT 1
-            ) dernier
-                ON dernier.mois = s.mois
-                AND dernier.annee = YEAR(s.date_paiement)
+                    SELECT
+                        SUM(s.salaire_base) AS total_salaire,
+                        s.mois,
+                        YEAR(s.date_paiement) AS annee
 
-            GROUP BY
-                s.mois,
-                YEAR(s.date_paiement)
+                    FROM salaires s
 
-            LIMIT 1";
+                    INNER JOIN
+                    (
+                        SELECT
+                            mois,
+                            YEAR(date_paiement) AS annee
+                        FROM salaires
+                        WHERE date_paiement IS NOT NULL
+                        ORDER BY
+                            date_paiement DESC,
+                            id_salaire DESC
+                        LIMIT 1
+                    ) dernier
+                        ON dernier.mois = s.mois
+                        AND dernier.annee =
+                            YEAR(s.date_paiement)
 
-                MesClasses.ManagerClasse.request_params.Clear();
+                    GROUP BY
+                        s.mois,
+                        YEAR(s.date_paiement)
+
+                    LIMIT 1";
 
                 using (MySqlDataReader reader =
                     MesClasses.ManagerClasse.CRUD(
                         query,
-                        MesClasses.ManagerClasse.request_params,
+                        null,
                         true))
                 {
                     if (reader.Read())
                     {
                         decimal totalSalaire =
-                            reader["total_salaire"] != DBNull.Value
-                            ? Convert.ToDecimal(reader["total_salaire"])
-                            : 0;
+                            GetDecimal(
+                                reader,
+                                "total_salaire");
 
                         string mois =
-                            reader["mois"].ToString();
+                            GetString(
+                                reader,
+                                "mois");
 
                         int annee =
-                            Convert.ToInt32(reader["annee"]);
-
-                        // ==============================
-                        // TOTAL
-                        // ==============================
+                            GetInt(
+                                reader,
+                                "annee");
 
                         lbl_total_salaire.Text =
-                            totalSalaire.ToString("N2") + " $";
-
-
-                        // ==============================
-                        // MOIS + ANNÉE
-                        // ==============================
+                            totalSalaire.ToString("N2") +
+                            " $";
 
                         lbl_mois_salaire.Text =
                             mois + " " + annee;
                     }
                     else
                     {
-                        lbl_total_salaire.Text = "0.00 $";
-                        lbl_mois_salaire.Text = "Aucun salaire";
+                        lbl_total_salaire.Text =
+                            "0.00 $";
+
+                        lbl_mois_salaire.Text =
+                            "Aucun salaire";
                     }
                 }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement de la carte des salaires :\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement de la carte des salaires :\n"
-                    + ex.Message,
+                    "Erreur lors du chargement de la carte des salaires :\n" +
+                    ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
         }
-        private void txt_recherche_TextChanged(object sender, EventArgs e)
+
+        // ============================================================
+        // RECHERCHE
+        // ============================================================
+
+        private void txt_recherche_TextChanged(
+            object sender,
+            EventArgs e)
         {
-            LoadHistoriquePaiement();
+            if (timerRecherche == null)
+                return;
+
+            timerRecherche.Stop();
+            timerRecherche.Start();
         }
+
+        // ============================================================
+        // NUMERO MOIS
+        // ============================================================
 
         private int ObtenirNumeroMois(string mois)
         {
@@ -802,6 +886,10 @@ namespace Cepima.MesUserCases.Personnels
             }
         }
 
+        // ============================================================
+        // ANNEES
+        // ============================================================
+
         private void ChargerAnnees()
         {
             try
@@ -811,33 +899,37 @@ namespace Cepima.MesUserCases.Personnels
                 cbx_annee.Items.Add("Toutes");
 
                 string query = @"
-            SELECT DISTINCT
-                YEAR(date_paiement) AS annee
-
-            FROM salaires
-
-            WHERE date_paiement IS NOT NULL
-
-            ORDER BY annee DESC
-        ";
-
-                MesClasses.ManagerClasse.request_params.Clear();
+                    SELECT DISTINCT
+                        YEAR(date_paiement) AS annee
+                    FROM salaires
+                    WHERE date_paiement IS NOT NULL
+                    ORDER BY annee DESC";
 
                 using (MySqlDataReader reader =
                     MesClasses.ManagerClasse.CRUD(
                         query,
-                        MesClasses.ManagerClasse.request_params,
+                        null,
                         true))
                 {
                     while (reader.Read())
                     {
                         cbx_annee.Items.Add(
-                            reader["annee"].ToString()
-                        );
+                            GetString(
+                                reader,
+                                "annee"));
                     }
                 }
 
                 cbx_annee.SelectedIndex = 0;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des années :\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -846,25 +938,90 @@ namespace Cepima.MesUserCases.Personnels
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
         }
 
-        private void cbx_mois_SelectedIndexChanged(object sender, EventArgs e)
+        // ============================================================
+        // CHANGEMENT MOIS
+        // ============================================================
+
+        private void cbx_mois_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
         {
             LoadHistoriquePaiement();
         }
 
-        private void cbx_annee_SelectedIndexChanged(object sender, EventArgs e)
+        // ============================================================
+        // CHANGEMENT ANNEE
+        // ============================================================
+
+        private void cbx_annee_SelectedIndexChanged(
+            object sender,
+            EventArgs e)
         {
             LoadHistoriquePaiement();
         }
 
-        private void bt_start_Click(object sender, EventArgs e)
+        // ============================================================
+        // AJOUT PERSONNEL
+        // ============================================================
+
+        private void bt_start_Click(
+            object sender,
+            EventArgs e)
         {
-            MesForms.Personnel.Ajout_personnel personnel = new MesForms.Personnel.Ajout_personnel();
+            MesForms.Personnel.Ajout_personnel personnel =
+                new MesForms.Personnel.Ajout_personnel();
+
             personnel.ShowDialog();
+        }
+
+        // ============================================================
+        // UTILITAIRES
+        // ============================================================
+
+        private string GetString(
+            MySqlDataReader reader,
+            string colonne)
+        {
+            if (reader[colonne] == DBNull.Value)
+                return "";
+
+            return reader[colonne].ToString();
+        }
+
+        private int GetInt(
+            MySqlDataReader reader,
+            string colonne)
+        {
+            if (reader[colonne] == DBNull.Value)
+                return 0;
+
+            return Convert.ToInt32(
+                reader[colonne]);
+        }
+
+        private decimal GetDecimal(
+            MySqlDataReader reader,
+            string colonne)
+        {
+            if (reader[colonne] == DBNull.Value)
+                return 0m;
+
+            return Convert.ToDecimal(
+                reader[colonne]);
+        }
+
+        // ============================================================
+        // CLASSE GROUPE SALAIRE
+        // ============================================================
+
+        private class GroupeSalaire
+        {
+            public string Mois { get; set; }
+            public string Annee { get; set; }
         }
     }
 }

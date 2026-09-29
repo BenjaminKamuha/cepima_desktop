@@ -103,10 +103,18 @@ namespace Cepima.MesUserCases.Consultation
         {
             try
             {
+                // =====================================================
+                // SUSPENDRE LE LAYOUT
+                // =====================================================
+
                 pnl_cons.SuspendLayout();
 
                 pnl_cons.Controls.Clear();
 
+
+                // =====================================================
+                // VALEURS DE RECHERCHE
+                // =====================================================
 
                 string recherche =
                     tb_search_demande.Text.Trim();
@@ -115,15 +123,26 @@ namespace Cepima.MesUserCases.Consultation
                     ObtenirStatutSelectionne();
 
 
+                // =====================================================
+                // CONNEXION
+                // =====================================================
+
                 Database db =
                     new Database();
-
 
                 using (MySqlConnection con =
                     db.GetConnection())
                 {
+                    // IMPORTANT :
+                    // GetConnection() retourne ici une connexion
+                    // qui doit être ouverte explicitement.
+
                     con.Open();
 
+
+                    // =================================================
+                    // REQUETE
+                    // =================================================
 
                     string query = @"
                         SELECT
@@ -136,12 +155,12 @@ namespace Cepima.MesUserCases.Consultation
                             COALESCE(p.prenom, '') AS prenom,
                             COALESCE(p.numero_fiche, '') AS numero_fiche,
 
-                            COALESCE(pr.libelle, '') AS prestation,
+                            COALESCE(
+                                pr.libelle,
+                                ''
+                            ) AS prestation,
 
-                            DATE_FORMAT(
-                                ds.date_demande,
-                                '%d/%m/%Y %H:%i'
-                            ) AS date_demande,
+                            ds.date_demande,
 
                             ds.priorite,
                             ds.motif,
@@ -185,19 +204,42 @@ namespace Cepima.MesUserCases.Consultation
                             ds.date_demande DESC";
 
 
+                    // =================================================
+                    // COMMANDE
+                    // =================================================
+
                     using (MySqlCommand cmd =
                         new MySqlCommand(
                             query,
                             con))
                     {
-                        cmd.Parameters.AddWithValue(
+                        // =================================================
+                        // PARAMETRE STATUT
+                        // =================================================
+
+                        cmd.Parameters.Add(
                             "@statut",
-                            statut);
+                            MySqlDbType.VarChar,
+                            30).Value =
+                            statut;
 
-                        cmd.Parameters.AddWithValue(
+
+                        // =================================================
+                        // PARAMETRE RECHERCHE
+                        // =================================================
+
+                        cmd.Parameters.Add(
                             "@recherche",
-                            "%" + recherche + "%");
+                            MySqlDbType.VarChar,
+                            255).Value =
+                            string.IsNullOrEmpty(recherche)
+                                ? ""
+                                : "%" + recherche + "%";
 
+
+                        // =================================================
+                        // EXECUTION
+                        // =================================================
 
                         using (MySqlDataReader reader =
                             cmd.ExecuteReader())
@@ -208,52 +250,117 @@ namespace Cepima.MesUserCases.Consultation
                             int largeurPanel = 950;
                             int hauteurPanel = 125;
 
+
+                            // =================================================
+                            // LECTURE
+                            // =================================================
+
                             while (reader.Read())
                             {
+                                // =============================================
+                                // ID DEMANDE
+                                // =============================================
+
                                 string idDemande =
                                     reader[
                                         "id_demande"
                                     ].ToString();
+
+
+                                // =============================================
+                                // ID PATIENT
+                                // =============================================
 
                                 string idPatient =
                                     reader[
                                         "id_patient"
                                     ].ToString();
 
+
+                                // =============================================
+                                // NOM
+                                // =============================================
+
                                 string nom =
                                     reader[
                                         "nom"
                                     ].ToString();
+
+
+                                // =============================================
+                                // POST-NOM
+                                // =============================================
 
                                 string postNom =
                                     reader[
                                         "post_nom"
                                     ].ToString();
 
+
+                                // =============================================
+                                // PRENOM
+                                // =============================================
+
                                 string prenom =
                                     reader[
                                         "prenom"
                                     ].ToString();
+
+
+                                // =============================================
+                                // NUMERO FICHE
+                                // =============================================
 
                                 string numeroFiche =
                                     reader[
                                         "numero_fiche"
                                     ].ToString();
 
+
+                                // =============================================
+                                // PRESTATION
+                                // =============================================
+
                                 string prestation =
                                     reader[
                                         "prestation"
                                     ].ToString();
 
-                                string dateDemande =
-                                    reader[
-                                        "date_demande"
-                                    ].ToString();
+
+                                // =============================================
+                                // DATE
+                                // =============================================
+
+                                string dateDemande = "";
+
+                                if (reader["date_demande"] !=
+                                    DBNull.Value)
+                                {
+                                    DateTime date =
+                                        Convert.ToDateTime(
+                                            reader[
+                                                "date_demande"
+                                            ]);
+
+                                    dateDemande =
+                                        date.ToString(
+                                            "dd/MM/yyyy HH:mm");
+                                }
+
+
+                                // =============================================
+                                // PRIORITE
+                                // =============================================
 
                                 string priorite =
                                     reader[
                                         "priorite"
                                     ].ToString();
+
+
+                                // =============================================
+                                // MOTIF
+                                // =============================================
 
                                 string motif = "";
 
@@ -266,15 +373,20 @@ namespace Cepima.MesUserCases.Consultation
                                         ].ToString();
                                 }
 
+
+                                // =============================================
+                                // STATUT
+                                // =============================================
+
                                 string statutDemande =
                                     reader[
                                         "statut"
                                     ].ToString();
 
 
-                                // ----------------------------------------
+                                // =============================================
                                 // CREATION DU PANEL
-                                // ----------------------------------------
+                                // =============================================
 
                                 CustomRoundedPanel panel =
                                     CreerPanelConsultation(
@@ -291,6 +403,10 @@ namespace Cepima.MesUserCases.Consultation
                                         statutDemande);
 
 
+                                // =============================================
+                                // DIMENSIONS
+                                // =============================================
+
                                 panel.Width =
                                     Math.Max(
                                         largeurPanel,
@@ -300,15 +416,27 @@ namespace Cepima.MesUserCases.Consultation
                                     hauteurPanel;
 
 
+                                // =============================================
+                                // POSITION
+                                // =============================================
+
                                 panel.Location =
                                     new Point(
                                         positionX,
                                         positionY);
 
 
+                                // =============================================
+                                // AJOUT
+                                // =============================================
+
                                 pnl_cons.Controls.Add(
                                     panel);
 
+
+                                // =============================================
+                                // POSITION SUIVANTE
+                                // =============================================
 
                                 positionY +=
                                     panel.Height + 10;
@@ -317,6 +445,10 @@ namespace Cepima.MesUserCases.Consultation
                     }
                 }
 
+
+                // =====================================================
+                // FIN DU LAYOUT
+                // =====================================================
 
                 pnl_cons.ResumeLayout();
 
@@ -410,7 +542,6 @@ namespace Cepima.MesUserCases.Consultation
                     20,
                     15);
 
-
             panel.Controls.Add(
                 lblPatient);
 
@@ -440,7 +571,6 @@ namespace Cepima.MesUserCases.Consultation
                 new Point(
                     20,
                     42);
-
 
             panel.Controls.Add(
                 lblNumero);
@@ -479,7 +609,6 @@ namespace Cepima.MesUserCases.Consultation
                     250,
                     15);
 
-
             panel.Controls.Add(
                 lblPrestation);
 
@@ -509,7 +638,6 @@ namespace Cepima.MesUserCases.Consultation
                 new Point(
                     250,
                     42);
-
 
             panel.Controls.Add(
                 lblDate);
@@ -550,7 +678,6 @@ namespace Cepima.MesUserCases.Consultation
                 lblPriorite.ForeColor =
                     Color.DarkOrange;
             }
-
 
             panel.Controls.Add(
                 lblPriorite);
@@ -602,7 +729,6 @@ namespace Cepima.MesUserCases.Consultation
                     Color.DodgerBlue;
             }
 
-
             panel.Controls.Add(
                 lblStatut);
 
@@ -645,7 +771,6 @@ namespace Cepima.MesUserCases.Consultation
             lblMotif.Height =
                 35;
 
-
             panel.Controls.Add(
                 lblMotif);
 
@@ -657,14 +782,8 @@ namespace Cepima.MesUserCases.Consultation
             if (statut == "Terminée")
             {
                 // ====================================================
-                // LA CONSULTATION EST TERMINEE
-                // On cache "Ouvrir"
-                // et on affiche les deux nouvelles actions
+                // DEMANDE SERVICE
                 // ====================================================
-
-                // ----------------------------------------------------
-                // BOUTON : RECOMMANDER UN SERVICE
-                // ----------------------------------------------------
 
                 Button btnRecommander =
                     new Button();
@@ -719,9 +838,9 @@ namespace Cepima.MesUserCases.Consultation
                     btnRecommander);
 
 
-                // ----------------------------------------------------
-                // BOUTON : PRESCRIPTION
-                // ----------------------------------------------------
+                // ====================================================
+                // PRESCRIPTION
+                // ====================================================
 
                 Button btnPrescription =
                     new Button();
@@ -772,17 +891,13 @@ namespace Cepima.MesUserCases.Consultation
                             idPatient);
                     };
 
-
                 panel.Controls.Add(
                     btnPrescription);
-
-              
             }
             else
             {
                 // ====================================================
-                // LA DEMANDE N'EST PAS TERMINEE
-                // On affiche normalement "Ouvrir"
+                // COMMENCER
                 // ====================================================
 
                 Button btnOuvrir =
@@ -846,20 +961,16 @@ namespace Cepima.MesUserCases.Consultation
             panel.Tag =
                 idDemande;
 
-
             if (statut == "En attente")
             {
                 panel.Click +=
-                delegate(object sender, EventArgs e)
-                {
-                    OuvrirDemande(
-                        idDemande,
-                        idPatient);
-                };
+                    delegate(object sender, EventArgs e)
+                    {
+                        OuvrirDemande(
+                            idDemande,
+                            idPatient);
+                    };
             }
-
-            
-            
 
 
             return panel;
@@ -876,12 +987,18 @@ namespace Cepima.MesUserCases.Consultation
         {
             try
             {
-                // Nouvelle consultation
-                User_consultation uc = new User_consultation(Convert.ToInt32(idPatient), Convert.ToInt32(idDemande));
+                User_consultation uc =
+                    new User_consultation(
+                        Convert.ToInt32(idPatient),
+                        Convert.ToInt32(idDemande));
+
                 Form1.GlobalPanel_main.Controls.Clear();
-                uc.Dock = DockStyle.Fill;
-                Form1.GlobalPanel_main.Controls.Add(uc);
-                
+
+                uc.Dock =
+                    DockStyle.Fill;
+
+                Form1.GlobalPanel_main.Controls.Add(
+                    uc);
             }
             catch (Exception ex)
             {
@@ -893,31 +1010,39 @@ namespace Cepima.MesUserCases.Consultation
             }
         }
 
+
         // ============================================================
-// RECOMMANDER UN SERVICE
-// ============================================================
+        // RECOMMANDER UN SERVICE
+        // ============================================================
 
-    private void RecommanderService(
-        string idDemande,
-        string idPatient)
-    {
+        private void RecommanderService(
+            string idDemande,
+            string idPatient)
+        {
+            MesForms.Form_demander_service frm =
+                new MesForms.Form_demander_service(
+                    idPatient,
+                    0);
 
-        MesForms.Form_demander_service frm = new MesForms.Form_demander_service(idPatient, 0);
-        frm.ShowDialog();
-    }
+            frm.ShowDialog();
+        }
 
-    // ============================================================
-    // PRESCRIPTION
-    // ============================================================
 
-    private void OuvrirPrescription(
-        string idDemande,
-        string idPatient)
-    {
+        // ============================================================
+        // PRESCRIPTION
+        // ============================================================
 
-        MesForms.Prescription.Form_prescription_mdc form_presc = new MesForms.Prescription.Form_prescription_mdc(Convert.ToInt32(idPatient));
-        form_presc.ShowDialog();
-    }
+        private void OuvrirPrescription(
+            string idDemande,
+            string idPatient)
+        {
+            MesForms.Prescription.Form_prescription_mdc
+                form_presc =
+                new MesForms.Prescription.Form_prescription_mdc(
+                    Convert.ToInt32(idPatient));
+
+            form_presc.ShowDialog();
+        }
 
 
         // ============================================================

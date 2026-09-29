@@ -82,113 +82,88 @@ namespace Cepima.MesUserCases
                 try
                 {
                     // =================================================
-                    // 1. NOMBRE DE CONSULTATIONS DU JOUR
+                    // OPTIMISATION :
+                    // Les 3 COUNT étaient exécutés séparément.
+                    // On les récupère maintenant avec UNE SEULE
+                    // requête MySQL.
                     // =================================================
-                    string queryConsultations = @"
-                        SELECT COUNT(*)
-                        FROM consultation c
-                        INNER JOIN service s
-                            ON s.nom = 'Consultation'
-                           AND s.actif = 1
-                        WHERE c.date_consultation >= CURDATE()
-                          AND c.date_consultation <
-                              DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+
+                    string query = @"
+                        SELECT
+
+                            (
+                                SELECT COUNT(*)
+                                FROM consultation c
+                                INNER JOIN service s
+                                    ON s.nom = 'Consultation'
+                                   AND s.actif = 1
+                                WHERE c.date_consultation >= CURDATE()
+                                  AND c.date_consultation <
+                                      DATE_ADD(
+                                          CURDATE(),
+                                          INTERVAL 1 DAY
+                                      )
+                            ) AS nombre_consultations,
+
+                            (
+                                SELECT COUNT(*)
+                                FROM demande_service ds
+                                INNER JOIN service s
+                                    ON s.id_service = ds.id_service
+                                WHERE s.nom = 'Consultation'
+                                  AND s.actif = 1
+                                  AND ds.statut = 'En attente'
+                                  AND ds.date_demande >= CURDATE()
+                                  AND ds.date_demande <
+                                      DATE_ADD(
+                                          CURDATE(),
+                                          INTERVAL 1 DAY
+                                      )
+                            ) AS nombre_attente,
+
+                            (
+                                SELECT COUNT(*)
+                                FROM demande_service ds
+                                INNER JOIN service s
+                                    ON s.id_service = ds.id_service
+                                WHERE s.nom = 'Consultation'
+                                  AND s.actif = 1
+                                  AND ds.statut = 'Demandée'
+                                  AND ds.date_demande >= CURDATE()
+                                  AND ds.date_demande <
+                                      DATE_ADD(
+                                          CURDATE(),
+                                          INTERVAL 1 DAY
+                                      )
+                            ) AS nombre_demandee
+                    ";
 
                     using (MySqlCommand cmd =
                         new MySqlCommand(
-                            queryConsultations,
+                            query,
                             con))
                     {
-                        int nombre =
-                            Convert.ToInt32(
-                                cmd.ExecuteScalar());
+                        using (MySqlDataReader reader =
+                            cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                lb_consultation.Text =
+                                    Convert.ToInt32(
+                                        reader["nombre_consultations"])
+                                    .ToString();
 
-                        lb_consultation.Text =
-                            nombre.ToString();
-                    }
+                                lb_attente.Text =
+                                    Convert.ToInt32(
+                                        reader["nombre_attente"])
+                                    .ToString();
 
-
-                    // =================================================
-                    // 2. DEMANDES DE CONSULTATION EN ATTENTE
-                    // =================================================
-                    //
-                    // On ne met PAS id_service = 5.
-                    //
-                    // On fait la liaison :
-                    //
-                    // demande_service
-                    //       ↓
-                    //      service
-                    //
-                    // et on identifie le service par son nom.
-                    //
-                    // =================================================
-
-                    string queryEnAttente = @"
-                        SELECT COUNT(*)
-                        FROM demande_service ds
-
-                        INNER JOIN service s
-                            ON s.id_service = ds.id_service
-
-                        WHERE s.nom = 'Consultation'
-                          AND s.actif = 1
-                          AND ds.statut = 'En attente'
-
-                          AND ds.date_demande >= CURDATE()
-                          AND ds.date_demande <
-                              DATE_ADD(
-                                  CURDATE(),
-                                  INTERVAL 1 DAY
-                              )";
-
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(
-                            queryEnAttente,
-                            con))
-                    {
-                        int nombre =
-                            Convert.ToInt32(
-                                cmd.ExecuteScalar());
-
-                        lb_attente.Text =
-                            nombre.ToString();
-                    }
-
-
-                    // =================================================
-                    // 3. DEMANDES DE CONSULTATION DEMANDEES
-                    // =================================================
-
-                    string queryDemandee = @"
-                        SELECT COUNT(*)
-                        FROM demande_service ds
-
-                        INNER JOIN service s
-                            ON s.id_service = ds.id_service
-
-                        WHERE s.nom = 'Consultation'
-                          AND s.actif = 1
-                          AND ds.statut = 'Demandée'
-
-                          AND ds.date_demande >= CURDATE()
-                          AND ds.date_demande <
-                              DATE_ADD(
-                                  CURDATE(),
-                                  INTERVAL 1 DAY
-                              )";
-
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(
-                            queryDemandee,
-                            con))
-                    {
-                        int nombre =
-                            Convert.ToInt32(
-                                cmd.ExecuteScalar());
-
-                        lb_termine.Text =
-                            nombre.ToString();
+                                lb_termine.Text =
+                                    Convert.ToInt32(
+                                        reader["nombre_demandee"])
+                                    .ToString();
+                            }
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -234,21 +209,8 @@ namespace Cepima.MesUserCases
                         "Consultation d'urgence";
                 }
 
-
                 // =================================================
                 // REQUETE
-                // =================================================
-                //
-                // consultation
-                //       ↓ patient_id
-                // patients
-                //
-                // demande_service est reliée au service
-                // "Consultation".
-                //
-                // Il n'y a PAS de id_consultation dans
-                // demande_service, donc on ne l'utilise pas.
-                //
                 // =================================================
 
                 string query = @"
@@ -277,7 +239,6 @@ namespace Cepima.MesUserCases
                         OR p.prenom LIKE @recherche
                     )";
 
-
                 // =================================================
                 // FILTRE TYPE CONSULTATION
                 // =================================================
@@ -289,7 +250,6 @@ namespace Cepima.MesUserCases
                             @type_consultation";
                 }
 
-
                 // =================================================
                 // TRI
                 // =================================================
@@ -297,7 +257,6 @@ namespace Cepima.MesUserCases
                 query += @"
                     ORDER BY
                         c.date_consultation DESC";
-
 
                 // =================================================
                 // PARAMETRES
@@ -311,7 +270,6 @@ namespace Cepima.MesUserCases
                         "@recherche",
                         "%" + recherche + "%");
 
-
                 if (typeFiltre != "")
                 {
                     MesClasses.ManagerClasse
@@ -319,7 +277,6 @@ namespace Cepima.MesUserCases
                             "@type_consultation",
                             typeFiltre);
                 }
-
 
                 // =================================================
                 // EXECUTION
@@ -343,7 +300,6 @@ namespace Cepima.MesUserCases
                             Convert.ToInt32(
                                 reader["id"]);
 
-
                         // =========================================
                         // ID PATIENT
                         // =========================================
@@ -351,7 +307,6 @@ namespace Cepima.MesUserCases
                         int PATIENT_ID =
                             Convert.ToInt32(
                                 reader["id_patient"]);
-
 
                         // =========================================
                         // PATIENT
@@ -364,14 +319,12 @@ namespace Cepima.MesUserCases
                             + " "
                             + reader["prenom"].ToString();
 
-
                         // =========================================
                         // SEXE
                         // =========================================
 
                         string sexe =
                             reader["sexe"].ToString();
-
 
                         // =========================================
                         // AGE
@@ -391,7 +344,6 @@ namespace Cepima.MesUserCases
                                     dateNaissance);
                         }
 
-
                         // =========================================
                         // TYPE CONSULTATION
                         // =========================================
@@ -400,14 +352,12 @@ namespace Cepima.MesUserCases
                             reader["type_consultation"]
                                 .ToString();
 
-
                         // =========================================
                         // ADRESSE
                         // =========================================
 
                         string adresse =
                             reader["adresse"].ToString();
-
 
                         // =========================================
                         // MOTIF
@@ -416,24 +366,11 @@ namespace Cepima.MesUserCases
                         string motif =
                             reader["motif"].ToString();
 
-
                         // =========================================
                         // STATUT
                         // =========================================
-                        //
-                        // La table consultation ne possède pas
-                        // directement le statut de la demande.
-                        //
-                        // Pour l'instant, une consultation affichée
-                        // dans ce tableau est considérée "En cours".
-                        //
-                        // Le statut réel d'une DEMANDE se trouve
-                        // dans demande_service.
-                        //
-                        // =========================================
 
                         string statut = "En cours";
-
 
                         // =========================================
                         // AJOUT AU DATAGRIDVIEW
@@ -521,7 +458,6 @@ namespace Cepima.MesUserCases
                 return;
             }
 
-
             // --------------------------------------------------------
             // Vérifier que la colonne existe
             // --------------------------------------------------------
@@ -536,7 +472,6 @@ namespace Cepima.MesUserCases
                 return;
             }
 
-
             // --------------------------------------------------------
             // Récupérer la valeur
             // --------------------------------------------------------
@@ -547,7 +482,6 @@ namespace Cepima.MesUserCases
                     .Cells["ID_Patient"]
                     .Value;
 
-
             if (valeur == null ||
                 valeur == DBNull.Value)
             {
@@ -557,7 +491,6 @@ namespace Cepima.MesUserCases
 
                 return;
             }
-
 
             // --------------------------------------------------------
             // Convertir

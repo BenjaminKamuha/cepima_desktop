@@ -216,6 +216,9 @@
     <Compile Include="Controls\LineChartControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\Loading_control.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ModernDataGridView.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -241,6 +244,7 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesClasses\LoadingHelper.cs" />
     <Compile Include="MesForms\Compt\Bon_de_sortie.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +403,7 @@
       <DependentUpon>Utilisateurs_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\FingerprintApi.cs" />
+    <Compile Include="Services\PermManager.cs" />
     <Compile Include="Services\UpdateManager.cs" />
     <Compile Include="Core\ColorPalette.cs" />
     <Compile Include="Core\FontManager.cs" />

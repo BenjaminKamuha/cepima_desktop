@@ -65,8 +65,10 @@ namespace Cepima.MesUserCases.Pharmacie
             try
             {
                 // -------------------------------------------------
-                // SUPPRIMER LES ANCIENNES CARTES
+                // SUSPENDRE LE RAFRAICHISSEMENT VISUEL
                 // -------------------------------------------------
+
+                fl_prescription.SuspendLayout();
 
                 fl_prescription.Controls.Clear();
 
@@ -74,6 +76,7 @@ namespace Cepima.MesUserCases.Pharmacie
 
                 using (MySqlConnection con = db.GetConnection())
                 {
+                    // Conservation de con.Open()
                     con.Open();
 
                     // =================================================
@@ -91,20 +94,16 @@ namespace Cepima.MesUserCases.Pharmacie
                         ObtenirFiltreSelectionne();
 
                     // =================================================
-                    // REQUETE
+                    // REQUETE OPTIMISEE
                     // =================================================
                     //
-                    // prescription
-                    //      |
-                    //      +---- patients
+                    // AVANT :
+                    // Plusieurs EXISTS sur hospitalisation
+                    // pour une même prescription.
                     //
-                    // Pas d'id fixe.
-                    //
-                    // Pour savoir si le patient est hospitalisé,
-                    // on utilise la situation du patient dans la base.
-                    //
-                    // Pour l'instant, la distinction est déterminée
-                    // par l'existence d'une hospitalisation active.
+                    // MAINTENANT :
+                    // Une seule jointure vers les patients
+                    // actuellement hospitalisés.
                     //
                     // =================================================
 
@@ -123,18 +122,7 @@ namespace Cepima.MesUserCases.Pharmacie
                             p.numero_fiche,
 
                             CASE
-                                WHEN EXISTS
-                                (
-                                    SELECT 1
-                                    FROM hospitalisation h
-                                    WHERE h.id_patient = pr.patient_id
-                                      AND h.etat IN
-                                      (
-                                          'En cours',
-                                          'Hospitalisé',
-                                          'Active'
-                                      )
-                                )
+                                WHEN h.patient_id IS NOT NULL
                                 THEN 'Hospitalisation'
                                 ELSE 'Ambulatoire'
                             END AS type_patient
@@ -144,9 +132,29 @@ namespace Cepima.MesUserCases.Pharmacie
                         INNER JOIN patients p
                             ON p.id_patient = pr.patient_id
 
+                        LEFT JOIN
+                        (
+                            SELECT DISTINCT
+                                id_patient AS patient_id
+
+                            FROM hospitalisation
+
+                            WHERE etat IN
+                            (
+                                'En cours',
+                                'Hospitalisé',
+                                'Active'
+                            )
+
+                        ) h
+                            ON h.patient_id =
+                               pr.patient_id
+
                         WHERE
+
                             (
                                 @recherche = ''
+
                                 OR p.nom LIKE @recherche_like
                                 OR p.post_nom LIKE @recherche_like
                                 OR p.prenom LIKE @recherche_like
@@ -155,65 +163,34 @@ namespace Cepima.MesUserCases.Pharmacie
                             )
 
                         AND
-                        (
-                            @filtre = 'Tous'
 
-                            OR
                             (
-                                @filtre = 'En attente'
-                                AND UPPER(pr.statut) = 'ACTIVE'
-                            )
+                                @filtre = 'Tous'
 
-                            OR
-                            (
-                                @filtre = 'Délivrée'
-                                AND UPPER(pr.statut) = 'DELIVREE'
-                            )
+                                OR
+                                (
+                                    @filtre = 'En attente'
+                                    AND pr.statut = 'ACTIVE'
+                                )
 
-                            OR
-                            (
-                                @filtre = 'Ambulatoire'
-                                AND
-                                CASE
-                                    WHEN EXISTS
-                                    (
-                                        SELECT 1
-                                        FROM hospitalisation h
-                                        WHERE h.id_patient = pr.patient_id
-                                          AND h.etat IN
-                                          (
-                                              'En cours',
-                                              'Hospitalisé',
-                                              'Active'
-                                          )
-                                    )
-                                    THEN 'Hospitalisation'
-                                    ELSE 'Ambulatoire'
-                                END = 'Ambulatoire'
-                            )
+                                OR
+                                (
+                                    @filtre = 'Délivrée'
+                                    AND pr.statut = 'DELIVREE'
+                                )
 
-                            OR
-                            (
-                                @filtre = 'Hospitalisation'
-                                AND
-                                CASE
-                                    WHEN EXISTS
-                                    (
-                                        SELECT 1
-                                        FROM hospitalisation h
-                                        WHERE h.id_patient = pr.patient_id
-                                          AND h.etat IN
-                                          (
-                                              'En cours',
-                                              'Hospitalisé',
-                                              'Active'
-                                          )
-                                    )
-                                    THEN 'Hospitalisation'
-                                    ELSE 'Ambulatoire'
-                                END = 'Hospitalisation'
+                                OR
+                                (
+                                    @filtre = 'Ambulatoire'
+                                    AND h.patient_id IS NULL
+                                )
+
+                                OR
+                                (
+                                    @filtre = 'Hospitalisation'
+                                    AND h.patient_id IS NOT NULL
+                                )
                             )
-                        )
 
                         ORDER BY
                             pr.date_prescription DESC";
@@ -222,17 +199,32 @@ namespace Cepima.MesUserCases.Pharmacie
                     using (MySqlCommand cmd =
                         new MySqlCommand(query, con))
                     {
-                        cmd.Parameters.AddWithValue(
+                        // =================================================
+                        // PARAMETRES TYPÉS
+                        // =================================================
+
+                        cmd.Parameters.Add(
                             "@recherche",
-                            recherche);
+                            MySqlDbType.VarChar)
+                            .Value =
+                                recherche;
 
-                        cmd.Parameters.AddWithValue(
+                        cmd.Parameters.Add(
                             "@recherche_like",
-                            "%" + recherche + "%");
+                            MySqlDbType.VarChar)
+                            .Value =
+                                "%" + recherche + "%";
 
-                        cmd.Parameters.AddWithValue(
+                        cmd.Parameters.Add(
                             "@filtre",
-                            filtre);
+                            MySqlDbType.VarChar)
+                            .Value =
+                                filtre;
+
+
+                        // =================================================
+                        // LECTURE
+                        // =================================================
 
                         using (MySqlDataReader reader =
                             cmd.ExecuteReader())
@@ -246,6 +238,7 @@ namespace Cepima.MesUserCases.Pharmacie
                                 string idPrescription =
                                     reader["id"].ToString();
 
+
                                 // ---------------------------------
                                 // ID PATIENT
                                 // ---------------------------------
@@ -253,78 +246,81 @@ namespace Cepima.MesUserCases.Pharmacie
                                 string idPatient =
                                     reader["patient_id"].ToString();
 
+
                                 // ---------------------------------
                                 // PATIENT
                                 // ---------------------------------
 
                                 string nom =
-                                    reader["nom"] == DBNull.Value
-                                        ? ""
-                                        : reader["nom"].ToString();
+                                    GetString(
+                                        reader,
+                                        "nom");
 
                                 string postnom =
-                                    reader["post_nom"] == DBNull.Value
-                                        ? ""
-                                        : reader["post_nom"].ToString();
+                                    GetString(
+                                        reader,
+                                        "post_nom");
 
                                 string prenom =
-                                    reader["prenom"] == DBNull.Value
-                                        ? ""
-                                        : reader["prenom"].ToString();
+                                    GetString(
+                                        reader,
+                                        "prenom");
+
 
                                 // ---------------------------------
                                 // NUMERO FICHE
                                 // ---------------------------------
 
                                 string numero =
-                                    reader["numero_fiche"] == DBNull.Value
-                                        ? ""
-                                        : reader["numero_fiche"].ToString();
+                                    GetString(
+                                        reader,
+                                        "numero_fiche");
+
 
                                 // ---------------------------------
                                 // DATE
                                 // ---------------------------------
 
-                                string datePrescription = "";
+                                string datePrescription =
+                                    GetDateString(
+                                        reader,
+                                        "date_prescription");
 
-                                if (reader["date_prescription"] !=
-                                    DBNull.Value)
-                                {
-                                    DateTime date =
-                                        Convert.ToDateTime(
-                                            reader["date_prescription"]);
-
-                                    datePrescription =
-                                        date.ToString(
-                                            "dd/MM/yyyy HH:mm");
-                                }
 
                                 // ---------------------------------
                                 // STATUT
                                 // ---------------------------------
 
                                 string statut =
-                                    reader["statut"] == DBNull.Value
-                                        ? ""
-                                        : reader["statut"].ToString();
+                                    GetString(
+                                        reader,
+                                        "statut");
+
 
                                 // ---------------------------------
                                 // OBSERVATION
                                 // ---------------------------------
 
                                 string observation =
-                                    reader["observation"] == DBNull.Value
-                                        ? ""
-                                        : reader["observation"].ToString();
+                                    GetString(
+                                        reader,
+                                        "observation");
+
 
                                 // ---------------------------------
                                 // TYPE
                                 // ---------------------------------
 
                                 string type =
-                                    reader["type_patient"] == DBNull.Value
-                                        ? "Ambulatoire"
-                                        : reader["type_patient"].ToString();
+                                    GetString(
+                                        reader,
+                                        "type_patient");
+
+                                if (string.IsNullOrWhiteSpace(type))
+                                {
+                                    type =
+                                        "Ambulatoire";
+                                }
 
 
                                 // ---------------------------------
@@ -356,6 +352,49 @@ namespace Cepima.MesUserCases.Pharmacie
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            finally
+            {
+                fl_prescription.ResumeLayout(true);
+            }
+        }
+
+
+        // =========================================================
+        // LECTURE SECURISEE D'UNE CHAINE
+        // =========================================================
+
+        private string GetString(
+            MySqlDataReader reader,
+            string column)
+        {
+            if (reader[column] == DBNull.Value)
+            {
+                return "";
+            }
+
+            return reader[column].ToString();
+        }
+
+
+        // =========================================================
+        // LECTURE DATE
+        // =========================================================
+
+        private string GetDateString(
+            MySqlDataReader reader,
+            string column)
+        {
+            if (reader[column] == DBNull.Value)
+            {
+                return "";
+            }
+
+            DateTime date =
+                Convert.ToDateTime(
+                    reader[column]);
+
+            return date.ToString(
+                "dd/MM/yyyy HH:mm");
         }
 
 
@@ -424,9 +463,9 @@ namespace Cepima.MesUserCases.Pharmacie
             panPrescription.BorderSize =
                 1;
 
-            // ID DE LA PRESCRIPTION
             panPrescription.Tag =
                 idPrescription;
+
 
             // =====================================================
             // COULEURS
@@ -485,34 +524,26 @@ namespace Cepima.MesUserCases.Pharmacie
                             Convert.ToInt32(
                                 idPatient);
 
+
                         // -------------------------------------------------
-                        // STOCKER LES IDS GLOBAUX
+                        // STOCKER L'ID PATIENT
                         // -------------------------------------------------
 
                         Form1.PATIENT_ID =
                             patientId;
 
-                        // La prescription est l'élément
-                        // sélectionné.
-                        //
-                        // On utilise DEMANDE_ID uniquement si le reste
-                        // de l'application en a besoin.
-                        //
-                        // L'identifiant principal de cette carte est
-                        // prescriptionId.
+
                         // -------------------------------------------------
-                        // POUR L'INSTANT
-                        // -------------------------------------------------
-                        //
-                        // Nous ne créons pas encore de nouvelle table.
-                        // Le clic sélectionne la prescription.
-                        //
-                        // Le formulaire de dispensation pourra ensuite
-                        // recevoir prescriptionId et patientId.
+                        // OUVRIR LA PRESCRIPTION
                         // -------------------------------------------------
 
-                        MesForms.Pharmacie.Form_prescription frm = new MesForms.Pharmacie.Form_prescription(prescriptionId);
+                        MesForms.Pharmacie.Form_prescription frm =
+                            new MesForms.Pharmacie.Form_prescription(
+                                prescriptionId);
+
                         frm.ShowDialog();
+
+
                         // -------------------------------------------------
                         // RECHARGER APRES RETOUR
                         // -------------------------------------------------
@@ -537,14 +568,6 @@ namespace Cepima.MesUserCases.Pharmacie
 
             panPrescription.Click +=
                 clickPrescription;
-
-
-            // =====================================================
-            // AJOUT AU FLOWLAYOUTPANEL
-            // =====================================================
-
-            fl_prescription.Controls.Add(
-                panPrescription);
 
 
             // =====================================================
@@ -622,6 +645,7 @@ namespace Cepima.MesUserCases.Pharmacie
             lbType.Cursor =
                 Cursors.Hand;
 
+
             if (type == "Hospitalisation")
             {
                 lbType.ForeColor =
@@ -657,6 +681,7 @@ namespace Cepima.MesUserCases.Pharmacie
 
             lbStatut.Cursor =
                 Cursors.Hand;
+
 
             if (string.Equals(
                 statut,
@@ -719,8 +744,8 @@ namespace Cepima.MesUserCases.Pharmacie
             if (!string.IsNullOrWhiteSpace(
                 observation))
             {
-                //panPrescription.ToolTip =
-                //    observation;
+                // Conservation du comportement original.
+                // Aucun changement de fonctionnalité.
             }
 
 
@@ -741,6 +766,14 @@ namespace Cepima.MesUserCases.Pharmacie
                 panPrescription,
                 couleurHover,
                 couleurNormale);
+
+
+            // =====================================================
+            // AJOUT AU FLOWLAYOUTPANEL
+            // =====================================================
+
+            fl_prescription.Controls.Add(
+                panPrescription);
         }
 
 
@@ -752,7 +785,8 @@ namespace Cepima.MesUserCases.Pharmacie
             Control parent,
             EventHandler clickHandler)
         {
-            foreach (Control control in parent.Controls)
+            foreach (Control control
+                in parent.Controls)
             {
                 control.Click +=
                     clickHandler;
@@ -779,7 +813,8 @@ namespace Cepima.MesUserCases.Pharmacie
             Color couleurHover,
             Color couleurNormale)
         {
-            foreach (Control control in parent.Controls)
+            foreach (Control control
+                in parent.Controls)
             {
                 control.MouseEnter +=
                     delegate(object sender, EventArgs e)
@@ -802,6 +837,7 @@ namespace Cepima.MesUserCases.Pharmacie
                                 couleurNormale;
                         }
                     };
+
 
                 if (control.Controls.Count > 0)
                 {
@@ -853,14 +889,19 @@ namespace Cepima.MesUserCases.Pharmacie
             object sender,
             EventArgs e)
         {
-            // Nous ne modifions pas encore cette fonctionnalité.
-            // Elle pourra servir à ajouter une prescription
-            // lorsque le module correspondant sera prêt.
+            // Conservation de la fonctionnalité
+            // telle qu'elle existe actuellement.
         }
 
-        private void btn_add_med_Click_1(object sender, EventArgs e)
-        {
 
+        // =========================================================
+        // EVENEMENT EXISTANT
+        // =========================================================
+
+        private void btn_add_med_Click_1(
+            object sender,
+            EventArgs e)
+        {
         }
     }
 }

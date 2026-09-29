@@ -213,6 +213,7 @@
             this.roundedButton1.TextColor = System.Drawing.Color.White;
             this.roundedButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.roundedButton1.UseVisualStyleBackColor = false;
+            this.roundedButton1.Visible = false;
             // 
             // cbx_filter_statut
             // 

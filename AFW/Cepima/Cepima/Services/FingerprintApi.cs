@@ -82,8 +82,6 @@ namespace Cepima.Services
                 //    MessageBoxButtons.OK,
                 //    MessageBoxIcon.Error);
             }
-
-            MessageBox.Show(ESP32_BASE_URL);
         }
 
 

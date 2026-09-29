@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Cepima.MesUserCases.Comptabilité
 {
@@ -17,349 +11,272 @@ namespace Cepima.MesUserCases.Comptabilité
         public DashBoard_comptability()
         {
             InitializeComponent();
-           
         }
 
         private void DashBoard_comptability_Load(object sender, EventArgs e)
         {
-            ChargerSoldeCaisseEEG();
-            ChargerSoldeCaisseGenerale();
-            ChargerTotalRecettes();
-            ChargerGraphiqueCaisseEEG();
-            ChargerGraphiqueCaisseGenerale();
+            ChargerDashboard();
         }
 
-        private void ChargerSoldeCaisseEEG()
-        {
-            try
-            {
-                string query = @"
-            SELECT solde
-            FROM livre_caisse
-            WHERE provenance = 'EEG'
-              AND DATE(date) = CURDATE()
-            ORDER BY date DESC
-            LIMIT 1";
-
-                using (MySqlConnection connexion =
-                    MesClasses.ManagerClasse.GetConnexion())
-                {
-
-                    using (MySqlCommand commande =
-                        new MySqlCommand(query, connexion))
-                    {
-                        object resultat = commande.ExecuteScalar();
-
-                        decimal solde = 0;
-
-                        if (resultat != null &&
-                            resultat != DBNull.Value)
-                        {
-                            solde = Convert.ToDecimal(resultat);
-                        }
-
-                        lbl_solde_eeg.Text = solde.ToString("N2") + " $";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Erreur lors du chargement de la caisse EEG du jour :\n\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void ChargerSoldeCaisseGenerale()
-        {
-            try
-            {
-                string query = @"
-            SELECT solde
-            FROM livre_caisse
-            WHERE provenance = 'GENERALE'
-              AND DATE(date) = CURDATE()
-            ORDER BY date DESC
-            LIMIT 1";
-
-                using (MySqlConnection connexion =
-                    MesClasses.ManagerClasse.GetConnexion())
-                {
-
-                    using (MySqlCommand commande =
-                        new MySqlCommand(query, connexion))
-                    {
-                        object resultat = commande.ExecuteScalar();
-
-                        decimal solde = 0;
-
-                        if (resultat != null &&
-                            resultat != DBNull.Value)
-                        {
-                            solde = Convert.ToDecimal(resultat);
-                        }
-
-                        lbl_solde_generale.Text =
-                            solde.ToString("N2") + " $";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Erreur lors du chargement de la caisse générale du jour :\n\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void ChargerTotalRecettes()
-        {
-            try
-            {
-                string query = @"
-            SELECT COALESCE(SUM(recette), 0)
-            FROM livre_caisse
-            WHERE DATE(date) = CURDATE()";
-
-                using (MySqlConnection connexion =
-                    MesClasses.ManagerClasse.GetConnexion())
-                {
-
-                    using (MySqlCommand commande =
-                        new MySqlCommand(query, connexion))
-                    {
-                        object resultat = commande.ExecuteScalar();
-
-                        decimal totalRecettes = 0;
-
-                        if (resultat != null &&
-                            resultat != DBNull.Value)
-                        {
-                            totalRecettes = Convert.ToDecimal(resultat);
-                        }
-
-                        lbl_total_recettes.Text =
-                            totalRecettes.ToString("N2") + " $";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Erreur lors du chargement du total des recettes du jour :\n\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-
-        private void ChargerGraphiqueCaisseEEG()
+        /// <summary>
+        /// Charge toutes les informations du dashboard avec une seule connexion MySQL.
+        /// </summary>
+        private void ChargerDashboard()
         {
             try
             {
                 string[] mois =
-        {
-            "Jan",
-            "Fév",
-            "Mar",
-            "Avr",
-            "Mai",
-            "Juin",
-            "Juil",
-            "Aoû",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Déc"
-        };
+                {
+                    "Jan", "Fév", "Mar", "Avr",
+                    "Mai", "Juin", "Juil", "Aoû",
+                    "Sep", "Oct", "Nov", "Déc"
+                };
 
-                decimal[] soldes = new decimal[12];
+                decimal[] soldesEEG = new decimal[12];
+                decimal[] soldesGenerale = new decimal[12];
 
-                string query = @"
-            SELECT 
-                MONTH(date) AS numero_mois,
-                solde
-            FROM livre_caisse
-            WHERE provenance = 'EEG'
-              AND YEAR(date) = YEAR(CURDATE())
-            ORDER BY date ASC";
+                decimal soldeEEG = 0;
+                decimal soldeGenerale = 0;
+                decimal totalRecettes = 0;
 
                 using (MySqlConnection connexion =
                     MesClasses.ManagerClasse.GetConnexion())
                 {
+                   
+                    // =====================================================
+                    // 1. SOLDE CAISSE EEG + SOLDE CAISSE GENERALE
+                    // =====================================================
+
+                    string querySoldes = @"
+                        SELECT provenance, solde
+                        FROM livre_caisse
+                        WHERE provenance IN ('EEG', 'GENERALE')
+                          AND date >= CURDATE()
+                          AND date < CURDATE() + INTERVAL 1 DAY
+                        ORDER BY date DESC";
+
                     using (MySqlCommand commande =
-                        new MySqlCommand(query, connexion))
+                        new MySqlCommand(querySoldes, connexion))
                     {
                         using (MySqlDataReader reader =
                             commande.ExecuteReader())
                         {
+                            bool eegTrouve = false;
+                            bool generaleTrouve = false;
+
                             while (reader.Read())
                             {
-                                int numeroMois =
-                                    Convert.ToInt32(reader["numero_mois"]);
+                                string provenance =
+                                    reader["provenance"].ToString();
 
                                 decimal solde =
-                                    Convert.ToDecimal(reader["solde"]);
+                                    reader["solde"] == DBNull.Value
+                                        ? 0
+                                        : Convert.ToDecimal(reader["solde"]);
 
-                                // Le dernier solde du mois
-                                // remplace le précédent
-                                soldes[numeroMois - 1] = solde;
+                                // Comme le résultat est trié DESC,
+                                // la première ligne de chaque caisse
+                                // est son dernier solde du jour.
+                                if (provenance == "EEG" && !eegTrouve)
+                                {
+                                    soldeEEG = solde;
+                                    eegTrouve = true;
+                                }
+                                else if (provenance == "GENERALE" &&
+                                         !generaleTrouve)
+                                {
+                                    soldeGenerale = solde;
+                                    generaleTrouve = true;
+                                }
+
+                                if (eegTrouve && generaleTrouve)
+                                    break;
                             }
                         }
                     }
+
+                    // =====================================================
+                    // 2. TOTAL DES RECETTES DU JOUR
+                    // =====================================================
+
+                    string queryRecettes = @"
+                        SELECT COALESCE(SUM(recette), 0)
+                        FROM livre_caisse
+                        WHERE date >= CURDATE()
+                          AND date < CURDATE() + INTERVAL 1 DAY";
+
+                    using (MySqlCommand commande =
+                        new MySqlCommand(queryRecettes, connexion))
+                    {
+                        object resultat = commande.ExecuteScalar();
+
+                        if (resultat != null &&
+                            resultat != DBNull.Value)
+                        {
+                            totalRecettes =
+                                Convert.ToDecimal(resultat);
+                        }
+                    }
+
+                    // =====================================================
+                    // 3. GRAPHIQUE CAISSE EEG
+                    // =====================================================
+
+                    ChargerSoldesMensuels(
+                        connexion,
+                        "EEG",
+                        soldesEEG);
+
+                    // =====================================================
+                    // 4. GRAPHIQUE CAISSE GENERALE
+                    // =====================================================
+
+                    ChargerSoldesMensuels(
+                        connexion,
+                        "GENERALE",
+                        soldesGenerale);
                 }
 
-                List<string> etiquettes =
-                    new List<string>(mois);
+                // =========================================================
+                // AFFICHAGE DES INDICATEURS
+                // =========================================================
 
-                List<double> valeurs =
-                    new List<double>();
+                lbl_solde_eeg.Text =
+                    soldeEEG.ToString("N2") + " $";
 
-                for (int i = 0; i < 12; i++)
-                {
-                    valeurs.Add(
-                        Convert.ToDouble(soldes[i])
-                    );
-                }
+                lbl_solde_generale.Text =
+                    soldeGenerale.ToString("N2") + " $";
 
-                monGraphiqueEEG.Vider();
+                lbl_total_recettes.Text =
+                    totalRecettes.ToString("N2") + " $";
 
-                monGraphiqueEEG.CouleurFond =
-                    Color.White;
+                // =========================================================
+                // AFFICHAGE DES GRAPHIQUES
+                // =========================================================
 
-                monGraphiqueEEG.AfficherLegende =
-                    false;
-
-                monGraphiqueEEG.AfficherGrille =
-                    true;
-
-                monGraphiqueEEG.AnimationActive =
-                    true;
-
-                monGraphiqueEEG.AjouterHistogramme(
+                AfficherGraphique(
+                    monGraphiqueEEG,
                     "Caisse EEG",
-                    etiquettes,
-                    valeurs
-                );
+                    mois,
+                    soldesEEG);
+
+                AfficherGraphique(
+                    monGraphiqueCaisseGenerale,
+                    "Caisse Générale",
+                    mois,
+                    soldesGenerale);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(
-                    "Erreur lors du chargement du graphique mensuel de la caisse EEG :\n\n" +
+                    "Erreur lors du chargement du tableau de bord :\n\n" +
                     ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
             }
         }
 
-        private void ChargerGraphiqueCaisseGenerale()
+        /// <summary>
+        /// Récupère le dernier solde disponible pour chaque mois.
+        /// La sélection est faite côté MySQL afin de limiter les données
+        /// transférées vers le poste client.
+        /// </summary>
+        private void ChargerSoldesMensuels(
+            MySqlConnection connexion,
+            string provenance,
+            decimal[] soldes)
         {
-            try
-            {
-                string[] mois =
-        {
-            "Jan",
-            "Fév",
-            "Mar",
-            "Avr",
-            "Mai",
-            "Juin",
-            "Juil",
-            "Aoû",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Déc"
-        };
-
-                decimal[] soldes = new decimal[12];
-
-                string query = @"
+            string query = @"
+        SELECT 
+            MONTH(l.date) AS mois,
+            l.solde
+        FROM livre_caisse l
+        INNER JOIN
+        (
             SELECT 
-                MONTH(date) AS numero_mois,
-                solde
+                YEAR(date) AS annee,
+                MONTH(date) AS mois,
+                MAX(date) AS derniere_date
             FROM livre_caisse
-            WHERE provenance = 'GENERALE'
-              AND YEAR(date) = YEAR(CURDATE())
-            ORDER BY date ASC";
+            WHERE provenance = @provenance
+              AND date >= MAKEDATE(YEAR(CURDATE()), 1)
+              AND date < MAKEDATE(YEAR(CURDATE()) + 1, 1)
+            GROUP BY YEAR(date), MONTH(date)
+        ) dernier
+            ON YEAR(l.date) = dernier.annee
+            AND MONTH(l.date) = dernier.mois
+            AND l.date = dernier.derniere_date
+        WHERE l.provenance = @provenance
+        ORDER BY MONTH(l.date)";
 
-                using (MySqlConnection connexion =
-                    MesClasses.ManagerClasse.GetConnexion())
+            using (MySqlCommand commande =
+                new MySqlCommand(query, connexion))
+            {
+                commande.Parameters.AddWithValue(
+                    "@provenance",
+                    provenance);
+
+                using (MySqlDataReader reader =
+                    commande.ExecuteReader())
                 {
-                    using (MySqlCommand commande =
-                        new MySqlCommand(query, connexion))
+                    while (reader.Read())
                     {
-                        using (MySqlDataReader reader =
-                            commande.ExecuteReader())
+                        int mois =
+                            Convert.ToInt32(reader["mois"]);
+
+                        decimal solde =
+                            reader["solde"] == DBNull.Value
+                                ? 0
+                                : Convert.ToDecimal(reader["solde"]);
+
+                        if (mois >= 1 && mois <= 12)
                         {
-                            while (reader.Read())
-                            {
-                                int numeroMois =
-                                    Convert.ToInt32(reader["numero_mois"]);
-
-                                decimal solde =
-                                    Convert.ToDecimal(reader["solde"]);
-
-                                // Le dernier solde du mois
-                                // remplace le précédent
-                                soldes[numeroMois - 1] = solde;
-                            }
+                            soldes[mois - 1] = solde;
                         }
                     }
                 }
-
-                List<string> etiquettes =
-                    new List<string>(mois);
-
-                List<double> valeurs =
-                    new List<double>();
-
-                for (int i = 0; i < 12; i++)
-                {
-                    valeurs.Add(
-                        Convert.ToDouble(soldes[i])
-                    );
-                }
-
-                monGraphiqueCaisseGenerale.Vider();
-
-                monGraphiqueCaisseGenerale.CouleurFond =
-                    Color.White;
-
-                monGraphiqueCaisseGenerale.AfficherLegende =
-                    false;
-
-                monGraphiqueCaisseGenerale.AfficherGrille =
-                    true;
-
-                monGraphiqueCaisseGenerale.AnimationActive =
-                    true;
-
-                monGraphiqueCaisseGenerale.AjouterHistogramme(
-                    "Caisse Générale",
-                    etiquettes,
-                    valeurs
-                );
             }
-            catch (Exception ex)
+        }
+        /// <summary>
+        /// Configure et affiche un graphique.
+        /// </summary>
+        private void AfficherGraphique(
+            dynamic graphique,
+            string titre,
+            string[] mois,
+            decimal[] soldes)
+        {
+            List<string> etiquettes =
+                new List<string>(mois);
+
+            List<double> valeurs =
+                new List<double>();
+
+            for (int i = 0; i < 12; i++)
             {
-                MessageBox.Show(
-                    "Erreur lors du chargement du graphique mensuel de la caisse générale :\n\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                valeurs.Add(
+                    Convert.ToDouble(soldes[i]));
             }
+
+            graphique.Vider();
+
+            graphique.CouleurFond =
+                Color.White;
+
+            graphique.AfficherLegende =
+                false;
+
+            graphique.AfficherGrille =
+                true;
+
+            graphique.AnimationActive =
+                true;
+
+            graphique.AjouterHistogramme(
+                titre,
+                etiquettes,
+                valeurs);
         }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.load_anim = new ModernLoader();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -56,6 +57,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.load_anim);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -66,6 +68,19 @@
             this.panel1.Size = new System.Drawing.Size(1159, 79);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // load_anim
+            // 
+            this.load_anim.CircleColor = System.Drawing.Color.DodgerBlue;
+            this.load_anim.LineThickness = 8;
+            this.load_anim.Location = new System.Drawing.Point(795, 20);
+            this.load_anim.Name = "load_anim";
+            this.load_anim.Segments = 12;
+            this.load_anim.Size = new System.Drawing.Size(44, 49);
+            this.load_anim.TabIndex = 20;
+            this.load_anim.Text = "modernLoader1";
+            this.load_anim.Visible = false;
+            this.load_anim.Click += new System.EventHandler(this.modernLoader1_Click);
             // 
             // label1
             // 
@@ -370,5 +385,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lb_notice;
         private RoundedButton bt_add_compte;
+        private ModernLoader load_anim;
     }
 }

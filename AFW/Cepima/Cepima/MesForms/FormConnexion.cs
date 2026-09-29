@@ -1,84 +1,123 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using System.IO;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
+
 namespace Cepima.MesForms
 {
     public partial class FormConnexion : Form
     {
         private int tentativesConnexion = 0;
         private const int maxTentatives = 3;
+
+        private const int DUREE_SESSION_JOURS = 15;
+        private const int PBKDF2_ITERATIONS = 100000;
+
+        private readonly string sessionPath;
+
         public FormConnexion()
         {
             InitializeComponent();
+
+            sessionPath = Path.Combine(
+                Application.StartupPath,
+                "session.dat");
+
             DisplayNotice();
         }
+
+
+        // =========================================================
+        // MESSAGE D'ACCUEIL
+        // =========================================================
 
         private void DisplayNotice()
         {
             lb_notice.AutoSize = false;
             lb_notice.Size = new Size(300, 300);
             lb_notice.TextAlign = ContentAlignment.TopLeft;
-            lb_notice.Font = new Font("Calibri", 12F, FontStyle.Regular);
-            lb_notice.ForeColor = Color.FromArgb(70, 70, 70);
+            lb_notice.Font =
+                new Font(
+                    "Calibri",
+                    12F,
+                    FontStyle.Regular);
+
+            lb_notice.ForeColor =
+                Color.FromArgb(
+                    70,
+                    70,
+                    70);
 
             lb_notice.Text =
-                            "Bienvenue sur CEPIMA\r\n\r\n" +
+                "Bienvenue sur CEPIMA\r\n\r\n" +
 
-                            "Vous avez déjà un compte ?\r\n" +
-                            "Saisissez votre nom d'utilisateur et votre mot de passe,\r\n" +
-                            "puis cliquez sur « Se connecter ».\r\n\r\n" +
+                "Vous avez déjà un compte ?\r\n" +
+                "Saisissez votre nom d'utilisateur et votre mot de passe,\r\n" +
+                "puis cliquez sur « Se connecter ».\r\n\r\n" +
 
-                            "Vous n'avez pas encore de compte ?\r\n" +
-                            "Cliquez sur « Créer un compte » et suivez les instructions\r\n" +
-                            "pour enregistrer votre compte utilisateur.\r\n\r\n";
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
+                "Vous n'avez pas encore de compte ?\r\n" +
+                "Cliquez sur « Créer un compte » et suivez les instructions\r\n" +
+                "pour enregistrer votre compte utilisateur.\r\n\r\n";
         }
 
-        // Méthode de chargement de la session lors du démarrage du programme
-        bool ChargerSession()
-        {
-            string path = Path.Combine(
-                Application.StartupPath,
-                "session.dat");
 
-            if (!File.Exists(path))
+        // =========================================================
+        // FERMER LA FENETRE
+        // =========================================================
+
+        private void button1_Click(
+            object sender,
+            EventArgs e)
+        {
+            Close();
+        }
+
+
+        // =========================================================
+        // CHARGER LA SESSION
+        // =========================================================
+
+        private bool ChargerSession()
+        {
+            if (!File.Exists(sessionPath))
                 return false;
 
             try
             {
-                using (var stream =
+                using (FileStream stream =
                     new FileStream(
-                        path,
-                        FileMode.Open))
+                        sessionPath,
+                        FileMode.Open,
+                        FileAccess.Read,
+                        FileShare.Read))
                 {
-                    var formatter =
+                    System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter =
                         new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                    var session =
-                        (SessionPersist)formatter.Deserialize(stream);
+                    SessionPersist session =
+                        formatter.Deserialize(stream)
+                        as SessionPersist;
 
-                    if (session.Expiration < DateTime.Now)
+                    if (session == null)
                     {
-                        File.Delete(path);
+                        SupprimerSession();
+                        return false;
+                    }
+
+                    if (session.Expiration <= DateTime.Now)
+                    {
+                        SupprimerSession();
                         return false;
                     }
 
                     tb_username.Text =
-                        session.UserName;
+                        session.UserName ?? "";
 
-                    // On ne remplit plus le mot de passe
+                    // Pour des raisons de sécurité,
+                    // le mot de passe n'est jamais sauvegardé.
                     tb_password.Text = "";
 
                     tb_username.Focus();
@@ -88,80 +127,162 @@ namespace Cepima.MesForms
             }
             catch
             {
+                // Une session corrompue ou illisible
+                // ne doit pas empêcher la connexion.
                 return false;
             }
         }
-        //sauvegarder la session
+
+
+        // =========================================================
+        // SAUVEGARDER LA SESSION
+        // =========================================================
+
         private void SauvegarderSession(
-        string username,
-        int jours)
+            string username,
+            int jours)
         {
-            var session = new SessionPersist
+            if (string.IsNullOrWhiteSpace(username))
+                return;
+
+            if (jours <= 0)
+                return;
+
+            try
             {
-                UserName = username,
-                Expiration = DateTime.Now.AddDays(jours)
-            };
+                SessionPersist session =
+                    new SessionPersist
+                    {
+                        UserName = username,
+                        Expiration =
+                            DateTime.Now.AddDays(jours)
+                    };
 
-            string path = Path.Combine(
-                Application.StartupPath,
-                "session.dat");
+                using (FileStream stream =
+                    new FileStream(
+                        sessionPath,
+                        FileMode.Create,
+                        FileAccess.Write,
+                        FileShare.None))
+                {
+                    System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter =
+                        new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-            using (var stream =
-                new FileStream(
-                    path,
-                    FileMode.Create))
+                    formatter.Serialize(
+                        stream,
+                        session);
+                }
+            }
+            catch (Exception ex)
             {
-                var formatter =
-                    new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-                formatter.Serialize(
-                    stream,
-                    session);
+                // La sauvegarde de session ne doit pas
+                // empêcher une connexion réussie.
+                MessageBox.Show(
+                    "La connexion a réussi, mais la session " +
+                    "n'a pas pu être sauvegardée.\n\n" +
+                    ex.Message,
+                    "Session",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
         }
 
-        private void FormConnexion_Load(object sender, EventArgs e)
+
+        // =========================================================
+        // SUPPRIMER LA SESSION
+        // =========================================================
+
+        private void SupprimerSession()
         {
-            bool sessionExist = ChargerSession();
+            try
+            {
+                if (File.Exists(sessionPath))
+                {
+                    File.Delete(sessionPath);
+                }
+            }
+            catch
+            {
+                // Ne pas bloquer l'application
+                // si le fichier ne peut pas être supprimé.
+            }
+        }
+
+
+        // =========================================================
+        // CHARGEMENT DU FORMULAIRE
+        // =========================================================
+
+        private void FormConnexion_Load(
+            object sender,
+            EventArgs e)
+        {
+            bool sessionExist =
+                ChargerSession();
+
             if (sessionExist)
             {
-                // si la session existe et n'est pas expirée, tu peut directement mettre le focus sur le mot de passe
+                // Session existante :
+                // l'utilisateur doit uniquement
+                // saisir son mot de passe.
                 tb_password.Focus();
+
                 cb_remember.Visible = false;
-
-                //bt_connexion_Click(null, null);
             }
-
             else
             {
-                //sinon, focus sur le champs username
                 tb_username.Focus();
+
                 cb_remember.Visible = true;
             }
         }
 
-        private bool VerifierMotDePasse(string motDePasse,string hashStocke)
+
+        // =========================================================
+        // VERIFIER LE MOT DE PASSE
+        // =========================================================
+
+        private bool VerifierMotDePasse(
+            string motDePasse,
+            string hashStocke)
         {
+            if (string.IsNullOrEmpty(motDePasse))
+                return false;
+
+            if (string.IsNullOrWhiteSpace(hashStocke))
+                return false;
+
             try
             {
-                if (string.IsNullOrWhiteSpace(hashStocke))
-                    return false;
-
-                string[] parties = hashStocke.Split(':');
+                string[] parties =
+                    hashStocke.Split(':');
 
                 if (parties.Length != 2)
                     return false;
 
-                byte[] sel = Convert.FromBase64String(parties[0]);
-                byte[] hashOriginal = Convert.FromBase64String(parties[1]);
+                byte[] sel =
+                    Convert.FromBase64String(
+                        parties[0]);
 
-                using (var pbkdf2 = new Rfc2898DeriveBytes(
-                    motDePasse,
-                    sel,
-                    100000))
+                byte[] hashOriginal =
+                    Convert.FromBase64String(
+                        parties[1]);
+
+                if (sel.Length == 0 ||
+                    hashOriginal.Length == 0)
                 {
-                    byte[] hashNouveau = pbkdf2.GetBytes(
-                        hashOriginal.Length);
+                    return false;
+                }
+
+                using (Rfc2898DeriveBytes pbkdf2 =
+                    new Rfc2898DeriveBytes(
+                        motDePasse,
+                        sel,
+                        PBKDF2_ITERATIONS))
+                {
+                    byte[] hashNouveau =
+                        pbkdf2.GetBytes(
+                            hashOriginal.Length);
 
                     return ComparerTableaux(
                         hashOriginal,
@@ -174,28 +295,60 @@ namespace Cepima.MesForms
             }
         }
 
-        private bool ComparerTableaux(byte[] tableau1,byte[] tableau2)
+
+        // =========================================================
+        // COMPARAISON SECURISEE DES HASH
+        // =========================================================
+
+        private bool ComparerTableaux(
+            byte[] tableau1,
+            byte[] tableau2)
         {
-            if (tableau1 == null || tableau2 == null)
-                return false;
-
-            if (tableau1.Length != tableau2.Length)
-                return false;
-
-            bool resultat = true;
-
-            for (int i = 0; i < tableau1.Length; i++)
+            if (tableau1 == null ||
+                tableau2 == null)
             {
-                if (tableau1[i] != tableau2[i])
-                    resultat = false;
+                return false;
             }
 
-            return resultat;
+            if (tableau1.Length !=
+                tableau2.Length)
+            {
+                return false;
+            }
+
+            int resultat = 0;
+
+            for (int i = 0;
+                 i < tableau1.Length;
+                 i++)
+            {
+                resultat |=
+                    tableau1[i] ^
+                    tableau2[i];
+            }
+
+            return resultat == 0;
         }
-        private void bt_connexion_Click(object sender, EventArgs e)
+
+
+        // =========================================================
+        // CONNEXION
+        // =========================================================
+
+        private async void bt_connexion_Click(
+            object sender,
+            EventArgs e)
         {
-            string userText = tb_username.Text.Trim();
-            string passText = tb_password.Text;
+            string userText =
+                tb_username.Text.Trim();
+
+            string passText =
+                tb_password.Text;
+
+
+            // =====================================================
+            // VALIDATION USERNAME
+            // =====================================================
 
             if (string.IsNullOrWhiteSpace(userText))
             {
@@ -209,6 +362,11 @@ namespace Cepima.MesForms
                 return;
             }
 
+
+            // =====================================================
+            // VALIDATION MOT DE PASSE
+            // =====================================================
+
             if (string.IsNullOrWhiteSpace(passText))
             {
                 MessageBox.Show(
@@ -221,128 +379,69 @@ namespace Cepima.MesForms
                 return;
             }
 
+
+            // =====================================================
+            // DEMARRER LE LOADER
+            // =====================================================
+
+            MesClasses.LoadingHelper.Start(bt_connexion);
+
+
             try
             {
-                string query = @"
-    SELECT 
-        u.id_utilisateurs,
-        u.username,
-        u.password_hash,
-        u.id_personnel,
-        p.id_centre,
-        c.nom_centre,
-        r.id_role,
-        r.nom_role
-    FROM utilisateurs u
-    LEFT JOIN personnels p 
-        ON p.id_personnel = u.id_personnel
-    LEFT JOIN centres c 
-        ON c.id_centre = p.id_centre
-    LEFT JOIN utilisateur_role ur
-        ON ur.id_utilisateur = u.id_utilisateurs
-    LEFT JOIN role r
-        ON r.id_role = ur.id_role
-        AND r.statut = 'actif'
-    WHERE u.username = @username
-    AND u.actif = 1
-    ORDER BY r.nom_role";
+                // =================================================
+                // EXECUTION HORS THREAD UI
+                // =================================================
 
-                MesClasses.ManagerClasse.request_params.Clear();
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@username",
-                    userText);
-
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        query,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
+                bool connexionReussie = await Task.Run(() =>
                 {
-                    if (!reader.Read())
-                    {
-                        MessageBox.Show(
-                            "Nom d'utilisateur ou mot de passe incorrect.",
-                            "Connexion",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
+                    return EffectuerConnexion(
+                        userText,
+                        passText);
+                });
 
-                        tb_password.Text = "";
-                        tb_password.Focus();
-                        return;
-                    }
 
-                    string hashStocke =
-                        reader["password_hash"].ToString();
+                // =================================================
+                // RESULTAT
+                // =================================================
 
-                    // Vérification du mot de passe
-                    bool motDePasseCorrect = VerifierMotDePasse(passText,hashStocke);
-
-                    if (!motDePasseCorrect)
-                    {
-                        MessageBox.Show(
-                            "Nom d'utilisateur ou mot de passe incorrect.",
-                            "Connexion",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-
-                        tb_password.Text = "";
-                        tb_password.Focus();
-                        return;
-                    }
-
-                    // Récupération des informations utilisateur
-                    string username =
-                        reader["username"].ToString();
-
-                    string idUser =
-                        reader["id_utilisateurs"].ToString();
-
-                    string role =
-                        reader["nom_role"].ToString();
-
-                    // Session utilisateur
-                    SessionUtilisateur.idUser =
-                        Convert.ToInt32(idUser);
-
-                    SessionUtilisateur.Nom =
-                        username;
-
-                    SessionUtilisateur.Role =
-                        role;
-
-                    SessionUtilisateur.EstConnecte =
-                        true;
-
-                    // Centre
-                    if (reader["id_centre"] != DBNull.Value)
-                    {
-                        SessionUtilisateur.idCentre =
-                            Convert.ToInt32(reader["id_centre"]);
-
-                        SessionUtilisateur.Centre =
-                            reader["nom_centre"].ToString();
-                    }
-                    else
-                    {
-                        SessionUtilisateur.idCentre = 0;
-                        SessionUtilisateur.Centre = "";
-                    }
-
-                    // Sauvegarder la session si demandé
-                    if (cb_remember.Checked)
-                    {
-                        SauvegarderSession(username,15);
-                    }
+                if (!connexionReussie)
+                {
+                    AfficherErreurConnexion();
+                    return;
                 }
 
-              
-                // Connexion réussie
-                Form1 frm = new Form1();
+
+                // =================================================
+                // SAUVEGARDE SESSION
+                // =================================================
+
+                if (cb_remember.Checked)
+                {
+                    SessionUtilisateur.RememberMe =
+                        true;
+
+                    SauvegarderSession(
+                        userText,
+                        DUREE_SESSION_JOURS);
+                }
+                else
+                {
+                    SessionUtilisateur.RememberMe =
+                        false;
+                }
+
+
+                // =================================================
+                // OUVRIR L'APPLICATION
+                // =================================================
+
+                Form1 frm =
+                    new Form1();
 
                 frm.Show();
 
-                this.Hide();
+                Hide();
             }
             catch (MySqlException ex)
             {
@@ -362,66 +461,316 @@ namespace Cepima.MesForms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            finally
+            {
+                // =================================================
+                // ARRETER LE LOADER
+                // =================================================
+
+                MesClasses.LoadingHelper.Stop(
+                    bt_connexion);
+            }
         }
 
-        private void link_forgot_Click(object sender, EventArgs e)
+        private bool EffectuerConnexion(
+    string userText,
+    string passText)
         {
+            string query = @"
+        SELECT 
+            u.id_utilisateurs,
+            u.username,
+            u.password_hash,
+            u.id_personnel,
+            p.id_centre,
+            c.nom_centre,
+            r.id_role,
+            r.nom_role
+        FROM utilisateurs u
+        LEFT JOIN personnels p 
+            ON p.id_personnel = u.id_personnel
+        LEFT JOIN centres c 
+            ON c.id_centre = p.id_centre
+        LEFT JOIN utilisateur_role ur
+            ON ur.id_utilisateur = u.id_utilisateurs
+        LEFT JOIN role r
+            ON r.id_role = ur.id_role
+            AND r.statut = 'actif'
+        WHERE u.username = @username
+        AND u.actif = 1
+        ORDER BY r.nom_role";
 
+
+            // =====================================================
+            // PARAMETRES
+            // =====================================================
+
+            MesClasses.ManagerClasse.request_params.Clear();
+
+            MesClasses.ManagerClasse.request_params.Add(
+                "@username",
+                userText);
+
+
+            // =====================================================
+            // EXECUTION
+            // =====================================================
+
+            using (MySqlDataReader reader =
+                MesClasses.ManagerClasse.CRUD(
+                    query,
+                    MesClasses.ManagerClasse.request_params,
+                    true))
+            {
+                if (reader == null ||
+                    !reader.Read())
+                {
+                    return false;
+                }
+
+
+                // =================================================
+                // VERIFICATION MOT DE PASSE
+                // =================================================
+
+                string hashStocke =
+                    reader["password_hash"]
+                        .ToString();
+
+                if (!VerifierMotDePasse(
+                    passText,
+                    hashStocke))
+                {
+                    return false;
+                }
+
+
+                // =================================================
+                // RECUPERATION
+                // =================================================
+
+                string username =
+                    reader["username"]
+                        .ToString();
+
+                int idUser =
+                    Convert.ToInt32(
+                        reader["id_utilisateurs"]);
+
+                string role =
+                    reader["nom_role"] == DBNull.Value
+                        ? ""
+                        : reader["nom_role"].ToString();
+
+
+                // =================================================
+                // SESSION
+                // =================================================
+
+                SessionUtilisateur.idUser =
+                    idUser;
+
+                SessionUtilisateur.Nom =
+                    username;
+
+                SessionUtilisateur.Role =
+                    role;
+
+                SessionUtilisateur.EstConnecte =
+                    true;
+
+
+                // =================================================
+                // CENTRE
+                // =================================================
+
+                if (reader["id_centre"] != DBNull.Value)
+                {
+                    SessionUtilisateur.idCentre =
+                        Convert.ToInt32(
+                            reader["id_centre"]);
+
+                    SessionUtilisateur.Centre =
+                        reader["nom_centre"] == DBNull.Value
+                            ? ""
+                            : reader["nom_centre"].ToString();
+                }
+                else
+                {
+                    SessionUtilisateur.idCentre = 0;
+
+                    SessionUtilisateur.Centre = "";
+                }
+
+
+                return true;
+            }
         }
 
-        private void bt_connexion_Load(object sender, EventArgs e)
-        {
+        // =========================================================
+        // MESSAGE ERREUR CONNEXION
+        // =========================================================
 
+        private void AfficherErreurConnexion()
+        {
+            tentativesConnexion++;
+
+            MessageBox.Show(
+                "Nom d'utilisateur ou mot de passe incorrect.",
+                "Connexion",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+
+            tb_password.Text = "";
+            tb_password.Focus();
+
+            /*
+             * Les variables tentativesConnexion et maxTentatives
+             * existaient déjà dans ton fichier.
+             *
+             * On conserve ici leur comportement sans bloquer
+             * automatiquement le compte.
+             */
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
+        // =========================================================
+        // MOT DE PASSE OUBLIE
+        // =========================================================
+
+        private void link_forgot_Click(
+            object sender,
+            EventArgs e)
+        {
         }
 
-        private void link_create_compte_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        // =========================================================
+        // EVENEMENT LOAD
+        // =========================================================
+
+        private void bt_connexion_Load(
+            object sender,
+            EventArgs e)
         {
-            
         }
 
-        private void bt_add_compte_Click(object sender, EventArgs e)
+
+        // =========================================================
+        // PAINT
+        // =========================================================
+
+        private void panel1_Paint(
+            object sender,
+            PaintEventArgs e)
         {
-            Creer_compte compte = new Creer_compte();
+        }
+
+
+        // =========================================================
+        // CREATION COMPTE - LINK
+        // =========================================================
+
+        private void link_create_compte_LinkClicked(
+            object sender,
+            LinkLabelLinkClickedEventArgs e)
+        {
+        }
+
+
+        // =========================================================
+        // CREER UN COMPTE
+        // =========================================================
+
+        private void bt_add_compte_Click(
+            object sender,
+            EventArgs e)
+        {
+            Creer_compte compte =
+                new Creer_compte();
+
             compte.ShowDialog();
         }
+
+        private void modernLoader1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    // gerer la session quand l'utilisateur se deconnecte ================
-     public static class SessionManager
-     {
+
+
+    // =============================================================
+    // GESTION DE LA SESSION
+    // =============================================================
+
+    public static class SessionManager
+    {
         public static void Logout()
         {
-            //Réinitialiser la session en memoire
+            // =====================================================
+            // REINITIALISER LA SESSION EN MEMOIRE
+            // =====================================================
+
             SessionUtilisateur.idUser = 0;
+            SessionUtilisateur.idCentre = 0;
+            SessionUtilisateur.Centre = null;
             SessionUtilisateur.Nom = null;
             SessionUtilisateur.Role = null;
             SessionUtilisateur.EstConnecte = false;
             SessionUtilisateur.RememberMe = false;
 
-            //Supprimer la session persistée
-            string path = Path.Combine(Application.StartupPath,"session.dat");
-            if (File.Exists(path))
+
+            // =====================================================
+            // SUPPRIMER SESSION PERSISTANTE
+            // =====================================================
+
+            string path =
+                Path.Combine(
+                    Application.StartupPath,
+                    "session.dat");
+
+            try
             {
-                File.Delete(path);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+            }
+            catch
+            {
+                // Ne pas faire planter l'application
+                // si le fichier ne peut pas être supprimé.
             }
         }
     }
-    // =================== class session =================================
+
+
+    // =============================================================
+    // SESSION UTILISATEUR
+    // =============================================================
+
     public static class SessionUtilisateur
     {
         public static int idUser { get; set; }
+
         public static int idCentre { get; set; }
+
         public static string Centre { get; set; }
+
         public static string Nom { get; set; }
+
         public static string Role { get; set; }
+
         public static bool EstConnecte { get; set; }
+
         public static bool RememberMe { get; set; }
     }
-    //class pour stocker le session pendant une dureé bien définie
+
+
+    // =============================================================
+    // SESSION PERSISTANTE
+    // =============================================================
+
     [Serializable]
     public class SessionPersist
     {
@@ -429,5 +778,4 @@ namespace Cepima.MesForms
 
         public DateTime Expiration { get; set; }
     }
-
 }

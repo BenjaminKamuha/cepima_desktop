@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.Data;
+using Cepima.Services;
 
 namespace Cepima.Data
 {
@@ -13,9 +14,15 @@ namespace Cepima.Data
     {
         private string connectionString;
 
+        private static readonly string DB_HOST = EnvConfig.Get("DB_HOST", "localhost");
+        private static readonly string DB_PORT = EnvConfig.Get("DB_PORT", "3306");
+        private static readonly string DB_NAME = EnvConfig.Get("DB_NAME", "cepimadb");
+        private static readonly string DB_USER = EnvConfig.Get("DB_USER", "root");
+        private static readonly string DB_PASSWORD = EnvConfig.Get("DB_PASSWORD", "");
+
         public Database() 
         {
-            connectionString = "Server=localhost; Database=cepimadb; Uid=root; Pwd=;";
+            connectionString = "server=" + DB_HOST + ";database=" + DB_NAME + ";user id=" + DB_USER + ";pwd=" + DB_PASSWORD;
         }
 
         public MySqlConnection GetConnection()

@@ -13,6 +13,7 @@ using Cepima.MesUserCases;
 using Cepima.MesForms;
 using Cepima.Data;
 using Cepima.Services;
+using System.Threading.Tasks;
 
 
 
@@ -38,7 +39,6 @@ namespace Cepima
             LoadUserConnect(lb_username,"Connecté",lb_statut);
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
-
         }
 
         /// <summary>

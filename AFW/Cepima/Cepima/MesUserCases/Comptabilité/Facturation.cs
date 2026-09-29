@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -13,354 +7,447 @@ namespace Cepima.MesUserCases.Comptabilité
 {
     public partial class Facturation : UserControl
     {
+        // ============================================================
+        // TIMER DE RECHERCHE
+        // ============================================================
+
+        private Timer timerRecherche;
+
+        // ============================================================
+        // CONSTRUCTEUR
+        // ============================================================
+
         public Facturation()
         {
             InitializeComponent();
-            LoadFactures();
+
+            InitialiserRecherche();
+
+            // Définir le filtre AVANT le premier chargement
             rb_tout.Checked = true;
+
+            LoadFactures();
         }
+
+        // ============================================================
+        // INITIALISATION DE LA RECHERCHE
+        // ============================================================
+
+        private void InitialiserRecherche()
+        {
+            timerRecherche = new Timer();
+
+            // 300 ms après la dernière frappe
+            timerRecherche.Interval = 300;
+
+            timerRecherche.Tick += timerRecherche_Tick;
+
+            // On évite de dépendre uniquement du designer
+            tb_search_demande.TextChanged -=
+                tb_search_demande_TextChanged;
+
+            tb_search_demande.TextChanged +=
+                tb_search_demande_TextChanged;
+        }
+
+        // ============================================================
+        // TIMER
+        // ============================================================
+
+        private void timerRecherche_Tick(
+            object sender,
+            EventArgs e)
+        {
+            timerRecherche.Stop();
+
+            LoadFactures(tb_search_demande.Text);
+        }
+
+        // ============================================================
+        // FILTRE FACTURE
+        // ============================================================
 
         private string GetFiltreFacture()
         {
             if (rb_ambulatoire.Checked)
             {
-                return " AND f.type_facture = 'Ambulatoire'";
+                return " AND f.type_facture = @typeFacture ";
             }
 
             if (rb_hospitalise.Checked)
             {
-                return " AND f.type_facture = 'Hospitalisé'";
+                return " AND f.type_facture = @typeFacture ";
             }
 
             if (rb_partielle.Checked)
             {
-                return " AND f.statut = 'Partiellement payé'";
+                return " AND f.statut = @statutFacture ";
             }
 
             return "";
         }
 
-        private void LoadFactures(params string[] args)
+        // ============================================================
+        // PARAMETRES DU FILTRE
+        // ============================================================
+
+        private void AjouterParametresFiltre(
+            MySqlCommand commande)
         {
-            panel_facture.Controls.Clear();
-
-            // =========================================================
-            // CONFIGURATION DU FLOWLAYOUTPANEL
-            // =========================================================
-
-            panel_facture.FlowDirection = FlowDirection.LeftToRight;
-            panel_facture.WrapContents = true;
-            panel_facture.AutoScroll = true;
-            panel_facture.Padding = new Padding(10, 10, 8, 10);
-
-            lb_not_found.Visible = false;
-
-
-            // =========================================================
-            // FILTRE SELON LE RADIOBUTTON
-            // =========================================================
-
-            string filtre = "";
-
             if (rb_ambulatoire.Checked)
             {
-                filtre = " AND f.type_facture = 'Ambulatoire'";
+                commande.Parameters.AddWithValue(
+                    "@typeFacture",
+                    "Ambulatoire");
             }
             else if (rb_hospitalise.Checked)
             {
-                filtre = " AND f.type_facture = 'Hospitalisé'";
+                commande.Parameters.AddWithValue(
+                    "@typeFacture",
+                    "Hospitalisé");
             }
             else if (rb_partielle.Checked)
             {
-                filtre = " AND f.statut = 'Partiellement payé'";
-            }
-
-
-            // =========================================================
-            // RECHERCHE D'UNE FACTURE
-            // =========================================================
-
-            if (args.Length != 0)
-            {
-                try
-                {
-                    string query = @"
-                SELECT
-                    f.id_facture,
-                    f.id_patient,
-                    f.type_facture,
-                    f.date_facture,
-                    f.montant_total,
-                    f.montant_paye,
-                    f.reste,
-                    f.statut,
-                    p.nom,
-                    p.post_nom,
-                    p.prenom
-                FROM facture f
-                LEFT JOIN patients p
-                    ON p.id_patient = f.id_patient
-                WHERE
-                    (
-                        p.nom LIKE @search
-                        OR p.post_nom LIKE @search
-                        OR p.prenom LIKE @search
-                        OR CAST(f.id_facture AS CHAR) LIKE @search
-                    )
-                    " + filtre + @"
-                ORDER BY f.date_facture DESC,
-                         f.id_facture DESC";
-
-                    MesClasses.ManagerClasse.request_params.Clear();
-
-                    MesClasses.ManagerClasse.request_params.Add(
-                        "@search",
-                        "%" + args[0] + "%"
-                    );
-
-                    using (MySqlDataReader reader =
-                           MesClasses.ManagerClasse.CRUD(
-                               query,
-                               MesClasses.ManagerClasse.request_params,
-                               true))
-                    {
-                        int i = 0;
-
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string idFacture =
-                                    reader["id_facture"].ToString();
-
-                                string idPatient =
-                                    reader["id_patient"].ToString();
-
-                                string nom =
-                                    reader["nom"].ToString();
-
-                                string postnom =
-                                    reader["post_nom"].ToString();
-
-                                string prenom =
-                                    reader["prenom"].ToString();
-
-                                string typeFacture =
-                                    reader["type_facture"].ToString();
-
-                                string dateFacture =
-                                    reader["date_facture"].ToString();
-
-                                string montantTotal =
-                                    reader["montant_total"].ToString();
-
-                                string montantPaye =
-                                    reader["montant_paye"].ToString();
-
-                                string reste =
-                                    reader["reste"].ToString();
-
-                                string statut =
-                                    reader["statut"].ToString();
-
-
-                                // Création de la carte facture
-                                BunifuRoundedPanel panFacture =
-                                    CreerPanelFacture(
-                                        idFacture,
-                                        idPatient,
-                                        nom,
-                                        postnom,
-                                        prenom,
-                                        typeFacture,
-                                        dateFacture,
-                                        montantTotal,
-                                        montantPaye,
-                                        reste,
-                                        statut
-                                    );
-
-
-                                // Ajout au FlowLayoutPanel
-                                panel_facture.Controls.Add(panFacture);
-
-                                i++;
-                            }
-
-                            reader.Close();
-
-                            ProgressiveDisplay pd =
-                                new ProgressiveDisplay(
-                                    panel_facture,
-                                    100
-                                );
-
-                            pd.Start();
-                        }
-                        else
-                        {
-                            lb_not_found.Text =
-                                "Aucune facture ne correspond au terme de recherche '"
-                                + args[0] + "'";
-
-                            panel_facture.Controls.Add(lb_not_found);
-
-                            lb_not_found.Visible = true;
-
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message);
-                }
-            }
-
-
-            // =========================================================
-            // AFFICHAGE DE TOUTES LES FACTURES
-            // =========================================================
-
-            else
-            {
-                try
-                {
-                    string query = @"
-                SELECT
-                    f.id_facture,
-                    f.id_patient,
-                    f.type_facture,
-                    f.date_facture,
-                    f.montant_total,
-                    f.montant_paye,
-                    f.reste,
-                    f.statut,
-                    p.nom,
-                    p.post_nom,
-                    p.prenom
-                FROM facture f
-                LEFT JOIN patients p
-                    ON p.id_patient = f.id_patient
-                WHERE 1 = 1
-                    " + filtre + @"
-                ORDER BY f.date_facture DESC,
-                         f.id_facture DESC";
-
-
-                    using (MySqlDataReader reader =
-                           MesClasses.ManagerClasse.CRUD(
-                               query,
-                               null,
-                               true))
-                    {
-                        if (reader.HasRows)
-                        {
-                            int i = 0;
-
-                            while (reader.Read())
-                            {
-                                string idFacture =
-                                    reader["id_facture"].ToString();
-
-                                string idPatient =
-                                    reader["id_patient"].ToString();
-
-                                string nom =
-                                    reader["nom"].ToString();
-
-                                string postnom =
-                                    reader["post_nom"].ToString();
-
-                                string prenom =
-                                    reader["prenom"].ToString();
-
-                                string typeFacture =
-                                    reader["type_facture"].ToString();
-
-                                string dateFacture =
-                                    reader["date_facture"].ToString();
-
-                                string montantTotal =
-                                    reader["montant_total"].ToString();
-
-                                string montantPaye =
-                                    reader["montant_paye"].ToString();
-
-                                string reste =
-                                    reader["reste"].ToString();
-
-                                string statut =
-                                    reader["statut"].ToString();
-
-
-                                // Création de la carte facture
-                                BunifuRoundedPanel panFacture =
-                                    CreerPanelFacture(
-                                        idFacture,
-                                        idPatient,
-                                        nom,
-                                        postnom,
-                                        prenom,
-                                        typeFacture,
-                                        dateFacture,
-                                        montantTotal,
-                                        montantPaye,
-                                        reste,
-                                        statut
-                                    );
-
-
-                                // Ajout au FlowLayoutPanel
-                                panel_facture.Controls.Add(panFacture);
-
-                                i++;
-                            }
-
-                            reader.Close();
-
-
-                            ProgressiveDisplay pd =
-                                new ProgressiveDisplay(
-                                    panel_facture,
-                                    100
-                                );
-
-                            pd.Start();
-                        }
-                        else
-                        {
-                            lb_not_found.Text =
-                                "Aucune facture dans le registre";
-
-                            panel_facture.Controls.Add(lb_not_found);
-
-                            lb_not_found.Visible = true;
-                        }
-                    }
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message);
-                }
+                commande.Parameters.AddWithValue(
+                    "@statutFacture",
+                    "Partiellement payé");
             }
         }
 
-        private BunifuRoundedPanel CreerPanelFacture(string idFacture,string idPatient,string nom,string postnom,string prenom,string typeFacture,string dateFacture,string montantTotal,string montantPaye,string reste,string statut)
+        // ============================================================
+        // CHARGEMENT DES FACTURES
+        // ============================================================
+
+        private void LoadFactures(params string[] args)
+        {
+            string recherche = "";
+
+            if (args != null &&
+                args.Length > 0 &&
+                args[0] != null)
+            {
+                recherche = args[0].Trim();
+            }
+
+            try
+            {
+                // ----------------------------------------------------
+                // Préparation de l'interface
+                // ----------------------------------------------------
+
+                panel_facture.SuspendLayout();
+
+                panel_facture.Controls.Clear();
+
+                panel_facture.FlowDirection =
+                    FlowDirection.LeftToRight;
+
+                panel_facture.WrapContents = true;
+                panel_facture.AutoScroll = true;
+
+                panel_facture.Padding =
+                    new Padding(10, 10, 8, 10);
+
+                lb_not_found.Visible = false;
+
+                // ----------------------------------------------------
+                // REQUETE UNIQUE
+                // ----------------------------------------------------
+
+                string query = @"
+                    SELECT
+                        f.id_facture,
+                        f.id_patient,
+                        f.type_facture,
+                        f.date_facture,
+                        f.montant_total,
+                        f.montant_paye,
+                        f.reste,
+                        f.statut,
+
+                        p.nom,
+                        p.post_nom,
+                        p.prenom
+
+                    FROM facture f
+
+                    LEFT JOIN patients p
+                        ON p.id_patient = f.id_patient
+
+                    WHERE 1 = 1
+                ";
+
+                // ----------------------------------------------------
+                // RECHERCHE
+                // ----------------------------------------------------
+
+                if (recherche.Length > 0)
+                {
+                    query += @"
+                        AND
+                        (
+                            p.nom LIKE @search
+                            OR p.post_nom LIKE @search
+                            OR p.prenom LIKE @search
+                            OR CAST(f.id_facture AS CHAR) LIKE @search
+                        )
+                    ";
+                }
+
+                // ----------------------------------------------------
+                // FILTRE
+                // ----------------------------------------------------
+
+                query += GetFiltreFacture();
+
+                // ----------------------------------------------------
+                // TRI
+                // ----------------------------------------------------
+
+                query += @"
+                    ORDER BY
+                        f.date_facture DESC,
+                        f.id_facture DESC";
+
+                // ----------------------------------------------------
+                // CONNEXION
+                // ----------------------------------------------------
+
+                using (MySqlConnection connexion =
+                    MesClasses.ManagerClasse.GetConnexion())
+                {
+                    using (MySqlCommand commande =
+                        new MySqlCommand(query, connexion))
+                    {
+                        // Recherche
+                        if (recherche.Length > 0)
+                        {
+                            commande.Parameters.AddWithValue(
+                                "@search",
+                                "%" + recherche + "%");
+                        }
+
+                        // Filtres
+                        AjouterParametresFiltre(
+                            commande);
+
+                        using (MySqlDataReader reader =
+                            commande.ExecuteReader())
+                        {
+                            bool trouve = false;
+
+                            while (reader.Read())
+                            {
+                                trouve = true;
+
+                                // ------------------------------------
+                                // ID FACTURE
+                                // ------------------------------------
+
+                                string idFacture =
+                                    GetString(reader, "id_facture");
+
+                                // ------------------------------------
+                                // ID PATIENT
+                                // ------------------------------------
+
+                                string idPatient =
+                                    GetString(reader, "id_patient");
+
+                                // ------------------------------------
+                                // PATIENT
+                                // ------------------------------------
+
+                                string nom =
+                                    GetString(reader, "nom");
+
+                                string postnom =
+                                    GetString(reader, "post_nom");
+
+                                string prenom =
+                                    GetString(reader, "prenom");
+
+                                // ------------------------------------
+                                // FACTURE
+                                // ------------------------------------
+
+                                string typeFacture =
+                                    GetString(
+                                        reader,
+                                        "type_facture");
+
+                                string dateFacture =
+                                    GetString(
+                                        reader,
+                                        "date_facture");
+
+                                string montantTotal =
+                                    GetString(
+                                        reader,
+                                        "montant_total");
+
+                                string montantPaye =
+                                    GetString(
+                                        reader,
+                                        "montant_paye");
+
+                                string reste =
+                                    GetString(
+                                        reader,
+                                        "reste");
+
+                                string statut =
+                                    GetString(
+                                        reader,
+                                        "statut");
+
+                                // ------------------------------------
+                                // CREATION CARTE
+                                // ------------------------------------
+
+                                BunifuRoundedPanel panFacture =
+                                    CreerPanelFacture(
+                                        idFacture,
+                                        idPatient,
+                                        nom,
+                                        postnom,
+                                        prenom,
+                                        typeFacture,
+                                        dateFacture,
+                                        montantTotal,
+                                        montantPaye,
+                                        reste,
+                                        statut);
+
+                                panel_facture.Controls.Add(
+                                    panFacture);
+                            }
+
+                            // ----------------------------------------
+                            // AUCUN RESULTAT
+                            // ----------------------------------------
+
+                            if (!trouve)
+                            {
+                                if (recherche.Length > 0)
+                                {
+                                    lb_not_found.Text =
+                                        "Aucune facture ne correspond " +
+                                        "au terme de recherche '" +
+                                        recherche +
+                                        "'";
+                                }
+                                else
+                                {
+                                    lb_not_found.Text =
+                                        "Aucune facture dans le registre";
+                                }
+
+                                panel_facture.Controls.Add(
+                                    lb_not_found);
+
+                                lb_not_found.Visible = true;
+                            }
+                        }
+                    }
+                }
+
+                // ----------------------------------------------------
+                // AFFICHAGE PROGRESSIF
+                // ----------------------------------------------------
+
+                if (panel_facture.Controls.Count > 0 &&
+                    lb_not_found.Visible == false)
+                {
+                    ProgressiveDisplay pd =
+                        new ProgressiveDisplay(
+                            panel_facture,
+                            100);
+
+                    pd.Start();
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur MySQL :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des factures :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                panel_facture.ResumeLayout();
+            }
+        }
+
+        // ============================================================
+        // LECTURE SECURISEE D'UNE VALEUR
+        // ============================================================
+
+        private string GetString(
+            MySqlDataReader reader,
+            string colonne)
+        {
+            if (reader[colonne] == DBNull.Value)
+            {
+                return "";
+            }
+
+            return reader[colonne].ToString();
+        }
+
+        // ============================================================
+        // CREATION D'UNE CARTE FACTURE
+        // ============================================================
+
+        private BunifuRoundedPanel CreerPanelFacture(
+            string idFacture,
+            string idPatient,
+            string nom,
+            string postnom,
+            string prenom,
+            string typeFacture,
+            string dateFacture,
+            string montantTotal,
+            string montantPaye,
+            string reste,
+            string statut)
         {
             // ---------------------------------------------------------
             // PANEL PRINCIPAL
-            // --------------------------------------------------------
+            // ---------------------------------------------------------
 
-            BunifuRoundedPanel panFacture = new BunifuRoundedPanel();
-            panFacture.Size = new Size(290, 135);
+            BunifuRoundedPanel panFacture =
+                new BunifuRoundedPanel();
+
+            panFacture.Size =
+                new Size(290, 135);
 
             panFacture.BorderRadius = 8;
-            panFacture.BorderColor = Color.Silver;
-            panFacture.BorderSize = 0;
-            panFacture.ShadowDepth = 10;
-            panFacture.ShadowColor = Color.Gray;
 
-            panFacture.Tag = idFacture;
+            panFacture.BorderColor =
+                Color.Silver;
+
+            panFacture.BorderSize = 0;
+
+            panFacture.ShadowDepth = 10;
+
+            panFacture.ShadowColor =
+                Color.Gray;
+
+            panFacture.Tag =
+                idFacture;
 
             panFacture.Margin =
                 new Padding(10);
@@ -368,216 +455,361 @@ namespace Cepima.MesUserCases.Comptabilité
             panFacture.Padding =
                 new Padding(10);
 
-
             // ---------------------------------------------------------
-            // PICTUREBOX
+            // IMAGE
             // ---------------------------------------------------------
 
             PictureBox picture =
                 MesClasses.ManagerClasse.AddPicture(
                     Properties.Resources.bill,
                     new Point(15, 15),
-                    new Size(60, 60)
-                );
+                    new Size(60, 60));
 
-            picture.SizeMode = PictureBoxSizeMode.Zoom;
-            panFacture.Controls.Add(picture);
+            picture.SizeMode =
+                PictureBoxSizeMode.Zoom;
 
+            panFacture.Controls.Add(
+                picture);
 
             // ---------------------------------------------------------
-            // TEXTE "FACTURE"
+            // TITRE FACTURE
             // ---------------------------------------------------------
 
             Label lbFacture =
                 MesClasses.ManagerClasse.CustomLabel(
                     "Facture",
-                    new Point(90, 18)
-                );
+                    new Point(90, 18));
 
             lbFacture.AutoSize = true;
 
             lbFacture.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
-            panFacture.Controls.Add(lbFacture);
-
+            panFacture.Controls.Add(
+                lbFacture);
 
             // ---------------------------------------------------------
-            // NUMERO DE FACTURE
+            // NUMERO
             // ---------------------------------------------------------
 
             Label lbNumero =
                 MesClasses.ManagerClasse.CustomLabel(
                     "N° " + idFacture,
-                    new Point(175, 18)
-                );
+                    new Point(175, 18));
 
             lbNumero.AutoSize = true;
 
             lbNumero.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
-            panFacture.Controls.Add(lbNumero);
-
+            panFacture.Controls.Add(
+                lbNumero);
 
             // ---------------------------------------------------------
-            // NOM DU PATIENT
+            // PATIENT
             // ---------------------------------------------------------
 
             string nomPatient =
-                (nom + " " + postnom + " " + prenom).Trim();
+                (nom + " " +
+                 postnom + " " +
+                 prenom).Trim();
 
             Label lbPatient =
                 MesClasses.ManagerClasse.CustomLabel(
                     nomPatient,
-                    new Point(90, 48)
-                );
+                    new Point(90, 48));
 
             lbPatient.AutoSize = true;
 
             lbPatient.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
-            panFacture.Controls.Add(lbPatient);
-
+            panFacture.Controls.Add(
+                lbPatient);
 
             // ---------------------------------------------------------
-            // STATUT
+            // STATUT - TITRE
             // ---------------------------------------------------------
 
             Label lbStatutTitre =
                 MesClasses.ManagerClasse.CustomLabel(
                     "Statut:",
-                    new Point(15, 98)
-                );
+                    new Point(15, 98));
 
             lbStatutTitre.AutoSize = true;
 
             lbStatutTitre.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
-            panFacture.Controls.Add(lbStatutTitre);
-
+            panFacture.Controls.Add(
+                lbStatutTitre);
 
             // ---------------------------------------------------------
-            // VALEUR DU STATUT
+            // STATUT
             // ---------------------------------------------------------
 
             Label lbStatut =
                 MesClasses.ManagerClasse.CustomLabel(
                     statut,
-                    new Point(75, 98)
-                );
+                    new Point(75, 98));
 
             lbStatut.AutoSize = true;
 
             lbStatut.Font =
-                new System.Drawing.Font(
+                new Font(
                     "Calibri",
                     10,
-                    FontStyle.Bold
-                );
+                    FontStyle.Bold);
 
+            // ---------------------------------------------------------
+            // COULEUR DU STATUT
+            // ---------------------------------------------------------
 
-            // Couleur selon le statut
             if (statut == "Non payé")
             {
-                lbStatut.ForeColor = Color.Red;
+                lbStatut.ForeColor =
+                    Color.Red;
             }
             else if (statut == "Payé")
             {
-                lbStatut.ForeColor = Color.FromArgb(0, 200, 83);
+                lbStatut.ForeColor =
+                    Color.FromArgb(
+                        0,
+                        200,
+                        83);
             }
-            else if (statut == "Partiellement payé")
-            {
-                lbStatut.ForeColor = Color.Orange;
-            }
-            else if (statut == "Clôturée")
+            else if (statut ==
+                     "Partiellement payé")
             {
                 lbStatut.ForeColor =
-                    Color.FromArgb(44, 123, 229);
+                    Color.Orange;
+            }
+            else if (statut ==
+                     "Clôturée")
+            {
+                lbStatut.ForeColor =
+                    Color.FromArgb(
+                        44,
+                        123,
+                        229);
             }
             else
             {
-                lbStatut.ForeColor = Color.Black;
+                lbStatut.ForeColor =
+                    Color.Black;
             }
 
-            panFacture.Controls.Add(lbStatut);
-
+            panFacture.Controls.Add(
+                lbStatut);
 
             // ---------------------------------------------------------
-            // EVENEMENT DU PANEL
+            // EVENEMENT
             // ---------------------------------------------------------
 
             panFacture.Cursor =
                 Cursors.Hand;
 
-            panFacture.Click += (e, s) =>
-            {
-                MessageBox.Show("Afficher la facture");
-                MesForms.FormFacturePrint facture = new MesForms.FormFacturePrint(Convert.ToInt32(idFacture));
-                facture.ShowDialog();
-            };
+            panFacture.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    try
+                    {
+                        int id =
+                            Convert.ToInt32(
+                                idFacture);
 
+                        MesForms.FormFacturePrint facture =
+                            new MesForms.FormFacturePrint(id);
+
+                        facture.ShowDialog();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            "Impossible d'ouvrir la facture :\n\n" +
+                            ex.Message,
+                            "Erreur",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                };
 
             // ---------------------------------------------------------
-            // RETOUR DU PANEL
+            // Permettre également le clic sur les contrôles enfants
             // ---------------------------------------------------------
+
+            picture.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirFacture(idFacture);
+                };
+
+            lbFacture.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirFacture(idFacture);
+                };
+
+            lbNumero.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirFacture(idFacture);
+                };
+
+            lbPatient.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirFacture(idFacture);
+                };
+
+            lbStatutTitre.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirFacture(idFacture);
+                };
+
+            lbStatut.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    OuvrirFacture(idFacture);
+                };
 
             return panFacture;
         }
 
-        private void tb_search_demande_TextChanged(object sender, EventArgs e)
-        {
-            LoadFactures(tb_search_demande.Text);
-        }
+        // ============================================================
+        // OUVRIR FACTURE
+        // ============================================================
 
-        private void rb_tout_CheckedChanged(object sender, EventArgs e)
+        private void OuvrirFacture(
+            string idFacture)
         {
-            if (rb_tout.Checked)
+            try
             {
-                LoadFactures();
+                int id =
+                    Convert.ToInt32(
+                        idFacture);
+
+                MesForms.FormFacturePrint facture =
+                    new MesForms.FormFacturePrint(id);
+
+                facture.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Impossible d'ouvrir la facture :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
-        private void rb_ambulatoire_CheckedChanged(object sender, EventArgs e)
+        // ============================================================
+        // RECHERCHE
+        // ============================================================
+
+        private void tb_search_demande_TextChanged(
+            object sender,
+            EventArgs e)
         {
-            if (rb_ambulatoire.Checked)
+            if (timerRecherche == null)
             {
-                LoadFactures();
+                return;
             }
+
+            timerRecherche.Stop();
+
+            timerRecherche.Start();
         }
 
-        private void rb_hospitalise_CheckedChanged(object sender, EventArgs e)
+        // ============================================================
+        // RADIO : TOUS
+        // ============================================================
+
+        private void rb_tout_CheckedChanged(
+            object sender,
+            EventArgs e)
         {
-            if (rb_hospitalise.Checked)
+            if (!rb_tout.Checked)
             {
-                LoadFactures();
+                return;
             }
+
+            timerRecherche.Stop();
+
+            LoadFactures(
+                tb_search_demande.Text);
         }
 
-        private void rb_partielle_CheckedChanged(object sender, EventArgs e)
+        // ============================================================
+        // RADIO : AMBULATOIRE
+        // ============================================================
+
+        private void rb_ambulatoire_CheckedChanged(
+            object sender,
+            EventArgs e)
         {
-            if (rb_partielle.Checked)
+            if (!rb_ambulatoire.Checked)
             {
-                LoadFactures();
+                return;
             }
+
+            timerRecherche.Stop();
+
+            LoadFactures(
+                tb_search_demande.Text);
+        }
+
+        // ============================================================
+        // RADIO : HOSPITALISE
+        // ============================================================
+
+        private void rb_hospitalise_CheckedChanged(
+            object sender,
+            EventArgs e)
+        {
+            if (!rb_hospitalise.Checked)
+            {
+                return;
+            }
+
+            timerRecherche.Stop();
+
+            LoadFactures(
+                tb_search_demande.Text);
+        }
+
+        // ============================================================
+        // RADIO : PARTIELLEMENT PAYE
+        // ============================================================
+
+        private void rb_partielle_CheckedChanged(
+            object sender,
+            EventArgs e)
+        {
+            if (!rb_partielle.Checked)
+            {
+                return;
+            }
+
+            timerRecherche.Stop();
+
+            LoadFactures(
+                tb_search_demande.Text);
         }
     }
 }
