@@ -30,13 +30,13 @@
         {
             this.flowSections = new System.Windows.Forms.FlowLayoutPanel();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.sectionAdministratif = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionPsychiatrique = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionConsultation = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionEEG = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionPrescription = new Cepima.MesForms.Fiches.SectionRepliable();
-            this.sectionNoteClinique = new Cepima.MesForms.Fiches.SectionRepliable();
             this.sectionDocument = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.sectionNoteClinique = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.sectionPrescription = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.sectionEEG = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.sectionConsultation = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.sectionPsychiatrique = new Cepima.MesForms.Fiches.SectionRepliable();
+            this.sectionAdministratif = new Cepima.MesForms.Fiches.SectionRepliable();
             this.flowSections.SuspendLayout();
             this.panelPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -69,34 +69,32 @@
             this.panelPrincipal.Size = new System.Drawing.Size(825, 739);
             this.panelPrincipal.TabIndex = 0;
             // 
-            // sectionAdministratif
+            // sectionDocument
             // 
-            this.sectionAdministratif.BackColor = System.Drawing.Color.White;
-            this.sectionAdministratif.Location = new System.Drawing.Point(5, 5);
-            this.sectionAdministratif.Margin = new System.Windows.Forms.Padding(5);
-            this.sectionAdministratif.Name = "sectionAdministratif";
-            this.sectionAdministratif.Size = new System.Drawing.Size(796, 215);
-            this.sectionAdministratif.TabIndex = 0;
-            this.sectionAdministratif.Titre = "Informations administratives";
+            this.sectionDocument.BackColor = System.Drawing.Color.White;
+            this.sectionDocument.Location = new System.Drawing.Point(3, 1422);
+            this.sectionDocument.Name = "sectionDocument";
+            this.sectionDocument.Size = new System.Drawing.Size(796, 215);
+            this.sectionDocument.TabIndex = 5;
+            this.sectionDocument.Titre = "Documents";
             // 
-            // sectionPsychiatrique
+            // sectionNoteClinique
             // 
-            this.sectionPsychiatrique.BackColor = System.Drawing.Color.White;
-            this.sectionPsychiatrique.Location = new System.Drawing.Point(5, 230);
-            this.sectionPsychiatrique.Margin = new System.Windows.Forms.Padding(5);
-            this.sectionPsychiatrique.Name = "sectionPsychiatrique";
-            this.sectionPsychiatrique.Size = new System.Drawing.Size(796, 215);
-            this.sectionPsychiatrique.TabIndex = 1;
-            this.sectionPsychiatrique.Titre = "Dossier Psychiatrique";
+            this.sectionNoteClinique.BackColor = System.Drawing.Color.White;
+            this.sectionNoteClinique.Location = new System.Drawing.Point(3, 1201);
+            this.sectionNoteClinique.Name = "sectionNoteClinique";
+            this.sectionNoteClinique.Size = new System.Drawing.Size(796, 215);
+            this.sectionNoteClinique.TabIndex = 1;
+            this.sectionNoteClinique.Titre = "Notes Cliniques";
             // 
-            // sectionConsultation
+            // sectionPrescription
             // 
-            this.sectionConsultation.BackColor = System.Drawing.Color.White;
-            this.sectionConsultation.Location = new System.Drawing.Point(3, 453);
-            this.sectionConsultation.Name = "sectionConsultation";
-            this.sectionConsultation.Size = new System.Drawing.Size(796, 215);
-            this.sectionConsultation.TabIndex = 2;
-            this.sectionConsultation.Titre = "Consultation";
+            this.sectionPrescription.BackColor = System.Drawing.Color.White;
+            this.sectionPrescription.Location = new System.Drawing.Point(3, 980);
+            this.sectionPrescription.Name = "sectionPrescription";
+            this.sectionPrescription.Size = new System.Drawing.Size(796, 215);
+            this.sectionPrescription.TabIndex = 4;
+            this.sectionPrescription.Titre = "Préscription";
             // 
             // sectionEEG
             // 
@@ -108,32 +106,34 @@
             this.sectionEEG.TabIndex = 3;
             this.sectionEEG.Titre = "EEG";
             // 
-            // sectionPrescription
+            // sectionConsultation
             // 
-            this.sectionPrescription.BackColor = System.Drawing.Color.White;
-            this.sectionPrescription.Location = new System.Drawing.Point(3, 980);
-            this.sectionPrescription.Name = "sectionPrescription";
-            this.sectionPrescription.Size = new System.Drawing.Size(796, 215);
-            this.sectionPrescription.TabIndex = 4;
-            this.sectionPrescription.Titre = "Préscription";
+            this.sectionConsultation.BackColor = System.Drawing.Color.White;
+            this.sectionConsultation.Location = new System.Drawing.Point(3, 453);
+            this.sectionConsultation.Name = "sectionConsultation";
+            this.sectionConsultation.Size = new System.Drawing.Size(796, 215);
+            this.sectionConsultation.TabIndex = 2;
+            this.sectionConsultation.Titre = "Consultation";
             // 
-            // sectionNoteClinique
+            // sectionPsychiatrique
             // 
-            this.sectionNoteClinique.BackColor = System.Drawing.Color.White;
-            this.sectionNoteClinique.Location = new System.Drawing.Point(3, 1201);
-            this.sectionNoteClinique.Name = "sectionNoteClinique";
-            this.sectionNoteClinique.Size = new System.Drawing.Size(796, 215);
-            this.sectionNoteClinique.TabIndex = 1;
-            this.sectionNoteClinique.Titre = "Notes Cliniques";
+            this.sectionPsychiatrique.BackColor = System.Drawing.Color.White;
+            this.sectionPsychiatrique.Location = new System.Drawing.Point(5, 230);
+            this.sectionPsychiatrique.Margin = new System.Windows.Forms.Padding(5);
+            this.sectionPsychiatrique.Name = "sectionPsychiatrique";
+            this.sectionPsychiatrique.Size = new System.Drawing.Size(796, 215);
+            this.sectionPsychiatrique.TabIndex = 1;
+            this.sectionPsychiatrique.Titre = "Dossier Psychiatrique";
             // 
-            // sectionDocument
+            // sectionAdministratif
             // 
-            this.sectionDocument.BackColor = System.Drawing.Color.White;
-            this.sectionDocument.Location = new System.Drawing.Point(3, 1422);
-            this.sectionDocument.Name = "sectionDocument";
-            this.sectionDocument.Size = new System.Drawing.Size(796, 215);
-            this.sectionDocument.TabIndex = 5;
-            this.sectionDocument.Titre = "Documents";
+            this.sectionAdministratif.BackColor = System.Drawing.Color.White;
+            this.sectionAdministratif.Location = new System.Drawing.Point(5, 5);
+            this.sectionAdministratif.Margin = new System.Windows.Forms.Padding(5);
+            this.sectionAdministratif.Name = "sectionAdministratif";
+            this.sectionAdministratif.Size = new System.Drawing.Size(796, 215);
+            this.sectionAdministratif.TabIndex = 0;
+            this.sectionAdministratif.Titre = "Informations administratives";
             // 
             // Form_Fiche_suivie
             // 

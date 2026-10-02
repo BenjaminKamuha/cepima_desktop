@@ -424,7 +424,7 @@ namespace Cepima.MesClasses
         // ============================================================
         // PAIEMENT EEG
         // ============================================================
-        public static void PayerEEG(
+        public static void  PayerEEG(
             int idFacture,
             int idDetailFacture,
             decimal montantPaiement,
@@ -466,7 +466,6 @@ namespace Cepima.MesClasses
                 FROM prestation p
                 INNER JOIN service s ON s.id_service = p.id_service
                 WHERE p.id_prestation = @id_prestation
-                  AND s.nom = 'EEG'
                   AND p.actif = 1
                   AND s.actif = 1";
 

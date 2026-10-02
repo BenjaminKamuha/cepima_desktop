@@ -392,7 +392,7 @@ namespace Cepima.MesUserCases.EEG
             // =====================================================
             // CREATION DU PANEL
             // =====================================================
-
+            
             CustomRoundedPanel panDemande =
                 new CustomRoundedPanel();
 
@@ -417,6 +417,15 @@ namespace Cepima.MesUserCases.EEG
             panDemande.Tag =
                 idDemande;
 
+            panDemande.Margin =
+               new Padding(10);
+
+            panDemande.Padding =
+                new Padding(
+                    10,
+                    10,
+                    8,
+                    10);
 
             // =====================================================
             // HOVER
@@ -534,13 +543,15 @@ namespace Cepima.MesUserCases.EEG
 
             PictureBox picture =
                 MesClasses.ManagerClasse.AddPicture(
-                    Properties.Resources.brain_40px,
+                    Properties.Resources.brain_90px,
                     new Point(2, 5),
-                    new Size(60, 60));
+                    new Size(55, 55));
 
 
             picture.Cursor =
                 Cursors.Hand;
+
+            picture.SizeMode = PictureBoxSizeMode.Zoom;
 
 
             panDemande.Controls.Add(

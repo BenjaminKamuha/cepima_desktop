@@ -18,7 +18,7 @@ namespace Cepima.MesUserCases.Consultation
 
             InitialiserEvenements();
 
-            rd_tout.Checked = true;
+            rd_statut_demande.Checked = true;
 
             ChargerDemandesConsultation();
         }
@@ -30,7 +30,6 @@ namespace Cepima.MesUserCases.Consultation
 
         private void InitialiserEvenements()
         {
-            rd_tout.CheckedChanged += FiltreChanged;
             rd_statut_demande.CheckedChanged += FiltreChanged;
             rd_statut_termine.CheckedChanged += FiltreChanged;
             rd_statut_annule.CheckedChanged += FiltreChanged;
@@ -82,16 +81,14 @@ namespace Cepima.MesUserCases.Consultation
 
         private string ObtenirStatutSelectionne()
         {
-            if (rd_statut_demande.Checked)
-                return "En attente";
-
+            
             if (rd_statut_termine.Checked)
                 return "Terminée";
 
             if (rd_statut_annule.Checked)
                 return "Annulée";
 
-            return "Tous";
+            return "Demandée";
         }
 
 
@@ -185,7 +182,7 @@ namespace Cepima.MesUserCases.Consultation
 
                         AND
                         (
-                            @statut = 'Tous'
+                            @statut = 'Demandée'
                             OR ds.statut = @statut
                         )
 
@@ -199,6 +196,9 @@ namespace Cepima.MesUserCases.Consultation
                             OR pr.libelle LIKE @recherche
                             OR ds.motif LIKE @recherche
                         )
+
+
+                        AND ds.statut IN ('Demandée', 'Terminée')
 
                         ORDER BY
                             ds.date_demande DESC";
@@ -216,12 +216,7 @@ namespace Cepima.MesUserCases.Consultation
                         // =================================================
                         // PARAMETRE STATUT
                         // =================================================
-
-                        cmd.Parameters.Add(
-                            "@statut",
-                            MySqlDbType.VarChar,
-                            30).Value =
-                            statut;
+                        cmd.Parameters.Add("@statut", MySqlDbType.VarChar, 30).Value = statut;
 
 
                         // =================================================

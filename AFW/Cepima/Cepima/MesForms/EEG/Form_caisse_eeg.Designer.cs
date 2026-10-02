@@ -121,6 +121,7 @@
             this.Name = "Form_caisse_eeg";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_caisse_eeg";
+            this.Load += new System.EventHandler(this.Form_caisse_eeg_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

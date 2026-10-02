@@ -104,8 +104,7 @@ namespace Cepima.MesUserCases.EEG
                             ON s.id_service =
                                ds.id_service
 
-                        WHERE
-                            s.nom = 'EEG'
+                   
 
                             AND ds.statut = 'En attente'
 

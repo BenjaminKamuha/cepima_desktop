@@ -30,7 +30,6 @@
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
             this.pnl_cons = new System.Windows.Forms.Panel();
-            this.rd_tout = new System.Windows.Forms.RadioButton();
             this.rd_statut_annule = new System.Windows.Forms.RadioButton();
             this.rd_statut_termine = new System.Windows.Forms.RadioButton();
             this.rd_statut_demande = new System.Windows.Forms.RadioButton();
@@ -70,18 +69,6 @@
             this.pnl_cons.Size = new System.Drawing.Size(997, 422);
             this.pnl_cons.TabIndex = 7;
             // 
-            // rd_tout
-            // 
-            this.rd_tout.AutoSize = true;
-            this.rd_tout.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_tout.Location = new System.Drawing.Point(320, 20);
-            this.rd_tout.Name = "rd_tout";
-            this.rd_tout.Size = new System.Drawing.Size(55, 22);
-            this.rd_tout.TabIndex = 45;
-            this.rd_tout.TabStop = true;
-            this.rd_tout.Text = "Tous";
-            this.rd_tout.UseVisualStyleBackColor = true;
-            // 
             // rd_statut_annule
             // 
             this.rd_statut_annule.AutoSize = true;
@@ -93,6 +80,7 @@
             this.rd_statut_annule.TabStop = true;
             this.rd_statut_annule.Text = "Annulé(s)";
             this.rd_statut_annule.UseVisualStyleBackColor = true;
+            this.rd_statut_annule.Visible = false;
             // 
             // rd_statut_termine
             // 
@@ -105,6 +93,7 @@
             this.rd_statut_termine.TabStop = true;
             this.rd_statut_termine.Text = "Terminé(s)";
             this.rd_statut_termine.UseVisualStyleBackColor = true;
+            this.rd_statut_termine.Visible = false;
             // 
             // rd_statut_demande
             // 
@@ -117,6 +106,7 @@
             this.rd_statut_demande.TabStop = true;
             this.rd_statut_demande.Text = "Demandé(s)";
             this.rd_statut_demande.UseVisualStyleBackColor = true;
+            this.rd_statut_demande.Visible = false;
             // 
             // tb_search_demande
             // 
@@ -145,7 +135,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.customRoundedPanel1);
-            this.Controls.Add(this.rd_tout);
             this.Controls.Add(this.rd_statut_annule);
             this.Controls.Add(this.rd_statut_termine);
             this.Controls.Add(this.rd_statut_demande);
@@ -162,7 +151,6 @@
 
         private CustomRoundedPanel customRoundedPanel1;
         private System.Windows.Forms.Panel pnl_cons;
-        private System.Windows.Forms.RadioButton rd_tout;
         private System.Windows.Forms.RadioButton rd_statut_annule;
         private System.Windows.Forms.RadioButton rd_statut_termine;
         private System.Windows.Forms.RadioButton rd_statut_demande;

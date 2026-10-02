@@ -107,7 +107,6 @@ namespace Cepima.MesForms.EEG
                                 tr);
                         }
 
-                        // 4. Paiement anticipé EEG.
                         // Le paiement est rattaché au détail EEG,
                         // mais ne clôture jamais la facture.
                         MesClasses.ReceptionManager.PayerEEG(
@@ -133,7 +132,21 @@ namespace Cepima.MesForms.EEG
                         }
 
                         MesClasses.ReceptionManager.AjouterLivreCaisse(PRIX_PRESTATION,0,"Caisse EEG","Paiement d'examen EEG");
+                        // Impression de la réçu
+                        int ID_PAIEMENT = 0;
+                        string recup_idPaiement = "SELECT id_paiement FROM paiement WHERE id_facture = @id";
+                        using (MySqlCommand cmd = new MySqlCommand(recup_idPaiement, con, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@id",idFacture);
+                            ID_PAIEMENT = Convert.ToInt32(cmd.ExecuteScalar());
+                        }
+                        MessageBox.Show(ID_PAIEMENT.ToString());
+
                         tr.Commit();
+                        FormRecu recu = new FormRecu(ID_PAIEMENT);
+                        recu.ShowDialog();
+
+
 
                         MessageBox.Show(
                             "Paiement EEG enregistré avec succès.\n\n" +
@@ -162,6 +175,11 @@ namespace Cepima.MesForms.EEG
 
         private void label1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void Form_caisse_eeg_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

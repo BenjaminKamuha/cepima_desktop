@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.pnl_examen = new System.Windows.Forms.Panel();
             this.tb_search_demande = new MyRoundedTextBox();
             this.rd_statut_demande = new System.Windows.Forms.RadioButton();
             this.rd_statut_termine = new System.Windows.Forms.RadioButton();
             this.rd_statut_annule = new System.Windows.Forms.RadioButton();
             this.rd_tout = new System.Windows.Forms.RadioButton();
+            this.pnl_examen = new System.Windows.Forms.FlowLayoutPanel();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,13 +62,6 @@
             this.customRoundedPanel1.ShadowSpread = 0;
             this.customRoundedPanel1.Size = new System.Drawing.Size(1003, 450);
             this.customRoundedPanel1.TabIndex = 2;
-            // 
-            // pnl_examen
-            // 
-            this.pnl_examen.Location = new System.Drawing.Point(3, 16);
-            this.pnl_examen.Name = "pnl_examen";
-            this.pnl_examen.Size = new System.Drawing.Size(997, 466);
-            this.pnl_examen.TabIndex = 7;
             // 
             // tb_search_demande
             // 
@@ -139,6 +132,15 @@
             this.rd_tout.Text = "Tous";
             this.rd_tout.UseVisualStyleBackColor = true;
             // 
+            // pnl_examen
+            // 
+            this.pnl_examen.AutoScroll = true;
+            this.pnl_examen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_examen.Location = new System.Drawing.Point(0, 0);
+            this.pnl_examen.Name = "pnl_examen";
+            this.pnl_examen.Size = new System.Drawing.Size(1003, 450);
+            this.pnl_examen.TabIndex = 0;
+            // 
             // User_examens
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -161,11 +163,11 @@
         #endregion
 
         private CustomRoundedPanel customRoundedPanel1;
-        private System.Windows.Forms.Panel pnl_examen;
         private MyRoundedTextBox tb_search_demande;
         private System.Windows.Forms.RadioButton rd_statut_demande;
         private System.Windows.Forms.RadioButton rd_statut_termine;
         private System.Windows.Forms.RadioButton rd_statut_annule;
         private System.Windows.Forms.RadioButton rd_tout;
+        private System.Windows.Forms.FlowLayoutPanel pnl_examen;
     }
 }

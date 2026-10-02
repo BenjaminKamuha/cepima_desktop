@@ -471,6 +471,32 @@ namespace Cepima.MesUserCases.Comptabilité
             panFacture.Controls.Add(
                 picture);
 
+            RoundedButton btn = new RoundedButton();
+            btn.ButtonText = "Clôturer";
+            btn.Size = new Size(90, 25);
+            btn.BorderRadius = 8;
+            btn.Location = new Point(170, 98);
+
+
+            btn.Click += (e, ev) =>
+            {
+                string query = "UPDATE facture SET statut = 'Clôturée' WHERE id_facture = @id_facture";
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                        cmd.ExecuteNonQuery();
+                        LoadFactures();
+                    }
+                }
+            };
+
+            if (statut != "Clôturée")
+            {
+                panFacture.Controls.Add(btn);
+            }
+
             // ---------------------------------------------------------
             // TITRE FACTURE
             // ---------------------------------------------------------
