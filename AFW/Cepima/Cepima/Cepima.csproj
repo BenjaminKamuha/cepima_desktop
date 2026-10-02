@@ -244,6 +244,7 @@
     <Compile Include="Controls\TopBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MesClasses\IAsyncLoadable.cs" />
     <Compile Include="MesClasses\LoadingHelper.cs" />
     <Compile Include="MesForms\Compt\Bon_de_sortie.cs">
       <SubType>Form</SubType>

@@ -247,17 +247,54 @@ namespace Cepima
             }
         }
 
-        // info bul
-        
-        private void bt_acceuil_Click(object sender, EventArgs e)
+
+        private async Task AfficherUserControlAsync<T>()
+            where T : UserControl, new()
         {
+            panel_center_main.Controls.Clear();
+
+            ModernLoader loader = new ModernLoader();
+
+            loader.Size = new Size(60, 60);
+
+            loader.Location = new Point(
+                (panel_center_main.ClientSize.Width - loader.Width) / 2,
+                (panel_center_main.ClientSize.Height - loader.Height) / 2
+            );
+
+            panel_center_main.Controls.Add(loader);
+
+            loader.Start();
+            loader.BringToFront();
+
+            // Laisse WinForms dessiner le loader
+            await Task.Delay(100);
+
+            T control = new T();
+
+            control.Dock = DockStyle.Fill;
+
+            // Si le UserControl possède un chargement asynchrone
+            IAsyncLoadable loadable = control as IAsyncLoadable;
+
+            if (loadable != null)
+            {
+                await loadable.ChargerAsync();
+            }
+
+            loader.Stop();
+            loader.Dispose();
 
             panel_center_main.Controls.Clear();
-            UC_logo_cepima uc_lg = new UC_logo_cepima();
-            uc_lg.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Add(uc_lg);
+            panel_center_main.Controls.Add(control);
+            control.BringToFront();
+        }
+        
+        private async void bt_acceuil_Click(object sender, EventArgs e)
+        {
 
-           
+            await AfficherUserControlAsync<UC_logo_cepima>();
+
             picture_image_menu.Image = Properties.Resources.homework_90px;
             lb_sous_menu.Text = "DashBoard";
             lb_sous_menu.Visible = true;
@@ -275,36 +312,30 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
-        private void bt_reception_Click(object sender, EventArgs e)
+
+        private async void bt_reception_Click(object sender, EventArgs e)
         {
+            await AfficherUserControlAsync<MesUserCases.User_Dash_patient>();
+
             picture_image_menu.Image = Properties.Resources.reception_90px;
             lb_sous_menu.Text = "Reception";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
-            // Affichage du dashboard reception
-            MesUserCases.User_Dash_patient patient = new MesUserCases.User_Dash_patient();
-            patient.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(patient);
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>  
+                new MenuItem("    Acceuil",Properties.Resources.Home, async (s,ev) =>  
                 {
-                    MesUserCases.User_Dash_patient dash = new MesUserCases.User_Dash_patient();
-                    dash.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(dash);
+                    await AfficherUserControlAsync<MesUserCases.User_Dash_patient>();
+
                 }),
 
-                new MenuItem("    Patients",Properties.Resources.nurse_call_30px,(s,ev) =>
+                new MenuItem("    Patients",Properties.Resources.nurse_call_30px, async (s,ev) =>
                 {
                     //instructions
-                    MesUserCases.User_display_patients display = new MesUserCases.User_display_patients();
-                    display.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(display);
+                    await AfficherUserControlAsync<MesUserCases.User_display_patients>();
+
                 }),
 
                 new MenuItem("    Nouveau",Properties.Resources.add_user_male_30px,(s,ev) =>
@@ -318,55 +349,38 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7,51,131), Color.FromArgb(44, 123, 229));
         }
-        private void bt_pharmacie_Click(object sender, EventArgs e)
+
+
+        private async void bt_pharmacie_Click(object sender, EventArgs e)
         {
+            await AfficherUserControlAsync<MesUserCases.User_DashBord_pharmacie>();
+
             picture_image_menu.Image = Properties.Resources.doctors_bag_90px;
             lb_sous_menu.Text = "Pharmacie";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
-
-            // Affichage du dashboard
-            MesUserCases.User_DashBord_pharmacie dashbord_ph1 = new MesUserCases.User_DashBord_pharmacie();
-            dashbord_ph1.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(dashbord_ph1);
-
             var items = new List<MenuItem>()
             {
 
-                new MenuItem("    Acceuil",Properties.Resources.home_30px,(s,ev) =>
+                new MenuItem("    Acceuil",Properties.Resources.home_30px, async (s,ev) =>
                 {
-                    MesUserCases.User_DashBord_pharmacie dashbord_ph = new MesUserCases.User_DashBord_pharmacie();
-                    dashbord_ph.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(dashbord_ph);
+                    await AfficherUserControlAsync<MesUserCases.User_DashBord_pharmacie>();
                 }),
               
-                new MenuItem("    Stock",Properties.Resources.capsule_30px,(s,ev) => {
+                new MenuItem("    Stock",Properties.Resources.capsule_30px, async (s,ev) => {
 
-                    MesUserCases.UC_stock_pharmacie user_med = new MesUserCases.UC_stock_pharmacie();
-                    panel_center_main.Controls.Clear();
-                    user_med.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Add(user_med);
-                
+                    await AfficherUserControlAsync < MesUserCases.UC_stock_pharmacie>();                
                 }),
-                new MenuItem("    Invetaire",Properties.Resources.adjust_30px,(s,ev) => {
+                new MenuItem("    Invetaire",Properties.Resources.adjust_30px, async (s,ev) => {
 
-                    MesUserCases.Pharmacie.UC_inventory uc_inventory = new MesUserCases.Pharmacie.UC_inventory();
-                    panel_center_main.Controls.Clear();
-                    uc_inventory.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Add(uc_inventory);
-
+                     await AfficherUserControlAsync<MesUserCases.Pharmacie.UC_inventory>();
                 }),
             
-                new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px,(s,ev) => {
+                new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px, async (s,ev) => {
 
-                    MesUserCases.Pharmacie.UC_prescription prescription = new MesUserCases.Pharmacie.UC_prescription();
-                    panel_center_main.Controls.Clear();
-                    prescription.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Add(prescription);
-
+                    await AfficherUserControlAsync < MesUserCases.Pharmacie.UC_prescription>();
+        
                 }),
 
             };
@@ -375,42 +389,34 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
-        private void bt_EEG_Click(object sender, EventArgs e)
+        private async void bt_EEG_Click(object sender, EventArgs e)
         {
+
+            await AfficherUserControlAsync<MesUserCases.EEG.User_DashBoard>();
+
             picture_image_menu.Image = Properties.Resources.brain_90px;
             lb_sous_menu.Text = "Test par EEG";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
-            //affichage du dashboard pour eeg
-            MesUserCases.EEG.User_DashBoard dash = new MesUserCases.EEG.User_DashBoard();
-            dash.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(dash);
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>
+                new MenuItem("    Acceuil",Properties.Resources.Home, async(s,ev) =>
                 {
-                    MesUserCases.EEG.User_DashBoard dash_ = new MesUserCases.EEG.User_DashBoard();
-                    dash_.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(dash_);
+                     await AfficherUserControlAsync<MesUserCases.EEG.User_DashBoard>();
+
                 }),
-                new MenuItem("    Examens",Properties.Resources.finish_flag_30px, (s,ev) =>
+                new MenuItem("    Examens",Properties.Resources.finish_flag_30px, async (s,ev) =>
                 {
-                    MesUserCases.EEG.User_examens finish = new MesUserCases.EEG.User_examens();
-                    finish.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(finish);
+                     await AfficherUserControlAsync<MesUserCases.EEG.User_examens>();
+
                 }),
 
-                new MenuItem("    Caisse",Properties.Resources.add_dollar_black, (s,ev) =>
+                new MenuItem("    Caisse",Properties.Resources.add_dollar_black, async (s,ev) =>
                 {
-                    MesUserCases.EEG.User_caisse finish = new MesUserCases.EEG.User_caisse();
-                    finish.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(finish);
+                    await AfficherUserControlAsync < MesUserCases.EEG.User_caisse>();
+
                 }),
 
             };
@@ -420,6 +426,7 @@ namespace Cepima
         }
         private void bt_soin_Click(object sender, EventArgs e)
         {
+
             picture_image_menu.Image = Properties.Resources.health_checkup_90px;
             lb_sous_menu.Text = "Soins Médicaux";
             lb_sous_menu.Visible = true;
@@ -433,52 +440,39 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
-        private void bt_comptability_Click(object sender, EventArgs e)
+
+        private async void bt_comptability_Click(object sender, EventArgs e)
         {
+            await AfficherUserControlAsync <MesUserCases.Comptabilité.DashBoard_comptability>();
+
             picture_image_menu.Image = Properties.Resources.paycheque_90px;
             lb_sous_menu.Text = "Comptabilité";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
             //afficher le dashboard
-            MesUserCases.Comptabilité.DashBoard_comptability dash = new MesUserCases.Comptabilité.DashBoard_comptability();
-            dash.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(dash);
-
             var items = new List<MenuItem>()
             {
-                    new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>
+                    new MenuItem("    Acceuil",Properties.Resources.Home, async (s,ev) =>
                     {
                           //afficher le dashboard
-                            MesUserCases.Comptabilité.DashBoard_comptability da = new MesUserCases.Comptabilité.DashBoard_comptability();
-                            da.Dock = DockStyle.Fill;
-                            panel_center_main.Controls.Clear();
-                            panel_center_main.Controls.Add(da);
+                          await AfficherUserControlAsync<MesUserCases.Comptabilité.DashBoard_comptability>();
                     }),
 
-                    new MenuItem("  Livre de caisse",Properties.Resources.open_book_30px,(s,ev) =>
+                    new MenuItem("  Livre de caisse",Properties.Resources.open_book_30px, async (s,ev) =>
                     {
-                        MesUserCases.Comptabilité.Livre_Caisse livre = new MesUserCases.Comptabilité.Livre_Caisse();
-                        livre.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(livre);
+                        await AfficherUserControlAsync < MesUserCases.Comptabilité.Livre_Caisse>();
                     }),
 
-                    new MenuItem("  Factures",Properties.Resources.bill, (s,ev) =>
+                    new MenuItem("  Factures",Properties.Resources.bill, async (s,ev) =>
                     {
-                            MesUserCases.Comptabilité.Facturation da = new MesUserCases.Comptabilité.Facturation();
-                            da.Dock = DockStyle.Fill;
-                            panel_center_main.Controls.Clear();
-                            panel_center_main.Controls.Add(da);
+                             await AfficherUserControlAsync<MesUserCases.Comptabilité.Facturation>();
+
                     }),
 
-                    new MenuItem("  Bon de sortie",Properties.Resources.export_30px, (s,ev) =>
+                    new MenuItem("  Bon de sortie",Properties.Resources.export_30px, async (s,ev) =>
                     {
-                        MesUserCases.Comptabilité.Bon_de_sortie bon = new MesUserCases.Comptabilité.Bon_de_sortie();
-                        bon.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(bon);
+                        await AfficherUserControlAsync <MesUserCases.Comptabilité.Bon_de_sortie>();
                     }),
                    
             };
@@ -487,8 +481,10 @@ namespace Cepima
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
       
-        private void bt_setting_Click(object sender, EventArgs e)
+        private async void bt_setting_Click(object sender, EventArgs e)
         {
+            await AfficherUserControlAsync<MesUserCases.Users.Utilisateurs_user>();
+
             
             picture_image_menu.Image = Properties.Resources.settings_90px;
             lb_sous_menu.Text = "Paramètres";
@@ -500,18 +496,14 @@ namespace Cepima
                 new MenuItem("   Géneraux",Properties.Resources.maintenance_20px,(s,ev) => {}),
                 new MenuItem("   Apparence",Properties.Resources.eye_checked_20px,(s, ev) => {}),
                 new MenuItem("   Sécurité",Properties.Resources.lock_20px, (s, ev) => {}),
-                new MenuItem("   Services",Properties.Resources.automation_30px, (s, ev) => {
-                    MesUserCases.Services.User_services uc_service = new MesUserCases.Services.User_services();
-                    panel_center_main.Controls.Clear();
-                    uc_service.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Add(uc_service);
+                new MenuItem("   Services",Properties.Resources.automation_30px, async (s, ev) => {
+
+                    await AfficherUserControlAsync < MesUserCases.Services.User_services >();
+
                 }),
-                 new MenuItem("   Utilisateur",Properties.Resources.user_30px, (s, ev) => 
+                 new MenuItem("   Utilisateur",Properties.Resources.user_30px, async (s, ev) => 
                  {
-                     MesUserCases.Users.Utilisateurs_user user = new MesUserCases.Users.Utilisateurs_user();
-                     user.Dock = DockStyle.Fill;
-                     panel_center_main.Controls.Clear();
-                     panel_center_main.Controls.Add(user);
+                      await AfficherUserControlAsync<MesUserCases.Users.Utilisateurs_user>();
                  }),
             };
             Create_sous_menu(items);
@@ -531,55 +523,42 @@ namespace Cepima
 
         }
 
-        private void bt_hospitalisation_Click(object sender, EventArgs e)
+        private async void bt_hospitalisation_Click(object sender, EventArgs e)
         {
+
+            await AfficherUserControlAsync < MesUserCases.Hospitalisation.User_DashBoard_Hospi >();
+
              picture_image_menu.Image = Properties.Resources.reception_90px;
             lb_sous_menu.Text = "Hospitalisation";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
-            //Acceuil 
-            MesUserCases.Hospitalisation.User_DashBoard_Hospi hospi = new MesUserCases.Hospitalisation.User_DashBoard_Hospi();
-            hospi.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(hospi);
-
             var items = new List<MenuItem>()
             {
-                new MenuItem("    Acceuil",Properties.Resources.Home,(s,ev) =>  
+                new MenuItem("    Acceuil",Properties.Resources.Home, async (s,ev) =>  
                 {
                     //instructions
-                   MesUserCases.Hospitalisation.User_DashBoard_Hospi h = new MesUserCases.Hospitalisation.User_DashBoard_Hospi();
-                   h.Dock = DockStyle.Fill;
-                   panel_center_main.Controls.Clear();
-                   panel_center_main.Controls.Add(h);
+                   await AfficherUserControlAsync<MesUserCases.Hospitalisation.User_DashBoard_Hospi>();
+
                 }),
 
-                new MenuItem("    Demandés",Properties.Resources.finish_flag_30px,(s,ev) =>  
+                new MenuItem("    Demandés",Properties.Resources.finish_flag_30px, async (s,ev) =>  
                 {
                     //instructions
-                    MesUserCases.Hospitalisation.User_Termine_hospi finish = new MesUserCases.Hospitalisation.User_Termine_hospi();
-                    finish.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(finish);
+                    await AfficherUserControlAsync < MesUserCases.Hospitalisation.User_Termine_hospi>();
                 }),
 
-                new MenuItem("    Chambres",Properties.Resources.chambre,(s,ev) =>  
+                new MenuItem("    Chambres",Properties.Resources.chambre, async(s,ev) =>  
                 {
                     //instructions
-                    MesUserCases.Hospitalisation.User_chambre finish = new MesUserCases.Hospitalisation.User_chambre();
-                    finish.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(finish);
+                    await AfficherUserControlAsync < MesUserCases.Hospitalisation.User_chambre>();
+
                 }),
 
-                 new MenuItem("    Hospitalisés",Properties.Resources.bed_black,(s,ev) =>  
+                 new MenuItem("    Hospitalisés",Properties.Resources.bed_black, async (s,ev) =>  
                 {
                     //instructions
-                    MesUserCases.Hospitalisation.User_patient_hospitalise finish = new MesUserCases.Hospitalisation.User_patient_hospitalise();
-                    finish.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(finish);
+                    await AfficherUserControlAsync < MesUserCases.Hospitalisation.User_patient_hospitalise>();
                 }),
             };
 
@@ -588,35 +567,30 @@ namespace Cepima
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
 
-        private void bt_consultation_Click(object sender, EventArgs e)
+        private async void bt_consultation_Click(object sender, EventArgs e)
         {
+            await AfficherUserControlAsync<MesUserCases.User_DashBoard_consultation>();
+
             picture_image_menu.Image = Properties.Resources.counselor_100px;
             lb_sous_menu.Text = "Consultation";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
-            MesUserCases.User_DashBoard_consultation dash = new MesUserCases.User_DashBoard_consultation();
-            dash.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(dash);
 
             var items = new List<MenuItem>()
             {
-                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>  
+                new MenuItem("      Acceuil",Properties.Resources.Home, async (s,ev) =>  
                 {
                     //instructions
-                   MesUserCases.User_DashBoard_consultation dash_ = new MesUserCases.User_DashBoard_consultation();
-                    dash_.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(dash_);
+                    await AfficherUserControlAsync<MesUserCases.User_DashBoard_consultation>();
+
                 }),
 
-                     new MenuItem("     En attente",Properties.Resources.joining_queue_30px,(s,ev) =>  
+                     new MenuItem("     En attente",Properties.Resources.joining_queue_30px, async(s,ev) =>  
                 {
-                    MesUserCases.Consultation.UC_cons_demande finish = new MesUserCases.Consultation.UC_cons_demande();
-                    finish.Dock = DockStyle.Fill;
-                    panel_center_main.Controls.Clear();
-                    panel_center_main.Controls.Add(finish);
+                    await AfficherUserControlAsync<MesUserCases.Consultation.UC_cons_demande>();
+
+                    
                 }),
 
                 //    new MenuItem("      Terminés", Properties.Resources.finish_flag_30px, (s, ev) => 
@@ -650,56 +624,46 @@ namespace Cepima
         }
 
 
-        private void bt_personnel_Click(object sender, EventArgs e)
+        private async void bt_personnel_Click(object sender, EventArgs e)
         {
+
+            await AfficherUserControlAsync < MesUserCases.Personnels.User_DashBord_Personnel>();
+
             picture_image_menu.Image = Properties.Resources.staff_90px;
             lb_sous_menu.Text = "Personnels";
             lb_sous_menu.Visible = true;
             panel11.Visible = true;
 
-            MesUserCases.Personnels.User_DashBord_Personnel acceuil_rh = new MesUserCases.Personnels.User_DashBord_Personnel();
-            acceuil_rh.Dock = DockStyle.Fill;
-            panel_center_main.Controls.Clear();
-            panel_center_main.Controls.Add(acceuil_rh);
-
             var items = new List<MenuItem>()
             {
-                new MenuItem("      Acceuil",Properties.Resources.Home,(s,ev) =>
+                new MenuItem("      Acceuil",Properties.Resources.Home, async (s,ev) =>
                     {
                         //control acceuil du personnel
-                        MesUserCases.Personnels.User_DashBord_Personnel acceuil = new MesUserCases.Personnels.User_DashBord_Personnel();
-                        acceuil.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(acceuil);
+                        await AfficherUserControlAsync < MesUserCases.Personnels.User_DashBord_Personnel>();
                     }),
 
-                new MenuItem("      Personnel",Properties.Resources.users_30px,(s,ev) =>
+                new MenuItem("      Personnel",Properties.Resources.users_30px, async (s,ev) =>
                     {
                         //control autre
-                        MesUserCases.User_personnels_display personnel = new MesUserCases.User_personnels_display();
-                        personnel.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(personnel);
+                        await AfficherUserControlAsync < MesUserCases.User_personnels_display>();
+
                     }),
 
                      //Troisième sous menu
-                     new MenuItem("     Présences",Properties.Resources.attendance_30px,(s,ev) =>
+                     new MenuItem("     Présences",Properties.Resources.attendance_30px, async(s,ev) =>
                     {
-                        MesUserCases.Personnels.User_Presence presence = new MesUserCases.Personnels.User_Presence();
-                        presence.Dock = DockStyle.Fill;
-                        panel_center_main.Controls.Clear();
-                        panel_center_main.Controls.Add(presence);
+                        await AfficherUserControlAsync < MesUserCases.Personnels.User_Presence >();
                     }),
 
                     // Quatrième sous menu (Gestion des empreints)
-                    new MenuItem("      Empreints", Properties.Resources.fingerprint_20px, (s, ev) =>
-                        {
+                    //new MenuItem("      Empreints", Properties.Resources.fingerprint_20px, (s, ev) =>
+                        //{
                             //MesUserCases.Personnels.User_fingerprint fingerP = new MesUserCases.Personnels.User_fingerprint();
                             //fingerP.Dock = DockStyle.Fill;
                             //panel_center_main.Controls.Clear();
                             //panel_center_main.Controls.Add(fingerP);
-                            MessageBox.Show("En cours de dev");
-                        }),
+                            //MessageBox.Show("En cours de dev");
+                        //}),
 
             };
             Create_sous_menu(items);
