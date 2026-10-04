@@ -33,12 +33,19 @@
             this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bt_print_list = new RoundedButton();
             this.txt_recherche = new MyRoundedTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.cbx_periode = new MyRoundedComboBox();
             this.cbx_statut = new MyRoundedComboBox();
             this.dgv_presences = new System.Windows.Forms.DataGridView();
+            this.colPersonnel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFonction = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHeureEntree = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHeureSortie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.bunifuRoundedPanel2 = new BunifuRoundedPanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -57,12 +64,6 @@
             this.lbl_mois_salaire = new System.Windows.Forms.Label();
             this.lbl_nb_retard = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.colPersonnel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFonction = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHeureEntree = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHeureSortie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bunifuRoundedPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -108,6 +109,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bt_print_list);
             this.panel1.Controls.Add(this.txt_recherche);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label9);
@@ -121,6 +123,31 @@
             this.panel1.Size = new System.Drawing.Size(1067, 354);
             this.panel1.TabIndex = 0;
             // 
+            // bt_print_list
+            // 
+            this.bt_print_list.BackColor = System.Drawing.Color.Transparent;
+            this.bt_print_list.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_print_list.BorderRadius = 8;
+            this.bt_print_list.ButtonText = "Imprimer la liste";
+            this.bt_print_list.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_print_list.DefaultBackColor = System.Drawing.Color.DodgerBlue;
+            this.bt_print_list.FlatAppearance.BorderSize = 0;
+            this.bt_print_list.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_print_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_print_list.ForeColor = System.Drawing.Color.White;
+            this.bt_print_list.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_print_list.Image = global::Cepima.Properties.Resources.print_30px;
+            this.bt_print_list.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_print_list.Location = new System.Drawing.Point(503, 10);
+            this.bt_print_list.Name = "bt_print_list";
+            this.bt_print_list.Size = new System.Drawing.Size(156, 35);
+            this.bt_print_list.TabIndex = 37;
+            this.bt_print_list.Text = "Imprimer la liste";
+            this.bt_print_list.TextColor = System.Drawing.Color.White;
+            this.bt_print_list.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_print_list.UseVisualStyleBackColor = false;
+            this.bt_print_list.Click += new System.EventHandler(this.bt_print_list_Click);
+            // 
             // txt_recherche
             // 
             this.txt_recherche.BackColor = System.Drawing.Color.White;
@@ -133,13 +160,13 @@
             this.txt_recherche.Image = global::Cepima.Properties.Resources.search;
             this.txt_recherche.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.txt_recherche.ImagePadding = 2;
-            this.txt_recherche.Location = new System.Drawing.Point(234, 12);
+            this.txt_recherche.Location = new System.Drawing.Point(212, 12);
             this.txt_recherche.MaxLength = 32767;
             this.txt_recherche.Name = "txt_recherche";
             this.txt_recherche.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
             this.txt_recherche.PlaceholderColor = System.Drawing.Color.Gray;
             this.txt_recherche.PlaceholderText = "Search personn";
-            this.txt_recherche.Size = new System.Drawing.Size(257, 30);
+            this.txt_recherche.Size = new System.Drawing.Size(241, 30);
             this.txt_recherche.TabIndex = 8;
             this.txt_recherche.TextChanged += new System.EventHandler(this.txt_recherche_TextChanged);
             // 
@@ -261,6 +288,42 @@
             this.dgv_presences.RowTemplate.Height = 30;
             this.dgv_presences.Size = new System.Drawing.Size(1061, 303);
             this.dgv_presences.TabIndex = 0;
+            // 
+            // colPersonnel
+            // 
+            this.colPersonnel.HeaderText = "Personnel";
+            this.colPersonnel.Name = "colPersonnel";
+            this.colPersonnel.ReadOnly = true;
+            // 
+            // colFonction
+            // 
+            this.colFonction.HeaderText = "Fonction";
+            this.colFonction.Name = "colFonction";
+            this.colFonction.ReadOnly = true;
+            // 
+            // colDate
+            // 
+            this.colDate.HeaderText = "Date";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            // 
+            // colHeureEntree
+            // 
+            this.colHeureEntree.HeaderText = "Entrée";
+            this.colHeureEntree.Name = "colHeureEntree";
+            this.colHeureEntree.ReadOnly = true;
+            // 
+            // colHeureSortie
+            // 
+            this.colHeureSortie.HeaderText = "Sortie ";
+            this.colHeureSortie.Name = "colHeureSortie";
+            this.colHeureSortie.ReadOnly = true;
+            // 
+            // colStatut
+            // 
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.Name = "colStatut";
+            this.colStatut.ReadOnly = true;
             // 
             // label1
             // 
@@ -528,42 +591,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "RETARD";
             // 
-            // colPersonnel
-            // 
-            this.colPersonnel.HeaderText = "Personnel";
-            this.colPersonnel.Name = "colPersonnel";
-            this.colPersonnel.ReadOnly = true;
-            // 
-            // colFonction
-            // 
-            this.colFonction.HeaderText = "Fonction";
-            this.colFonction.Name = "colFonction";
-            this.colFonction.ReadOnly = true;
-            // 
-            // colDate
-            // 
-            this.colDate.HeaderText = "Date";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            // 
-            // colHeureEntree
-            // 
-            this.colHeureEntree.HeaderText = "Entrée";
-            this.colHeureEntree.Name = "colHeureEntree";
-            this.colHeureEntree.ReadOnly = true;
-            // 
-            // colHeureSortie
-            // 
-            this.colHeureSortie.HeaderText = "Sortie ";
-            this.colHeureSortie.Name = "colHeureSortie";
-            this.colHeureSortie.ReadOnly = true;
-            // 
-            // colStatut
-            // 
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.Name = "colStatut";
-            this.colStatut.ReadOnly = true;
-            // 
             // User_Presence
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,5 +655,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeureEntree;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeureSortie;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
+        private RoundedButton bt_print_list;
     }
 }

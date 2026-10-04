@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Cepima.MesUserCases.Personnels
 {
@@ -21,6 +22,55 @@ namespace Cepima.MesUserCases.Personnels
         // LOAD
         // ============================================================
 
+        private DataTable RecupererDonneesPresences()
+        {
+            DataTable table = new DataTable();
+
+            // Colonnes correspondant à Ds_Liste
+            table.Columns.Add("Personnel", typeof(string));
+            table.Columns.Add("Fonction", typeof(string));
+            table.Columns.Add("Date", typeof(string));
+            table.Columns.Add("Heure_arrivee", typeof(string));
+            table.Columns.Add("Heure_sortie", typeof(string));
+
+            // Parcourir le DataGridView
+            foreach (DataGridViewRow ligne in dgv_presences.Rows)
+            {
+                if (ligne.IsNewRow)
+                    continue;
+
+                DataRow nouvelleLigne = table.NewRow();
+
+                nouvelleLigne["Personnel"] =
+                    ligne.Cells["colPersonnel"].Value == null
+                    ? ""
+                    : ligne.Cells["colPersonnel"].Value.ToString();
+
+                nouvelleLigne["Fonction"] =
+                    ligne.Cells["colFonction"].Value == null
+                    ? ""
+                    : ligne.Cells["colFonction"].Value.ToString();
+
+                nouvelleLigne["Date"] =
+                    ligne.Cells["colDate"].Value == null
+                    ? ""
+                    : ligne.Cells["colDate"].Value.ToString();
+
+                nouvelleLigne["Heure_arrivee"] =
+                    ligne.Cells["colHeureEntree"].Value == null
+                    ? ""
+                    : ligne.Cells["colHeureEntree"].Value.ToString();
+
+                nouvelleLigne["Heure_sortie"] =
+                    ligne.Cells["colHeureSortie"].Value == null
+                    ? ""
+                    : ligne.Cells["colHeureSortie"].Value.ToString();
+
+                table.Rows.Add(nouvelleLigne);
+            }
+
+            return table;
+        }
         private void User_Presence_Load(object sender, EventArgs e)
         {
             try
@@ -673,6 +723,24 @@ namespace Cepima.MesUserCases.Personnels
 
             return Convert.ToInt32(
                 reader[colonne]);
+        }
+
+        private void bt_print_list_Click(object sender, EventArgs e)
+        {
+            DataTable donnees = RecupererDonneesPresences();
+
+            if (donnees.Rows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Aucune présence à imprimer.",
+                    "Information",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
+            MesForms.Personnel.Liste_presence list = new MesForms.Personnel.Liste_presence(donnees);
+            list.ShowDialog();
         }
     }
 }

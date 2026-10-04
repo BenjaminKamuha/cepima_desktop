@@ -76,6 +76,9 @@
     <Reference Include="LiveCharts.Wpf">
       <HintPath>..\..\..\..\..\..\Soft\Arduino\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Reporting.WinForms.v11.1.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
       <Private>True</Private>
@@ -283,6 +286,17 @@
     </Compile>
     <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
       <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ds_Liste.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ds_Liste.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Liste_presence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Liste_presence.Designer.cs">
+      <DependentUpon>Liste_presence.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Pharmacie\Form_prescription.cs">
       <SubType>Form</SubType>
@@ -953,6 +967,10 @@
     <EmbeddedResource Include="MesForms\Personnel\Horaire_detail.resx">
       <DependentUpon>Horaire_detail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Personnel\Liste_presence.rdlc" />
+    <EmbeddedResource Include="MesForms\Personnel\Liste_presence.resx">
+      <DependentUpon>Liste_presence.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Update_personnel.resx">
       <DependentUpon>Update_personnel.cs</DependentUpon>
     </EmbeddedResource>
@@ -1145,6 +1163,17 @@
     </None>
     <None Include="ds_recu.xss">
       <DependentUpon>ds_recu.xsd</DependentUpon>
+    </None>
+    <None Include="MesForms\Personnel\Ds_Liste.xsc">
+      <DependentUpon>Ds_Liste.xsd</DependentUpon>
+    </None>
+    <None Include="MesForms\Personnel\Ds_Liste.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ds_Liste.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MesForms\Personnel\Ds_Liste.xss">
+      <DependentUpon>Ds_Liste.xsd</DependentUpon>
     </None>
     <None Include="MesForms\Rapport\Ds_Bon.xsc">
       <DependentUpon>Ds_Bon.xsd</DependentUpon>
