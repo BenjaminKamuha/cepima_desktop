@@ -24,30 +24,40 @@ namespace Cepima.MesForms
 
         private void ChargerSection()
         {
-            //  (Information administratives)
-            MesForms.Fiches.User_AdminInfo info = new Fiches.User_AdminInfo(PatientID.ToString());
+            // Informations administratives
+            MesForms.Fiches.User_AdminInfo info = new MesForms.Fiches.User_AdminInfo(PatientID.ToString());
             info.Dock = DockStyle.Fill;
-            sectionAdministratif.Contenu.Controls.Add(info);
+            // Vider uniquement la zone de contenu
+            section_info_patient.Contenu.Controls.Clear();
+            section_info_patient.Contenu.Controls.Add(info);
 
-            // section consultation
+            // Historique et motif de consultation
             MesForms.Fiches.User_consultation cons = new Fiches.User_consultation(PatientID);
             cons.Dock = DockStyle.Fill;
-            sectionConsultation.Contenu.Controls.Add(cons);
+            section_motif.Contenu.Controls.Clear();
+            section_motif.Contenu.Controls.Add(cons);
 
-            // section préscription
-            MesForms.Fiches.User_prescription presc = new Fiches.User_prescription();
-            presc.Dock = DockStyle.Fill;
-            sectionPrescription.Contenu.Controls.Add(presc);
+            // Tous les examens possibles
+            MesForms.Fiches.User_examens ex = new Fiches.User_examens(PatientID);
+            ex.Dock = DockStyle.Fill;
+            section_examens.Contenu.Controls.Clear();
+            section_examens.Contenu.Controls.Add(ex);
 
-            // section EEG
-            MesForms.Fiches.User_EEG_fiche eeg = new Fiches.User_EEG_fiche();
-            eeg.Dock = DockStyle.Fill;
-            sectionEEG.Contenu.Controls.Add(eeg);
+            // antécedents
+            MesForms.Fiches.User_antecedant ante = new Fiches.User_antecedant(PatientID);
+            ante.Dock = DockStyle.Fill;
+            section_antecedents.Contenu.Controls.Clear();
+            section_antecedents.Contenu.Controls.Add(ante);
 
-            // section note clinique
-            MesForms.Fiches.User_note_clinique note = new Fiches.User_note_clinique();
-            note.Dock = DockStyle.Fill;
-            sectionNoteClinique.Contenu.Controls.Add(note);
+            // Autres sections
+            MesForms.Fiches.User_Other autre = new Fiches.User_Other(PatientID);
+            autre.Dock = DockStyle.Fill;
+            section_autre.Contenu.Controls.Clear();
+            section_autre.Contenu.Controls.Add(autre);
+        }
+
+        private void Form_Fiche_suivie_Load(object sender, EventArgs e)
+        {
 
         }
       

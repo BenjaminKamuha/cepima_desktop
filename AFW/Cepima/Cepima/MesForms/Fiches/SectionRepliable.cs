@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Cepima.MesForms.Fiches
@@ -37,14 +30,16 @@ namespace Cepima.MesForms.Fiches
         public SectionRepliable()
         {
             InitializeComponent();
-            hauteurOuverte = this.Height;
         }
 
         private void btnToggle_Click(object sender, EventArgs e)
         {
             if (panelContent.Visible)
             {
-                // Fermer la section
+                // On mémorise la hauteur actuelle
+                hauteurOuverte = this.Height;
+
+                // Fermer
                 panelContent.Visible = false;
 
                 this.Height = panelHeader.Height;
@@ -53,9 +48,10 @@ namespace Cepima.MesForms.Fiches
             }
             else
             {
-                // Ouvrir la section
+                // Ouvrir
                 panelContent.Visible = true;
 
+                // Restaurer la hauteur mémorisée
                 this.Height = hauteurOuverte;
 
                 btnToggle.Text = "−";
@@ -63,4 +59,3 @@ namespace Cepima.MesForms.Fiches
         }
     }
 }
-

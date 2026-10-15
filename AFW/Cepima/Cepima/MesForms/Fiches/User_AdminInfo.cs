@@ -36,34 +36,51 @@ namespace Cepima.MesForms.Fiches
         //méthode pour charger les informations administratives du patient
         private void LoadDataAdministratives()
         {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            try
             {
-                try
+                string query = "SELECT CONCAT(nom,' ',post_nom,' ',prenom) AS patient,sexe,date_naissance,telephone,adresse,profession,nom_pere,nom_mere,profession_pere,profession_mere,confession_religieuse,niveau_etude,personne_accompagnante,telephone_accompagnant,adresse_accompagnant,autres_membres_famille,engagement_tuteur,etat_civil FROM patients WHERE id_patient = @id";
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@id",ID_PATIENT);
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
                 {
-                    string query = "SELECT CONCAT(p.nom,' ',p.post_nom,' ',p.prenom) AS Patient,CONCAT('PAT-',YEAR(p.date_creation),'-',p.numero_fiche) AS dossier,p.nom_garde,p.telephone_garde,p.date_naissance,p.sexe,c.date_consultation,d.libelle AS diagnostic FROM patients p LEFT JOIN consultation c ON p.id_patient = c.patient_id LEFT JOIN diagnostic d ON c.diagnostic_id = d.id WHERE p.id_patient = @id ORDER BY c.date_consultation DESC LIMIT 1";
-                    MesClasses.ManagerClasse.request_params.Clear();
-                    MesClasses.ManagerClasse.request_params.Add("@id",ID_PATIENT);
-                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
+                    while (reader.Read())
                     {
-                        if (reader.Read())
-                        {
-                            lb_nom.Text = reader["Patient"].ToString();
-                            lb_dossier.Text = reader["dossier"].ToString();
-                            DateTime date = Convert.ToDateTime(reader["date_naissance"]);
-                            int annee = CalculerAge(date);
-                            lb_age.Text = annee.ToString() + " ans" + " - " + reader["sexe"];
-                            lb_adresse.Text = reader["telephone_garde"].ToString();
-                            lb_date.Text = date.ToString();
-                            lb_diagnostic.Text = reader["diagnostic"].ToString();
-                        }
-                        reader.Close();
+                        lb_nom.Text = reader["patient"].ToString();
+                        lb_date.Text = Convert.ToDateTime(reader["date_naissance"]).ToString("dd/MM/yyyy");
+                        DateTime dt = Convert.ToDateTime(reader["date_naissance"]);
+                        int age = CalculerAge(dt);
+                        lb_age.Text = age.ToString() + "ans";
+                        lb_sexe.Text = reader["sexe"].ToString();
+                        lb_adresse.Text = reader["adresse"].ToString();
+                        lb_phone.Text = reader["telephone"].ToString();
+                        lb_profession.Text = reader["profession"].ToString();
+                        lb_nom_mere.Text = reader["nom_mere"].ToString();
+                        lb_nom_pere.Text = reader["nom_pere"].ToString();
+                        lb_profession_mere.Text = reader["profession_mere"].ToString();
+                        lb_profession_pere.Text = reader["profession_pere"].ToString();
+                        lb_confession.Text = reader["confession_religieuse"].ToString();
+                        lb_etat_civile.Text = reader["etat_civil"].ToString();
+                        lb_niveau_etude.Text = reader["niveau_etude"].ToString();
+                        lb_personne_accompagner.Text = reader["personne_accompagnante"].ToString();
+                        lb_contact.Text = reader["telephone_accompagnant"].ToString();
+                        lb_adresse_personnel.Text = reader["adresse_accompagnant"].ToString();
+                        lb_nom_autre.Text = reader["autres_membres_famille"].ToString();
+                        lb_engagement.Text = reader["engagement_tuteur"].ToString();
                     }
+                    reader.Close();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message);
-                }
+
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur de chargement de données : "+ex.Message);
+            }
+        }
+
+        private void bunifuRoundedPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
