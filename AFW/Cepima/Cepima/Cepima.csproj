@@ -68,13 +68,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveCharts">
-      <HintPath>..\..\..\..\..\..\Soft\Arduino\Bibliotheques\C#\LiveChart_lib\LiveChart\lib\net45\LiveCharts.dll</HintPath>
+      <HintPath>C:\Users\benja\Desktop\Live\LiveChart\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.WinForms">
-      <HintPath>..\..\..\..\..\..\Soft\Arduino\Bibliotheques\C#\LiveChart_lib\LiveCharts.winforms\livecharts.winforms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+      <HintPath>C:\Users\benja\Desktop\Live\livecharts.winforms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="LiveCharts.Wpf">
-      <HintPath>..\..\..\..\..\..\Soft\Arduino\Bibliotheques\C#\LiveChart_lib\liveChart.wpf\lib\net45\LiveCharts.Wpf.dll</HintPath>
+      <HintPath>C:\Users\benja\Desktop\Live\liveChart.wpf\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Word, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
