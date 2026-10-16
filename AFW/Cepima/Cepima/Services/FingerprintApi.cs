@@ -925,6 +925,7 @@ namespace Cepima.Services
                                 "{\"success\":false," +
                                 "\"message\":\"Agent non trouvé\"}");
 
+                            MessageBox.Show("Agent non trouvé");
                             return;
                         }
 
