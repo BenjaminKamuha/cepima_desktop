@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using Cepima.Data;
+using Cepima.MesUserCases.Personnels;
+using Cepima.MesForms.Personnel;
 
 namespace Cepima.Services
 {
@@ -236,6 +238,7 @@ namespace Cepima.Services
                         "{\"success\":false," +
                         "\"message\":\"Agent non reconnu\"}");
 
+                    ShowUnknownAgentDialogOnUIThread();
                     return;
                 }
 
@@ -291,8 +294,7 @@ namespace Cepima.Services
                         "{\"success\":false," +
                         "\"message\":\"Agent non reconnu\"}");
 
-                    Task.Factory.StartNew(
-                        ShowUnknownAgentDialog);
+                    
 
                     return;
                 }
@@ -318,6 +320,32 @@ namespace Cepima.Services
             }
         }
 
+        private void ShowUnknownAgentDialogOnUIThread()
+        {
+            try
+            {
+                if (Application.OpenForms.Count == 0)
+                    return;
+
+                Form mainForm = Application.OpenForms[0];
+
+                Action action = delegate
+                {
+                    ShowUnknownAgentDialog();
+                };
+
+                if (mainForm.InvokeRequired)
+                    mainForm.BeginInvoke(action);
+                else
+                    action();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(
+                    "Erreur ShowUnknownAgentDialog : " + ex.Message);
+            }
+        }
+
 
         // ========================================================
         // AGENT INCONNU
@@ -327,20 +355,11 @@ namespace Cepima.Services
         {
             try
             {
-                DialogResult result =
-                    MessageBox.Show(
-                        "Agent non reconnu.\n\n" +
-                        "Voulez-vous l'ajouter ?",
-                        "CEPIMA - R307",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question);
 
-                if (
-                    result ==
-                    DialogResult.Yes)
-                {
-                    OpenAddPersonnelForm();
-                }
+                AgentNonReconnu unknown_fp = new AgentNonReconnu();
+                Presence pres = new Presence(false, unknown_fp);
+                pres.ShowDialog();
+
             }
             catch
             {
@@ -353,80 +372,13 @@ namespace Cepima.Services
         // OUVRIR FORMULAIRE PERSONNEL
         // ========================================================
 
-        private void OpenAddPersonnelForm()
-        {
-            try
-            {
-                int fingerprintId =
-                    GetNextFingerprintId();
 
-                Action action =
-                    delegate
-                    {
-                        using (
-                            MesForms.Personnel.Ajout_personnel form =
-                            new MesForms.Personnel.Ajout_personnel())
-                        {
-                            form.FingerprintId =
-                                fingerprintId;
-
-                            form.ShowDialog();
-                        }
-                    };
-
-                if (
-                    Application.OpenForms.Count == 0)
-                    return;
-
-                Form mainForm =
-                    Application.OpenForms[0];
-
-                if (mainForm.InvokeRequired)
-                {
-                    mainForm.BeginInvoke(action);
-                }
-                else
-                {
-                    action();
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowError(
-                    "Erreur ouverture formulaire :\n\n" +
-                    ex.Message);
-            }
-        }
 
 
         // ========================================================
         // PROCHAIN FINGERPRINT ID
         // ========================================================
 
-        private int GetNextFingerprintId()
-        {
-            using (
-                MySqlConnection con =
-                db.GetConnection())
-            {
-                con.Open();
-
-                string sql =
-                    "SELECT COALESCE(" +
-                    "MAX(fingerprint_id),0) + 1 " +
-                    "FROM personnels";
-
-                using (
-                    MySqlCommand cmd =
-                    new MySqlCommand(
-                        sql,
-                        con))
-                {
-                    return Convert.ToInt32(
-                        cmd.ExecuteScalar());
-                }
-            }
-        }
 
 
         // ========================================================
@@ -924,8 +876,9 @@ namespace Cepima.Services
                                 404,
                                 "{\"success\":false," +
                                 "\"message\":\"Agent non trouvé\"}");
-
-                            MessageBox.Show("Agent non trouvé");
+                            MessageBox.Show("Empreinte reconnue mais Agent non trouvé.");
+                            ShowUnknownAgentDialogOnUIThread();
+                            
                             return;
                         }
 
@@ -1076,15 +1029,92 @@ namespace Cepima.Services
                 // SORTIE
                 // ------------------------------------------------
 
-                if (
-                    string.IsNullOrWhiteSpace(
-                        heureSortie))
+                if (string.IsNullOrWhiteSpace(heureSortie))
                 {
+                    // --------------------------------------------
+                    // VERIFIER LE DELAI D'UNE HEURE DANS MYSQL
+                    // --------------------------------------------
+
+                    string checkSql =
+                        "SELECT " +
+                        "TIMESTAMPDIFF(SECOND, " +
+                        "TIMESTAMP(date_presence, heure_entree), " +
+                        "NOW()) AS duree_presence " +
+                        "FROM presences " +
+                        "WHERE id_personnel = @id_personnel " +
+                        "AND date_presence = CURDATE() " +
+                        "LIMIT 1";
+
+                    long dureePresence = 0;
+
+                    using (
+                        MySqlCommand cmd =
+                        new MySqlCommand(
+                            checkSql,
+                            con))
+                    {
+                        cmd.Parameters.AddWithValue(
+                            "@id_personnel",
+                            personnelId);
+
+                        object resultat = cmd.ExecuteScalar();
+
+                        if (resultat == null || resultat == DBNull.Value)
+                        {
+                            SendResponse(
+                                context,
+                                400,
+                                "{\"success\":false," +
+                                "\"message\":\"Impossible de vérifier la durée de présence\"}");
+
+                            return;
+                        }
+
+                        dureePresence = Convert.ToInt64(resultat);
+                    }
+
+                    // --------------------------------------------
+                    // REFUSER SI MOINS DE 60 MINUTES
+                    // --------------------------------------------
+
+                    if (dureePresence < 600)
+                    {
+                        long secondesRestantes = 600 - dureePresence;
+
+                        int minutesRestantes =
+                            (int)Math.Ceiling(secondesRestantes / 60.0);
+
+                        SendResponse(
+                            context,
+                            400,
+                            "{\"success\":false," +
+                            "\"message\":\"Sortie non autorisée. Dix minutes de présence est obligatoire.\"," +
+                            "\"minutes_restantes\":" +
+                            minutesRestantes +
+                            "}");
+                        MessageBox.Show(
+                            "Sortie non autorisée !\n\n" +
+                            "Sortie non autorisée. Dix minutes de présence.\n\n" +
+                            "Temps restant : " +
+                            minutesRestantes +
+                            " minute(s).",
+                            "Contrôle de présence",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        return;
+                    }
+
+                    // --------------------------------------------
+                    // ENREGISTRER LA SORTIE
+                    // --------------------------------------------
+
                     string updateSql =
                         "UPDATE presences " +
                         "SET heure_sortie = CURTIME() " +
                         "WHERE id_personnel = @id_personnel " +
-                        "AND date_presence = CURDATE()";
+                        "AND date_presence = CURDATE() " +
+                        "AND heure_sortie IS NULL";
 
                     using (
                         MySqlCommand cmd =
@@ -1096,13 +1126,22 @@ namespace Cepima.Services
                             "@id_personnel",
                             personnelId);
 
-                        cmd.ExecuteNonQuery();
+                        int lignesModifiees = cmd.ExecuteNonQuery();
+
+                        if (lignesModifiees == 0)
+                        {
+                            SendResponse(
+                                context,
+                                400,
+                                "{\"success\":false," +
+                                "\"message\":\"La sortie n'a pas pu être enregistrée\"}");
+
+                            return;
+                        }
                     }
 
                     heureSortie =
-                        DateTime.Now
-                        .ToString(
-                            "HH:mm:ss");
+                        DateTime.Now.ToString("HH:mm:ss");
 
                     SendResponse(
                         context,
@@ -1141,6 +1180,8 @@ namespace Cepima.Services
                     ",\"score\":" +
                     score +
                     "}");
+
+                MessageBox.Show("Présence déjà complète");
             }
         }
 
@@ -1160,23 +1201,48 @@ namespace Cepima.Services
             Action action =
                 delegate
                 {
-                    MessageBox.Show(
-                        "Agent : " +
-                        nom +
-                        " " +
-                        postNom +
-                        " " +
-                        prenom +
-                        "\n\n" +
-                        type +
-                        " : " +
-                        heure +
-                        "\n" +
-                        "Score : " +
-                        score,
-                        "CEPIMA - Présence",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                    //MessageBox.Show(
+                    //    "Agent : " +
+                    //    nom +
+                    //    " " +
+                    //    postNom +
+                    //    " " +
+                    //    prenom +
+                    //    "\n\n" +
+                    //    type +
+                    //    " : " +
+                    //    heure +
+                    //    "\n" +
+                    //    "Score : " +
+                    //    score,
+                    //    "CEPIMA - Présence",
+                    //    MessageBoxButtons.OK,
+                    //    MessageBoxIcon.Information);
+
+                    Control control = null;
+
+                    if (type == "Sortie")
+                    {
+                        SignatureSortie signSortie = new SignatureSortie(
+                            nom + " " + postNom + " " + prenom,
+                            DateTime.Now.Date.ToString("dd/MM/yyyy"),
+                            heure);
+
+                        control = signSortie;
+                    }
+
+                    else
+                    {
+                        SignaturePresence signPresence = new SignaturePresence(
+                        nom + " " + postNom + " " + prenom,
+                        DateTime.Now.Date.ToString("dd/MM/yyyy"),
+                        heure);
+
+                        control = signPresence;
+                    }
+
+                    Cepima.MesForms.Personnel.Presence pres = new MesForms.Personnel.Presence(true, control);
+                    pres.ShowDialog();
                 };
 
             try

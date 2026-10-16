@@ -386,8 +386,8 @@ namespace Cepima.MesForms
             // =====================================================
             // DEMARRER LE LOADER
             // =====================================================
-
-            MesClasses.LoadingHelper.Start(bt_connexion);
+            Size size = new Size(60, 60);
+            MesClasses.LoadingHelper.Start(bt_connexion, size);
 
 
             try

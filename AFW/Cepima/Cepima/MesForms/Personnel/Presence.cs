@@ -12,29 +12,29 @@ namespace Cepima.MesForms.Personnel
 {
     public partial class Presence : Form
     {
-        string nom_personnel;
-        DateTime date;
-        string hour;
-
-        public Presence(string nom, DateTime date, string hour)
+        bool success;
+        public Presence(bool success, Control user_control)
         {
             InitializeComponent();
 
+            success = success;
 
-            timer.Interval = 5000;
+            if (success)
+            {
+                timer.Interval = 10000;
+            }
+
+            else
+            {
+                timer.Interval = 15000;
+            }
+
+            pan_presence_check.Controls.Clear();
+            user_control.Dock = DockStyle.Fill;
+            pan_presence_check.Controls.Add(user_control);
+            
             timer.Start();
-
-            nom_personnel = nom;
-            date = date;
-            hour = hour;
-
-            lb_nom_personnel.Text = nom;
-            lb_date.Text = Convert.ToString(date);
-            lb_heure_arrive.Text = Convert.ToString(hour);
-
-
             timer.Tick += timer_Tick;
-
         }
 
         void timer_Tick(object sender, EventArgs e)

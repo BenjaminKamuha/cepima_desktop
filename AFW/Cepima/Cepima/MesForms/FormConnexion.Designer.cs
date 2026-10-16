@@ -263,6 +263,7 @@
             this.cb_remember.TabIndex = 2;
             this.cb_remember.Text = "Se souvenir de moi";
             this.cb_remember.UseVisualStyleBackColor = true;
+            this.cb_remember.Visible = false;
             // 
             // label3
             // 

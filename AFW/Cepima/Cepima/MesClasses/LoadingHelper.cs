@@ -6,7 +6,7 @@ namespace Cepima.MesClasses
 {
     public static class LoadingHelper
     {
-        public static void Start(Control button)
+        public static void Start(Control button, Size size)
         {
             if (button == null || button.Parent == null)
                 return;
@@ -19,7 +19,7 @@ namespace Cepima.MesClasses
 
             ModernLoader loader = new ModernLoader();
 
-            loader.Size = new Size(60, 60);
+            loader.Size = size;
             loader.Location = button.Location;
             loader.Anchor = button.Anchor;
 
