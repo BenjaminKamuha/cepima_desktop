@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesUserCases.Hospitalisation
 {
     public partial class User_patient_hospitalise : UserControl
@@ -15,248 +16,570 @@ namespace Cepima.MesUserCases.Hospitalisation
         public User_patient_hospitalise()
         {
             InitializeComponent();
+
             LoadPatientsHospitalises();
         }
 
-        private void LoadPatientsHospitalises(string recherche = "")
+
+        // ============================================================
+        // CHARGER LES PATIENTS HOSPITALISES
+        // ============================================================
+
+        private void LoadPatientsHospitalises(
+            string recherche = "")
         {
-            flow_demande.Controls.Clear();
-            lb_not_found.Visible = false;
             try
             {
-                string query = "SELECT h.id_hospitalisation,p.id_patient,p.nom,p.post_nom,p.prenom,p.sexe,p.date_naissance,h.etat FROM hospitalisation h INNER JOIN patients p ON h.id_patient = p.id_patient  WHERE 1 = 1";
+                // =====================================================
+                // SUSPENDRE LE LAYOUT
+                // =====================================================
+
+                flow_demande.SuspendLayout();
+
+                flow_demande.Controls.Clear();
+
+                lb_not_found.Visible = false;
+
+
+                // =====================================================
+                // REQUETE
+                // =====================================================
+
+                string query = @"
+                    SELECT
+                        h.id_hospitalisation,
+                        p.id_patient,
+                        p.nom,
+                        p.post_nom,
+                        p.prenom,
+                        p.sexe,
+                        p.date_naissance,
+                        h.etat
+
+                    FROM hospitalisation h
+
+                    INNER JOIN patients p
+                        ON h.id_patient = p.id_patient
+
+                    WHERE h.etat = 'Hospitalisé'";
+
+
+                // =====================================================
+                // PARAMETRES
+                // =====================================================
 
                 MesClasses.ManagerClasse.request_params.Clear();
 
 
                 // =====================================================
-                // RECHERCHE DU PATIENT
+                // RECHERCHE PATIENT
                 // =====================================================
 
                 if (!string.IsNullOrWhiteSpace(recherche))
                 {
-                    query += "  AND (p.nom LIKE @search OR p.post_nom LIKE @search OR p.prenom LIKE @search)";
+                    query += @"
+                        AND
+                        (
+                            p.nom LIKE @search
+                            OR p.post_nom LIKE @search
+                            OR p.prenom LIKE @search
+                        )";
 
-                    MesClasses.ManagerClasse.request_params.Add("@search", "%" + recherche + "%");
+                    MesClasses.ManagerClasse.request_params.Add(
+                        "@search",
+                        "%" + recherche.Trim() + "%");
                 }
 
-                query += " AND h.etat = 'Hospitalisé'";
 
-                query += " ORDER BY h.date_entree DESC";
+                // =====================================================
+                // TRI
+                // =====================================================
+
+                query += @"
+                    ORDER BY h.date_entree DESC";
 
 
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
+                // =====================================================
+                // EXECUTION
+                // =====================================================
+
+                using (MySqlDataReader reader =
+                    MesClasses.ManagerClasse.CRUD(
+                        query,
+                        MesClasses.ManagerClasse.request_params,
+                        true))
                 {
-                    int i = 0;
+                    int nombrePatients = 0;
 
-                    if (reader.HasRows)
+
+                    // =================================================
+                    // LECTURE
+                    // =================================================
+
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        // =============================================
+                        // IDENTIFIANTS
+                        // =============================================
+
+                        string idHospitalisation =
+                            reader[
+                                "id_hospitalisation"]
+                            .ToString();
+
+                        string idPatient =
+                            reader[
+                                "id_patient"]
+                            .ToString();
+
+
+                        // =============================================
+                        // IDENTITE
+                        // =============================================
+
+                        string nom =
+                            reader["nom"].ToString();
+
+                        string postnom =
+                            reader["post_nom"].ToString();
+
+                        string prenom =
+                            reader["prenom"].ToString();
+
+                        string sexe =
+                            reader["sexe"].ToString();
+
+
+                        // =============================================
+                        // AGE
+                        // =============================================
+
+                        int age = 0;
+
+                        if (reader["date_naissance"] !=
+                            DBNull.Value)
                         {
-                            string idHospitalisation = reader["id_hospitalisation"].ToString();
-                            string patient = reader["id_patient"].ToString();
-                            string nom = reader["nom"].ToString();
-                            string postnom = reader["post_nom"].ToString();
-                            string prenom = reader["prenom"].ToString();
-                            string sexe = reader["sexe"].ToString();
+                            DateTime dateNaissance =
+                                Convert.ToDateTime(
+                                    reader[
+                                        "date_naissance"]);
 
-                            DateTime dateNaissance = Convert.ToDateTime(reader["date_naissance"]);
-
-                            int age = MesClasses.ReceptionManager.CalculerAge(dateNaissance);
-
-                            string statutDemande = reader["etat"].ToString();
-
-
-                            CreerCarteDemande(
-                                idHospitalisation,
-                                patient,
-                                nom,
-                                postnom,
-                                prenom,
-                                age,
-                                sexe,
-                                statutDemande
-                            );
-
-                            i++;
+                            age =
+                                MesClasses.ReceptionManager
+                                .CalculerAge(
+                                    dateNaissance);
                         }
 
-                        lb_nombres.Text = i + " Patient(s)";
+
+                        // =============================================
+                        // STATUT
+                        // =============================================
+
+                        string statut =
+                            reader["etat"].ToString();
+
+
+                        // =============================================
+                        // CREER LA CARTE
+                        // =============================================
+
+                        CreerCarteDemande(
+                            idHospitalisation,
+                            idPatient,
+                            nom,
+                            postnom,
+                            prenom,
+                            age,
+                            sexe,
+                            statut);
+
+
+                        nombrePatients++;
+                    }
+
+
+                    // =================================================
+                    // RESULTAT
+                    // =================================================
+
+                    if (nombrePatients == 0)
+                    {
+                        lb_not_found.Text =
+                            "Aucun patient trouvé";
+
+                        lb_not_found.Visible =
+                            true;
+
+                        lb_nombres.Text =
+                            "0 Patient(s)";
+
+                        flow_demande.Controls.Add(
+                            lb_not_found);
                     }
                     else
                     {
-                        lb_not_found.Text = "Aucun patient trouvé";
-                        flow_demande.Controls.Add(lb_not_found);
-                        lb_not_found.Visible = true;
+                        lb_not_found.Visible =
+                            false;
 
-                        lb_nombres.Text = "0 Patient(s)";
+                        lb_nombres.Text =
+                            nombrePatients +
+                            " Patient(s)";
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erreur : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Erreur lors du chargement des patients :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des patients :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // =====================================================
+                // REACTIVER LE LAYOUT
+                // =====================================================
+
+                flow_demande.ResumeLayout(true);
             }
         }
-        private void CreerCarteDemande(string idDemande, string id_patient, string nom, string postnom, string prenom, int age, string sexe, string statut)
+
+
+        // ============================================================
+        // CREER UNE CARTE PATIENT
+        // ============================================================
+
+        private void CreerCarteDemande(
+            string idDemande,
+            string id_patient,
+            string nom,
+            string postnom,
+            string prenom,
+            int age,
+            string sexe,
+            string statut)
         {
-            BunifuRoundedPanel panDemande = new BunifuRoundedPanel();
-            panDemande.Size = new Size(290, 130);
-            panDemande.BorderRadius = 8;
-            panDemande.BorderColor = Color.Silver;
-            panDemande.BorderSize = 1;
-            panDemande.ShadowColor = Color.Gray;
-            panDemande.ShadowDepth = 10;
-            panDemande.Tag = new DemandeInfo
-            {
-                IdDemande = idDemande,
-                IdPatient = id_patient
-            };
+            // ========================================================
+            // PANEL
+            // ========================================================
 
-            panDemande.Click += (s, e) =>
-            {
-                //récuperer les informations stockées
-                DemandeInfo info = (DemandeInfo)panDemande.Tag;
-                string patient = info.IdPatient;
-                string Hospi = info.IdDemande;
-                //Afficher le fomulaire de détail de l'hospitalisation
-                MesForms.Hospitalisation.Detail_hospitalisation hospi = new MesForms.Hospitalisation.Detail_hospitalisation(patient,Hospi);
-                hospi.ShowDialog();
-            };
-            // Espace entre les cartes
-            panDemande.Margin = new Padding(8, 10, 12, 10);
+            BunifuRoundedPanel panDemande =
+                new BunifuRoundedPanel();
 
-            PictureBox picture = MesClasses.ManagerClasse.AddPicture(
-                Properties.Resources.user,
-                new Point(15, 15),
-                new Size(60, 60)
-            );
+            panDemande.Size =
+                new Size(
+                    290,
+                    130);
 
-            panDemande.Controls.Add(picture);
+            panDemande.Margin =
+                new Padding(
+                    8,
+                    10,
+                    12,
+                    10);
 
+            panDemande.BorderRadius =
+                8;
 
-            Label lbNom = MesClasses.ManagerClasse.CustomLabel(
-                nom.ToUpper() + " " + postnom.ToUpper(),
-                new Point(90, 15)
-            );
+            panDemande.BorderColor =
+                Color.Silver;
 
-            lbNom.AutoSize = true;
+            panDemande.BorderSize =
+                1;
 
-            lbNom.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Bold
-            );
+            panDemande.ShadowColor =
+                Color.Gray;
 
-            panDemande.Controls.Add(lbNom);
+            panDemande.ShadowDepth =
+                10;
 
 
-            Label lbPrenom = MesClasses.ManagerClasse.CustomLabel(
-                prenom,
-                new Point(90, 37)
-            );
+            // ========================================================
+            // INFORMATIONS STOCKEES
+            // ========================================================
 
-            lbPrenom.AutoSize = true;
+            panDemande.Tag =
+                new DemandeInfo
+                {
+                    IdDemande =
+                        idDemande,
 
-            lbPrenom.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Bold
-            );
-
-            panDemande.Controls.Add(lbPrenom);
+                    IdPatient =
+                        id_patient
+                };
 
 
-            // =====================================================
+            // ========================================================
+            // CLICK
+            // ========================================================
+
+            panDemande.Click +=
+                delegate(object sender, EventArgs e)
+                {
+                    DemandeInfo info =
+                        panDemande.Tag
+                        as DemandeInfo;
+
+                    if (info == null)
+                        return;
+
+
+                    string patient =
+                        info.IdPatient;
+
+                    string hospi =
+                        info.IdDemande;
+
+
+                    // -----------------------------------------------
+                    // DETAIL HOSPITALISATION
+                    // -----------------------------------------------
+
+                    MesForms.Hospitalisation
+                        .Detail_hospitalisation detail =
+                        new MesForms.Hospitalisation
+                        .Detail_hospitalisation(
+                            patient,
+                            hospi);
+
+                    detail.ShowDialog();
+                };
+
+
+            // ========================================================
+            // IMAGE
+            // ========================================================
+
+            PictureBox picture =
+                MesClasses.ManagerClasse.AddPicture(
+                    Properties.Resources.user,
+                    new Point(
+                        15,
+                        15),
+                    new Size(
+                        60,
+                        60));
+
+            picture.Cursor =
+                Cursors.Hand;
+
+            panDemande.Controls.Add(
+                picture);
+
+
+            // ========================================================
+            // NOM + POST-NOM
+            // ========================================================
+
+            Label lbNom =
+                MesClasses.ManagerClasse.CustomLabel(
+                    (
+                        nom.ToUpper() +
+                        " " +
+                        postnom.ToUpper()
+                    ).Trim(),
+                    new Point(
+                        90,
+                        15));
+
+            lbNom.AutoSize =
+                true;
+
+            lbNom.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
+
+            lbNom.Cursor =
+                Cursors.Hand;
+
+            panDemande.Controls.Add(
+                lbNom);
+
+
+            // ========================================================
+            // PRENOM
+            // ========================================================
+
+            Label lbPrenom =
+                MesClasses.ManagerClasse.CustomLabel(
+                    prenom,
+                    new Point(
+                        90,
+                        37));
+
+            lbPrenom.AutoSize =
+                true;
+
+            lbPrenom.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
+
+            lbPrenom.Cursor =
+                Cursors.Hand;
+
+            panDemande.Controls.Add(
+                lbPrenom);
+
+
+            // ========================================================
             // AGE + SEXE
-            // =====================================================
+            // ========================================================
 
-            Label lbInfos = MesClasses.ManagerClasse.CustomLabel(
-                age + " ans - " + sexe,
-                new Point(90, 62)
-            );
+            Label lbInfos =
+                MesClasses.ManagerClasse.CustomLabel(
+                    age + " ans - " + sexe,
+                    new Point(
+                        90,
+                        62));
 
-            lbInfos.AutoSize = true;
+            lbInfos.AutoSize =
+                true;
 
-            lbInfos.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Bold
-            );
+            lbInfos.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
 
-            panDemande.Controls.Add(lbInfos);
+            lbInfos.Cursor =
+                Cursors.Hand;
+
+            panDemande.Controls.Add(
+                lbInfos);
 
 
-            // =====================================================
+            // ========================================================
             // STATUT
-            // =====================================================
+            // ========================================================
 
-            Label lbStatut = MesClasses.ManagerClasse.CustomLabel(
-                "Statut :",
-                new Point(15, 95)
-            );
+            Label lbStatut =
+                MesClasses.ManagerClasse.CustomLabel(
+                    "Statut :",
+                    new Point(
+                        15,
+                        95));
 
-            lbStatut.AutoSize = true;
+            lbStatut.AutoSize =
+                true;
 
-            lbStatut.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Bold
-            );
+            lbStatut.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
 
-            panDemande.Controls.Add(lbStatut);
-
-
-            Label lbValeurStatut = MesClasses.ManagerClasse.CustomLabel(
-                statut,
-                new Point(75, 95)
-            );
-
-            lbValeurStatut.AutoSize = true;
-
-            lbValeurStatut.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Bold
-            );
+            panDemande.Controls.Add(
+                lbStatut);
 
 
-            // =====================================================
-            // COULEUR DU STATUT
-            // =====================================================
+            // ========================================================
+            // VALEUR STATUT
+            // ========================================================
+
+            Label lbValeurStatut =
+                MesClasses.ManagerClasse.CustomLabel(
+                    statut,
+                    new Point(
+                        75,
+                        95));
+
+            lbValeurStatut.AutoSize =
+                true;
+
+            lbValeurStatut.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
+
+
+            // ========================================================
+            // COULEUR STATUT
+            // ========================================================
 
             if (statut == "Hospitalisé")
             {
                 lbValeurStatut.ForeColor =
-                    Color.FromArgb(255, 150, 0);
+                    Color.FromArgb(
+                        255,
+                        150,
+                        0);
             }
-        
             else if (statut == "Sorti")
             {
                 lbValeurStatut.ForeColor =
-                    Color.FromArgb(0, 180, 80);
+                    Color.FromArgb(
+                        0,
+                        180,
+                        80);
             }
-          
+            else
+            {
+                lbValeurStatut.ForeColor =
+                    Color.Gray;
+            }
 
-            panDemande.Controls.Add(lbValeurStatut);
+            lbValeurStatut.Cursor =
+                Cursors.Hand;
+
+            panDemande.Controls.Add(
+                lbValeurStatut);
 
 
-            // =====================================================
+            // ========================================================
             // AJOUT AU FLOWLAYOUTPANEL
-            // =====================================================
+            // ========================================================
 
-            flow_demande.Controls.Add(panDemande);
+            flow_demande.Controls.Add(
+                panDemande);
         }
 
-        private void textBox_reseach_TextChanged(object sender, EventArgs e)
+
+        // ============================================================
+        // RECHERCHE
+        // ============================================================
+
+        private void textBox_reseach_TextChanged(
+            object sender,
+            EventArgs e)
         {
-            LoadPatientsHospitalises(textBox_reseach.Text);
+            LoadPatientsHospitalises(
+                textBox_reseach.Text);
         }
     }
 
+
+    // ================================================================
+    // INFORMATIONS DE LA CARTE
+    // ================================================================
+
     public class DemandeInfo
     {
-        public string IdDemande { get; set; }
-        public string IdPatient { get; set; }
+        public string IdDemande
+        {
+            get;
+            set;
+        }
+
+        public string IdPatient
+        {
+            get;
+            set;
+        }
     }
 }

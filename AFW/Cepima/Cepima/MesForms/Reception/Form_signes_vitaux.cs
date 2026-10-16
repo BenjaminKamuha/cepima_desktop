@@ -18,6 +18,10 @@ namespace Cepima.MesForms
         {
             InitializeComponent();
             PatientID = idPatient;
+            cbx_etat.Items.Clear();
+            cbx_etat.Items.Add("Bon");
+            cbx_etat.Items.Add("Moyen");
+            cbx_etat.Items.Add("Altéré");
         }
 
         private void Form_signes_vitaux_Load(object sender, EventArgs e)
@@ -63,8 +67,9 @@ namespace Cepima.MesForms
                 decimal taille = Convert.ToDecimal(tb_taille.Text);
 
                 string frequence = tb_frequence.Text;
+                string etat = cbx_etat.Text;
                 decimal temp = Convert.ToDecimal(tb_temperature.Text);
-                MesClasses.ReceptionManager.SaveSigneVitaux(PatientID.ToString(), temp, tension, frequence, poid, taille);
+                MesClasses.ReceptionManager.SaveSigneVitaux(PatientID.ToString(), temp, tension, frequence, poid, taille,etat);
                 ViderChamps();
 
                 this.Close();

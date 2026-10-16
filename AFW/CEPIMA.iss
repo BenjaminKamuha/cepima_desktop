@@ -75,6 +75,11 @@ Source: "D:\2026\CEPIMA\cepima_desktop\AFW\composant\vcredist_x86-10.exe"; \
     DestDir: "{tmp}"; \
     Flags: deleteafterinstall
 
+Source: "D:\2026\CEPIMA\cepima_desktop\AFW\composant\mysql-connector-net-6.6.5.msi"; \
+    DestDir: "{tmp}"; \
+    Flags: deleteafterinstall
+
+
 
 [Run]
 
@@ -103,6 +108,11 @@ Filename: "{tmp}\vcredist_x86-10.exe"; \
     Parameters: "/quiet /norestart"; \
     Flags: waituntilterminated
 
+
+Filename: "msiexec"; \
+    Parameters: "/i ""{tmp}\mysql-connector-net-6.6.5.msi"" /qn /norestart"; \
+    Description: "Installation du connecteur mysql"; \
+    Flags: waituntilterminated
 
 ; =========================================================
 ; LANCER CEPIMA APRES INSTALLATION

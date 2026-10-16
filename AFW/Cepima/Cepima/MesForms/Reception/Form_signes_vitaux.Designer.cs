@@ -54,6 +54,8 @@
             this.myRoundedTextBox5 = new MyRoundedTextBox();
             this.tb_taille = new System.Windows.Forms.TextBox();
             this.bt_save_signe = new test_arrondissement2012.PerfectRoundedButton();
+            this.cbx_etat = new MyRoundedComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -83,7 +85,7 @@
             this.customRoundedPanel1.ShadowOffsetY = 4;
             this.customRoundedPanel1.ShadowOpacity = 60;
             this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(450, 106);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(478, 106);
             this.customRoundedPanel1.TabIndex = 0;
             // 
             // lb_fiche
@@ -310,7 +312,7 @@
             this.tb_poids.Location = new System.Drawing.Point(278, 285);
             this.tb_poids.Multiline = true;
             this.tb_poids.Name = "tb_poids";
-            this.tb_poids.Size = new System.Drawing.Size(184, 23);
+            this.tb_poids.Size = new System.Drawing.Size(181, 23);
             this.tb_poids.TabIndex = 8;
             // 
             // myRoundedTextBox3
@@ -388,12 +390,45 @@
             this.bt_save_signe.Load += new System.EventHandler(this.bt_save_signe_Load);
             this.bt_save_signe.Click += new System.EventHandler(this.bt_save_signe_Click);
             // 
+            // cbx_etat
+            // 
+            this.cbx_etat.ArrowColor = System.Drawing.Color.DimGray;
+            this.cbx_etat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbx_etat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbx_etat.BorderColor = System.Drawing.Color.Silver;
+            this.cbx_etat.BorderRadius = 8;
+            this.cbx_etat.BorderSize = 1;
+            this.cbx_etat.DropDownBackColor = System.Drawing.Color.White;
+            this.cbx_etat.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbx_etat.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.cbx_etat.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbx_etat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_etat.FocusBorderColor = System.Drawing.Color.Silver;
+            this.cbx_etat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_etat.Location = new System.Drawing.Point(276, 353);
+            this.cbx_etat.Name = "cbx_etat";
+            this.cbx_etat.SelectedItem = null;
+            this.cbx_etat.SelectedValue = null;
+            this.cbx_etat.Size = new System.Drawing.Size(188, 32);
+            this.cbx_etat.TabIndex = 10;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label9.Location = new System.Drawing.Point(286, 333);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(45, 17);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Etat : ";
+            // 
             // Form_signes_vitaux
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(468, 457);
+            this.ClientSize = new System.Drawing.Size(489, 466);
+            this.Controls.Add(this.cbx_etat);
             this.Controls.Add(this.bt_save_signe);
             this.Controls.Add(this.tb_taille);
             this.Controls.Add(this.myRoundedTextBox5);
@@ -406,6 +441,7 @@
             this.Controls.Add(this.tb_temperature);
             this.Controls.Add(this.myRoundedTextBox4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -451,6 +487,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
+        private MyRoundedComboBox cbx_etat;
+        private System.Windows.Forms.Label label9;
 
     }
 }

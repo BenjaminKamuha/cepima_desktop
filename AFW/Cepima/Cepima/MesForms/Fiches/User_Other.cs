@@ -1,0 +1,257 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+namespace Cepima.MesForms.Fiches
+{
+    public partial class User_Other : UserControl
+    {
+        private string patientID;
+        public User_Other(string idPatient)
+        {
+            InitializeComponent();
+            this.patientID = idPatient;
+            ChargerData();
+            ChargerTraitementPrescrit();
+        }
+
+        private void ChargerData()
+        {
+            try
+            {
+                string queryMotif = "SELECT * FROM consultation WHERE patient_id = @id";
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@id",this.patientID);
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(queryMotif,MesClasses.ManagerClasse.request_params,true))
+                {
+                    if (reader.Read())
+                    {
+                        lbl_diagnostic.Text = reader["diagnostic"].ToString();
+                    }
+                    reader.Close();
+                }
+
+                // charger le resultat de l'examen eeg
+                string requete = @"
+                            SELECT
+                                date_examen,
+                                type_EEG,
+                                resultat,
+                                interpretation,
+                                observations,
+                                statut
+                            FROM examens_eeg
+                            WHERE id_patient = @id_patient
+                            ORDER BY date_examen DESC, id_examens DESC
+                            LIMIT 1";
+                MesClasses.ManagerClasse.request_params.Clear();
+                MesClasses.ManagerClasse.request_params.Add("@id_patient",this.patientID);
+                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(requete,MesClasses.ManagerClasse.request_params,true))
+                {
+                    if (reader.Read())
+                    {
+                        string dateExamen =
+                            reader["date_examen"] == DBNull.Value
+                            ? "Non renseignée"
+                            : Convert.ToDateTime(
+                                reader["date_examen"])
+                                .ToString("dd/MM/yyyy");
+
+                        string typeEEG =
+                            reader["type_EEG"] == DBNull.Value
+                            ? "Non renseigné"
+                            : reader["type_EEG"].ToString();
+
+                        string resultat =
+                            reader["resultat"] == DBNull.Value
+                            ? "Non renseigné"
+                            : reader["resultat"].ToString();
+
+                        string interpretation =
+                            reader["interpretation"] == DBNull.Value
+                            ? "Non renseignée"
+                            : reader["interpretation"].ToString();
+
+                        string observations =
+                            reader["observations"] == DBNull.Value
+                            ? "Aucune observation"
+                            : reader["observations"].ToString();
+
+                        string statut =
+                            reader["statut"] == DBNull.Value
+                            ? "Non renseigné"
+                            : reader["statut"].ToString();
+
+                        lblResultatEEG.Text =
+                            "DATE DE L'EXAMEN : " + dateExamen +
+                            Environment.NewLine +
+                            "TYPE D'EEG : " + typeEEG +
+                            Environment.NewLine +
+                            "STATUT : " + statut +
+                            Environment.NewLine +
+                            Environment.NewLine +
+                            "RÉSULTAT EEG :" +
+                            Environment.NewLine +
+                            resultat +
+                            Environment.NewLine +
+                            Environment.NewLine +
+                            "INTERPRÉTATION :" +
+                            Environment.NewLine +
+                            interpretation +
+                            Environment.NewLine +
+                            Environment.NewLine +
+                            "OBSERVATIONS :" +
+                            Environment.NewLine +
+                            observations;
+                    }
+                    else
+                    {
+                        lblResultatEEG.Text =
+                            "Aucun examen EEG enregistré pour ce patient.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erreur : "+ex.Message);
+            }
+        }
+
+        private void ChargerTraitementPrescrit()
+        {
+            string requete = @"
+        SELECT
+            m.nom,
+            m.dosage,
+            m.FORME,
+            p.quantite,
+            p.unite,
+            p.statut,
+            p.date_prescription
+        FROM prescriptions p
+        INNER JOIN medicament m
+            ON p.id_medicament = m.id
+        WHERE p.id_patient = @id_patient
+        ORDER BY p.date_prescription DESC, p.id_prescription DESC;";
+
+            try
+            {
+                using (MySqlConnection connexion =
+                    MesClasses.ManagerClasse.GetConnexion())
+                {
+                   
+                    using (MySqlCommand commande =
+                        new MySqlCommand(requete, connexion))
+                    {
+                        commande.Parameters.AddWithValue(
+                            "@id_patient", this.patientID);
+
+                        using (MySqlDataReader reader =
+                            commande.ExecuteReader())
+                        {
+                            StringBuilder texte = new StringBuilder();
+                            int nombre = 0;
+
+                            while (reader.Read())
+                            {
+                                nombre++;
+
+                                string nom = reader["nom"] == DBNull.Value
+                                    ? "Non renseigné"
+                                    : reader["nom"].ToString();
+
+                                string dosage = reader["dosage"] == DBNull.Value
+                                    ? ""
+                                    : reader["dosage"].ToString();
+
+                                string forme = reader["FORME"] == DBNull.Value
+                                    ? ""
+                                    : reader["FORME"].ToString();
+
+                                string quantite = reader["quantite"] == DBNull.Value
+                                    ? "Non renseignée"
+                                    : reader["quantite"].ToString();
+
+                                string unite = reader["unite"] == DBNull.Value
+                                    ? ""
+                                    : reader["unite"].ToString();
+
+                                string statut = reader["statut"] == DBNull.Value
+                                    ? "Non renseigné"
+                                    : reader["statut"].ToString();
+
+                                string date = reader["date_prescription"] == DBNull.Value
+                                    ? "Non renseignée"
+                                    : Convert.ToDateTime(
+                                        reader["date_prescription"])
+                                        .ToString("dd/MM/yyyy");
+
+                                texte.AppendLine("TRAITEMENT N° " + nombre);
+                                texte.AppendLine("Médicament : " + nom);
+
+                                if (!string.IsNullOrWhiteSpace(dosage))
+                                    texte.AppendLine("Dosage : " + dosage);
+
+                                if (!string.IsNullOrWhiteSpace(forme))
+                                    texte.AppendLine("Forme : " + forme);
+
+                                texte.AppendLine("Quantité : " + quantite);
+
+                                if (!string.IsNullOrWhiteSpace(unite))
+                                    texte.AppendLine("Unité : " + unite);
+
+                                texte.AppendLine("Date : " + date);
+                                texte.AppendLine("Statut : " + statut);
+                                texte.AppendLine("--------------------------------");
+                            }
+
+                            if (nombre == 0)
+                            {
+                                lblTraitementPrescrit.Text =
+                                    "Aucun traitement prescrit pour ce patient.";
+                            }
+                            else
+                            {
+                                lblTraitementPrescrit.Text = texte.ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des traitements : "
+                    + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void rb_eeg_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_eeg.Checked)
+            {
+                MesForms.Form_demander_service service = new MesForms.Form_demander_service(this.patientID, 0);
+                service.ShowDialog();
+            }
+           
+        }
+
+        private void rb_bilan_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_bilan.Checked)
+            {
+                return;
+            }
+        }
+    }
+}

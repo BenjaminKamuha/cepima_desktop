@@ -29,12 +29,17 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.load_anim = new ModernLoader();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.link_create_compte = new System.Windows.Forms.LinkLabel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lb_notice = new System.Windows.Forms.Label();
+            this.bt_add_compte = new RoundedButton();
+            this.panel_con = new CustomRoundedPanel();
             this.link_forgot = new System.Windows.Forms.LinkLabel();
             this.bt_connexion = new test_arrondissement2012.PerfectRoundedButton();
             this.cb_remember = new System.Windows.Forms.CheckBox();
@@ -45,12 +50,14 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.customRoundedPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel_con.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.load_anim);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -58,25 +65,33 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1032, 72);
+            this.panel1.Size = new System.Drawing.Size(1159, 79);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // load_anim
+            // 
+            this.load_anim.CircleColor = System.Drawing.Color.DodgerBlue;
+            this.load_anim.LineThickness = 8;
+            this.load_anim.Location = new System.Drawing.Point(795, 20);
+            this.load_anim.Name = "load_anim";
+            this.load_anim.Segments = 12;
+            this.load_anim.Size = new System.Drawing.Size(44, 49);
+            this.load_anim.TabIndex = 20;
+            this.load_anim.Text = "modernLoader1";
+            this.load_anim.Visible = false;
+            this.load_anim.Click += new System.EventHandler(this.modernLoader1_Click);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(403, 16);
+            this.label1.Location = new System.Drawing.Point(466, 4);
             this.label1.Name = "label1";
-
             this.label1.Size = new System.Drawing.Size(234, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Connectez-vous ";
-
-            this.label1.Size = new System.Drawing.Size(291, 31);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Connectez-vous SVP";
-
             // 
             // button1
             // 
@@ -84,7 +99,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Cepima.Properties.Resources.close_black;
-            this.button1.Location = new System.Drawing.Point(984, 22);
+            this.button1.Location = new System.Drawing.Point(1111, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(37, 31);
             this.button1.TabIndex = 1;
@@ -94,9 +109,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cepima.Properties.Resources.cepima_logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(0, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(226, 68);
+            this.pictureBox1.Size = new System.Drawing.Size(250, 77);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -105,49 +120,106 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 68);
+            this.panel2.Location = new System.Drawing.Point(0, 75);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1032, 4);
+            this.panel2.Size = new System.Drawing.Size(1159, 4);
             this.panel2.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 537);
+            this.panel4.Location = new System.Drawing.Point(0, 625);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1032, 6);
+            this.panel4.Size = new System.Drawing.Size(1159, 6);
             this.panel4.TabIndex = 1;
             // 
-            // customRoundedPanel1
+            // link_create_compte
             // 
-            this.customRoundedPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
-            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel1.BorderRadius = 10;
-            this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.link_forgot);
-            this.customRoundedPanel1.Controls.Add(this.bt_connexion);
-            this.customRoundedPanel1.Controls.Add(this.cb_remember);
-            this.customRoundedPanel1.Controls.Add(this.label3);
-            this.customRoundedPanel1.Controls.Add(this.label2);
-            this.customRoundedPanel1.Controls.Add(this.tb_password);
-            this.customRoundedPanel1.Controls.Add(this.tb_username);
-            this.customRoundedPanel1.Controls.Add(this.pictureBox2);
-            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(343, 93);
-            this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.ShadowBlur = 10;
-            this.customRoundedPanel1.ShadowBorderRadius = -1;
-            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
-            this.customRoundedPanel1.ShadowEnabled = false;
-            this.customRoundedPanel1.ShadowOffsetX = 0;
-            this.customRoundedPanel1.ShadowOffsetY = 4;
-            this.customRoundedPanel1.ShadowOpacity = 60;
-            this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(340, 438);
-            this.customRoundedPanel1.TabIndex = 2;
+            this.link_create_compte.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(51)))), ((int)(((byte)(131)))));
+            this.link_create_compte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.link_create_compte.AutoSize = true;
+            this.link_create_compte.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.link_create_compte.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            this.link_create_compte.Location = new System.Drawing.Point(958, 600);
+            this.link_create_compte.Name = "link_create_compte";
+            this.link_create_compte.Size = new System.Drawing.Size(189, 19);
+            this.link_create_compte.TabIndex = 17;
+            this.link_create_compte.TabStop = true;
+            this.link_create_compte.Text = " Créer un compte utilisateur";
+            this.link_create_compte.Visible = false;
+            this.link_create_compte.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_create_compte_LinkClicked);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.lb_notice);
+            this.panel3.Location = new System.Drawing.Point(12, 93);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(332, 307);
+            this.panel3.TabIndex = 18;
+            // 
+            // lb_notice
+            // 
+            this.lb_notice.AutoSize = true;
+            this.lb_notice.Location = new System.Drawing.Point(20, 44);
+            this.lb_notice.Name = "lb_notice";
+            this.lb_notice.Size = new System.Drawing.Size(35, 13);
+            this.lb_notice.TabIndex = 0;
+            this.lb_notice.Text = "label5";
+            // 
+            // bt_add_compte
+            // 
+            this.bt_add_compte.BackColor = System.Drawing.Color.Transparent;
+            this.bt_add_compte.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.bt_add_compte.BorderRadius = 10;
+            this.bt_add_compte.ButtonText = "Ajouter un compte";
+            this.bt_add_compte.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bt_add_compte.DefaultBackColor = System.Drawing.Color.DodgerBlue;
+            this.bt_add_compte.FlatAppearance.BorderSize = 0;
+            this.bt_add_compte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bt_add_compte.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_add_compte.ForeColor = System.Drawing.Color.White;
+            this.bt_add_compte.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.bt_add_compte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bt_add_compte.Location = new System.Drawing.Point(54, 422);
+            this.bt_add_compte.Name = "bt_add_compte";
+            this.bt_add_compte.Size = new System.Drawing.Size(217, 35);
+            this.bt_add_compte.TabIndex = 19;
+            this.bt_add_compte.Text = "Ajouter un compte";
+            this.bt_add_compte.TextColor = System.Drawing.Color.White;
+            this.bt_add_compte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.bt_add_compte.UseVisualStyleBackColor = false;
+            this.bt_add_compte.Click += new System.EventHandler(this.bt_add_compte_Click);
+            // 
+            // panel_con
+            // 
+            this.panel_con.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel_con.BackColor = System.Drawing.Color.White;
+            this.panel_con.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.panel_con.BorderRadius = 10;
+            this.panel_con.BorderSize = 2;
+            this.panel_con.Controls.Add(this.link_forgot);
+            this.panel_con.Controls.Add(this.bt_connexion);
+            this.panel_con.Controls.Add(this.cb_remember);
+            this.panel_con.Controls.Add(this.label3);
+            this.panel_con.Controls.Add(this.label2);
+            this.panel_con.Controls.Add(this.tb_password);
+            this.panel_con.Controls.Add(this.tb_username);
+            this.panel_con.Controls.Add(this.pictureBox2);
+            this.panel_con.HoverBackColor = System.Drawing.Color.Empty;
+            this.panel_con.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.panel_con.Location = new System.Drawing.Point(406, 104);
+            this.panel_con.Name = "panel_con";
+            this.panel_con.ShadowBlur = 10;
+            this.panel_con.ShadowBorderRadius = -1;
+            this.panel_con.ShadowColor = System.Drawing.Color.Black;
+            this.panel_con.ShadowEnabled = false;
+            this.panel_con.ShadowOffsetX = 0;
+            this.panel_con.ShadowOffsetY = 4;
+            this.panel_con.ShadowOpacity = 60;
+            this.panel_con.ShadowSpread = 0;
+            this.panel_con.Size = new System.Drawing.Size(340, 471);
+            this.panel_con.TabIndex = 2;
             // 
             // link_forgot
             // 
@@ -178,6 +250,7 @@
             this.bt_connexion.Name = "bt_connexion";
             this.bt_connexion.Size = new System.Drawing.Size(124, 30);
             this.bt_connexion.TabIndex = 2;
+            this.bt_connexion.Load += new System.EventHandler(this.bt_connexion_Load);
             this.bt_connexion.Click += new System.EventHandler(this.bt_connexion_Click);
             // 
             // cb_remember
@@ -218,6 +291,7 @@
             this.tb_password.BorderRadius = 8;
             this.tb_password.BorderSize = 1;
             this.tb_password.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tb_password.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_password.ForeColor = System.Drawing.Color.Black;
             this.tb_password.Image = null;
             this.tb_password.Location = new System.Drawing.Point(47, 265);
@@ -237,6 +311,7 @@
             this.tb_username.BorderRadius = 8;
             this.tb_username.BorderSize = 1;
             this.tb_username.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tb_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_username.ForeColor = System.Drawing.Color.Black;
             this.tb_username.Image = null;
             this.tb_username.Location = new System.Drawing.Point(47, 198);
@@ -263,8 +338,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1032, 543);
-            this.Controls.Add(this.customRoundedPanel1);
+            this.ClientSize = new System.Drawing.Size(1159, 631);
+            this.Controls.Add(this.bt_add_compte);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.link_create_compte);
+            this.Controls.Add(this.panel_con);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -276,10 +354,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.customRoundedPanel1.ResumeLayout(false);
-            this.customRoundedPanel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel_con.ResumeLayout(false);
+            this.panel_con.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -291,7 +372,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel4;
-        private CustomRoundedPanel customRoundedPanel1;
+        private CustomRoundedPanel panel_con;
         private System.Windows.Forms.PictureBox pictureBox2;
         private MyRoundedTextBox tb_password;
         private MyRoundedTextBox tb_username;
@@ -300,5 +381,10 @@
         private System.Windows.Forms.CheckBox cb_remember;
         private test_arrondissement2012.PerfectRoundedButton bt_connexion;
         private System.Windows.Forms.LinkLabel link_forgot;
+        private System.Windows.Forms.LinkLabel link_create_compte;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lb_notice;
+        private RoundedButton bt_add_compte;
+        private ModernLoader load_anim;
     }
 }

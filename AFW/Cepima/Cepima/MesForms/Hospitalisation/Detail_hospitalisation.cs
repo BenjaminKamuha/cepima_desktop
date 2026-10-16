@@ -200,49 +200,50 @@ namespace Cepima.MesForms.Hospitalisation
 
                 string query = @"
             SELECT
-                pr.id_prescription,
-                pr.id_medicament,
+                p.id AS id_prescription,
+                pl.id AS id_ligne,
+                pl.medicament_id,
 
                 CONCAT(
                     m.nom,
                     IFNULL(CONCAT(' ', m.dosage), '')
                 ) AS medicament,
 
-                pr.quantite AS prescrit,
+                pl.quantite_prescrite AS prescrit,
 
-                COALESCE(SUM(ds.quantite), 0) AS delivre
+                COALESCE(
+                    (
+                        SELECT SUM(dl.quantite)
+                        FROM dispensation_ligne dl
 
-            FROM prescriptions pr
+                        INNER JOIN dispensation d
+                            ON d.id = dl.dispensation_id
 
-            INNER JOIN hospitalisation h
-                ON h.id_consultation = pr.id_consultation
+                        WHERE d.prescription_id = p.id
+                          AND dl.medicament_id = pl.medicament_id
+                    ),
+                    0
+                ) AS delivre
+
+            FROM prescription p
+
+            INNER JOIN prescription_ligne pl
+                ON pl.prescription_id = p.id
 
             INNER JOIN medicament m
-                ON m.id = pr.id_medicament
+                ON m.id = pl.medicament_id
 
-            LEFT JOIN sortie_s_pa s
-                ON s.id_hospitalisation = h.id_hospitalisation
+            WHERE p.patient_id = @id_patient
 
-            LEFT JOIN detail_sortie_s_pa ds
-                ON ds.id_sortie = s.id_sortie
-                AND ds.id_medicament = pr.id_medicament
-
-            WHERE h.id_hospitalisation = @id_hospitalisation
-
-            GROUP BY
-                pr.id_prescription,
-                pr.id_medicament,
-                m.nom,
-                m.dosage,
-                pr.quantite
-
-            ORDER BY pr.id_prescription ASC";
+            ORDER BY
+                p.date_prescription DESC,
+                pl.id ASC";
 
                 MesClasses.ManagerClasse.request_params.Clear();
 
                 MesClasses.ManagerClasse.request_params.Add(
-                    "@id_hospitalisation",
-                    id_hospitalisation
+                    "@id_patient",
+                    id_patient
                 );
 
                 using (MySqlDataReader reader =
@@ -253,13 +254,25 @@ namespace Cepima.MesForms.Hospitalisation
                 {
                     while (reader.Read())
                     {
+                        int idPrescription =
+                            Convert.ToInt32(
+                                reader["id_prescription"]);
+
+                        int idMedicament =
+                            Convert.ToInt32(
+                                reader["medicament_id"]);
+
                         int prescrit =
                             reader["prescrit"] == DBNull.Value
                             ? 0
-                            : Convert.ToInt32(reader["prescrit"]);
+                            : Convert.ToInt32(
+                                reader["prescrit"]);
 
                         int delivre =
-                            Convert.ToInt32(reader["delivre"]);
+                            reader["delivre"] == DBNull.Value
+                            ? 0
+                            : Convert.ToInt32(
+                                reader["delivre"]);
 
                         string statut;
 
@@ -276,15 +289,16 @@ namespace Cepima.MesForms.Hospitalisation
                             statut = "Livré";
                         }
 
-                        int row = dgv_prescription.Rows.Add();
+                        int row =
+                            dgv_prescription.Rows.Add();
 
                         dgv_prescription.Rows[row]
                             .Cells["colIdPrescription"].Value =
-                            Convert.ToInt32(reader["id_prescription"]);
+                            idPrescription;
 
                         dgv_prescription.Rows[row]
                             .Cells["colIdMedicament"].Value =
-                            Convert.ToInt32(reader["id_medicament"]);
+                            idMedicament;
 
                         dgv_prescription.Rows[row]
                             .Cells["colMedicament"].Value =
@@ -318,55 +332,234 @@ namespace Cepima.MesForms.Hospitalisation
             }
         }
 
+        private List<MedicamentADeLivrer> ChargerMedicamentsPrescription(
+    int idPrescription)
+        {
+            List<MedicamentADeLivrer> liste =
+                new List<MedicamentADeLivrer>();
+
+            try
+            {
+                string query = @"
+            SELECT
+                pl.prescription_id,
+                pl.medicament_id,
+
+                m.nom AS produit,
+                m.dosage,
+                m.FORME,
+
+                pl.dose,
+                pl.frequence,
+                pl.duree,
+
+                pl.quantite_prescrite,
+
+                COALESCE(
+                    (
+                        SELECT SUM(dl.quantite)
+                        FROM dispensation_ligne dl
+
+                        INNER JOIN dispensation d
+                            ON d.id = dl.dispensation_id
+
+                        WHERE d.prescription_id =
+                              pl.prescription_id
+
+                          AND dl.medicament_id =
+                              pl.medicament_id
+                    ),
+                    0
+                ) AS quantite_delivree
+
+            FROM prescription_ligne pl
+
+            INNER JOIN medicament m
+                ON m.id = pl.medicament_id
+
+            WHERE pl.prescription_id =
+                  @idPrescription
+
+            ORDER BY pl.id";
+
+                MesClasses.ManagerClasse.request_params.Clear();
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@idPrescription",
+                    idPrescription.ToString()
+                );
+
+                using (MySqlDataReader reader =
+                    MesClasses.ManagerClasse.CRUD(
+                        query,
+                        MesClasses.ManagerClasse.request_params,
+                        true))
+                {
+                    while (reader.Read())
+                    {
+                        MedicamentADeLivrer medicament =
+                            new MedicamentADeLivrer();
+
+                        medicament.IdPrescription =
+                            Convert.ToInt32(
+                                reader["prescription_id"]);
+
+                        medicament.IdMedicament =
+                            Convert.ToInt32(
+                                reader["medicament_id"]);
+
+                        medicament.Nom =
+                            reader["produit"].ToString();
+
+                        medicament.Dosage =
+                            reader["dosage"] == DBNull.Value
+                                ? ""
+                                : reader["dosage"].ToString();
+
+                        medicament.Forme =
+                            reader["FORME"] == DBNull.Value
+                                ? ""
+                                : reader["FORME"].ToString();
+
+                        medicament.Dose =
+                            reader["dose"] == DBNull.Value
+                                ? ""
+                                : reader["dose"].ToString();
+
+                        medicament.Frequence =
+                            reader["frequence"] == DBNull.Value
+                                ? ""
+                                : reader["frequence"].ToString();
+
+                        medicament.Duree =
+                            reader["duree"] == DBNull.Value
+                                ? ""
+                                : reader["duree"].ToString();
+
+                        medicament.QuantitePrescrite =
+                            Convert.ToInt32(
+                                reader["quantite_prescrite"]);
+
+                        medicament.QuantiteDelivree =
+                            Convert.ToInt32(
+                                reader["quantite_delivree"]);
+
+                        // Ajouter uniquement les médicaments
+                        // qui ont encore quelque chose à délivrer
+                        if (medicament.QuantiteRestante > 0)
+                        {
+                            liste.Add(medicament);
+                        }
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des médicaments de la prescription :\n\n" +
+                    ex.Message,
+                    "Délivrance",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+
+            return liste;
+        }
         private void bt_delivrer_Click(object sender, EventArgs e)
         {
-            List<MedicamentADeLivrer> medicamentsSelectionnes = new List<MedicamentADeLivrer>();
+            // =====================================================
+            // 1. RÉCUPÉRER TOUTES LES PRESCRIPTIONS DU DATAGRIDVIEW
+            // =====================================================
 
-            foreach (DataGridViewRow row in dgv_prescription.Rows)
+            List<int> prescriptions =
+                new List<int>();
+
+            foreach (DataGridViewRow row
+                in dgv_prescription.Rows)
             {
                 if (row.IsNewRow)
                     continue;
 
-                bool selectionne = false;
-
-                if (row.Cells["colSelection"].Value != null)
-                {
-                    selectionne = Convert.ToBoolean(row.Cells["colSelection"].Value);
-                }
-
-                if (!selectionne)
+                if (row.Cells["colIdPrescription"].Value == null)
                     continue;
 
-                MedicamentADeLivrer medicament = row.Tag as MedicamentADeLivrer;
+                int idPrescription =
+                    Convert.ToInt32(
+                        row.Cells["colIdPrescription"].Value);
 
-                if (medicament != null)
+                // Éviter les doublons
+                if (!prescriptions.Contains(idPrescription))
                 {
-                    // On ne transmet pas un médicament
-                    // dont la quantité restante est déjà à 0.
-                    if (medicament.QuantiteRestante > 0)
-                    {
-                        medicamentsSelectionnes.Add(medicament);
-                    }
+                    prescriptions.Add(idPrescription);
                 }
             }
 
-            // Aucun médicament sélectionné
-            if (medicamentsSelectionnes.Count == 0)
+
+            // =====================================================
+            // 2. VÉRIFIER QU'IL EXISTE DES PRESCRIPTIONS
+            // =====================================================
+
+            if (prescriptions.Count == 0)
             {
-                MessageBox.Show("Veuillez sélectionner au moins un médicament à délivrer.", "Délivrance", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Aucune prescription n'est disponible pour ce patient.",
+                    "Délivrance",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
                 return;
             }
 
-            // Ouverture du formulaire de délivrance
-            Delivrance_Medoc dev = new Delivrance_Medoc(this.id_patient, this.id_hospitalisation, medicamentsSelectionnes);
-            dev.ShowDialog();
 
-            if (dev.ShowDialog() == DialogResult.OK)
+            // =====================================================
+            // 3. TRAITER CHAQUE PRESCRIPTION
+            // =====================================================
+
+            foreach (int idPrescription
+                in prescriptions)
             {
-                // La délivrance a été enregistrée
-                // On peut actualiser les prescriptions
-                ChargerPrescriptions();
+                List<MedicamentADeLivrer> medicaments =
+                    ChargerMedicamentsPrescription(
+                        idPrescription);
+
+
+                // -------------------------------------------------
+                // Cette prescription est déjà entièrement délivrée
+                // -------------------------------------------------
+
+                if (medicaments.Count == 0)
+                {
+                    continue;
+                }
+
+
+                // =================================================
+                // 4. OUVRIR LE FORMULAIRE DE DÉLIVRANCE
+                // =================================================
+
+                using (Delivrance_Medoc formulaire =
+                    new Delivrance_Medoc(
+                        id_patient,
+                        idPrescription,
+                        medicaments))
+                {
+                    DialogResult resultat =
+                        formulaire.ShowDialog();
+
+                    if (resultat == DialogResult.OK)
+                    {
+                        // Actualiser les données
+                        ChargerPrescriptions();
+                    }
+                }
             }
+        }
+
+        private void roundedButton2_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

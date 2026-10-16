@@ -90,7 +90,7 @@
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>2.40454cm</Top>
-        <Left>6.88085cm</Left>
+        <Left>0.36675cm</Left>
         <Height>2.3148cm</Height>
         <Width>4.64143cm</Width>
         <Style>
@@ -106,16 +106,43 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value> CENTRE DE PROTECTION DES INDIGENTS ET MALADES MENTAUX</Value>
+                <Value> CENTRE DE PROTECTION DES</Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value> INDIGENTS ET MALADES</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value> MENTAUX</Value>
+                <Style>
+                  <FontFamily>calibri</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
           <Paragraph>
@@ -124,13 +151,12 @@
                 <Value>&lt;&lt;CEPIMA/SANTE MENTALE&gt;&gt;</Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
-                  <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
@@ -138,7 +164,7 @@
         <Top>0.31432cm</Top>
         <Left>0.31432cm</Left>
         <Height>1.76417cm</Height>
-        <Width>11.20795cm</Width>
+        <Width>5.8602cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -154,16 +180,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.45792cm</Width>
+              <Width>2.19796cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.10319cm</Width>
+              <Width>1.24991cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.4763cm</Width>
+              <Width>1.28125cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.17054cm</Width>
+              <Width>1.63379cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -182,7 +208,6 @@
                               <Value>Description</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -216,7 +241,6 @@
                               <Value>Qté</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -252,7 +276,6 @@
                               <Value>P.U</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -288,7 +311,6 @@
                               <Value>P.T</Value>
                               <Style>
                                 <FontFamily>Calibri</FontFamily>
-                                <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -477,7 +499,7 @@
         <Top>6.70842cm</Top>
         <Left>0.31432cm</Left>
         <Height>2.12604cm</Height>
-        <Width>11.20795cm</Width>
+        <Width>6.36291cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -506,10 +528,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>5.05037cm</Top>
-        <Left>3.48932cm</Left>
+        <Top>5.08565cm</Top>
+        <Left>0.60536cm</Left>
         <Height>0.6cm</Height>
-        <Width>4.43145cm</Width>
+        <Width>5.56916cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -528,7 +550,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Mr,Mme,Mlle : </Value>
+                <Value>Mr,Mme: </Value>
                 <Style>
                   <FontFamily>calibri</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -556,7 +578,7 @@
         <Top>5.82676cm</Top>
         <Left>0.31432cm</Left>
         <Height>0.74055cm</Height>
-        <Width>11.20796cm</Width>
+        <Width>6.36291cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -580,7 +602,7 @@
                     <Value>Total Facture</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
-                      <FontSize>14pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -590,9 +612,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.07056cm</Top>
-            <Left>0.29104cm</Left>
+            <Left>0.26191cm</Left>
             <Height>0.81549cm</Height>
-            <Width>7.56999cm</Width>
+            <Width>2.50148cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -613,7 +635,7 @@
                     <Value>=Fields!montant_total.Value</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -621,21 +643,21 @@
                     <Value>$</Value>
                     <Style>
                       <FontFamily>Calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Center</TextAlign>
+                  <TextAlign>Right</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.07056cm</Top>
-            <Left>8.03742cm</Left>
-            <Height>0.81549cm</Height>
-            <Width>3.17054cm</Width>
+            <Left>3.4427cm</Left>
+            <Height>0.74494cm</Height>
+            <Width>2.92021cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -652,7 +674,7 @@
         <Top>9.01085cm</Top>
         <Left>0.31432cm</Left>
         <Height>0.9566cm</Height>
-        <Width>11.20796cm</Width>
+        <Width>6.36291cm</Width>
         <ZIndex>5</ZIndex>
         <Style>
           <Border>
@@ -661,122 +683,17 @@
           </Border>
         </Style>
       </Rectangle>
-      <Rectangle Name="Rectangle3">
-        <ReportItems>
-          <Textbox Name="Textbox4">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Adresse : </Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.14966cm</Top>
-            <Left>0.29104cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.88667cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox9">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Contact : </Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>1.0757cm</Top>
-            <Left>0.34396cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.83374cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox11">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>E-mail : </Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>1.86446cm</Top>
-            <Left>0.34396cm</Left>
-            <Height>0.6cm</Height>
-            <Width>5.83374cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-        </ReportItems>
-        <KeepTogether>true</KeepTogether>
-        <Top>2.25488cm</Top>
-        <Left>0.31432cm</Left>
-        <Height>2.64966cm</Height>
-        <Width>6.52167cm</Width>
-        <ZIndex>6</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Rectangle>
     </ReportItems>
     <Height>4.06634in</Height>
     <Style />
   </Body>
-  <Width>4.68302in</Width>
+  <Width>2.68091in</Width>
   <Page>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <PageWidth>3.15in</PageWidth>
+    <LeftMargin>0.2in</LeftMargin>
+    <RightMargin>0.2in</RightMargin>
+    <TopMargin>0.1in</TopMargin>
+    <BottomMargin>0.1in</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>

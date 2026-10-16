@@ -162,6 +162,7 @@
             this.btn_delivrer.TextColor = System.Drawing.Color.White;
             this.btn_delivrer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_delivrer.UseVisualStyleBackColor = false;
+            //this.btn_delivrer.Click += new System.EventHandler(this.btn_delivrer_Click_1);
             // 
             // Form_prescription
             // 
@@ -174,6 +175,7 @@
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "Form_prescription";
             this.Text = "Form_prescription";
+            this.Load += new System.EventHandler(this.Form_prescription_Load);
             this.bunifuRoundedPanel1.ResumeLayout(false);
             this.bunifuRoundedPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

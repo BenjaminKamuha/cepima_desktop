@@ -16,263 +16,642 @@ namespace Cepima.MesUserCases.Hospitalisation
         public User_chambre()
         {
             InitializeComponent();
-            LoadChambres();
+
             rb_tous.Checked = true;
+
+            LoadChambres();
         }
 
-        private void LoadChambres(string recherche = "", string statut = "")
-        {
-            flow_chambres.Controls.Clear();
 
+        // ============================================================
+        // CHARGER LES CHAMBRES
+        // ============================================================
+
+        private void LoadChambres(
+            string recherche = "",
+            string statut = "")
+        {
             try
             {
-                string query = "SELECT id_chambre,numero_chambre,nombre_lit,tarif_journalier,statut FROM chambre WHERE 1 = 1";
+                // =====================================================
+                // SUSPENDRE LE LAYOUT
+                // =====================================================
+
+                flow_chambres.SuspendLayout();
+
+                flow_chambres.Controls.Clear();
+
+                lb_not_found.Visible = false;
+
+
+                // =====================================================
+                // REQUETE DE BASE
+                // =====================================================
+
+                string query = @"
+                    SELECT
+                        id_chambre,
+                        numero_chambre,
+                        nombre_lit,
+                        tarif_journalier,
+                        statut
+
+                    FROM chambre
+
+                    WHERE 1 = 1";
+
+
+                // =====================================================
+                // PARAMETRES
+                // =====================================================
 
                 MesClasses.ManagerClasse.request_params.Clear();
+
+
                 // =====================================================
                 // RECHERCHE
                 // =====================================================
 
                 if (!string.IsNullOrWhiteSpace(recherche))
                 {
-                    query += " AND numero_chambre LIKE @recherche";
+                    query += @"
+                        AND numero_chambre LIKE @recherche";
 
-                    MesClasses.ManagerClasse.request_params.Add("@recherche","%" + recherche + "%");
+                    MesClasses.ManagerClasse.request_params.Add(
+                        "@recherche",
+                        "%" + recherche.Trim() + "%");
                 }
- 
+
+
                 // =====================================================
                 // FILTRE STATUT
                 // =====================================================
 
                 if (!string.IsNullOrWhiteSpace(statut))
                 {
-                    if (statut == "Disponible")
+                    switch (statut)
                     {
-                        query += " AND statut = 'Disponible'";
-                    }
-                    else if (statut == "Occupée")
-                    {
-                        query += " AND statut = 'Occupée'";
-                    }
-                    else if (statut == "Suspendue")
-                    {
-                        query += " AND statut IN ('Maintenance', 'Hos service')";
+                        case "Disponible":
+
+                            query += @"
+                                AND statut = 'Disponible'";
+
+                            break;
+
+
+                        case "Occupée":
+
+                            query += @"
+                                AND statut = 'Occupée'";
+
+                            break;
+
+
+                        case "Suspendue":
+
+                            query += @"
+                                AND statut IN
+                                (
+                                    'Maintenance',
+                                    'Hos service'
+                                )";
+
+                            break;
                     }
                 }
 
-                query += " ORDER BY numero_chambre ASC";
 
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query,MesClasses.ManagerClasse.request_params,true))
+                // =====================================================
+                // TRI
+                // =====================================================
+
+                query += @"
+                    ORDER BY numero_chambre ASC";
+
+
+                // =====================================================
+                // EXECUTION
+                // =====================================================
+
+                using (MySqlDataReader reader =
+                    MesClasses.ManagerClasse.CRUD(
+                        query,
+                        MesClasses.ManagerClasse.request_params,
+                        true))
                 {
-                    int i = 0;
+                    int nombreChambres = 0;
 
-                    if (reader.HasRows)
+
+                    // =================================================
+                    // LECTURE
+                    // =================================================
+
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        // =============================================
+                        // ID
+                        // =============================================
+
+                        string idChambre =
+                            reader["id_chambre"].ToString();
+
+
+                        // =============================================
+                        // NUMERO
+                        // =============================================
+
+                        string numero =
+                            reader["numero_chambre"].ToString();
+
+
+                        // =============================================
+                        // NOMBRE DE LITS
+                        // =============================================
+
+                        string nombre =
+                            reader["nombre_lit"].ToString();
+
+
+                        // =============================================
+                        // TARIF
+                        // =============================================
+
+                        string tarif = "0";
+
+                        if (reader["tarif_journalier"] !=
+                            DBNull.Value)
                         {
-                            string idChambre = reader["id_chambre"].ToString();
+                            decimal valeurTarif =
+                                Convert.ToDecimal(
+                                    reader[
+                                        "tarif_journalier"]);
 
-                            string numero = reader["numero_chambre"].ToString();
-
-                            string nombre = reader["nombre_lit"].ToString();
-
-                            string tarif = Convert.ToDecimal(reader["tarif_journalier"]).ToString("N0");
-
-                            string statutChambre = reader["statut"].ToString();
-
-                            //création des cartes 
-                            CreerCarteChambre(
-                                idChambre,
-                                numero,
-                                nombre,
-                                tarif,
-                                statutChambre
-                            );
-
-                            i++;
+                            tarif =
+                                valeurTarif.ToString("N0");
                         }
 
-                        lb_nombres_chambres.Text = i + " chambre(s)";
+
+                        // =============================================
+                        // STATUT
+                        // =============================================
+
+                        string statutChambre =
+                            reader["statut"].ToString();
+
+
+                        // =============================================
+                        // CREATION DE LA CARTE
+                        // =============================================
+
+                        CreerCarteChambre(
+                            idChambre,
+                            numero,
+                            nombre,
+                            tarif,
+                            statutChambre);
+
+
+                        nombreChambres++;
+                    }
+
+
+                    // =================================================
+                    // RESULTAT
+                    // =================================================
+
+                    if (nombreChambres == 0)
+                    {
+                        lb_not_found.Text =
+                            "Aucune chambre trouvée";
+
+                        lb_not_found.Visible =
+                            true;
+
+                        lb_nombres_chambres.Text =
+                            "0 chambre";
+
+                        flow_chambres.Controls.Add(
+                            lb_not_found);
                     }
                     else
                     {
-                        lb_not_found.Text = "Aucune chambre trouvée";
-                        flow_chambres.Controls.Add(lb_not_found);
-                        lb_not_found.Visible = true;
-                        lb_nombres_chambres.Text = "0 chambre";
+                        lb_not_found.Visible =
+                            false;
+
+                        lb_nombres_chambres.Text =
+                            nombreChambres == 1
+                                ? "1 chambre"
+                                : nombreChambres +
+                                  " chambre(s)";
                     }
                 }
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erreur : " + ex.Message);
+                MessageBox.Show(
+                    "Erreur lors du chargement des chambres :\n\n" +
+                    ex.Message,
+                    "Chambres",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des chambres :\n\n" +
+                    ex.Message,
+                    "Chambres",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // =====================================================
+                // REACTIVER LE LAYOUT
+                // =====================================================
+
+                flow_chambres.ResumeLayout(true);
             }
         }
-        private void CreerCarteChambre(string idChambre,string numero,string type,string tarif,string statut)
+
+
+        // ============================================================
+        // CREER UNE CARTE CHAMBRE
+        // ============================================================
+
+        private void CreerCarteChambre(
+            string idChambre,
+            string numero,
+            string nombre,
+            string tarif,
+            string statut)
         {
-            BunifuRoundedPanel panChambre = new BunifuRoundedPanel();
-            panChambre.Size = new Size(290, 130);
-            panChambre.Margin = new Padding(10, 10, 20, 10);
-            panChambre.BorderRadius = 8;
-            panChambre.BorderColor = Color.Silver;
-            panChambre.BorderSize = 1;
-            panChambre.ShadowColor = Color.Gray;
-            panChambre.ShadowDepth = 10;
-            panChambre.Tag = idChambre;
+            BunifuRoundedPanel panChambre =
+                new BunifuRoundedPanel();
 
 
-            panChambre.Click += (s, e) =>
+            // ========================================================
+            // PROPRIETES DU PANEL
+            // ========================================================
+
+            panChambre.Size =
+                new Size(
+                    290,
+                    130);
+
+            panChambre.Margin =
+                new Padding(
+                    10,
+                    10,
+                    20,
+                    10);
+
+            panChambre.BorderRadius =
+                8;
+
+            panChambre.BorderColor =
+                Color.Silver;
+
+            panChambre.BorderSize =
+                1;
+
+            panChambre.ShadowColor =
+                Color.Gray;
+
+            panChambre.ShadowDepth =
+                10;
+
+            panChambre.Tag =
+                idChambre;
+
+
+            // ========================================================
+            // CLICK SUR LA CARTE
+            // ========================================================
+
+            panChambre.Click +=
+                delegate(object sender, EventArgs e)
                 {
-                    MesForms.Hospitalisation.Detail_Chambre add = new MesForms.Hospitalisation.Detail_Chambre(idChambre);
-                    add.ShowDialog();
+                    MesForms.Hospitalisation.Detail_Chambre
+                        detail =
+                        new MesForms.Hospitalisation.Detail_Chambre(
+                            idChambre);
+
+                    detail.ShowDialog();
                 };
-            PictureBox picture = MesClasses.ManagerClasse.AddPicture(
-                Properties.Resources.icone_chambre,
-                new Point(15, 15),
-                new Size(60, 60)
-            );
-
-            panChambre.Controls.Add(picture);
-
-            Label lbNumero = MesClasses.ManagerClasse.CustomLabel(
-                "Chambre N° " + numero,
-                new Point(90, 15)
-            );
-
-            lbNumero.AutoSize = true;
-            lbNumero.Font = new Font(
-                "Calibri",
-                11,
-                FontStyle.Bold
-            );
-
-            panChambre.Controls.Add(lbNumero);
 
 
-            Label lbType = MesClasses.ManagerClasse.CustomLabel("Lit(s) : "+type,new Point(90, 40));
+            // ========================================================
+            // ICONE
+            // ========================================================
 
-            lbType.AutoSize = true;
+            PictureBox picture =
+                MesClasses.ManagerClasse.AddPicture(
+                    Properties.Resources.icone_chambre,
+                    new Point(
+                        15,
+                        15),
+                    new Size(
+                        60,
+                        60));
 
-            lbType.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Regular
-            );
+            picture.Cursor =
+                Cursors.Hand;
 
-            panChambre.Controls.Add(lbType);
-
-
-            Label lbTarif = MesClasses.ManagerClasse.CustomLabel(
-                "Tarif : " + tarif + "$/Jours",
-                new Point(90, 65)
-            );
-
-            lbTarif.AutoSize = true;
-
-            lbTarif.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Regular
-            );
-
-            panChambre.Controls.Add(lbTarif);
+            panChambre.Controls.Add(
+                picture);
 
 
-            Label lbStatut = MesClasses.ManagerClasse.CustomLabel(
-                "Statut :",
-                new Point(15, 95)
-            );
+            // ========================================================
+            // NUMERO CHAMBRE
+            // ========================================================
 
-            lbStatut.AutoSize = true;
+            Label lbNumero =
+                MesClasses.ManagerClasse.CustomLabel(
+                    "Chambre N° " + numero,
+                    new Point(
+                        90,
+                        15));
 
-            lbStatut.Font = new Font(
-                "Calibri",
-                10,
-                FontStyle.Bold
-            );
+            lbNumero.AutoSize =
+                true;
 
-            panChambre.Controls.Add(lbStatut);
+            lbNumero.Font =
+                new Font(
+                    "Calibri",
+                    11,
+                    FontStyle.Bold);
+
+            lbNumero.Cursor =
+                Cursors.Hand;
+
+            panChambre.Controls.Add(
+                lbNumero);
 
 
-            Label lbValeurStatut = MesClasses.ManagerClasse.CustomLabel(
-                statut,
-                new Point(75, 95)
-            );
+            // ========================================================
+            // NOMBRE DE LITS
+            // ========================================================
 
-            lbValeurStatut.AutoSize = true;
+            Label lbType =
+                MesClasses.ManagerClasse.CustomLabel(
+                    "Lit(s) : " + nombre,
+                    new Point(
+                        90,
+                        40));
 
-            lbValeurStatut.Font = new Font("Calibri",10,FontStyle.Bold
-            );
+            lbType.AutoSize =
+                true;
 
+            lbType.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Regular);
+
+            lbType.Cursor =
+                Cursors.Hand;
+
+            panChambre.Controls.Add(
+                lbType);
+
+
+            // ========================================================
+            // TARIF
+            // ========================================================
+
+            Label lbTarif =
+                MesClasses.ManagerClasse.CustomLabel(
+                    "Tarif : " + tarif + "$/Jours",
+                    new Point(
+                        90,
+                        65));
+
+            lbTarif.AutoSize =
+                true;
+
+            lbTarif.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Regular);
+
+            lbTarif.Cursor =
+                Cursors.Hand;
+
+            panChambre.Controls.Add(
+                lbTarif);
+
+
+            // ========================================================
+            // LABEL STATUT
+            // ========================================================
+
+            Label lbStatut =
+                MesClasses.ManagerClasse.CustomLabel(
+                    "Statut :",
+                    new Point(
+                        15,
+                        95));
+
+            lbStatut.AutoSize =
+                true;
+
+            lbStatut.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
+
+            panChambre.Controls.Add(
+                lbStatut);
+
+
+            // ========================================================
+            // VALEUR STATUT
+            // ========================================================
+
+            Label lbValeurStatut =
+                MesClasses.ManagerClasse.CustomLabel(
+                    statut,
+                    new Point(
+                        75,
+                        95));
+
+            lbValeurStatut.AutoSize =
+                true;
+
+            lbValeurStatut.Font =
+                new Font(
+                    "Calibri",
+                    10,
+                    FontStyle.Bold);
+
+
+            // ========================================================
+            // COULEUR STATUT
+            // ========================================================
 
             if (statut == "Disponible")
             {
-                lbValeurStatut.ForeColor = Color.FromArgb(0,180,80);
+                lbValeurStatut.ForeColor =
+                    Color.FromArgb(
+                        0,
+                        180,
+                        80);
             }
             else if (statut == "Occupée")
             {
-                lbValeurStatut.ForeColor = Color.Red;
+                lbValeurStatut.ForeColor =
+                    Color.Red;
             }
             else if (statut == "Reservée")
             {
-                lbValeurStatut.ForeColor = Color.Orange;
+                lbValeurStatut.ForeColor =
+                    Color.Orange;
             }
             else
             {
-                lbValeurStatut.ForeColor = Color.Gray;
+                lbValeurStatut.ForeColor =
+                    Color.Gray;
             }
 
-            panChambre.Controls.Add(lbValeurStatut);
 
-            flow_chambres.Controls.Add(panChambre);
+            lbValeurStatut.Cursor =
+                Cursors.Hand;
+
+            panChambre.Controls.Add(
+                lbValeurStatut);
+
+
+            // ========================================================
+            // AJOUT DE LA CARTE
+            // ========================================================
+
+            flow_chambres.Controls.Add(
+                panChambre);
         }
 
-        private void rb_tous_CheckedChanged(object sender, EventArgs e)
+
+        // ============================================================
+        // TOUTES LES CHAMBRES
+        // ============================================================
+
+        private void rb_tous_CheckedChanged(
+            object sender,
+            EventArgs e)
         {
-            if (rb_tous.Checked)
-            {
-                LoadChambres(
-                    tb_recherche_chambre.Text,
-                    ""
-                );
-            }
+            if (!rb_tous.Checked)
+                return;
+
+            LoadChambres(
+                tb_recherche_chambre.Text,
+                "");
         }
 
-        private void rb_occupe_CheckedChanged(object sender, EventArgs e)
+
+        // ============================================================
+        // CHAMBRES OCCUPEES
+        // ============================================================
+
+        private void rb_occupe_CheckedChanged(
+            object sender,
+            EventArgs e)
         {
+            if (!rb_occupe.Checked)
+                return;
+
+            LoadChambres(
+                tb_recherche_chambre.Text,
+                "Occupée");
+        }
+
+
+        // ============================================================
+        // CHAMBRES DISPONIBLES
+        // ============================================================
+
+        private void rb_libre_CheckedChanged(
+            object sender,
+            EventArgs e)
+        {
+            if (!rb_libre.Checked)
+                return;
+
+            LoadChambres(
+                tb_recherche_chambre.Text,
+                "Disponible");
+        }
+
+
+        // ============================================================
+        // CHAMBRES SUSPENDUES
+        // ============================================================
+
+        private void rb_suspendu_CheckedChanged(
+            object sender,
+            EventArgs e)
+        {
+            if (!rb_suspendu.Checked)
+                return;
+
+            LoadChambres(
+                tb_recherche_chambre.Text,
+                "Suspendue");
+        }
+
+
+        // ============================================================
+        // RECHERCHE
+        // ============================================================
+
+        private void tb_recherche_chambre_TextChanged(
+            object sender,
+            EventArgs e)
+        {
+            string statut = "";
+
+
             if (rb_occupe.Checked)
             {
-                LoadChambres(
-                    tb_recherche_chambre.Text,
-                    "Occupée"
-                );
+                statut =
+                    "Occupée";
             }
-        }
-
-        private void rb_libre_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rb_libre.Checked)
+            else if (rb_libre.Checked)
             {
-                LoadChambres(
-                    tb_recherche_chambre.Text,
-                    "Disponible"
-                );
+                statut =
+                    "Disponible";
             }
-        }
-
-        private void rb_suspendu_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rb_suspendu.Checked)
+            else if (rb_suspendu.Checked)
             {
-                LoadChambres(
-                    tb_recherche_chambre.Text,
-                    "Suspendue"
-                );
+                statut =
+                    "Suspendue";
             }
+
+
+            LoadChambres(
+                tb_recherche_chambre.Text,
+                statut);
         }
 
-        private void tb_recherche_chambre_TextChanged(object sender, EventArgs e)
+
+        // ============================================================
+        // AJOUTER UNE CHAMBRE
+        // ============================================================
+
+        private void bt_add_chambre_Click(
+            object sender,
+            EventArgs e)
         {
+            MesForms.Hospitalisation.Add_chambre chambre =
+                new MesForms.Hospitalisation.Add_chambre();
+
+            chambre.ShowDialog();
+
+            // --------------------------------------------------------
+            // Recharger après ajout
+            // --------------------------------------------------------
+
             string statut = "";
 
             if (rb_occupe.Checked)
@@ -290,14 +669,7 @@ namespace Cepima.MesUserCases.Hospitalisation
 
             LoadChambres(
                 tb_recherche_chambre.Text,
-                statut
-            );
-        }
-
-        private void bt_add_chambre_Click(object sender, EventArgs e)
-        {
-            MesForms.Hospitalisation.Add_chambre chambre = new MesForms.Hospitalisation.Add_chambre();
-            chambre.ShowDialog();
+                statut);
         }
     }
 }

@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing;
+using Cepima.Services;
 
 namespace Cepima.MesClasses
 {
@@ -19,12 +20,20 @@ namespace Cepima.MesClasses
         //private static readonly string con_string = "server=localhost;database=cepimadb;user id=root;pwd=''";
 
         //private static readonly string con_string = "server=192.168.203.2;database=cepimadb;Uid=cepima_desk;pwd=cepima";
-        private static readonly string con_string = "server=localhost;database=cepimadb;user id=root;pwd=''";
 
+        private static readonly string DB_HOST = EnvConfig.Get("DB_HOST", "localhost");
+        private static readonly string DB_PORT = EnvConfig.Get("DB_PORT", "3306");
+        private static readonly string DB_NAME = EnvConfig.Get("DB_NAME", "cepimadb");
+        private static readonly string DB_USER = EnvConfig.Get("DB_USER", "root");
+        private static readonly string DB_PASSWORD = EnvConfig.Get("DB_PASSWORD", "");
+
+
+        private static readonly string con_string = "server="+DB_HOST+";database="+DB_NAME+";user id="+DB_USER+";pwd="+DB_PASSWORD;
 
         public static Dictionary<string, string> request_params = new Dictionary<string, string>();
         public static MySqlConnection GetConnexion()
         {
+
             MySqlConnection con = new MySqlConnection(con_string);
             try
             {

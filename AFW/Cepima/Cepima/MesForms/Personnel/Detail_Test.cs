@@ -38,7 +38,7 @@ namespace Cepima.MesForms.Personnel
         {
             try
             {
-                string querySelect = "SELECT id_personnel,CONCAT('PER',' - ','CEP','/',YEAR(p.date_embauche)) AS dossier,nom,post_nom,prenom,sexe,date_naissance,date_embauche,fonction,p.telephone,p.adresse,p.situation_familliale,p.actif AS statut,nom_centre FROM personnels p JOIN centres c ON c.id_centre = p.id_centre WHERE id_personnel = @id";
+                string querySelect = "SELECT id_personnel,CONCAT('PER',' - ','CEP','/',YEAR(p.date_embauche)) AS dossier,nom,post_nom,prenom,sexe,date_naissance,date_embauche,fonction,p.telephone,p.adresse,p.situation_familliale,p.actif AS statut,nom_centre FROM personnels p LEFT JOIN centres c ON c.id_centre = p.id_centre WHERE id_personnel = @id";
                 MesClasses.ManagerClasse.request_params.Clear();
                 MesClasses.ManagerClasse.request_params.Add("@id", personnelID);
                 using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(querySelect, MesClasses.ManagerClasse.request_params, true))
@@ -127,6 +127,7 @@ namespace Cepima.MesForms.Personnel
 
         private void bt_delete_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(personnelID);
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
                 try
@@ -134,7 +135,7 @@ namespace Cepima.MesForms.Personnel
                     var resul = MessageBox.Show("Supprimer le personnel", "Supprimer", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resul == DialogResult.Yes)
                     {
-                        string query = "DELETE FROM personnel WHERE id = @id";
+                        string query = "DELETE FROM personnels WHERE id_personnel = @id";
                         using (MySqlCommand cmd = new MySqlCommand(query, con))
                         {
                             cmd.Parameters.AddWithValue("@id", personnelID);

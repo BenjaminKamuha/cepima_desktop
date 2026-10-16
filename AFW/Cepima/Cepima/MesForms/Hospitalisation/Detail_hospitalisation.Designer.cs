@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,6 +38,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.dgv_prescription = new System.Windows.Forms.DataGridView();
+            this.colIdPrescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIdMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrescrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDelivre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lb_date_admission = new System.Windows.Forms.Label();
             this.lb_nombreJour = new System.Windows.Forms.Label();
             this.lb_motif = new System.Windows.Forms.Label();
@@ -56,13 +63,6 @@
             this.lb_dossier = new System.Windows.Forms.Label();
             this.lb_nom = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.colIdPrescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSelection = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colIdMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedicament = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrescrit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDelivre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_prescription)).BeginInit();
             this.bunifuRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -157,21 +157,62 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv_prescription.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv_prescription.ColumnHeadersHeight = 30;
             this.dgv_prescription.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colIdPrescription,
-            this.colSelection,
             this.colIdMedicament,
             this.colMedicament,
             this.colPrescrit,
             this.colDelivre,
             this.colStatut});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_prescription.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_prescription.EnableHeadersVisualStyles = false;
             this.dgv_prescription.Location = new System.Drawing.Point(2, 421);
             this.dgv_prescription.Name = "dgv_prescription";
             this.dgv_prescription.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgv_prescription.RowHeadersVisible = false;
+            this.dgv_prescription.RowTemplate.Height = 30;
             this.dgv_prescription.Size = new System.Drawing.Size(580, 150);
             this.dgv_prescription.TabIndex = 7;
+            // 
+            // colIdPrescription
+            // 
+            this.colIdPrescription.HeaderText = "";
+            this.colIdPrescription.Name = "colIdPrescription";
+            this.colIdPrescription.Visible = false;
+            // 
+            // colIdMedicament
+            // 
+            this.colIdMedicament.HeaderText = "Column1";
+            this.colIdMedicament.Name = "colIdMedicament";
+            this.colIdMedicament.Visible = false;
+            // 
+            // colMedicament
+            // 
+            this.colMedicament.HeaderText = "Médicaments";
+            this.colMedicament.Name = "colMedicament";
+            // 
+            // colPrescrit
+            // 
+            this.colPrescrit.HeaderText = "Préscrit";
+            this.colPrescrit.Name = "colPrescrit";
+            // 
+            // colDelivre
+            // 
+            this.colDelivre.HeaderText = "Delivré";
+            this.colDelivre.Name = "colDelivre";
+            // 
+            // colStatut
+            // 
+            this.colStatut.HeaderText = "Statut";
+            this.colStatut.Name = "colStatut";
             // 
             // lb_date_admission
             // 
@@ -350,6 +391,7 @@
             this.roundedButton2.TextColor = System.Drawing.Color.White;
             this.roundedButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.roundedButton2.UseVisualStyleBackColor = false;
+            this.roundedButton2.Click += new System.EventHandler(this.roundedButton2_Click);
             // 
             // lb_age
             // 
@@ -390,43 +432,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // colIdPrescription
-            // 
-            this.colIdPrescription.HeaderText = "";
-            this.colIdPrescription.Name = "colIdPrescription";
-            this.colIdPrescription.Visible = false;
-            // 
-            // colSelection
-            // 
-            this.colSelection.HeaderText = "Sélectionner";
-            this.colSelection.Name = "colSelection";
-            // 
-            // colIdMedicament
-            // 
-            this.colIdMedicament.HeaderText = "Column1";
-            this.colIdMedicament.Name = "colIdMedicament";
-            this.colIdMedicament.Visible = false;
-            // 
-            // colMedicament
-            // 
-            this.colMedicament.HeaderText = "Médicaments";
-            this.colMedicament.Name = "colMedicament";
-            // 
-            // colPrescrit
-            // 
-            this.colPrescrit.HeaderText = "Préscrit";
-            this.colPrescrit.Name = "colPrescrit";
-            // 
-            // colDelivre
-            // 
-            this.colDelivre.HeaderText = "Delivré";
-            this.colDelivre.Name = "colDelivre";
-            // 
-            // colStatut
-            // 
-            this.colStatut.HeaderText = "Statut";
-            this.colStatut.Name = "colStatut";
             // 
             // Detail_hospitalisation
             // 
@@ -493,7 +498,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdPrescription;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colSelection;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIdMedicament;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedicament;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPrescrit;

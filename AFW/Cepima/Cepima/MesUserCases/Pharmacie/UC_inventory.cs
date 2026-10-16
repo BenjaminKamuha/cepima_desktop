@@ -13,10 +13,8 @@ namespace Cepima.MesUserCases.Pharmacie
     {
         private Database db;
 
-        // ID de l'inventaire actuellement ouvert
         private int inventaireSelectionneId = 0;
 
-        // Notre ModernDataGridView
         private ModernDataGridView dgvInventaires;
 
 
@@ -42,8 +40,7 @@ namespace Cepima.MesUserCases.Pharmacie
         {
             ConfigurerDataGridView();
 
-            this.Load +=
-                UC_inventory_Load;
+            this.Load += UC_inventory_Load;
 
             tb_search.TextChanged +=
                 tb_search_TextChanged;
@@ -51,27 +48,14 @@ namespace Cepima.MesUserCases.Pharmacie
             cbx_filter_category.SelectedIndexChanged +=
                 cbx_filter_category_SelectedIndexChanged;
 
-
-            // =====================================================
-            // ÉVÉNEMENTS DES BOUTONS
-            // =====================================================
-
             btnValiderInventaire.Click +=
                 btnValiderInventaire_Click;
 
             btnRetourInventaires.Click +=
                 btnRetourInventaires_Click;
 
-
-            // =====================================================
-            // AU DÉPART : BOUTONS CACHÉS
-            // =====================================================
-
-            btnValiderInventaire.Visible =
-                false;
-
-            btnRetourInventaires.Visible =
-                false;
+            btnValiderInventaire.Visible = false;
+            btnRetourInventaires.Visible = false;
         }
 
 
@@ -88,7 +72,7 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
         // =========================================================
-        // CONFIGURATION MODERN DATAGRIDVIEW
+        // CONFIGURATION DATAGRIDVIEW
         // =========================================================
 
         private void ConfigurerDataGridView()
@@ -113,26 +97,16 @@ namespace Cepima.MesUserCases.Pharmacie
                     customRoundedPanel1.Width,
                     customRoundedPanel1.Height - 60);
 
-            dgvInventaires.AutoGenerateColumns =
-                false;
-
-            dgvInventaires.AllowUserToAddRows =
-                false;
-
-            dgvInventaires.AllowUserToDeleteRows =
-                false;
-
-            dgvInventaires.ReadOnly =
-                true;
+            dgvInventaires.AutoGenerateColumns = false;
+            dgvInventaires.AllowUserToAddRows = false;
+            dgvInventaires.AllowUserToDeleteRows = false;
+            dgvInventaires.ReadOnly = true;
 
             dgvInventaires.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
 
-            dgvInventaires.MultiSelect =
-                false;
-
-            dgvInventaires.RowHeadersVisible =
-                false;
+            dgvInventaires.MultiSelect = false;
+            dgvInventaires.RowHeadersVisible = false;
 
             dgvInventaires.BackgroundColor =
                 Color.White;
@@ -140,27 +114,18 @@ namespace Cepima.MesUserCases.Pharmacie
             dgvInventaires.BorderStyle =
                 BorderStyle.None;
 
-            // =====================================================
-            // APPARENCE MODERNE
-            // =====================================================
-
             dgvInventaires.HeaderBackColor =
                 Color.DodgerBlue;
 
             dgvInventaires.HeaderForeColor =
                 Color.White;
 
-            dgvInventaires.HeaderHeight =
-                45;
+            dgvInventaires.HeaderHeight = 45;
+            dgvInventaires.RowHeight = 42;
 
-            dgvInventaires.RowHeight =
-                42;
+            dgvInventaires.BorderRadius = 1;
 
-            dgvInventaires.BorderRadius =
-                1;
-
-            dgvInventaires.OuterBorderSize =
-                1;
+            dgvInventaires.OuterBorderSize = 1;
 
             dgvInventaires.OuterBorderColor =
                 Color.LightGray;
@@ -171,9 +136,7 @@ namespace Cepima.MesUserCases.Pharmacie
             dgvInventaires.EnableHeadersVisualStyles =
                 false;
 
-
             AjouterColonnesInventaires();
-
 
             customRoundedPanel1.Controls.Add(
                 dgvInventaires);
@@ -181,170 +144,78 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
         // =========================================================
-        // COLONNES LISTE DES INVENTAIRES
+        // COLONNES INVENTAIRES
         // =========================================================
 
         private void AjouterColonnesInventaires()
         {
             dgvInventaires.Columns.Clear();
 
+            AjouterColonne(
+                "id",
+                "id",
+                "",
+                false);
 
-            // =====================================================
-            // ID
-            // =====================================================
+            AjouterColonne(
+                "inventaire",
+                "inventaire",
+                "Inventaire",
+                true);
 
-            DataGridViewTextBoxColumn colId =
+            AjouterColonne(
+                "date_debut",
+                "date_debut",
+                "Date",
+                true);
+
+            AjouterColonne(
+                "type",
+                "type",
+                "Type",
+                true);
+
+            AjouterColonne(
+                "statut",
+                "statut",
+                "Statut",
+                true);
+
+            AjouterColonne(
+                "nombre_lots",
+                "nombre_lots",
+                "Lots",
+                true);
+
+            AjouterColonne(
+                "avec_ecart",
+                "avec_ecart",
+                "Avec écart",
+                true);
+        }
+
+
+        private void AjouterColonne(
+            string name,
+            string dataPropertyName,
+            string headerText,
+            bool visible)
+        {
+            DataGridViewTextBoxColumn colonne =
                 new DataGridViewTextBoxColumn();
 
-            colId.Name =
-                "id";
+            colonne.Name = name;
+            colonne.DataPropertyName =
+                dataPropertyName;
 
-            colId.DataPropertyName =
-                "id";
+            colonne.HeaderText =
+                headerText;
 
-            colId.Visible =
-                false;
-
-            dgvInventaires.Columns.Add(
-                colId);
-
-
-            // =====================================================
-            // INVENTAIRE
-            // =====================================================
-
-            DataGridViewTextBoxColumn colInventaire =
-                new DataGridViewTextBoxColumn();
-
-            colInventaire.Name =
-                "inventaire";
-
-            colInventaire.HeaderText =
-                "Inventaire";
-
-            colInventaire.DataPropertyName =
-                "inventaire";
-
-            colInventaire.ReadOnly =
-                true;
+            colonne.Visible = visible;
+            colonne.ReadOnly = true;
 
             dgvInventaires.Columns.Add(
-                colInventaire);
-
-
-            // =====================================================
-            // DATE
-            // =====================================================
-
-            DataGridViewTextBoxColumn colDate =
-                new DataGridViewTextBoxColumn();
-
-            colDate.Name =
-                "date_debut";
-
-            colDate.HeaderText =
-                "Date";
-
-            colDate.DataPropertyName =
-                "date_debut";
-
-            colDate.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colDate);
-
-
-            // =====================================================
-            // TYPE
-            // =====================================================
-
-            DataGridViewTextBoxColumn colType =
-                new DataGridViewTextBoxColumn();
-
-            colType.Name =
-                "type";
-
-            colType.HeaderText =
-                "Type";
-
-            colType.DataPropertyName =
-                "type";
-
-            colType.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colType);
-
-
-            // =====================================================
-            // STATUT
-            // =====================================================
-
-            DataGridViewTextBoxColumn colStatut =
-                new DataGridViewTextBoxColumn();
-
-            colStatut.Name =
-                "statut";
-
-            colStatut.HeaderText =
-                "Statut";
-
-            colStatut.DataPropertyName =
-                "statut";
-
-            colStatut.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colStatut);
-
-
-            // =====================================================
-            // LOTS
-            // =====================================================
-
-            DataGridViewTextBoxColumn colLots =
-                new DataGridViewTextBoxColumn();
-
-            colLots.Name =
-                "nombre_lots";
-
-            colLots.HeaderText =
-                "Lots";
-
-            colLots.DataPropertyName =
-                "nombre_lots";
-
-            colLots.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colLots);
-
-
-            // =====================================================
-            // ÉCARTS
-            // =====================================================
-
-            DataGridViewTextBoxColumn colEcarts =
-                new DataGridViewTextBoxColumn();
-
-            colEcarts.Name =
-                "avec_ecart";
-
-            colEcarts.HeaderText =
-                "Avec écart";
-
-            colEcarts.DataPropertyName =
-                "avec_ecart";
-
-            colEcarts.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colEcarts);
+                colonne);
         }
 
 
@@ -356,26 +227,17 @@ namespace Cepima.MesUserCases.Pharmacie
         {
             try
             {
-                // On revient au mode liste
-                inventaireSelectionneId =
-                    0;
+                inventaireSelectionneId = 0;
 
-                btnValiderInventaire.Visible =
-                    false;
+                btnValiderInventaire.Visible = false;
+                btnRetourInventaires.Visible = false;
 
-                btnRetourInventaires.Visible =
-                    false;
-
-
-                // Recréer les colonnes de la liste
-                dgvInventaires.DataSource =
-                    null;
+                dgvInventaires.DataSource = null;
 
                 AjouterColonnesInventaires();
 
-
                 using (MySqlConnection connection =
-                       db.GetConnection())
+                    db.GetConnection())
                 {
                     connection.Open();
 
@@ -410,8 +272,7 @@ namespace Cepima.MesUserCases.Pharmacie
                         FROM inventaire i
 
                         LEFT JOIN inventaire_ligne il
-                            ON il.inventaire_id =
-                               i.id
+                            ON il.inventaire_id = i.id
 
                         GROUP BY
                             i.id,
@@ -424,9 +285,9 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
                     using (MySqlDataAdapter adapter =
-                           new MySqlDataAdapter(
-                               query,
-                               connection))
+                        new MySqlDataAdapter(
+                            query,
+                            connection))
                     {
                         DataTable table =
                             new DataTable();
@@ -437,7 +298,6 @@ namespace Cepima.MesUserCases.Pharmacie
                             table;
                     }
                 }
-
 
                 ChargerCards();
             }
@@ -454,17 +314,19 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
         // =========================================================
-        // CHARGER LES CARDS
+        // CHARGER LES CARTES
         // =========================================================
 
         private void ChargerCards()
         {
-            fl_med_category.Controls.Clear();
+            fl_med_category.SuspendLayout();
 
             try
             {
+                fl_med_category.Controls.Clear();
+
                 using (MySqlConnection connection =
-                       db.GetConnection())
+                    db.GetConnection())
                 {
                     connection.Open();
 
@@ -481,8 +343,7 @@ namespace Cepima.MesUserCases.Pharmacie
                         FROM inventaire i
 
                         LEFT JOIN inventaire_ligne il
-                            ON il.inventaire_id =
-                               i.id
+                            ON il.inventaire_id = i.id
 
                         GROUP BY
                             i.id,
@@ -497,12 +358,12 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
                     using (MySqlCommand command =
-                           new MySqlCommand(
-                               query,
-                               connection))
+                        new MySqlCommand(
+                            query,
+                            connection))
                     {
                         using (MySqlDataReader reader =
-                               command.ExecuteReader())
+                            command.ExecuteReader())
                         {
                             while (reader.Read())
                             {
@@ -526,7 +387,6 @@ namespace Cepima.MesUserCases.Pharmacie
                                     Convert.ToInt32(
                                         reader["nombre_lots"]);
 
-
                                 AjouterCard(
                                     id,
                                     date,
@@ -547,11 +407,15 @@ namespace Cepima.MesUserCases.Pharmacie
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+            finally
+            {
+                fl_med_category.ResumeLayout(true);
+            }
         }
 
 
         // =========================================================
-        // CRÉER UNE CARD
+        // CREER UNE CARD
         // =========================================================
 
         private void AjouterCard(
@@ -564,11 +428,8 @@ namespace Cepima.MesUserCases.Pharmacie
             Panel card =
                 new Panel();
 
-            card.Width =
-                220;
-
-            card.Height =
-                95;
+            card.Width = 220;
+            card.Height = 95;
 
             card.Margin =
                 new Padding(6);
@@ -583,10 +444,6 @@ namespace Cepima.MesUserCases.Pharmacie
                 Cursors.Hand;
 
 
-            // =====================================================
-            // TITRE
-            // =====================================================
-
             Label lblTitre =
                 new Label();
 
@@ -600,17 +457,10 @@ namespace Cepima.MesUserCases.Pharmacie
                     FontStyle.Bold);
 
             lblTitre.Location =
-                new Point(
-                    12,
-                    10);
+                new Point(12, 10);
 
-            lblTitre.AutoSize =
-                true;
+            lblTitre.AutoSize = true;
 
-
-            // =====================================================
-            // DATE
-            // =====================================================
 
             Label lblDate =
                 new Label();
@@ -628,17 +478,10 @@ namespace Cepima.MesUserCases.Pharmacie
                 Color.Gray;
 
             lblDate.Location =
-                new Point(
-                    12,
-                    34);
+                new Point(12, 34);
 
-            lblDate.AutoSize =
-                true;
+            lblDate.AutoSize = true;
 
-
-            // =====================================================
-            // LOTS
-            // =====================================================
 
             Label lblLots =
                 new Label();
@@ -652,17 +495,10 @@ namespace Cepima.MesUserCases.Pharmacie
                     8);
 
             lblLots.Location =
-                new Point(
-                    12,
-                    56);
+                new Point(12, 56);
 
-            lblLots.AutoSize =
-                true;
+            lblLots.AutoSize = true;
 
-
-            // =====================================================
-            // STATUT
-            // =====================================================
 
             Label lblStatut =
                 new Label();
@@ -676,13 +512,10 @@ namespace Cepima.MesUserCases.Pharmacie
                     8,
                     FontStyle.Bold);
 
-            lblStatut.AutoSize =
-                true;
+            lblStatut.AutoSize = true;
 
             lblStatut.Location =
-                new Point(
-                    125,
-                    10);
+                new Point(125, 10);
 
 
             if (statut == "EN_COURS")
@@ -697,34 +530,18 @@ namespace Cepima.MesUserCases.Pharmacie
             }
 
 
-            // =====================================================
-            // CLICK CARD
-            // =====================================================
+            EventHandler ouvrir =
+                delegate
+                {
+                    ChargerDetailInventaire(id);
+                };
 
-            card.Click += delegate
-            {
-                ChargerDetailInventaire(id);
-            };
 
-            lblTitre.Click += delegate
-            {
-                ChargerDetailInventaire(id);
-            };
-
-            lblDate.Click += delegate
-            {
-                ChargerDetailInventaire(id);
-            };
-
-            lblLots.Click += delegate
-            {
-                ChargerDetailInventaire(id);
-            };
-
-            lblStatut.Click += delegate
-            {
-                ChargerDetailInventaire(id);
-            };
+            card.Click += ouvrir;
+            lblTitre.Click += ouvrir;
+            lblDate.Click += ouvrir;
+            lblLots.Click += ouvrir;
+            lblStatut.Click += ouvrir;
 
 
             card.Controls.Add(
@@ -738,7 +555,6 @@ namespace Cepima.MesUserCases.Pharmacie
 
             card.Controls.Add(
                 lblStatut);
-
 
             fl_med_category.Controls.Add(
                 card);
@@ -754,17 +570,11 @@ namespace Cepima.MesUserCases.Pharmacie
         {
             try
             {
-                // =================================================
-                // MÉMORISER L'INVENTAIRE
-                // =================================================
-
                 inventaireSelectionneId =
                     inventaireId;
 
-
                 DataTable table =
                     new DataTable();
-
 
                 string query = @"
                     SELECT
@@ -772,6 +582,7 @@ namespace Cepima.MesUserCases.Pharmacie
                         m.nom AS medicament,
 
                         CONCAT(
+
                             CASE
                                 WHEN m.dosage IS NOT NULL
                                      AND m.dosage <> ''
@@ -791,16 +602,14 @@ namespace Cepima.MesUserCases.Pharmacie
                                 )
                                 ELSE ''
                             END
+
                         ) AS designation,
 
                         lm.numero_lot,
-
                         lm.date_expiration,
 
                         il.quantite_systeme,
-
                         il.quantite_comptee,
-
                         il.ecart
 
                     FROM inventaire_ligne il
@@ -820,27 +629,26 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
                 using (MySqlConnection connection =
-                       db.GetConnection())
+                    db.GetConnection())
                 {
                     connection.Open();
 
                     using (MySqlDataAdapter adapter =
-                           new MySqlDataAdapter(
-                               query,
-                               connection))
+                        new MySqlDataAdapter(
+                            query,
+                            connection))
                     {
-                        adapter.SelectCommand.Parameters.AddWithValue(
-                            "@inventaire_id",
-                            inventaireId);
+                        adapter.SelectCommand
+                            .Parameters.Add(
+                                "@inventaire_id",
+                                MySqlDbType.Int32)
+                            .Value =
+                                inventaireId;
 
                         adapter.Fill(table);
                     }
                 }
 
-
-                // =================================================
-                // RECONFIGURER LE GRID POUR LE DETAIL
-                // =================================================
 
                 dgvInventaires.DataSource =
                     null;
@@ -853,10 +661,6 @@ namespace Cepima.MesUserCases.Pharmacie
                     table;
 
 
-                // =================================================
-                // AFFICHER LES BOUTONS
-                // =================================================
-
                 btnRetourInventaires.Visible =
                     true;
 
@@ -866,16 +670,8 @@ namespace Cepima.MesUserCases.Pharmacie
                         inventaireId);
 
 
-                if (statut == "EN_COURS")
-                {
-                    btnValiderInventaire.Visible =
-                        true;
-                }
-                else
-                {
-                    btnValiderInventaire.Visible =
-                        false;
-                }
+                btnValiderInventaire.Visible =
+                    statut == "EN_COURS";
             }
             catch (Exception ex)
             {
@@ -899,10 +695,9 @@ namespace Cepima.MesUserCases.Pharmacie
             try
             {
                 using (MySqlConnection connection =
-                       db.GetConnection())
+                    db.GetConnection())
                 {
                     connection.Open();
-
 
                     string query = @"
                         SELECT statut
@@ -911,24 +706,22 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
                     using (MySqlCommand command =
-                           new MySqlCommand(
-                               query,
-                               connection))
+                        new MySqlCommand(
+                            query,
+                            connection))
                     {
-                        command.Parameters.AddWithValue(
+                        command.Parameters.Add(
                             "@id",
-                            inventaireId);
-
+                            MySqlDbType.Int32)
+                            .Value =
+                                inventaireId;
 
                         object result =
                             command.ExecuteScalar();
 
-
-                        if (result == null)
-                            return "";
-
-
-                        return result.ToString();
+                        return result == null
+                            ? ""
+                            : result.ToString();
                     }
                 }
             }
@@ -952,165 +745,47 @@ namespace Cepima.MesUserCases.Pharmacie
 
         private void AjouterColonnesDetail()
         {
-            // =====================================================
-            // MÉDICAMENT
-            // =====================================================
+            AjouterColonne(
+                "medicament",
+                "medicament",
+                "Médicament",
+                true);
 
-            DataGridViewTextBoxColumn colMedicament =
-                new DataGridViewTextBoxColumn();
+            AjouterColonne(
+                "designation",
+                "designation",
+                "Dosage / Forme",
+                true);
 
-            colMedicament.Name =
-                "medicament";
+            AjouterColonne(
+                "numero_lot",
+                "numero_lot",
+                "Lot",
+                true);
 
-            colMedicament.HeaderText =
-                "Médicament";
+            AjouterColonne(
+                "date_expiration",
+                "date_expiration",
+                "Expiration",
+                true);
 
-            colMedicament.DataPropertyName =
-                "medicament";
+            AjouterColonne(
+                "quantite_systeme",
+                "quantite_systeme",
+                "Stock système",
+                true);
 
-            colMedicament.ReadOnly =
-                true;
+            AjouterColonne(
+                "quantite_comptee",
+                "quantite_comptee",
+                "Quantité comptée",
+                true);
 
-            dgvInventaires.Columns.Add(
-                colMedicament);
-
-
-            // =====================================================
-            // DOSAGE / FORME
-            // =====================================================
-
-            DataGridViewTextBoxColumn colDesignation =
-                new DataGridViewTextBoxColumn();
-
-            colDesignation.Name =
-                "designation";
-
-            colDesignation.HeaderText =
-                "Dosage / Forme";
-
-            colDesignation.DataPropertyName =
-                "designation";
-
-            colDesignation.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colDesignation);
-
-
-            // =====================================================
-            // LOT
-            // =====================================================
-
-            DataGridViewTextBoxColumn colLot =
-                new DataGridViewTextBoxColumn();
-
-            colLot.Name =
-                "numero_lot";
-
-            colLot.HeaderText =
-                "Lot";
-
-            colLot.DataPropertyName =
-                "numero_lot";
-
-            colLot.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colLot);
-
-
-            // =====================================================
-            // EXPIRATION
-            // =====================================================
-
-            DataGridViewTextBoxColumn colExpiration =
-                new DataGridViewTextBoxColumn();
-
-            colExpiration.Name =
-                "date_expiration";
-
-            colExpiration.HeaderText =
-                "Expiration";
-
-            colExpiration.DataPropertyName =
-                "date_expiration";
-
-            colExpiration.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colExpiration);
-
-
-            // =====================================================
-            // STOCK SYSTEME
-            // =====================================================
-
-            DataGridViewTextBoxColumn colSysteme =
-                new DataGridViewTextBoxColumn();
-
-            colSysteme.Name =
-                "quantite_systeme";
-
-            colSysteme.HeaderText =
-                "Stock système";
-
-            colSysteme.DataPropertyName =
-                "quantite_systeme";
-
-            colSysteme.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colSysteme);
-
-
-            // =====================================================
-            // QUANTITE COMPTEE
-            // =====================================================
-
-            DataGridViewTextBoxColumn colComptee =
-                new DataGridViewTextBoxColumn();
-
-            colComptee.Name =
-                "quantite_comptee";
-
-            colComptee.HeaderText =
-                "Quantité comptée";
-
-            colComptee.DataPropertyName =
-                "quantite_comptee";
-
-            colComptee.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colComptee);
-
-
-            // =====================================================
-            // ECART
-            // =====================================================
-
-            DataGridViewTextBoxColumn colEcart =
-                new DataGridViewTextBoxColumn();
-
-            colEcart.Name =
-                "ecart";
-
-            colEcart.HeaderText =
-                "Écart";
-
-            colEcart.DataPropertyName =
-                "ecart";
-
-            colEcart.ReadOnly =
-                true;
-
-            dgvInventaires.Columns.Add(
-                colEcart);
+            AjouterColonne(
+                "ecart",
+                "ecart",
+                "Écart",
+                true);
         }
 
 
@@ -1122,33 +797,35 @@ namespace Cepima.MesUserCases.Pharmacie
             object sender,
             EventArgs e)
         {
-            if (dgvInventaires.DataSource == null)
-                return;
-
-
             DataTable table =
-                dgvInventaires.DataSource as DataTable;
-
+                dgvInventaires.DataSource
+                as DataTable;
 
             if (table == null)
                 return;
 
-
-            // La recherche fonctionne uniquement
-            // lorsque le détail est affiché.
-
             if (!table.Columns.Contains(
-                    "medicament"))
+                "medicament"))
             {
                 return;
             }
 
 
             string recherche =
-                tb_search.Text.Trim()
-                    .Replace(
-                        "'",
-                        "''");
+                tb_search.Text.Trim();
+
+
+            if (string.IsNullOrEmpty(recherche))
+            {
+                table.DefaultView.RowFilter = "";
+                return;
+            }
+
+
+            recherche =
+                recherche.Replace(
+                    "'",
+                    "''");
 
 
             table.DefaultView.RowFilter =
@@ -1229,15 +906,13 @@ namespace Cepima.MesUserCases.Pharmacie
 
         private void AfficherListeInventaires()
         {
-            inventaireSelectionneId =
-                0;
+            inventaireSelectionneId = 0;
 
             btnValiderInventaire.Visible =
                 false;
 
             btnRetourInventaires.Visible =
                 false;
-
 
             ChargerInventaires();
         }
@@ -1268,392 +943,414 @@ namespace Cepima.MesUserCases.Pharmacie
 
 
             using (MySqlConnection connection =
-                   db.GetConnection())
+                db.GetConnection())
             {
                 connection.Open();
 
-
-                MySqlTransaction transaction =
-                    connection.BeginTransaction();
-
-
-                try
-                {
-                    // =================================================
-                    // 1. VÉRIFIER LE STATUT
-                    // =================================================
-
-                    string queryInventaire = @"
-                        SELECT statut
-                        FROM inventaire
-                        WHERE id = @inventaire_id
-                        FOR UPDATE";
-
-
-                    string statut = "";
-
-
-                    using (MySqlCommand command =
-                           new MySqlCommand(
-                               queryInventaire,
-                               connection,
-                               transaction))
-                    {
-                        command.Parameters.AddWithValue(
-                            "@inventaire_id",
-                            inventaireId);
-
-
-                        object result =
-                            command.ExecuteScalar();
-
-
-                        if (result == null)
-                        {
-                            throw new Exception(
-                                "Inventaire introuvable.");
-                        }
-
-
-                        statut =
-                            result.ToString();
-                    }
-
-
-                    // =================================================
-                    // 2. EMPÊCHER DOUBLE VALIDATION
-                    // =================================================
-
-                    if (statut != "EN_COURS")
-                    {
-                        throw new Exception(
-                            "Cet inventaire a déjà été validé " +
-                            "ou n'est plus disponible pour validation.");
-                    }
-
-
-                    // =================================================
-                    // 3. CHARGER LES LIGNES
-                    // =================================================
-
-                    string queryLignes = @"
-                        SELECT
-                            il.id,
-                            il.lot_id,
-                            il.quantite_systeme,
-                            il.quantite_comptee,
-                            il.ecart
-
-                        FROM inventaire_ligne il
-
-                        WHERE il.inventaire_id =
-                              @inventaire_id
-
-                        ORDER BY il.id ASC";
-
-
-                    DataTable lignes =
-                        new DataTable();
-
-
-                    using (MySqlCommand command =
-                           new MySqlCommand(
-                               queryLignes,
-                               connection,
-                               transaction))
-                    {
-                        command.Parameters.AddWithValue(
-                            "@inventaire_id",
-                            inventaireId);
-
-
-                        using (MySqlDataReader reader =
-                               command.ExecuteReader())
-                        {
-                            lignes.Load(reader);
-                        }
-                    }
-
-
-                    // =================================================
-                    // 4. TRAITER LES LOTS
-                    // =================================================
-
-                    foreach (DataRow ligne
-                             in lignes.Rows)
-                    {
-                        int lotId =
-                            Convert.ToInt32(
-                                ligne["lot_id"]);
-
-
-                        int quantiteSysteme =
-                            Convert.ToInt32(
-                                ligne["quantite_systeme"]);
-
-
-                        int quantiteComptee =
-                            Convert.ToInt32(
-                                ligne["quantite_comptee"]);
-
-
-                        int ecart =
-                            quantiteComptee -
-                            quantiteSysteme;
-
-
-                        // Aucun écart
-                        if (ecart == 0)
-                            continue;
-
-
-                        // =================================================
-                        // 5. STOCK ACTUEL
-                        // =================================================
-
-                        int stockActuel;
-
-
-                        using (MySqlCommand stockCommand =
-                               new MySqlCommand(
-                                   @"
-                                   SELECT quantite
-                                   FROM lot_medicament
-                                   WHERE id = @lot_id
-                                   FOR UPDATE",
-                                   connection,
-                                   transaction))
-                        {
-                            stockCommand.Parameters.AddWithValue(
-                                "@lot_id",
-                                lotId);
-
-
-                            object stock =
-                                stockCommand.ExecuteScalar();
-
-
-                            if (stock == null)
-                            {
-                                throw new Exception(
-                                    "Le lot #" +
-                                    lotId +
-                                    " n'existe plus.");
-                            }
-
-
-                            stockActuel =
-                                Convert.ToInt32(stock);
-                        }
-
-
-                        // =================================================
-                        // 6. VÉRIFICATION CONCURRENCE
-                        // =================================================
-
-                        if (stockActuel !=
-                            quantiteSysteme)
-                        {
-                            throw new Exception(
-                                "Le stock du lot #" +
-                                lotId +
-                                " a changé depuis le début " +
-                                "de l'inventaire.\n\n" +
-
-                                "Stock lors du comptage : " +
-                                quantiteSysteme +
-
-                                "\nStock actuel : " +
-                                stockActuel +
-
-                                "\n\nL'inventaire ne peut pas être " +
-                                "validé automatiquement.");
-                        }
-
-
-                        // =================================================
-                        // 7. MODIFIER LE STOCK
-                        // =================================================
-
-                        string queryUpdateStock = @"
-                            UPDATE lot_medicament
-
-                            SET quantite =
-                                @quantite
-
-                            WHERE id =
-                                @lot_id";
-
-
-                        using (MySqlCommand updateCommand =
-                               new MySqlCommand(
-                                   queryUpdateStock,
-                                   connection,
-                                   transaction))
-                        {
-                            updateCommand.Parameters.AddWithValue(
-                                "@quantite",
-                                quantiteComptee);
-
-
-                            updateCommand.Parameters.AddWithValue(
-                                "@lot_id",
-                                lotId);
-
-
-                            updateCommand.ExecuteNonQuery();
-                        }
-
-
-                        // =================================================
-                        // 8. ENREGISTRER LE MOUVEMENT
-                        // =================================================
-
-                        string queryMouvement = @"
-                            INSERT INTO mouvement_stock
-                            (
-                                lot_id,
-                                type,
-                                quantite,
-                                reference,
-                                observation
-                            )
-                            VALUES
-                            (
-                                @lot_id,
-                                'AJUSTEMENT',
-                                @quantite,
-                                @reference,
-                                @observation
-                            )";
-
-
-                        using (MySqlCommand mouvementCommand =
-                               new MySqlCommand(
-                                   queryMouvement,
-                                   connection,
-                                   transaction))
-                        {
-                            mouvementCommand.Parameters.AddWithValue(
-                                "@lot_id",
-                                lotId);
-
-
-                            mouvementCommand.Parameters.AddWithValue(
-                                "@quantite",
-                                ecart);
-
-
-                            mouvementCommand.Parameters.AddWithValue(
-                                "@reference",
-                                "INVENTAIRE-" +
-                                inventaireId);
-
-
-                            mouvementCommand.Parameters.AddWithValue(
-                                "@observation",
-                                "Ajustement suite à l'inventaire #" +
-                                inventaireId);
-
-
-                            mouvementCommand.ExecuteNonQuery();
-                        }
-                    }
-
-
-                    // =================================================
-                    // 9. TERMINER L'INVENTAIRE
-                    // =================================================
-
-                    string queryTerminer = @"
-                        UPDATE inventaire
-
-                        SET
-                            statut = 'TERMINE',
-                            date_fin = NOW()
-
-                        WHERE id =
-                            @inventaire_id
-
-                        AND statut =
-                            'EN_COURS'";
-
-
-                    using (MySqlCommand command =
-                           new MySqlCommand(
-                               queryTerminer,
-                               connection,
-                               transaction))
-                    {
-                        command.Parameters.AddWithValue(
-                            "@inventaire_id",
-                            inventaireId);
-
-
-                        int lignesModifiees =
-                            command.ExecuteNonQuery();
-
-
-                        if (lignesModifiees != 1)
-                        {
-                            throw new Exception(
-                                "Impossible de terminer l'inventaire.");
-                        }
-                    }
-
-
-                    // =================================================
-                    // 10. COMMIT
-                    // =================================================
-
-                    transaction.Commit();
-
-
-                    MessageBox.Show(
-                        "Inventaire #" +
-                        inventaireId +
-                        " validé avec succès.\n\n" +
-                        "Les stocks ont été ajustés.",
-                        "Inventaire",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-
-
-                    // =================================================
-                    // 11. RETOUR À LA LISTE
-                    // =================================================
-
-                    inventaireSelectionneId =
-                        0;
-
-
-                    btnValiderInventaire.Visible =
-                        false;
-
-
-                    btnRetourInventaires.Visible =
-                        false;
-
-
-                    ChargerInventaires();
-                }
-                catch (Exception ex)
+                using (MySqlTransaction transaction =
+                    connection.BeginTransaction())
                 {
                     try
                     {
-                        transaction.Rollback();
+                        // =================================================
+                        // 1. VERIFIER LE STATUT
+                        // =================================================
+
+                        string queryInventaire = @"
+                            SELECT statut
+                            FROM inventaire
+                            WHERE id = @inventaire_id
+                            FOR UPDATE";
+
+
+                        string statut = "";
+
+
+                        using (MySqlCommand command =
+                            new MySqlCommand(
+                                queryInventaire,
+                                connection,
+                                transaction))
+                        {
+                            command.Parameters.Add(
+                                "@inventaire_id",
+                                MySqlDbType.Int32)
+                                .Value =
+                                    inventaireId;
+
+                            object result =
+                                command.ExecuteScalar();
+
+
+                            if (result == null)
+                            {
+                                throw new Exception(
+                                    "Inventaire introuvable.");
+                            }
+
+
+                            statut =
+                                result.ToString();
+                        }
+
+
+                        // =================================================
+                        // 2. EMPECHER DOUBLE VALIDATION
+                        // =================================================
+
+                        if (statut != "EN_COURS")
+                        {
+                            throw new Exception(
+                                "Cet inventaire a déjà été validé " +
+                                "ou n'est plus disponible pour validation.");
+                        }
+
+
+                        // =================================================
+                        // 3. CHARGER LES LIGNES
+                        // =================================================
+
+                        string queryLignes = @"
+                            SELECT
+                                il.id,
+                                il.lot_id,
+                                il.quantite_systeme,
+                                il.quantite_comptee,
+                                il.ecart
+
+                            FROM inventaire_ligne il
+
+                            WHERE il.inventaire_id =
+                                  @inventaire_id
+
+                            ORDER BY il.id ASC";
+
+
+                        DataTable lignes =
+                            new DataTable();
+
+
+                        using (MySqlCommand command =
+                            new MySqlCommand(
+                                queryLignes,
+                                connection,
+                                transaction))
+                        {
+                            command.Parameters.Add(
+                                "@inventaire_id",
+                                MySqlDbType.Int32)
+                                .Value =
+                                    inventaireId;
+
+
+                            using (MySqlDataReader reader =
+                                command.ExecuteReader())
+                            {
+                                lignes.Load(reader);
+                            }
+                        }
+
+
+                        // =================================================
+                        // COMMANDES PREPAREES
+                        // =================================================
+
+                        using (MySqlCommand stockCommand =
+                            new MySqlCommand(
+                                @"
+                                SELECT quantite
+                                FROM lot_medicament
+                                WHERE id = @lot_id
+                                FOR UPDATE",
+                                connection,
+                                transaction))
+
+                        using (MySqlCommand updateCommand =
+                            new MySqlCommand(
+                                @"
+                                UPDATE lot_medicament
+                                SET quantite = @quantite
+                                WHERE id = @lot_id",
+                                connection,
+                                transaction))
+
+                        using (MySqlCommand mouvementCommand =
+                            new MySqlCommand(
+                                @"
+                                INSERT INTO mouvement_stock
+                                (
+                                    lot_id,
+                                    type,
+                                    quantite,
+                                    reference,
+                                    observation
+                                )
+                                VALUES
+                                (
+                                    @lot_id,
+                                    'AJUSTEMENT',
+                                    @quantite,
+                                    @reference,
+                                    @observation
+                                )",
+                                connection,
+                                transaction))
+                        {
+                            // =============================================
+                            // PARAMETRES STOCK
+                            // =============================================
+
+                            stockCommand.Parameters.Add(
+                                "@lot_id",
+                                MySqlDbType.Int32);
+
+
+                            // =============================================
+                            // PARAMETRES UPDATE
+                            // =============================================
+
+                            updateCommand.Parameters.Add(
+                                "@quantite",
+                                MySqlDbType.Int32);
+
+                            updateCommand.Parameters.Add(
+                                "@lot_id",
+                                MySqlDbType.Int32);
+
+
+                            // =============================================
+                            // PARAMETRES MOUVEMENT
+                            // =============================================
+
+                            mouvementCommand.Parameters.Add(
+                                "@lot_id",
+                                MySqlDbType.Int32);
+
+                            mouvementCommand.Parameters.Add(
+                                "@quantite",
+                                MySqlDbType.Int32);
+
+                            mouvementCommand.Parameters.Add(
+                                "@reference",
+                                MySqlDbType.VarChar);
+
+                            mouvementCommand.Parameters.Add(
+                                "@observation",
+                                MySqlDbType.VarChar);
+
+
+                            // =============================================
+                            // 4. TRAITER LES LOTS
+                            // =============================================
+
+                            foreach (DataRow ligne
+                                in lignes.Rows)
+                            {
+                                int lotId =
+                                    Convert.ToInt32(
+                                        ligne["lot_id"]);
+
+                                int quantiteSysteme =
+                                    Convert.ToInt32(
+                                        ligne["quantite_systeme"]);
+
+                                int quantiteComptee =
+                                    Convert.ToInt32(
+                                        ligne["quantite_comptee"]);
+
+                                int ecart =
+                                    quantiteComptee -
+                                    quantiteSysteme;
+
+
+                                // Aucun écart
+                                if (ecart == 0)
+                                    continue;
+
+
+                                // =========================================
+                                // 5. VERIFIER STOCK ACTUEL
+                                // =========================================
+
+                                stockCommand.Parameters[
+                                    "@lot_id"].Value =
+                                        lotId;
+
+                                object stock =
+                                    stockCommand.ExecuteScalar();
+
+
+                                if (stock == null)
+                                {
+                                    throw new Exception(
+                                        "Le lot #" +
+                                        lotId +
+                                        " n'existe plus.");
+                                }
+
+
+                                int stockActuel =
+                                    Convert.ToInt32(
+                                        stock);
+
+
+                                // =========================================
+                                // 6. VERIFICATION CONCURRENCE
+                                // =========================================
+
+                                if (stockActuel !=
+                                    quantiteSysteme)
+                                {
+                                    throw new Exception(
+                                        "Le stock du lot #" +
+                                        lotId +
+                                        " a changé depuis le début " +
+                                        "de l'inventaire.\n\n" +
+
+                                        "Stock lors du comptage : " +
+                                        quantiteSysteme +
+
+                                        "\nStock actuel : " +
+                                        stockActuel +
+
+                                        "\n\nL'inventaire ne peut pas être " +
+                                        "validé automatiquement.");
+                                }
+
+
+                                // =========================================
+                                // 7. MODIFIER STOCK
+                                // =========================================
+
+                                updateCommand.Parameters[
+                                    "@quantite"].Value =
+                                        quantiteComptee;
+
+                                updateCommand.Parameters[
+                                    "@lot_id"].Value =
+                                        lotId;
+
+                                updateCommand.ExecuteNonQuery();
+
+
+                                // =========================================
+                                // 8. ENREGISTRER MOUVEMENT
+                                // =========================================
+
+                                mouvementCommand.Parameters[
+                                    "@lot_id"].Value =
+                                        lotId;
+
+                                mouvementCommand.Parameters[
+                                    "@quantite"].Value =
+                                        ecart;
+
+                                mouvementCommand.Parameters[
+                                    "@reference"].Value =
+                                        "INVENTAIRE-" +
+                                        inventaireId;
+
+                                mouvementCommand.Parameters[
+                                    "@observation"].Value =
+                                        "Ajustement suite à " +
+                                        "l'inventaire #" +
+                                        inventaireId;
+
+                                mouvementCommand.ExecuteNonQuery();
+                            }
+                        }
+
+
+                        // =================================================
+                        // 9. TERMINER L'INVENTAIRE
+                        // =================================================
+
+                        string queryTerminer = @"
+                            UPDATE inventaire
+
+                            SET
+                                statut = 'TERMINE',
+                                date_fin = NOW()
+
+                            WHERE id = @inventaire_id
+
+                            AND statut = 'EN_COURS'";
+
+
+                        using (MySqlCommand command =
+                            new MySqlCommand(
+                                queryTerminer,
+                                connection,
+                                transaction))
+                        {
+                            command.Parameters.Add(
+                                "@inventaire_id",
+                                MySqlDbType.Int32)
+                                .Value =
+                                    inventaireId;
+
+
+                            int lignesModifiees =
+                                command.ExecuteNonQuery();
+
+
+                            if (lignesModifiees != 1)
+                            {
+                                throw new Exception(
+                                    "Impossible de terminer l'inventaire.");
+                            }
+                        }
+
+
+                        // =================================================
+                        // 10. COMMIT
+                        // =================================================
+
+                        transaction.Commit();
+
+
+                        MessageBox.Show(
+                            "Inventaire #" +
+                            inventaireId +
+                            " validé avec succès.\n\n" +
+                            "Les stocks ont été ajustés.",
+                            "Inventaire",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+
+                        // =================================================
+                        // 11. RETOUR LISTE
+                        // =================================================
+
+                        inventaireSelectionneId = 0;
+
+                        btnValiderInventaire.Visible =
+                            false;
+
+                        btnRetourInventaires.Visible =
+                            false;
+
+                        ChargerInventaires();
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        try
+                        {
+                            transaction.Rollback();
+                        }
+                        catch
+                        {
+                        }
+
+
+                        MessageBox.Show(
+                            "La validation a échoué.\n\n" +
+                            ex.Message,
+                            "Erreur",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
-
-
-                    MessageBox.Show(
-                        "La validation a échoué.\n\n" +
-                        ex.Message,
-                        "Erreur",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
                 }
             }
         }
