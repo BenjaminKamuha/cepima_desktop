@@ -60,23 +60,46 @@ namespace Cepima.MesForms
 
         private void bt_save_signe_Click(object sender, EventArgs e)
         {
-            string tension = tb_tension.Text;
             try
             {
-                decimal poid = Convert.ToDecimal(tb_poids.Text);
+                decimal poids = Convert.ToDecimal(tb_poids.Text);
                 decimal taille = Convert.ToDecimal(tb_taille.Text);
+                decimal temperature = Convert.ToDecimal(tb_temperature.Text);
 
+                string tension = tb_tension.Text;
                 string frequence = tb_frequence.Text;
                 string etat = cbx_etat.Text;
-                decimal temp = Convert.ToDecimal(tb_temperature.Text);
-                MesClasses.ReceptionManager.SaveSigneVitaux(PatientID.ToString(), temp, tension, frequence, poid, taille,etat);
-                ViderChamps();
 
-                this.Close();
+                bool enregistre = MesClasses.ReceptionManager.SaveSigneVitaux(
+                    PatientID.ToString(),
+                    temperature,
+                    tension,
+                    frequence,
+                    poids,
+                    taille,
+                    etat);
+
+                if (enregistre)
+                {
+                    ViderChamps();
+                    this.Close();
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show(
+                    "Vérifiez la température, le poids et la taille.",
+                    "Informations invalides",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur d'enreigstrement. Vérifier vos inforamtions", "Enregistrement", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Une erreur est survenue : " + ex.Message,
+                    "Enregistrement",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
             
         }

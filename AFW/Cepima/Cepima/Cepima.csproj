@@ -287,6 +287,21 @@
     <Compile Include="MesForms\EEG\Form_caisse_eeg.Designer.cs">
       <DependentUpon>Form_caisse_eeg.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Fiches\Ds_Fiche.cs">
+      <DependentUpon>Ds_Fiche.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\Ds_Fiche.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Ds_Fiche.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Fiches\RaportFiche.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Fiches\RaportFiche.Designer.cs">
+      <DependentUpon>RaportFiche.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Personnel\Ds_Liste.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -333,11 +348,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Ds_Bon.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Services\Form_Neurologie.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_Neurologie.Designer.cs">
+      <DependentUpon>Form_Neurologie.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Services\Form_prestation.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MesForms\Services\Form_prestation.Designer.cs">
       <DependentUpon>Form_prestation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_Psychiatrique.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Services\Form_Psychiatrique.Designer.cs">
+      <DependentUpon>Form_Psychiatrique.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\Comptabilité\Bon_de_sortie.cs">
       <SubType>UserControl</SubType>
@@ -898,6 +925,10 @@
     <EmbeddedResource Include="MesForms\EEG\Form_realisation_eeg.resx">
       <DependentUpon>Form_realisation_eeg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Fiches\Fiche.rdlc" />
+    <EmbeddedResource Include="MesForms\Fiches\RaportFiche.resx">
+      <DependentUpon>RaportFiche.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Fiches\SectionRepliable.resx">
       <DependentUpon>SectionRepliable.cs</DependentUpon>
     </EmbeddedResource>
@@ -1030,6 +1061,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Pharmacie\Form_reception_stock.resx">
       <DependentUpon>Form_reception_stock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Services\Form_Neurologie.resx">
+      <DependentUpon>Form_Neurologie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Services\Form_Psychiatrique.resx">
+      <DependentUpon>Form_Psychiatrique.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Comptabilité\Bon_de_sortie.resx">
       <DependentUpon>Bon_de_sortie.cs</DependentUpon>
@@ -1181,6 +1218,17 @@
     </None>
     <None Include="ds_recu.xss">
       <DependentUpon>ds_recu.xsd</DependentUpon>
+    </None>
+    <None Include="MesForms\Fiches\Ds_Fiche.xsc">
+      <DependentUpon>Ds_Fiche.xsd</DependentUpon>
+    </None>
+    <None Include="MesForms\Fiches\Ds_Fiche.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Ds_Fiche.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MesForms\Fiches\Ds_Fiche.xss">
+      <DependentUpon>Ds_Fiche.xsd</DependentUpon>
     </None>
     <None Include="MesForms\Personnel\Ds_Liste.xsc">
       <DependentUpon>Ds_Liste.xsd</DependentUpon>
@@ -1999,6 +2047,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\joining_queue_30px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vision.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -58,12 +58,14 @@
             this.customRoundedPanel2 = new CustomRoundedPanel();
             this.lb_patient_now = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.customRoundedPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_patient)).BeginInit();
             this.customRoundedPanel4.SuspendLayout();
             this.customRoundedPanel3.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.customRoundedPanel2.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -140,11 +142,12 @@
             this.dgv_patient.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_patient.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_patient.BackgroundColor = System.Drawing.Color.White;
+            this.dgv_patient.BorderRadius = 0;
             this.dgv_patient.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_patient.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgv_patient.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(98)))), ((int)(((byte)(168)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -174,7 +177,7 @@
             this.dgv_patient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_patient.EnableHeadersVisualStyles = false;
             this.dgv_patient.GridColor = System.Drawing.Color.LightGray;
-            this.dgv_patient.HeaderBackColor = System.Drawing.Color.SteelBlue;
+            this.dgv_patient.HeaderBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(98)))), ((int)(((byte)(168)))));
             this.dgv_patient.HeaderForeColor = System.Drawing.Color.White;
             this.dgv_patient.Location = new System.Drawing.Point(0, 0);
             this.dgv_patient.MultiSelect = false;
@@ -262,9 +265,10 @@
             this.customRoundedPanel4.BorderSize = 2;
             this.customRoundedPanel4.Controls.Add(this.lb_sorti);
             this.customRoundedPanel4.Controls.Add(this.label3);
+            this.customRoundedPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel4.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel4.Location = new System.Drawing.Point(783, 49);
+            this.customRoundedPanel4.Location = new System.Drawing.Point(759, 3);
             this.customRoundedPanel4.Name = "customRoundedPanel4";
             this.customRoundedPanel4.ShadowBlur = 10;
             this.customRoundedPanel4.ShadowBorderRadius = -1;
@@ -274,7 +278,7 @@
             this.customRoundedPanel4.ShadowOffsetY = 4;
             this.customRoundedPanel4.ShadowOpacity = 60;
             this.customRoundedPanel4.ShadowSpread = 0;
-            this.customRoundedPanel4.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel4.Size = new System.Drawing.Size(249, 149);
             this.customRoundedPanel4.TabIndex = 2;
             // 
             // lb_sorti
@@ -306,9 +310,10 @@
             this.customRoundedPanel3.BorderSize = 2;
             this.customRoundedPanel3.Controls.Add(this.lb_attente);
             this.customRoundedPanel3.Controls.Add(this.label2);
+            this.customRoundedPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel3.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel3.Location = new System.Drawing.Point(530, 49);
+            this.customRoundedPanel3.Location = new System.Drawing.Point(507, 3);
             this.customRoundedPanel3.Name = "customRoundedPanel3";
             this.customRoundedPanel3.ShadowBlur = 10;
             this.customRoundedPanel3.ShadowBorderRadius = -1;
@@ -318,7 +323,7 @@
             this.customRoundedPanel3.ShadowOffsetY = 4;
             this.customRoundedPanel3.ShadowOpacity = 60;
             this.customRoundedPanel3.ShadowSpread = 0;
-            this.customRoundedPanel3.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel3.Size = new System.Drawing.Size(246, 149);
             this.customRoundedPanel3.TabIndex = 2;
             // 
             // lb_attente
@@ -350,9 +355,10 @@
             this.customRoundedPanel1.BorderSize = 2;
             this.customRoundedPanel1.Controls.Add(this.lb_hospitalise);
             this.customRoundedPanel1.Controls.Add(this.label1);
+            this.customRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(277, 49);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(255, 3);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.ShadowBlur = 10;
             this.customRoundedPanel1.ShadowBorderRadius = -1;
@@ -362,7 +368,7 @@
             this.customRoundedPanel1.ShadowOffsetY = 4;
             this.customRoundedPanel1.ShadowOpacity = 60;
             this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(246, 149);
             this.customRoundedPanel1.TabIndex = 2;
             // 
             // lb_hospitalise
@@ -394,9 +400,10 @@
             this.customRoundedPanel2.BorderSize = 2;
             this.customRoundedPanel2.Controls.Add(this.lb_patient_now);
             this.customRoundedPanel2.Controls.Add(this.label4);
+            this.customRoundedPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel2.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel2.HoverCursor = System.Windows.Forms.Cursors.Default;
-            this.customRoundedPanel2.Location = new System.Drawing.Point(24, 49);
+            this.customRoundedPanel2.Location = new System.Drawing.Point(3, 3);
             this.customRoundedPanel2.Name = "customRoundedPanel2";
             this.customRoundedPanel2.ShadowBlur = 10;
             this.customRoundedPanel2.ShadowBorderRadius = -1;
@@ -406,7 +413,7 @@
             this.customRoundedPanel2.ShadowOffsetY = 4;
             this.customRoundedPanel2.ShadowOpacity = 60;
             this.customRoundedPanel2.ShadowSpread = 0;
-            this.customRoundedPanel2.Size = new System.Drawing.Size(212, 100);
+            this.customRoundedPanel2.Size = new System.Drawing.Size(246, 149);
             this.customRoundedPanel2.TabIndex = 2;
             // 
             // lb_patient_now
@@ -429,18 +436,35 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Patient aujourd\'hui";
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.customRoundedPanel4, 3, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1011, 155);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
             // User_Dash_patient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.customRoundedPanel5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.bt_add_patient);
-            this.Controls.Add(this.customRoundedPanel4);
-            this.Controls.Add(this.customRoundedPanel3);
-            this.Controls.Add(this.customRoundedPanel1);
-            this.Controls.Add(this.customRoundedPanel2);
             this.Name = "User_Dash_patient";
             this.Size = new System.Drawing.Size(1021, 519);
             this.customRoundedPanel5.ResumeLayout(false);
@@ -453,6 +477,7 @@
             this.customRoundedPanel1.PerformLayout();
             this.customRoundedPanel2.ResumeLayout(false);
             this.customRoundedPanel2.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,5 +512,6 @@
         private System.Windows.Forms.DataGridViewImageColumn action;
         private System.Windows.Forms.DataGridViewImageColumn colSignes;
         private System.Windows.Forms.DataGridViewImageColumn colService;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

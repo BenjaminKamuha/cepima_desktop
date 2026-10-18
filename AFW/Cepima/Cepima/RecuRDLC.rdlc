@@ -125,16 +125,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.62247cm</Width>
+              <Width>1.69444cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98747cm</Width>
+              <Width>1.05944cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.06714cm</Width>
+              <Width>1.13911cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.56584cm</Width>
+              <Width>2.63781cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -450,9 +450,9 @@
         </TablixRowHierarchy>
         <DataSetName>ds_Recu</DataSetName>
         <Top>5.05037cm</Top>
-        <Left>0.28786cm</Left>
+        <Left>0cm</Left>
         <Height>2.17896cm</Height>
-        <Width>6.24293cm</Width>
+        <Width>6.53079cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -482,7 +482,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
             <Top>0.44979cm</Top>
-            <Left>0.34396cm</Left>
+            <Left>0.59654cm</Left>
             <Height>0.62646cm</Height>
             <Width>2.11605cm</Width>
             <Style>
@@ -515,7 +515,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
             <Top>1.25264cm</Top>
-            <Left>0.34396cm</Left>
+            <Left>0.59654cm</Left>
             <Height>0.65292cm</Height>
             <Width>2.11605cm</Width>
             <ZIndex>1</ZIndex>
@@ -549,7 +549,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
             <Top>2.08195cm</Top>
-            <Left>0.34396cm</Left>
+            <Left>0.59654cm</Left>
             <Height>0.67938cm</Height>
             <Width>2.11605cm</Width>
             <ZIndex>2</ZIndex>
@@ -587,7 +587,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
             <Top>0.48507cm</Top>
-            <Left>2.6364cm</Left>
+            <Left>2.88898cm</Left>
             <Height>0.62646cm</Height>
             <Width>3.64181cm</Width>
             <ZIndex>3</ZIndex>
@@ -625,7 +625,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
             <Top>2.08195cm</Top>
-            <Left>2.6364cm</Left>
+            <Left>2.88898cm</Left>
             <Height>0.67938cm</Height>
             <Width>3.64181cm</Width>
             <ZIndex>4</ZIndex>
@@ -663,7 +663,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox19</rd:DefaultName>
             <Top>1.21736cm</Top>
-            <Left>2.6364cm</Left>
+            <Left>2.88898cm</Left>
             <Height>0.65292cm</Height>
             <Width>3.64181cm</Width>
             <ZIndex>5</ZIndex>
@@ -680,9 +680,9 @@
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>7.62064cm</Top>
-        <Left>0.25258cm</Left>
+        <Left>0cm</Left>
         <Height>2.87042cm</Height>
-        <Width>6.27821cm</Width>
+        <Width>6.53079cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
