@@ -26,6 +26,242 @@ namespace Cepima.MesUserCases
         }
 
 
+        private void ChargerFichesMedicales(string idPatient)
+        {
+            panel_patient.Controls.Clear();
+            panel_patient.FlowDirection = FlowDirection.TopDown;
+            panel_patient.WrapContents = false;
+            panel_patient.AutoScroll = true;
+            panel_patient.Padding = new Padding(5);
+
+            try
+            {
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+                   
+                    string sql = @"
+                SELECT
+                    f.id_fiche,
+                    f.numero_fiche,
+                    f.date_entree,
+                    f.statut,
+                    f.observations,
+                    p.id_patient,
+                    p.nom,
+                    p.post_nom,p.date_naissance,sexe,
+                    p.prenom
+                FROM fiches_medicales f
+                INNER JOIN patients p
+                    ON p.id_patient = f.id_patient
+                WHERE f.id_patient = @id_patient
+                ORDER BY f.date_entree DESC, f.id_fiche DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id_patient", idPatient);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int idFiche = Convert.ToInt32(reader["id_fiche"]);
+                                string numero = reader["numero_fiche"].ToString();
+                                string nom = reader["nom"].ToString();
+                                string postnom = reader["post_nom"].ToString();
+                                string prenom = reader["prenom"] == DBNull.Value
+                                    ? ""
+                                    : reader["prenom"].ToString();
+
+                                string dateEntree = Convert.ToDateTime(reader["date_entree"]).ToString("dd/MM/yyyy HH:mm");
+                                DateTime date = Convert.ToDateTime(reader["date_naissance"]);
+                                string sexe = reader["sexe"].ToString();
+                                int age = MesClasses.ReceptionManager.CalculerAge(date);
+                                string statut = reader["statut"].ToString();
+
+                                string observations =
+                                    reader["observations"] == DBNull.Value
+                                    ? ""
+                                    : reader["observations"].ToString();
+
+                                BunifuRoundedPanel carte = CreerCarteFiche(
+                                    idFiche,
+                                    idPatient,
+                                    numero,
+                                    nom,
+                                    postnom,
+                                    prenom,
+                                    dateEntree,
+                                    sexe,
+                                    age);
+
+                                panel_patient.Controls.Add(carte);
+
+                                AjouterBoutonRetour();
+                            }
+                        }
+                    }
+                }
+
+                if (panel_patient.Controls.Count == 0)
+                {
+                    Label lbAucuneFiche = new Label();
+                    lbAucuneFiche.Text = "Aucune fiche médicale pour ce patient.";
+                    lbAucuneFiche.AutoSize = true;
+                    lbAucuneFiche.Font = new Font("Calibri", 12, FontStyle.Regular);
+                    lbAucuneFiche.ForeColor = Color.Gray;
+                    lbAucuneFiche.Margin = new Padding(15);
+
+                    panel_patient.Controls.Add(lbAucuneFiche);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des fiches : " + ex.Message,
+                    "Fiches médicales",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                panel_patient.ResumeLayout();
+            }
+        }
+
+        private BunifuRoundedPanel CreerCarteFiche(int idFiche,string idPatient,string numero,string nom,string postnom,string prenom,string dateEntree,string sexe,int  age)
+        {
+            BunifuRoundedPanel carte = new BunifuRoundedPanel();
+
+            int largeurCarte = panel_patient.ClientSize.Width
+                    - panel_patient.Padding.Horizontal
+                    - 30;
+
+            if (panel_patient.VerticalScroll.Visible)
+                largeurCarte -= SystemInformation.VerticalScrollBarWidth;
+
+            carte.Size = new Size(largeurCarte, 210);
+            carte.Margin = new Padding(5, 8, 5, 8);
+
+            carte.BorderRadius = 10;
+            carte.BorderSize = 1;
+            carte.BorderColor = Color.Silver;
+            carte.BackColor = Color.White;
+            carte.Tag = idFiche;
+
+            // Image du patient
+            PictureBox picture = new PictureBox();
+            picture.Location = new Point(20, 15);
+            picture.Size = new Size(120, 120);
+            picture.SizeMode = PictureBoxSizeMode.Zoom;
+            picture.Image = Properties.Resources.user;
+            picture.BackColor = Color.White;
+            carte.Controls.Add(picture);
+
+            // Numéro de fiche
+            Label lbNumero = new Label();
+            lbNumero.Text = numero;
+            lbNumero.Location = new Point(165, 20);
+            lbNumero.Size = new Size(600, 25);
+            lbNumero.Font = new Font("Calibri", 14, FontStyle.Bold);
+            lbNumero.ForeColor = Color.FromArgb(44, 123, 229);
+            carte.Controls.Add(lbNumero);
+
+            // Nom du patient
+            Label lbPatient = new Label();
+            lbPatient.Text = "Patient : " + nom + " " + postnom + " " + prenom;
+            lbPatient.Location = new Point(165, 55);
+            lbPatient.Size = new Size(650, 25);
+            lbPatient.Font = new Font("Calibri", 12, FontStyle.Bold);
+            lbPatient.AutoEllipsis = true;
+            carte.Controls.Add(lbPatient);
+
+            // Date d'entrée
+            Label lbDate = new Label();
+            lbDate.Text = "Date d'entrée : " + dateEntree;
+            lbDate.Location = new Point(165, 90);
+            lbDate.Size = new Size(500, 23);
+            lbDate.Font = new Font("Calibri", 12, FontStyle.Bold);
+            carte.Controls.Add(lbDate);
+
+            // Statut
+            Label lbStatut = new Label();
+            lbStatut.Text = "Sexe : " + sexe + "  Age  : " + age + "ans";
+            lbStatut.Location = new Point(165, 120);
+            lbStatut.Size = new Size(300, 23);
+            lbStatut.Font = new Font("Calibri", 12, FontStyle.Bold);
+
+            carte.Controls.Add(lbStatut);
+
+            // Bouton en bas à droite
+            int margeDroite = 20;
+            int largeurBouton = 195;
+            int hauteurBouton = 35;
+
+            RoundedButton btnAfficher = MesClasses.ManagerClasse.Rbutton(
+                "Afficher ma fiche",
+                new Point(
+                    carte.ClientSize.Width - largeurBouton - margeDroite,
+                    carte.ClientSize.Height - hauteurBouton - 15
+                ),
+                new Size(largeurBouton, hauteurBouton),
+                Color.FromArgb(44, 123, 229),
+                Color.White);
+
+            btnAfficher.BorderRadius = 6;
+            btnAfficher.BorderSize = 0;
+            btnAfficher.BorderColor = Color.FromArgb(44, 123, 229);
+            btnAfficher.HoverBackColor = Color.FromArgb(18,98,168);
+            btnAfficher.Image = Properties.Resources.arrow_white;
+
+            carte.Controls.Add(btnAfficher);
+
+            btnAfficher.Click += delegate
+            {
+                MesForms.Fiches.RaportFiche rapport =
+                    new MesForms.Fiches.RaportFiche(idPatient, idFiche);
+
+                rapport.ShowDialog();
+            };
+
+            return carte;
+        }
+
+        private void AjouterBoutonRetour()
+        {
+            // Éviter d'ajouter plusieurs boutons Retour
+            Control ancien = panel_patient.Controls
+                .Cast<Control>()
+                .FirstOrDefault(c => c.Name == "btnRetourFiches");
+
+            if (ancien != null)
+                panel_patient.Controls.Remove(ancien);
+
+            RoundedButton btnRetour = MesClasses.ManagerClasse.Rbutton(
+                " Retour aux patients",
+                new Point(150, 10),
+                new Size(200, 35),
+                Color.FromArgb(18,98,168),
+                Color.White);
+
+            btnRetour.Name = "btnRetourFiches";
+            btnRetour.Margin = new Padding(10);
+            btnRetour.BorderRadius = 6;
+            btnRetour.BorderSize = 0;
+            btnRetour.BorderColor = Color.FromArgb(7, 51, 131);
+            btnRetour.HoverBackColor = Color.FromArgb(44, 123, 229);
+            btnRetour.Image = Properties.Resources.arrow_white;
+            btnRetour.Click += delegate
+            {
+                LoadPatient();
+                tb_search_demande.Visible = true;
+                lb_nombres.Visible = true;
+            };
+
+            // Le bouton apparaît au début du FlowLayoutPanel
+            panel_patient.Controls.Add(btnRetour);
+            panel_patient.Controls.SetChildIndex(btnRetour, 0);
+
+        }
         // ============================================================
         // CONFIGURATION RECHERCHE
         // ============================================================
@@ -40,10 +276,7 @@ namespace Cepima.MesUserCases
             searchTimer.Tick += SearchTimer_Tick;
         }
 
-
-        private void SearchTimer_Tick(
-            object sender,
-            EventArgs e)
+        private void SearchTimer_Tick(object sender,EventArgs e)
         {
             searchTimer.Stop();
 
@@ -51,7 +284,6 @@ namespace Cepima.MesUserCases
                 tb_search_demande.Text.Trim()
             );
         }
-
 
         // ============================================================
         // CHARGER LES PATIENTS
@@ -195,7 +427,7 @@ namespace Cepima.MesUserCases
                         // CREATION CARTE
                         // --------------------------------------------
 
-                        CustomRoundedPanel panPatient =
+                        BunifuRoundedPanel panPatient =
                             CreerPanelPatient(
                                 idPatient,
                                 nom,
@@ -299,48 +531,31 @@ namespace Cepima.MesUserCases
             }
         }
 
-
         // ============================================================
         // CREER CARTE PATIENT
         // ============================================================
 
-        private CustomRoundedPanel CreerPanelPatient(
-            string idPatient,
-            string nom,
-            string postnom,
-            string numero)
+        private BunifuRoundedPanel CreerPanelPatient(string idPatient,string nom,string postnom,string numero)
         {
             // --------------------------------------------------------
             // PANEL PRINCIPAL
             // --------------------------------------------------------
 
-            CustomRoundedPanel panPatient =
-                new CustomRoundedPanel();
+          
+            BunifuRoundedPanel panPatient = new BunifuRoundedPanel();
 
-            panPatient.Size =
-                new Size(160, 130);
+            panPatient.Size = new Size(300, 155);
 
             panPatient.BorderRadius = 8;
-
-            panPatient.BorderColor =
-                Color.Silver;
-
+            panPatient.BorderSize = 0;
+            panPatient.ShadowDepth = 10;
+            panPatient.BorderColor = Color.Silver;
             panPatient.BorderSize = 1;
+            panPatient.Tag = idPatient;
 
-            panPatient.Tag =
-                idPatient;
+            panPatient.Margin = new Padding(10);
 
-            panPatient.Margin =
-                new Padding(10);
-
-            panPatient.Padding =
-                new Padding(
-                    10,
-                    10,
-                    8,
-                    10
-                );
-
+            panPatient.Padding = new Padding(10);
 
             // --------------------------------------------------------
             // PHOTO
@@ -349,38 +564,31 @@ namespace Cepima.MesUserCases
             PictureBox picture =
                 MesClasses.ManagerClasse.AddPicture(
                     Properties.Resources.user,
-                    new Point(2, 5),
-                    new Size(70, 70)
+                    new Point(10, 10),
+                    new Size(65, 65)
                 );
 
-            panPatient.Controls.Add(
-                picture
-            );
-
+            panPatient.Controls.Add(picture);
 
             // --------------------------------------------------------
             // NOM
             // --------------------------------------------------------
 
             Label lbNom =
-                MesClasses.ManagerClasse.CustomLabel(
+MesClasses.ManagerClasse.CustomLabel(
                     nom,
-                    new Point(70, 20)
+                    new Point(80, 10)
                 );
 
             lbNom.AutoSize = true;
 
-            lbNom.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold
-                );
-
-            panPatient.Controls.Add(
-                lbNom
+            lbNom.Font = new Font(
+                "Calibri",
+                10,
+                FontStyle.Bold
             );
 
+            panPatient.Controls.Add(lbNom);
 
             // --------------------------------------------------------
             // POST-NOM
@@ -389,123 +597,131 @@ namespace Cepima.MesUserCases
             Label lbPost =
                 MesClasses.ManagerClasse.CustomLabel(
                     postnom,
-                    new Point(70, 40)
+                    new Point(80, 32)
                 );
 
             lbPost.AutoSize = true;
 
-            lbPost.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold
-                );
-
-            panPatient.Controls.Add(
-                lbPost
+            lbPost.Font = new Font(
+                "Calibri",
+                10,
+                FontStyle.Bold
             );
 
+            panPatient.Controls.Add(lbPost);
 
             // --------------------------------------------------------
-            // NUMERO FICHE
+            // NUMERO DU PATIENT
             // --------------------------------------------------------
 
             Label lbFiche =
                 MesClasses.ManagerClasse.CustomLabel(
                     numero,
-                    new Point(10, 75)
+                    new Point(80, 54)
                 );
 
             lbFiche.AutoSize = true;
 
-            lbFiche.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold
-                );
-
-            panPatient.Controls.Add(
-                lbFiche
+            lbFiche.Font = new Font(
+                "Calibri",
+                9,
+                FontStyle.Regular
             );
 
+            panPatient.Controls.Add(lbFiche);
 
             // --------------------------------------------------------
-            // BOUTON FICHE DE SUIVI
+            // BOUTON AFFECTATION
             // --------------------------------------------------------
 
             RoundedButton btnSuivi =
                 MesClasses.ManagerClasse.Rbutton(
                     "Affectation",
-                    new Point(30, 100),
-                    new Size(95, 25),
+                    new Point(20, 105),
+                    new Size(110, 30),
                     Color.FromArgb(44, 123, 229),
                     Color.White
                 );
 
             btnSuivi.BorderRadius = 4;
-
             btnSuivi.BorderSize = 0;
 
             btnSuivi.BorderColor =
-                Color.FromArgb(
-                    44,
-                    123,
-                    229
-                );
+                Color.FromArgb(44, 123, 229);
 
             btnSuivi.HoverBackColor =
-                Color.FromArgb(
-                    7,
-                    51,
-                    131
+                Color.FromArgb(7, 51, 131);
+
+            panPatient.Controls.Add(btnSuivi);
+
+            // --------------------------------------------------------
+            // BOUTON FICHES
+            // --------------------------------------------------------
+
+            RoundedButton btnFiches =
+                MesClasses.ManagerClasse.Rbutton(
+                    "Fiches",
+                    new Point(185, 105),
+                    new Size(100, 30),
+                    Color.FromArgb(39, 174, 96),
+                    Color.White
                 );
 
+            btnFiches.BorderRadius = 4;
+            btnFiches.BorderSize = 0;
 
-            panPatient.Controls.Add(
-                btnSuivi
-            );
+            btnFiches.BorderColor =
+                Color.FromArgb(39, 174, 96);
 
+            btnFiches.HoverBackColor =
+                Color.FromArgb(30, 132, 73);
+
+            panPatient.Controls.Add(btnFiches);
 
             // --------------------------------------------------------
-            // EVENEMENT
+            // EVENEMENT : AFFECTATION
             // --------------------------------------------------------
 
-            btnSuivi.Click +=
-                delegate
+            btnSuivi.Click += delegate
+            {
+                Form1.GlobalPanel_main.Visible = false;
+
+                try
                 {
-                    Form1.GlobalPanel_main.Visible =
-                        false;
+                    MesForms.Form_demander_service service =
+                        new MesForms.Form_demander_service(
+                            idPatient,
+                            0
+                        );
 
-                    try
-                    {
+                    service.ShowDialog();
+                }
+                finally
+                {
+                    Form1.GlobalPanel_main.Visible = true;
+                }
+            };
 
-                        MesForms.Form_demander_service service =
-                            new MesForms.Form_demander_service(
-                                idPatient,
-                                0);
+            // --------------------------------------------------------
+            // EVENEMENT : FICHES MEDICALES
+            // --------------------------------------------------------
 
-                        service.ShowDialog();
-                    }
-                    finally
-                    {
-                        Form1.GlobalPanel_main.Visible =
-                            true;
-                    }
-                };
-
+            btnFiches.Click += delegate
+            {
+                // Nous connecterons ce bouton au formulaire
+                // ListeFichesMedicales dans la prochaine étape.
+                ChargerFichesMedicales(idPatient);
+                tb_search_demande.Visible = false;
+                lb_nombres.Visible = false;
+            };
 
             return panPatient;
         }
-
-
         // ============================================================
         // RECHERCHE
         // ============================================================
 
-        private void tb_search_demande_TextChanged(
-            object sender,
-            EventArgs e)
+        private void tb_search_demande_TextChanged(object sender,EventArgs e)
         {
             // --------------------------------------------------------
             // Annuler le timer précédent
@@ -526,9 +742,7 @@ namespace Cepima.MesUserCases
         // CHARGEMENT DU USERCONTROL
         // ============================================================
 
-        private void User_display_patients_Load(
-            object sender,
-            EventArgs e)
+        private void User_display_patients_Load(object sender,EventArgs e)
         {
             LoadPatient();
         }

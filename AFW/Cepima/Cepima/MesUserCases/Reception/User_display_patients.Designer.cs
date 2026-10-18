@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.lb_nombres = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tb_search_demande = new MyRoundedTextBox();
             this.pan = new CustomRoundedPanel();
             this.panel_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.lb_not_found = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pan.SuspendLayout();
             this.panel_patient.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +49,15 @@
             this.lb_nombres.Size = new System.Drawing.Size(52, 15);
             this.lb_nombres.TabIndex = 4;
             this.lb_nombres.Text = "Patients";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cepima.Properties.Resources.vision;
+            this.pictureBox1.Location = new System.Drawing.Point(520, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 38);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // tb_search_demande
             // 
@@ -123,11 +134,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tb_search_demande);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lb_nombres);
             this.Controls.Add(this.pan);
             this.Name = "User_display_patients";
             this.Size = new System.Drawing.Size(1057, 586);
             this.Load += new System.EventHandler(this.User_display_patients_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pan.ResumeLayout(false);
             this.panel_patient.ResumeLayout(false);
             this.panel_patient.PerformLayout();
@@ -143,6 +156,7 @@
         private MyRoundedTextBox tb_search_demande;
         private System.Windows.Forms.FlowLayoutPanel panel_patient;
         private System.Windows.Forms.Label lb_not_found;
+        private System.Windows.Forms.PictureBox pictureBox1;
 
     }
 }

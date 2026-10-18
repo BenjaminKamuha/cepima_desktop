@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Ds_Fiche" targetNamespace="http://tempuri.org/Ds_Fiche.xsd" xmlns:mstns="http://tempuri.org/Ds_Fiche.xsd" xmlns="http://tempuri.org/Ds_Fiche.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Ds_Fiche" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Ds_Fiche" msprop:Generator_UserDSName="Ds_Fiche">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtPatient" msprop:Generator_TableClassName="dtPatientDataTable" msprop:Generator_TableVarName="tabledtPatient" msprop:Generator_TablePropName="dtPatient" msprop:Generator_RowDeletingName="dtPatientRowDeleting" msprop:Generator_RowChangingName="dtPatientRowChanging" msprop:Generator_RowEvHandlerName="dtPatientRowChangeEventHandler" msprop:Generator_RowDeletedName="dtPatientRowDeleted" msprop:Generator_UserTableName="dtPatient" msprop:Generator_RowChangedName="dtPatientRowChanged" msprop:Generator_RowEvArgName="dtPatientRowChangeEvent" msprop:Generator_RowClassName="dtPatientRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_patient" msprop:Generator_ColumnVarNameInTable="columnid_patient" msprop:Generator_ColumnPropNameInRow="id_patient" msprop:Generator_ColumnPropNameInTable="id_patientColumn" msprop:Generator_UserColumnName="id_patient" type="xs:string" />
+              <xs:element name="nom" msprop:Generator_ColumnVarNameInTable="columnnom" msprop:Generator_ColumnPropNameInRow="nom" msprop:Generator_ColumnPropNameInTable="nomColumn" msprop:Generator_UserColumnName="nom" type="xs:string" minOccurs="0" />
+              <xs:element name="post_nom" msprop:Generator_ColumnVarNameInTable="columnpost_nom" msprop:Generator_ColumnPropNameInRow="post_nom" msprop:Generator_ColumnPropNameInTable="post_nomColumn" msprop:Generator_UserColumnName="post_nom" type="xs:string" minOccurs="0" />
+              <xs:element name="sexe" msprop:Generator_ColumnVarNameInTable="columnsexe" msprop:Generator_ColumnPropNameInRow="sexe" msprop:Generator_ColumnPropNameInTable="sexeColumn" msprop:Generator_UserColumnName="sexe" type="xs:string" minOccurs="0" />
+              <xs:element name="date_naissance" msprop:Generator_ColumnVarNameInTable="columndate_naissance" msprop:Generator_ColumnPropNameInRow="date_naissance" msprop:Generator_ColumnPropNameInTable="date_naissanceColumn" msprop:Generator_UserColumnName="date_naissance" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="telephone" msprop:Generator_ColumnVarNameInTable="columntelephone" msprop:Generator_ColumnPropNameInRow="telephone" msprop:Generator_ColumnPropNameInTable="telephoneColumn" msprop:Generator_UserColumnName="telephone" type="xs:string" minOccurs="0" />
+              <xs:element name="adresse" msprop:Generator_ColumnVarNameInTable="columnadresse" msprop:Generator_ColumnPropNameInRow="adresse" msprop:Generator_ColumnPropNameInTable="adresseColumn" msprop:Generator_UserColumnName="adresse" type="xs:string" minOccurs="0" />
+              <xs:element name="profession" msprop:Generator_ColumnVarNameInTable="columnprofession" msprop:Generator_ColumnPropNameInRow="profession" msprop:Generator_ColumnPropNameInTable="professionColumn" msprop:Generator_UserColumnName="profession" type="xs:string" minOccurs="0" />
+              <xs:element name="etat_civil" msprop:Generator_ColumnVarNameInTable="columnetat_civil" msprop:Generator_ColumnPropNameInRow="etat_civil" msprop:Generator_ColumnPropNameInTable="etat_civilColumn" msprop:Generator_UserColumnName="etat_civil" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_pere" msprop:Generator_ColumnVarNameInTable="columnnom_pere" msprop:Generator_ColumnPropNameInRow="nom_pere" msprop:Generator_ColumnPropNameInTable="nom_pereColumn" msprop:Generator_UserColumnName="nom_pere" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_mere" msprop:Generator_ColumnVarNameInTable="columnnom_mere" msprop:Generator_ColumnPropNameInRow="nom_mere" msprop:Generator_ColumnPropNameInTable="nom_mereColumn" msprop:Generator_UserColumnName="nom_mere" type="xs:string" minOccurs="0" />
+              <xs:element name="profession_pere" msprop:Generator_ColumnVarNameInTable="columnprofession_pere" msprop:Generator_ColumnPropNameInRow="profession_pere" msprop:Generator_ColumnPropNameInTable="profession_pereColumn" msprop:Generator_UserColumnName="profession_pere" type="xs:string" minOccurs="0" />
+              <xs:element name="profession_mere" msprop:Generator_ColumnVarNameInTable="columnprofession_mere" msprop:Generator_ColumnPropNameInRow="profession_mere" msprop:Generator_ColumnPropNameInTable="profession_mereColumn" msprop:Generator_UserColumnName="profession_mere" type="xs:string" minOccurs="0" />
+              <xs:element name="confession_religieuse" msprop:Generator_ColumnVarNameInTable="columnconfession_religieuse" msprop:Generator_ColumnPropNameInRow="confession_religieuse" msprop:Generator_ColumnPropNameInTable="confession_religieuseColumn" msprop:Generator_UserColumnName="confession_religieuse" type="xs:string" minOccurs="0" />
+              <xs:element name="niveau_etude" msprop:Generator_ColumnVarNameInTable="columnniveau_etude" msprop:Generator_ColumnPropNameInRow="niveau_etude" msprop:Generator_ColumnPropNameInTable="niveau_etudeColumn" msprop:Generator_UserColumnName="niveau_etude" type="xs:string" minOccurs="0" />
+              <xs:element name="personne_accompagnante" msprop:Generator_ColumnVarNameInTable="columnpersonne_accompagnante" msprop:Generator_ColumnPropNameInRow="personne_accompagnante" msprop:Generator_ColumnPropNameInTable="personne_accompagnanteColumn" msprop:Generator_UserColumnName="personne_accompagnante" type="xs:string" minOccurs="0" />
+              <xs:element name="telephone_accompagnant" msprop:Generator_ColumnVarNameInTable="columntelephone_accompagnant" msprop:Generator_ColumnPropNameInRow="telephone_accompagnant" msprop:Generator_ColumnPropNameInTable="telephone_accompagnantColumn" msprop:Generator_UserColumnName="telephone_accompagnant" type="xs:string" minOccurs="0" />
+              <xs:element name="autres_membres_famille" msprop:Generator_ColumnVarNameInTable="columnautres_membres_famille" msprop:Generator_ColumnPropNameInRow="autres_membres_famille" msprop:Generator_ColumnPropNameInTable="autres_membres_familleColumn" msprop:Generator_UserColumnName="autres_membres_famille" type="xs:string" minOccurs="0" />
+              <xs:element name="engagement_tuteur" msprop:Generator_ColumnVarNameInTable="columnengagement_tuteur" msprop:Generator_ColumnPropNameInRow="engagement_tuteur" msprop:Generator_ColumnPropNameInTable="engagement_tuteurColumn" msprop:Generator_UserColumnName="engagement_tuteur" type="xs:string" minOccurs="0" />
+              <xs:element name="adresse_accompagnant" msprop:Generator_ColumnVarNameInTable="columnadresse_accompagnant" msprop:Generator_ColumnPropNameInRow="adresse_accompagnant" msprop:Generator_ColumnPropNameInTable="adresse_accompagnantColumn" msprop:Generator_UserColumnName="adresse_accompagnant" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtAntecedents" msprop:Generator_TableClassName="dtAntecedentsDataTable" msprop:Generator_TableVarName="tabledtAntecedents" msprop:Generator_TablePropName="dtAntecedents" msprop:Generator_RowDeletingName="dtAntecedentsRowDeleting" msprop:Generator_RowChangingName="dtAntecedentsRowChanging" msprop:Generator_RowEvHandlerName="dtAntecedentsRowChangeEventHandler" msprop:Generator_RowDeletedName="dtAntecedentsRowDeleted" msprop:Generator_UserTableName="dtAntecedents" msprop:Generator_RowChangedName="dtAntecedentsRowChanged" msprop:Generator_RowEvArgName="dtAntecedentsRowChangeEvent" msprop:Generator_RowClassName="dtAntecedentsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_antecedent" msprop:Generator_ColumnVarNameInTable="columnid_antecedent" msprop:Generator_ColumnPropNameInRow="id_antecedent" msprop:Generator_ColumnPropNameInTable="id_antecedentColumn" msprop:Generator_UserColumnName="id_antecedent" type="xs:string" />
+              <xs:element name="medical_hta" msprop:Generator_ColumnVarNameInTable="columnmedical_hta" msprop:Generator_ColumnPropNameInRow="medical_hta" msprop:Generator_ColumnPropNameInTable="medical_htaColumn" msprop:Generator_UserColumnName="medical_hta" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_diabete" msprop:Generator_ColumnVarNameInTable="columnmedical_diabete" msprop:Generator_ColumnPropNameInRow="medical_diabete" msprop:Generator_ColumnPropNameInTable="medical_diabeteColumn" msprop:Generator_UserColumnName="medical_diabete" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_epilepsie" msprop:Generator_ColumnVarNameInTable="columnmedical_epilepsie" msprop:Generator_ColumnPropNameInRow="medical_epilepsie" msprop:Generator_ColumnPropNameInTable="medical_epilepsieColumn" msprop:Generator_UserColumnName="medical_epilepsie" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_traumatisme_cranien" msprop:Generator_ColumnVarNameInTable="columnmedical_traumatisme_cranien" msprop:Generator_ColumnPropNameInRow="medical_traumatisme_cranien" msprop:Generator_ColumnPropNameInTable="medical_traumatisme_cranienColumn" msprop:Generator_UserColumnName="medical_traumatisme_cranien" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_avc" msprop:Generator_ColumnVarNameInTable="columnmedical_avc" msprop:Generator_ColumnPropNameInRow="medical_avc" msprop:Generator_ColumnPropNameInTable="medical_avcColumn" msprop:Generator_UserColumnName="medical_avc" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_vih" msprop:Generator_ColumnVarNameInTable="columnmedical_vih" msprop:Generator_ColumnPropNameInRow="medical_vih" msprop:Generator_ColumnPropNameInTable="medical_vihColumn" msprop:Generator_UserColumnName="medical_vih" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_tuberculose" msprop:Generator_ColumnVarNameInTable="columnmedical_tuberculose" msprop:Generator_ColumnPropNameInRow="medical_tuberculose" msprop:Generator_ColumnPropNameInTable="medical_tuberculoseColumn" msprop:Generator_UserColumnName="medical_tuberculose" type="xs:string" minOccurs="0" />
+              <xs:element name="medical_autre" msprop:Generator_ColumnVarNameInTable="columnmedical_autre" msprop:Generator_ColumnPropNameInRow="medical_autre" msprop:Generator_ColumnPropNameInTable="medical_autreColumn" msprop:Generator_UserColumnName="medical_autre" type="xs:string" minOccurs="0" />
+              <xs:element name="psy_depression" msprop:Generator_ColumnVarNameInTable="columnpsy_depression" msprop:Generator_ColumnPropNameInRow="psy_depression" msprop:Generator_ColumnPropNameInTable="psy_depressionColumn" msprop:Generator_UserColumnName="psy_depression" type="xs:string" minOccurs="0" />
+              <xs:element name="psy_tentative_suicide" msprop:Generator_ColumnVarNameInTable="columnpsy_tentative_suicide" msprop:Generator_ColumnPropNameInRow="psy_tentative_suicide" msprop:Generator_ColumnPropNameInTable="psy_tentative_suicideColumn" msprop:Generator_UserColumnName="psy_tentative_suicide" type="xs:string" minOccurs="0" />
+              <xs:element name="psy_hospitalisation" msprop:Generator_ColumnVarNameInTable="columnpsy_hospitalisation" msprop:Generator_ColumnPropNameInRow="psy_hospitalisation" msprop:Generator_ColumnPropNameInTable="psy_hospitalisationColumn" msprop:Generator_UserColumnName="psy_hospitalisation" type="xs:string" minOccurs="0" />
+              <xs:element name="psy_trouble_bipolaire" msprop:Generator_ColumnVarNameInTable="columnpsy_trouble_bipolaire" msprop:Generator_ColumnPropNameInRow="psy_trouble_bipolaire" msprop:Generator_ColumnPropNameInTable="psy_trouble_bipolaireColumn" msprop:Generator_UserColumnName="psy_trouble_bipolaire" type="xs:string" minOccurs="0" />
+              <xs:element name="psy_schizophrenie" msprop:Generator_ColumnVarNameInTable="columnpsy_schizophrenie" msprop:Generator_ColumnPropNameInRow="psy_schizophrenie" msprop:Generator_ColumnPropNameInTable="psy_schizophrenieColumn" msprop:Generator_UserColumnName="psy_schizophrenie" type="xs:string" minOccurs="0" />
+              <xs:element name="psy_autre" msprop:Generator_ColumnVarNameInTable="columnpsy_autre" msprop:Generator_ColumnPropNameInRow="psy_autre" msprop:Generator_ColumnPropNameInTable="psy_autreColumn" msprop:Generator_UserColumnName="psy_autre" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_hta" msprop:Generator_ColumnVarNameInTable="columnhereditaire_hta" msprop:Generator_ColumnPropNameInRow="hereditaire_hta" msprop:Generator_ColumnPropNameInTable="hereditaire_htaColumn" msprop:Generator_UserColumnName="hereditaire_hta" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_diabete" msprop:Generator_ColumnVarNameInTable="columnhereditaire_diabete" msprop:Generator_ColumnPropNameInRow="hereditaire_diabete" msprop:Generator_ColumnPropNameInTable="hereditaire_diabeteColumn" msprop:Generator_UserColumnName="hereditaire_diabete" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_epilepsie" msprop:Generator_ColumnVarNameInTable="columnhereditaire_epilepsie" msprop:Generator_ColumnPropNameInRow="hereditaire_epilepsie" msprop:Generator_ColumnPropNameInTable="hereditaire_epilepsieColumn" msprop:Generator_UserColumnName="hereditaire_epilepsie" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_avc" msprop:Generator_ColumnVarNameInTable="columnhereditaire_avc" msprop:Generator_ColumnPropNameInRow="hereditaire_avc" msprop:Generator_ColumnPropNameInTable="hereditaire_avcColumn" msprop:Generator_UserColumnName="hereditaire_avc" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_tuberculose" msprop:Generator_ColumnVarNameInTable="columnhereditaire_tuberculose" msprop:Generator_ColumnPropNameInRow="hereditaire_tuberculose" msprop:Generator_ColumnPropNameInTable="hereditaire_tuberculoseColumn" msprop:Generator_UserColumnName="hereditaire_tuberculose" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_vih" msprop:Generator_ColumnVarNameInTable="columnhereditaire_vih" msprop:Generator_ColumnPropNameInRow="hereditaire_vih" msprop:Generator_ColumnPropNameInTable="hereditaire_vihColumn" msprop:Generator_UserColumnName="hereditaire_vih" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaire_autre" msprop:Generator_ColumnVarNameInTable="columnhereditaire_autre" msprop:Generator_ColumnPropNameInRow="hereditaire_autre" msprop:Generator_ColumnPropNameInTable="hereditaire_autreColumn" msprop:Generator_UserColumnName="hereditaire_autre" type="xs:string" minOccurs="0" />
+              <xs:element name="familiaux" msprop:Generator_ColumnVarNameInTable="columnfamiliaux" msprop:Generator_ColumnPropNameInRow="familiaux" msprop:Generator_ColumnPropNameInTable="familiauxColumn" msprop:Generator_UserColumnName="familiaux" type="xs:string" minOccurs="0" />
+              <xs:element name="collateraux" msprop:Generator_ColumnVarNameInTable="columncollateraux" msprop:Generator_ColumnPropNameInRow="collateraux" msprop:Generator_ColumnPropNameInTable="collaterauxColumn" msprop:Generator_UserColumnName="collateraux" type="xs:string" minOccurs="0" />
+              <xs:element name="allergies" msprop:Generator_ColumnVarNameInTable="columnallergies" msprop:Generator_ColumnPropNameInRow="allergies" msprop:Generator_ColumnPropNameInTable="allergiesColumn" msprop:Generator_UserColumnName="allergies" type="xs:string" minOccurs="0" />
+              <xs:element name="habitudes_toxiques" msprop:Generator_ColumnVarNameInTable="columnhabitudes_toxiques" msprop:Generator_ColumnPropNameInRow="habitudes_toxiques" msprop:Generator_ColumnPropNameInTable="habitudes_toxiquesColumn" msprop:Generator_UserColumnName="habitudes_toxiques" type="xs:string" minOccurs="0" />
+              <xs:element name="toxique_alcool" msprop:Generator_ColumnVarNameInTable="columntoxique_alcool" msprop:Generator_ColumnPropNameInRow="toxique_alcool" msprop:Generator_ColumnPropNameInTable="toxique_alcoolColumn" msprop:Generator_UserColumnName="toxique_alcool" type="xs:string" minOccurs="0" />
+              <xs:element name="toxique_tabac" msprop:Generator_ColumnVarNameInTable="columntoxique_tabac" msprop:Generator_ColumnPropNameInRow="toxique_tabac" msprop:Generator_ColumnPropNameInTable="toxique_tabacColumn" msprop:Generator_UserColumnName="toxique_tabac" type="xs:string" minOccurs="0" />
+              <xs:element name="toxique_canabis" msprop:Generator_ColumnVarNameInTable="columntoxique_canabis" msprop:Generator_ColumnPropNameInRow="toxique_canabis" msprop:Generator_ColumnPropNameInTable="toxique_canabisColumn" msprop:Generator_UserColumnName="toxique_canabis" type="xs:string" minOccurs="0" />
+              <xs:element name="toxique_drogues" msprop:Generator_ColumnVarNameInTable="columntoxique_drogues" msprop:Generator_ColumnPropNameInRow="toxique_drogues" msprop:Generator_ColumnPropNameInTable="toxique_droguesColumn" msprop:Generator_UserColumnName="toxique_drogues" type="xs:string" minOccurs="0" />
+              <xs:element name="toxique_autres" msprop:Generator_ColumnVarNameInTable="columntoxique_autres" msprop:Generator_ColumnPropNameInRow="toxique_autres" msprop:Generator_ColumnPropNameInTable="toxique_autresColumn" msprop:Generator_UserColumnName="toxique_autres" type="xs:string" minOccurs="0" />
+              <xs:element name="medicaux_texte" msprop:Generator_ColumnVarNameInTable="columnmedicaux_texte" msprop:Generator_ColumnPropNameInRow="medicaux_texte" msprop:Generator_ColumnPropNameInTable="medicaux_texteColumn" msprop:Generator_UserColumnName="medicaux_texte" type="xs:string" minOccurs="0" />
+              <xs:element name="psychiatriques_texte" msprop:Generator_ColumnVarNameInTable="columnpsychiatriques_texte" msprop:Generator_ColumnPropNameInRow="psychiatriques_texte" msprop:Generator_ColumnPropNameInTable="psychiatriques_texteColumn" msprop:Generator_UserColumnName="psychiatriques_texte" type="xs:string" minOccurs="0" />
+              <xs:element name="hereditaires_texte" msprop:Generator_ColumnVarNameInTable="columnhereditaires_texte" msprop:Generator_ColumnPropNameInRow="hereditaires_texte" msprop:Generator_ColumnPropNameInTable="hereditaires_texteColumn" msprop:Generator_UserColumnName="hereditaires_texte" type="xs:string" minOccurs="0" />
+              <xs:element name="toxiques_texte" msprop:Generator_ColumnVarNameInTable="columntoxiques_texte" msprop:Generator_ColumnPropNameInRow="toxiques_texte" msprop:Generator_ColumnPropNameInTable="toxiques_texteColumn" msprop:Generator_UserColumnName="toxiques_texte" type="xs:string" minOccurs="0" />
+              <xs:element name="chirurgicaux" msprop:Generator_ColumnVarNameInTable="columnchirurgicaux" msprop:Generator_ColumnPropNameInRow="chirurgicaux" msprop:Generator_ColumnPropNameInTable="chirurgicauxColumn" msprop:Generator_UserColumnName="chirurgicaux" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtSignesVitaux" msprop:Generator_TableClassName="dtSignesVitauxDataTable" msprop:Generator_TableVarName="tabledtSignesVitaux" msprop:Generator_TablePropName="dtSignesVitaux" msprop:Generator_RowDeletingName="dtSignesVitauxRowDeleting" msprop:Generator_RowChangingName="dtSignesVitauxRowChanging" msprop:Generator_RowEvHandlerName="dtSignesVitauxRowChangeEventHandler" msprop:Generator_RowDeletedName="dtSignesVitauxRowDeleted" msprop:Generator_UserTableName="dtSignesVitaux" msprop:Generator_RowChangedName="dtSignesVitauxRowChanged" msprop:Generator_RowEvArgName="dtSignesVitauxRowChangeEvent" msprop:Generator_RowClassName="dtSignesVitauxRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_signe" msprop:Generator_ColumnVarNameInTable="columnid_signe" msprop:Generator_ColumnPropNameInRow="id_signe" msprop:Generator_ColumnPropNameInTable="id_signeColumn" msprop:Generator_UserColumnName="id_signe" type="xs:string" />
+              <xs:element name="temperature" msprop:Generator_ColumnVarNameInTable="columntemperature" msprop:Generator_ColumnPropNameInRow="temperature" msprop:Generator_ColumnPropNameInTable="temperatureColumn" msprop:Generator_UserColumnName="temperature" type="xs:string" minOccurs="0" />
+              <xs:element name="tension" msprop:Generator_ColumnVarNameInTable="columntension" msprop:Generator_ColumnPropNameInRow="tension" msprop:Generator_ColumnPropNameInTable="tensionColumn" msprop:Generator_UserColumnName="tension" type="xs:string" minOccurs="0" />
+              <xs:element name="frequence_cardiaque" msprop:Generator_ColumnVarNameInTable="columnfrequence_cardiaque" msprop:Generator_ColumnPropNameInRow="frequence_cardiaque" msprop:Generator_ColumnPropNameInTable="frequence_cardiaqueColumn" msprop:Generator_UserColumnName="frequence_cardiaque" type="xs:string" minOccurs="0" />
+              <xs:element name="poids" msprop:Generator_ColumnVarNameInTable="columnpoids" msprop:Generator_ColumnPropNameInRow="poids" msprop:Generator_ColumnPropNameInTable="poidsColumn" msprop:Generator_UserColumnName="poids" type="xs:string" minOccurs="0" />
+              <xs:element name="etat" msprop:Generator_ColumnVarNameInTable="columnetat" msprop:Generator_ColumnPropNameInRow="etat" msprop:Generator_ColumnPropNameInTable="etatColumn" msprop:Generator_UserColumnName="etat" type="xs:string" minOccurs="0" />
+              <xs:element name="date_prise" msprop:Generator_ColumnVarNameInTable="columndate_prise" msprop:Generator_ColumnPropNameInRow="date_prise" msprop:Generator_ColumnPropNameInTable="date_priseColumn" msprop:Generator_UserColumnName="date_prise" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtConsultation" msprop:Generator_TableClassName="dtConsultationDataTable" msprop:Generator_TableVarName="tabledtConsultation" msprop:Generator_TablePropName="dtConsultation" msprop:Generator_RowDeletingName="dtConsultationRowDeleting" msprop:Generator_RowChangingName="dtConsultationRowChanging" msprop:Generator_RowEvHandlerName="dtConsultationRowChangeEventHandler" msprop:Generator_RowDeletedName="dtConsultationRowDeleted" msprop:Generator_UserTableName="dtConsultation" msprop:Generator_RowChangedName="dtConsultationRowChanged" msprop:Generator_RowEvArgName="dtConsultationRowChangeEvent" msprop:Generator_RowClassName="dtConsultationRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" />
+              <xs:element name="motif" msprop:Generator_ColumnVarNameInTable="columnmotif" msprop:Generator_ColumnPropNameInRow="motif" msprop:Generator_ColumnPropNameInTable="motifColumn" msprop:Generator_UserColumnName="motif" type="xs:string" minOccurs="0" />
+              <xs:element name="historique_maladie" msprop:Generator_ColumnVarNameInTable="columnhistorique_maladie" msprop:Generator_ColumnPropNameInRow="historique_maladie" msprop:Generator_ColumnPropNameInTable="historique_maladieColumn" msprop:Generator_UserColumnName="historique_maladie" type="xs:string" minOccurs="0" />
+              <xs:element name="diagnostic" msprop:Generator_ColumnVarNameInTable="columndiagnostic" msprop:Generator_ColumnPropNameInRow="diagnostic" msprop:Generator_ColumnPropNameInTable="diagnosticColumn" msprop:Generator_UserColumnName="diagnostic" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtExamenNeuro" msprop:Generator_TableClassName="dtExamenNeuroDataTable" msprop:Generator_TableVarName="tabledtExamenNeuro" msprop:Generator_TablePropName="dtExamenNeuro" msprop:Generator_RowDeletingName="dtExamenNeuroRowDeleting" msprop:Generator_RowChangingName="dtExamenNeuroRowChanging" msprop:Generator_RowEvHandlerName="dtExamenNeuroRowChangeEventHandler" msprop:Generator_RowDeletedName="dtExamenNeuroRowDeleted" msprop:Generator_UserTableName="dtExamenNeuro" msprop:Generator_RowChangedName="dtExamenNeuroRowChanged" msprop:Generator_RowEvArgName="dtExamenNeuroRowChangeEvent" msprop:Generator_RowClassName="dtExamenNeuroRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_examen_neurologique" msprop:Generator_ColumnVarNameInTable="columnid_examen_neurologique" msprop:Generator_ColumnPropNameInRow="id_examen_neurologique" msprop:Generator_ColumnPropNameInTable="id_examen_neurologiqueColumn" msprop:Generator_UserColumnName="id_examen_neurologique" type="xs:string" />
+              <xs:element name="conscience" msprop:Generator_ColumnVarNameInTable="columnconscience" msprop:Generator_ColumnPropNameInRow="conscience" msprop:Generator_ColumnPropNameInTable="conscienceColumn" msprop:Generator_UserColumnName="conscience" type="xs:string" minOccurs="0" />
+              <xs:element name="orientation_temporo_spatiale" msprop:Generator_ColumnVarNameInTable="columnorientation_temporo_spatiale" msprop:Generator_ColumnPropNameInRow="orientation_temporo_spatiale" msprop:Generator_ColumnPropNameInTable="orientation_temporo_spatialeColumn" msprop:Generator_UserColumnName="orientation_temporo_spatiale" type="xs:string" minOccurs="0" />
+              <xs:element name="langage" msprop:Generator_ColumnVarNameInTable="columnlangage" msprop:Generator_ColumnPropNameInRow="langage" msprop:Generator_ColumnPropNameInTable="langageColumn" msprop:Generator_UserColumnName="langage" type="xs:string" minOccurs="0" />
+              <xs:element name="memoire" msprop:Generator_ColumnVarNameInTable="columnmemoire" msprop:Generator_ColumnPropNameInRow="memoire" msprop:Generator_ColumnPropNameInTable="memoireColumn" msprop:Generator_UserColumnName="memoire" type="xs:string" minOccurs="0" />
+              <xs:element name="nerfs_craniens" msprop:Generator_ColumnVarNameInTable="columnnerfs_craniens" msprop:Generator_ColumnPropNameInRow="nerfs_craniens" msprop:Generator_ColumnPropNameInTable="nerfs_craniensColumn" msprop:Generator_UserColumnName="nerfs_craniens" type="xs:string" minOccurs="0" />
+              <xs:element name="force_musculaire" msprop:Generator_ColumnVarNameInTable="columnforce_musculaire" msprop:Generator_ColumnPropNameInRow="force_musculaire" msprop:Generator_ColumnPropNameInTable="force_musculaireColumn" msprop:Generator_UserColumnName="force_musculaire" type="xs:string" minOccurs="0" />
+              <xs:element name="tonus" msprop:Generator_ColumnVarNameInTable="columntonus" msprop:Generator_ColumnPropNameInRow="tonus" msprop:Generator_ColumnPropNameInTable="tonusColumn" msprop:Generator_UserColumnName="tonus" type="xs:string" minOccurs="0" />
+              <xs:element name="reflexes" msprop:Generator_ColumnVarNameInTable="columnreflexes" msprop:Generator_ColumnPropNameInRow="reflexes" msprop:Generator_ColumnPropNameInTable="reflexesColumn" msprop:Generator_UserColumnName="reflexes" type="xs:string" minOccurs="0" />
+              <xs:element name="sensibilite" msprop:Generator_ColumnVarNameInTable="columnsensibilite" msprop:Generator_ColumnPropNameInRow="sensibilite" msprop:Generator_ColumnPropNameInTable="sensibiliteColumn" msprop:Generator_UserColumnName="sensibilite" type="xs:string" minOccurs="0" />
+              <xs:element name="coordination" msprop:Generator_ColumnVarNameInTable="columncoordination" msprop:Generator_ColumnPropNameInRow="coordination" msprop:Generator_ColumnPropNameInTable="coordinationColumn" msprop:Generator_UserColumnName="coordination" type="xs:string" minOccurs="0" />
+              <xs:element name="marche" msprop:Generator_ColumnVarNameInTable="columnmarche" msprop:Generator_ColumnPropNameInRow="marche" msprop:Generator_ColumnPropNameInTable="marcheColumn" msprop:Generator_UserColumnName="marche" type="xs:string" minOccurs="0" />
+              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtExamenPsy" msprop:Generator_TableClassName="dtExamenPsyDataTable" msprop:Generator_TableVarName="tabledtExamenPsy" msprop:Generator_TablePropName="dtExamenPsy" msprop:Generator_RowDeletingName="dtExamenPsyRowDeleting" msprop:Generator_RowChangingName="dtExamenPsyRowChanging" msprop:Generator_RowEvHandlerName="dtExamenPsyRowChangeEventHandler" msprop:Generator_RowDeletedName="dtExamenPsyRowDeleted" msprop:Generator_UserTableName="dtExamenPsy" msprop:Generator_RowChangedName="dtExamenPsyRowChanged" msprop:Generator_RowEvArgName="dtExamenPsyRowChangeEvent" msprop:Generator_RowClassName="dtExamenPsyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_examen_psychiatrique" msprop:Generator_ColumnVarNameInTable="columnid_examen_psychiatrique" msprop:Generator_ColumnPropNameInRow="id_examen_psychiatrique" msprop:Generator_ColumnPropNameInTable="id_examen_psychiatriqueColumn" msprop:Generator_UserColumnName="id_examen_psychiatrique" type="xs:string" />
+              <xs:element name="apparence_generale" msprop:Generator_ColumnVarNameInTable="columnapparence_generale" msprop:Generator_ColumnPropNameInRow="apparence_generale" msprop:Generator_ColumnPropNameInTable="apparence_generaleColumn" msprop:Generator_UserColumnName="apparence_generale" type="xs:string" minOccurs="0" />
+              <xs:element name="contact" msprop:Generator_ColumnVarNameInTable="columncontact" msprop:Generator_ColumnPropNameInRow="contact" msprop:Generator_ColumnPropNameInTable="contactColumn" msprop:Generator_UserColumnName="contact" type="xs:string" minOccurs="0" />
+              <xs:element name="humeur" msprop:Generator_ColumnVarNameInTable="columnhumeur" msprop:Generator_ColumnPropNameInRow="humeur" msprop:Generator_ColumnPropNameInTable="humeurColumn" msprop:Generator_UserColumnName="humeur" type="xs:string" minOccurs="0" />
+              <xs:element name="discours" msprop:Generator_ColumnVarNameInTable="columndiscours" msprop:Generator_ColumnPropNameInRow="discours" msprop:Generator_ColumnPropNameInTable="discoursColumn" msprop:Generator_UserColumnName="discours" type="xs:string" minOccurs="0" />
+              <xs:element name="pensee" msprop:Generator_ColumnVarNameInTable="columnpensee" msprop:Generator_ColumnPropNameInRow="pensee" msprop:Generator_ColumnPropNameInTable="penseeColumn" msprop:Generator_UserColumnName="pensee" type="xs:string" minOccurs="0" />
+              <xs:element name="hallucination" msprop:Generator_ColumnVarNameInTable="columnhallucination" msprop:Generator_ColumnPropNameInRow="hallucination" msprop:Generator_ColumnPropNameInTable="hallucinationColumn" msprop:Generator_UserColumnName="hallucination" type="xs:string" minOccurs="0" />
+              <xs:element name="idees_suicidaires" msprop:Generator_ColumnVarNameInTable="columnidees_suicidaires" msprop:Generator_ColumnPropNameInRow="idees_suicidaires" msprop:Generator_ColumnPropNameInTable="idees_suicidairesColumn" msprop:Generator_UserColumnName="idees_suicidaires" type="xs:string" minOccurs="0" />
+              <xs:element name="jugement" msprop:Generator_ColumnVarNameInTable="columnjugement" msprop:Generator_ColumnPropNameInRow="jugement" msprop:Generator_ColumnPropNameInTable="jugementColumn" msprop:Generator_UserColumnName="jugement" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtEEG" msprop:Generator_TableClassName="dtEEGDataTable" msprop:Generator_TableVarName="tabledtEEG" msprop:Generator_TablePropName="dtEEG" msprop:Generator_RowDeletingName="dtEEGRowDeleting" msprop:Generator_RowChangingName="dtEEGRowChanging" msprop:Generator_RowEvHandlerName="dtEEGRowChangeEventHandler" msprop:Generator_RowDeletedName="dtEEGRowDeleted" msprop:Generator_UserTableName="dtEEG" msprop:Generator_RowChangedName="dtEEGRowChanged" msprop:Generator_RowEvArgName="dtEEGRowChangeEvent" msprop:Generator_RowClassName="dtEEGRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_examens" msprop:Generator_ColumnVarNameInTable="columnid_examens" msprop:Generator_ColumnPropNameInRow="id_examens" msprop:Generator_ColumnPropNameInTable="id_examensColumn" msprop:Generator_UserColumnName="id_examens" type="xs:string" />
+              <xs:element name="resultat" msprop:Generator_ColumnVarNameInTable="columnresultat" msprop:Generator_ColumnPropNameInRow="resultat" msprop:Generator_ColumnPropNameInTable="resultatColumn" msprop:Generator_UserColumnName="resultat" type="xs:string" minOccurs="0" />
+              <xs:element name="interpretation" msprop:Generator_ColumnVarNameInTable="columninterpretation" msprop:Generator_ColumnPropNameInRow="interpretation" msprop:Generator_ColumnPropNameInTable="interpretationColumn" msprop:Generator_UserColumnName="interpretation" type="xs:string" minOccurs="0" />
+              <xs:element name="observations" msprop:Generator_ColumnVarNameInTable="columnobservations" msprop:Generator_ColumnPropNameInRow="observations" msprop:Generator_ColumnPropNameInTable="observationsColumn" msprop:Generator_UserColumnName="observations" type="xs:string" minOccurs="0" />
+              <xs:element name="type_EEG" msprop:Generator_ColumnVarNameInTable="columntype_EEG" msprop:Generator_ColumnPropNameInRow="type_EEG" msprop:Generator_ColumnPropNameInTable="type_EEGColumn" msprop:Generator_UserColumnName="type_EEG" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dtTraitement" msprop:Generator_TableClassName="dtTraitementDataTable" msprop:Generator_TableVarName="tabledtTraitement" msprop:Generator_TablePropName="dtTraitement" msprop:Generator_RowDeletingName="dtTraitementRowDeleting" msprop:Generator_RowChangingName="dtTraitementRowChanging" msprop:Generator_RowEvHandlerName="dtTraitementRowChangeEventHandler" msprop:Generator_RowDeletedName="dtTraitementRowDeleted" msprop:Generator_UserTableName="dtTraitement" msprop:Generator_RowChangedName="dtTraitementRowChanged" msprop:Generator_RowEvArgName="dtTraitementRowChangeEvent" msprop:Generator_RowClassName="dtTraitementRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id_prescription" msprop:Generator_ColumnVarNameInTable="columnid_prescription" msprop:Generator_ColumnPropNameInRow="id_prescription" msprop:Generator_ColumnPropNameInTable="id_prescriptionColumn" msprop:Generator_UserColumnName="id_prescription" type="xs:string" />
+              <xs:element name="quantite" msprop:Generator_ColumnVarNameInTable="columnquantite" msprop:Generator_ColumnPropNameInRow="quantite" msprop:Generator_ColumnPropNameInTable="quantiteColumn" msprop:Generator_UserColumnName="quantite" type="xs:string" minOccurs="0" />
+              <xs:element name="unite" msprop:Generator_ColumnVarNameInTable="columnunite" msprop:Generator_ColumnPropNameInRow="unite" msprop:Generator_ColumnPropNameInTable="uniteColumn" msprop:Generator_UserColumnName="unite" type="xs:string" minOccurs="0" />
+              <xs:element name="nom" msprop:Generator_ColumnVarNameInTable="columnnom" msprop:Generator_ColumnPropNameInRow="nom" msprop:Generator_ColumnPropNameInTable="nomColumn" msprop:Generator_UserColumnName="nom" type="xs:string" minOccurs="0" />
+              <xs:element name="dosage" msprop:Generator_ColumnVarNameInTable="columndosage" msprop:Generator_ColumnPropNameInRow="dosage" msprop:Generator_ColumnPropNameInTable="dosageColumn" msprop:Generator_UserColumnName="dosage" type="xs:string" minOccurs="0" />
+              <xs:element name="FORME" msprop:Generator_ColumnVarNameInTable="columnFORME" msprop:Generator_ColumnPropNameInRow="FORME" msprop:Generator_ColumnPropNameInTable="FORMEColumn" msprop:Generator_UserColumnName="FORME" type="xs:string" minOccurs="0" />
+              <xs:element name="statut" msprop:Generator_ColumnVarNameInTable="columnstatut" msprop:Generator_ColumnPropNameInRow="statut" msprop:Generator_ColumnPropNameInTable="statutColumn" msprop:Generator_UserColumnName="statut" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="dtPatientKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtPatient" />
+      <xs:field xpath="mstns:id_patient" />
+    </xs:unique>
+    <xs:unique name="dtAntecedentsKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtAntecedents" />
+      <xs:field xpath="mstns:id_antecedent" />
+    </xs:unique>
+    <xs:unique name="dtSignesVitauxKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtSignesVitaux" />
+      <xs:field xpath="mstns:id_signe" />
+    </xs:unique>
+    <xs:unique name="dtConsultationKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtConsultation" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="dtExamenNeuroKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtExamenNeuro" />
+      <xs:field xpath="mstns:id_examen_neurologique" />
+    </xs:unique>
+    <xs:unique name="dtExamenPsyKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtExamenPsy" />
+      <xs:field xpath="mstns:id_examen_psychiatrique" />
+    </xs:unique>
+    <xs:unique name="dtEEGKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtEEG" />
+      <xs:field xpath="mstns:id_examens" />
+    </xs:unique>
+    <xs:unique name="dtTraitementKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:dtTraitement" />
+      <xs:field xpath="mstns:id_prescription" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

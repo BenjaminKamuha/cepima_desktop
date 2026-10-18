@@ -49,6 +49,7 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lb_link = new System.Windows.Forms.LinkLabel();
             this.bunifuRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,7 @@
             this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
             this.bunifuRoundedPanel1.BorderRadius = 6;
             this.bunifuRoundedPanel1.BorderSize = 0;
+            this.bunifuRoundedPanel1.Controls.Add(this.lb_link);
             this.bunifuRoundedPanel1.Controls.Add(this.rich_autres);
             this.bunifuRoundedPanel1.Controls.Add(this.rb_bilan);
             this.bunifuRoundedPanel1.Controls.Add(this.rb_eeg);
@@ -263,6 +265,19 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 157;
             // 
+            // lb_link
+            // 
+            this.lb_link.ActiveLinkColor = System.Drawing.Color.Green;
+            this.lb_link.AutoSize = true;
+            this.lb_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_link.Location = new System.Drawing.Point(386, 536);
+            this.lb_link.Name = "lb_link";
+            this.lb_link.Size = new System.Drawing.Size(194, 16);
+            this.lb_link.TabIndex = 7;
+            this.lb_link.TabStop = true;
+            this.lb_link.Text = "Imprimer la fiche du patient";
+            this.lb_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lb_link_LinkClicked);
+            // 
             // User_Other
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,6 +315,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblTraitementPrescrit;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.LinkLabel lb_link;
 
     }
 }

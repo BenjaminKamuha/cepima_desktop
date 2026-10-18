@@ -112,54 +112,170 @@ namespace Cepima.MesClasses
         }
 
         //================================ Save signes vitaux =======================================================
-        public static void SaveSigneVitaux(string patient_id, decimal temperature, string tension, string frequence, decimal poids, decimal taille,string etat)
+        public static bool SaveSigneVitaux(
+      string patient_id,
+      decimal temperature,
+      string tension,
+      string frequence,
+      decimal poids,
+      decimal taille,
+      string etat)
         {
             using (MySqlConnection con = ManagerClasse.GetConnexion())
             {
-                MySqlTransaction tr = con.BeginTransaction();
-                try
+
+                using (MySqlTransaction tr = con.BeginTransaction())
                 {
-                    string query = "INSERT INTO signes_vitaux(id_patient,temperature,tension,frequence_cardiaque,poids,taille,etat,date_prise)VALUES(@patient,@temp,@tension,@frequency,@poids,@taille,@etat,CURDATE())";
-                    ManagerClasse.request_params.Clear();
-                    ManagerClasse.request_params.Add("@patient", patient_id);
-                    ManagerClasse.request_params.Add("@temp", temperature.ToString());
-                    ManagerClasse.request_params.Add("@tension", tension);
-                    ManagerClasse.request_params.Add("@frequency", frequence.ToString());
-                    ManagerClasse.request_params.Add("@poids", poids.ToString());
-                    ManagerClasse.request_params.Add("@taille", taille.ToString());
-                    ManagerClasse.request_params.Add("@etat", etat.ToString());
-                    ManagerClasse.CRUD(query, ManagerClasse.request_params);
-
-                    // Initialisation facture
-                    CreerFactureSiInexistante(patient_id, con, tr);
-
-                    tr.Commit();
-
-                    DialogResult result = MessageBox.Show(
-                       "Les signes vitaux ont été ajoutés; Voulez-vous recommander un service à ce patient ?", "Enregistrement.",
-                       MessageBoxButtons.YesNo,
-                       MessageBoxIcon.Question);
-
-                    if (result == DialogResult.Yes)
+                    try
                     {
-                        Form1.PATIENT_ID = Convert.ToInt32(patient_id);
-                        MesForms.Form_demander_service frm_service = new MesForms.Form_demander_service(Form1.PATIENT_ID.ToString(), 0);
-                        frm_service.ShowDialog();
+                        int idPatient = Convert.ToInt32(patient_id);
+                        int idFiche;
+
+                        // 1. Enregistrer les signes vitaux
+                        string querySigne = @"
+                    INSERT INTO signes_vitaux
+                    (
+                        id_patient,
+                        temperature,
+                        tension,
+                        frequence_cardiaque,
+                        poids,
+                        taille,
+                        etat,
+                        date_prise
+                    )
+                    VALUES
+                    (
+                        @patient,
+                        @temp,
+                        @tension,
+                        @frequency,
+                        @poids,
+                        @taille,
+                        @etat,
+                        NOW()
+                    )";
+
+                        using (MySqlCommand cmd = new MySqlCommand(
+                            querySigne, con, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@patient", idPatient);
+                            cmd.Parameters.AddWithValue("@temp", temperature);
+                            cmd.Parameters.AddWithValue("@tension", tension);
+                            cmd.Parameters.AddWithValue("@frequency", frequence);
+                            cmd.Parameters.AddWithValue("@poids", poids);
+                            cmd.Parameters.AddWithValue("@taille", taille);
+                            cmd.Parameters.AddWithValue("@etat", etat);
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // 2. Créer la fiche médicale
+                        // Un numéro provisoire unique évite les doublons.
+                        string numeroProvisoire =
+                            "TMP-" + Guid.NewGuid().ToString("N");
+
+                        string queryFiche = @"
+                    INSERT INTO fiches_medicales
+                    (
+                        id_patient,
+                        numero_fiche,
+                        date_entree,
+                        statut
+                    )
+                    VALUES
+                    (
+                        @patient,
+                        @numero,
+                        NOW(),
+                        'En cours'
+                    )";
+
+                        using (MySqlCommand cmd = new MySqlCommand(
+                            queryFiche, con, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@patient", idPatient);
+                            cmd.Parameters.AddWithValue(
+                                "@numero", numeroProvisoire);
+
+                            cmd.ExecuteNonQuery();
+
+                            idFiche = Convert.ToInt32(cmd.LastInsertedId);
+                        }
+
+                        // 3. Générer le numéro définitif de la fiche
+                        string numeroFiche = string.Format(
+                            "CEPIMA-{0}-{1:D2}",DateTime.Now.ToString("ddMMyyyy"),idFiche);
+
+                        string queryNumero = @"
+                    UPDATE fiches_medicales
+                    SET numero_fiche = @numero
+                    WHERE id_fiche = @id_fiche";
+
+                        using (MySqlCommand cmd = new MySqlCommand(
+                            queryNumero, con, tr))
+                        {
+                            cmd.Parameters.AddWithValue("@numero", numeroFiche);
+                            cmd.Parameters.AddWithValue("@id_fiche", idFiche);
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        // 4. Conserver l'initialisation de la facture
+                        // Cette méthode doit utiliser con et tr pour
+                        // que ses opérations appartiennent à la transaction.
+                        CreerFactureSiInexistante(patient_id, con, tr);
+
+                        // 5. Valider toutes les opérations
+                        tr.Commit();
+
+                        MessageBox.Show(
+                            "Signes vitaux enregistrés avec succès.\n" +
+                            "Numéro de fiche : " + numeroFiche,
+                            "Enregistrement",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        DialogResult result = MessageBox.Show(
+                            "Voulez-vous recommander un service à ce patient ?",
+                            "Enregistrement",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            Form1.PATIENT_ID = idPatient;
+
+                            MesForms.Form_demander_service frm_service =
+                                new MesForms.Form_demander_service(
+                                    idPatient.ToString(), 0);
+
+                            frm_service.ShowDialog();
+                        }
+
+                        return true;
                     }
-                    else
+                    catch (Exception ex)
                     {
+                        try
+                        {
+                            tr.Rollback();
+                        }
+                        catch
+                        {
+                            // La transaction peut déjà être terminée.
+                        }
 
+                        MessageBox.Show(
+                            "Erreur d'enregistrement : " + ex.Message,
+                            "Enregistrement",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        return false;
                     }
                 }
-                catch (Exception ex)
-                {
-                    tr.Rollback();
-                    MessageBox.Show("Erreur d'ajout des signes vitaux : " + ex.Message);
-                }
-
             }
         }
-
         // ======================================= move the label =================================
         public static void MoveLabel(Label lbMove, Panel panelMove, int vitesse = 2)
         {
