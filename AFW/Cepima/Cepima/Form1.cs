@@ -39,16 +39,7 @@ namespace Cepima
             LoadUserConnect(lb_username,"Connecté",lb_statut);
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
-
-            DateTime date = new DateTime();
-
-            date = DateTime.Now.Date;
-
-            string hour = date.ToString("H:m");
-
-            
-            Cepima.MesForms.Personnel.Presence pres = new MesForms.Personnel.Presence("Muhindo Kavunga", date, hour);
-            pres.ShowDialog();
+         
 
         }
 
@@ -681,12 +672,17 @@ namespace Cepima
             Button bt = sender as Button;
             MesClasses.ManagerClasse.focused_child(panel8, bt, Color.FromArgb(7, 51, 131), Color.FromArgb(44, 123, 229));
         }
-
-
+        
         private async void btn_update_Click(object sender, EventArgs e)
         {
             UpdateManager manager = new UpdateManager();
+
+            Size size = new Size(30, 30);
+            MesClasses.LoadingHelper.Start(btn_update, size);
+
             await manager.CheckForUpdateAsync();
+
+            MesClasses.LoadingHelper.Stop(btn_update);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

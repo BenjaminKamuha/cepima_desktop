@@ -414,6 +414,18 @@
     <Compile Include="MesForms\Services\Form_service.Designer.cs">
       <DependentUpon>Form_service.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Personnels\AgentNonReconnu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\AgentNonReconnu.Designer.cs">
+      <DependentUpon>AgentNonReconnu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\SignatureSortie.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\SignatureSortie.Designer.cs">
+      <DependentUpon>SignatureSortie.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Personnels\User_fingerprint.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -883,6 +895,12 @@
     <Compile Include="Services\UpdateProgressForm.Designer.cs">
       <DependentUpon>UpdateProgressForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Personnels\SignaturePresence.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\SignaturePresence.Designer.cs">
+      <DependentUpon>SignaturePresence.cs</DependentUpon>
+    </Compile>
     <Compile Include="Test_simple.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1107,6 +1125,12 @@
     <EmbeddedResource Include="MesUserCases\Hospitalisation\User_Termine_hospi.resx">
       <DependentUpon>User_Termine_hospi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\AgentNonReconnu.resx">
+      <DependentUpon>AgentNonReconnu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\SignatureSortie.resx">
+      <DependentUpon>SignatureSortie.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_DashBord_Personnel.resx">
       <DependentUpon>User_DashBord_Personnel.cs</DependentUpon>
     </EmbeddedResource>
@@ -1189,6 +1213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RecuRDLC.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\SignaturePresence.resx">
+      <DependentUpon>SignaturePresence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Test_simple.resx">
       <DependentUpon>Test_simple.cs</DependentUpon>
