@@ -113,7 +113,7 @@
             this.tb_search.Image = global::Cepima.Properties.Resources.search_25px;
             this.tb_search.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tb_search.ImagePadding = 4;
-            this.tb_search.Location = new System.Drawing.Point(11, 13);
+            this.tb_search.Location = new System.Drawing.Point(15, 20);
             this.tb_search.MaxLength = 32767;
             this.tb_search.Name = "tb_search";
             this.tb_search.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);

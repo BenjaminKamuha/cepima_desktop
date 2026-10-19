@@ -35,6 +35,8 @@
             this.rd_statut_termine = new System.Windows.Forms.RadioButton();
             this.rd_statut_demande = new System.Windows.Forms.RadioButton();
             this.tb_search_demande = new MyRoundedTextBox();
+            this.rd_prescription = new System.Windows.Forms.RadioButton();
+            this.rd_EEG = new System.Windows.Forms.RadioButton();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +76,7 @@
             // 
             this.rd_tout.AutoSize = true;
             this.rd_tout.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_tout.Location = new System.Drawing.Point(320, 20);
+            this.rd_tout.Location = new System.Drawing.Point(897, 20);
             this.rd_tout.Name = "rd_tout";
             this.rd_tout.Size = new System.Drawing.Size(55, 22);
             this.rd_tout.TabIndex = 45;
@@ -100,7 +102,7 @@
             // 
             this.rd_statut_termine.AutoSize = true;
             this.rd_statut_termine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_statut_termine.Location = new System.Drawing.Point(573, 20);
+            this.rd_statut_termine.Location = new System.Drawing.Point(947, 21);
             this.rd_statut_termine.Name = "rd_statut_termine";
             this.rd_statut_termine.Size = new System.Drawing.Size(95, 21);
             this.rd_statut_termine.TabIndex = 47;
@@ -113,7 +115,7 @@
             // 
             this.rd_statut_demande.AutoSize = true;
             this.rd_statut_demande.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_statut_demande.Location = new System.Drawing.Point(441, 20);
+            this.rd_statut_demande.Location = new System.Drawing.Point(787, 21);
             this.rd_statut_demande.Name = "rd_statut_demande";
             this.rd_statut_demande.Size = new System.Drawing.Size(104, 21);
             this.rd_statut_demande.TabIndex = 48;
@@ -121,6 +123,7 @@
             this.rd_statut_demande.Text = "Demandé(s)";
             this.rd_statut_demande.UseVisualStyleBackColor = true;
             this.rd_statut_demande.Visible = false;
+            this.rd_statut_demande.CheckedChanged += new System.EventHandler(this.rd_statut_demande_CheckedChanged);
             // 
             // tb_search_demande
             // 
@@ -143,11 +146,39 @@
             this.tb_search_demande.Size = new System.Drawing.Size(273, 34);
             this.tb_search_demande.TabIndex = 44;
             // 
+            // rd_prescription
+            // 
+            this.rd_prescription.AutoSize = true;
+            this.rd_prescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rd_prescription.Location = new System.Drawing.Point(461, 20);
+            this.rd_prescription.Name = "rd_prescription";
+            this.rd_prescription.Size = new System.Drawing.Size(108, 21);
+            this.rd_prescription.TabIndex = 49;
+            this.rd_prescription.TabStop = true;
+            this.rd_prescription.Text = "Prescriptions";
+            this.rd_prescription.UseVisualStyleBackColor = true;
+            this.rd_prescription.CheckedChanged += new System.EventHandler(this.rd_hospitalisation_CheckedChanged);
+            // 
+            // rd_EEG
+            // 
+            this.rd_EEG.AutoSize = true;
+            this.rd_EEG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rd_EEG.Location = new System.Drawing.Point(337, 20);
+            this.rd_EEG.Name = "rd_EEG";
+            this.rd_EEG.Size = new System.Drawing.Size(116, 21);
+            this.rd_EEG.TabIndex = 50;
+            this.rd_EEG.TabStop = true;
+            this.rd_EEG.Text = "Examens EEG";
+            this.rd_EEG.UseVisualStyleBackColor = true;
+            this.rd_EEG.CheckedChanged += new System.EventHandler(this.rd_EEG_CheckedChanged);
+            // 
             // User_caisse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.rd_prescription);
+            this.Controls.Add(this.rd_EEG);
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.rd_tout);
             this.Controls.Add(this.rd_statut_annule);
@@ -156,7 +187,6 @@
             this.Controls.Add(this.tb_search_demande);
             this.Name = "User_caisse";
             this.Size = new System.Drawing.Size(1021, 519);
-
             this.customRoundedPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -172,5 +202,7 @@
         private System.Windows.Forms.RadioButton rd_statut_termine;
         private System.Windows.Forms.RadioButton rd_statut_demande;
         private MyRoundedTextBox tb_search_demande;
+        private System.Windows.Forms.RadioButton rd_prescription;
+        private System.Windows.Forms.RadioButton rd_EEG;
     }
 }

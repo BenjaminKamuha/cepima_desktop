@@ -26,6 +26,8 @@ namespace Cepima
         public static Int32 DEMANDE_ID { get; set; }
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
+        public static String CONTEXT { get; set; }
+
         private Button currentSubMenu = null;
 
         private FingerprintApi fingerprintApi;
@@ -413,6 +415,12 @@ namespace Cepima
                 {
                      await AfficherUserControlAsync<MesUserCases.EEG.User_examens>();
 
+                }),
+
+                new MenuItem("    Prescription", Properties.Resources.edit_property_30px, async(s, ev) => 
+                {
+                    CONTEXT = "PRESCRIPTION";
+                    await AfficherUserControlAsync<MesUserCases.User_display_patients>();
                 }),
 
                 new MenuItem("    Caisse",Properties.Resources.add_dollar_black, async (s,ev) =>

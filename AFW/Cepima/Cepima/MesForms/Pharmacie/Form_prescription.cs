@@ -98,6 +98,26 @@ namespace Cepima.MesForms.Pharmacie
 
             dgv_presc.Columns.Add(colQtePrescrite);
 
+            // =====================================================
+            // Ajout prix pour la pharmacie
+            // =====================================================
+            if (Form1.CONTEXT == "PRESCRIPTION")
+            {
+                DataGridViewTextBoxColumn colPrix = new DataGridViewTextBoxColumn();
+                colPrix.Name = "Prix";
+                colPrix.HeaderText = "Prix unitaire ($)";
+                colPrix.Width = 120;
+                colPrix.ReadOnly = true;
+                dgv_presc.Columns.Add(colPrix);
+
+                DataGridViewTextBoxColumn colTotal = new DataGridViewTextBoxColumn();
+                colTotal.Name = "Total";
+                colTotal.HeaderText = "Total à payer ($)";
+                colTotal.Width = 130;
+                colTotal.ReadOnly = true;
+                dgv_presc.Columns.Add(colTotal);
+            }
+
 
             // =====================================================
             // QUANTITE DELIVREE
@@ -115,9 +135,6 @@ namespace Cepima.MesForms.Pharmacie
             colQteDelivree.DefaultCellStyle.Alignment =
                 DataGridViewContentAlignment.MiddleCenter;
 
-            dgv_presc.Columns.Add(colQteDelivree);
-
-
             // =====================================================
             // STATUT
             // =====================================================
@@ -134,7 +151,11 @@ namespace Cepima.MesForms.Pharmacie
             colStatut.DefaultCellStyle.Alignment =
                 DataGridViewContentAlignment.MiddleCenter;
 
-            dgv_presc.Columns.Add(colStatut);
+            if (Form1.CONTEXT != "PRESCRIPTION")
+            {
+                dgv_presc.Columns.Add(colQteDelivree);
+                dgv_presc.Columns.Add(colStatut);
+            }
 
 
             // =====================================================
@@ -320,17 +341,15 @@ namespace Cepima.MesForms.Pharmacie
                     pl.id AS id_ligne,
                     pl.medicament_id,
                     m.nom AS produit,
+                    m.prix_vente AS prix_unitaire,
                     pl.quantite_prescrite,
 
                     COALESCE(
                         (
                             SELECT SUM(dl.quantite)
-
                             FROM dispensation_ligne dl
-
                             INNER JOIN dispensation d
                                 ON d.id = dl.dispensation_id
-
                             WHERE d.prescription_id = pl.prescription_id
                               AND dl.medicament_id = pl.medicament_id
                         ),
@@ -338,12 +357,9 @@ namespace Cepima.MesForms.Pharmacie
                     ) AS quantite_delivree
 
                 FROM prescription_ligne pl
-
                 INNER JOIN medicament m
                     ON m.id = pl.medicament_id
-
                 WHERE pl.prescription_id = @id_prescription
-
                 ORDER BY pl.id";
 
 
@@ -358,8 +374,20 @@ namespace Cepima.MesForms.Pharmacie
                 using (MySqlDataReader reader =
                     cmd.ExecuteReader())
                 {
+                    decimal totalPrescription = 0m;
+                    string statut = "";
+                    int index = 0;
+
+
                     while (reader.Read())
                     {
+
+
+                        decimal prixUnitaire = 0m;
+                        decimal totalProduit = 0m;
+
+
+
                         int idLigne =
                             Convert.ToInt32(
                                 reader["id_ligne"]);
@@ -384,19 +412,42 @@ namespace Cepima.MesForms.Pharmacie
                                 reader["quantite_delivree"]);
 
 
-                        string statut =
+                        
+
+                        if (Form1.CONTEXT == "PRESCRIPTION")
+                        {
+                            prixUnitaire = reader["prix_unitaire"] == DBNull.Value ? 0m : Convert.ToDecimal(reader["prix_unitaire"]);
+                            totalProduit = prixUnitaire * (Convert.ToInt32(
+                                reader["quantite_prescrite"]));
+                            totalPrescription += totalProduit;
+
+                            index = dgv_presc.Rows.Add(
+                                produit,
+                                quantitePrescrite,
+                                prixUnitaire.ToString("N2"),
+                                totalProduit.ToString("N2")
+                            );
+
+                            btn_delivrer.Text = "Valider";
+
+                        }
+
+                        else
+                        {
+                            statut =
                             DeterminerStatut(
                                 quantitePrescrite,
                                 quantiteDelivree);
+                            index = dgv_presc.Rows.Add(
+                            produit,
+                            quantitePrescrite,
+                            quantiteDelivree,
+                            statut
+                        );
 
+                        }
 
-                        int index =
-                            dgv_presc.Rows.Add(
-                                produit,
-                                quantitePrescrite,
-                                quantiteDelivree,
-                                statut);
-
+                        
 
                         // -------------------------------------------------
                         // Stocker les IDs dans la ligne
@@ -415,6 +466,24 @@ namespace Cepima.MesForms.Pharmacie
                         // Couleur du statut
                         // -------------------------------------------------
 
+
+                        
+                    }
+
+                    if (Form1.CONTEXT == "PRESCRIPTION")
+                    {
+
+
+                        Label lb_total_a_payer = new Label(); 
+                        lb_total_a_payer.Text = "TOTAL: " +  totalPrescription.ToString() + "$";
+                        lb_total_a_payer.Font = new Font("Sergo UI", 12, FontStyle.Bold);
+                        pan_price.Controls.Clear();
+                        lb_total_a_payer.Dock = DockStyle.Fill;
+                        pan_price.Controls.Add(lb_total_a_payer);
+                    }
+
+                    else
+                    {
                         AppliquerStyleStatut(
                             dgv_presc.Rows[index]
                                 .Cells["Statut"],
@@ -441,8 +510,14 @@ namespace Cepima.MesForms.Pharmacie
             // =====================================================
             // ACTIVER / DESACTIVER LE BOUTON
             // =====================================================
+            if (Form1.CONTEXT == "PRESCRIPTION")
+            {
+            }
 
-            ActualiserBoutonDelivrer();
+            else
+            {
+                ActualiserBoutonDelivrer();
+            }
         }
 
 
@@ -517,6 +592,7 @@ namespace Cepima.MesForms.Pharmacie
 
         private void ActualiserBoutonDelivrer()
         {
+
             btn_delivrer.Enabled = false;
 
 

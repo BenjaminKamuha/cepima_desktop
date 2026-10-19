@@ -37,8 +37,8 @@
             this.tb_dosage = new MyRoundedTextBox();
             this.upd_quantite = new RoundedNumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.bt_save_medoc = new RoundedButton();
             this.tb_duree = new MyRoundedTextBox();
+            this.bt_save_medoc = new RoundedButton();
             this.pnl_header.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -168,6 +168,24 @@
             this.label1.Text = "Quantitée:";
             this.label1.Click += new System.EventHandler(this.label4_Click);
             // 
+            // tb_duree
+            // 
+            this.tb_duree.BackColor = System.Drawing.Color.White;
+            this.tb_duree.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.tb_duree.BorderRadius = 8;
+            this.tb_duree.FocusBorderColor = System.Drawing.Color.DodgerBlue;
+            this.tb_duree.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_duree.ForeColor = System.Drawing.Color.Black;
+            this.tb_duree.Image = null;
+            this.tb_duree.Location = new System.Drawing.Point(182, 251);
+            this.tb_duree.MaxLength = 32767;
+            this.tb_duree.Name = "tb_duree";
+            this.tb_duree.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tb_duree.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_duree.PlaceholderText = "ex: 7 jours";
+            this.tb_duree.Size = new System.Drawing.Size(238, 37);
+            this.tb_duree.TabIndex = 26;
+            // 
             // bt_save_medoc
             // 
             this.bt_save_medoc.BackColor = System.Drawing.Color.Transparent;
@@ -193,30 +211,12 @@
             this.bt_save_medoc.UseVisualStyleBackColor = false;
             this.bt_save_medoc.Click += new System.EventHandler(this.bt_save_medoc_Click);
             // 
-            // tb_duree
-            // 
-            this.tb_duree.BackColor = System.Drawing.Color.White;
-            this.tb_duree.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.tb_duree.BorderRadius = 8;
-            this.tb_duree.FocusBorderColor = System.Drawing.Color.DodgerBlue;
-            this.tb_duree.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_duree.ForeColor = System.Drawing.Color.Black;
-            this.tb_duree.Image = null;
-            this.tb_duree.Location = new System.Drawing.Point(182, 251);
-            this.tb_duree.MaxLength = 32767;
-            this.tb_duree.Name = "tb_duree";
-            this.tb_duree.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_duree.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_duree.PlaceholderText = "ex: 7 jours";
-            this.tb_duree.Size = new System.Drawing.Size(238, 37);
-            this.tb_duree.TabIndex = 26;
-            // 
             // Form_add_ligne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(477, 478);
+            this.ClientSize = new System.Drawing.Size(477, 510);
             this.Controls.Add(this.bt_save_medoc);
             this.Controls.Add(this.upd_quantite);
             this.Controls.Add(this.tb_dosage);

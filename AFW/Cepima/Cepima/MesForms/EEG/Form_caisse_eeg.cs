@@ -71,106 +71,116 @@ namespace Cepima.MesForms.EEG
 
         private void bt_confirmer_Click(object sender, EventArgs e)
         {
-            if (ID_PRESTATION <= 0)
+
+            if (Form1.CONTEXT == "PRESCRIPTION")
             {
-                MessageBox.Show("La prestation EEG est invalide.", "Paiement EEG",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+
             }
 
-            Database db = new Database();
-
-            using (MySqlConnection con = db.GetConnection())
+            else
             {
-                con.Open();
-                using (MySqlTransaction tr = con.BeginTransaction())
+                if (ID_PRESTATION <= 0)
                 {
-                    try
+                    MessageBox.Show("La prestation EEG est invalide.", "Paiement EEG",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                Database db = new Database();
+
+                using (MySqlConnection con = db.GetConnection())
+                {
+                    con.Open();
+                    using (MySqlTransaction tr = con.BeginTransaction())
                     {
-                        // 1. Facture unique du patient
-                        int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(
-                            ID_PATIENT, con, tr);
-
-                        // 2. Vérifier si cette prestation existe déjà dans la facture
-                        int idDetail = MesClasses.ReceptionManager.TrouverDetailPrestation(
-                            idFacture, ID_PRESTATION, con, tr);
-
-                        // 3. Ajouter la prestation seulement si nécessaire
-                        if (idDetail == 0)
+                        try
                         {
-                            idDetail = MesClasses.ReceptionManager.AjouterPrestationFacture(
+                            // 1. Facture unique du patient
+                            int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(
+                                ID_PATIENT, con, tr);
+
+                            // 2. Vérifier si cette prestation existe déjà dans la facture
+                            int idDetail = MesClasses.ReceptionManager.TrouverDetailPrestation(
+                                idFacture, ID_PRESTATION, con, tr);
+
+                            // 3. Ajouter la prestation seulement si nécessaire
+                            if (idDetail == 0)
+                            {
+                                idDetail = MesClasses.ReceptionManager.AjouterPrestationFacture(
+                                    idFacture,
+                                    ID_PRESTATION,
+                                    1,
+                                    PRIX_PRESTATION,
+                                    con,
+                                    tr);
+                            }
+
+                            // Le paiement est rattaché au détail EEG,
+                            // mais ne clôture jamais la facture.
+                            MesClasses.ReceptionManager.PayerEEG(
                                 idFacture,
-                                ID_PRESTATION,
-                                1,
+                                idDetail,
                                 PRIX_PRESTATION,
+                                dtp_date.Value.Date,
                                 con,
                                 tr);
-                        }
 
-                        // Le paiement est rattaché au détail EEG,
-                        // mais ne clôture jamais la facture.
-                        MesClasses.ReceptionManager.PayerEEG(
-                            idFacture,
-                            idDetail,
-                            PRIX_PRESTATION,
-                            dtp_date.Value.Date,
-                            con,
-                            tr);
-
-                        // 5. La demande reste dans son flux normal.
-                        string query = @"
+                            // 5. La demande reste dans son flux normal.
+                            string query = @"
                             UPDATE demande_service
                             SET statut = 'Demandée'
                             WHERE id_demande = @id_demande
                               AND id_patient = @id_patient";
 
-                        using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
-                        {
-                            cmd.Parameters.AddWithValue("@id_demande", ID_DEMANDE);
-                            cmd.Parameters.AddWithValue("@id_patient", ID_PATIENT);
-                            cmd.ExecuteNonQuery();
+                            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@id_demande", ID_DEMANDE);
+                                cmd.Parameters.AddWithValue("@id_patient", ID_PATIENT);
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            MesClasses.ReceptionManager.AjouterLivreCaisse(PRIX_PRESTATION, 0, "Caisse EEG", "Paiement d'examen EEG");
+                            // Impression de la réçu
+                            int ID_PAIEMENT = 0;
+                            string recup_idPaiement = "SELECT id_paiement FROM paiement WHERE id_facture = @id";
+                            using (MySqlCommand cmd = new MySqlCommand(recup_idPaiement, con, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@id", idFacture);
+                                ID_PAIEMENT = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
+                            MessageBox.Show(ID_PAIEMENT.ToString());
+
+                            tr.Commit();
+                            FormRecu recu = new FormRecu(ID_PAIEMENT);
+                            recu.ShowDialog();
+
+
+
+                            MessageBox.Show(
+                                "Paiement EEG enregistré avec succès.\n\n" +
+                                "La facture reste ouverte pour les autres services.",
+                                "Paiement EEG",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+
+                            DialogResult = DialogResult.OK;
+                            Close();
                         }
-
-                        MesClasses.ReceptionManager.AjouterLivreCaisse(PRIX_PRESTATION,0,"Caisse EEG","Paiement d'examen EEG");
-                        // Impression de la réçu
-                        int ID_PAIEMENT = 0;
-                        string recup_idPaiement = "SELECT id_paiement FROM paiement WHERE id_facture = @id";
-                        using (MySqlCommand cmd = new MySqlCommand(recup_idPaiement, con, tr))
+                        catch (Exception ex)
                         {
-                            cmd.Parameters.AddWithValue("@id",idFacture);
-                            ID_PAIEMENT = Convert.ToInt32(cmd.ExecuteScalar());
+                            try { tr.Rollback(); }
+                            catch { }
+
+                            MessageBox.Show(
+                                "Erreur lors de l'enregistrement du paiement EEG :\n\n" + ex.Message,
+                                "Paiement EEG",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
                         }
-                        MessageBox.Show(ID_PAIEMENT.ToString());
-
-                        tr.Commit();
-                        FormRecu recu = new FormRecu(ID_PAIEMENT);
-                        recu.ShowDialog();
-
-
-
-                        MessageBox.Show(
-                            "Paiement EEG enregistré avec succès.\n\n" +
-                            "La facture reste ouverte pour les autres services.",
-                            "Paiement EEG",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-
-                        DialogResult = DialogResult.OK;
-                        Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        try { tr.Rollback(); }
-                        catch { }
-
-                        MessageBox.Show(
-                            "Erreur lors de l'enregistrement du paiement EEG :\n\n" + ex.Message,
-                            "Paiement EEG",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
                     }
                 }
             }
+            
         }
 
         private void label1_Click(object sender, EventArgs e)

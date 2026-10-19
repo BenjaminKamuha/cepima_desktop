@@ -34,6 +34,7 @@
             this.pan = new CustomRoundedPanel();
             this.panel_patient = new System.Windows.Forms.FlowLayoutPanel();
             this.lb_not_found = new System.Windows.Forms.Label();
+            this.btn_add_patient = new RoundedButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pan.SuspendLayout();
             this.panel_patient.SuspendLayout();
@@ -128,12 +129,37 @@
             this.lb_not_found.Size = new System.Drawing.Size(400, 270);
             this.lb_not_found.TabIndex = 4;
             // 
+            // btn_add_patient
+            // 
+            this.btn_add_patient.BackColor = System.Drawing.Color.Transparent;
+            this.btn_add_patient.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btn_add_patient.ButtonText = "Ajouter";
+            this.btn_add_patient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_add_patient.DefaultBackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_add_patient.FlatAppearance.BorderSize = 0;
+            this.btn_add_patient.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_add_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_add_patient.ForeColor = System.Drawing.Color.White;
+            this.btn_add_patient.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.btn_add_patient.Image = global::Cepima.Properties.Resources.add_25px;
+            this.btn_add_patient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_add_patient.Location = new System.Drawing.Point(961, 11);
+            this.btn_add_patient.Name = "btn_add_patient";
+            this.btn_add_patient.Size = new System.Drawing.Size(90, 33);
+            this.btn_add_patient.TabIndex = 5;
+            this.btn_add_patient.Text = "Ajouter";
+            this.btn_add_patient.TextColor = System.Drawing.Color.White;
+            this.btn_add_patient.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_add_patient.UseVisualStyleBackColor = false;
+            this.btn_add_patient.Click += new System.EventHandler(this.btn_add_patient_Click);
+            // 
             // User_display_patients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tb_search_demande);
+            this.Controls.Add(this.btn_add_patient);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lb_nombres);
             this.Controls.Add(this.pan);
@@ -157,6 +183,7 @@
         private System.Windows.Forms.FlowLayoutPanel panel_patient;
         private System.Windows.Forms.Label lb_not_found;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private RoundedButton btn_add_patient;
 
     }
 }

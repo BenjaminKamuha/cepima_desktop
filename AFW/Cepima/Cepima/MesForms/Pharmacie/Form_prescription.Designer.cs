@@ -37,6 +37,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgv_presc = new ModernDataGridView();
             this.btn_delivrer = new RoundedButton();
+            this.pan_price = new System.Windows.Forms.Panel();
             this.bunifuRoundedPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_presc)).BeginInit();
@@ -57,14 +58,14 @@
             this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
             this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
             this.bunifuRoundedPanel1.ShadowDepth = 8;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(541, 88);
+            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(541, 74);
             this.bunifuRoundedPanel1.TabIndex = 48;
             // 
             // lb_nom_patient
             // 
             this.lb_nom_patient.AutoSize = true;
             this.lb_nom_patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_nom_patient.Location = new System.Drawing.Point(130, 49);
+            this.lb_nom_patient.Location = new System.Drawing.Point(130, 43);
             this.lb_nom_patient.Name = "lb_nom_patient";
             this.lb_nom_patient.Size = new System.Drawing.Size(36, 17);
             this.lb_nom_patient.TabIndex = 4;
@@ -74,7 +75,7 @@
             // 
             this.lb_prescription.AutoSize = true;
             this.lb_prescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_prescription.Location = new System.Drawing.Point(130, 22);
+            this.lb_prescription.Location = new System.Drawing.Point(130, 16);
             this.lb_prescription.Name = "lb_prescription";
             this.lb_prescription.Size = new System.Drawing.Size(82, 17);
             this.lb_prescription.TabIndex = 6;
@@ -83,7 +84,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cepima.Properties.Resources.capsules_100px;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(94, 53);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -128,7 +129,7 @@
             this.dgv_presc.HeaderBackColor = System.Drawing.Color.DodgerBlue;
             this.dgv_presc.HeaderForeColor = System.Drawing.Color.White;
             this.dgv_presc.HeaderHeight = 45;
-            this.dgv_presc.Location = new System.Drawing.Point(12, 127);
+            this.dgv_presc.Location = new System.Drawing.Point(12, 108);
             this.dgv_presc.MultiSelect = false;
             this.dgv_presc.Name = "dgv_presc";
             this.dgv_presc.OuterBorderColor = System.Drawing.Color.White;
@@ -136,7 +137,7 @@
             this.dgv_presc.RowHeight = 40;
             this.dgv_presc.RowTemplate.Height = 40;
             this.dgv_presc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_presc.Size = new System.Drawing.Size(541, 161);
+            this.dgv_presc.Size = new System.Drawing.Size(541, 184);
             this.dgv_presc.TabIndex = 49;
             // 
             // btn_delivrer
@@ -154,7 +155,7 @@
             this.btn_delivrer.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_delivrer.Image = global::Cepima.Properties.Resources.hand_with_a_pill_30px;
             this.btn_delivrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_delivrer.Location = new System.Drawing.Point(197, 325);
+            this.btn_delivrer.Location = new System.Drawing.Point(199, 356);
             this.btn_delivrer.Name = "btn_delivrer";
             this.btn_delivrer.Size = new System.Drawing.Size(131, 37);
             this.btn_delivrer.TabIndex = 50;
@@ -162,14 +163,21 @@
             this.btn_delivrer.TextColor = System.Drawing.Color.White;
             this.btn_delivrer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_delivrer.UseVisualStyleBackColor = false;
-            //this.btn_delivrer.Click += new System.EventHandler(this.btn_delivrer_Click_1);
+            // 
+            // pan_price
+            // 
+            this.pan_price.Location = new System.Drawing.Point(12, 314);
+            this.pan_price.Name = "pan_price";
+            this.pan_price.Size = new System.Drawing.Size(232, 33);
+            this.pan_price.TabIndex = 51;
             // 
             // Form_prescription
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(565, 374);
+            this.ClientSize = new System.Drawing.Size(565, 400);
+            this.Controls.Add(this.pan_price);
             this.Controls.Add(this.btn_delivrer);
             this.Controls.Add(this.dgv_presc);
             this.Controls.Add(this.bunifuRoundedPanel1);
@@ -192,5 +200,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private ModernDataGridView dgv_presc;
         private RoundedButton btn_delivrer;
+        private System.Windows.Forms.Panel pan_price;
     }
 }

@@ -32,6 +32,7 @@
             this.lb_titre = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.cbx_etat = new MyRoundedComboBox();
             this.cbx_genre = new MyRoundedComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tb_phone = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -83,13 +85,11 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.tb_telephone_accompagnant = new System.Windows.Forms.Label();
             this.tb_contact_garde = new MyRoundedTextBox();
             this.tb_garde_name = new MyRoundedTextBox();
-            this.myRoundedTextBox14 = new MyRoundedTextBox();
+            this.tb_telephone_accompagnant = new MyRoundedTextBox();
             this.tb_personne_accompagnante = new MyRoundedTextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.cbx_etat = new MyRoundedComboBox();
+            this.label = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.customRoundedPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -170,6 +170,28 @@
             this.customRoundedPanel1.ShadowSpread = 0;
             this.customRoundedPanel1.Size = new System.Drawing.Size(798, 345);
             this.customRoundedPanel1.TabIndex = 0;
+            // 
+            // cbx_etat
+            // 
+            this.cbx_etat.ArrowColor = System.Drawing.Color.DimGray;
+            this.cbx_etat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbx_etat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbx_etat.BorderColor = System.Drawing.Color.Silver;
+            this.cbx_etat.BorderRadius = 8;
+            this.cbx_etat.BorderSize = 1;
+            this.cbx_etat.DropDownBackColor = System.Drawing.Color.White;
+            this.cbx_etat.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbx_etat.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.cbx_etat.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbx_etat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_etat.FocusBorderColor = System.Drawing.Color.Silver;
+            this.cbx_etat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbx_etat.Location = new System.Drawing.Point(554, 208);
+            this.cbx_etat.Name = "cbx_etat";
+            this.cbx_etat.SelectedItem = null;
+            this.cbx_etat.SelectedValue = null;
+            this.cbx_etat.Size = new System.Drawing.Size(236, 34);
+            this.cbx_etat.TabIndex = 46;
             // 
             // cbx_genre
             // 
@@ -483,6 +505,16 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "Niveau d\'étude : ";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(400, 220);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 18);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "Etat civil : ";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -742,10 +774,10 @@
             this.customRoundedPanel3.Controls.Add(this.label24);
             this.customRoundedPanel3.Controls.Add(this.label20);
             this.customRoundedPanel3.Controls.Add(this.label23);
-            this.customRoundedPanel3.Controls.Add(this.tb_telephone_accompagnant);
+            this.customRoundedPanel3.Controls.Add(this.label);
             this.customRoundedPanel3.Controls.Add(this.tb_contact_garde);
             this.customRoundedPanel3.Controls.Add(this.tb_garde_name);
-            this.customRoundedPanel3.Controls.Add(this.myRoundedTextBox14);
+            this.customRoundedPanel3.Controls.Add(this.tb_telephone_accompagnant);
             this.customRoundedPanel3.Controls.Add(this.tb_personne_accompagnante);
             this.customRoundedPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel3.HoverBackColor = System.Drawing.Color.Empty;
@@ -902,16 +934,6 @@
             this.label23.TabIndex = 1;
             this.label23.Text = "Contact garde : ";
             // 
-            // tb_telephone_accompagnant
-            // 
-            this.tb_telephone_accompagnant.AutoSize = true;
-            this.tb_telephone_accompagnant.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_telephone_accompagnant.Location = new System.Drawing.Point(14, 120);
-            this.tb_telephone_accompagnant.Name = "tb_telephone_accompagnant";
-            this.tb_telephone_accompagnant.Size = new System.Drawing.Size(191, 18);
-            this.tb_telephone_accompagnant.TabIndex = 1;
-            this.tb_telephone_accompagnant.Text = "Téléphone accompagnant : ";
-            // 
             // tb_contact_garde
             // 
             this.tb_contact_garde.BackColor = System.Drawing.Color.White;
@@ -952,25 +974,25 @@
             this.tb_garde_name.Size = new System.Drawing.Size(269, 34);
             this.tb_garde_name.TabIndex = 43;
             // 
-            // myRoundedTextBox14
+            // tb_telephone_accompagnant
             // 
-            this.myRoundedTextBox14.BackColor = System.Drawing.Color.White;
-            this.myRoundedTextBox14.BorderColor = System.Drawing.Color.Silver;
-            this.myRoundedTextBox14.BorderRadius = 8;
-            this.myRoundedTextBox14.BorderSize = 1;
-            this.myRoundedTextBox14.FocusBorderColor = System.Drawing.Color.Silver;
-            this.myRoundedTextBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.myRoundedTextBox14.ForeColor = System.Drawing.Color.Black;
-            this.myRoundedTextBox14.Image = null;
-            this.myRoundedTextBox14.Location = new System.Drawing.Point(223, 108);
-            this.myRoundedTextBox14.MaxLength = 32767;
-            this.myRoundedTextBox14.Multiline = true;
-            this.myRoundedTextBox14.Name = "myRoundedTextBox14";
-            this.myRoundedTextBox14.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.myRoundedTextBox14.PlaceholderColor = System.Drawing.Color.Gray;
-            this.myRoundedTextBox14.PlaceholderText = "";
-            this.myRoundedTextBox14.Size = new System.Drawing.Size(269, 34);
-            this.myRoundedTextBox14.TabIndex = 43;
+            this.tb_telephone_accompagnant.BackColor = System.Drawing.Color.White;
+            this.tb_telephone_accompagnant.BorderColor = System.Drawing.Color.Silver;
+            this.tb_telephone_accompagnant.BorderRadius = 8;
+            this.tb_telephone_accompagnant.BorderSize = 1;
+            this.tb_telephone_accompagnant.FocusBorderColor = System.Drawing.Color.Silver;
+            this.tb_telephone_accompagnant.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_telephone_accompagnant.ForeColor = System.Drawing.Color.Black;
+            this.tb_telephone_accompagnant.Image = null;
+            this.tb_telephone_accompagnant.Location = new System.Drawing.Point(223, 108);
+            this.tb_telephone_accompagnant.MaxLength = 32767;
+            this.tb_telephone_accompagnant.Multiline = true;
+            this.tb_telephone_accompagnant.Name = "tb_telephone_accompagnant";
+            this.tb_telephone_accompagnant.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tb_telephone_accompagnant.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_telephone_accompagnant.PlaceholderText = "";
+            this.tb_telephone_accompagnant.Size = new System.Drawing.Size(269, 34);
+            this.tb_telephone_accompagnant.TabIndex = 43;
             // 
             // tb_personne_accompagnante
             // 
@@ -992,37 +1014,15 @@
             this.tb_personne_accompagnante.Size = new System.Drawing.Size(269, 34);
             this.tb_personne_accompagnante.TabIndex = 43;
             // 
-            // label21
+            // label
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(400, 220);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(74, 18);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "Etat civil : ";
-            // 
-            // cbx_etat
-            // 
-            this.cbx_etat.ArrowColor = System.Drawing.Color.DimGray;
-            this.cbx_etat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.cbx_etat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.cbx_etat.BorderColor = System.Drawing.Color.Silver;
-            this.cbx_etat.BorderRadius = 8;
-            this.cbx_etat.BorderSize = 1;
-            this.cbx_etat.DropDownBackColor = System.Drawing.Color.White;
-            this.cbx_etat.DropDownForeColor = System.Drawing.Color.Black;
-            this.cbx_etat.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.cbx_etat.DropDownSelectedForeColor = System.Drawing.Color.White;
-            this.cbx_etat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_etat.FocusBorderColor = System.Drawing.Color.Silver;
-            this.cbx_etat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_etat.Location = new System.Drawing.Point(554, 208);
-            this.cbx_etat.Name = "cbx_etat";
-            this.cbx_etat.SelectedItem = null;
-            this.cbx_etat.SelectedValue = null;
-            this.cbx_etat.Size = new System.Drawing.Size(236, 34);
-            this.cbx_etat.TabIndex = 46;
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(14, 120);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(191, 18);
+            this.label.TabIndex = 1;
+            this.label.Text = "Téléphone accompagnant : ";
             // 
             // Form_add_patient
             // 
@@ -1104,10 +1104,9 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label tb_telephone_accompagnant;
         private MyRoundedTextBox tb_contact_garde;
         private MyRoundedTextBox tb_garde_name;
-        private MyRoundedTextBox myRoundedTextBox14;
+        private MyRoundedTextBox tb_telephone_accompagnant;
         private MyRoundedTextBox tb_personne_accompagnante;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -1119,5 +1118,6 @@
         private RoundedButton bt_cancel;
         private MyRoundedComboBox cbx_etat;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label;
     }
 }

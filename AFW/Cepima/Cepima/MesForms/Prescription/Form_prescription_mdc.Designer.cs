@@ -34,13 +34,13 @@
             this.fl_medoc = new System.Windows.Forms.FlowLayoutPanel();
             this.tb_search = new MyRoundedTextBox();
             this.btn_save_prescription = new RoundedButton();
-            this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
+            this.panel_patient = new BunifuRoundedPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lb_nom_patient = new System.Windows.Forms.Label();
             this.lb_num_fiche = new System.Windows.Forms.Label();
             this.lb_sexe_age = new System.Windows.Forms.Label();
             this.customRoundedPanel1.SuspendLayout();
-            this.bunifuRoundedPanel1.SuspendLayout();
+            this.panel_patient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,7 +155,7 @@
             this.btn_save_prescription.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_save_prescription.Location = new System.Drawing.Point(968, 165);
             this.btn_save_prescription.Name = "btn_save_prescription";
-            this.btn_save_prescription.Size = new System.Drawing.Size(101, 34);
+            this.btn_save_prescription.Size = new System.Drawing.Size(111, 34);
             this.btn_save_prescription.TabIndex = 6;
             this.btn_save_prescription.Text = "Valider";
             this.btn_save_prescription.TextColor = System.Drawing.Color.White;
@@ -163,22 +163,22 @@
             this.btn_save_prescription.UseVisualStyleBackColor = false;
             this.btn_save_prescription.Click += new System.EventHandler(this.btn_save_prescription_Click);
             // 
-            // bunifuRoundedPanel1
+            // panel_patient
             // 
-            this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
-            this.bunifuRoundedPanel1.BorderRadius = 2;
-            this.bunifuRoundedPanel1.BorderSize = 0;
-            this.bunifuRoundedPanel1.Controls.Add(this.pictureBox1);
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_nom_patient);
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_num_fiche);
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_sexe_age);
-            this.bunifuRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(0, 0);
-            this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
-            this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
-            this.bunifuRoundedPanel1.ShadowDepth = 5;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(1105, 80);
-            this.bunifuRoundedPanel1.TabIndex = 39;
+            this.panel_patient.BorderColor = System.Drawing.Color.DarkBlue;
+            this.panel_patient.BorderRadius = 2;
+            this.panel_patient.BorderSize = 0;
+            this.panel_patient.Controls.Add(this.pictureBox1);
+            this.panel_patient.Controls.Add(this.lb_nom_patient);
+            this.panel_patient.Controls.Add(this.lb_num_fiche);
+            this.panel_patient.Controls.Add(this.lb_sexe_age);
+            this.panel_patient.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_patient.Location = new System.Drawing.Point(0, 0);
+            this.panel_patient.Name = "panel_patient";
+            this.panel_patient.ShadowColor = System.Drawing.Color.Gray;
+            this.panel_patient.ShadowDepth = 5;
+            this.panel_patient.Size = new System.Drawing.Size(1105, 80);
+            this.panel_patient.TabIndex = 39;
             // 
             // pictureBox1
             // 
@@ -226,7 +226,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1105, 590);
-            this.Controls.Add(this.bunifuRoundedPanel1);
+            this.Controls.Add(this.panel_patient);
             this.Controls.Add(this.btn_save_prescription);
             this.Controls.Add(this.fl_prescription_ligne);
             this.Controls.Add(this.cbx_filter_category);
@@ -235,8 +235,8 @@
             this.Name = "Form_prescription_mdc";
             this.Text = "Form_prescription_mdc";
             this.customRoundedPanel1.ResumeLayout(false);
-            this.bunifuRoundedPanel1.ResumeLayout(false);
-            this.bunifuRoundedPanel1.PerformLayout();
+            this.panel_patient.ResumeLayout(false);
+            this.panel_patient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -250,7 +250,7 @@
         private System.Windows.Forms.FlowLayoutPanel fl_medoc;
         private MyRoundedTextBox tb_search;
         private RoundedButton btn_save_prescription;
-        private BunifuRoundedPanel bunifuRoundedPanel1;
+        private BunifuRoundedPanel panel_patient;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lb_nom_patient;
         private System.Windows.Forms.Label lb_num_fiche;

@@ -42,6 +42,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btn_update = new RoundedButton();
             this.lb_version = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -67,7 +68,6 @@
             this.bt_pharmacie = new System.Windows.Forms.Button();
             this.bt_reception = new System.Windows.Forms.Button();
             this.bt_acceuil = new System.Windows.Forms.Button();
-            this.btn_update = new RoundedButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel9.SuspendLayout();
@@ -241,6 +241,29 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1002, 41);
             this.panel5.TabIndex = 3;
+            // 
+            // btn_update
+            // 
+            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update.BackColor = System.Drawing.Color.Transparent;
+            this.btn_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btn_update.ButtonText = "";
+            this.btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_update.DefaultBackColor = System.Drawing.Color.White;
+            this.btn_update.FlatAppearance.BorderSize = 0;
+            this.btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_update.ForeColor = System.Drawing.Color.White;
+            this.btn_update.HoverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_update.Image = global::Cepima.Properties.Resources.refresh_25px2;
+            this.btn_update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_update.Location = new System.Drawing.Point(949, 9);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(40, 22);
+            this.btn_update.TabIndex = 0;
+            this.btn_update.TextColor = System.Drawing.Color.Wheat;
+            this.btn_update.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_update.UseVisualStyleBackColor = false;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // lb_version
             // 
@@ -426,7 +449,7 @@
             // 
             // bt_personnel
             // 
-            this.bt_personnel.BackColor = System.Drawing.Color.Yellow;
+            this.bt_personnel.BackColor = System.Drawing.Color.Transparent;
             this.bt_personnel.FlatAppearance.BorderSize = 0;
             this.bt_personnel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bt_personnel.ForeColor = System.Drawing.SystemColors.ButtonFace;
@@ -567,29 +590,6 @@
             this.bt_acceuil.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bt_acceuil.UseVisualStyleBackColor = true;
             this.bt_acceuil.Click += new System.EventHandler(this.bt_acceuil_Click);
-            // 
-            // btn_update
-            // 
-            this.btn_update.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_update.BackColor = System.Drawing.Color.Transparent;
-            this.btn_update.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btn_update.ButtonText = "";
-            this.btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_update.DefaultBackColor = System.Drawing.Color.White;
-            this.btn_update.FlatAppearance.BorderSize = 0;
-            this.btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_update.ForeColor = System.Drawing.Color.White;
-            this.btn_update.HoverBackColor = System.Drawing.Color.DodgerBlue;
-            this.btn_update.Image = global::Cepima.Properties.Resources.refresh_25px2;
-            this.btn_update.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_update.Location = new System.Drawing.Point(949, 9);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(40, 22);
-            this.btn_update.TabIndex = 0;
-            this.btn_update.TextColor = System.Drawing.Color.Wheat;
-            this.btn_update.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_update.UseVisualStyleBackColor = false;
-            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
             // 
             // Form1
             // 

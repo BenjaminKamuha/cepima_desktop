@@ -17,6 +17,7 @@ namespace Cepima.MesUserCases
 
         // Timer pour éviter une requête MySQL à chaque frappe
         private Timer searchTimer;
+        string context;
 
         public User_display_patients()
         {
@@ -634,6 +635,7 @@ MesClasses.ManagerClasse.CustomLabel(
             // BOUTON AFFECTATION
             // --------------------------------------------------------
 
+
             RoundedButton btnSuivi =
                 MesClasses.ManagerClasse.Rbutton(
                     "Affectation",
@@ -676,7 +678,16 @@ MesClasses.ManagerClasse.CustomLabel(
             btnFiches.HoverBackColor =
                 Color.FromArgb(30, 132, 73);
 
-            panPatient.Controls.Add(btnFiches);
+            if (Form1.CONTEXT != "PRESCRIPTION")
+            {
+                panPatient.Controls.Add(btnFiches);
+
+            }
+            else
+            {
+                btnSuivi.Text = "Prescription";
+                panPatient.Size = new Size(150, 150);
+            }
 
             // --------------------------------------------------------
             // EVENEMENT : AFFECTATION
@@ -688,13 +699,27 @@ MesClasses.ManagerClasse.CustomLabel(
 
                 try
                 {
-                    MesForms.Form_demander_service service =
+                    if (Form1.CONTEXT == "PRESCRIPTION")
+                    {
+                        btn_add_patient.Visible = true;
+
+                        MesForms.Prescription.Form_prescription_mdc
+                        form_presc = new MesForms.Prescription.Form_prescription_mdc(
+                        Convert.ToInt32(idPatient));
+
+                        form_presc.ShowDialog();
+                    }
+                    else
+                    {
+                        MesForms.Form_demander_service service =
                         new MesForms.Form_demander_service(
                             idPatient,
                             0
                         );
+                        service.ShowDialog();
+                    }
+                    
 
-                    service.ShowDialog();
                 }
                 finally
                 {
@@ -760,6 +785,12 @@ MesClasses.ManagerClasse.CustomLabel(
                 searchTimer.Dispose();
                 searchTimer = null;
             }
+        }
+
+        private void btn_add_patient_Click(object sender, EventArgs e)
+        {
+            MesForms.Form_add_patient add = new MesForms.Form_add_patient();
+            add.ShowDialog();
         }
     }
 }

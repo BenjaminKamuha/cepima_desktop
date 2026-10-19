@@ -24,6 +24,7 @@ namespace Cepima.MesUserCases
             dgv_patient.CellContentClick += dgv_patient_CellContentClick;
 
             LoadResume();
+
         }
 
 

@@ -143,7 +143,6 @@ namespace Cepima.MesForms
 
         private void bt_save_patient_Click_1(object sender, EventArgs e)
         {
-
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
                 try
@@ -232,7 +231,12 @@ namespace Cepima.MesForms
 
                         cmd.Parameters.AddWithValue("@profession",tb_profession.Text.Trim());
 
-                        cmd.Parameters.AddWithValue("@etat",cbx_etat.Text.Trim());
+                        string etat = cbx_etat.SelectedIndex <= 0
+                        ? null
+                        : cbx_etat.Text.Trim();
+                        cmd.Parameters.AddWithValue("@etat",
+                            (object)etat ?? DBNull.Value);
+
                         cmd.Parameters.AddWithValue("@nom_pere",tb_nom_pere.Text.Trim());
 
                         cmd.Parameters.AddWithValue("@nom_mere",tb_nom_mere.Text.Trim());
@@ -247,8 +251,8 @@ namespace Cepima.MesForms
 
                         cmd.Parameters.AddWithValue("@accompagnant",tb_personne_accompagnante.Text.Trim());
 
-                        cmd.Parameters.AddWithValue("@telephone_accompagnant",tb_telephone_accompagnant.Text.Trim());
-
+                        cmd.Parameters.AddWithValue("@telephone_accompagnant", tb_telephone_accompagnant.Text.Trim());
+                      
                         cmd.Parameters.AddWithValue("@adresse_accompagnant",tb_adresse_accompagnant.Text.Trim());
 
                         cmd.Parameters.AddWithValue("@autres_membres",string.IsNullOrWhiteSpace(tb_autres_membres_famille.Text)? (object)DBNull.Value: tb_autres_membres_famille.Text.Trim());
@@ -266,17 +270,36 @@ namespace Cepima.MesForms
 
                         // Récupérer immédiatement l'identifiant créé.
                         idPatient = Convert.ToInt32(cmd.LastInsertedId);
+
                     }
 
-                    // Fermer la connexion avant d'ouvrir le formulaire suivant.
-                    Form_signes_vitaux signes =
-                        new Form_signes_vitaux(idPatient);
+                    if (Form1.CONTEXT == "PRESCRIPTION")
+                    {
 
-                    this.Hide();
+                        MesForms.Prescription.Form_prescription_mdc
+                        form_presc = new MesForms.Prescription.Form_prescription_mdc(
+                        Convert.ToInt32(idPatient));
 
-                    signes.ShowDialog();
+                        this.Hide();
+                        form_presc.ShowDialog();
+                        this.Close();
 
-                    this.Close();
+                    }
+                    else
+                    {
+                        // Fermer la connexion avant d'ouvrir le formulaire suivant.
+                        Form_signes_vitaux signes =
+                            new Form_signes_vitaux(idPatient);
+
+                        this.Hide();
+
+                        signes.ShowDialog();
+
+                        this.Close();
+
+                    }
+
+
 
                     Form1.GlobalPanel_main.Visible = true;
                 }
