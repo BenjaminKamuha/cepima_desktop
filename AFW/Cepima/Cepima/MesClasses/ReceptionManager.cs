@@ -687,6 +687,199 @@ namespace Cepima.MesClasses
             RecalculerFacture(idFacture, con, tr);
         }
 
+        // PAIEMENT MEDICAMENT
+
+        // ============================================================
+        // PAIEMENT MEDICAMENT
+        // ============================================================
+        public static void PayerMedicament(
+            int idFacture,
+            int idDetailFacture,
+            decimal montantPaiement,
+            DateTime datePaiement,
+            MySqlConnection con,
+            MySqlTransaction tr)
+        {
+            if (montantPaiement <= 0)
+                throw new Exception("Le montant du paiement doit être supérieur à zéro.");
+
+            decimal montantMedicaments;
+
+            // 1. Vérifier que le détail concerne les médicaments
+            string query = @"
+                SELECT COALESCE(montant, 0)
+                FROM detail_facture
+                WHERE id_detail_facture = @id_detail
+                  AND id_facture = @id_facture
+                  AND id_prestation IS NULL
+                LIMIT 1
+                FOR UPDATE";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_detail", idDetailFacture);
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                    throw new Exception(
+                        "Le détail des médicaments est introuvable dans cette facture.");
+
+                montantMedicaments = Convert.ToDecimal(result);
+            }
+
+            // 2. Calculer le montant déjà payé pour les médicaments
+            decimal dejaPayeMedicaments;
+
+            query = @"
+        SELECT COALESCE(SUM(montant), 0)
+        FROM paiement
+        WHERE id_facture = @id_facture
+          AND id_detail_facture = @id_detail";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@id_detail", idDetailFacture);
+
+                dejaPayeMedicaments = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal resteMedicaments = montantMedicaments - dejaPayeMedicaments;
+
+            if (resteMedicaments <= 0)
+                throw new Exception("Les médicaments sont déjà entièrement payés.");
+
+            if (montantPaiement > resteMedicaments)
+                throw new Exception(
+                    "Le paiement dépasse le montant restant des médicaments.");
+
+            // 3. Vérifier le reste global de la facture
+            decimal totalFacture;
+            decimal dejaPayeFacture;
+
+            query = @"
+        SELECT COALESCE(montant_total, 0)
+        FROM facture
+        WHERE id_facture = @id_facture
+          AND statut <> 'Clôturée'
+        FOR UPDATE";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("Facture introuvable ou déjà clôturée.");
+
+                totalFacture = Convert.ToDecimal(result);
+            }
+
+            query = @"
+        SELECT COALESCE(SUM(montant), 0)
+        FROM paiement
+        WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                dejaPayeFacture = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal nouveauResteFacture =
+                totalFacture - dejaPayeFacture - montantPaiement;
+
+            if (nouveauResteFacture < 0)
+                throw new Exception(
+                    "Le paiement dépasse le reste global de la facture.");
+
+            string typePaiement =
+                nouveauResteFacture == 0 ? "Complet" : "Partiel";
+
+            // 4. Enregistrer le paiement
+            query = @"
+        INSERT INTO paiement
+        (
+            id_facture,
+            id_detail_facture,
+            date_paiement,
+            montant,
+            reste,
+            type_paiement
+        )
+        VALUES
+        (
+            @id_facture,
+            @id_detail,
+            @date_paiement,
+            @montant,
+            @reste,
+            @type_paiement
+        )";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.Parameters.AddWithValue("@id_detail", idDetailFacture);
+                cmd.Parameters.AddWithValue("@date_paiement", datePaiement.Date);
+                cmd.Parameters.AddWithValue("@montant", montantPaiement);
+                cmd.Parameters.AddWithValue("@reste", nouveauResteFacture);
+                cmd.Parameters.AddWithValue("@type_paiement", typePaiement);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // 5. Recalculer la facture
+            RecalculerFacture(idFacture, con, tr);
+        }
+
+        public static int TrouverIdDetailMedicament(
+            int idFacture,
+            MySqlConnection con,
+            MySqlTransaction tr)
+                {
+                    string query = @"
+                SELECT id_detail_facture
+                FROM detail_facture
+                WHERE id_facture = @id_facture
+                  AND id_prestation IS NULL
+                LIMIT 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+
+                object resultat = cmd.ExecuteScalar();
+
+                if (resultat == null || resultat == DBNull.Value)
+                    throw new Exception(
+                        "Aucun détail de médicaments trouvé pour cette facture.");
+
+                return Convert.ToInt32(resultat);
+            }
+        }
+
+
+        public static void UpdatePrescription(
+                int id_prescription,
+                MySqlConnection con,
+                MySqlTransaction tr
+            )
+        {
+            string query = "UPDATE prescription SET statut = @statut WHERE id = @id";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@statut", "TERMINEE");
+                cmd.Parameters.AddWithValue("@id", id_prescription);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
         // ============================================================
         // RECALCULER LES INFORMATIONS DE LA FACTURE
         // ============================================================
@@ -992,10 +1185,14 @@ namespace Cepima.MesClasses
         }
 
         public static void AjouterLivreCaisse(
-    decimal recette,
-    decimal depense,
-    string provenance,
-    string description)
+            decimal recette,
+            decimal depense,
+            string provenance,
+            string description,
+            MySqlConnection con,
+            MySqlTransaction tr
+            
+            )
         {
             try
             {
@@ -1012,30 +1209,151 @@ namespace Cepima.MesClasses
             ORDER BY date DESC
             LIMIT 1";
 
+
+
+
+                using (MySqlCommand cmd = new MySqlCommand(querySolde, con, tr))
+                {
+                    cmd.Parameters.AddWithValue("@provenance", provenance);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (reader["solde"] != DBNull.Value)
+                            {
+                                ancienSolde = Convert.ToDecimal(reader["solde"]);
+                            }
+                        }
+                    }
+                }
+                
+
+
+
+                // =====================================================
+                // 2. Calculer le nouveau solde
+                // =====================================================
+
+                decimal nouveauSolde =
+                    ancienSolde + recette - depense;
+
+
+                // =====================================================
+                // 3. Insérer le mouvement dans livre_caisse
+                // =====================================================
+
+                string query = @"
+            INSERT INTO livre_caisse
+            (
+                date,
+                recette,
+                depasse,
+                solde,
+                provenance,
+                description
+            )
+            VALUES
+            (
+                CURDATE(),
+                @recette,
+                @depasse,
+                @solde,
+                @provenance,
+                @description
+            )";
+
                 MesClasses.ManagerClasse.request_params.Clear();
+
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@recette",
+                    recette.ToString()
+                );
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@depasse",
+                    depense.ToString()
+                );
+
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@solde",
+                    nouveauSolde.ToString()
+                );
 
                 MesClasses.ManagerClasse.request_params.Add(
                     "@provenance",
                     provenance
                 );
 
-                using (MySqlDataReader reader =
-                       MesClasses.ManagerClasse.CRUD(
-                           querySolde,
-                           MesClasses.ManagerClasse.request_params,
-                           true))
+                MesClasses.ManagerClasse.request_params.Add(
+                    "@description",
+                    description
+                );
+
+                MesClasses.ManagerClasse.CRUD(
+                    query,
+                    MesClasses.ManagerClasse.request_params,
+                    false
+                );
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors de l'enregistrement dans le livre de caisse :\n\n" +
+                    ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+
+
+        public static void AjouterLivreCaisse(
+            decimal recette,
+            decimal depense,
+            string provenance,
+            string description
+
+    )
+        {
+            try
+            {
+                // =====================================================
+                // 1. Récupérer le dernier solde de la caisse
+                // =====================================================
+
+                decimal ancienSolde = 0;
+
+                string querySolde = @"
+            SELECT solde
+            FROM livre_caisse
+            WHERE provenance = @provenance
+            ORDER BY date DESC
+            LIMIT 1";
+
+
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+
+                using (MySqlCommand cmd = new MySqlCommand(querySolde,con))
                 {
-                    if (reader.Read())
+                    cmd.Parameters.AddWithValue("@provenance", provenance);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader["solde"] != DBNull.Value)
+                        if (reader.Read())
                         {
-                            ancienSolde =
-                                Convert.ToDecimal(reader["solde"]);
+                            if (reader["solde"] != DBNull.Value)
+                            {
+                                ancienSolde = Convert.ToDecimal(reader["solde"]);
+                            }
                         }
                     }
-
-                    reader.Close();
                 }
+
+
 
 
                 // =====================================================
@@ -1116,4 +1434,6 @@ namespace Cepima.MesClasses
             }
         }
     }
+
 }
+

@@ -384,6 +384,8 @@ namespace Cepima
                 new MenuItem("    Prescriptions",Properties.Resources.hand_with_a_pill_30px, async (s,ev) => {
 
                     await AfficherUserControlAsync < MesUserCases.Pharmacie.UC_prescription>();
+
+                    CONTEXT = "PHARMACIE";
         
                 }),
 

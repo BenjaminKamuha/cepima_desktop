@@ -139,8 +139,11 @@ namespace Cepima.MesForms.EEG
                                 cmd.ExecuteNonQuery();
                             }
 
-                            MesClasses.ReceptionManager.AjouterLivreCaisse(PRIX_PRESTATION, 0, "Caisse EEG", "Paiement d'examen EEG");
-                            // Impression de la réçu
+                            MesClasses.ReceptionManager.AjouterLivreCaisse(PRIX_PRESTATION, 0, "Caisse EEG", "Paiement d'examen EEG", con, tr);
+
+
+
+                            // Impression du réçu
                             int ID_PAIEMENT = 0;
                             string recup_idPaiement = "SELECT id_paiement FROM paiement WHERE id_facture = @id";
                             using (MySqlCommand cmd = new MySqlCommand(recup_idPaiement, con, tr))
@@ -148,14 +151,22 @@ namespace Cepima.MesForms.EEG
                                 cmd.Parameters.AddWithValue("@id", idFacture);
                                 ID_PAIEMENT = Convert.ToInt32(cmd.ExecuteScalar());
                             }
-                            MessageBox.Show(ID_PAIEMENT.ToString());
+
+                            // Clôture du facture
+                            string query_cloture = "UPDATE facture SET statut = 'Clôturée' WHERE id_facture = @id_facture";
+
+
+                            using (MySqlCommand cmd = new MySqlCommand(query_cloture, con, tr))
+                            {
+                                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                                cmd.ExecuteNonQuery();
+                            }
 
                             tr.Commit();
                             FormRecu recu = new FormRecu(ID_PAIEMENT);
                             recu.ShowDialog();
 
-
-
+                            
                             MessageBox.Show(
                                 "Paiement EEG enregistré avec succès.\n\n" +
                                 "La facture reste ouverte pour les autres services.",

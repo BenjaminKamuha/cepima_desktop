@@ -31,6 +31,8 @@ namespace Cepima.MesForms.Compt
                     // 1. Vérifier le bon et récupérer son statut + montant
                     // ---------------------------------------------------------
 
+                    MySqlTransaction tr = con.BeginTransaction();
+
                     string sqlVerif = @"
                 SELECT montant, statut
                 FROM bon_sortie

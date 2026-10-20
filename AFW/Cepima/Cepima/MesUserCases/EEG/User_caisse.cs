@@ -19,7 +19,9 @@ namespace Cepima.MesUserCases.EEG
         {
             InitializeComponent();
 
-            ChargerDemandesEEG();
+            //ChargerDemandesEEG();
+
+            rd_EEG.Checked = true;
         }
 
         // ============================================================
@@ -90,7 +92,7 @@ namespace Cepima.MesUserCases.EEG
                                 ELSE 'Ambulatoire'
                             END AS type_patient
 
-                        FROM prescription pr
+                        FROM prescription pr 
 
                         INNER JOIN patients p
                             ON p.id_patient = pr.patient_id
@@ -124,6 +126,8 @@ namespace Cepima.MesUserCases.EEG
                                 OR p.numero_fiche LIKE @recherche_like
                                 OR pr.observation LIKE @recherche_like
                             )
+
+                        AND pr.statut = 'INNACTIVE'
 
                        
 

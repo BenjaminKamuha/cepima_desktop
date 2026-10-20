@@ -18,6 +18,8 @@ namespace Cepima.MesForms.Pharmacie
         private int ID_PRESCRIPTION = 0;
 
         private int ID_PATIENT = 0;
+
+        private decimal TOTAL_PRESCRIPTION = 0;
         // =========================================================
         // CONSTRUCTEUR
         // =========================================================
@@ -472,8 +474,7 @@ namespace Cepima.MesForms.Pharmacie
 
                     if (Form1.CONTEXT == "PRESCRIPTION")
                     {
-
-
+                        TOTAL_PRESCRIPTION = totalPrescription;
                         Label lb_total_a_payer = new Label(); 
                         lb_total_a_payer.Text = "TOTAL: " +  totalPrescription.ToString() + "$";
                         lb_total_a_payer.Font = new Font("Sergo UI", 12, FontStyle.Bold);
@@ -481,7 +482,6 @@ namespace Cepima.MesForms.Pharmacie
                         lb_total_a_payer.Dock = DockStyle.Fill;
                         pan_price.Controls.Add(lb_total_a_payer);
                     }
-
                     else
                     {
                         AppliquerStyleStatut(
@@ -630,105 +630,183 @@ namespace Cepima.MesForms.Pharmacie
             object sender,
             EventArgs e)
         {
-            if (dgv_presc.Rows.Count == 0)
+            Database db = new Database();
+
+            if (Form1.CONTEXT == "PRESCRIPTION")
             {
-                MessageBox.Show(
-                    "Aucun médicament à délivrer.",
-                    "Dispensation",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-
-            // -----------------------------------------------------
-            // Vérifier s'il reste quelque chose à délivrer
-            // -----------------------------------------------------
-
-            bool resteQuelqueChose = false;
-
-
-            foreach (DataGridViewRow row
-                in dgv_presc.Rows)
-            {
-                if (row.IsNewRow)
-                    continue;
-
-
-                string statut =
-                    row.Cells["Statut"]
-                       .Value == null
-                        ? ""
-                        : row.Cells["Statut"]
-                            .Value.ToString();
-
-
-                if (statut == "En attente" ||
-                    statut == "Partiel")
+                using (MySqlConnection con = db.GetConnection())
                 {
-                    resteQuelqueChose = true;
+                    con.Open();
 
-                    break;
+                    using (MySqlTransaction tr = con.BeginTransaction())
+                    {
+                        try
+                        {
+                            int idFacture = MesClasses.ReceptionManager.CreerFactureSiInexistante(
+                                ID_PATIENT.ToString(), con, tr);
+
+                            int idDetail = MesClasses.ReceptionManager.TrouverIdDetailMedicament(
+                                idFacture, con, tr);
+
+                            MesClasses.ReceptionManager.PayerMedicament(
+                                idFacture,
+                                idDetail,
+                                TOTAL_PRESCRIPTION,               // Montant à payer
+                                DateTime.Now,
+                                con,
+                                tr);
+
+                            MesClasses.ReceptionManager.UpdatePrescription(
+                                ID_PRESCRIPTION,
+                                con,
+                                tr
+                                );
+
+
+                            MesClasses.ReceptionManager.AjouterLivreCaisse(TOTAL_PRESCRIPTION, 0, "MEDICAMENT", "Paiement traitement médicale", con, tr);
+
+                            
+                            // Impression reçu
+                            int ID_PAIEMENT = 0;
+                            string query_paiement = "SELECT id_paiement FROM paiement WHERE id_facture = @id";
+                            using (MySqlCommand cmd = new MySqlCommand(query_paiement, con, tr))
+                            {
+                                cmd.Parameters.AddWithValue("id", idFacture);
+
+                                ID_PAIEMENT = Convert.ToInt32(cmd.ExecuteScalar());
+                            };
+
+                            tr.Commit();
+
+                            FormRecu recu = new FormRecu(ID_PAIEMENT);
+                            recu.ShowDialog();
+
+                            this.Close();
+                            
+                            // Charger le livre de caisse.
+                            MesUserCases.Comptabilité.Livre_Caisse livre = new MesUserCases.Comptabilité.Livre_Caisse();
+                            livre.Dock = DockStyle.Fill;
+                            Form1.GlobalPanel_main.Controls.Clear();
+                            Form1.GlobalPanel_main.Controls.Add(livre);
+
+                            
+
+                            return;
+
+
+                        }
+                        catch (Exception ex)
+                        {
+                            tr.Rollback();
+                            MessageBox.Show(ex.Message);
+                        }
+
+                        return;
+                    }
                 }
             }
 
-
-            if (!resteQuelqueChose)
+            else
             {
-                MessageBox.Show(
-                    "Tous les médicaments de cette prescription ont déjà été délivrés.",
-                    "Dispensation",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-
-            // -----------------------------------------------------
-            // Pour l'instant :
-            // le bouton est prêt pour le formulaire de dispensation.
-            // -----------------------------------------------------
-
-            MessageBox.Show(
-                "La prescription est prête pour la dispensation.",
-                "Dispensation",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-
-
-            // =========================================================
-            // CHARGER LES MÉDICAMENTS À DÉLIVRER
-            // =========================================================
-
-            List<MedicamentADeLivrer> medicaments = ChargerMedicamentsADeLivrer();
-
-            if (medicaments.Count == 0)
-            {
-                MessageBox.Show(
-                    "Aucun médicament ne reste à délivrer.",
-                    "Dispensation",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            // =========================================================
-            // OUVRIR LE FORMULAIRE DE DÉLIVRANCE
-            // =========================================================
-
-            using (MesForms.Hospitalisation.Delivrance_Medoc formulaire = new Hospitalisation.Delivrance_Medoc(ID_PATIENT.ToString(),ID_PRESCRIPTION,medicaments))
-            {
-                if (formulaire.ShowDialog() ==
-                    DialogResult.OK)
+                if (dgv_presc.Rows.Count == 0)
                 {
-                    // Recharger la prescription
-                    ChargerPrescription();
+                    MessageBox.Show(
+                        "Aucun médicament à délivrer.",
+                        "Dispensation",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+
+
+                // -----------------------------------------------------
+                // Vérifier s'il reste quelque chose à délivrer
+                // -----------------------------------------------------
+
+                bool resteQuelqueChose = false;
+
+
+                foreach (DataGridViewRow row
+                    in dgv_presc.Rows)
+                {
+                    if (row.IsNewRow)
+                        continue;
+
+
+                    string statut =
+                        row.Cells["Statut"]
+                           .Value == null
+                            ? ""
+                            : row.Cells["Statut"]
+                                .Value.ToString();
+
+
+                    if (statut == "En attente" ||
+                        statut == "Partiel")
+                    {
+                        resteQuelqueChose = true;
+
+                        break;
+                    }
+                }
+
+
+                if (!resteQuelqueChose)
+                {
+                    MessageBox.Show(
+                        "Tous les médicaments de cette prescription ont déjà été délivrés.",
+                        "Dispensation",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+
+
+                // -----------------------------------------------------
+                // Pour l'instant :
+                // le bouton est prêt pour le formulaire de dispensation.
+                // -----------------------------------------------------
+
+                MessageBox.Show(
+                    "La prescription est prête pour la dispensation.",
+                    "Dispensation",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+
+                // =========================================================
+                // CHARGER LES MÉDICAMENTS À DÉLIVRER
+                // =========================================================
+
+                List<MedicamentADeLivrer> medicaments = ChargerMedicamentsADeLivrer();
+
+                if (medicaments.Count == 0)
+                {
+                    MessageBox.Show(
+                        "Aucun médicament ne reste à délivrer.",
+                        "Dispensation",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+
+                // =========================================================
+                // OUVRIR LE FORMULAIRE DE DÉLIVRANCE
+                // =========================================================
+
+                using (MesForms.Hospitalisation.Delivrance_Medoc formulaire = new Hospitalisation.Delivrance_Medoc(ID_PATIENT.ToString(), ID_PRESCRIPTION, medicaments))
+                {
+                    if (formulaire.ShowDialog() ==
+                        DialogResult.OK)
+                    {
+                        // Recharger la prescription
+                        ChargerPrescription();
+                    }
                 }
             }
-        
         }
 
 

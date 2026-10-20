@@ -200,6 +200,8 @@ namespace Cepima.MesForms.Compt
 
                 decimal montant;
 
+                
+
                 if (!decimal.TryParse(tb_montant.Text.Trim(), out montant))
                 {
                     MessageBox.Show(
@@ -360,6 +362,7 @@ namespace Cepima.MesForms.Compt
                 if (nouveauReste == 0)
                 {
                     statut = "Payé";
+
                 }
                 else
                 {

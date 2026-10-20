@@ -104,7 +104,6 @@ namespace Cepima.MesClasses
                                 patient_id,
                                 medecin_id,
                                 date_prescription,
-                                statut,
                                 observation
                             )
                             VALUES
@@ -112,7 +111,6 @@ namespace Cepima.MesClasses
                                 @patient_id,
                                 @medecin_id,
                                 NOW(),
-                                'ACTIVE',
                                 @observation
                             )";
 
