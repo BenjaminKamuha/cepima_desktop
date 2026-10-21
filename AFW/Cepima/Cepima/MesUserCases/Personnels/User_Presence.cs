@@ -249,10 +249,11 @@ namespace Cepima.MesUserCases.Personnels
 
             cbx_periode.Items.Clear();
 
-            cbx_periode.Items.Add("Tous");
             cbx_periode.Items.Add("Aujourd'hui");
             cbx_periode.Items.Add("Cette semaine");
             cbx_periode.Items.Add("Ce mois");
+            cbx_periode.Items.Add("Tous");
+
 
             cbx_periode.SelectedIndex = 0;
         }

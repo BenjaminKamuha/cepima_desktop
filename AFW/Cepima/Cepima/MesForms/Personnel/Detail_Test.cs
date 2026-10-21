@@ -127,7 +127,6 @@ namespace Cepima.MesForms.Personnel
 
         private void bt_delete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(personnelID);
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
                 try
