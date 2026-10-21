@@ -337,7 +337,6 @@ namespace Cepima.MesUserCases.EEG
             return "Tous";
         }
 
-
         // =========================================================
         // EVENEMENT RECHERCHE
         // =========================================================
@@ -392,33 +391,16 @@ namespace Cepima.MesUserCases.EEG
             // =====================================================
             // CREATION DU PANEL
             // =====================================================
-            
-            CustomRoundedPanel panDemande =
-                new CustomRoundedPanel();
 
-
-            panDemande.Size =
-                new Size(160, 145);
-
-
-            panDemande.BorderRadius =
-                8;
-
-
-            panDemande.BorderColor =
-                Color.Silver;
-
-
-            panDemande.BorderSize =
-                1;
-
-
+            BunifuRoundedPanel panDemande = new BunifuRoundedPanel();
+            panDemande.Size = new Size(215, 145);
+            panDemande.BorderRadius = 8;
+            panDemande.ShadowDepth = 10;
+            panDemande.BorderColor = Color.Silver;
+            panDemande.BorderSize = 1;
             // ID de la demande
-            panDemande.Tag =
-                idDemande;
-
-            panDemande.Margin =
-               new Padding(10);
+            panDemande.Tag = idDemande;
+            panDemande.Margin = new Padding(10);
 
             panDemande.Padding =
                 new Padding(
@@ -446,14 +428,6 @@ namespace Cepima.MesUserCases.EEG
                 couleurNormale;
 
 
-            panDemande.HoverBackColor =
-                couleurHover;
-
-
-            panDemande.HoverCursor =
-                Cursors.Hand;
-
-
             // =====================================================
             // AJOUT AU PANEL PRINCIPAL
             // =====================================================
@@ -469,8 +443,7 @@ namespace Cepima.MesUserCases.EEG
             // EVENEMENT CLICK
             // =====================================================
 
-            EventHandler clickDemande =
-                delegate(object sender, EventArgs e)
+            EventHandler clickDemande = delegate(object sender, EventArgs e)
                 {
                     try
                     {
@@ -501,9 +474,17 @@ namespace Cepima.MesUserCases.EEG
                         }
                         else if (status == "Terminée")
                         {
-                            MesForms.Form_Fiche_suivie form =
-                                new MesForms.Form_Fiche_suivie(idPatient);
+                            int idFiche = 0;
+                            // rechercher la fiche du patient d'abord
+                            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                            {
+                                string query = "SELECT id_fiche FROM fiches_medicales WHERE id_patient = @id";
+                                MySqlCommand cmd = new MySqlCommand(query,con);
+                                cmd.Parameters.AddWithValue("@id",idPatient);
+                                idFiche = Convert.ToInt32(cmd.ExecuteScalar());
+                            }
 
+                            MesForms.Fiches.RaportFiche form = new MesForms.Fiches.RaportFiche(idPatient,idFiche);
                             form.ShowDialog();
 
                             ChargerDemandesEEG();
@@ -533,8 +514,7 @@ namespace Cepima.MesUserCases.EEG
             // CLICK SUR LE PANEL
             // =====================================================
 
-            panDemande.Click +=
-                clickDemande;
+            panDemande.Click += clickDemande;
 
 
             // =====================================================
@@ -544,7 +524,7 @@ namespace Cepima.MesUserCases.EEG
             PictureBox picture =
                 MesClasses.ManagerClasse.AddPicture(
                     Properties.Resources.brain_90px,
-                    new Point(2, 5),
+                    new Point(10, 10),
                     new Size(55, 55));
 
 

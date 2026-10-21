@@ -178,6 +178,7 @@
             this.Controls.Add(this.tb_search_demande);
             this.Name = "Facturation";
             this.Size = new System.Drawing.Size(1021, 519);
+            this.Load += new System.EventHandler(this.Facturation_Load);
             this.customRoundedPanel1.ResumeLayout(false);
             this.panel_facture.ResumeLayout(false);
             this.panel_facture.PerformLayout();

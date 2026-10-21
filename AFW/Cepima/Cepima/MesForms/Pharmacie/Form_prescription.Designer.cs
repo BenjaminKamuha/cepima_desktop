@@ -163,6 +163,7 @@
             this.btn_delivrer.TextColor = System.Drawing.Color.White;
             this.btn_delivrer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_delivrer.UseVisualStyleBackColor = false;
+            this.btn_delivrer.Click += new System.EventHandler(this.btn_delivrer_Click_1);
             // 
             // pan_price
             // 

@@ -54,7 +54,7 @@
             this.fl_prescription_ligne.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.fl_prescription_ligne.Location = new System.Drawing.Point(12, 123);
             this.fl_prescription_ligne.Name = "fl_prescription_ligne";
-            this.fl_prescription_ligne.Size = new System.Drawing.Size(950, 115);
+            this.fl_prescription_ligne.Size = new System.Drawing.Size(1092, 115);
             this.fl_prescription_ligne.TabIndex = 10;
             // 
             // cbx_filter_category
@@ -93,7 +93,7 @@
             this.customRoundedPanel1.Controls.Add(this.fl_medoc);
             this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
             this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(12, 290);
+            this.customRoundedPanel1.Location = new System.Drawing.Point(11, 290);
             this.customRoundedPanel1.Name = "customRoundedPanel1";
             this.customRoundedPanel1.Padding = new System.Windows.Forms.Padding(10, 10, 10, 14);
             this.customRoundedPanel1.ShadowBlur = 10;
@@ -104,7 +104,7 @@
             this.customRoundedPanel1.ShadowOffsetY = 4;
             this.customRoundedPanel1.ShadowOpacity = 60;
             this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1067, 258);
+            this.customRoundedPanel1.Size = new System.Drawing.Size(1093, 258);
             this.customRoundedPanel1.TabIndex = 9;
             // 
             // fl_medoc
@@ -113,7 +113,7 @@
             this.fl_medoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fl_medoc.Location = new System.Drawing.Point(10, 10);
             this.fl_medoc.Name = "fl_medoc";
-            this.fl_medoc.Size = new System.Drawing.Size(1047, 234);
+            this.fl_medoc.Size = new System.Drawing.Size(1073, 234);
             this.fl_medoc.TabIndex = 3;
             // 
             // tb_search
@@ -128,7 +128,7 @@
             this.tb_search.Image = global::Cepima.Properties.Resources.search_25px;
             this.tb_search.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tb_search.ImagePadding = 4;
-            this.tb_search.Location = new System.Drawing.Point(204, 250);
+            this.tb_search.Location = new System.Drawing.Point(274, 250);
             this.tb_search.MaxLength = 32767;
             this.tb_search.Name = "tb_search";
             this.tb_search.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -143,21 +143,21 @@
             this.btn_save_prescription.BackColor = System.Drawing.Color.Transparent;
             this.btn_save_prescription.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.btn_save_prescription.BorderRadius = 10;
-            this.btn_save_prescription.ButtonText = "Valider";
+            this.btn_save_prescription.ButtonText = "Valider la préscription";
             this.btn_save_prescription.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_save_prescription.DefaultBackColor = System.Drawing.Color.DodgerBlue;
             this.btn_save_prescription.FlatAppearance.BorderSize = 0;
             this.btn_save_prescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_save_prescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save_prescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.btn_save_prescription.ForeColor = System.Drawing.Color.White;
             this.btn_save_prescription.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_save_prescription.Image = global::Cepima.Properties.Resources.ok_30px1;
             this.btn_save_prescription.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_save_prescription.Location = new System.Drawing.Point(968, 165);
+            this.btn_save_prescription.Location = new System.Drawing.Point(704, 244);
             this.btn_save_prescription.Name = "btn_save_prescription";
-            this.btn_save_prescription.Size = new System.Drawing.Size(111, 34);
+            this.btn_save_prescription.Size = new System.Drawing.Size(224, 40);
             this.btn_save_prescription.TabIndex = 6;
-            this.btn_save_prescription.Text = "Valider";
+            this.btn_save_prescription.Text = "Valider la préscription";
             this.btn_save_prescription.TextColor = System.Drawing.Color.White;
             this.btn_save_prescription.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_save_prescription.UseVisualStyleBackColor = false;
@@ -177,7 +177,7 @@
             this.panel_patient.Name = "panel_patient";
             this.panel_patient.ShadowColor = System.Drawing.Color.Gray;
             this.panel_patient.ShadowDepth = 5;
-            this.panel_patient.Size = new System.Drawing.Size(1105, 80);
+            this.panel_patient.Size = new System.Drawing.Size(1105, 88);
             this.panel_patient.TabIndex = 39;
             // 
             // pictureBox1
@@ -233,6 +233,7 @@
             this.Controls.Add(this.customRoundedPanel1);
             this.Controls.Add(this.tb_search);
             this.Name = "Form_prescription_mdc";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_prescription_mdc";
             this.customRoundedPanel1.ResumeLayout(false);
             this.panel_patient.ResumeLayout(false);

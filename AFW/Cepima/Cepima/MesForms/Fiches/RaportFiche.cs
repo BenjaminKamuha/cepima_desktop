@@ -41,11 +41,11 @@ namespace Cepima.MesForms.Fiches
             if (ID_FICHE <= 0)
             {
                 MessageBox.Show(
-                    "L'identifiant de la fiche est invalide.",
+                    "Ce patient n'a pas de fiche médicale,prenez ses signes vitaux pour qu'il sois en possession de la fiche",
                     "Erreur",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                return;
+                this.Close();
             }
 
             string numeroFiche = "";

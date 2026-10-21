@@ -10,7 +10,7 @@ namespace Cepima.MesUserCases.Comptabilité
         // ============================================================
         // TIMER DE RECHERCHE
         // ============================================================
-
+        
         private Timer timerRecherche;
 
         // ============================================================
@@ -836,6 +836,11 @@ namespace Cepima.MesUserCases.Comptabilité
 
             LoadFactures(
                 tb_search_demande.Text);
+        }
+
+        private void Facturation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

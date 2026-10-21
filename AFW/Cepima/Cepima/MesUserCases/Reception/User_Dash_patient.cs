@@ -230,11 +230,19 @@ namespace Cepima.MesUserCases
 
                 try
                 {
-                    MesForms.Form_Fiche_suivie fiche =
-                        new MesForms.Form_Fiche_suivie(
-                            ID_PATIENT.ToString());
+                    int idFiche = 0;
+                    // rechercher la fiche du patient d'abord
+                    using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                    {
+                        string query = "SELECT id_fiche FROM fiches_medicales WHERE id_patient = @id";
+                        MySqlCommand cmd = new MySqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@id", ID_PATIENT);
+                        idFiche = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
 
-                    fiche.ShowDialog();
+                    MesForms.Fiches.RaportFiche form = new MesForms.Fiches.RaportFiche(ID_PATIENT.ToString(), idFiche);
+                    form.ShowDialog();
+                    form.ShowDialog();
                 }
                 finally
                 {

@@ -29,8 +29,8 @@ namespace Cepima.MesUserCases.EEG
         // ============================================================
         private void ChargerPrescriptions()
         {
-            //try
-            //{
+            try
+            {
                 // -------------------------------------------------
                 // SUSPENDRE LE RAFRAICHISSEMENT VISUEL
                 // -------------------------------------------------
@@ -276,20 +276,20 @@ namespace Cepima.MesUserCases.EEG
                         }
                     }
                 }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(
-            //        "Erreur lors du chargement des prescriptions.\n\n" +
-            //        ex.Message,
-            //        "Prescriptions",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //}
-            //finally
-            //{
-            //    pnl_examen.ResumeLayout(true);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors du chargement des prescriptions.\n\n" +
+                    ex.Message,
+                    "Prescriptions",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            finally
+            {
+                pnl_examen.ResumeLayout(true);
+            }
         }
 
 
@@ -310,15 +310,14 @@ namespace Cepima.MesUserCases.EEG
             // PANEL
             // =====================================================
 
-            CustomRoundedPanel panPrescription =
-                new CustomRoundedPanel();
+            BunifuRoundedPanel panPrescription = new BunifuRoundedPanel();
 
             panPrescription.Size =
-                new Size(160, 145);
+                new Size(215, 145);
 
             panPrescription.BorderRadius =
                 8;
-
+            panPrescription.ShadowDepth = 10;
             panPrescription.BorderColor =
                 Color.Silver;
 
@@ -345,11 +344,11 @@ namespace Cepima.MesUserCases.EEG
             panPrescription.BackColor =
                 couleurNormale;
 
-            panPrescription.HoverBackColor =
-                couleurHover;
+            //panPrescription =
+            //    couleurHover;
 
-            panPrescription.HoverCursor =
-                Cursors.Hand;
+            //panPrescription.HoverCursor =
+            //    Cursors.Hand;
 
 
             // =====================================================
@@ -359,7 +358,7 @@ namespace Cepima.MesUserCases.EEG
             PictureBox picture =
                 MesClasses.ManagerClasse.AddPicture(
                     Properties.Resources.capsules_100px,
-                    new Point(2, 5),
+                    new Point(10, 10),
                     new Size(60, 60));
 
             picture.Cursor =
@@ -634,10 +633,18 @@ namespace Cepima.MesUserCases.EEG
             // AJOUT AU FLOWLAYOUTPANEL
             // =====================================================
 
-            pnl_examen.Controls.Add(
-                panPrescription);
-        }
+            MesClasses.ManagerClasse.AddControl(pnl_examen, panPrescription, 10, 10);
 
+            if (pnl_examen.Controls.Count > 0)
+            {
+                ProgressiveDisplay pd =
+                    new ProgressiveDisplay(
+                        pnl_examen,
+                        100);
+
+                pd.Start();
+            }
+        }
 
 
         private string GetDateString(
@@ -997,12 +1004,12 @@ namespace Cepima.MesUserCases.EEG
             // CREATION DU PANEL
             // ============================================================
 
-            CustomRoundedPanel panDemande =
-                new CustomRoundedPanel();
+            BunifuRoundedPanel panDemande =
+                new BunifuRoundedPanel();
 
             panDemande.Size =
                 new Size(
-                    160,
+                    215,
                     145);
 
             panDemande.BorderRadius =
@@ -1036,12 +1043,6 @@ namespace Cepima.MesUserCases.EEG
 
             panDemande.BackColor =
                 couleurNormale;
-
-            panDemande.HoverBackColor =
-                couleurHover;
-
-            panDemande.HoverCursor =
-                Cursors.Hand;
 
             // ============================================================
             // AJOUT AU PANEL PRINCIPAL
@@ -1120,8 +1121,8 @@ namespace Cepima.MesUserCases.EEG
 
             PictureBox picture =
                 MesClasses.ManagerClasse.AddPicture(
-                    Properties.Resources.brain_40px,
-                    new Point(2, 5),
+                    Properties.Resources.brain_90px,
+                    new Point(10, 10),
                     new Size(60, 60));
 
             picture.Cursor =
@@ -1138,7 +1139,7 @@ namespace Cepima.MesUserCases.EEG
                 MesClasses.ManagerClasse.CustomLabel(
                     nom,
                     new Point(
-                        65,
+                        75,
                         15));
 
             lbNom.AutoSize =
@@ -1164,7 +1165,7 @@ namespace Cepima.MesUserCases.EEG
                 MesClasses.ManagerClasse.CustomLabel(
                     postnom,
                     new Point(
-                        65,
+                        75,
                         35));
 
             lbPost.AutoSize =
@@ -1358,7 +1359,7 @@ namespace Cepima.MesUserCases.EEG
             }
         }
 
-
+        
         // ============================================================
         // CLICK DES CONTROLES ENFANTS
         // ============================================================
