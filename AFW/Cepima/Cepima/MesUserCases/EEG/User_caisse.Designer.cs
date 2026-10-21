@@ -69,7 +69,7 @@
             // 
             this.pnl_examen.Location = new System.Drawing.Point(3, 16);
             this.pnl_examen.Name = "pnl_examen";
-            this.pnl_examen.Size = new System.Drawing.Size(997, 466);
+            this.pnl_examen.Size = new System.Drawing.Size(997, 446);
             this.pnl_examen.TabIndex = 7;
             // 
             // rd_tout

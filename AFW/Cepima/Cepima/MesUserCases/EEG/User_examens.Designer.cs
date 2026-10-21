@@ -28,61 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.tb_search_demande = new MyRoundedTextBox();
             this.rd_statut_demande = new System.Windows.Forms.RadioButton();
             this.rd_statut_termine = new System.Windows.Forms.RadioButton();
             this.rd_statut_annule = new System.Windows.Forms.RadioButton();
             this.rd_tout = new System.Windows.Forms.RadioButton();
+            this.tb_search_demande = new MyRoundedTextBox();
+            this.customRoundedPanel1 = new CustomRoundedPanel();
             this.pnl_examen = new System.Windows.Forms.FlowLayoutPanel();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // customRoundedPanel1
-            // 
-            this.customRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
-            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.customRoundedPanel1.BorderRadius = 10;
-            this.customRoundedPanel1.BorderSize = 2;
-            this.customRoundedPanel1.Controls.Add(this.pnl_examen);
-            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
-            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
-            this.customRoundedPanel1.Location = new System.Drawing.Point(9, 52);
-            this.customRoundedPanel1.Name = "customRoundedPanel1";
-            this.customRoundedPanel1.ShadowBlur = 10;
-            this.customRoundedPanel1.ShadowBorderRadius = -1;
-            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
-            this.customRoundedPanel1.ShadowEnabled = false;
-            this.customRoundedPanel1.ShadowOffsetX = 0;
-            this.customRoundedPanel1.ShadowOffsetY = 4;
-            this.customRoundedPanel1.ShadowOpacity = 60;
-            this.customRoundedPanel1.ShadowSpread = 0;
-            this.customRoundedPanel1.Size = new System.Drawing.Size(1003, 450);
-            this.customRoundedPanel1.TabIndex = 2;
-            // 
-            // tb_search_demande
-            // 
-            this.tb_search_demande.BackColor = System.Drawing.Color.White;
-            this.tb_search_demande.BorderColor = System.Drawing.Color.Silver;
-            this.tb_search_demande.BorderRadius = 8;
-            this.tb_search_demande.BorderSize = 1;
-            this.tb_search_demande.FocusBorderColor = System.Drawing.Color.DodgerBlue;
-            this.tb_search_demande.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
-            this.tb_search_demande.ForeColor = System.Drawing.Color.Black;
-            this.tb_search_demande.Image = global::Cepima.Properties.Resources.search_25px;
-            this.tb_search_demande.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_search_demande.ImagePadding = 4;
-            this.tb_search_demande.Location = new System.Drawing.Point(12, 12);
-            this.tb_search_demande.MaxLength = 32767;
-            this.tb_search_demande.Name = "tb_search_demande";
-            this.tb_search_demande.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_search_demande.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_search_demande.PlaceholderText = "Rechercher un examen";
-            this.tb_search_demande.Size = new System.Drawing.Size(273, 34);
-            this.tb_search_demande.TabIndex = 8;
             // 
             // rd_statut_demande
             // 
@@ -124,13 +78,59 @@
             // 
             this.rd_tout.AutoSize = true;
             this.rd_tout.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_tout.Location = new System.Drawing.Point(320, 18);
+            this.rd_tout.Location = new System.Drawing.Point(328, 18);
             this.rd_tout.Name = "rd_tout";
             this.rd_tout.Size = new System.Drawing.Size(55, 22);
             this.rd_tout.TabIndex = 42;
             this.rd_tout.TabStop = true;
             this.rd_tout.Text = "Tous";
             this.rd_tout.UseVisualStyleBackColor = true;
+            // 
+            // tb_search_demande
+            // 
+            this.tb_search_demande.BackColor = System.Drawing.Color.White;
+            this.tb_search_demande.BorderColor = System.Drawing.Color.Silver;
+            this.tb_search_demande.BorderRadius = 8;
+            this.tb_search_demande.BorderSize = 1;
+            this.tb_search_demande.FocusBorderColor = System.Drawing.Color.DodgerBlue;
+            this.tb_search_demande.Font = new System.Drawing.Font("Microsoft Tai Le", 10F);
+            this.tb_search_demande.ForeColor = System.Drawing.Color.Black;
+            this.tb_search_demande.Image = global::Cepima.Properties.Resources.search_25px;
+            this.tb_search_demande.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tb_search_demande.ImagePadding = 4;
+            this.tb_search_demande.Location = new System.Drawing.Point(12, 12);
+            this.tb_search_demande.MaxLength = 32767;
+            this.tb_search_demande.Name = "tb_search_demande";
+            this.tb_search_demande.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tb_search_demande.PlaceholderColor = System.Drawing.Color.Gray;
+            this.tb_search_demande.PlaceholderText = "Rechercher un examen";
+            this.tb_search_demande.Size = new System.Drawing.Size(282, 34);
+            this.tb_search_demande.TabIndex = 8;
+            // 
+            // customRoundedPanel1
+            // 
+            this.customRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.White;
+            this.customRoundedPanel1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.customRoundedPanel1.BorderRadius = 10;
+            this.customRoundedPanel1.BorderSize = 2;
+            this.customRoundedPanel1.Controls.Add(this.pnl_examen);
+            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.customRoundedPanel1.Location = new System.Drawing.Point(9, 52);
+            this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(1003, 450);
+            this.customRoundedPanel1.TabIndex = 2;
             // 
             // pnl_examen
             // 

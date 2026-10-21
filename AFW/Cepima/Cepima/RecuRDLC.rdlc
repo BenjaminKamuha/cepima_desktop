@@ -452,7 +452,7 @@
         <Top>5.05037cm</Top>
         <Left>0cm</Left>
         <Height>2.17896cm</Height>
-        <Width>6.53079cm</Width>
+        <Width>6.5308cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -471,8 +471,6 @@
                   <TextRun>
                     <Value>TOTAL  : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -482,9 +480,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
             <Top>0.44979cm</Top>
-            <Left>0.59654cm</Left>
+            <Left>0.28786cm</Left>
             <Height>0.62646cm</Height>
-            <Width>2.11605cm</Width>
+            <Width>2.42473cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -515,9 +513,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
             <Top>1.25264cm</Top>
-            <Left>0.59654cm</Left>
+            <Left>0.28786cm</Left>
             <Height>0.65292cm</Height>
-            <Width>2.11605cm</Width>
+            <Width>2.42473cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -549,9 +547,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox16</rd:DefaultName>
             <Top>2.08195cm</Top>
-            <Left>0.59654cm</Left>
+            <Left>0.28786cm</Left>
             <Height>0.67938cm</Height>
-            <Width>2.11605cm</Width>
+            <Width>2.42473cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -570,7 +568,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!total_facture.Value</Value>
+                    <Value>=First(Fields!total_facture.Value, "ds_Recu")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -608,7 +606,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!reste.Value</Value>
+                    <Value>=First(Fields!reste.Value, "ds_Recu")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -646,7 +644,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!montant_paye.Value</Value>
+                    <Value>=First(Fields!montant_paye.Value, "ds_Recu")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>

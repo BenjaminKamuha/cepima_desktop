@@ -978,5 +978,10 @@ namespace Cepima.MesForms.Pharmacie
 
             return liste;
         }
+
+        private void btn_delivrer_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
