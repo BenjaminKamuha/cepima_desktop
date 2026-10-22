@@ -27,6 +27,8 @@ namespace Cepima
         public static Panel GlobalPanel_main { get; set; }
         public static ToolTip info = new ToolTip();
         public static String CONTEXT { get; set; }
+        public static Label LB_VERSION { get; set; }
+
 
         private Button currentSubMenu = null;
 
@@ -41,8 +43,20 @@ namespace Cepima
             LoadUserConnect(lb_username,"Connecté",lb_statut);
             PATIENT_ID = 0;
             DEMANDE_ID = 0;
+            LB_VERSION = lb_version;
+
+
+            // Recherche de mis à jour
+            CheckUpdate();
+            
          
 
+        }
+
+        private async void CheckUpdate()
+        {
+            UpdateManager manager = new UpdateManager();
+            await manager.CheckForUpdateAsync(false);
         }
 
         /// <summary>
@@ -319,6 +333,7 @@ namespace Cepima
 
         private async void bt_reception_Click(object sender, EventArgs e)
         {
+            CONTEXT = "";
             await AfficherUserControlAsync<MesUserCases.User_Dash_patient>();
 
             picture_image_menu.Image = Properties.Resources.reception_90px;
@@ -694,6 +709,8 @@ namespace Cepima
 
             MesClasses.LoadingHelper.Stop(btn_update);
         }
+
+
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
