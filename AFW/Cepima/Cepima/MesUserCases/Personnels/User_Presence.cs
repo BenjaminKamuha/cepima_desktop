@@ -257,16 +257,11 @@ namespace Cepima.MesUserCases.Personnels
             cbx_periode.SelectedIndex = 0;
             using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
             {
-                //string query = "SELECT heure_fixe FROM presences ORDER BY id_presence DESC LIMIT 1";
-
                 string query = "SELECT COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'presences' AND COLUMN_NAME = 'heure_fixe'";
-
                 using (MySqlCommand cmd = new MySqlCommand(query, MesClasses.ManagerClasse.GetConnexion()))
                 {
                     object resultat = cmd.ExecuteScalar();
-                    lb_heure_fixe.Text = resultat != null && resultat != DBNull.Value
-                        ? resultat.ToString().Trim('\'')
-                        : "";
+                    lb_heure_fixe.Text = resultat != null && resultat != DBNull.Value ? resultat.ToString().Trim('\'') : "";
                 }
             }
         }
