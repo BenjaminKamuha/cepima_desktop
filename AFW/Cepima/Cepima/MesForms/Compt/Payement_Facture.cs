@@ -362,7 +362,6 @@ namespace Cepima.MesForms.Compt
                 if (nouveauReste == 0)
                 {
                     statut = "Payé";
-
                 }
                 else
                 {

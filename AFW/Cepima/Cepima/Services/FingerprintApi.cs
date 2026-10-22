@@ -294,8 +294,8 @@ namespace Cepima.Services
                         "{\"success\":false," +
                         "\"message\":\"Agent non reconnu\"}");
 
+                    ShowUnknownAgentDialogOnUIThread();
                     
-
                     return;
                 }
 

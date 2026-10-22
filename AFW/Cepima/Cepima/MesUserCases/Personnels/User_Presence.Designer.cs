@@ -128,7 +128,7 @@
             this.bt_print_list.BackColor = System.Drawing.Color.Transparent;
             this.bt_print_list.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.bt_print_list.BorderRadius = 8;
-            this.bt_print_list.ButtonText = "Imprimer la liste";
+            this.bt_print_list.ButtonText = "";
             this.bt_print_list.Cursor = System.Windows.Forms.Cursors.Hand;
             this.bt_print_list.DefaultBackColor = System.Drawing.Color.DodgerBlue;
             this.bt_print_list.FlatAppearance.BorderSize = 0;
@@ -138,11 +138,10 @@
             this.bt_print_list.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.bt_print_list.Image = global::Cepima.Properties.Resources.print_30px;
             this.bt_print_list.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_print_list.Location = new System.Drawing.Point(503, 10);
+            this.bt_print_list.Location = new System.Drawing.Point(1007, 7);
             this.bt_print_list.Name = "bt_print_list";
-            this.bt_print_list.Size = new System.Drawing.Size(156, 35);
+            this.bt_print_list.Size = new System.Drawing.Size(45, 35);
             this.bt_print_list.TabIndex = 37;
-            this.bt_print_list.Text = "Imprimer la liste";
             this.bt_print_list.TextColor = System.Drawing.Color.White;
             this.bt_print_list.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bt_print_list.UseVisualStyleBackColor = false;
@@ -176,7 +175,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(807, 16);
+            this.label8.Location = new System.Drawing.Point(743, 13);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(75, 20);
             this.label8.TabIndex = 4;
@@ -188,7 +187,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(529, 20);
+            this.label9.Location = new System.Drawing.Point(465, 17);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 20);
             this.label9.TabIndex = 5;
@@ -210,7 +209,7 @@
             this.cbx_periode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_periode.FocusBorderColor = System.Drawing.Color.Silver;
             this.cbx_periode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbx_periode.Location = new System.Drawing.Point(887, 12);
+            this.cbx_periode.Location = new System.Drawing.Point(823, 9);
             this.cbx_periode.Name = "cbx_periode";
             this.cbx_periode.SelectedItem = null;
             this.cbx_periode.SelectedValue = null;
@@ -234,7 +233,7 @@
             this.cbx_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_statut.FocusBorderColor = System.Drawing.Color.Silver;
             this.cbx_statut.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.cbx_statut.Location = new System.Drawing.Point(621, 13);
+            this.cbx_statut.Location = new System.Drawing.Point(557, 10);
             this.cbx_statut.Name = "cbx_statut";
             this.cbx_statut.SelectedItem = null;
             this.cbx_statut.SelectedValue = null;
