@@ -25,8 +25,6 @@ namespace Cepima.MesUserCases
 
             ConfigurerRecherche();
         }
-
-
         private void ChargerFichesMedicales(string idPatient)
         {
             panel_patient.Controls.Clear();
