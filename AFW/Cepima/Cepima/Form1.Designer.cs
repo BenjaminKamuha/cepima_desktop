@@ -269,10 +269,10 @@
             // 
             this.lb_version.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_version.AutoSize = true;
-            this.lb_version.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_version.Location = new System.Drawing.Point(909, 15);
+            this.lb_version.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_version.Location = new System.Drawing.Point(897, 11);
             this.lb_version.Name = "lb_version";
-            this.lb_version.Size = new System.Drawing.Size(31, 14);
+            this.lb_version.Size = new System.Drawing.Size(41, 19);
             this.lb_version.TabIndex = 4;
             this.lb_version.Text = "1.0.0";
             // 
@@ -296,15 +296,16 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
             // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(850, 15);
+            this.label5.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(834, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 15);
+            this.label5.Size = new System.Drawing.Size(71, 19);
             this.label5.TabIndex = 5;
             this.label5.Text = "Version : ";
             // 
@@ -328,6 +329,7 @@
             this.label3.Size = new System.Drawing.Size(87, 15);
             this.label3.TabIndex = 5;
             this.label3.Text = "Serveur local : ";
+            this.label3.Visible = false;
             // 
             // panel6
             // 

@@ -43,6 +43,7 @@
             this.colPersonnel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFonction = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFixe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHeureEntree = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHeureSortie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatut = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +60,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.customRoundedPanel4 = new CustomRoundedPanel();
             this.lbl_nb_total = new System.Windows.Forms.Label();
+            this.lb_heure_fixe = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.customRoundedPanel3 = new CustomRoundedPanel();
             this.lbl_mois_salaire = new System.Windows.Forms.Label();
@@ -125,6 +128,7 @@
             // 
             // bt_print_list
             // 
+            this.bt_print_list.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bt_print_list.BackColor = System.Drawing.Color.Transparent;
             this.bt_print_list.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.bt_print_list.BorderRadius = 8;
@@ -266,6 +270,7 @@
             this.colPersonnel,
             this.colFonction,
             this.colDate,
+            this.colFixe,
             this.colHeureEntree,
             this.colHeureSortie,
             this.colStatut});
@@ -305,6 +310,12 @@
             this.colDate.HeaderText = "Date";
             this.colDate.Name = "colDate";
             this.colDate.ReadOnly = true;
+            // 
+            // colFixe
+            // 
+            this.colFixe.HeaderText = "Heure fixe";
+            this.colFixe.Name = "colFixe";
+            this.colFixe.ReadOnly = true;
             // 
             // colHeureEntree
             // 
@@ -493,6 +504,8 @@
             this.customRoundedPanel4.BorderRadius = 10;
             this.customRoundedPanel4.BorderSize = 2;
             this.customRoundedPanel4.Controls.Add(this.lbl_nb_total);
+            this.customRoundedPanel4.Controls.Add(this.lb_heure_fixe);
+            this.customRoundedPanel4.Controls.Add(this.label10);
             this.customRoundedPanel4.Controls.Add(this.label5);
             this.customRoundedPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customRoundedPanel4.HoverBackColor = System.Drawing.Color.Empty;
@@ -520,6 +533,28 @@
             this.lbl_nb_total.Size = new System.Drawing.Size(21, 24);
             this.lbl_nb_total.TabIndex = 0;
             this.lbl_nb_total.Text = "0";
+            // 
+            // lb_heure_fixe
+            // 
+            this.lb_heure_fixe.AutoSize = true;
+            this.lb_heure_fixe.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.lb_heure_fixe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(90)))), ((int)(((byte)(150)))));
+            this.lb_heure_fixe.Location = new System.Drawing.Point(186, 79);
+            this.lb_heure_fixe.Name = "lb_heure_fixe";
+            this.lb_heure_fixe.Size = new System.Drawing.Size(125, 20);
+            this.lb_heure_fixe.TabIndex = 0;
+            this.lb_heure_fixe.Text = "Non renseigné";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(90)))), ((int)(((byte)(150)))));
+            this.label10.Location = new System.Drawing.Point(53, 79);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(146, 20);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Heure d\'arrivée : ";
             // 
             // label5
             // 
@@ -648,12 +683,15 @@
         private System.Windows.Forms.Label label9;
         private MyRoundedComboBox cbx_periode;
         private MyRoundedComboBox cbx_statut;
+        private RoundedButton bt_print_list;
+        private System.Windows.Forms.Label lb_heure_fixe;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPersonnel;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFonction;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFixe;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeureEntree;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeureSortie;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatut;
-        private RoundedButton bt_print_list;
     }
 }

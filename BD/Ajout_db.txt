@@ -1,9 +1,3 @@
-ALTER TABLE presences
-DROP FOREIGN KEY fk_presence_personnel;
+ALTER TABLE présences
+ADD COLUMN heure_fixe time NOT NULL DEFAULT '08:20:00' AFTER date_presence
 
-ALTER TABLE presences
-ADD CONSTRAINT fk_presence_personnel
-FOREIGN KEY (id_personnel)
-REFERENCES personnels(id_personnel)
-ON DELETE CASCADE
-ON UPDATE CASCADE;

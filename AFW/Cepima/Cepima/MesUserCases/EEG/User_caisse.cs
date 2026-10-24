@@ -292,358 +292,118 @@ namespace Cepima.MesUserCases.EEG
             }
         }
 
-
-
-        private void Create_pan_prescription(
-        string idPrescription,
-        string idPatient,
-        string nom,
-        string postnom,
-        string prenom,
-        string numero,
-        string statut,
-        string datePrescription,
-        string type,
-        string observation)
+        private void Create_pan_prescription(string idPrescription, string idPatient, string nom, string postnom, string prenom, string numero, string statut, string datePrescription, string type, string observation)
         {
-            // =====================================================
             // PANEL
-            // =====================================================
-
             BunifuRoundedPanel panPrescription = new BunifuRoundedPanel();
-
-            panPrescription.Size =
-                new Size(215, 145);
-
-            panPrescription.BorderRadius =
-                8;
+            panPrescription.Size = new Size(290, 145);
+            panPrescription.BorderRadius = 8;
             panPrescription.ShadowDepth = 10;
-            panPrescription.BorderColor =
-                Color.Silver;
+            panPrescription.BorderColor = Color.Silver;
+            panPrescription.BorderSize = 1;
+            panPrescription.Margin = new System.Windows.Forms.Padding(10);
+            panPrescription.Tag = idPrescription;
 
-            panPrescription.BorderSize =
-                1;
-
-            panPrescription.Tag =
-                idPrescription;
-
-
-            // =====================================================
             // COULEURS
-            // =====================================================
+            Color couleurNormale = Color.White;
+            Color couleurHover = Color.FromArgb(245, 248, 255);
+            panPrescription.BackColor = couleurNormale;
 
-            Color couleurNormale =
-                Color.White;
-
-            Color couleurHover =
-                Color.FromArgb(
-                    245,
-                    248,
-                    255);
-
-            panPrescription.BackColor =
-                couleurNormale;
-
-            //panPrescription =
-            //    couleurHover;
-
-            //panPrescription.HoverCursor =
-            //    Cursors.Hand;
-
-
-            // =====================================================
             // IMAGE PRESCRIPTION
-            // =====================================================
+            PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.capsules_100px, new Point(10, 10), new Size(60, 60));
+            picture.Cursor = Cursors.Hand;
+            panPrescription.Controls.Add(picture);
 
-            PictureBox picture =
-                MesClasses.ManagerClasse.AddPicture(
-                    Properties.Resources.capsules_100px,
-                    new Point(10, 10),
-                    new Size(60, 60));
-
-            picture.Cursor =
-                Cursors.Hand;
-
-            panPrescription.Controls.Add(
-                picture);
-
-
-            // =====================================================
             // CLICK
-            // =====================================================
-
-            EventHandler clickPrescription =
-                delegate(object sender, EventArgs e)
+            EventHandler clickPrescription = delegate(object sender, EventArgs e)
+            {
+                try
                 {
-                    try
-                    {
-                        int prescriptionId =
-                            Convert.ToInt32(
-                                idPrescription);
+                    int prescriptionId = Convert.ToInt32(idPrescription);
+                    int patientId = Convert.ToInt32(idPatient);
+                    Form1.PATIENT_ID = patientId;
 
-                        int patientId =
-                            Convert.ToInt32(
-                                idPatient);
+                    MesForms.Pharmacie.Form_prescription frm = new MesForms.Pharmacie.Form_prescription(prescriptionId);
+                    frm.ShowDialog();
 
+                    ChargerPrescriptions();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'ouverture de la prescription.\n\n" + ex.Message, "Prescription", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
 
-                        // -------------------------------------------------
-                        // STOCKER L'ID PATIENT
-                        // -------------------------------------------------
-
-                        Form1.PATIENT_ID =
-                            patientId;
-
-
-                        // -------------------------------------------------
-                        // OUVRIR LA PRESCRIPTION
-                        // -------------------------------------------------
-
-                        MesForms.Pharmacie.Form_prescription frm =
-                            new MesForms.Pharmacie.Form_prescription(
-                                prescriptionId);
-
-                        frm.ShowDialog();
-
-
-                        // -------------------------------------------------
-                        // RECHARGER APRES RETOUR
-                        // -------------------------------------------------
-
-                        ChargerPrescriptions();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(
-                            "Erreur lors de l'ouverture de la prescription.\n\n" +
-                            ex.Message,
-                            "Prescription",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                };
-
-
-            // =====================================================
             // CLICK SUR LE PANEL
-            // =====================================================
+            panPrescription.Click += clickPrescription;
 
-            panPrescription.Click +=
-                clickPrescription;
+            // NOM DU PATIENT
+            string patient = (nom + " " + postnom + " " + prenom).Trim();
+            Label lbPatient = MesClasses.ManagerClasse.CustomLabel(patient, new Point(75, 15));
+            lbPatient.AutoSize = true;
+            lbPatient.Font = new Font("Calibri", 10, FontStyle.Bold);
+            lbPatient.Cursor = Cursors.Hand;
+            panPrescription.Controls.Add(lbPatient);
 
-
-            // =====================================================
-            // PATIENT
-            // =====================================================
-
-            string patient =
-                (nom + " " + postnom + " " + prenom)
-                .Trim();
-
-            Label lbPatient =
-                MesClasses.ManagerClasse.CustomLabel(
-                    patient,
-                    new Point(65, 15));
-
-            lbPatient.AutoSize =
-                true;
-
-            lbPatient.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold);
-
-            lbPatient.Cursor =
-                Cursors.Hand;
-
-            panPrescription.Controls.Add(
-                lbPatient);
-
-
-            // =====================================================
             // NUMERO FICHE
-            // =====================================================
+            Label lbNumero = MesClasses.ManagerClasse.CustomLabel(numero, new Point(75, 40));
+            lbNumero.AutoSize = true;
+            lbNumero.Font = new Font("Calibri", 9, FontStyle.Regular);
+            lbNumero.Cursor = Cursors.Hand;
+            panPrescription.Controls.Add(lbNumero);
 
-            Label lbNumero =
-                MesClasses.ManagerClasse.CustomLabel(
-                    numero,
-                    new Point(10, 67));
-
-            lbNumero.AutoSize =
-                true;
-
-            lbNumero.Font =
-                new Font(
-                    "Calibri",
-                    9,
-                    FontStyle.Regular);
-
-            lbNumero.Cursor =
-                Cursors.Hand;
-
-            panPrescription.Controls.Add(
-                lbNumero);
-
-
-            // =====================================================
             // TYPE
-            // =====================================================
+            Label lbType = MesClasses.ManagerClasse.CustomLabel(type, new Point(75, 63));
+            lbType.AutoSize = true;
+            lbType.Font = new Font("Calibri", 9, FontStyle.Bold);
+            lbType.Cursor = Cursors.Hand;
+            lbType.ForeColor = type == "Hospitalisation" ? Color.Blue : Color.DarkGreen;
+            panPrescription.Controls.Add(lbType);
 
-            Label lbType =
-                MesClasses.ManagerClasse.CustomLabel(
-                    type,
-                    new Point(10, 88));
-
-            lbType.AutoSize =
-                true;
-
-            lbType.Font =
-                new Font(
-                    "Calibri",
-                    9,
-                    FontStyle.Bold);
-
-            lbType.Cursor =
-                Cursors.Hand;
-
-
-            if (type == "Hospitalisation")
-            {
-                lbType.ForeColor =
-                    Color.Blue;
-            }
-            else
-            {
-                lbType.ForeColor =
-                    Color.DarkGreen;
-            }
-
-            panPrescription.Controls.Add(
-                lbType);
-
-
-            // =====================================================
             // STATUT
-            // =====================================================
+            Label lbStatut = MesClasses.ManagerClasse.CustomLabel(statut, new Point(75, 86));
+            lbStatut.AutoSize = true;
+            lbStatut.Font = new Font("Calibri", 9, FontStyle.Bold);
+            lbStatut.Cursor = Cursors.Hand;
 
-            Label lbStatut =
-                MesClasses.ManagerClasse.CustomLabel(
-                    statut,
-                    new Point(10, 106));
-
-            lbStatut.AutoSize =
-                true;
-
-            lbStatut.Font =
-                new Font(
-                    "Calibri",
-                    9,
-                    FontStyle.Bold);
-
-            lbStatut.Cursor =
-                Cursors.Hand;
-
-
-            if (string.Equals(
-                statut,
-                "ACTIVE",
-                StringComparison.OrdinalIgnoreCase))
-            {
-                lbStatut.ForeColor =
-                    Color.Orange;
-            }
-            else if (string.Equals(
-                statut,
-                "DELIVREE",
-                StringComparison.OrdinalIgnoreCase))
-            {
-                lbStatut.ForeColor =
-                    Color.Green;
-            }
+            if (string.Equals(statut, "ACTIVE", StringComparison.OrdinalIgnoreCase))
+                lbStatut.ForeColor = Color.Orange;
+            else if (string.Equals(statut, "DELIVREE", StringComparison.OrdinalIgnoreCase))
+                lbStatut.ForeColor = Color.Green;
             else
-            {
-                lbStatut.ForeColor =
-                    Color.Gray;
-            }
+                lbStatut.ForeColor = Color.Gray;
 
-            panPrescription.Controls.Add(
-                lbStatut);
+            panPrescription.Controls.Add(lbStatut);
 
-
-            // =====================================================
             // DATE
-            // =====================================================
+            Label lbDate = MesClasses.ManagerClasse.CustomLabel(datePrescription, new Point(75, 109));
+            lbDate.AutoSize = true;
+            lbDate.Font = new Font("Calibri", 8, FontStyle.Regular);
+            lbDate.ForeColor = Color.Gray;
+            lbDate.Cursor = Cursors.Hand;
+            panPrescription.Controls.Add(lbDate);
 
-            Label lbDate =
-                MesClasses.ManagerClasse.CustomLabel(
-                    datePrescription,
-                    new Point(10, 125));
-
-            lbDate.AutoSize =
-                true;
-
-            lbDate.Font =
-                new Font(
-                    "Calibri",
-                    8,
-                    FontStyle.Regular);
-
-            lbDate.ForeColor =
-                Color.Gray;
-
-            lbDate.Cursor =
-                Cursors.Hand;
-
-            panPrescription.Controls.Add(
-                lbDate);
-
-
-            // =====================================================
             // OBSERVATION
-            // =====================================================
-
-            if (!string.IsNullOrWhiteSpace(
-                observation))
+            if (!string.IsNullOrWhiteSpace(observation))
             {
                 // Conservation du comportement original.
-                // Aucun changement de fonctionnalité.
             }
 
-
-            // =====================================================
             // CLICK SUR TOUS LES CONTROLES ENFANTS
-            // =====================================================
+            AjouterClickAuxEnfants(panPrescription, clickPrescription);
 
-            AjouterClickAuxEnfants(
-                panPrescription,
-                clickPrescription);
-
-
-            // =====================================================
             // HOVER SUR TOUS LES CONTROLES ENFANTS
-            // =====================================================
+            AjouterHoverAuxEnfants(panPrescription, couleurHover, couleurNormale);
 
-            AjouterHoverAuxEnfants(
-                panPrescription,
-                couleurHover,
-                couleurNormale);
-
-
-            // =====================================================
             // AJOUT AU FLOWLAYOUTPANEL
-            // =====================================================
+            pnl_examen.Controls.Add(panPrescription);
+            //MesClasses.ManagerClasse.AddControl(pnl_examen, panPrescription, 20, 10);
 
-            MesClasses.ManagerClasse.AddControl(pnl_examen, panPrescription, 10, 10);
-
-            if (pnl_examen.Controls.Count > 0)
-            {
-                ProgressiveDisplay pd =
-                    new ProgressiveDisplay(
-                        pnl_examen,
-                        100);
-
-                pd.Start();
-            }
+            //if (pnl_examen.Controls.Count > 0)
+            //{
+            //    ProgressiveDisplay pd = new ProgressiveDisplay(pnl_examen, 100);
+            //    pd.Start();
+            //}
         }
 
 
@@ -675,9 +435,6 @@ namespace Cepima.MesUserCases.EEG
 
             return reader[column].ToString();
         }
-
-
-
 
         private void ChargerDemandesEEG()
         {
@@ -987,319 +744,101 @@ namespace Cepima.MesUserCases.EEG
         // CREER LE PANEL D'UNE DEMANDE
         // ============================================================
 
-        private void Create_pan_examen(
-            string idDemande,
-            string idPatient,
-            int idPrestation,
-            string nom,
-            string postnom,
-            string prenom,
-            string numero,
-            string status,
-            string dateDemande,
-            string priorite,
-            string motif)
+        private void Create_pan_examen(string idDemande, string idPatient, int idPrestation, string nom, string postnom, string prenom, string numero, string status, string dateDemande, string priorite, string motif)
         {
-            // ============================================================
             // CREATION DU PANEL
-            // ============================================================
+            BunifuRoundedPanel panDemande = new BunifuRoundedPanel();
+            panDemande.Size = new Size(290, 145);
+            panDemande.BorderRadius = 8;
+            panDemande.BorderColor = Color.Silver;
+            panDemande.BorderSize = 1;
+            panDemande.Margin = new System.Windows.Forms.Padding(10);
+            panDemande.Tag = idDemande;
 
-            BunifuRoundedPanel panDemande =
-                new BunifuRoundedPanel();
-
-            panDemande.Size =
-                new Size(
-                    215,
-                    145);
-
-            panDemande.BorderRadius =
-                8;
-
-            panDemande.BorderColor =
-                Color.Silver;
-
-            panDemande.BorderSize =
-                1;
-
-            // ============================================================
-            // ID DEMANDE
-            // ============================================================
-
-            panDemande.Tag =
-                idDemande;
-
-            // ============================================================
             // HOVER
-            // ============================================================
+            Color couleurNormale = Color.White;
+            Color couleurHover = Color.FromArgb(245, 248, 255);
+            panDemande.BackColor = couleurNormale;
 
-            Color couleurNormale =
-                Color.White;
-
-            Color couleurHover =
-                Color.FromArgb(
-                    245,
-                    248,
-                    255);
-
-            panDemande.BackColor =
-                couleurNormale;
-
-            // ============================================================
             // AJOUT AU PANEL PRINCIPAL
-            // ============================================================
 
-            MesClasses.ManagerClasse.AddControl(
-                pnl_examen,
-                panDemande,
-                10,
-                8);
-
-            // ============================================================
             // EVENEMENT CLICK
-            // ============================================================
-
-            EventHandler clickDemande =
-                delegate(object sender, EventArgs e)
+            EventHandler clickDemande = delegate(object sender, EventArgs e)
+            {
+                try
                 {
-                    try
-                    {
-                        // ---------------------------------------------
-                        // PATIENT
-                        // ---------------------------------------------
+                    Form1.PATIENT_ID = Convert.ToInt32(idPatient);
+                    Form1.DEMANDE_ID = Convert.ToInt32(idDemande);
 
-                        Form1.PATIENT_ID =
-                            Convert.ToInt32(
-                                idPatient);
+                    Form_caisse_eeg form = new Form_caisse_eeg(idPatient, idDemande, idPrestation);
+                    form.ShowDialog();
 
-                        // ---------------------------------------------
-                        // DEMANDE
-                        // ---------------------------------------------
+                    ChargerDemandesEEG();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'ouverture de la demande EEG.\n\n" + ex.Message, "Demande EEG", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
 
-                        Form1.DEMANDE_ID =
-                            Convert.ToInt32(
-                                idDemande);
-
-                        // ---------------------------------------------
-                        // OUVRIR CAISSE EEG
-                        // ---------------------------------------------
-
-                        Form_caisse_eeg form =
-                            new Form_caisse_eeg(
-                                idPatient,
-                                idDemande,
-                                idPrestation);
-
-                        form.ShowDialog();
-
-                        // ---------------------------------------------
-                        // RECHARGER LA LISTE
-                        // ---------------------------------------------
-
-                        ChargerDemandesEEG();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(
-                            "Erreur lors de l'ouverture de la demande EEG.\n\n" +
-                            ex.Message,
-                            "Demande EEG",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
-                };
-
-            // ============================================================
             // CLICK SUR LE PANEL
-            // ============================================================
+            panDemande.Click += clickDemande;
 
-            panDemande.Click +=
-                clickDemande;
-
-            // ============================================================
             // IMAGE EEG
-            // ============================================================
+            PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.brain_90px, new Point(10, 10), new Size(60, 60));
+            picture.Cursor = Cursors.Hand;
+            panDemande.Controls.Add(picture);
 
-            PictureBox picture =
-                MesClasses.ManagerClasse.AddPicture(
-                    Properties.Resources.brain_90px,
-                    new Point(10, 10),
-                    new Size(60, 60));
-
-            picture.Cursor =
-                Cursors.Hand;
-
-            panDemande.Controls.Add(
-                picture);
-
-            // ============================================================
             // NOM
-            // ============================================================
+            Label lbNom = MesClasses.ManagerClasse.CustomLabel(nom, new Point(75, 15));
+            lbNom.AutoSize = true;
+            lbNom.Font = new Font("Calibri", 10, FontStyle.Bold);
+            lbNom.Cursor = Cursors.Hand;
+            panDemande.Controls.Add(lbNom);
 
-            Label lbNom =
-                MesClasses.ManagerClasse.CustomLabel(
-                    nom,
-                    new Point(
-                        75,
-                        15));
-
-            lbNom.AutoSize =
-                true;
-
-            lbNom.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold);
-
-            lbNom.Cursor =
-                Cursors.Hand;
-
-            panDemande.Controls.Add(
-                lbNom);
-
-            // ============================================================
             // POST-NOM
-            // ============================================================
+            Label lbPost = MesClasses.ManagerClasse.CustomLabel(postnom, new Point(75, 35));
+            lbPost.AutoSize = true;
+            lbPost.Font = new Font("Calibri", 10, FontStyle.Bold);
+            lbPost.Cursor = Cursors.Hand;
+            panDemande.Controls.Add(lbPost);
 
-            Label lbPost =
-                MesClasses.ManagerClasse.CustomLabel(
-                    postnom,
-                    new Point(
-                        75,
-                        35));
-
-            lbPost.AutoSize =
-                true;
-
-            lbPost.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold);
-
-            lbPost.Cursor =
-                Cursors.Hand;
-
-            panDemande.Controls.Add(
-                lbPost);
-
-            // ============================================================
             // NUMERO FICHE
-            // ============================================================
+            Label lbNumero = MesClasses.ManagerClasse.CustomLabel(numero, new Point(10, 67));
+            lbNumero.AutoSize = true;
+            lbNumero.Font = new Font("Calibri", 9, FontStyle.Regular);
+            lbNumero.Cursor = Cursors.Hand;
+            panDemande.Controls.Add(lbNumero);
 
-            Label lbNumero =
-                MesClasses.ManagerClasse.CustomLabel(
-                    numero,
-                    new Point(
-                        10,
-                        67));
-
-            lbNumero.AutoSize =
-                true;
-
-            lbNumero.Font =
-                new Font(
-                    "Calibri",
-                    9,
-                    FontStyle.Regular);
-
-            lbNumero.Cursor =
-                Cursors.Hand;
-
-            panDemande.Controls.Add(
-                lbNumero);
-
-            // ============================================================
             // STATUT
-            // ============================================================
-
-            Label lbStatus =
-                MesClasses.ManagerClasse.CustomLabel(
-                    status,
-                    new Point(
-                        10,
-                        88));
-
-            lbStatus.AutoSize =
-                true;
-
-            lbStatus.Font =
-                new Font(
-                    "Calibri",
-                    9,
-                    FontStyle.Bold);
-
-            lbStatus.Cursor =
-                Cursors.Hand;
-
-            // ------------------------------------------------------------
-            // COULEUR DU STATUT
-            // ------------------------------------------------------------
+            Label lbStatus = MesClasses.ManagerClasse.CustomLabel(status, new Point(10, 88));
+            lbStatus.AutoSize = true;
+            lbStatus.Font = new Font("Calibri", 9, FontStyle.Bold);
+            lbStatus.Cursor = Cursors.Hand;
 
             if (status == "Terminée")
-            {
-                lbStatus.ForeColor =
-                    Color.Green;
-            }
+                lbStatus.ForeColor = Color.Green;
             else if (status == "Demandée")
-            {
-                lbStatus.ForeColor =
-                    Color.Orange;
-            }
+                lbStatus.ForeColor = Color.Orange;
             else if (status == "Annulée")
-            {
-                lbStatus.ForeColor =
-                    Color.Red;
-            }
+                lbStatus.ForeColor = Color.Red;
 
-            panDemande.Controls.Add(
-                lbStatus);
+            panDemande.Controls.Add(lbStatus);
 
-            // ============================================================
             // DATE
-            // ============================================================
+            Label lbDate = MesClasses.ManagerClasse.CustomLabel(dateDemande, new Point(10, 110));
+            lbDate.AutoSize = true;
+            lbDate.Font = new Font("Calibri", 8, FontStyle.Regular);
+            lbDate.ForeColor = Color.Gray;
+            lbDate.Cursor = Cursors.Hand;
+            panDemande.Controls.Add(lbDate);
 
-            Label lbDate =
-                MesClasses.ManagerClasse.CustomLabel(
-                    dateDemande,
-                    new Point(
-                        10,
-                        110));
-
-            lbDate.AutoSize =
-                true;
-
-            lbDate.Font =
-                new Font(
-                    "Calibri",
-                    8,
-                    FontStyle.Regular);
-
-            lbDate.ForeColor =
-                Color.Gray;
-
-            lbDate.Cursor =
-                Cursors.Hand;
-
-            panDemande.Controls.Add(
-                lbDate);
-
-            // ============================================================
             // CLICK SUR TOUS LES CONTROLES ENFANTS
-            // ============================================================
+            AjouterClickAuxEnfants(panDemande, clickDemande);
 
-            AjouterClickAuxEnfants(
-                panDemande,
-                clickDemande);
-
-            // ============================================================
             // HOVER SUR TOUS LES CONTROLES ENFANTS
-            // ============================================================
-
-            AjouterHoverAuxEnfants(
-                panDemande,
-                couleurHover,
-                couleurNormale);
+            AjouterHoverAuxEnfants(panDemande, couleurHover, couleurNormale);
+            pnl_examen.Controls.Add(panDemande);
         }
 
 
@@ -1423,6 +962,138 @@ namespace Cepima.MesUserCases.EEG
         private void rd_EEG_CheckedChanged(object sender, EventArgs e)
         {
             ChargerDemandesEEG();
+        }
+
+        private void rb_recu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rb_recu.Checked == true)
+            {
+                ChargerRecus();
+            }
+            
+        }
+        // charger les reçus de paiements
+        private void ChargerRecus()
+        {
+            try
+            {
+                pnl_examen.SuspendLayout();
+                pnl_examen.Controls.Clear();
+                pnl_examen.FlowDirection =
+                  FlowDirection.LeftToRight;
+
+                pnl_examen.WrapContents = true;
+                pnl_examen.AutoScroll = true;
+                pnl_examen.Padding = new Padding(10, 10, 8, 10);
+
+                using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+                {
+
+                    string recherche = tb_search_demande.Text.Trim();
+
+                    string query = @"
+                                SELECT pa.id_paiement, pa.id_facture, pa.date_paiement, pa.montant, pa.type_paiement,
+                                       f.statut, p.id_patient, p.nom, p.post_nom, p.prenom,
+                                       TIMESTAMPDIFF(YEAR, p.date_naissance, CURDATE()) AS age
+                                FROM paiement pa
+                                INNER JOIN facture f ON pa.id_facture = f.id_facture
+                                INNER JOIN patients p ON f.id_patient = p.id_patient
+                                WHERE (@recherche = ''
+                                    OR p.nom LIKE @mot
+                                    OR p.post_nom LIKE @mot
+                                    OR p.prenom LIKE @mot)
+                                ORDER BY pa.date_paiement DESC, pa.id_paiement DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@recherche", recherche);
+                        cmd.Parameters.AddWithValue("@mot", "%" + recherche + "%");
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Create_pan_recu(
+                                    reader["id_paiement"].ToString(),
+                                    reader["id_patient"].ToString(),
+                                    (reader["nom"] + " " + reader["post_nom"] + " " + reader["prenom"]).ToString().Trim(),
+                                    reader["age"] == DBNull.Value ? "" : reader["age"].ToString(),
+                                    Convert.ToDateTime(reader["date_paiement"]).ToString("dd/MM/yyyy"),
+                                    reader["statut"].ToString(),
+                                    reader["montant"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors du chargement des reçus :\n" + ex.Message, "Reçus", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                pnl_examen.ResumeLayout(true);
+            }
+        }
+
+        private void Create_pan_recu(string idPaiement, string idPatient, string patient, string age, string datePaiement, string statut, string montant)
+        {
+            BunifuRoundedPanel panRecu = new BunifuRoundedPanel();
+            panRecu.Size = new Size(290, 155);
+            panRecu.BorderRadius = 8;
+            panRecu.ShadowDepth = 10;
+            panRecu.BorderColor = Color.Silver;
+            panRecu.BorderSize = 1;
+            panRecu.Margin = new System.Windows.Forms.Padding(10);
+            panRecu.BackColor = Color.White;
+
+            Label lbPatient = MesClasses.ManagerClasse.CustomLabel(patient, new Point(12, 12));
+            lbPatient.AutoSize = true;
+            lbPatient.Font = new Font("Calibri", 11, FontStyle.Bold);
+            panRecu.Controls.Add(lbPatient);
+
+            Label lbAge = MesClasses.ManagerClasse.CustomLabel("Âge : " + age + " ans", new Point(12, 40));
+            lbAge.AutoSize = true;
+            panRecu.Controls.Add(lbAge);
+
+            Label lbDate = MesClasses.ManagerClasse.CustomLabel("Paiement : " + datePaiement, new Point(12, 63));
+            lbDate.AutoSize = true;
+            panRecu.Controls.Add(lbDate);
+
+            Label lbStatut = MesClasses.ManagerClasse.CustomLabel("Statut : " + statut, new Point(12, 86));
+            lbStatut.AutoSize = true;
+            lbStatut.Font = new Font("Calibri", 9, FontStyle.Bold);
+            lbStatut.ForeColor = statut == "Payé" ? Color.Green : Color.DarkOrange;
+            panRecu.Controls.Add(lbStatut);
+
+            Label lbMontant = MesClasses.ManagerClasse.CustomLabel("Montant : " + montant + " $", new Point(12, 108));
+            lbMontant.AutoSize = true;
+            lbMontant.Font = new Font("Calibri", 9, FontStyle.Bold);
+            panRecu.Controls.Add(lbMontant);
+
+            Button btnImprimer = new Button();
+            btnImprimer.Text = "Imprimer";
+            btnImprimer.Size = new Size(85, 28);
+            btnImprimer.Location = new Point(160, 115);
+            btnImprimer.Cursor = Cursors.Hand;
+
+            btnImprimer.Click += delegate(object sender, EventArgs e)
+            {
+                try
+                {
+                    int paiementId = Convert.ToInt32(idPaiement);
+                    MesForms.FormRecu frm = new MesForms.FormRecu(paiementId);
+                    frm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de l'ouverture du reçu :\n" + ex.Message, "Reçu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            };
+
+            panRecu.Controls.Add(btnImprimer);
+            pnl_examen.Controls.Add(panRecu);
+            //MesClasses.ManagerClasse.AddControl(pnl_examen, panRecu, 10, 10);
         }
     }
 }

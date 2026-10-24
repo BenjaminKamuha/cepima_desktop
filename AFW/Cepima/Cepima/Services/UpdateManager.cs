@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace Cepima.Services
 {
@@ -53,7 +54,7 @@ namespace Cepima.Services
         // VERIFIER LA MISE A JOUR
         // =========================================================
 
-        public async Task CheckForUpdateAsync()
+        public async Task CheckForUpdateAsync(bool message=true)
         {
             try
             {
@@ -121,12 +122,15 @@ namespace Cepima.Services
                     latestVersionString,
                     out latestVersion))
                 {
-                    MessageBox.Show(
+                    if (message)
+                    {
+                        MessageBox.Show(
                         "La version GitHub est invalide : " +
                         release.tag_name,
                         "Mise à jour de CEPIMA",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+                    }
 
                     return;
                 }
@@ -137,7 +141,9 @@ namespace Cepima.Services
 
                 if (latestVersion <= currentVersion)
                 {
-                    MessageBox.Show(
+                    if (message)
+                    {
+                        MessageBox.Show(
                         "Aucune mise à jour.\r\n\r\n" +
                         "Version actuelle : " +
                         currentVersionString +
@@ -147,6 +153,13 @@ namespace Cepima.Services
                         "CEPIMA",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                    }
+
+                    else
+                    {
+                        Form1.LB_VERSION.ForeColor = Color.Green;
+                    }
+                    
 
                     return;
                 }
@@ -179,7 +192,9 @@ namespace Cepima.Services
 
                 if (updateAsset == null)
                 {
-                    MessageBox.Show(
+                    if (message)
+                    {
+                        MessageBox.Show(
                         "La version " +
                         latestVersionString +
                         " est disponible, mais aucun fichier ZIP " +
@@ -187,6 +202,7 @@ namespace Cepima.Services
                         "Mise à jour de CEPIMA",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
+                    }
 
                     return;
                 }
@@ -216,6 +232,7 @@ namespace Cepima.Services
                         MessageBoxIcon.Information);
 
                 if (confirmation != DialogResult.Yes)
+                    Form1.LB_VERSION.ForeColor = Color.Red;
                     return;
 
                 // -------------------------------------------------
@@ -391,12 +408,16 @@ namespace Cepima.Services
             }
             catch (WebException ex)
             {
-                MessageBox.Show(
+                if (message)
+                {
+                    MessageBox.Show(
                     "Impossible de contacter GitHub.\r\n\r\n" +
                     ex.Message,
                     "Mise à jour de CEPIMA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+                }
+                
             }
             catch (Exception ex)
             {

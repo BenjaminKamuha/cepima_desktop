@@ -21,7 +21,6 @@ namespace Cepima.MesUserCases.Personnels
         // ============================================================
         // LOAD
         // ============================================================
-
         private DataTable RecupererDonneesPresences()
         {
             DataTable table = new DataTable();
@@ -256,6 +255,15 @@ namespace Cepima.MesUserCases.Personnels
 
 
             cbx_periode.SelectedIndex = 0;
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
+                string query = "SELECT COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'presences' AND COLUMN_NAME = 'heure_fixe'";
+                using (MySqlCommand cmd = new MySqlCommand(query, MesClasses.ManagerClasse.GetConnexion()))
+                {
+                    object resultat = cmd.ExecuteScalar();
+                    lb_heure_fixe.Text = resultat != null && resultat != DBNull.Value ? resultat.ToString().Trim('\'') : "";
+                }
+            }
         }
 
         // ============================================================
@@ -280,31 +288,19 @@ namespace Cepima.MesUserCases.Personnels
                 dgv_presences.Rows.Clear();
 
                 string requete = @"
-                    SELECT
-                        p.id_personnel,
-
-                        CONCAT(
-                            COALESCE(p.nom, ''),
-                            ' ',
-                            COALESCE(p.post_nom, ''),
-                            ' ',
-                            COALESCE(p.prenom, '')
-                        ) AS personnel,
-
-                        p.fonction,
-
-                        pr.date_presence,
-                        pr.heure_entree,
-                        pr.heure_sortie,
-                        pr.statut
-
-                    FROM presences pr
-
-                    INNER JOIN personnels p
-                        ON p.id_personnel = pr.id_personnel
-
-                    WHERE 1 = 1
-                ";
+                        SELECT
+                            p.id_personnel,
+                            CONCAT(COALESCE(p.nom, ''), ' ', COALESCE(p.post_nom, ''), ' ', COALESCE(p.prenom, '')) AS personnel,
+                            p.fonction,
+                            pr.date_presence,
+                            pr.heure_fixe,
+                            pr.heure_entree,
+                            pr.heure_sortie,
+                            pr.statut
+                        FROM presences pr
+                        INNER JOIN personnels p ON p.id_personnel = pr.id_personnel
+                        WHERE 1 = 1
+                    ";
 
                 // ========================================================
                 // RECHERCHE
@@ -507,97 +503,52 @@ namespace Cepima.MesUserCases.Personnels
         // AJOUT D'UNE PRESENCE AU DATAGRIDVIEW
         // ============================================================
 
-        private void AjouterPresenceDansGrid(
-            MySqlDataReader reader)
+        private void AjouterPresenceDansGrid(MySqlDataReader reader)
         {
-            string idPersonnel =
-                GetString(
-                    reader,
-                    "id_personnel");
-
-            string personnel =
-                GetString(
-                    reader,
-                    "personnel").Trim();
-
-            string fonction =
-                GetString(
-                    reader,
-                    "fonction");
+            string idPersonnel = GetString(reader, "id_personnel");
+            string personnel = GetString(reader, "personnel").Trim();
+            string fonction = GetString(reader, "fonction");
 
             string datePresence = "";
-
             if (reader["date_presence"] != DBNull.Value)
             {
-                DateTime date =
-                    Convert.ToDateTime(
-                        reader["date_presence"]);
-
-                datePresence =
-                    date.ToString(
-                        "dd/MM/yyyy");
+                DateTime date = Convert.ToDateTime(reader["date_presence"]);
+                datePresence = date.ToString("dd/MM/yyyy");
             }
 
-            string heureEntree =
-                GetString(
-                    reader,
-                    "heure_entree");
-
-            string heureSortie =
-                GetString(
-                    reader,
-                    "heure_sortie");
-
-            string statut =
-                GetString(
-                    reader,
-                    "statut");
-
-            int indexLigne =
-                dgv_presences.Rows.Add();
-
-            DataGridViewRow ligne =
-                dgv_presences.Rows[indexLigne];
-
-            // ========================================================
-            // ID PERSONNEL
-            // ========================================================
-
-            if (dgv_presences.Columns.Contains(
-                "colIDPersonnel"))
+            string heureFixe = "";
+            if (reader["heure_fixe"] != DBNull.Value)
             {
-                ligne.Cells[
-                    "colIDPersonnel"].Value =
-                    idPersonnel;
+                heureFixe = ((TimeSpan)reader["heure_fixe"]).ToString(@"hh\:mm");
             }
 
-            // ========================================================
-            // DONNEES VISIBLES
-            // ========================================================
+            string heureEntree = "";
+            if (reader["heure_entree"] != DBNull.Value)
+            {
+                heureEntree = ((TimeSpan)reader["heure_entree"]).ToString(@"hh\:mm");
+            }
 
-            ligne.Cells[
-                "colPersonnel"].Value =
-                personnel;
+            string heureSortie = "";
+            if (reader["heure_sortie"] != DBNull.Value)
+            {
+                heureSortie = ((TimeSpan)reader["heure_sortie"]).ToString(@"hh\:mm");
+            }
 
-            ligne.Cells[
-                "colFonction"].Value =
-                fonction;
+            string statut = GetString(reader, "statut");
 
-            ligne.Cells[
-                "colDate"].Value =
-                datePresence;
+            int indexLigne = dgv_presences.Rows.Add();
+            DataGridViewRow ligne = dgv_presences.Rows[indexLigne];
 
-            ligne.Cells[
-                "colHeureEntree"].Value =
-                heureEntree;
+            if (dgv_presences.Columns.Contains("colIDPersonnel"))
+                ligne.Cells["colIDPersonnel"].Value = idPersonnel;
 
-            ligne.Cells[
-                "colHeureSortie"].Value =
-                heureSortie;
-
-            ligne.Cells[
-                "colStatut"].Value =
-                statut;
+            ligne.Cells["colPersonnel"].Value = personnel;
+            ligne.Cells["colFonction"].Value = fonction;
+            ligne.Cells["colDate"].Value = datePresence;
+            ligne.Cells["colFixe"].Value = heureFixe;
+            ligne.Cells["colHeureEntree"].Value = heureEntree;
+            ligne.Cells["colHeureSortie"].Value = heureSortie;
+            ligne.Cells["colStatut"].Value = statut;
         }
 
         // ============================================================
@@ -658,47 +609,26 @@ namespace Cepima.MesUserCases.Personnels
 
         private void ApplyStyle()
         {
-            if (dgv_presences.Columns.Contains(
-                "colPersonnel"))
-            {
-                dgv_presences.Columns[
-                    "colPersonnel"].Width = 180;
-            }
+            if (dgv_presences.Columns.Contains("colPersonnel"))
+                dgv_presences.Columns["colPersonnel"].Width = 180;
 
-            if (dgv_presences.Columns.Contains(
-                "colFonction"))
-            {
-                dgv_presences.Columns[
-                    "colFonction"].Width = 120;
-            }
+            if (dgv_presences.Columns.Contains("colFonction"))
+                dgv_presences.Columns["colFonction"].Width = 120;
 
-            if (dgv_presences.Columns.Contains(
-                "colDate"))
-            {
-                dgv_presences.Columns[
-                    "colDate"].Width = 90;
-            }
+            if (dgv_presences.Columns.Contains("colDate"))
+                dgv_presences.Columns["colDate"].Width = 90;
 
-            if (dgv_presences.Columns.Contains(
-                "colHeureEntree"))
-            {
-                dgv_presences.Columns[
-                    "colHeureEntree"].Width = 90;
-            }
+            if (dgv_presences.Columns.Contains("colFixe"))
+                dgv_presences.Columns["colFixe"].Width = 90;
 
-            if (dgv_presences.Columns.Contains(
-                "colHeureSortie"))
-            {
-                dgv_presences.Columns[
-                    "colHeureSortie"].Width = 90;
-            }
+            if (dgv_presences.Columns.Contains("colHeureEntree"))
+                dgv_presences.Columns["colHeureEntree"].Width = 90;
 
-            if (dgv_presences.Columns.Contains(
-                "colStatut"))
-            {
-                dgv_presences.Columns[
-                    "colStatut"].Width = 90;
-            }
+            if (dgv_presences.Columns.Contains("colHeureSortie"))
+                dgv_presences.Columns["colHeureSortie"].Width = 90;
+
+            if (dgv_presences.Columns.Contains("colStatut"))
+                dgv_presences.Columns["colStatut"].Width = 90;
         }
 
         // ============================================================

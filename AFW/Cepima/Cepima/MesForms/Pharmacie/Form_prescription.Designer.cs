@@ -183,6 +183,7 @@
             this.Controls.Add(this.dgv_presc);
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "Form_prescription";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_prescription";
             this.Load += new System.EventHandler(this.Form_prescription_Load);
             this.bunifuRoundedPanel1.ResumeLayout(false);
