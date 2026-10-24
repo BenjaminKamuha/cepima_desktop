@@ -584,10 +584,18 @@ namespace Cepima.MesUserCases.Comptabilité
             object sender,
             LinkLabelLinkClickedEventArgs e)
         {
-            MesForms.Compt.DisplayFactureCaisse dis =
-                new MesForms.Compt.DisplayFactureCaisse();
+            if (Form1.CONTEXT == "PRESCRIPTION")
+            {
+                linkLabel1.Visible = false;
+            }
+            else
+            {
+                MesForms.Compt.DisplayFactureCaisse dis = 
+                    new MesForms.Compt.DisplayFactureCaisse();
 
-            dis.ShowDialog();
+                dis.ShowDialog();
+            }
+
         }
     }
 }

@@ -792,7 +792,7 @@ namespace Cepima.MesClasses
 
             decimal nouveauResteFacture =
                 totalFacture - dejaPayeFacture - montantPaiement;
-
+            MessageBox.Show(nouveauResteFacture.ToString());
             if (nouveauResteFacture < 0)
                 throw new Exception(
                     "Le paiement dépasse le reste global de la facture.");

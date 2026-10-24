@@ -81,7 +81,7 @@
             this.tb_frequence.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_frequence.PlaceholderText = "ex: 2 fois / jours";
             this.tb_frequence.Size = new System.Drawing.Size(238, 37);
-            this.tb_frequence.TabIndex = 26;
+            this.tb_frequence.TabIndex = 1;
             // 
             // label4
             // 
@@ -130,7 +130,7 @@
             this.tb_dosage.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_dosage.PlaceholderText = "2 mg";
             this.tb_dosage.Size = new System.Drawing.Size(238, 37);
-            this.tb_dosage.TabIndex = 26;
+            this.tb_dosage.TabIndex = 0;
             // 
             // upd_quantite
             // 
@@ -149,7 +149,7 @@
             this.upd_quantite.MinimumSize = new System.Drawing.Size(74, 36);
             this.upd_quantite.Name = "upd_quantite";
             this.upd_quantite.Size = new System.Drawing.Size(238, 37);
-            this.upd_quantite.TabIndex = 31;
+            this.upd_quantite.TabIndex = 3;
             this.upd_quantite.TextPadding = 5;
             this.upd_quantite.Value = new decimal(new int[] {
             1,
@@ -184,7 +184,7 @@
             this.tb_duree.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_duree.PlaceholderText = "ex: 7 jours";
             this.tb_duree.Size = new System.Drawing.Size(238, 37);
-            this.tb_duree.TabIndex = 26;
+            this.tb_duree.TabIndex = 2;
             // 
             // bt_save_medoc
             // 
@@ -204,7 +204,7 @@
             this.bt_save_medoc.Location = new System.Drawing.Point(182, 411);
             this.bt_save_medoc.Name = "bt_save_medoc";
             this.bt_save_medoc.Size = new System.Drawing.Size(121, 34);
-            this.bt_save_medoc.TabIndex = 32;
+            this.bt_save_medoc.TabIndex = 4;
             this.bt_save_medoc.Text = "Ajouter";
             this.bt_save_medoc.TextColor = System.Drawing.Color.White;
             this.bt_save_medoc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
