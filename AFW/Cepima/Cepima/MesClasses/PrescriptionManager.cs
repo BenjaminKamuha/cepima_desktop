@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using MySql.Data.MySqlClient;
 using Cepima.Data;
+using System.Windows.Forms;
+
 
 namespace Cepima.MesClasses
 {
@@ -293,7 +295,6 @@ namespace Cepima.MesClasses
                                 con,
                                 tr);
 
-
                         // ==================================================
                         // 5. AJOUTER / AUGMENTER LA RUBRIQUE MEDICAMENTS
                         // ==================================================
@@ -353,7 +354,7 @@ namespace Cepima.MesClasses
                 SELECT id_facture
                 FROM facture
                 WHERE id_patient = @patient_id
-                AND statut <> 'Payé'
+                  AND (statut IS NULL OR statut <> 'Clôturée')
                 ORDER BY id_facture DESC
                 LIMIT 1";
 

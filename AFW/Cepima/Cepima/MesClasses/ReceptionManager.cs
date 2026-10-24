@@ -849,6 +849,7 @@ namespace Cepima.MesClasses
                   AND id_prestation IS NULL
                 LIMIT 1";
 
+
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
                 cmd.Parameters.AddWithValue("@id_facture", idFacture);
