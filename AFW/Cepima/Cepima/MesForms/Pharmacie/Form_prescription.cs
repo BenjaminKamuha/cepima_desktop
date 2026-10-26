@@ -676,6 +676,16 @@ namespace Cepima.MesForms.Pharmacie
                                 ID_PAIEMENT = Convert.ToInt32(cmd.ExecuteScalar());
                             };
 
+                             // Cloture du facture
+                            string query = "UPDATE facture SET statut='Clôturée' WHERE id_facture = @id";
+
+                            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+                            {
+                                cmd.Parameters.AddWithValue("id", idFacture);
+
+                                cmd.ExecuteNonQuery();
+                            }
+
                             tr.Commit();
 
                             FormRecu recu = new FormRecu(ID_PAIEMENT);
@@ -688,8 +698,6 @@ namespace Cepima.MesForms.Pharmacie
                             livre.Dock = DockStyle.Fill;
                             Form1.GlobalPanel_main.Controls.Clear();
                             Form1.GlobalPanel_main.Controls.Add(livre);
-
-                            
 
                             return;
 

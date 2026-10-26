@@ -88,7 +88,7 @@
             this.rd_priorite_normal.Location = new System.Drawing.Point(211, 322);
             this.rd_priorite_normal.Name = "rd_priorite_normal";
             this.rd_priorite_normal.Size = new System.Drawing.Size(79, 21);
-            this.rd_priorite_normal.TabIndex = 41;
+            this.rd_priorite_normal.TabIndex = 2;
             this.rd_priorite_normal.TabStop = true;
             this.rd_priorite_normal.Text = "Normale";
             this.rd_priorite_normal.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             this.rd_priorite_urgente.Location = new System.Drawing.Point(357, 318);
             this.rd_priorite_urgente.Name = "rd_priorite_urgente";
             this.rd_priorite_urgente.Size = new System.Drawing.Size(77, 21);
-            this.rd_priorite_urgente.TabIndex = 41;
+            this.rd_priorite_urgente.TabIndex = 6;
             this.rd_priorite_urgente.TabStop = true;
             this.rd_priorite_urgente.Text = "Urgente";
             this.rd_priorite_urgente.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             this.tb_indicateur.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_indicateur.PlaceholderText = "";
             this.tb_indicateur.Size = new System.Drawing.Size(238, 67);
-            this.tb_indicateur.TabIndex = 42;
+            this.tb_indicateur.TabIndex = 5;
             // 
             // bunifuRoundedPanel1
             // 
@@ -241,7 +241,7 @@
             this.cbx_service.SelectedItem = null;
             this.cbx_service.SelectedValue = null;
             this.cbx_service.Size = new System.Drawing.Size(238, 36);
-            this.cbx_service.TabIndex = 34;
+            this.cbx_service.TabIndex = 0;
             this.cbx_service.SelectedIndexChanged += new System.EventHandler(this.cbx_service_SelectedIndexChanged);
             // 
             // btn_cancel
@@ -315,7 +315,7 @@
             this.cbx_prestation.SelectedItem = null;
             this.cbx_prestation.SelectedValue = null;
             this.cbx_prestation.Size = new System.Drawing.Size(238, 36);
-            this.cbx_prestation.TabIndex = 44;
+            this.cbx_prestation.TabIndex = 1;
             // 
             // label4
             // 

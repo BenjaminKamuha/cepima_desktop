@@ -110,7 +110,7 @@
             this.bt_delete.Location = new System.Drawing.Point(100, 432);
             this.bt_delete.Name = "bt_delete";
             this.bt_delete.Size = new System.Drawing.Size(163, 40);
-            this.bt_delete.TabIndex = 39;
+            this.bt_delete.TabIndex = 11;
             this.bt_delete.Text = "Annuler";
             this.bt_delete.TextColor = System.Drawing.Color.White;
             this.bt_delete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -136,7 +136,7 @@
             this.bt_modifier.Location = new System.Drawing.Point(472, 432);
             this.bt_modifier.Name = "bt_modifier";
             this.bt_modifier.Size = new System.Drawing.Size(161, 40);
-            this.bt_modifier.TabIndex = 40;
+            this.bt_modifier.TabIndex = 10;
             this.bt_modifier.Text = "Enregistrer";
             this.bt_modifier.TextColor = System.Drawing.Color.White;
             this.bt_modifier.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -149,7 +149,7 @@
             this.dt_embauche.Location = new System.Drawing.Point(378, 163);
             this.dt_embauche.Name = "dt_embauche";
             this.dt_embauche.Size = new System.Drawing.Size(304, 27);
-            this.dt_embauche.TabIndex = 33;
+            this.dt_embauche.TabIndex = 6;
             // 
             // dt_naissance
             // 
@@ -157,7 +157,7 @@
             this.dt_naissance.Location = new System.Drawing.Point(378, 95);
             this.dt_naissance.Name = "dt_naissance";
             this.dt_naissance.Size = new System.Drawing.Size(304, 27);
-            this.dt_naissance.TabIndex = 32;
+            this.dt_naissance.TabIndex = 5;
             // 
             // tb_mod_adresse
             // 
@@ -178,7 +178,7 @@
             this.tb_mod_adresse.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_adresse.PlaceholderText = "";
             this.tb_mod_adresse.Size = new System.Drawing.Size(304, 35);
-            this.tb_mod_adresse.TabIndex = 29;
+            this.tb_mod_adresse.TabIndex = 9;
             // 
             // tb_mod_phone
             // 
@@ -199,7 +199,7 @@
             this.tb_mod_phone.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_phone.PlaceholderText = "";
             this.tb_mod_phone.Size = new System.Drawing.Size(304, 35);
-            this.tb_mod_phone.TabIndex = 27;
+            this.tb_mod_phone.TabIndex = 8;
             // 
             // tb_mod_sifa
             // 
@@ -220,7 +220,7 @@
             this.tb_mod_sifa.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_sifa.PlaceholderText = "Marié ,Célibataire,Divorcé,Veuf,Veuve";
             this.tb_mod_sifa.Size = new System.Drawing.Size(301, 35);
-            this.tb_mod_sifa.TabIndex = 26;
+            this.tb_mod_sifa.TabIndex = 4;
             // 
             // tb_mod_fonction
             // 
@@ -241,7 +241,7 @@
             this.tb_mod_fonction.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_fonction.PlaceholderText = "";
             this.tb_mod_fonction.Size = new System.Drawing.Size(304, 35);
-            this.tb_mod_fonction.TabIndex = 25;
+            this.tb_mod_fonction.TabIndex = 7;
             // 
             // tb_mod_sexe
             // 
@@ -262,7 +262,7 @@
             this.tb_mod_sexe.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_sexe.PlaceholderText = "";
             this.tb_mod_sexe.Size = new System.Drawing.Size(301, 35);
-            this.tb_mod_sexe.TabIndex = 24;
+            this.tb_mod_sexe.TabIndex = 3;
             // 
             // label8
             // 
@@ -353,7 +353,7 @@
             this.tb_mod_prenom.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_prenom.PlaceholderText = "";
             this.tb_mod_prenom.Size = new System.Drawing.Size(301, 35);
-            this.tb_mod_prenom.TabIndex = 28;
+            this.tb_mod_prenom.TabIndex = 2;
             // 
             // label3
             // 
@@ -384,7 +384,7 @@
             this.tb_mod_post.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_post.PlaceholderText = "";
             this.tb_mod_post.Size = new System.Drawing.Size(301, 35);
-            this.tb_mod_post.TabIndex = 30;
+            this.tb_mod_post.TabIndex = 1;
             // 
             // label2
             // 
@@ -415,7 +415,7 @@
             this.tb_mod_nom.PlaceholderColor = System.Drawing.Color.Gray;
             this.tb_mod_nom.PlaceholderText = "";
             this.tb_mod_nom.Size = new System.Drawing.Size(301, 35);
-            this.tb_mod_nom.TabIndex = 31;
+            this.tb_mod_nom.TabIndex = 0;
             // 
             // label7
             // 

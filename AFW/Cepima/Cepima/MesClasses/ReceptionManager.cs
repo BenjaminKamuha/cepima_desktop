@@ -792,7 +792,7 @@ namespace Cepima.MesClasses
 
             decimal nouveauResteFacture =
                 totalFacture - dejaPayeFacture - montantPaiement;
-
+            MessageBox.Show(nouveauResteFacture.ToString());
             if (nouveauResteFacture < 0)
                 throw new Exception(
                     "Le paiement dépasse le reste global de la facture.");
@@ -848,6 +848,7 @@ namespace Cepima.MesClasses
                 WHERE id_facture = @id_facture
                   AND id_prestation IS NULL
                 LIMIT 1";
+
 
             using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
             {
