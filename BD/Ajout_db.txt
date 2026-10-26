@@ -1,3 +1,17 @@
 ALTER TABLE presences
 ADD COLUMN heure_fixe time NOT NULL DEFAULT '08:20:00' AFTER date_presence
 
+ CREATE TABLE `fiches_medicales` (
+  `id_fiche` int(11) NOT NULL AUTO_INCREMENT,
+  `id_patient` int(11) NOT NULL,
+  `numero_fiche` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `date_entree` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `statut` enum('En cours','Terminée','Annulée') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'En cours',
+  `observations` text COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id_fiche`),
+  UNIQUE KEY `uk_numero_fiche` (`numero_fiche`),
+  KEY `idx_fiche_patient` (`id_patient`),
+  KEY `idx_fiche_date` (`date_entree`),
+  CONSTRAINT `fk_fiche_patient` FOREIGN KEY (`id_patient`) REFERENCES `patients` (`id_patient`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci 
+
