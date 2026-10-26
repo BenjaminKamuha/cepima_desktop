@@ -970,56 +970,71 @@ namespace Cepima.Services
 
                 if (!exists)
                 {
-                    string insertSql =
-                        "INSERT INTO presences " +
-                        "(" +
-                        "id_personnel," +
-                        "date_presence," +
-                        "heure_entree," +
-                        "statut" +
-                        ") VALUES (" +
-                        "@id_personnel," +
-                        "CURDATE()," +
-                        "CURTIME()," +
-                        "'Présent'" +
-                        ")";
 
-                    using (
-                        MySqlCommand cmd =
-                        new MySqlCommand(
-                            insertSql,
-                            con))
+                    //Il enregistre l'heure fixe, l'heure réelle d'entrée et le statut, puis déclenche l'enregistrement de la retenue si le personnel est en retard
+                    TimeSpan heureFixe = new TimeSpan(8, 20, 0);
+
+                    string sqlHeureFixe = @"
+                            SELECT COLUMN_DEFAULT
+                            FROM INFORMATION_SCHEMA.COLUMNS
+                            WHERE TABLE_SCHEMA = DATABASE()
+                              AND TABLE_NAME = 'presences'
+                              AND COLUMN_NAME = 'heure_fixe'";
+
+                    using (MySqlCommand cmd = new MySqlCommand(sqlHeureFixe, con))
                     {
-                        cmd.Parameters.AddWithValue(
-                            "@id_personnel",
-                            personnelId);
+                        object valeur = cmd.ExecuteScalar();
 
-                        cmd.ExecuteNonQuery();
+                        if (valeur != null && valeur != DBNull.Value)
+                        {
+                            string texte = valeur.ToString().Trim('\'');
+                            TimeSpan heureLue;
+                            if (TimeSpan.TryParse(texte, out heureLue))
+                                heureFixe = heureLue;
+                        }
                     }
 
-                    heureEntree =
-                        DateTime.Now
-                        .ToString(
-                            "HH:mm:ss");
+                    bool estRetard;
 
-                    SendResponse(
-                        context,
-                        200,
-                        "{\"success\":true," +
-                        "\"message\":\"Présence enregistrée\"," +
-                        "\"fingerprint_id\":" +
-                        fingerprintId +
-                        ",\"score\":" +
-                        score +
-                        "}");
+                    using (MySqlCommand cmd = new MySqlCommand("SELECT CURTIME() > @heureFixe", con))
+                    {
+                        cmd.Parameters.Add("@heureFixe", MySqlDbType.Time).Value = heureFixe;
+                        estRetard = Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+                    }
 
-                    ShowAttendanceMessage(
-                        nom,
-                        postNom,
-                        prenom,
-                        "Entrée",
-                        heureEntree,
-                        score);
+                    string statut = estRetard ? "Retard" : "Présent";
+
+                    string insertSql = @"
+        INSERT INTO presences
+            (id_personnel, date_presence, heure_fixe, heure_entree, statut)
+        VALUES
+            (@id_personnel, CURDATE(), @heureFixe, CURTIME(), @statut)";
+
+                    long idPresence;
+
+                    using (MySqlCommand cmd = new MySqlCommand(insertSql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id_personnel", personnelId);
+                        cmd.Parameters.Add("@heureFixe", MySqlDbType.Time).Value = heureFixe;
+                        cmd.Parameters.AddWithValue("@statut", statut);
+
+                        cmd.ExecuteNonQuery();
+                        idPresence = cmd.LastInsertedId;
+                    }
+
+                    if (estRetard)
+                    {
+                        EnregistrerRetenue(con, personnelId, idPresence, DateTime.Today);
+                    }
+
+                    heureEntree = DateTime.Now.ToString("HH:mm:ss");
+
+                    SendResponse(context, 200,
+                        "{\"success\":true,\"message\":\"" +
+                        (estRetard ? "Présence enregistrée avec retard" : "Présence enregistrée") +
+                        "\",\"fingerprint_id\":" + fingerprintId + ",\"score\":" + score + "}");
+
+                    ShowAttendanceMessage(nom, postNom, prenom, "Entrée", heureEntree, score);
 
                     return;
                 }
@@ -1185,6 +1200,53 @@ namespace Cepima.Services
             }
         }
 
+
+        // Enregistrer la retenues
+        private void EnregistrerRetenue(MySqlConnection con, int personnelId, long idPresence, DateTime datePresence)
+        {
+            object idSalaire = DBNull.Value;
+            string mois = datePresence.ToString("yyyy-MM");
+
+            string sqlSalaire = @"
+        SELECT id_salaire
+        FROM salaires
+        WHERE id_personnel = @idPersonnel
+          AND mois = @mois
+        ORDER BY id_salaire DESC
+        LIMIT 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlSalaire, con))
+            {
+                cmd.Parameters.AddWithValue("@idPersonnel", personnelId);
+                cmd.Parameters.AddWithValue("@mois", mois);
+
+                object resultat = cmd.ExecuteScalar();
+
+                if (resultat != null && resultat != DBNull.Value)
+                    idSalaire = resultat;
+            }
+
+            string sqlRetenue = @"
+                    INSERT INTO retenue
+                        (id_salaire, id_presence, date_retenue, motif, montant)
+                    SELECT
+                        @idSalaire, @idPresence, @dateRetenue, 'Retard du personnel', 3.00
+                    WHERE NOT EXISTS (
+                        SELECT 1 FROM retenue WHERE id_presence = @idPresence
+                    )";
+
+            using (MySqlCommand cmd = new MySqlCommand(sqlRetenue, con))
+            {
+                cmd.Parameters.AddWithValue("@idSalaire", idSalaire);
+                cmd.Parameters.AddWithValue("@idPresence", idPresence);
+                cmd.Parameters.Add("@dateRetenue", MySqlDbType.Date).Value = datePresence.Date;
+
+                cmd.ExecuteNonQuery();
+            }
+
+            if (idSalaire == DBNull.Value)
+                Console.WriteLine("Retenue enregistrée sans salaire associé. Personnel : " + personnelId);
+        }
 
         // ========================================================
         // MESSAGE PRESENCE
