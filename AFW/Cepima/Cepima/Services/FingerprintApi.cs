@@ -1461,5 +1461,64 @@ namespace Cepima.Services
                 .Replace("\r", "\\r")
                 .Replace("\n", "\\n");
         }
+
+
+        // =========================================================
+        // Modification ou ajout d'empreint pour un personnel
+        // =========================================================
+        private int ObtenirFingerprintId(int idPersonnel)
+        {
+            using (MySqlConnection con = db.GetConnection())
+            {
+                con.Open();
+
+                // 1. Vérifier si le personnel possède déjà un numéro.
+
+                string sqlExistant = @"
+            SELECT fingerprint_id
+            FROM personnels
+            WHERE id_personnel = @id_personnel
+            LIMIT 1";
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(sqlExistant, con))
+                {
+                    cmd.Parameters.AddWithValue(
+                        "@id_personnel",
+                        idPersonnel);
+
+                    object resultat = cmd.ExecuteScalar();
+
+                    if (resultat == null)
+                    {
+                        throw new Exception(
+                            "Ce personnel n'existe pas dans la base de données.");
+                    }
+
+                    if (resultat != DBNull.Value)
+                    {
+                        int fingerprintId =
+                            Convert.ToInt32(resultat);
+
+                        if (fingerprintId > 0)
+                            return fingerprintId;
+                    }
+                }
+
+                // 2. Aucun numéro : calculer le prochain numéro.
+
+                string sqlSuivant = @"
+                    SELECT COALESCE(MAX(fingerprint_id), 0) + 1
+                    FROM personnels";
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(sqlSuivant, con))
+                {
+                    return Convert.ToInt32(
+                        cmd.ExecuteScalar());
+                }
+            }
+        }
+
     }
 }

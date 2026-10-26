@@ -52,7 +52,11 @@
             this.tb_mod_nom = new MyRoundedTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.picture_fingerprint = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btn_update_fingerprint = new RoundedButton();
             this.bunifuRoundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_fingerprint)).BeginInit();
             this.SuspendLayout();
             // 
             // bunifuRoundedPanel1
@@ -60,6 +64,9 @@
             this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
             this.bunifuRoundedPanel1.BorderRadius = 8;
             this.bunifuRoundedPanel1.BorderSize = 0;
+            this.bunifuRoundedPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.bunifuRoundedPanel1.Controls.Add(this.btn_update_fingerprint);
+            this.bunifuRoundedPanel1.Controls.Add(this.picture_fingerprint);
             this.bunifuRoundedPanel1.Controls.Add(this.bt_delete);
             this.bunifuRoundedPanel1.Controls.Add(this.bt_modifier);
             this.bunifuRoundedPanel1.Controls.Add(this.dt_embauche);
@@ -71,6 +78,7 @@
             this.bunifuRoundedPanel1.Controls.Add(this.tb_mod_sexe);
             this.bunifuRoundedPanel1.Controls.Add(this.label8);
             this.bunifuRoundedPanel1.Controls.Add(this.label11);
+            this.bunifuRoundedPanel1.Controls.Add(this.label12);
             this.bunifuRoundedPanel1.Controls.Add(this.label6);
             this.bunifuRoundedPanel1.Controls.Add(this.label9);
             this.bunifuRoundedPanel1.Controls.Add(this.label10);
@@ -88,7 +96,7 @@
             this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
             this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
             this.bunifuRoundedPanel1.ShadowDepth = 10;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(716, 490);
+            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(716, 614);
             this.bunifuRoundedPanel1.TabIndex = 0;
             // 
             // bt_delete
@@ -107,7 +115,7 @@
             this.bt_delete.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.bt_delete.Image = global::Cepima.Properties.Resources.cancel_30px;
             this.bt_delete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_delete.Location = new System.Drawing.Point(100, 432);
+            this.bt_delete.Location = new System.Drawing.Point(98, 527);
             this.bt_delete.Name = "bt_delete";
             this.bt_delete.Size = new System.Drawing.Size(163, 40);
             this.bt_delete.TabIndex = 11;
@@ -133,7 +141,7 @@
             this.bt_modifier.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.bt_modifier.Image = global::Cepima.Properties.Resources.save_30px;
             this.bt_modifier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_modifier.Location = new System.Drawing.Point(472, 432);
+            this.bt_modifier.Location = new System.Drawing.Point(470, 527);
             this.bt_modifier.Name = "bt_modifier";
             this.bt_modifier.Size = new System.Drawing.Size(161, 40);
             this.bt_modifier.TabIndex = 10;
@@ -437,12 +445,56 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "Modification du personnel";
             // 
+            // picture_fingerprint
+            // 
+            this.picture_fingerprint.Image = global::Cepima.Properties.Resources.fingerprint;
+            this.picture_fingerprint.Location = new System.Drawing.Point(464, 423);
+            this.picture_fingerprint.Name = "picture_fingerprint";
+            this.picture_fingerprint.Size = new System.Drawing.Size(45, 52);
+            this.picture_fingerprint.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picture_fingerprint.TabIndex = 24;
+            this.picture_fingerprint.TabStop = false;
+            this.picture_fingerprint.Visible = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label12.Location = new System.Drawing.Point(382, 440);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(68, 17);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Empreint:";
+            // 
+            // btn_update_fingerprint
+            // 
+            this.btn_update_fingerprint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_update_fingerprint.BackColor = System.Drawing.Color.Transparent;
+            this.btn_update_fingerprint.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btn_update_fingerprint.ButtonText = "";
+            this.btn_update_fingerprint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_update_fingerprint.DefaultBackColor = System.Drawing.Color.White;
+            this.btn_update_fingerprint.FlatAppearance.BorderSize = 0;
+            this.btn_update_fingerprint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_update_fingerprint.ForeColor = System.Drawing.Color.White;
+            this.btn_update_fingerprint.HoverBackColor = System.Drawing.Color.DodgerBlue;
+            this.btn_update_fingerprint.Image = global::Cepima.Properties.Resources.refresh_25px2;
+            this.btn_update_fingerprint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_update_fingerprint.Location = new System.Drawing.Point(515, 440);
+            this.btn_update_fingerprint.Name = "btn_update_fingerprint";
+            this.btn_update_fingerprint.Size = new System.Drawing.Size(40, 22);
+            this.btn_update_fingerprint.TabIndex = 25;
+            this.btn_update_fingerprint.TextColor = System.Drawing.Color.Wheat;
+            this.btn_update_fingerprint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_update_fingerprint.UseVisualStyleBackColor = false;
+            this.btn_update_fingerprint.Click += new System.EventHandler(this.btn_remplacer_empreinte_Click);
+            // 
             // Update_personnel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(716, 490);
+            this.ClientSize = new System.Drawing.Size(716, 614);
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "Update_personnel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -450,6 +502,7 @@
             this.Load += new System.EventHandler(this.Update_personnel_Load);
             this.bunifuRoundedPanel1.ResumeLayout(false);
             this.bunifuRoundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picture_fingerprint)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -480,6 +533,9 @@
         private System.Windows.Forms.Label label1;
         private RoundedButton bt_delete;
         private RoundedButton bt_modifier;
+        private System.Windows.Forms.PictureBox picture_fingerprint;
+        private System.Windows.Forms.Label label12;
+        private RoundedButton btn_update_fingerprint;
 
     }
 }
