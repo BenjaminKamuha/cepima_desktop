@@ -432,6 +432,12 @@
     <Compile Include="MesUserCases\Personnels\User_fingerprint.Designer.cs">
       <DependentUpon>User_fingerprint.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesUserCases\Personnels\User_Salaire_personnel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_Salaire_personnel.Designer.cs">
+      <DependentUpon>User_Salaire_personnel.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1139,6 +1145,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_Presence.resx">
       <DependentUpon>User_Presence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\User_Salaire_personnel.resx">
+      <DependentUpon>User_Salaire_personnel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_add_medoc.resx">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>

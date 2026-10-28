@@ -29,11 +29,6 @@ namespace Cepima.MesForms.Personnel
             ChargerSituationSalariale();
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void LoadDetailsPersonnels()
         {
             try
@@ -180,8 +175,8 @@ namespace Cepima.MesForms.Personnel
 
         private void roundedButton4_Click(object sender, EventArgs e)
         {
-            MesForms.Personnel.Ajouter_avance avance = new Ajouter_avance(personnelID);
-            avance.ShowDialog();
+            //MesForms.Personnel.Ajouter_avance avance = new Ajouter_avance(personnelID);
+           //avance.ShowDialog();
         }
 
         private void ChargerSituationSalariale()

@@ -136,9 +136,10 @@ namespace Cepima.MesForms.Personnel
                             "Information",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning
-                        );
+               );
 
                         Close();
+                        return;
                     }
                 }
             }

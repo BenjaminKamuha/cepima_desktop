@@ -146,7 +146,7 @@ namespace Cepima.MesForms.Personnel
             }
             else
             {
-                ChargerSalaireBase();
+                //ChargerSalaireBase();
             }
         }
 
@@ -170,8 +170,8 @@ namespace Cepima.MesForms.Personnel
                             DateTime date = Convert.ToDateTime(reader["date_naissance"]);
                             int annee = MesClasses.ReceptionManager.CalculerAge(date);
                             lb_age.Text = annee.ToString() + " ans" + " - " + reader["sexe"];
-                            decimal salaire_base = Convert.ToDecimal(reader["salaire_base"]);
-                            tb_salaire.Text = salaire_base.ToString("0.00");
+                            //decimal salaire_base = Convert.ToDecimal(reader["salaire_base"]);
+                            //tb_salaire.Text = salaire_base.ToString("0.00");
                         }
                         reader.Close();
                     }
