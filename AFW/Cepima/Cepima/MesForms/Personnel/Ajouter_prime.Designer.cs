@@ -28,255 +28,293 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
-            this.lblSalaire = new System.Windows.Forms.Label();
-            this.lblMois = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblPersonnel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dtp_date_paiement = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tb_motif = new MyRoundedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.lbSousTitre = new System.Windows.Forms.Label();
+            this.lbTitre = new System.Windows.Forms.Label();
+            this.avatarControl1 = new AvatarControl();
             this.label6 = new System.Windows.Forms.Label();
-            this.tb_montant = new MyRoundedTextBox();
-            this.bt_start = new RoundedButton();
-            this.bunifuRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nudMontant = new RoundedNumericUpDown();
+            this.dtpDatePrime = new Cepima.Controls.MyDateTimePicker();
+            this.txtPersonnel = new MyRoundedTextBox();
+            this.txtMotif = new MyRoundedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btEnregistrer = new RoundedButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbSalaire = new MyRoundedComboBox();
+            this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // customRoundedPanel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(91, 161);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Ajouter la  prime du personnel";
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(131)))), ((int)(((byte)(78)))));
+            this.customRoundedPanel1.BorderColor = System.Drawing.Color.Transparent;
+            this.customRoundedPanel1.BorderRadius = 8;
+            this.customRoundedPanel1.BorderSize = 0;
+            this.customRoundedPanel1.Controls.Add(this.lbSousTitre);
+            this.customRoundedPanel1.Controls.Add(this.lbTitre);
+            this.customRoundedPanel1.Controls.Add(this.avatarControl1);
+            this.customRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.customRoundedPanel1.Location = new System.Drawing.Point(0, 0);
+            this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(651, 99);
+            this.customRoundedPanel1.TabIndex = 1;
             // 
-            // bunifuRoundedPanel1
+            // lbSousTitre
             // 
-            this.bunifuRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
-            this.bunifuRoundedPanel1.BorderRadius = 8;
-            this.bunifuRoundedPanel1.BorderSize = 0;
-            this.bunifuRoundedPanel1.Controls.Add(this.lblSalaire);
-            this.bunifuRoundedPanel1.Controls.Add(this.lblMois);
-            this.bunifuRoundedPanel1.Controls.Add(this.label3);
-            this.bunifuRoundedPanel1.Controls.Add(this.lblPersonnel);
-            this.bunifuRoundedPanel1.Controls.Add(this.label2);
-            this.bunifuRoundedPanel1.Controls.Add(this.label4);
-            this.bunifuRoundedPanel1.Controls.Add(this.pictureBox1);
-            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(2, 3);
-            this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
-            this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
-            this.bunifuRoundedPanel1.ShadowDepth = 15;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(431, 144);
-            this.bunifuRoundedPanel1.TabIndex = 3;
+            this.lbSousTitre.AutoSize = true;
+            this.lbSousTitre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSousTitre.ForeColor = System.Drawing.Color.White;
+            this.lbSousTitre.Location = new System.Drawing.Point(112, 72);
+            this.lbSousTitre.Name = "lbSousTitre";
+            this.lbSousTitre.Size = new System.Drawing.Size(246, 21);
+            this.lbSousTitre.TabIndex = 2;
+            this.lbSousTitre.Text = "Enregistrer ou modifier une prime";
             // 
-            // lblSalaire
+            // lbTitre
             // 
-            this.lblSalaire.AutoSize = true;
-            this.lblSalaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblSalaire.Location = new System.Drawing.Point(215, 105);
-            this.lblSalaire.Name = "lblSalaire";
-            this.lblSalaire.Size = new System.Drawing.Size(50, 17);
-            this.lblSalaire.TabIndex = 3;
-            this.lblSalaire.Text = "salaire";
+            this.lbTitre.AutoSize = true;
+            this.lbTitre.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitre.ForeColor = System.Drawing.Color.White;
+            this.lbTitre.Location = new System.Drawing.Point(111, 26);
+            this.lbTitre.Name = "lbTitre";
+            this.lbTitre.Size = new System.Drawing.Size(82, 32);
+            this.lbTitre.TabIndex = 2;
+            this.lbTitre.Text = "Prime";
             // 
-            // lblMois
+            // avatarControl1
             // 
-            this.lblMois.AutoSize = true;
-            this.lblMois.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblMois.Location = new System.Drawing.Point(215, 62);
-            this.lblMois.Name = "lblMois";
-            this.lblMois.Size = new System.Drawing.Size(36, 17);
-            this.lblMois.TabIndex = 4;
-            this.lblMois.Text = "Paul";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(120, 105);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Salaire  : ";
-            // 
-            // lblPersonnel
-            // 
-            this.lblPersonnel.AutoSize = true;
-            this.lblPersonnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblPersonnel.Location = new System.Drawing.Point(215, 22);
-            this.lblPersonnel.Name = "lblPersonnel";
-            this.lblPersonnel.Size = new System.Drawing.Size(39, 17);
-            this.lblPersonnel.TabIndex = 6;
-            this.lblPersonnel.Text = "Jean";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(120, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Mois : ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(120, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Nom  : ";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(94, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // dtp_date_paiement
-            // 
-            this.dtp_date_paiement.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_date_paiement.Location = new System.Drawing.Point(76, 247);
-            this.dtp_date_paiement.Name = "dtp_date_paiement";
-            this.dtp_date_paiement.Size = new System.Drawing.Size(285, 27);
-            this.dtp_date_paiement.TabIndex = 12;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label8.Location = new System.Drawing.Point(83, 227);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 17);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Date paiement  : ";
-            // 
-            // tb_motif
-            // 
-            this.tb_motif.BackColor = System.Drawing.Color.White;
-            this.tb_motif.BorderColor = System.Drawing.Color.Silver;
-            this.tb_motif.BorderRadius = 6;
-            this.tb_motif.BorderSize = 1;
-            this.tb_motif.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_motif.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_motif.ForeColor = System.Drawing.Color.Black;
-            this.tb_motif.Image = null;
-            this.tb_motif.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_motif.ImagePadding = 2;
-            this.tb_motif.Location = new System.Drawing.Point(76, 324);
-            this.tb_motif.MaxLength = 32767;
-            this.tb_motif.Name = "tb_motif";
-            this.tb_motif.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_motif.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_motif.PlaceholderText = "";
-            this.tb_motif.Size = new System.Drawing.Size(285, 35);
-            this.tb_motif.TabIndex = 13;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(83, 304);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Motif  : ";
+            this.avatarControl1.Avatar = global::Cepima.Properties.Resources.prime;
+            this.avatarControl1.BackColor = System.Drawing.Color.Transparent;
+            this.avatarControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.avatarControl1.BorderSize = 2;
+            this.avatarControl1.Location = new System.Drawing.Point(12, 12);
+            this.avatarControl1.Name = "avatarControl1";
+            this.avatarControl1.Size = new System.Drawing.Size(80, 80);
+            this.avatarControl1.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(83, 378);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(31, 370);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 17);
+            this.label6.Size = new System.Drawing.Size(151, 21);
             this.label6.TabIndex = 11;
-            this.label6.Text = "Montant prime  : ";
+            this.label6.Text = "Montant de la prime";
             // 
-            // tb_montant
+            // label5
             // 
-            this.tb_montant.BackColor = System.Drawing.Color.White;
-            this.tb_montant.BorderColor = System.Drawing.Color.Silver;
-            this.tb_montant.BorderRadius = 6;
-            this.tb_montant.BorderSize = 1;
-            this.tb_montant.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_montant.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_montant.ForeColor = System.Drawing.Color.Black;
-            this.tb_montant.Image = null;
-            this.tb_montant.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_montant.ImagePadding = 2;
-            this.tb_montant.Location = new System.Drawing.Point(76, 398);
-            this.tb_montant.MaxLength = 32767;
-            this.tb_montant.Name = "tb_montant";
-            this.tb_montant.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_montant.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_montant.PlaceholderText = "";
-            this.tb_montant.Size = new System.Drawing.Size(285, 35);
-            this.tb_montant.TabIndex = 13;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(31, 250);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(124, 21);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Date de la prime";
             // 
-            // bt_start
+            // label3
             // 
-            this.bt_start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_start.BackColor = System.Drawing.Color.Transparent;
-            this.bt_start.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_start.BorderRadius = 8;
-            this.bt_start.ButtonText = "Enregistrer  la prime";
-            this.bt_start.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_start.DefaultBackColor = System.Drawing.Color.DodgerBlue;
-            this.bt_start.FlatAppearance.BorderSize = 0;
-            this.bt_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_start.ForeColor = System.Drawing.Color.White;
-            this.bt_start.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_start.Image = global::Cepima.Properties.Resources.save_30px;
-            this.bt_start.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_start.Location = new System.Drawing.Point(88, 461);
-            this.bt_start.Name = "bt_start";
-            this.bt_start.Size = new System.Drawing.Size(255, 40);
-            this.bt_start.TabIndex = 38;
-            this.bt_start.Text = "Enregistrer  la prime";
-            this.bt_start.TextColor = System.Drawing.Color.White;
-            this.bt_start.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_start.UseVisualStyleBackColor = false;
-            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(31, 150);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 21);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Personnel ";
+            // 
+            // nudMontant
+            // 
+            this.nudMontant.BackColor = System.Drawing.Color.White;
+            this.nudMontant.BorderColor = System.Drawing.Color.Silver;
+            this.nudMontant.BorderRadius = 8;
+            this.nudMontant.ButtonBackColor = System.Drawing.Color.White;
+            this.nudMontant.ButtonFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.nudMontant.ButtonForeColor = System.Drawing.Color.DimGray;
+            this.nudMontant.ButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.nudMontant.DecimalPlaces = 1;
+            this.nudMontant.FocusBorderColor = System.Drawing.Color.Silver;
+            this.nudMontant.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudMontant.ForeColor = System.Drawing.Color.Black;
+            this.nudMontant.Location = new System.Drawing.Point(251, 351);
+            this.nudMontant.MinimumSize = new System.Drawing.Size(77, 32);
+            this.nudMontant.Name = "nudMontant";
+            this.nudMontant.Size = new System.Drawing.Size(380, 40);
+            this.nudMontant.TabIndex = 10;
+            this.nudMontant.ThousandsSeparator = true;
+            // 
+            // dtpDatePrime
+            // 
+            this.dtpDatePrime.BackColor = System.Drawing.Color.White;
+            this.dtpDatePrime.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
+            this.dtpDatePrime.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDatePrime.BorderRadius = 8;
+            this.dtpDatePrime.BorderSize = 1;
+            this.dtpDatePrime.CalendarBackColor = System.Drawing.Color.White;
+            this.dtpDatePrime.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDatePrime.CalendarHeight = 280;
+            this.dtpDatePrime.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDatePrime.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtpDatePrime.Checked = true;
+            this.dtpDatePrime.CustomFormat = "dd/MM/yyyy";
+            this.dtpDatePrime.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dtpDatePrime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(60)))), ((int)(((byte)(70)))));
+            this.dtpDatePrime.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpDatePrime.Location = new System.Drawing.Point(251, 241);
+            this.dtpDatePrime.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpDatePrime.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpDatePrime.MinimumSize = new System.Drawing.Size(180, 28);
+            this.dtpDatePrime.Name = "dtpDatePrime";
+            this.dtpDatePrime.SelectedDayColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDatePrime.ShowCheckBox = false;
+            this.dtpDatePrime.ShowUpDown = false;
+            this.dtpDatePrime.Size = new System.Drawing.Size(380, 40);
+            this.dtpDatePrime.TabIndex = 9;
+            this.dtpDatePrime.Value = new System.DateTime(2026, 10, 30, 0, 0, 0, 0);
+            // 
+            // txtPersonnel
+            // 
+            this.txtPersonnel.BackColor = System.Drawing.Color.White;
+            this.txtPersonnel.BorderColor = System.Drawing.Color.Silver;
+            this.txtPersonnel.BorderRadius = 8;
+            this.txtPersonnel.BorderSize = 1;
+            this.txtPersonnel.FocusBorderColor = System.Drawing.Color.Orange;
+            this.txtPersonnel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPersonnel.ForeColor = System.Drawing.Color.Black;
+            this.txtPersonnel.Image = null;
+            this.txtPersonnel.Location = new System.Drawing.Point(251, 131);
+            this.txtPersonnel.MaxLength = 32767;
+            this.txtPersonnel.Name = "txtPersonnel";
+            this.txtPersonnel.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtPersonnel.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtPersonnel.PlaceholderText = "";
+            this.txtPersonnel.ReadOnly = true;
+            this.txtPersonnel.Size = new System.Drawing.Size(380, 40);
+            this.txtPersonnel.TabIndex = 7;
+            // 
+            // txtMotif
+            // 
+            this.txtMotif.BackColor = System.Drawing.Color.White;
+            this.txtMotif.BorderColor = System.Drawing.Color.Silver;
+            this.txtMotif.BorderRadius = 8;
+            this.txtMotif.BorderSize = 1;
+            this.txtMotif.FocusBorderColor = System.Drawing.Color.Silver;
+            this.txtMotif.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMotif.ForeColor = System.Drawing.Color.Black;
+            this.txtMotif.Image = null;
+            this.txtMotif.Location = new System.Drawing.Point(251, 296);
+            this.txtMotif.MaxLength = 32767;
+            this.txtMotif.Name = "txtMotif";
+            this.txtMotif.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtMotif.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtMotif.PlaceholderText = "";
+            this.txtMotif.Size = new System.Drawing.Size(380, 40);
+            this.txtMotif.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(31, 310);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 21);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Motif ";
+            // 
+            // btEnregistrer
+            // 
+            this.btEnregistrer.BackColor = System.Drawing.Color.Transparent;
+            this.btEnregistrer.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btEnregistrer.BorderRadius = 8;
+            this.btEnregistrer.ButtonText = "Enregistrer";
+            this.btEnregistrer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btEnregistrer.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(131)))), ((int)(((byte)(78)))));
+            this.btEnregistrer.FlatAppearance.BorderSize = 0;
+            this.btEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEnregistrer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEnregistrer.ForeColor = System.Drawing.Color.White;
+            this.btEnregistrer.HoverBackColor = System.Drawing.Color.Green;
+            this.btEnregistrer.Image = global::Cepima.Properties.Resources.save_30px;
+            this.btEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEnregistrer.Location = new System.Drawing.Point(251, 409);
+            this.btEnregistrer.Name = "btEnregistrer";
+            this.btEnregistrer.Size = new System.Drawing.Size(380, 50);
+            this.btEnregistrer.TabIndex = 15;
+            this.btEnregistrer.Text = "Enregistrer";
+            this.btEnregistrer.TextColor = System.Drawing.Color.White;
+            this.btEnregistrer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btEnregistrer.UseVisualStyleBackColor = false;
+            this.btEnregistrer.Click += new System.EventHandler(this.btEnregistrer_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(32, 205);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(124, 21);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Salaire concerné";
+            // 
+            // cbSalaire
+            // 
+            this.cbSalaire.ArrowColor = System.Drawing.Color.DimGray;
+            this.cbSalaire.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbSalaire.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbSalaire.BackColor = System.Drawing.Color.White;
+            this.cbSalaire.BorderColor = System.Drawing.Color.Silver;
+            this.cbSalaire.BorderRadius = 8;
+            this.cbSalaire.BorderSize = 1;
+            this.cbSalaire.DropDownBackColor = System.Drawing.Color.White;
+            this.cbSalaire.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbSalaire.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.cbSalaire.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbSalaire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSalaire.FocusBorderColor = System.Drawing.Color.Orange;
+            this.cbSalaire.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSalaire.Location = new System.Drawing.Point(251, 186);
+            this.cbSalaire.Name = "cbSalaire";
+            this.cbSalaire.SelectedItem = null;
+            this.cbSalaire.SelectedValue = null;
+            this.cbSalaire.Size = new System.Drawing.Size(380, 40);
+            this.cbSalaire.TabIndex = 16;
             // 
             // Ajouter_prime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(436, 513);
-            this.Controls.Add(this.bt_start);
-            this.Controls.Add(this.tb_montant);
-            this.Controls.Add(this.tb_motif);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(651, 471);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.cbSalaire);
+            this.Controls.Add(this.btEnregistrer);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dtp_date_paiement);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.bunifuRoundedPanel1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.nudMontant);
+            this.Controls.Add(this.dtpDatePrime);
+            this.Controls.Add(this.txtMotif);
+            this.Controls.Add(this.txtPersonnel);
+            this.Controls.Add(this.customRoundedPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Ajouter_prime";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ajouter une prime";
-            this.Load += new System.EventHandler(this.Ajouter_prime_Load);
-            this.bunifuRoundedPanel1.ResumeLayout(false);
-            this.bunifuRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "Ajouter_prime";
+            this.customRoundedPanel1.ResumeLayout(false);
+            this.customRoundedPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,21 +322,20 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private BunifuRoundedPanel bunifuRoundedPanel1;
-        private System.Windows.Forms.Label lblSalaire;
-        private System.Windows.Forms.Label lblMois;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblPersonnel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DateTimePicker dtp_date_paiement;
-        private System.Windows.Forms.Label label8;
-        private MyRoundedTextBox tb_motif;
-        private System.Windows.Forms.Label label5;
+        private CustomRoundedPanel customRoundedPanel1;
+        private System.Windows.Forms.Label lbSousTitre;
+        private System.Windows.Forms.Label lbTitre;
+        private AvatarControl avatarControl1;
         private System.Windows.Forms.Label label6;
-        private MyRoundedTextBox tb_montant;
-        private RoundedButton bt_start;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label3;
+        private RoundedNumericUpDown nudMontant;
+        private Controls.MyDateTimePicker dtpDatePrime;
+        private MyRoundedTextBox txtPersonnel;
+        private MyRoundedTextBox txtMotif;
+        private System.Windows.Forms.Label label1;
+        private RoundedButton btEnregistrer;
+        private System.Windows.Forms.Label label7;
+        private MyRoundedComboBox cbSalaire;
     }
 }

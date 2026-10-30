@@ -1,6 +1,6 @@
 ﻿namespace Cepima.MesForms.Personnel
 {
-    partial class Add_salaire
+    partial class Ajouter_salaire
     {
         /// <summary>
         /// Required designer variable.
@@ -28,318 +28,261 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dtp_date_paiement = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tb_salaire = new MyRoundedTextBox();
-            this.cbx_statut = new MyRoundedComboBox();
-            this.cbx_mois = new MyRoundedComboBox();
-            this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
-            this.lb_age = new System.Windows.Forms.Label();
-            this.lb_postnom = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lb_fonction = new System.Windows.Forms.Label();
-            this.lb_nom = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.bt_start = new RoundedButton();
-            this.bunifuRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btEnregistrer = new RoundedButton();
+            this.nudSalaireBase = new RoundedNumericUpDown();
+            this.dtpDatePaiement = new Cepima.Controls.MyDateTimePicker();
+            this.cbMois = new MyRoundedComboBox();
+            this.txtPersonnel = new MyRoundedTextBox();
+            this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.lbSousTitre = new System.Windows.Forms.Label();
+            this.lbTitre = new System.Windows.Forms.Label();
+            this.avatarControl1 = new AvatarControl();
+            this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(142, 165);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(260, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Ajouter un salaire du personnel";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(15, 239);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 17);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Mois  : ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label7.Location = new System.Drawing.Point(12, 312);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 17);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Salaire de base  : ";
-            // 
-            // dtp_date_paiement
-            // 
-            this.dtp_date_paiement.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_date_paiement.Location = new System.Drawing.Point(159, 376);
-            this.dtp_date_paiement.Name = "dtp_date_paiement";
-            this.dtp_date_paiement.Size = new System.Drawing.Size(285, 27);
-            this.dtp_date_paiement.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label8.Location = new System.Drawing.Point(15, 384);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 17);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Date paiement  : ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label9.Location = new System.Drawing.Point(15, 452);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Statut  : ";
-            // 
-            // tb_salaire
-            // 
-            this.tb_salaire.BackColor = System.Drawing.Color.White;
-            this.tb_salaire.BorderColor = System.Drawing.Color.Silver;
-            this.tb_salaire.BorderRadius = 6;
-            this.tb_salaire.BorderSize = 1;
-            this.tb_salaire.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_salaire.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_salaire.ForeColor = System.Drawing.Color.Black;
-            this.tb_salaire.Image = null;
-            this.tb_salaire.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_salaire.ImagePadding = 2;
-            this.tb_salaire.Location = new System.Drawing.Point(159, 299);
-            this.tb_salaire.MaxLength = 32767;
-            this.tb_salaire.Name = "tb_salaire";
-            this.tb_salaire.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_salaire.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_salaire.PlaceholderText = "20 par exemple";
-            this.tb_salaire.Size = new System.Drawing.Size(285, 30);
-            this.tb_salaire.TabIndex = 9;
-            // 
-            // cbx_statut
-            // 
-            this.cbx_statut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbx_statut.ArrowColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cbx_statut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.cbx_statut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.cbx_statut.BorderColor = System.Drawing.Color.Silver;
-            this.cbx_statut.BorderRadius = 6;
-            this.cbx_statut.BorderSize = 1;
-            this.cbx_statut.DropDownBackColor = System.Drawing.Color.White;
-            this.cbx_statut.DropDownForeColor = System.Drawing.Color.Black;
-            this.cbx_statut.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.cbx_statut.DropDownSelectedForeColor = System.Drawing.Color.White;
-            this.cbx_statut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_statut.FocusBorderColor = System.Drawing.Color.Silver;
-            this.cbx_statut.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_statut.Location = new System.Drawing.Point(159, 441);
-            this.cbx_statut.Name = "cbx_statut";
-            this.cbx_statut.SelectedItem = null;
-            this.cbx_statut.SelectedValue = null;
-            this.cbx_statut.Size = new System.Drawing.Size(285, 28);
-            this.cbx_statut.TabIndex = 3;
-            // 
-            // cbx_mois
-            // 
-            this.cbx_mois.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbx_mois.ArrowColor = System.Drawing.SystemColors.ActiveCaption;
-            this.cbx_mois.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.cbx_mois.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
-            this.cbx_mois.BorderColor = System.Drawing.Color.Silver;
-            this.cbx_mois.BorderRadius = 6;
-            this.cbx_mois.BorderSize = 1;
-            this.cbx_mois.DropDownBackColor = System.Drawing.Color.White;
-            this.cbx_mois.DropDownForeColor = System.Drawing.Color.Black;
-            this.cbx_mois.DropDownSelectedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(229)))));
-            this.cbx_mois.DropDownSelectedForeColor = System.Drawing.Color.White;
-            this.cbx_mois.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_mois.FocusBorderColor = System.Drawing.Color.Silver;
-            this.cbx_mois.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbx_mois.Location = new System.Drawing.Point(159, 228);
-            this.cbx_mois.Name = "cbx_mois";
-            this.cbx_mois.SelectedItem = null;
-            this.cbx_mois.SelectedValue = null;
-            this.cbx_mois.Size = new System.Drawing.Size(285, 28);
-            this.cbx_mois.TabIndex = 3;
-            // 
-            // bunifuRoundedPanel1
-            // 
-            this.bunifuRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
-            this.bunifuRoundedPanel1.BorderRadius = 8;
-            this.bunifuRoundedPanel1.BorderSize = 0;
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_age);
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_postnom);
-            this.bunifuRoundedPanel1.Controls.Add(this.label3);
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_fonction);
-            this.bunifuRoundedPanel1.Controls.Add(this.lb_nom);
-            this.bunifuRoundedPanel1.Controls.Add(this.label5);
-            this.bunifuRoundedPanel1.Controls.Add(this.label2);
-            this.bunifuRoundedPanel1.Controls.Add(this.label4);
-            this.bunifuRoundedPanel1.Controls.Add(this.pictureBox1);
-            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(5, 7);
-            this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
-            this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
-            this.bunifuRoundedPanel1.ShadowDepth = 15;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(533, 144);
-            this.bunifuRoundedPanel1.TabIndex = 0;
-            // 
-            // lb_age
-            // 
-            this.lb_age.AutoSize = true;
-            this.lb_age.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_age.Location = new System.Drawing.Point(215, 105);
-            this.lb_age.Name = "lb_age";
-            this.lb_age.Size = new System.Drawing.Size(112, 17);
-            this.lb_age.TabIndex = 3;
-            this.lb_age.Text = "45 ans - Homme";
-            // 
-            // lb_postnom
-            // 
-            this.lb_postnom.AutoSize = true;
-            this.lb_postnom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_postnom.Location = new System.Drawing.Point(215, 62);
-            this.lb_postnom.Name = "lb_postnom";
-            this.lb_postnom.Size = new System.Drawing.Size(36, 17);
-            this.lb_postnom.TabIndex = 4;
-            this.lb_postnom.Text = "Paul";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(120, 105);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(63, 161);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Age - Sexe : ";
-            // 
-            // lb_fonction
-            // 
-            this.lb_fonction.AutoSize = true;
-            this.lb_fonction.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_fonction.Location = new System.Drawing.Point(438, 62);
-            this.lb_fonction.Name = "lb_fonction";
-            this.lb_fonction.Size = new System.Drawing.Size(56, 17);
-            this.lb_fonction.TabIndex = 6;
-            this.lb_fonction.Text = "Aucune";
-            // 
-            // lb_nom
-            // 
-            this.lb_nom.AutoSize = true;
-            this.lb_nom.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lb_nom.Location = new System.Drawing.Point(215, 22);
-            this.lb_nom.Name = "lb_nom";
-            this.lb_nom.Size = new System.Drawing.Size(39, 17);
-            this.lb_nom.TabIndex = 6;
-            this.lb_nom.Text = "Jean";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(365, 62);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 17);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Fonction : ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(120, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Post_Nom : ";
+            this.label3.Size = new System.Drawing.Size(82, 21);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Personnel ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(120, 22);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(63, 217);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Nom  : ";
+            this.label4.Size = new System.Drawing.Size(44, 21);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Mois";
             // 
-            // pictureBox1
+            // label5
             // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(94, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(63, 273);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(132, 21);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Date de paiement";
             // 
-            // bt_start
+            // label6
             // 
-            this.bt_start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_start.BackColor = System.Drawing.Color.Transparent;
-            this.bt_start.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_start.BorderRadius = 8;
-            this.bt_start.ButtonText = "Enregistrer  le salaire";
-            this.bt_start.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_start.DefaultBackColor = System.Drawing.Color.DodgerBlue;
-            this.bt_start.FlatAppearance.BorderSize = 0;
-            this.bt_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_start.ForeColor = System.Drawing.Color.White;
-            this.bt_start.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_start.Image = global::Cepima.Properties.Resources.save_30px;
-            this.bt_start.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_start.Location = new System.Drawing.Point(154, 511);
-            this.bt_start.Name = "bt_start";
-            this.bt_start.Size = new System.Drawing.Size(255, 40);
-            this.bt_start.TabIndex = 37;
-            this.bt_start.Text = "Enregistrer  le salaire";
-            this.bt_start.TextColor = System.Drawing.Color.White;
-            this.bt_start.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_start.UseVisualStyleBackColor = false;
-            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(63, 329);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(114, 21);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Salaire de base";
             // 
-            // Add_salaire
+            // btEnregistrer
+            // 
+            this.btEnregistrer.BackColor = System.Drawing.Color.Transparent;
+            this.btEnregistrer.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btEnregistrer.BorderRadius = 8;
+            this.btEnregistrer.ButtonText = "Enregistrer";
+            this.btEnregistrer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btEnregistrer.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(198)))));
+            this.btEnregistrer.FlatAppearance.BorderSize = 0;
+            this.btEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEnregistrer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEnregistrer.ForeColor = System.Drawing.Color.White;
+            this.btEnregistrer.HoverBackColor = System.Drawing.Color.SteelBlue;
+            this.btEnregistrer.Image = global::Cepima.Properties.Resources.save_30px;
+            this.btEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEnregistrer.Location = new System.Drawing.Point(259, 409);
+            this.btEnregistrer.Name = "btEnregistrer";
+            this.btEnregistrer.Size = new System.Drawing.Size(380, 50);
+            this.btEnregistrer.TabIndex = 5;
+            this.btEnregistrer.Text = "Enregistrer";
+            this.btEnregistrer.TextColor = System.Drawing.Color.White;
+            this.btEnregistrer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btEnregistrer.UseVisualStyleBackColor = false;
+            this.btEnregistrer.Click += new System.EventHandler(this.btEnregistrer_Click);
+            // 
+            // nudSalaireBase
+            // 
+            this.nudSalaireBase.BackColor = System.Drawing.Color.White;
+            this.nudSalaireBase.BorderColor = System.Drawing.Color.Silver;
+            this.nudSalaireBase.BorderRadius = 8;
+            this.nudSalaireBase.ButtonBackColor = System.Drawing.Color.White;
+            this.nudSalaireBase.ButtonFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.nudSalaireBase.ButtonForeColor = System.Drawing.Color.DimGray;
+            this.nudSalaireBase.ButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.nudSalaireBase.DecimalPlaces = 1;
+            this.nudSalaireBase.FocusBorderColor = System.Drawing.Color.Silver;
+            this.nudSalaireBase.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.nudSalaireBase.ForeColor = System.Drawing.Color.Black;
+            this.nudSalaireBase.Location = new System.Drawing.Point(259, 310);
+            this.nudSalaireBase.MinimumSize = new System.Drawing.Size(77, 32);
+            this.nudSalaireBase.Name = "nudSalaireBase";
+            this.nudSalaireBase.Size = new System.Drawing.Size(380, 40);
+            this.nudSalaireBase.TabIndex = 4;
+            this.nudSalaireBase.ThousandsSeparator = true;
+            // 
+            // dtpDatePaiement
+            // 
+            this.dtpDatePaiement.BackColor = System.Drawing.Color.White;
+            this.dtpDatePaiement.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
+            this.dtpDatePaiement.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDatePaiement.BorderRadius = 8;
+            this.dtpDatePaiement.BorderSize = 1;
+            this.dtpDatePaiement.CalendarBackColor = System.Drawing.Color.White;
+            this.dtpDatePaiement.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDatePaiement.CalendarHeight = 280;
+            this.dtpDatePaiement.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDatePaiement.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtpDatePaiement.Checked = true;
+            this.dtpDatePaiement.CustomFormat = "dd/MM/yyyy";
+            this.dtpDatePaiement.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dtpDatePaiement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(60)))), ((int)(((byte)(70)))));
+            this.dtpDatePaiement.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpDatePaiement.Location = new System.Drawing.Point(259, 254);
+            this.dtpDatePaiement.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpDatePaiement.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpDatePaiement.MinimumSize = new System.Drawing.Size(180, 28);
+            this.dtpDatePaiement.Name = "dtpDatePaiement";
+            this.dtpDatePaiement.SelectedDayColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDatePaiement.ShowCheckBox = false;
+            this.dtpDatePaiement.ShowUpDown = false;
+            this.dtpDatePaiement.Size = new System.Drawing.Size(380, 40);
+            this.dtpDatePaiement.TabIndex = 3;
+            this.dtpDatePaiement.Value = new System.DateTime(2026, 10, 30, 0, 0, 0, 0);
+            // 
+            // cbMois
+            // 
+            this.cbMois.ArrowColor = System.Drawing.Color.DimGray;
+            this.cbMois.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbMois.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbMois.BackColor = System.Drawing.Color.White;
+            this.cbMois.BorderColor = System.Drawing.Color.Silver;
+            this.cbMois.BorderRadius = 8;
+            this.cbMois.BorderSize = 1;
+            this.cbMois.DropDownBackColor = System.Drawing.Color.White;
+            this.cbMois.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbMois.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.cbMois.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbMois.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbMois.FocusBorderColor = System.Drawing.Color.Silver;
+            this.cbMois.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbMois.Location = new System.Drawing.Point(259, 198);
+            this.cbMois.Name = "cbMois";
+            this.cbMois.SelectedItem = null;
+            this.cbMois.SelectedValue = null;
+            this.cbMois.Size = new System.Drawing.Size(380, 40);
+            this.cbMois.TabIndex = 2;
+            // 
+            // txtPersonnel
+            // 
+            this.txtPersonnel.BackColor = System.Drawing.Color.White;
+            this.txtPersonnel.BorderColor = System.Drawing.Color.Silver;
+            this.txtPersonnel.BorderRadius = 8;
+            this.txtPersonnel.BorderSize = 1;
+            this.txtPersonnel.FocusBorderColor = System.Drawing.Color.Silver;
+            this.txtPersonnel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPersonnel.ForeColor = System.Drawing.Color.Black;
+            this.txtPersonnel.Image = null;
+            this.txtPersonnel.Location = new System.Drawing.Point(259, 142);
+            this.txtPersonnel.MaxLength = 32767;
+            this.txtPersonnel.Name = "txtPersonnel";
+            this.txtPersonnel.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtPersonnel.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtPersonnel.PlaceholderText = "";
+            this.txtPersonnel.ReadOnly = true;
+            this.txtPersonnel.Size = new System.Drawing.Size(380, 40);
+            this.txtPersonnel.TabIndex = 1;
+            // 
+            // customRoundedPanel1
+            // 
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(102)))), ((int)(((byte)(198)))));
+            this.customRoundedPanel1.BorderColor = System.Drawing.Color.Transparent;
+            this.customRoundedPanel1.BorderRadius = 8;
+            this.customRoundedPanel1.BorderSize = 0;
+            this.customRoundedPanel1.Controls.Add(this.lbSousTitre);
+            this.customRoundedPanel1.Controls.Add(this.lbTitre);
+            this.customRoundedPanel1.Controls.Add(this.avatarControl1);
+            this.customRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.customRoundedPanel1.Location = new System.Drawing.Point(0, 0);
+            this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(651, 99);
+            this.customRoundedPanel1.TabIndex = 0;
+            // 
+            // lbSousTitre
+            // 
+            this.lbSousTitre.AutoSize = true;
+            this.lbSousTitre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSousTitre.ForeColor = System.Drawing.Color.White;
+            this.lbSousTitre.Location = new System.Drawing.Point(112, 72);
+            this.lbSousTitre.Name = "lbSousTitre";
+            this.lbSousTitre.Size = new System.Drawing.Size(236, 21);
+            this.lbSousTitre.TabIndex = 2;
+            this.lbSousTitre.Text = "Enregistrer ou modifier le salaire";
+            // 
+            // lbTitre
+            // 
+            this.lbTitre.AutoSize = true;
+            this.lbTitre.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
+            this.lbTitre.ForeColor = System.Drawing.Color.White;
+            this.lbTitre.Location = new System.Drawing.Point(111, 26);
+            this.lbTitre.Name = "lbTitre";
+            this.lbTitre.Size = new System.Drawing.Size(91, 32);
+            this.lbTitre.TabIndex = 2;
+            this.lbTitre.Text = "Salaire";
+            // 
+            // avatarControl1
+            // 
+            this.avatarControl1.Avatar = global::Cepima.Properties.Resources.Salaire2;
+            this.avatarControl1.BackColor = System.Drawing.Color.Transparent;
+            this.avatarControl1.BorderColor = System.Drawing.Color.White;
+            this.avatarControl1.BorderSize = 2;
+            this.avatarControl1.Location = new System.Drawing.Point(12, 12);
+            this.avatarControl1.Name = "avatarControl1";
+            this.avatarControl1.Size = new System.Drawing.Size(80, 80);
+            this.avatarControl1.TabIndex = 1;
+            // 
+            // Ajouter_salaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(544, 563);
-            this.Controls.Add(this.bt_start);
-            this.Controls.Add(this.dtp_date_paiement);
-            this.Controls.Add(this.tb_salaire);
-            this.Controls.Add(this.cbx_statut);
-            this.Controls.Add(this.cbx_mois);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.bunifuRoundedPanel1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label7);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(651, 471);
             this.Controls.Add(this.label6);
-            this.Name = "Add_salaire";
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.btEnregistrer);
+            this.Controls.Add(this.nudSalaireBase);
+            this.Controls.Add(this.dtpDatePaiement);
+            this.Controls.Add(this.cbMois);
+            this.Controls.Add(this.txtPersonnel);
+            this.Controls.Add(this.customRoundedPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.Name = "Ajouter_salaire";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ajouter un salaire";
-            this.Load += new System.EventHandler(this.Add_salaire_Load);
-            this.bunifuRoundedPanel1.ResumeLayout(false);
-            this.bunifuRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "Ajout/ Modification du salaire";
+            this.Load += new System.EventHandler(this.Ajouter_salaire_Load);
+            this.customRoundedPanel1.ResumeLayout(false);
+            this.customRoundedPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -347,25 +290,18 @@
 
         #endregion
 
-        private BunifuRoundedPanel bunifuRoundedPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lb_age;
-        private System.Windows.Forms.Label lb_postnom;
+        private CustomRoundedPanel customRoundedPanel1;
+        private AvatarControl avatarControl1;
+        private System.Windows.Forms.Label lbSousTitre;
+        private System.Windows.Forms.Label lbTitre;
+        private MyRoundedTextBox txtPersonnel;
+        private MyRoundedComboBox cbMois;
+        private Controls.MyDateTimePicker dtpDatePaiement;
+        private RoundedNumericUpDown nudSalaireBase;
+        private RoundedButton btEnregistrer;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lb_nom;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lb_fonction;
         private System.Windows.Forms.Label label5;
-        private MyRoundedComboBox cbx_mois;
         private System.Windows.Forms.Label label6;
-        private MyRoundedTextBox tb_salaire;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dtp_date_paiement;
-        private System.Windows.Forms.Label label8;
-        private RoundedButton bt_start;
-        private System.Windows.Forms.Label label9;
-        private MyRoundedComboBox cbx_statut;
     }
 }
