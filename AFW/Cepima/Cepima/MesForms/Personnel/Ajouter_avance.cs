@@ -1,673 +1,404 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+
 namespace Cepima.MesForms.Personnel
 {
-    public partial class Ajouter_avance : Form
+    public partial class Ajouter_Avance : Form
     {
-        string idPersonnel;
-        private decimal salaireBase;
-        private decimal avancesDejaRecues;
-        private decimal resteDisponible;
-        private int idAvance;
+        private int idPersonnel = 0;
+        private int idSalaire = 0;
+        private int idAvance = 0;
         private bool modeModification = false;
 
-        public Ajouter_avance(string id_personnel)
+        public Ajouter_Avance()
         {
             InitializeComponent();
-            this.idPersonnel = id_personnel;
-            ChargerSalaireConcerne();
-            chargementTermine = true;
-            this.Text = "Ajouter une avance";
-            label1.Text = this.Text;
-            bt_start.Text = this.Text;
         }
 
-        public Ajouter_avance(string id_personnel, int id_avance)
+        // Ajout d'une nouvelle avance
+        public Ajouter_Avance(int idPersonnel)
+            : this()
         {
-            InitializeComponent();
+            this.idPersonnel = idPersonnel;
 
-            this.idPersonnel = id_personnel;
-            this.idAvance = id_avance;
-
-            modeModification = true;
-            modeModification = true;
-            this.Text = "Modifier une avance";
-            label1.Text = this.Text;
-            bt_start.Text = this.Text;
+            ChargerPersonnel();
+            ChargerSalaires();
+            InitialiserFormulaire();
         }
-        private int idSalaire;
 
-        private void ChargerSalaireConcerne()
+        // Modification d'une avance existante
+        public Ajouter_Avance(int idPersonnel, int idAvance): this()
+        {
+            this.idPersonnel = idPersonnel;
+            this.idAvance = idAvance;
+            modeModification = true;
+
+            ChargerPersonnel();
+            ChargerSalaires();
+            InitialiserFormulaire();
+            ChargerAvance();
+        }
+
+        private void ChargerPersonnel()
         {
             try
             {
-                string query = @"
-            SELECT 
-                s.id_salaire,
-                s.mois,
-                s.salaire_base,
-                p.nom,
-                p.post_nom,
-                p.prenom
-            FROM salaires s
-            INNER JOIN personnels p 
-                ON p.id_personnel = s.id_personnel
-            WHERE p.id_personnel = @id
-            ORDER BY s.id_salaire DESC
-            LIMIT 1";
+                string requete = @"SELECT nom, post_nom, prenom
+                           FROM personnels
+                           WHERE id_personnel = @idPersonnel";
 
-                MesClasses.ManagerClasse.request_params.Clear();
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@id",
-                    idPersonnel
-                );
-
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        query,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
                 {
-                    if (reader.Read())
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+
+                    using (MySqlDataReader reader = commande.ExecuteReader())
                     {
-                        // ==========================================
-                        // ID DU SALAIRE
-                        // ==========================================
-
-                        idSalaire =
-                            Convert.ToInt32(reader["id_salaire"]);
-
-
-                        // ==========================================
-                        // PERSONNEL
-                        // ==========================================
-
-                        string nom =
-                            reader["nom"].ToString();
-
-                        string postNom =
-                            reader["post_nom"].ToString();
-
-                        string prenom =
-                            reader["prenom"].ToString();
-
-                        lblPersonnel.Text =
-                            nom + " " + postNom + " " + prenom;
-
-
-                        // ==========================================
-                        // SALAIRE DE BASE
-                        // ==========================================
-
-                        salaireBase =
-                            Convert.ToDecimal(reader["salaire_base"]);
-
-                        lblSalaire.Text =
-                            salaireBase.ToString("N2") + " $";
-
-
-                        // ==========================================
-                        // MOIS
-                        // ==========================================
-
-                        lblMois.Text =
-                            reader["mois"].ToString();
-
-
-                        // ==========================================
-                        // CALCUL DES AVANCES
-                        // ==========================================
-
-                        CalculerAvancesDejaRecues();
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Aucun salaire enregistré pour ce personnel.",
-                            "Information",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
-
-                        Close();
+                        if (reader.Read())
+                        {
+                            txtPersonnel.Text = reader["nom"] + " " +
+                                               reader["post_nom"] + " " +
+                                               reader["prenom"];
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Erreur lors du chargement du salaire concerné :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Erreur lors du chargement du personnel :\n" + ex.Message);
             }
         }
-        private void ChargerCalculsAvance()
+
+        private void ChargerSalaires()
         {
             try
             {
-                int idSalaire = MesForms.Personnel.Ajouter_prime.RecupererIDSalaire(Convert.ToInt32(idPersonnel));
-                string query = "SELECT s.salaire_base,COALESCE((SELECT SUM(a.montant) FROM avances_salaire a WHERE a.id_salaire = s.id_salaire), 0) AS total_avances FROM salaires s WHERE s.id_salaire = @id_salaire";
+                cbSalaire.Items.Clear();
 
-                MesClasses.ManagerClasse.request_params.Clear();
+                string requete = @"SELECT id_salaire, mois, salaire_base, statut
+                           FROM salaires
+                           WHERE id_personnel = @idPersonnel
+                           ORDER BY date_paiement DESC";
 
-                MesClasses.ManagerClasse.request_params.Add("@id_salaire", idSalaire.ToString());
-
-                using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
                 {
-                    if (reader.Read())
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+
+                    using (MySqlDataReader reader = commande.ExecuteReader())
                     {
-                        salaireBase = Convert.ToDecimal(reader["salaire_base"]);
-
-                        avancesDejaRecues =
-                            Convert.ToDecimal(reader["total_avances"]);
-
-                        // Afficher les avances déjà reçues
-                        tb_avancesDejaRecues.Text =
-                            avancesDejaRecues.ToString("N2");
-
-                        // Calculer le reste disponible
-                        resteDisponible =
-                            salaireBase - avancesDejaRecues;
-
-                        tb_reste.Text =
-                            resteDisponible.ToString("N2");
+                        while (reader.Read())
+                        {
+                            cbSalaire.Items.Add(new SalaireItem
+                            {
+                                Id = Convert.ToInt32(reader["id_salaire"]),
+                                Texte = reader["mois"] + " | " +
+                                        Convert.ToDecimal(reader["salaire_base"]).ToString("N2") +
+                                        " | " + reader["statut"]
+                            });
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Le salaire concerné est introuvable.",
-                            "Erreur",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
-
-                        Close();
-                    }
-                    this.Close();
                 }
+
+                if (cbSalaire.Items.Count > 0)
+                    cbSalaire.SelectedIndex = 0;
+                else
+                    MessageBox.Show("Aucun salaire enregistré pour ce personnel.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Erreur lors du calcul des avances :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Erreur lors du chargement des salaires :\n" + ex.Message);
             }
         }
-        private void bt_start_Click(object sender, EventArgs e)
+
+        private void InitialiserFormulaire()
         {
+            dtpDateAvance.Value = DateTime.Today;
+
+            cbSalaire.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            nudMontant.Minimum = 0;
+            nudMontant.Maximum = 100000000;
+            nudMontant.DecimalPlaces = 2;
+            nudMontant.Increment = 100;
+
+            txtReste.ReadOnly = true;
+
             if (modeModification)
             {
-                ModifierAvance();
-                MesForms.Personnel.Detail_salaire.btRefresh.PerformClick();
+                lbTitre.Text = "Modifier une avance";
+                lbSousTitre.Text = "Modifier les informations de l'avance";
+                btEnregistrer.Text = "Enregistrer les modifications";
             }
             else
             {
-                AjouterAvance();
-                MesForms.Personnel.Detail_salaire.btRefresh.PerformClick();
+                lbTitre.Text = "Nouvelle avance";
+                lbSousTitre.Text = "Enregistrer une avance sur salaire";
+                btEnregistrer.Text = "Enregistrer";
             }
         }
 
-        private void tb_montantAvance_TextChanged(object sender, EventArgs e)
+        private decimal CalculerReste(int idSalaire)
         {
-            if (!chargementTermine)
+            string requete = @"SELECT
+                       s.salaire_base
+                       + COALESCE((SELECT SUM(p.montant)
+                                   FROM prime p
+                                   WHERE p.id_salaire = s.id_salaire), 0)
+                       - COALESCE((SELECT SUM(r.montant)
+                                   FROM retenue r
+                                   WHERE r.id_salaire = s.id_salaire), 0)
+                       - COALESCE((SELECT SUM(a.montant)
+                                   FROM avances_salaire a
+                                   WHERE a.id_salaire = s.id_salaire
+                                   AND a.id_avance <> @idAvance), 0)
+                       AS disponible
+                       FROM salaires s
+                       WHERE s.id_salaire = @idSalaire
+                       AND s.id_personnel = @idPersonnel";
+
+            using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+            using (MySqlCommand commande = new MySqlCommand(requete, connexion))
+            {
+                commande.Parameters.AddWithValue("@idSalaire", idSalaire);
+                commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+                commande.Parameters.AddWithValue("@idAvance", idAvance);
+
+                object resultat = commande.ExecuteScalar();
+
+                return resultat == null || resultat == DBNull.Value
+                    ? 0
+                    : Convert.ToDecimal(resultat);
+            }
+        }
+
+        private void ActualiserReste()
+        {
+            if (cbSalaire.SelectedItem == null)
+            {
+                txtReste.Text = "0,00";
                 return;
-
-            decimal montantAvance;
-
-            if (decimal.TryParse(
-                tb_montantAvance.Text,
-                out montantAvance))
-            {
-                decimal nouveauReste =
-                    resteDisponible - montantAvance;
-
-                if (nouveauReste >= 0)
-                {
-                    tb_reste.Text =
-                        nouveauReste.ToString("N2");
-                }
-                else
-                {
-                    tb_reste.Text = "0.00";
-                }
             }
-            else
-            {
-                tb_reste.Text =
-                    resteDisponible.ToString("N2");
-            }
+
+            SalaireItem salaire = (SalaireItem)cbSalaire.SelectedItem;
+
+            decimal disponible = CalculerReste(salaire.Id);
+            decimal reste = disponible - nudMontant.Value;
+
+            txtReste.Text = reste.ToString("N2");
         }
 
-        private void CalculerAvancesDejaRecues()
+        private void cbSalaire_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ActualiserReste();
+        }
+
+        private void nudMontant_ValueChanged(object sender, EventArgs e)
+        {
+            ActualiserReste();
+        }
+
+        private void EnregistrerAvance()
+        {
+            if (idPersonnel <= 0 || cbSalaire.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un salaire.");
+                cbSalaire.Focus();
+                return;
+            }
+
+            if (nudMontant.Value <= 0)
+            {
+                MessageBox.Show("Veuillez saisir un montant valide.");
+                nudMontant.Focus();
+                return;
+            }
+
             try
             {
-                string query;
+                SalaireItem salaire = (SalaireItem)cbSalaire.SelectedItem;
 
-                if (modeModification)
+                decimal disponible = CalculerReste(salaire.Id);
+
+                if (nudMontant.Value > disponible)
                 {
-                    query = @"
-                SELECT COALESCE(SUM(montant), 0)
-                FROM avances_salaire
-                WHERE id_salaire = @id_salaire
-                AND id_avance <> @id_avance";
-                }
-                else
-                {
-                    query = @"
-                SELECT COALESCE(SUM(montant), 0)
-                FROM avances_salaire
-                WHERE id_salaire = @id_salaire";
+                    MessageBox.Show("Le montant de l'avance dépasse le montant disponible : " +
+                                    disponible.ToString("N2"));
+                    nudMontant.Focus();
+                    return;
                 }
 
-                MesClasses.ManagerClasse.request_params.Clear();
+                string requete = @"INSERT INTO avances_salaire
+                           (id_salaire, date_avance, montant, reste)
+                           VALUES
+                           (@idSalaire, @dateAvance, @montant, @reste)";
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@id_salaire",
-                    idSalaire.ToString()
-                );
-
-                if (modeModification)
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
                 {
-                    MesClasses.ManagerClasse.request_params.Add(
-                        "@id_avance",
-                        idAvance.ToString()
-                    );
+                    commande.Parameters.AddWithValue("@idSalaire", salaire.Id);
+                    commande.Parameters.AddWithValue("@dateAvance", dtpDateAvance.Value.Date);
+                    commande.Parameters.AddWithValue("@montant", nudMontant.Value);
+                    commande.Parameters.AddWithValue("@reste", disponible - nudMontant.Value);
+
+                    commande.ExecuteNonQuery();
                 }
 
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        query,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
-                {
-                    if (reader.Read())
-                    {
-                        avancesDejaRecues =
-                            Convert.ToDecimal(reader[0]);
-                    }
-                    else
-                    {
-                        avancesDejaRecues = 0;
-                    }
-                }
+                MessageBox.Show("L'avance a été enregistrée avec succès.",
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                tb_avancesDejaRecues.Text =
-                    avancesDejaRecues.ToString("N2");
-
-                resteDisponible =
-                    salaireBase - avancesDejaRecues;
-
-                if (resteDisponible < 0)
-                    resteDisponible = 0;
-
-                // En modification, le montant actuel
-                // doit pouvoir être conservé.
-                if (modeModification)
-                {
-                    decimal montantActuel = 0;
-
-                    decimal.TryParse(
-                        tb_montantAvance.Text,
-                        out montantActuel
-                    );
-
-                    tb_reste.Text =
-                        (resteDisponible - montantActuel >= 0
-                            ? resteDisponible - montantActuel
-                            : 0
-                        ).ToString("N2");
-                }
-                else
-                {
-                    tb_reste.Text =
-                        resteDisponible.ToString("N2");
-                }
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Erreur lors du calcul des avances :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Erreur lors de l'enregistrement de l'avance :\n" + ex.Message);
             }
         }
 
-        private void Ajouter_avance_Load(object sender, EventArgs e)
-        {
-            if (modeModification)
-            {
-                ChargerAvance();
-            }
-        }
-        private bool chargementTermine = false;
         private void ChargerAvance()
         {
             try
             {
-                string query = @"
-            SELECT
-                a.id_avance,
-                a.id_salaire,
-                a.date_avance,
-                a.montant,
-                s.mois,
-                s.salaire_base,
-                p.nom,
-                p.post_nom,
-                p.prenom
-            FROM avances_salaire a
-            INNER JOIN salaires s
-                ON s.id_salaire = a.id_salaire
-            INNER JOIN personnels p
-                ON p.id_personnel = s.id_personnel
-            WHERE a.id_avance = @id_avance";
+                string requete = @"SELECT a.id_salaire, a.date_avance, a.montant
+                           FROM avances_salaire a
+                           INNER JOIN salaires s ON s.id_salaire = a.id_salaire
+                           WHERE a.id_avance = @idAvance
+                           AND s.id_personnel = @idPersonnel";
 
-                MesClasses.ManagerClasse.request_params.Clear();
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@id_avance",
-                    idAvance.ToString()
-                );
-
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        query,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
                 {
-                    if (reader.Read())
+                    commande.Parameters.AddWithValue("@idAvance", idAvance);
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+
+                    using (MySqlDataReader reader = commande.ExecuteReader())
                     {
-                        idSalaire = Convert.ToInt32(reader["id_salaire"]);
+                        if (reader.Read())
+                        {
+                            idSalaire = Convert.ToInt32(reader["id_salaire"]);
 
-                        salaireBase =
-                            Convert.ToDecimal(reader["salaire_base"]);
+                            foreach (SalaireItem item in cbSalaire.Items)
+                            {
+                                if (item.Id == idSalaire)
+                                {
+                                    cbSalaire.SelectedItem = item;
+                                    break;
+                                }
+                            }
 
-                        lblPersonnel.Text =
-                            reader["nom"].ToString() + " " +
-                            reader["post_nom"].ToString() + " " +
-                            reader["prenom"].ToString();
-
-                        lblSalaire.Text =
-                            salaireBase.ToString("N2") + " $";
-
-                        lblMois.Text =
-                            reader["mois"].ToString();
-
-                        dtp_date_paiement.Value =
-                            Convert.ToDateTime(reader["date_avance"]);
-
-                        tb_montantAvance.Text =
-                            Convert.ToDecimal(reader["montant"])
-                            .ToString("0.00");
-
-                        // Calculer les autres avances
-                        CalculerAvancesDejaRecues();
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "L'avance est introuvable.",
-                            "Information",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
-
-                        Close();
+                            dtpDateAvance.Value = Convert.ToDateTime(reader["date_avance"]);
+                            nudMontant.Value = Convert.ToDecimal(reader["montant"]);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Avance introuvable pour ce personnel.");
+                            DialogResult = DialogResult.Cancel;
+                            Close();
+                            return;
+                        }
                     }
                 }
+
+                ActualiserReste();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Erreur lors du chargement de l'avance :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Erreur lors du chargement de l'avance :\n" + ex.Message);
             }
         }
 
         private void ModifierAvance()
         {
-            decimal montant;
-
-            // ==========================================
-            // VERIFIER LE MONTANT
-            // ==========================================
-
-            if (!decimal.TryParse(
-                tb_montantAvance.Text,
-                out montant))
+            if (idAvance <= 0 || cbSalaire.SelectedItem == null)
             {
-                MessageBox.Show(
-                    "Veuillez saisir un montant d'avance valide.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
+                MessageBox.Show("Veuillez sélectionner un salaire.");
                 return;
             }
 
-            if (montant <= 0)
+            if (nudMontant.Value <= 0)
             {
-                MessageBox.Show(
-                    "Le montant doit être supérieur à zéro.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
-                return;
-            }
-
-            // ==========================================
-            // CALCUL DU NOUVEAU RESTE
-            // ==========================================
-
-            decimal nouveauReste =
-                resteDisponible - montant;
-
-            if (nouveauReste < 0)
-            {
-                MessageBox.Show(
-                    "Le montant est supérieur au reste disponible.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
+                MessageBox.Show("Veuillez saisir un montant valide.");
+                nudMontant.Focus();
                 return;
             }
 
             try
             {
-                using (MySqlConnection con =
-                    MesClasses.ManagerClasse.GetConnexion())
+                SalaireItem salaire = (SalaireItem)cbSalaire.SelectedItem;
+
+                decimal disponible = CalculerReste(salaire.Id);
+
+                if (nudMontant.Value > disponible)
                 {
-                    string query = @"
-                UPDATE avances_salaire
-                SET
-                    date_avance = @date_avance,
-                    montant = @montant,
-                    reste = @reste
-                WHERE id_avance = @id_avance";
+                    MessageBox.Show("Le montant de l'avance dépasse le montant disponible : " +
+                                    disponible.ToString("N2"));
+                    nudMontant.Focus();
+                    return;
+                }
 
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(query, con))
+                string requete = @"UPDATE avances_salaire
+                           SET id_salaire = @idSalaire,
+                               date_avance = @dateAvance,
+                               montant = @montant,
+                               reste = @reste
+                           WHERE id_avance = @idAvance
+                           AND EXISTS (
+                               SELECT 1 FROM salaires
+                               WHERE id_salaire = avances_salaire.id_salaire
+                               AND id_personnel = @idPersonnel
+                           )";
+
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
+                {
+                    commande.Parameters.AddWithValue("@idSalaire", salaire.Id);
+                    commande.Parameters.AddWithValue("@dateAvance", dtpDateAvance.Value.Date);
+                    commande.Parameters.AddWithValue("@montant", nudMontant.Value);
+                    commande.Parameters.AddWithValue("@reste", disponible - nudMontant.Value);
+                    commande.Parameters.AddWithValue("@idAvance", idAvance);
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+
+                    int resultat = commande.ExecuteNonQuery();
+
+                    if (resultat > 0)
                     {
-                        cmd.Parameters.AddWithValue(
-                            "@date_avance",
-                            dtp_date_paiement.Value.Date);
+                        MessageBox.Show("L'avance a été modifiée avec succès.",
+                            "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        cmd.Parameters.AddWithValue(
-                            "@montant",
-                            montant);
-
-                        cmd.Parameters.AddWithValue(
-                            "@reste",
-                            nouveauReste);
-
-                        cmd.Parameters.AddWithValue(
-                            "@id_avance",
-                            idAvance);
-
-                        cmd.ExecuteNonQuery();
+                        DialogResult = DialogResult.OK;
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune modification effectuée.");
                     }
                 }
-
-                MessageBox.Show(
-                    "Avance modifiée avec succès.",
-                    "Succès",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                // Actualiser l'historique
-                if (MesForms.Personnel.Detail_salaire.btRefresh != null)
-                {
-                    MesForms.Personnel.Detail_salaire.btRefresh.PerformClick();
-                }
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Erreur lors de la modification de l'avance :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Erreur lors de la modification de l'avance :\n" + ex.Message);
             }
         }
 
-        private void AjouterAvance()
+        private void btEnregistrer_Click(object sender, EventArgs e)
         {
-
-            decimal montantAvance;
-
-            if (!decimal.TryParse(
-                tb_montantAvance.Text,
-                out montantAvance))
-            {
-                MessageBox.Show(
-                    "Veuillez saisir un montant d'avance valide.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
-                return;
-            }
-
-            if (montantAvance <= 0)
-            {
-                MessageBox.Show(
-                    "Le montant de l'avance doit être supérieur à zéro.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
-                return;
-            }
-
-            if (montantAvance > resteDisponible)
-            {
-                MessageBox.Show(
-                    "Le montant de l'avance est supérieur au reste disponible.",
-                    "Information",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
-                return;
-            }
-
-            decimal nouveauReste =
-                resteDisponible - montantAvance;
-
-            using (MySqlConnection con =
-                MesClasses.ManagerClasse.GetConnexion())
-            {
-                try
-                {
-                    string query = @"
-                INSERT INTO avances_salaire
-                (
-                    id_salaire,
-                    date_avance,
-                    montant,
-                    reste
-                )
-                VALUES
-                (
-                    @salaire,
-                    @date,
-                    @montant,
-                    @reste
-                )";
-
-                    using (MySqlCommand cmd =
-                        new MySqlCommand(query, con))
-                    {
-                        cmd.Parameters.AddWithValue(
-                            "@salaire",
-                            idSalaire);
-
-                        cmd.Parameters.AddWithValue(
-                            "@date",
-                            dtp_date_paiement.Value.Date);
-
-                        cmd.Parameters.AddWithValue(
-                            "@montant",
-                            montantAvance);
-
-                        cmd.Parameters.AddWithValue(
-                            "@reste",
-                            nouveauReste);
-
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    MessageBox.Show(
-                        "Avance enregistrée avec succès.",
-                        "Succès",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information
-                    );
-                    MesForms.Personnel.Detail_Test.btRefresh.PerformClick();
-                    this.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(
-                        "Erreur : " + ex.Message,
-                        "Erreur",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
-                }
-            }
+            if (modeModification)
+                ModifierAvance();
+            else
+                EnregistrerAvance();
         }
     }
+
+    //public class SalaireItem
+    //{
+    //    public int ID { get; set; }
+    //    public string Text { get; set; }
+
+    //    public override string ToString()
+    //    {
+    //        return Texte;
+    //    }
+    //}
 }

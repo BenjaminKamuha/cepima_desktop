@@ -8,499 +8,200 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-
 namespace Cepima.MesForms.Personnel
 {
-    public partial class Add_salaire : Form
+    public partial class Ajouter_salaire : Form
     {
-        string PersonnelID;
-        private int idSalaire;
+        private int idPersonnel = 0;
+        private int idSalaire = 0;
         private bool modeModification = false;
 
-        public Add_salaire(string id_personnel)
+        public Ajouter_salaire()
         {
             InitializeComponent();
-            PersonnelID = id_personnel;
-            modeModification = false;
-            this.Text = "Ajouter une salaire du personnel";
-            label1.Text = this.Text;
-            bt_start.Text = "Ajouter salaire";
         }
 
-        public Add_salaire(string id_personnel, int idSalaire)
+        public Ajouter_salaire(int idPersonnel) : this()
         {
-            InitializeComponent();
-            PersonnelID = id_personnel;
-            this.idSalaire = idSalaire;
+            this.idPersonnel = idPersonnel;
 
+            ChargerPersonnel();
+            InitialiserFormulaire();
+        }
+        public Ajouter_salaire(int idPersonnel,int idSalaire) : this()
+        {
+            this.idPersonnel = idPersonnel;
+            this.idSalaire = idSalaire;
             modeModification = true;
 
-            this.Text = "Modification du salaire du personnel";
-            label1.Text = this.Text;
-            bt_start.Text = "Modifier l'avance";
+            ChargerPersonnel();
+            InitialiserFormulaire();
+            ChargerSalaire();
         }
 
         private void ChargerSalaire()
         {
             try
             {
-                string query = @"
-            SELECT 
-                mois,
-                salaire_base,
-                date_paiement,
-                statut
-            FROM salaires
-            WHERE id_salaire = @id_salaire";
+                string requete = @"SELECT mois, date_paiement, salaire_base
+                          FROM salaires
+                          WHERE id_salaire = @idSalaire
+                          AND id_personnel = @idPersonnel";
 
-                MesClasses.ManagerClasse.request_params.Clear();
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@id_salaire",
-                    idSalaire.ToString()
-                );
-
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        query,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
                 {
-                    if (reader.Read())
-                    {
-                        // ==========================
-                        // MOIS
-                        // ==========================
+                    commande.Parameters.AddWithValue("@idSalaire", idSalaire);
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
 
-                        cbx_mois.SelectedItem =
-                            reader["mois"].ToString();
-
-
-                        // ==========================
-                        // SALAIRE
-                        // ==========================
-
-                        if (reader["salaire_base"] != DBNull.Value)
-                        {
-                            decimal salaire =
-                                Convert.ToDecimal(
-                                    reader["salaire_base"]);
-
-                            tb_salaire.Text =
-                                salaire.ToString("0.00");
-                        }
-
-
-                        // ==========================
-                        // DATE DE PAIEMENT
-                        // ==========================
-
-                        if (reader["date_paiement"] != DBNull.Value)
-                        {
-                            dtp_date_paiement.Value =
-                                Convert.ToDateTime(
-                                    reader["date_paiement"]);
-                        }
-
-
-                        // ==========================
-                        // STATUT
-                        // ==========================
-
-                        cbx_statut.SelectedItem =
-                            reader["statut"].ToString();
-                    }
-                    else
-                    {
-                        MessageBox.Show(
-                            "Le salaire sélectionné est introuvable.",
-                            "Information",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning
-                        );
-
-                        Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Erreur lors du chargement du salaire :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-        }
-        private void Add_salaire_Load(object sender, EventArgs e)
-        {
-            LoadDataAdministratives();
-
-            DataInCBX();
-
-            if (modeModification)
-            {
-                ChargerSalaire();
-            }
-            else
-            {
-                ChargerSalaireBase();
-            }
-        }
-
-        //méthode pour charger les informations administratives du patient
-        private void LoadDataAdministratives()
-        {
-            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
-            {
-                try
-                {
-                    string query = "SELECT nom,post_nom,sexe,date_naissance, fonction,salaire_base FROM personnels WHERE id_personnel = @id";
-                    MesClasses.ManagerClasse.request_params.Clear();
-                    MesClasses.ManagerClasse.request_params.Add("@id", PersonnelID.ToString());
-                    using (MySqlDataReader reader = MesClasses.ManagerClasse.CRUD(query, MesClasses.ManagerClasse.request_params, true))
+                    using (MySqlDataReader reader = commande.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            lb_nom.Text = reader["nom"].ToString();
-                            lb_postnom.Text = reader["post_nom"].ToString();
-                            lb_fonction.Text = reader["fonction"].ToString();
-                            DateTime date = Convert.ToDateTime(reader["date_naissance"]);
-                            int annee = MesClasses.ReceptionManager.CalculerAge(date);
-                            lb_age.Text = annee.ToString() + " ans" + " - " + reader["sexe"];
-                            decimal salaire_base = Convert.ToDecimal(reader["salaire_base"]);
-                            tb_salaire.Text = salaire_base.ToString("0.00");
-                        }
-                        reader.Close();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur : " + ex.Message);
-                }
-            }
-        }
-
-        private void ModifierSalaire()
-        {
-            try
-            {
-                if (cbx_mois.SelectedIndex == -1)
-                {
-                    MessageBox.Show(
-                        "Veuillez sélectionner le mois.",
-                        "Information",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
-                    return;
-                }
-
-                decimal salaire;
-
-                if (!decimal.TryParse(
-                    tb_salaire.Text,
-                    out salaire))
-                {
-                    MessageBox.Show(
-                        "Veuillez saisir un salaire valide.",
-                        "Information",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
-                    return;
-                }
-
-                if (salaire <= 0)
-                {
-                    MessageBox.Show(
-                        "Le salaire doit être supérieur à zéro.",
-                        "Information",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-
-                    return;
-                }
-
-                string mois =
-                    cbx_mois.SelectedItem.ToString();
-
-                string statut =
-                    cbx_statut.Text;
-
-                DateTime datePaiement =
-                    dtp_date_paiement.Value.Date;
-
-
-                string query = @"
-            UPDATE salaires
-            SET
-                mois = @mois,
-                salaire_base = @salaire_base,
-                date_paiement = @date_paiement,
-                statut = @statut
-            WHERE id_salaire = @id_salaire";
-
-
-                MesClasses.ManagerClasse.request_params.Clear();
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@mois",
-                    mois
-                );
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@salaire_base",
-                    salaire.ToString()
-                );
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@date_paiement",
-                    datePaiement.ToString("yyyy-MM-dd")
-                );
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@statut",
-                    statut
-                );
-
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@id_salaire",
-                    idSalaire.ToString()
-                );
-
-
-                MesClasses.ManagerClasse.CRUD(
-                    query,
-                    MesClasses.ManagerClasse.request_params,
-                    false
-                );
-
-
-                MessageBox.Show(
-                    "Le salaire a été modifié avec succès.",
-                    "Succès",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
-
-
-                MesForms.Personnel.Detail_Test.btRefresh.PerformClick();
-
-                this.DialogResult = DialogResult.OK;
-                MesForms.Personnel.Detail_salaire.btRefresh.PerformClick();
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Erreur lors de la modification du salaire :\n" +
-                    ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-        }
-        private void DataInCBX()
-        {
-            cbx_mois.Items.Clear();
-
-            cbx_mois.Items.Add("Janvier");
-            cbx_mois.Items.Add("Février");
-            cbx_mois.Items.Add("Mars");
-            cbx_mois.Items.Add("Avril");
-            cbx_mois.Items.Add("Mai");
-            cbx_mois.Items.Add("Juin");
-            cbx_mois.Items.Add("Juillet");
-            cbx_mois.Items.Add("Août");
-            cbx_mois.Items.Add("Septembre");
-            cbx_mois.Items.Add("Octobre");
-            cbx_mois.Items.Add("Novembre");
-            cbx_mois.Items.Add("Décembre");
-
-            cbx_mois.SelectedIndex = DateTime.Now.Month - 1;
-
-            cbx_statut.Items.Clear();
-
-            cbx_statut.Items.Add("Non payé");
-            cbx_statut.Items.Add("Payé");
-            cbx_statut.Items.Add("En attente");
-
-            cbx_statut.SelectedIndex = 0;
-        }
-
-        private void bt_start_Click(object sender, EventArgs e)
-        {
-            if (modeModification)
-            {
-                ModifierSalaire();
-            }
-            else
-            {
-                AjouterSalaire();
-            }
-        }
-
-        private void ChargerSalaireBase()
-        {
-            try
-            {
-                string query = @"SELECT salaire_base
-                         FROM personnels
-                         WHERE id_personnel = @id_personnel";
-
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id_personnel", PersonnelID);
-
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        query,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
-                {
-                    if (reader.Read())
-                    {
-                        if (reader["salaire_base"] != DBNull.Value)
-                        {
-                            tb_salaire.Text =
-                                Convert.ToDecimal(reader["salaire_base"])
-                                .ToString("0.00");
+                            cbMois.Text = reader["mois"].ToString();
+                            dtpDatePaiement.Value = Convert.ToDateTime(reader["date_paiement"]);
+                            nudSalaireBase.Value = Convert.ToDecimal(reader["salaire_base"]);
                         }
                         else
                         {
-                            tb_salaire.Text = "0.00";
+                            MessageBox.Show("Salaire introuvable.");
+                            this.Close();
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Erreur lors du chargement du salaire :\n" + ex.Message,
-                    "Erreur",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Erreur lors du chargement du salaire :\n" + ex.Message);
             }
         }
+        private void Ajouter_salaire_Load(object sender, EventArgs e)
+        {
 
-        private void AjouterSalaire()
+        }
+
+        private void ChargerPersonnel()
         {
             try
             {
-                if (cbx_mois.SelectedIndex == -1)
+                string requete = @"SELECT nom, post_nom, prenom
+                           FROM personnels
+                           WHERE id_personnel = @idPersonnel";
+
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
                 {
-                    MessageBox.Show("Veuillez sélectionner le mois.");
-                    return;
-                }
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
 
-                decimal salaire;
-
-                if (!decimal.TryParse(tb_salaire.Text, out salaire))
-                {
-                    MessageBox.Show("Veuillez saisir un salaire valide.");
-                    return;
-                }
-
-                if (salaire <= 0)
-                {
-                    MessageBox.Show("Le salaire doit être supérieur à zéro.");
-                    return;
-                }
-
-                DateTime datePaiement = dtp_date_paiement.Value;
-
-                string statut = cbx_statut.Text;
-
-                // Vérifier si un salaire existe déjà pour ce personnel et ce mois
-                string verification = @"SELECT COUNT(*)
-                                 FROM salaires
-                                 WHERE id_personnel = @id_personnel
-                                 AND mois = @mois";
-
-                MesClasses.ManagerClasse.request_params.Clear();
-                MesClasses.ManagerClasse.request_params.Add("@id_personnel", PersonnelID);
-                MesClasses.ManagerClasse.request_params.Add("@mois", cbx_mois.SelectedItem.ToString());
-
-                using (MySqlDataReader reader =
-                    MesClasses.ManagerClasse.CRUD(
-                        verification,
-                        MesClasses.ManagerClasse.request_params,
-                        true))
-                {
-                    if (reader.Read())
+                    using (MySqlDataReader reader = commande.ExecuteReader())
                     {
-                        int nombre = Convert.ToInt32(reader[0]);
-
-                        if (nombre > 0)
+                        if (reader.Read())
                         {
-                            MessageBox.Show(
-                                "Un salaire existe déjà pour ce personnel pour ce mois.",
-                                "Attention",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning
-                            );
-
-                            return;
+                            txtPersonnel.Text = (
+                                reader["nom"].ToString() + " " +
+                                reader["post_nom"].ToString() + " " +
+                                reader["prenom"].ToString()
+                            ).Trim();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Personnel introuvable.");
+                            this.Close();
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors du chargement du personnel :\n" + ex.Message);
+            }
+        }
 
-                // Enregistrer
-                string query = @"INSERT INTO salaires
-                        (id_personnel, mois, salaire_base, date_paiement, statut)
-                        VALUES
-                        (@id_personnel, @mois, @salaire_base,
-                         @date_paiement, @statut)";
+        private void InitialiserFormulaire()
+        {
+            cbMois.Items.Clear();
 
-                MesClasses.ManagerClasse.request_params.Clear();
+            System.Globalization.CultureInfo culture =
+                new System.Globalization.CultureInfo("fr-FR");
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@id_personnel",
-                    PersonnelID
-                );
+            DateTime debut = new DateTime(DateTime.Today.Year, 1, 1);
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@mois",
-                    cbx_mois.SelectedItem.ToString()
-                );
+            for (int i = 0; i < 24; i++)
+            {
+                DateTime date = debut.AddMonths(i);
+                cbMois.Items.Add(date.ToString("MMMM yyyy", culture));
+            }
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@salaire_base",
-                    salaire.ToString()
-                );
+            cbMois.SelectedItem = DateTime.Today.ToString("MMMM yyyy", culture);
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@date_paiement",
-                    datePaiement.Date.ToString("yyyy-MM-dd")
-                );
+            dtpDatePaiement.Value = DateTime.Today;
+            nudSalaireBase.Minimum = 0;
+            nudSalaireBase.Maximum = 100000000;
+            nudSalaireBase.DecimalPlaces = 2;
+            nudSalaireBase.Increment = 100;
 
-                MesClasses.ManagerClasse.request_params.Add(
-                    "@statut",
-                    statut
-                );
+            if (modeModification)
+            {
+                lbTitre.Text = "Modifier le salaire";
+                lbSousTitre.Text = "Modifiez les informations du salaire sélectionné";
+                btEnregistrer.Text = "Enregistrer les modifications";
+            }
+            else
+            {
+                lbTitre.Text = "Nouveau salaire";
+                lbSousTitre.Text = "Enregistrer le salaire du personnel";
+                btEnregistrer.Text = "Enregistrer";
+            }
+        }
 
-                MesClasses.ManagerClasse.CRUD(
-                    query,
-                    MesClasses.ManagerClasse.request_params,
-                    false
-                );
+        private void EnregistrerSalaire()
+        {
+            if (idPersonnel <= 0)
+            {
+                MessageBox.Show("Aucun personnel sélectionné.");
+                return;
+            }
+
+            if (cbMois.SelectedIndex < 0)
+            {
+                MessageBox.Show("Veuillez sélectionner le mois.");
+                cbMois.Focus();
+                return;
+            }
+
+            if (nudSalaireBase.Value <= 0)
+            {
+                MessageBox.Show("Veuillez saisir un salaire de base valide.");
+                nudSalaireBase.Focus();
+                return;
+            }
+
+            try
+            {
+                string requete = @"INSERT INTO salaires
+                           (id_personnel, mois, salaire_base, date_paiement, statut)
+                           VALUES
+                           (@idPersonnel, @mois, @salaireBase, @datePaiement, @statut)";
+
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
+                {
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+                    commande.Parameters.AddWithValue("@mois", cbMois.Text);
+                    commande.Parameters.AddWithValue("@salaireBase", nudSalaireBase.Value);
+                    commande.Parameters.AddWithValue("@datePaiement", dtpDatePaiement.Value.Date);
+                    commande.Parameters.AddWithValue("@statut", "En attente");
+
+                    commande.ExecuteNonQuery();
+                }
 
                 MessageBox.Show(
                     "Le salaire a été enregistré avec succès.",
                     "Succès",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                    MessageBoxIcon.Information);
 
                 this.DialogResult = DialogResult.OK;
-                MesForms.Personnel.Detail_Test.btRefresh.PerformClick();
                 this.Close();
             }
             catch (Exception ex)
@@ -509,8 +210,84 @@ namespace Cepima.MesForms.Personnel
                     "Erreur lors de l'enregistrement du salaire :\n" + ex.Message,
                     "Erreur",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btEnregistrer_Click(object sender, EventArgs e)
+        {
+            if (modeModification)
+                ModifierSalaire();
+            else
+                EnregistrerSalaire();
+        }
+
+        private void ModifierSalaire()
+        {
+            if (idSalaire <= 0)
+            {
+                MessageBox.Show("Aucun salaire sélectionné.");
+                return;
+            }
+
+            if (cbMois.SelectedIndex < 0)
+            {
+                MessageBox.Show("Veuillez sélectionner le mois.");
+                cbMois.Focus();
+                return;
+            }
+
+            if (nudSalaireBase.Value <= 0)
+            {
+                MessageBox.Show("Veuillez saisir un salaire de base valide.");
+                nudSalaireBase.Focus();
+                return;
+            }
+
+            try
+            {
+                string requete = @"UPDATE salaires
+                           SET mois = @mois,
+                               salaire_base = @salaireBase,
+                               date_paiement = @datePaiement
+                           WHERE id_salaire = @idSalaire
+                           AND id_personnel = @idPersonnel";
+
+                using (MySqlConnection connexion = MesClasses.ManagerClasse.GetConnexion())
+                using (MySqlCommand commande = new MySqlCommand(requete, connexion))
+                {
+                    commande.Parameters.AddWithValue("@mois", cbMois.Text);
+                    commande.Parameters.AddWithValue("@salaireBase", nudSalaireBase.Value);
+                    commande.Parameters.AddWithValue("@datePaiement", dtpDatePaiement.Value.Date);
+                    commande.Parameters.AddWithValue("@idSalaire", idSalaire);
+                    commande.Parameters.AddWithValue("@idPersonnel", idPersonnel);
+
+                    int resultat = commande.ExecuteNonQuery();
+
+                    if (resultat > 0)
+                    {
+                        MessageBox.Show(
+                            "Le salaire a été modifié avec succès.",
+                            "Succès",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune modification effectuée.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Erreur lors de la modification du salaire :\n" + ex.Message,
+                    "Erreur",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Cepima.MesForms.Personnel
 {
-    partial class Ajouter_avance
+    partial class Ajouter_Avance
     {
         /// <summary>
         /// Required designer variable.
@@ -28,293 +28,297 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tb_reste = new MyRoundedTextBox();
-            this.tb_montantAvance = new MyRoundedTextBox();
+            this.customRoundedPanel1 = new CustomRoundedPanel();
+            this.lbSousTitre = new System.Windows.Forms.Label();
+            this.lbTitre = new System.Windows.Forms.Label();
+            this.avatarControl1 = new AvatarControl();
             this.label6 = new System.Windows.Forms.Label();
-            this.dtp_date_paiement = new System.Windows.Forms.DateTimePicker();
             this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.bunifuRoundedPanel1 = new BunifuRoundedPanel();
-            this.lblSalaire = new System.Windows.Forms.Label();
-            this.lblMois = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblPersonnel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.bt_start = new RoundedButton();
+            this.nudMontant = new RoundedNumericUpDown();
+            this.dtpDateAvance = new Cepima.Controls.MyDateTimePicker();
+            this.txtPersonnel = new MyRoundedTextBox();
+            this.btEnregistrer = new RoundedButton();
             this.label7 = new System.Windows.Forms.Label();
-            this.tb_avancesDejaRecues = new MyRoundedTextBox();
-            this.bunifuRoundedPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.cbSalaire = new MyRoundedComboBox();
+            this.txtReste = new MyRoundedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tb_reste
+            // customRoundedPanel1
             // 
-            this.tb_reste.BackColor = System.Drawing.Color.White;
-            this.tb_reste.BorderColor = System.Drawing.Color.Silver;
-            this.tb_reste.BorderRadius = 6;
-            this.tb_reste.BorderSize = 1;
-            this.tb_reste.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_reste.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_reste.ForeColor = System.Drawing.Color.Black;
-            this.tb_reste.Image = null;
-            this.tb_reste.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_reste.ImagePadding = 2;
-            this.tb_reste.Location = new System.Drawing.Point(40, 442);
-            this.tb_reste.MaxLength = 32767;
-            this.tb_reste.Name = "tb_reste";
-            this.tb_reste.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_reste.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_reste.PlaceholderText = "";
-            this.tb_reste.ReadOnly = true;
-            this.tb_reste.Size = new System.Drawing.Size(321, 35);
-            this.tb_reste.TabIndex = 53;
+            this.customRoundedPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(58)))), ((int)(((byte)(199)))));
+            this.customRoundedPanel1.BorderColor = System.Drawing.Color.Transparent;
+            this.customRoundedPanel1.BorderRadius = 8;
+            this.customRoundedPanel1.BorderSize = 0;
+            this.customRoundedPanel1.Controls.Add(this.lbSousTitre);
+            this.customRoundedPanel1.Controls.Add(this.lbTitre);
+            this.customRoundedPanel1.Controls.Add(this.avatarControl1);
+            this.customRoundedPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.customRoundedPanel1.HoverBackColor = System.Drawing.Color.Empty;
+            this.customRoundedPanel1.HoverCursor = System.Windows.Forms.Cursors.Hand;
+            this.customRoundedPanel1.Location = new System.Drawing.Point(0, 0);
+            this.customRoundedPanel1.Name = "customRoundedPanel1";
+            this.customRoundedPanel1.ShadowBlur = 10;
+            this.customRoundedPanel1.ShadowBorderRadius = -1;
+            this.customRoundedPanel1.ShadowColor = System.Drawing.Color.Black;
+            this.customRoundedPanel1.ShadowEnabled = false;
+            this.customRoundedPanel1.ShadowOffsetX = 0;
+            this.customRoundedPanel1.ShadowOffsetY = 4;
+            this.customRoundedPanel1.ShadowOpacity = 60;
+            this.customRoundedPanel1.ShadowSpread = 0;
+            this.customRoundedPanel1.Size = new System.Drawing.Size(651, 99);
+            this.customRoundedPanel1.TabIndex = 16;
             // 
-            // tb_montantAvance
+            // lbSousTitre
             // 
-            this.tb_montantAvance.BackColor = System.Drawing.Color.White;
-            this.tb_montantAvance.BorderColor = System.Drawing.Color.Silver;
-            this.tb_montantAvance.BorderRadius = 6;
-            this.tb_montantAvance.BorderSize = 1;
-            this.tb_montantAvance.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_montantAvance.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_montantAvance.ForeColor = System.Drawing.Color.Black;
-            this.tb_montantAvance.Image = null;
-            this.tb_montantAvance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_montantAvance.ImagePadding = 2;
-            this.tb_montantAvance.Location = new System.Drawing.Point(40, 368);
-            this.tb_montantAvance.MaxLength = 32767;
-            this.tb_montantAvance.Name = "tb_montantAvance";
-            this.tb_montantAvance.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_montantAvance.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_montantAvance.PlaceholderText = "";
-            this.tb_montantAvance.Size = new System.Drawing.Size(321, 35);
-            this.tb_montantAvance.TabIndex = 54;
-            this.tb_montantAvance.TextChanged += new System.EventHandler(this.tb_montantAvance_TextChanged);
+            this.lbSousTitre.AutoSize = true;
+            this.lbSousTitre.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSousTitre.ForeColor = System.Drawing.Color.White;
+            this.lbSousTitre.Location = new System.Drawing.Point(112, 72);
+            this.lbSousTitre.Name = "lbSousTitre";
+            this.lbSousTitre.Size = new System.Drawing.Size(253, 21);
+            this.lbSousTitre.TabIndex = 2;
+            this.lbSousTitre.Text = "Enregistrer ou modifier une avance";
+            // 
+            // lbTitre
+            // 
+            this.lbTitre.AutoSize = true;
+            this.lbTitre.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitre.ForeColor = System.Drawing.Color.White;
+            this.lbTitre.Location = new System.Drawing.Point(111, 26);
+            this.lbTitre.Name = "lbTitre";
+            this.lbTitre.Size = new System.Drawing.Size(97, 32);
+            this.lbTitre.TabIndex = 2;
+            this.lbTitre.Text = "Avance";
+            // 
+            // avatarControl1
+            // 
+            this.avatarControl1.Avatar = global::Cepima.Properties.Resources.avance1;
+            this.avatarControl1.BackColor = System.Drawing.Color.Transparent;
+            this.avatarControl1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.avatarControl1.BorderSize = 2;
+            this.avatarControl1.Location = new System.Drawing.Point(12, 12);
+            this.avatarControl1.Name = "avatarControl1";
+            this.avatarControl1.Size = new System.Drawing.Size(80, 80);
+            this.avatarControl1.TabIndex = 1;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(48, 422);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(31, 314);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(125, 17);
-            this.label6.TabIndex = 49;
-            this.label6.Text = "Reste disponible : ";
-            // 
-            // dtp_date_paiement
-            // 
-            this.dtp_date_paiement.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_date_paiement.Location = new System.Drawing.Point(40, 223);
-            this.dtp_date_paiement.Name = "dtp_date_paiement";
-            this.dtp_date_paiement.Size = new System.Drawing.Size(320, 27);
-            this.dtp_date_paiement.TabIndex = 52;
+            this.label6.Size = new System.Drawing.Size(151, 21);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "Montant de la prime";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(48, 348);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(31, 249);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(151, 17);
-            this.label5.TabIndex = 50;
-            this.label5.Text = "Montant  de l\'avance : ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label8.Location = new System.Drawing.Point(51, 203);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(126, 17);
-            this.label8.TabIndex = 51;
-            this.label8.Text = "Date de l\'avance : ";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(93, 155);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(250, 23);
-            this.label1.TabIndex = 48;
-            this.label1.Text = "Ajouter une avance sur salaire";
-            // 
-            // bunifuRoundedPanel1
-            // 
-            this.bunifuRoundedPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuRoundedPanel1.BorderColor = System.Drawing.Color.DarkBlue;
-            this.bunifuRoundedPanel1.BorderRadius = 8;
-            this.bunifuRoundedPanel1.BorderSize = 0;
-            this.bunifuRoundedPanel1.Controls.Add(this.lblSalaire);
-            this.bunifuRoundedPanel1.Controls.Add(this.lblMois);
-            this.bunifuRoundedPanel1.Controls.Add(this.label3);
-            this.bunifuRoundedPanel1.Controls.Add(this.lblPersonnel);
-            this.bunifuRoundedPanel1.Controls.Add(this.label2);
-            this.bunifuRoundedPanel1.Controls.Add(this.label4);
-            this.bunifuRoundedPanel1.Controls.Add(this.pictureBox1);
-            this.bunifuRoundedPanel1.Location = new System.Drawing.Point(4, 1);
-            this.bunifuRoundedPanel1.Name = "bunifuRoundedPanel1";
-            this.bunifuRoundedPanel1.ShadowColor = System.Drawing.Color.Gray;
-            this.bunifuRoundedPanel1.ShadowDepth = 15;
-            this.bunifuRoundedPanel1.Size = new System.Drawing.Size(428, 144);
-            this.bunifuRoundedPanel1.TabIndex = 47;
-            // 
-            // lblSalaire
-            // 
-            this.lblSalaire.AutoSize = true;
-            this.lblSalaire.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblSalaire.Location = new System.Drawing.Point(197, 105);
-            this.lblSalaire.Name = "lblSalaire";
-            this.lblSalaire.Size = new System.Drawing.Size(50, 17);
-            this.lblSalaire.TabIndex = 3;
-            this.lblSalaire.Text = "salaire";
-            // 
-            // lblMois
-            // 
-            this.lblMois.AutoSize = true;
-            this.lblMois.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblMois.Location = new System.Drawing.Point(197, 62);
-            this.lblMois.Name = "lblMois";
-            this.lblMois.Size = new System.Drawing.Size(36, 17);
-            this.lblMois.TabIndex = 4;
-            this.lblMois.Text = "Paul";
+            this.label5.Size = new System.Drawing.Size(123, 21);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Date de l\'avance";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(120, 105);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(31, 141);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Salaire  : ";
+            this.label3.Size = new System.Drawing.Size(82, 21);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Personnel ";
             // 
-            // lblPersonnel
+            // nudMontant
             // 
-            this.lblPersonnel.AutoSize = true;
-            this.lblPersonnel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblPersonnel.Location = new System.Drawing.Point(197, 22);
-            this.lblPersonnel.Name = "lblPersonnel";
-            this.lblPersonnel.Size = new System.Drawing.Size(39, 17);
-            this.lblPersonnel.TabIndex = 6;
-            this.lblPersonnel.Text = "Jean";
+            this.nudMontant.BackColor = System.Drawing.Color.White;
+            this.nudMontant.BorderColor = System.Drawing.Color.Silver;
+            this.nudMontant.BorderRadius = 8;
+            this.nudMontant.ButtonBackColor = System.Drawing.Color.White;
+            this.nudMontant.ButtonFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
+            this.nudMontant.ButtonForeColor = System.Drawing.Color.DimGray;
+            this.nudMontant.ButtonHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.nudMontant.DecimalPlaces = 1;
+            this.nudMontant.FocusBorderColor = System.Drawing.Color.Silver;
+            this.nudMontant.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudMontant.ForeColor = System.Drawing.Color.Black;
+            this.nudMontant.Location = new System.Drawing.Point(251, 295);
+            this.nudMontant.MinimumSize = new System.Drawing.Size(77, 32);
+            this.nudMontant.Name = "nudMontant";
+            this.nudMontant.Size = new System.Drawing.Size(380, 40);
+            this.nudMontant.TabIndex = 20;
+            this.nudMontant.ThousandsSeparator = true;
+            this.nudMontant.ValueChanged += new System.EventHandler(this.nudMontant_ValueChanged);
             // 
-            // label2
+            // dtpDateAvance
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(120, 62);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Mois : ";
+            this.dtpDateAvance.BackColor = System.Drawing.Color.White;
+            this.dtpDateAvance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(220)))), ((int)(((byte)(230)))));
+            this.dtpDateAvance.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDateAvance.BorderRadius = 8;
+            this.dtpDateAvance.BorderSize = 1;
+            this.dtpDateAvance.CalendarBackColor = System.Drawing.Color.White;
+            this.dtpDateAvance.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateAvance.CalendarHeight = 280;
+            this.dtpDateAvance.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDateAvance.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtpDateAvance.Checked = true;
+            this.dtpDateAvance.CustomFormat = "dd/MM/yyyy";
+            this.dtpDateAvance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dtpDateAvance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(60)))), ((int)(((byte)(70)))));
+            this.dtpDateAvance.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpDateAvance.Location = new System.Drawing.Point(251, 230);
+            this.dtpDateAvance.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpDateAvance.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpDateAvance.MinimumSize = new System.Drawing.Size(180, 28);
+            this.dtpDateAvance.Name = "dtpDateAvance";
+            this.dtpDateAvance.SelectedDayColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.dtpDateAvance.ShowCheckBox = false;
+            this.dtpDateAvance.ShowUpDown = false;
+            this.dtpDateAvance.Size = new System.Drawing.Size(380, 40);
+            this.dtpDateAvance.TabIndex = 19;
+            this.dtpDateAvance.Value = new System.DateTime(2026, 10, 30, 0, 0, 0, 0);
             // 
-            // label4
+            // txtPersonnel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(120, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Nom  : ";
+            this.txtPersonnel.BackColor = System.Drawing.Color.White;
+            this.txtPersonnel.BorderColor = System.Drawing.Color.Silver;
+            this.txtPersonnel.BorderRadius = 8;
+            this.txtPersonnel.BorderSize = 1;
+            this.txtPersonnel.FocusBorderColor = System.Drawing.Color.Orange;
+            this.txtPersonnel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPersonnel.ForeColor = System.Drawing.Color.Black;
+            this.txtPersonnel.Image = null;
+            this.txtPersonnel.Location = new System.Drawing.Point(251, 122);
+            this.txtPersonnel.MaxLength = 32767;
+            this.txtPersonnel.Name = "txtPersonnel";
+            this.txtPersonnel.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtPersonnel.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtPersonnel.PlaceholderText = "";
+            this.txtPersonnel.ReadOnly = true;
+            this.txtPersonnel.Size = new System.Drawing.Size(380, 40);
+            this.txtPersonnel.TabIndex = 18;
             // 
-            // pictureBox1
+            // btEnregistrer
             // 
-            this.pictureBox1.Image = global::Cepima.Properties.Resources.user;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(94, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // bt_start
-            // 
-            this.bt_start.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_start.BackColor = System.Drawing.Color.Transparent;
-            this.bt_start.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.bt_start.BorderRadius = 8;
-            this.bt_start.ButtonText = "Enregistrer  une avance";
-            this.bt_start.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bt_start.DefaultBackColor = System.Drawing.Color.DodgerBlue;
-            this.bt_start.FlatAppearance.BorderSize = 0;
-            this.bt_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bt_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_start.ForeColor = System.Drawing.Color.White;
-            this.bt_start.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.bt_start.Image = global::Cepima.Properties.Resources.save_30px;
-            this.bt_start.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bt_start.Location = new System.Drawing.Point(75, 515);
-            this.bt_start.Name = "bt_start";
-            this.bt_start.Size = new System.Drawing.Size(255, 40);
-            this.bt_start.TabIndex = 55;
-            this.bt_start.Text = "Enregistrer  une avance";
-            this.bt_start.TextColor = System.Drawing.Color.White;
-            this.bt_start.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.bt_start.UseVisualStyleBackColor = false;
-            this.bt_start.Click += new System.EventHandler(this.bt_start_Click);
+            this.btEnregistrer.BackColor = System.Drawing.Color.Transparent;
+            this.btEnregistrer.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(58)))), ((int)(((byte)(199)))));
+            this.btEnregistrer.BorderRadius = 8;
+            this.btEnregistrer.ButtonText = "Enregistrer";
+            this.btEnregistrer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btEnregistrer.DefaultBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(58)))), ((int)(((byte)(199)))));
+            this.btEnregistrer.FlatAppearance.BorderSize = 0;
+            this.btEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btEnregistrer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btEnregistrer.ForeColor = System.Drawing.Color.White;
+            this.btEnregistrer.HoverBackColor = System.Drawing.Color.MediumPurple;
+            this.btEnregistrer.Image = global::Cepima.Properties.Resources.save_30px;
+            this.btEnregistrer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btEnregistrer.Location = new System.Drawing.Point(251, 427);
+            this.btEnregistrer.Name = "btEnregistrer";
+            this.btEnregistrer.Size = new System.Drawing.Size(380, 45);
+            this.btEnregistrer.TabIndex = 25;
+            this.btEnregistrer.Text = "Enregistrer";
+            this.btEnregistrer.TextColor = System.Drawing.Color.White;
+            this.btEnregistrer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btEnregistrer.UseVisualStyleBackColor = false;
+            this.btEnregistrer.Click += new System.EventHandler(this.btEnregistrer_Click);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label7.Location = new System.Drawing.Point(48, 273);
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(31, 195);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(148, 17);
-            this.label7.TabIndex = 49;
-            this.label7.Text = "Avances déjà réçues: ";
+            this.label7.Size = new System.Drawing.Size(124, 21);
+            this.label7.TabIndex = 27;
+            this.label7.Text = "Salaire concerné";
             // 
-            // tb_avancesDejaRecues
+            // cbSalaire
             // 
-            this.tb_avancesDejaRecues.BackColor = System.Drawing.Color.White;
-            this.tb_avancesDejaRecues.BorderColor = System.Drawing.Color.Silver;
-            this.tb_avancesDejaRecues.BorderRadius = 6;
-            this.tb_avancesDejaRecues.BorderSize = 1;
-            this.tb_avancesDejaRecues.FocusBorderColor = System.Drawing.Color.Silver;
-            this.tb_avancesDejaRecues.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tb_avancesDejaRecues.ForeColor = System.Drawing.Color.Black;
-            this.tb_avancesDejaRecues.Image = null;
-            this.tb_avancesDejaRecues.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tb_avancesDejaRecues.ImagePadding = 2;
-            this.tb_avancesDejaRecues.Location = new System.Drawing.Point(40, 293);
-            this.tb_avancesDejaRecues.MaxLength = 32767;
-            this.tb_avancesDejaRecues.Name = "tb_avancesDejaRecues";
-            this.tb_avancesDejaRecues.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
-            this.tb_avancesDejaRecues.PlaceholderColor = System.Drawing.Color.Gray;
-            this.tb_avancesDejaRecues.PlaceholderText = "";
-            this.tb_avancesDejaRecues.ReadOnly = true;
-            this.tb_avancesDejaRecues.Size = new System.Drawing.Size(320, 35);
-            this.tb_avancesDejaRecues.TabIndex = 53;
+            this.cbSalaire.ArrowColor = System.Drawing.Color.DimGray;
+            this.cbSalaire.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.cbSalaire.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.cbSalaire.BackColor = System.Drawing.Color.White;
+            this.cbSalaire.BorderColor = System.Drawing.Color.Silver;
+            this.cbSalaire.BorderRadius = 8;
+            this.cbSalaire.BorderSize = 1;
+            this.cbSalaire.DropDownBackColor = System.Drawing.Color.White;
+            this.cbSalaire.DropDownForeColor = System.Drawing.Color.Black;
+            this.cbSalaire.DropDownSelectedBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.cbSalaire.DropDownSelectedForeColor = System.Drawing.Color.White;
+            this.cbSalaire.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSalaire.FocusBorderColor = System.Drawing.Color.Orange;
+            this.cbSalaire.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbSalaire.Location = new System.Drawing.Point(251, 176);
+            this.cbSalaire.Name = "cbSalaire";
+            this.cbSalaire.SelectedItem = null;
+            this.cbSalaire.SelectedValue = null;
+            this.cbSalaire.Size = new System.Drawing.Size(380, 40);
+            this.cbSalaire.TabIndex = 26;
+            this.cbSalaire.SelectedIndexChanged += new System.EventHandler(this.cbSalaire_SelectedIndexChanged);
             // 
-            // Ajouter_avance
+            // txtReste
+            // 
+            this.txtReste.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(239)))), ((int)(((byte)(245)))));
+            this.txtReste.BorderColor = System.Drawing.Color.Silver;
+            this.txtReste.BorderRadius = 8;
+            this.txtReste.BorderSize = 1;
+            this.txtReste.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(239)))), ((int)(((byte)(245)))));
+            this.txtReste.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtReste.ForeColor = System.Drawing.Color.Black;
+            this.txtReste.Image = null;
+            this.txtReste.Location = new System.Drawing.Point(251, 358);
+            this.txtReste.MaxLength = 32767;
+            this.txtReste.Name = "txtReste";
+            this.txtReste.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.txtReste.PlaceholderColor = System.Drawing.Color.Gray;
+            this.txtReste.PlaceholderText = "";
+            this.txtReste.ReadOnly = true;
+            this.txtReste.Size = new System.Drawing.Size(380, 41);
+            this.txtReste.TabIndex = 17;
+            this.txtReste.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(31, 378);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 21);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Reste";
+            // 
+            // Ajouter_Avance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(436, 574);
-            this.Controls.Add(this.bt_start);
-            this.Controls.Add(this.tb_avancesDejaRecues);
-            this.Controls.Add(this.tb_reste);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(249)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(651, 489);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.tb_montantAvance);
+            this.Controls.Add(this.cbSalaire);
+            this.Controls.Add(this.customRoundedPanel1);
+            this.Controls.Add(this.btEnregistrer);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dtp_date_paiement);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.bunifuRoundedPanel1);
-            this.Name = "Ajouter_avance";
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.nudMontant);
+            this.Controls.Add(this.dtpDateAvance);
+            this.Controls.Add(this.txtReste);
+            this.Controls.Add(this.txtPersonnel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.Name = "Ajouter_Avance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ajouter une avance";
-            this.Load += new System.EventHandler(this.Ajouter_avance_Load);
-            this.bunifuRoundedPanel1.ResumeLayout(false);
-            this.bunifuRoundedPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Text = "Ajouter_Avance";
+            this.customRoundedPanel1.ResumeLayout(false);
+            this.customRoundedPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,23 +326,20 @@
 
         #endregion
 
-        private RoundedButton bt_start;
-        private MyRoundedTextBox tb_reste;
-        private MyRoundedTextBox tb_montantAvance;
+        private CustomRoundedPanel customRoundedPanel1;
+        private System.Windows.Forms.Label lbSousTitre;
+        private System.Windows.Forms.Label lbTitre;
+        private AvatarControl avatarControl1;
+        private RoundedButton btEnregistrer;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dtp_date_paiement;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label1;
-        private BunifuRoundedPanel bunifuRoundedPanel1;
-        private System.Windows.Forms.Label lblSalaire;
-        private System.Windows.Forms.Label lblMois;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblPersonnel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private RoundedNumericUpDown nudMontant;
+        private Controls.MyDateTimePicker dtpDateAvance;
+        private MyRoundedTextBox txtPersonnel;
         private System.Windows.Forms.Label label7;
-        private MyRoundedTextBox tb_avancesDejaRecues;
+        private MyRoundedComboBox cbSalaire;
+        private MyRoundedTextBox txtReste;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -682,15 +682,11 @@ namespace Cepima
                         await AfficherUserControlAsync < MesUserCases.Personnels.User_Presence >();
                     }),
 
-                    // Quatrième sous menu (Gestion des empreints)
-                    //new MenuItem("      Empreints", Properties.Resources.fingerprint_20px, (s, ev) =>
-                        //{
-                            //MesUserCases.Personnels.User_fingerprint fingerP = new MesUserCases.Personnels.User_fingerprint();
-                            //fingerP.Dock = DockStyle.Fill;
-                            //panel_center_main.Controls.Clear();
-                            //panel_center_main.Controls.Add(fingerP);
-                            //MessageBox.Show("En cours de dev");
-                        //}),
+                     //Quatrième sous menu ()
+                    new MenuItem("      Salaire", Properties.Resources.paycheque_30px, async (s, ev) =>
+                        {
+                            await AfficherUserControlAsync<MesUserCases.Personnels.User_Salaire_personnel>();
+                        }),
 
             };
             Create_sous_menu(items);

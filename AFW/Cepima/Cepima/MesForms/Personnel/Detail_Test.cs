@@ -29,11 +29,6 @@ namespace Cepima.MesForms.Personnel
             ChargerSituationSalariale();
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void LoadDetailsPersonnels()
         {
             try
@@ -154,11 +149,6 @@ namespace Cepima.MesForms.Personnel
             }
         }
 
-        private void bt_salaire_Click(object sender, EventArgs e)
-        {
-            MesForms.Personnel.Add_salaire salaire = new Add_salaire(personnelID);
-            salaire.ShowDialog();
-        }
 
         private void Detail_Test_Load(object sender, EventArgs e)
         {
@@ -166,22 +156,12 @@ namespace Cepima.MesForms.Personnel
             ChargerPresence();
         }
 
-        private void bt_ad_prime_Click(object sender, EventArgs e)
-        {
-            MesForms.Personnel.Ajouter_prime prime = new Ajouter_prime(personnelID);
-            prime.ShowDialog();
-        }
-
-        private void bt_add_retenue_Click(object sender, EventArgs e)
-        {
-            MesForms.Personnel.Ajouter_retenue retenue = new Ajouter_retenue(personnelID);
-            retenue.ShowDialog();
-        }
+      
 
         private void roundedButton4_Click(object sender, EventArgs e)
         {
-            MesForms.Personnel.Ajouter_avance avance = new Ajouter_avance(personnelID);
-            avance.ShowDialog();
+            //MesForms.Personnel.Ajouter_avance avance = new Ajouter_avance(personnelID);
+           //avance.ShowDialog();
         }
 
         private void ChargerSituationSalariale()
@@ -511,14 +491,7 @@ namespace Cepima.MesForms.Personnel
                     }
                 }
 
-                // =========================================
-                // SALAIRE(S) EXISTANT(S)
-                // =========================================
-
-                MesForms.Personnel.Detail_salaire detail =
-                    new MesForms.Personnel.Detail_salaire(personnelID);
-
-                detail.ShowDialog();
+             
             }
             catch (Exception ex)
             {

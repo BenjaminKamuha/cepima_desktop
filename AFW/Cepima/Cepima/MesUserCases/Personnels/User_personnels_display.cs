@@ -92,7 +92,7 @@ namespace Cepima.MesUserCases
                     SELECT
                         id_personnel,
                         nom,
-                        post_nom
+                        post_nom,prenom,fonction
                     FROM personnels
                     WHERE 1 = 1
                 ";
@@ -156,11 +156,22 @@ namespace Cepima.MesUserCases
                                 reader,
                                 "post_nom");
 
-                        CustomRoundedPanel panPersonnel =
+                        string prenom =
+                          GetString(
+                              reader,
+                              "prenom");
+
+                        string fonction =
+                        GetString(
+                            reader,
+                            "fonction");
+
+                        BunifuRoundedPanel panPersonnel =
                             CreerPanelPersonnel(
                                 idPersonnel,
                                 nom,
-                                postnom);
+                                postnom,
+                                prenom,fonction);
 
                         panel_patient.Controls.Add(
                             panPersonnel);
@@ -239,126 +250,49 @@ namespace Cepima.MesUserCases
         // CREATION CARTE PERSONNEL
         // ============================================================
 
-        private CustomRoundedPanel CreerPanelPersonnel(
-            string idPersonnel,
-            string nom,
-            string postnom)
+        private BunifuRoundedPanel CreerPanelPersonnel(string idPersonnel,string nom,string postnom,string prenom,string fonction)
         {
-            CustomRoundedPanel panPersonnel =
-                new CustomRoundedPanel();
+            BunifuRoundedPanel panPersonnel = new BunifuRoundedPanel();
 
-            panPersonnel.Size =
-                new Size(160, 130);
+            panPersonnel.Size = new Size(290, 135);
+            panPersonnel.BorderRadius = 8;
+            panPersonnel.BorderColor = Color.Silver;
+            panPersonnel.BorderSize = 0;
+            panPersonnel.ShadowDepth = 10;
+            panPersonnel.ShadowColor = Color.Gray;
+            panPersonnel.Tag = idPersonnel;
+            panPersonnel.Margin = new Padding(10);
+            panPersonnel.Padding = new Padding(15);
 
-            panPersonnel.BorderRadius =
-                8;
+            string nomComplet = (postnom + " " + prenom).Trim();
+            PictureBox picture = MesClasses.ManagerClasse.AddPicture(Properties.Resources.user, new Point(15, 15), new Size(60, 60));
+            picture.SizeMode = PictureBoxSizeMode.Zoom;
+            panPersonnel.Controls.Add(picture);
 
-            panPersonnel.BorderColor =
-                Color.Silver;
+            Label lbTitre = MesClasses.ManagerClasse.CustomLabel(nom, new Point(90, 18));
+            lbTitre.AutoSize = true;
+            lbTitre.Font = new Font("Calibri", 10, FontStyle.Bold);
+            lbTitre.ForeColor = Color.FromArgb(23, 43, 77);
+            panPersonnel.Controls.Add(lbTitre);
 
-            panPersonnel.BorderSize =
-                1;
+            Label lbNom = MesClasses.ManagerClasse.CustomLabel(nomComplet, new Point(90, 40));
+            lbNom.AutoSize = true;
+            lbNom.Font = new Font("Calibri", 10, FontStyle.Bold);
+            lbNom.ForeColor = Color.FromArgb(23, 43, 77);
+            panPersonnel.Controls.Add(lbNom);
 
-            panPersonnel.Tag =
-                idPersonnel;
+            Label lbfonction = MesClasses.ManagerClasse.CustomLabel(fonction, new Point(90, 65));
+            lbfonction.AutoSize = true;
+            lbfonction.Font = new Font("Calibri", 10, FontStyle.Bold);
+            lbfonction.ForeColor = Color.FromArgb(23, 43, 77);
+            panPersonnel.Controls.Add(lbfonction);
 
-            panPersonnel.Margin =
-                new Padding(10);
-
-            panPersonnel.Padding =
-                new Padding(
-                    10,
-                    10,
-                    8,
-                    10);
-
-            // ========================================================
-            // PHOTO
-            // ========================================================
-
-            PictureBox picture =
-                MesClasses.ManagerClasse.AddPicture(
-                    Properties.Resources.user,
-                    new Point(2, 5),
-                    new Size(70, 70));
-
-            panPersonnel.Controls.Add(
-                picture);
-
-            // ========================================================
-            // NOM
-            // ========================================================
-
-            Label lbNom =
-                MesClasses.ManagerClasse.CustomLabel(
-                    nom,
-                    new Point(70, 20));
-
-            lbNom.AutoSize =
-                true;
-
-            lbNom.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold);
-
-            panPersonnel.Controls.Add(
-                lbNom);
-
-            // ========================================================
-            // POST-NOM
-            // ========================================================
-
-            Label lbPost =
-                MesClasses.ManagerClasse.CustomLabel(
-                    postnom,
-                    new Point(70, 40));
-
-            lbPost.AutoSize =
-                true;
-
-            lbPost.Font =
-                new Font(
-                    "Calibri",
-                    10,
-                    FontStyle.Bold);
-
-            panPersonnel.Controls.Add(
-                lbPost);
-
-            // ========================================================
-            // BOUTON DETAIL
-            // ========================================================
-
-            RoundedButton btnSuivi =
-                MesClasses.ManagerClasse.Rbutton(
-                    "Afficher détail",
-                    new Point(30, 100),
-                    new Size(95, 25),
-                    Color.FromArgb(
-                        44,
-                        123,
-                        229),
-                    Color.White);
-
-            btnSuivi.BorderRadius =
-                4;
-
-            btnSuivi.BorderSize =
-                0;
-
-            btnSuivi.BorderColor =
-                Color.FromArgb(
-                    44,
-                    123,
-                    229);
-
-            btnSuivi.HoverBackColor =
-                Color.FromArgb(
-                    7,
-                    51,
-                    131);
+            RoundedButton btnSuivi = MesClasses.ManagerClasse.Rbutton("Détail personnel", new Point(80, 90), new Size(150, 30));
+            btnSuivi.BorderRadius = 8;
+            btnSuivi.BorderSize = 1;
+            btnSuivi.DefaultBackColor = Color.FromArgb(21, 101, 192);
+            btnSuivi.HoverBackColor = Color.FromArgb(18, 98, 168);
+            //btnSuivi.Image = Properties.Resources.view_details_30px;
 
             panPersonnel.Controls.Add(
                 btnSuivi);

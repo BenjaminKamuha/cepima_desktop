@@ -211,6 +211,9 @@
     <Compile Include="Controls\CustomRoundedButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\Custom_dateTimePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\DonutChartControl.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -302,6 +305,30 @@
     <Compile Include="MesForms\Fiches\RaportFiche.Designer.cs">
       <DependentUpon>RaportFiche.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Personnel\Add_salaire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Add_salaire.Designer.cs">
+      <DependentUpon>Add_salaire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_Avance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_Avance.Designer.cs">
+      <DependentUpon>Ajouter_Avance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_prime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_prime.Designer.cs">
+      <DependentUpon>Ajouter_prime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_retenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Personnel\Ajouter_retenue.Designer.cs">
+      <DependentUpon>Ajouter_retenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Personnel\Ds_Liste.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -319,6 +346,7 @@
     <Compile Include="MesForms\Personnel\Presence.Designer.cs">
       <DependentUpon>Presence.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Personnel\SalaireItem.cs" />
     <Compile Include="MesForms\Pharmacie\Form_prescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +459,12 @@
     </Compile>
     <Compile Include="MesUserCases\Personnels\User_fingerprint.Designer.cs">
       <DependentUpon>User_fingerprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_Salaire_personnel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MesUserCases\Personnels\User_Salaire_personnel.Designer.cs">
+      <DependentUpon>User_Salaire_personnel.cs</DependentUpon>
     </Compile>
     <Compile Include="MesUserCases\Pharmacie\UC_prescription.cs">
       <SubType>UserControl</SubType>
@@ -612,30 +646,6 @@
     <Compile Include="MesForms\Hospitalisation\Update_chambre.Designer.cs">
       <DependentUpon>Update_chambre.cs</DependentUpon>
     </Compile>
-    <Compile Include="MesForms\Personnel\Add_salaire.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Add_salaire.Designer.cs">
-      <DependentUpon>Add_salaire.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Ajouter_avance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Ajouter_avance.Designer.cs">
-      <DependentUpon>Ajouter_avance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Ajouter_prime.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Ajouter_prime.Designer.cs">
-      <DependentUpon>Ajouter_prime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Ajouter_retenue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Ajouter_retenue.Designer.cs">
-      <DependentUpon>Ajouter_retenue.cs</DependentUpon>
-    </Compile>
     <Compile Include="MesForms\Personnel\Ajout_personnel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -647,12 +657,6 @@
     </Compile>
     <Compile Include="MesForms\Personnel\Detail_presence.Designer.cs">
       <DependentUpon>Detail_presence.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Detail_salaire.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MesForms\Personnel\Detail_salaire.Designer.cs">
-      <DependentUpon>Detail_salaire.cs</DependentUpon>
     </Compile>
     <Compile Include="MesForms\Personnel\Detail_Test.cs">
       <SubType>Form</SubType>
@@ -1001,8 +1005,8 @@
     <EmbeddedResource Include="MesForms\Personnel\Add_salaire.resx">
       <DependentUpon>Add_salaire.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Personnel\Ajouter_avance.resx">
-      <DependentUpon>Ajouter_avance.cs</DependentUpon>
+    <EmbeddedResource Include="MesForms\Personnel\Ajouter_Avance.resx">
+      <DependentUpon>Ajouter_Avance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Ajouter_prime.resx">
       <DependentUpon>Ajouter_prime.cs</DependentUpon>
@@ -1015,9 +1019,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Detail_presence.resx">
       <DependentUpon>Detail_presence.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MesForms\Personnel\Detail_salaire.resx">
-      <DependentUpon>Detail_salaire.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Detail_Test.resx">
       <DependentUpon>Detail_Test.cs</DependentUpon>
@@ -1139,6 +1140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Personnels\User_Presence.resx">
       <DependentUpon>User_Presence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesUserCases\Personnels\User_Salaire_personnel.resx">
+      <DependentUpon>User_Salaire_personnel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesUserCases\Pharmacie\UC_add_medoc.resx">
       <DependentUpon>UC_add_medoc.cs</DependentUpon>
@@ -2080,6 +2084,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vision.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\primes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\retenue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Salaire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\walet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\av.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\re.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Salaire1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Salaire2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\prime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avance1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

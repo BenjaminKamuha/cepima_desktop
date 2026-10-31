@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,7 +16,7 @@ namespace Cepima.Controls
         // ============================================================
 
         private LiveCharts.WinForms.CartesianChart graphique;
-
+        private LiveCharts.WinForms.PieChart graphiqueCirculaire;
         // ============================================================
         // PROPRIÉTÉS PERSONNALISABLES
         // ============================================================
@@ -38,6 +39,7 @@ namespace Cepima.Controls
             InitialiserControle();
         }
 
+
         // ============================================================
         // INITIALISATION
         // ============================================================
@@ -47,14 +49,22 @@ namespace Cepima.Controls
             this.BackColor = _couleurFond;
             this.Size = new Size(700, 400);
 
+            // Graphique cartésien : histogrammes, courbes et barres
             graphique = new LiveCharts.WinForms.CartesianChart();
-
             graphique.Dock = DockStyle.Fill;
             graphique.BackColor = _couleurFond;
-
             graphique.DisableAnimations = !_animation;
 
+            // Graphique circulaire
+            graphiqueCirculaire = new LiveCharts.WinForms.PieChart();
+            graphiqueCirculaire.Dock = DockStyle.Fill;
+            graphiqueCirculaire.BackColor = _couleurFond;
+            graphiqueCirculaire.DisableAnimations = !_animation;
+            graphiqueCirculaire.Visible = false;
+
             this.Controls.Add(graphique);
+            this.Controls.Add(graphiqueCirculaire);
+
 
             ConfigurerAxes();
         }
@@ -321,6 +331,9 @@ namespace Cepima.Controls
      IList<string> etiquettes,
      IList<double> valeurs)
         {
+            graphiqueCirculaire.Visible = false;
+            graphique.Visible = true;
+            graphique.BringToFront();
             if (graphique == null)
                 return;
 
@@ -366,7 +379,12 @@ namespace Cepima.Controls
             ColumnSeries serie = new ColumnSeries
             {
                 Title = nom,
-                Values = donnees
+                Values = donnees,
+                Fill = System.Windows.Media.Brushes.DodgerBlue,
+                DataLabels = true,
+                LabelPoint = p => p.Y.ToString("0"),
+                FontSize = 12,
+                Foreground = System.Windows.Media.Brushes.DimGray
             };
 
             graphique.Series.Add(serie);
@@ -468,7 +486,63 @@ namespace Cepima.Controls
             graphique.AxisY.Add(axeY);
         }
 
+        //////// ajouter cercle
+        public void AjouterGraphiqueCirculaire(params object[] donnees)
+        {
+            if (graphiqueCirculaire == null || donnees == null)
+                return;
 
+            if (donnees.Length == 0 || donnees.Length % 2 != 0)
+                throw new ArgumentException(
+                    "Fournissez un nom et un montant pour chaque catégorie.");
+
+            graphique.Visible = false;
+            graphiqueCirculaire.Visible = true;
+            graphiqueCirculaire.BringToFront();
+
+            graphiqueCirculaire.Series.Clear();
+
+            Color[] couleurs =
+    {
+        Color.FromArgb(8, 120, 249),
+        Color.FromArgb(7, 148, 71),
+        Color.FromArgb(245, 34, 53),
+        Color.FromArgb(128, 60, 245),
+        Color.FromArgb(245, 130, 11),
+        Color.FromArgb(0, 150, 170)
+    };
+
+            for (int i = 0; i < donnees.Length; i += 2)
+            {
+                string nom = Convert.ToString(donnees[i]);
+                double montant = Convert.ToDouble(donnees[i + 1]);
+
+                if (montant < 0)
+                    throw new ArgumentException(
+                        "Les montants du graphique ne peuvent pas être négatifs.");
+
+                LiveCharts.Wpf.PieSeries serie =
+                    new LiveCharts.Wpf.PieSeries
+                    {
+                        Title = nom,
+                        Values = new LiveCharts.ChartValues<double> { montant },
+                        Fill = new System.Windows.Media.SolidColorBrush(
+                            System.Windows.Media.Color.FromRgb(
+                                couleurs[(i / 2) % couleurs.Length].R,
+                                couleurs[(i / 2) % couleurs.Length].G,
+                                couleurs[(i / 2) % couleurs.Length].B)),
+                        DataLabels = true,
+                        LabelPoint = p => p.Participation.ToString("P0"),
+                        FontSize = 14,
+                        Foreground = System.Windows.Media.Brushes.White
+                    };
+
+                graphiqueCirculaire.Series.Add(serie);
+            }
+
+            graphiqueCirculaire.LegendLocation =
+                LiveCharts.LegendLocation.Right;
+        }
 
         // ============================================================
         // VIDER LE GRAPHIQUE
@@ -497,3 +571,4 @@ namespace Cepima.Controls
         }
     }
 }
+
