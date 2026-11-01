@@ -446,6 +446,13 @@ namespace Cepima
 
                 }),
 
+                new MenuItem("    Paiement",Properties.Resources.add_25px, async (s,ev) =>
+                {
+                    MesForms.Paiement paiement = new Paiement();
+                    paiement.ShowDialog();
+
+                }),
+
             };
             Create_sous_menu(items);
             Button bt = sender as Button;

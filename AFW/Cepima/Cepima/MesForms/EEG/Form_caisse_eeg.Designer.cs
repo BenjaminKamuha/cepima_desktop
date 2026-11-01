@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label = new System.Windows.Forms.Label();
-            this.dtp_date = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.bt_confirmer = new RoundedButton();
+            this.dtp_date = new System.Windows.Forms.DateTimePicker();
             this.tb_montant = new MyRoundedTextBox();
             this.SuspendLayout();
             // 
@@ -44,13 +44,6 @@
             this.label.Size = new System.Drawing.Size(67, 17);
             this.label.TabIndex = 29;
             this.label.Text = "Montant: ";
-            // 
-            // dtp_date
-            // 
-            this.dtp_date.Location = new System.Drawing.Point(113, 78);
-            this.dtp_date.Name = "dtp_date";
-            this.dtp_date.Size = new System.Drawing.Size(187, 20);
-            this.dtp_date.TabIndex = 36;
             // 
             // label1
             // 
@@ -88,6 +81,13 @@
             this.bt_confirmer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bt_confirmer.UseVisualStyleBackColor = false;
             this.bt_confirmer.Click += new System.EventHandler(this.bt_confirmer_Click);
+            // 
+            // dtp_date
+            // 
+            this.dtp_date.Location = new System.Drawing.Point(113, 78);
+            this.dtp_date.Name = "dtp_date";
+            this.dtp_date.Size = new System.Drawing.Size(187, 20);
+            this.dtp_date.TabIndex = 36;
             // 
             // tb_montant
             // 
@@ -129,10 +129,11 @@
 
         #endregion
 
-        private MyRoundedTextBox tb_montant;
         private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label label1;
         private RoundedButton bt_confirmer;
         private System.Windows.Forms.DateTimePicker dtp_date;
-        private System.Windows.Forms.Label label1;
+        private MyRoundedTextBox tb_montant;
+
     }
 }

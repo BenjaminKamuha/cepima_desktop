@@ -305,6 +305,12 @@
     <Compile Include="MesForms\Fiches\RaportFiche.Designer.cs">
       <DependentUpon>RaportFiche.cs</DependentUpon>
     </Compile>
+    <Compile Include="MesForms\Paiement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MesForms\Paiement.Designer.cs">
+      <DependentUpon>Paiement.cs</DependentUpon>
+    </Compile>
     <Compile Include="MesForms\Personnel\Add_salaire.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1001,6 +1007,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Hospitalisation\Update_chambre.resx">
       <DependentUpon>Update_chambre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MesForms\Paiement.resx">
+      <DependentUpon>Paiement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MesForms\Personnel\Add_salaire.resx">
       <DependentUpon>Add_salaire.cs</DependentUpon>
