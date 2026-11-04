@@ -35,9 +35,9 @@ namespace Cepima.MesUserCases.EEG
                 // SUSPENDRE LE RAFRAICHISSEMENT VISUEL
                 // -------------------------------------------------
 
-                pnl_examen.SuspendLayout();
+                pnl_ambulatoire.SuspendLayout();
 
-                pnl_examen.Controls.Clear();
+                pnl_ambulatoire.Controls.Clear();
 
                 Database db = new Database();
 
@@ -288,7 +288,7 @@ namespace Cepima.MesUserCases.EEG
             }
             finally
             {
-                pnl_examen.ResumeLayout(true);
+                pnl_ambulatoire.ResumeLayout(true);
             }
         }
 
@@ -396,7 +396,7 @@ namespace Cepima.MesUserCases.EEG
             AjouterHoverAuxEnfants(panPrescription, couleurHover, couleurNormale);
 
             // AJOUT AU FLOWLAYOUTPANEL
-            pnl_examen.Controls.Add(panPrescription);
+            pnl_ambulatoire.Controls.Add(panPrescription);
             //MesClasses.ManagerClasse.AddControl(pnl_examen, panPrescription, 20, 10);
 
             //if (pnl_examen.Controls.Count > 0)
@@ -444,13 +444,13 @@ namespace Cepima.MesUserCases.EEG
                 // SUSPENDRE LE LAYOUT PENDANT LE CHARGEMENT
                 // ----------------------------------------------------
 
-                pnl_examen.SuspendLayout();
+                pnl_ambulatoire.SuspendLayout();
 
                 // ----------------------------------------------------
                 // SUPPRIMER LES ANCIENS PANELS
                 // ----------------------------------------------------
 
-                pnl_examen.Controls.Clear();
+                pnl_ambulatoire.Controls.Clear();
 
                 // ----------------------------------------------------
                 // TEXTE DE RECHERCHE
@@ -704,11 +704,11 @@ namespace Cepima.MesUserCases.EEG
                 // ANIMATION
                 // =====================================================
 
-                if (pnl_examen.Controls.Count > 0)
+                if (pnl_ambulatoire.Controls.Count > 0)
                 {
                     ProgressiveDisplay pd =
                         new ProgressiveDisplay(
-                            pnl_examen,
+                            pnl_ambulatoire,
                             100);
 
                     pd.Start();
@@ -718,13 +718,13 @@ namespace Cepima.MesUserCases.EEG
                 // FIN DU LAYOUT
                 // =====================================================
 
-                pnl_examen.ResumeLayout(true);
+                pnl_ambulatoire.ResumeLayout(true);
             }
             catch (Exception ex)
             {
                 try
                 {
-                    pnl_examen.ResumeLayout(true);
+                    pnl_ambulatoire.ResumeLayout(true);
                 }
                 catch
                 {
@@ -838,7 +838,7 @@ namespace Cepima.MesUserCases.EEG
 
             // HOVER SUR TOUS LES CONTROLES ENFANTS
             AjouterHoverAuxEnfants(panDemande, couleurHover, couleurNormale);
-            pnl_examen.Controls.Add(panDemande);
+            pnl_ambulatoire.Controls.Add(panDemande);
         }
 
 
@@ -977,14 +977,14 @@ namespace Cepima.MesUserCases.EEG
         {
             try
             {
-                pnl_examen.SuspendLayout();
-                pnl_examen.Controls.Clear();
-                pnl_examen.FlowDirection =
+                pnl_ambulatoire.SuspendLayout();
+                pnl_ambulatoire.Controls.Clear();
+                pnl_ambulatoire.FlowDirection =
                   FlowDirection.LeftToRight;
 
-                pnl_examen.WrapContents = true;
-                pnl_examen.AutoScroll = true;
-                pnl_examen.Padding = new Padding(10, 10, 8, 10);
+                pnl_ambulatoire.WrapContents = true;
+                pnl_ambulatoire.AutoScroll = true;
+                pnl_ambulatoire.Padding = new Padding(10, 10, 8, 10);
 
                 using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
                 {
@@ -1032,7 +1032,7 @@ namespace Cepima.MesUserCases.EEG
             }
             finally
             {
-                pnl_examen.ResumeLayout(true);
+                pnl_ambulatoire.ResumeLayout(true);
             }
         }
 
@@ -1092,8 +1092,13 @@ namespace Cepima.MesUserCases.EEG
             };
 
             panRecu.Controls.Add(btnImprimer);
-            pnl_examen.Controls.Add(panRecu);
+            pnl_ambulatoire.Controls.Add(panRecu);
             //MesClasses.ManagerClasse.AddControl(pnl_examen, panRecu, 10, 10);
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

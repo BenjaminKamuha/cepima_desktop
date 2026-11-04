@@ -413,7 +413,9 @@ namespace Cepima
         private async void bt_EEG_Click(object sender, EventArgs e)
         {
 
-            await AfficherUserControlAsync<MesUserCases.EEG.User_DashBoard>();
+            //await AfficherUserControlAsync<MesUserCases.EEG.User_DashBoard>();
+
+            await AfficherUserControlAsync<MesUserCases.Comptabilité.Livre_Caisse>();
 
             picture_image_menu.Image = Properties.Resources.brain_90px;
             lb_sous_menu.Text = "Test par EEG";
@@ -421,36 +423,45 @@ namespace Cepima
             panel11.Visible = true;
 
 
+            // Charger le livre de caisse.
+            MesUserCases.Comptabilité.Livre_Caisse livre = new MesUserCases.Comptabilité.Livre_Caisse();
+            livre.Dock = DockStyle.Fill;
+            Form1.GlobalPanel_main.Controls.Clear();
+            Form1.GlobalPanel_main.Controls.Add(livre);
+
+
             var items = new List<MenuItem>()
             {
                 new MenuItem("    Acceuil",Properties.Resources.Home, async(s,ev) =>
                 {
-                     await AfficherUserControlAsync<MesUserCases.EEG.User_DashBoard>();
+                    await AfficherUserControlAsync<MesUserCases.Comptabilité.Livre_Caisse>();
 
-                }),
-                new MenuItem("    Examens",Properties.Resources.finish_flag_30px, async (s,ev) =>
-                {
-                     await AfficherUserControlAsync<MesUserCases.EEG.User_examens>();
 
                 }),
 
-                new MenuItem("    Prescription", Properties.Resources.edit_property_30px, async(s, ev) => 
-                {
-                    CONTEXT = "PRESCRIPTION";
-                    await AfficherUserControlAsync<MesUserCases.User_display_patients>();
-                }),
+                
+                //new MenuItem("    Examens",Properties.Resources.finish_flag_30px, async (s,ev) =>
+                //{
+                //     await AfficherUserControlAsync<MesUserCases.EEG.User_examens>();
 
-                new MenuItem("    Caisse",Properties.Resources.add_dollar_black, async (s,ev) =>
-                {
-                    await AfficherUserControlAsync < MesUserCases.EEG.User_caisse>();
+                //}),
 
-                }),
+                //new MenuItem("    Prescription", Properties.Resources.edit_property_30px, async(s, ev) => 
+                //{
+                //    CONTEXT = "PRESCRIPTION";
+                //    await AfficherUserControlAsync<MesUserCases.User_display_patients>();
+                //}),
+
+                //new MenuItem("    Caisse",Properties.Resources.add_dollar_black, async (s,ev) =>
+                //{
+                //    await AfficherUserControlAsync < MesUserCases.EEG.User_caisse>();
+
+                //}),
 
                 new MenuItem("    Paiement",Properties.Resources.add_25px, async (s,ev) =>
                 {
                     MesForms.Paiement paiement = new Paiement();
                     paiement.ShowDialog();
-
                 }),
 
             };
