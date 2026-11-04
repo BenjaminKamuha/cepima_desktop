@@ -1,4 +1,5 @@
-﻿namespace Cepima.MesForms.Fiches {
+﻿namespace Cepima.MesForms.Fiches
+{
     
     
     public partial class Ds_Fiche {

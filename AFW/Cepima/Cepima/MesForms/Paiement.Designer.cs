@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.pnl_menu = new System.Windows.Forms.Panel();
-            this.pnl_ambulatoire = new System.Windows.Forms.FlowLayoutPanel();
-            this.tb_search_demande = new MyRoundedTextBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.tb_search_demande = new MyRoundedTextBox();
+            this.pnl_ambulatoire = new System.Windows.Forms.FlowLayoutPanel();
             this.pnl_menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,14 +45,17 @@
             this.pnl_menu.Size = new System.Drawing.Size(1058, 45);
             this.pnl_menu.TabIndex = 2;
             // 
-            // pnl_ambulatoire
+            // linkLabel2
             // 
-            this.pnl_ambulatoire.BackColor = System.Drawing.Color.White;
-            this.pnl_ambulatoire.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_ambulatoire.Location = new System.Drawing.Point(0, 45);
-            this.pnl_ambulatoire.Name = "pnl_ambulatoire";
-            this.pnl_ambulatoire.Size = new System.Drawing.Size(1058, 417);
-            this.pnl_ambulatoire.TabIndex = 3;
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel2.Location = new System.Drawing.Point(335, 15);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(148, 21);
+            this.linkLabel2.TabIndex = 46;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "Ajouter payement";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // tb_search_demande
             // 
@@ -75,16 +78,14 @@
             this.tb_search_demande.Size = new System.Drawing.Size(273, 30);
             this.tb_search_demande.TabIndex = 45;
             // 
-            // linkLabel2
+            // pnl_ambulatoire
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.Location = new System.Drawing.Point(335, 15);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(148, 21);
-            this.linkLabel2.TabIndex = 46;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Ajouter payement";
+            this.pnl_ambulatoire.BackColor = System.Drawing.Color.White;
+            this.pnl_ambulatoire.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl_ambulatoire.Location = new System.Drawing.Point(0, 45);
+            this.pnl_ambulatoire.Name = "pnl_ambulatoire";
+            this.pnl_ambulatoire.Size = new System.Drawing.Size(1058, 417);
+            this.pnl_ambulatoire.TabIndex = 3;
             // 
             // Paiement
             // 

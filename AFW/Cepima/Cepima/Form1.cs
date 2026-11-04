@@ -34,6 +34,11 @@ namespace Cepima
 
         private FingerprintApi fingerprintApi;
 
+        private static readonly string env =
+            EnvConfig.Get(
+                "ENV",
+                "prod_env");
+
         public Form1()
         {
             InitializeComponent();
@@ -46,8 +51,13 @@ namespace Cepima
             LB_VERSION = lb_version;
 
 
-            // Recherche de mis à jour
-            CheckUpdate();
+
+            if (env != "dev_env")
+            {
+                // Recherche de mis à jour
+                CheckUpdate();
+            }
+
             
          
 

@@ -1810,8 +1810,7 @@ namespace Cepima.MesForms
                         "pour cette prestation.");
                 }
 
-                prix =
-                    Convert.ToDecimal(resultat);
+                prix = Convert.ToDecimal(resultat);
             }
 
 

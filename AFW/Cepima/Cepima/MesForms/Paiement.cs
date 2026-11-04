@@ -14,8 +14,8 @@ namespace Cepima.MesForms
 {
     public partial class Paiement : Form
     {
-        int ID_PATIENT = 0;
-        int ID_PRESTATION = 0;
+        public static int ID_PATIENT = 0;
+        public static int ID_PRESTATION = 0;
 
         public Paiement()
         {
@@ -145,6 +145,12 @@ namespace Cepima.MesForms
             {
                 pnl_ambulatoire.ResumeLayout(true);
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            PaiementForm paie = new PaiementForm();
+            paie.ShowDialog();
         }
 
 
