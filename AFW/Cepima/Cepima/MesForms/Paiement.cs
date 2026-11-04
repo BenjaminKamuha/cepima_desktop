@@ -14,13 +14,15 @@ namespace Cepima.MesForms
 {
     public partial class Paiement : Form
     {
-        Patient
+        int ID_PATIENT = 0;
+        int ID_PRESTATION = 0;
+
         public Paiement()
         {
             InitializeComponent();
             ChargerRecus();
         }
-        l
+        
         private void Create_pan_recu(string idPaiement, string idPatient, string patient, string age, string datePaiement, string statut, string montant)
         {
             BunifuRoundedPanel panRecu = new BunifuRoundedPanel();
