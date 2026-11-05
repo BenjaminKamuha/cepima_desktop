@@ -27,12 +27,12 @@ namespace Cepima.MesClasses
             MySqlTransaction tr)
         {
             string sql = @"
-        SELECT id
-        FROM prescription
-        WHERE patient_id = @patient_id
-        AND statut = 'ACTIVE'
-        ORDER BY id DESC
-        LIMIT 1";
+                SELECT id
+                FROM prescription
+                WHERE patient_id = @patient_id
+                AND statut = 'ACTIVE'
+                ORDER BY id DESC
+                LIMIT 1";
 
             using (MySqlCommand cmd =
                 new MySqlCommand(sql, con, tr))

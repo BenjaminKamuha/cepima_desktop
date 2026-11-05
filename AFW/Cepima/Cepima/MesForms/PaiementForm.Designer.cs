@@ -86,9 +86,8 @@
             this.lb_nom_patient.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_nom_patient.Location = new System.Drawing.Point(119, 17);
             this.lb_nom_patient.Name = "lb_nom_patient";
-            this.lb_nom_patient.Size = new System.Drawing.Size(105, 18);
+            this.lb_nom_patient.Size = new System.Drawing.Size(0, 18);
             this.lb_nom_patient.TabIndex = 29;
-            this.lb_nom_patient.Text = "Kambale Jean ";
             // 
             // lb_num_fiche
             // 
@@ -96,9 +95,8 @@
             this.lb_num_fiche.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_num_fiche.Location = new System.Drawing.Point(396, 37);
             this.lb_num_fiche.Name = "lb_num_fiche";
-            this.lb_num_fiche.Size = new System.Drawing.Size(70, 18);
+            this.lb_num_fiche.Size = new System.Drawing.Size(0, 18);
             this.lb_num_fiche.TabIndex = 23;
-            this.lb_num_fiche.Text = "CEP-0023";
             // 
             // lb_sexe_age
             // 
@@ -106,9 +104,8 @@
             this.lb_sexe_age.Font = new System.Drawing.Font("Microsoft Tai Le", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_sexe_age.Location = new System.Drawing.Point(119, 49);
             this.lb_sexe_age.Name = "lb_sexe_age";
-            this.lb_sexe_age.Size = new System.Drawing.Size(117, 18);
+            this.lb_sexe_age.Size = new System.Drawing.Size(0, 18);
             this.lb_sexe_age.TabIndex = 23;
-            this.lb_sexe_age.Text = "HOMME - 32 ans";
             // 
             // bt_choisir_patient
             // 
@@ -154,7 +151,6 @@
             this.panForm.Name = "panForm";
             this.panForm.Size = new System.Drawing.Size(519, 474);
             this.panForm.TabIndex = 62;
-            this.panForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // bt_mod
             // 
@@ -178,6 +174,7 @@
             this.bt_mod.TextColor = System.Drawing.Color.White;
             this.bt_mod.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.bt_mod.UseVisualStyleBackColor = true;
+            this.bt_mod.Click += new System.EventHandler(this.bt_mod_Click);
             // 
             // nud_montant_payer
             // 
@@ -198,7 +195,7 @@
             this.nud_montant_payer.Name = "nud_montant_payer";
             this.nud_montant_payer.Size = new System.Drawing.Size(130, 38);
             this.nud_montant_payer.TabIndex = 71;
-            this.nud_montant_payer.ValueChanged += new System.EventHandler(this.nud_montant_payer_ValueChanged_1);
+            this.nud_montant_payer.ValueChanged += new System.EventHandler(this.nud_montant_payer_ValueChanged);
             // 
             // nud_rest
             // 
@@ -352,6 +349,7 @@
             this.btn_cancel.TextColor = System.Drawing.Color.White;
             this.btn_cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_cancel.UseVisualStyleBackColor = false;
+            this.btn_cancel.Click += new System.EventHandler(this.btn_cancel_Click);
             // 
             // btn_send_request
             // 
@@ -359,23 +357,23 @@
             this.btn_send_request.BorderColor = System.Drawing.Color.White;
             this.btn_send_request.BorderRadius = 10;
             this.btn_send_request.BorderSize = 0;
-            this.btn_send_request.ButtonText = "Envoyer";
+            this.btn_send_request.ButtonText = "Confirmer";
             this.btn_send_request.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_send_request.DefaultBackColor = System.Drawing.Color.DodgerBlue;
             this.btn_send_request.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_send_request.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_send_request.ForeColor = System.Drawing.Color.White;
             this.btn_send_request.HoverBackColor = System.Drawing.Color.SteelBlue;
-            this.btn_send_request.Image = global::Cepima.Properties.Resources.paper_plane_30px;
             this.btn_send_request.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_send_request.Location = new System.Drawing.Point(275, 409);
             this.btn_send_request.Name = "btn_send_request";
             this.btn_send_request.Size = new System.Drawing.Size(164, 45);
             this.btn_send_request.TabIndex = 65;
-            this.btn_send_request.Text = "Envoyer";
+            this.btn_send_request.Text = "Confirmer";
             this.btn_send_request.TextColor = System.Drawing.Color.White;
             this.btn_send_request.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_send_request.UseVisualStyleBackColor = false;
+            this.btn_send_request.Click += new System.EventHandler(this.btn_send_request_Click);
             // 
             // label2
             // 
@@ -398,7 +396,6 @@
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "PaiementForm";
             this.Text = "PaiementForm";
-            this.Load += new System.EventHandler(this.PaiementForm_Load);
             this.bunifuRoundedPanel1.ResumeLayout(false);
             this.bunifuRoundedPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

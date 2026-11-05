@@ -22,6 +22,10 @@ namespace Cepima.MesForms
         public static Label LB_SEXE;
         public static Label LB_NUM_FICHE;
 
+        private decimal TOTAL_PRESCRIPTION = 0;
+
+        public static int ID_PRESCRIPTION = 0;
+
         //public static RoundedButton BT_CHOISIR_PATIENT;
 
         public static Panel PAN_FORM;
@@ -559,6 +563,7 @@ namespace Cepima.MesForms
 
                 if (RecupererTypePrestation(PRESTATION) != "MEDICALE")
                 {
+
                     decimal prix = ChargerPrix(idPrestation);
 
                     PRIX = prix;
@@ -579,17 +584,17 @@ namespace Cepima.MesForms
                         nud_prix.Value = prix;
                     }
                 }
-                else
-                {
-                    // Precription
-                    MesForms.Prescription.Form_prescription_mdc
-                    form_presc = new MesForms.Prescription.Form_prescription_mdc(
-                        Convert.ToInt32(ID_PATIENT));
+                //else
+                //{
+                //    // Precription
+                //    Form1.CONTEXT = "CAISSE";
 
-                    form_presc.ShowDialog();
-                }
+                //    MesForms.Prescription.Form_prescription_mdc
+                //    form_presc = new MesForms.Prescription.Form_prescription_mdc(
+                //        Convert.ToInt32(ID_PATIENT));
 
-
+                //    form_presc.ShowDialog();
+                //}
             }
             catch (Exception ex)
             {
@@ -683,6 +688,87 @@ namespace Cepima.MesForms
                 return Convert.ToInt32(cmd.LastInsertedId);
             }
         }
+
+
+        private int CreerFactureSiInexistante(
+            string idPatient)
+        {
+            // Chercher une facture ouverte.
+
+            string query = @"
+                SELECT id_facture
+                FROM facture
+                WHERE id_patient = @idPatient
+                  AND (statut IS NULL OR statut <> 'Clôturée')
+                ORDER BY id_facture DESC
+                LIMIT 1";
+
+            using (MySqlConnection con = db.GetConnection())
+            {
+                con.Open();
+
+                using (MySqlCommand cmd =
+                    new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue(
+                        "@idPatient", idPatient);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null &&
+                        result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            // Créer une nouvelle facture.
+
+            string insert = @"
+                INSERT INTO facture
+                (
+                    id_patient,
+                    id_centre,
+                    type_facture,
+                    date_facture,
+                    montant_total,
+                    montant_paye,
+                    reste,
+                    statut
+                )
+                VALUES
+                (
+                    @patient,
+                    @centre,
+                    'Ambulatoire',
+                    CURDATE(),
+                    0,
+                    0,
+                    0,
+                    'Non payé'
+                )";
+
+            using (MySqlConnection con = db.GetConnection())
+            {
+                
+            using (MySqlCommand cmd =
+                new MySqlCommand(insert, con))
+            {
+                cmd.Parameters.AddWithValue(
+                    "@patient", idPatient);
+
+                cmd.Parameters.AddWithValue(
+                    "@centre",
+                    MesForms.SessionUtilisateur.idCentre);
+
+                cmd.ExecuteNonQuery();
+
+                return Convert.ToInt32(cmd.LastInsertedId);
+            }
+            }
+        }
+
 
         private bool MettreAJourTarifPrestation(int idPrestation, decimal nouveauPrix)
         {
@@ -796,18 +882,49 @@ namespace Cepima.MesForms
             show_patient.ShowDialog();
         }
 
-        private void PaiementForm_Load(object sender, EventArgs e)
+        private void btn_cancel_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void btn_send_request_Click(object sender, EventArgs e)
         {
 
-        }
+            using (MySqlConnection con = MesClasses.ManagerClasse.GetConnexion())
+            {
 
-        private void nud_montant_payer_ValueChanged_1(object sender, EventArgs e)
-        {
+                MySqlTransaction tr = con.BeginTransaction();
+                // Initialisation/Recuperation facture
+
+                try
+                {
+                    // Création de la facture si elle n'existes pas
+                    int id_facture = MesClasses.ReceptionManager.CreerFactureSiInexistante(ID_PATIENT.ToString(), con, tr);
+
+                    // Ajout de la prestation dans le detail de la facture
+                    int id_detail = MesClasses.ReceptionManager.AjouterPrestationFacture(id_facture, PRESTATION, 1, nud_prix.Value, con, tr);
+
+                    // Paymenet de prestation
+                    int id_paiement = MesClasses.ReceptionManager.PayerPrestation(id_facture, id_detail, nud_montant_payer.Value, DateTime.Now.Date, con, tr);
+
+                    // Recalculer la facture après ajout paimenet de la prestation
+                    MesClasses.ReceptionManager.RecalculerFacture(id_facture, con, tr);
+
+                    // Enregistrement de l'opération dans le livre de caisse
+                    MesClasses.ReceptionManager.AjouterLivreCaisse(nud_montant_payer.Value, 0, cbx_service.Text, cbx_prestation.Text);
+
+                    // ImprimerReçus
+                    MesForms.FormRecu recu = new MesForms.FormRecu(id_paiement);
+                    
+                    tr.Commit();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lor du paiement" + ex.Message);
+                    tr.Rollback();
+                }
+                
+            }
 
         }
     }

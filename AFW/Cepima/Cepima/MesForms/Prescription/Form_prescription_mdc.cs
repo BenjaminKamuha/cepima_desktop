@@ -22,6 +22,8 @@ namespace Cepima.MesForms.Prescription
         private static FlowLayoutPanel FL_PRESCRIPTION { get; set; }
         private static RoundedButton BT_SAVE_PRESC { get; set; }
         public static Int32 PROD_ID;
+        private decimal PROD_PRICE;
+
         private static int PATIENT_ID;
 
 
@@ -663,6 +665,11 @@ namespace Cepima.MesForms.Prescription
                 lignes);
                 MessageBox.Show("Prescription enregistrée", "Prinscription", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lignes.Clear();
+
+                if (Form1.CONTEXT == "CAISSE")
+                {
+                    PaiementForm.ID_PRESCRIPTION = idPrescription;
+                }
                 this.Close();
 
             }

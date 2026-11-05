@@ -480,6 +480,90 @@ namespace Cepima.MesClasses
             }
         }
 
+
+        public static int AjouterPrestationFacture(
+    int idFacture,
+    int idPrestation,
+    int quantite,
+    decimal prixUnitaire)
+        {
+            if (idFacture <= 0)
+                throw new Exception("Facture invalide.");
+            if (idPrestation <= 0)
+                throw new Exception("Prestation invalide.");
+            if (quantite <= 0)
+                throw new Exception("La quantité doit être supérieure à zéro.");
+            if (prixUnitaire <= 0)
+                throw new Exception("Le prix de la prestation est invalide.");
+
+            string query = @"
+                SELECT libelle
+                FROM prestation
+                WHERE id_prestation = @id_prestation
+                  AND actif = 1
+                LIMIT 1";
+
+            string libelle;
+
+
+            using (MySqlConnection con = ManagerClasse.GetConnexion())
+            {
+                MySqlTransaction tr = con.BeginTransaction();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                    object result = cmd.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                        throw new Exception("La prestation n'existe pas ou est inactive.");
+                    libelle = result.ToString();
+                }
+
+                int existant = TrouverDetailPrestation(idFacture, idPrestation, con, tr);
+
+                if (existant > 0)
+                    return existant;
+
+                decimal montant = quantite * prixUnitaire;
+
+                query = @"
+                INSERT INTO detail_facture
+                (
+                    id_facture,
+                    id_prestation,
+                    description,
+                    quantite,
+                    prix_unitaire,
+                    montant
+                )
+                VALUES
+                (
+                    @id_facture,
+                    @id_prestation,
+                    @description,
+                    @quantite,
+                    @prix_unitaire,
+                    @montant
+                )";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+                {
+                    cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                    cmd.Parameters.AddWithValue("@id_prestation", idPrestation);
+                    cmd.Parameters.AddWithValue("@description", libelle);
+                    cmd.Parameters.AddWithValue("@quantite", quantite);
+                    cmd.Parameters.AddWithValue("@prix_unitaire", prixUnitaire);
+                    cmd.Parameters.AddWithValue("@montant", montant);
+                    cmd.ExecuteNonQuery();
+                    int idDetail = Convert.ToInt32(cmd.LastInsertedId);
+                    RecalculerFacture(idFacture, con, tr);
+                    return idDetail;
+                }
+            }
+           
+        }
+
+
         // ============================================================
         // TROUVER UNE PRESTATION DANS UNE FACTURE
         // ============================================================
@@ -1310,6 +1394,148 @@ namespace Cepima.MesClasses
             }
         }
 
+        public static int PayerPrestation(
+    int idFacture,
+    int idDetailFacture,
+    decimal montantPaiement,
+    DateTime datePaiement,
+    MySqlConnection con,
+    MySqlTransaction tr)
+        {
+            if (montantPaiement <= 0)
+                throw new Exception("Le montant doit être supérieur à zéro.");
+
+            // 1. Vérifier le détail de la facture
+            string query = @"
+        SELECT montant
+        FROM detail_facture
+        WHERE id_detail_facture = @detail
+          AND id_facture = @facture
+          AND id_prestation IS NOT NULL
+        FOR UPDATE";
+
+            decimal montantPrestation;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@detail", idDetailFacture);
+                cmd.Parameters.AddWithValue("@facture", idFacture);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("Prestation introuvable.");
+
+                montantPrestation = Convert.ToDecimal(result);
+            }
+
+            // 2. Calculer le montant déjà payé pour cette prestation
+            query = @"
+        SELECT COALESCE(SUM(montant), 0)
+        FROM paiement
+        WHERE id_facture = @facture
+          AND id_detail_facture = @detail";
+
+            decimal dejaPaye;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@facture", idFacture);
+                cmd.Parameters.AddWithValue("@detail", idDetailFacture);
+
+                dejaPaye = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal restePrestation = montantPrestation - dejaPaye;
+
+            if (montantPaiement > restePrestation)
+                throw new Exception("Le paiement dépasse le reste de cette prestation.");
+
+            // 3. Vérifier le reste global de la facture
+            query = @"
+        SELECT montant_total
+        FROM facture
+        WHERE id_facture = @facture
+          AND statut <> 'Clôturée'
+        FOR UPDATE";
+
+            decimal totalFacture;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@facture", idFacture);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                    throw new Exception("Facture introuvable ou clôturée.");
+
+                totalFacture = Convert.ToDecimal(result);
+            }
+
+            query = @"
+        SELECT COALESCE(SUM(montant), 0)
+        FROM paiement
+        WHERE id_facture = @facture";
+
+            decimal dejaPayeFacture;
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@facture", idFacture);
+
+                dejaPayeFacture = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal nouveauReste =
+                totalFacture - dejaPayeFacture - montantPaiement;
+
+            if (nouveauReste < 0)
+                throw new Exception("Le paiement dépasse le reste global.");
+
+            // 4. Enregistrer le paiement
+            string typePaiement =
+                nouveauReste == 0 ? "Complet" : "Partiel";
+
+            query = @"
+        INSERT INTO paiement
+        (
+            id_facture,
+            id_detail_facture,
+            date_paiement,
+            montant,
+            reste,
+            type_paiement
+        )
+        VALUES
+        (
+            @facture,
+            @detail,
+            @date,
+            @montant,
+            @reste,
+            @type
+        )";
+
+            int idPaiement;
+            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            {
+                cmd.Parameters.AddWithValue("@facture", idFacture);
+                cmd.Parameters.AddWithValue("@detail", idDetailFacture);
+                cmd.Parameters.AddWithValue("@date", datePaiement.Date);
+                cmd.Parameters.AddWithValue("@montant", montantPaiement);
+                cmd.Parameters.AddWithValue("@reste", nouveauReste);
+                cmd.Parameters.AddWithValue("@type", typePaiement);
+
+                idPaiement = Convert.ToInt32(cmd.ExecuteScalar());
+                ;
+            }
+
+            // 5. Actualiser la facture
+            RecalculerFacture(idFacture, con, tr);
+
+            return idPaiement;
+        }
 
 
         public static void AjouterLivreCaisse(
@@ -1435,6 +1661,8 @@ namespace Cepima.MesClasses
             }
         }
     }
+
+
 
 }
 

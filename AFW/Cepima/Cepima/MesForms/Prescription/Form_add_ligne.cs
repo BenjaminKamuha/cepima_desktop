@@ -45,6 +45,7 @@ namespace Cepima.MesForms.Prescription
                             m.nom,
                             m.dosage,
                             m.unite_gestion,
+                            m.prix_vente,
                             c.nom AS categorie,
                             c.couleur
                         FROM medicament m
@@ -66,6 +67,7 @@ namespace Cepima.MesForms.Prescription
                                 item_medoc.Subtitle = reader["categorie"].ToString() + " • " + reader["unite_gestion"].ToString();
                                 bt_save_medoc.BackColor = UC_stock_pharmacie.ConvertirCouleur(reader["couleur"].ToString());
                                 item_medoc.IndicatorColor = UC_stock_pharmacie.ConvertirCouleur(reader["couleur"].ToString());
+
 
 
                             }

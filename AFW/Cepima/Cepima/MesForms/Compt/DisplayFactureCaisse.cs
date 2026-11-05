@@ -653,10 +653,7 @@ namespace Cepima.MesForms.Compt
             }
 
             panFacture.Controls.Add(lbStatut);
-
-
-
-
+                        
             // ---------------------------------------------------------
             // EVENEMENT DU BOUTON PAYER
             // ---------------------------------------------------------

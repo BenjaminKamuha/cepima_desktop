@@ -17,10 +17,10 @@ namespace Cepima.MesForms
         int paiementID;
         bool FACTURE = true;
 
-        public FormRecu(int id, bool facture = true)
+        public FormRecu(int id_payement, bool facture = true)
         {
             InitializeComponent();
-            paiementID = id;
+            paiementID = id_payement;
             FACTURE = facture;
             LoadRecu();
         }
