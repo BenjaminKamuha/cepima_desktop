@@ -462,71 +462,6 @@
       </Tablix>
       <Rectangle Name="Rectangle3">
         <ReportItems>
-          <Textbox Name="Textbox16">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>TOTAL  : </Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>0.44979cm</Top>
-            <Left>0.28786cm</Left>
-            <Height>0.62646cm</Height>
-            <Width>2.42473cm</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox17">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>PAYE : </Value>
-                    <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>12pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>1.25264cm</Top>
-            <Left>0.28786cm</Left>
-            <Height>0.65292cm</Height>
-            <Width>2.42473cm</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox18">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -534,77 +469,13 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>RESTE : </Value>
+                    <Value>RESTE :   </Value>
                     <Style>
                       <FontFamily>calibri</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox16</rd:DefaultName>
-            <Top>2.08195cm</Top>
-            <Left>0.28786cm</Left>
-            <Height>0.67938cm</Height>
-            <Width>2.42473cm</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox19">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!total_facture.Value, "ds_Recu")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> $</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>0.48507cm</Top>
-            <Left>2.88898cm</Left>
-            <Height>0.62646cm</Height>
-            <Width>3.64181cm</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox20">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
                   <TextRun>
                     <Value>=First(Fields!reste.Value, "ds_Recu")</Value>
                     <Style>
@@ -621,50 +492,11 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>2.08195cm</Top>
-            <Left>2.88898cm</Left>
+            <rd:DefaultName>Textbox16</rd:DefaultName>
+            <Top>0.38862cm</Top>
+            <Left>0.15276cm</Left>
             <Height>0.67938cm</Height>
-            <Width>3.64181cm</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox21">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!montant_paye.Value, "ds_Recu")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>$</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox19</rd:DefaultName>
-            <Top>1.21736cm</Top>
-            <Left>2.88898cm</Left>
-            <Height>0.65292cm</Height>
-            <Width>3.64181cm</Width>
-            <ZIndex>5</ZIndex>
+            <Width>6.11064cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -679,7 +511,7 @@
         <KeepTogether>true</KeepTogether>
         <Top>7.62064cm</Top>
         <Left>0cm</Left>
-        <Height>2.87042cm</Height>
+        <Height>1.52105cm</Height>
         <Width>6.53079cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
