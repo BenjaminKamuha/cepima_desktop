@@ -1031,6 +1031,69 @@ namespace Cepima.MesClasses
             }
         }
 
+        public static void RecalculerFacture(
+    int idFacture,
+    MySqlConnection con
+            )
+        {
+            decimal total;
+            decimal paye;
+
+            string query = @"
+                SELECT COALESCE(SUM(montant), 0)
+                FROM detail_facture
+                WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                total = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            query = @"
+                SELECT COALESCE(SUM(montant), 0)
+                FROM paiement
+                WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                paye = Convert.ToDecimal(cmd.ExecuteScalar());
+            }
+
+            decimal reste = total - paye;
+            if (reste < 0) reste = 0;
+
+            string statut;
+            if (paye <= 0)
+                statut = "Non payé";
+            else if (reste > 0)
+                statut = "Partiellement payé";
+            else
+                statut = "Clôturée";
+
+            query = @"
+                UPDATE facture
+                SET montant_total = @total,
+                    montant_paye = @paye,
+                    reste = @reste,
+                    statut = CASE
+                        WHEN statut = 'Clôturée' THEN 'Clôturée'
+                        ELSE @statut
+                    END
+                WHERE id_facture = @id_facture";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
+            {
+                cmd.Parameters.AddWithValue("@total", total);
+                cmd.Parameters.AddWithValue("@paye", paye);
+                cmd.Parameters.AddWithValue("@reste", reste);
+                cmd.Parameters.AddWithValue("@statut", statut);
+                cmd.Parameters.AddWithValue("@id_facture", idFacture);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         // ============================================================
         // CREER OU RECUPERER LA FACTURE OUVERTE DU PATIENT
         // ============================================================
@@ -1395,28 +1458,27 @@ namespace Cepima.MesClasses
         }
 
         public static int PayerPrestation(
-    int idFacture,
-    int idDetailFacture,
-    decimal montantPaiement,
-    DateTime datePaiement,
-    MySqlConnection con,
-    MySqlTransaction tr)
+            int idFacture,
+            int idDetailFacture,
+            decimal montantPaiement,
+            DateTime datePaiement,
+            MySqlConnection con)
         {
             if (montantPaiement <= 0)
                 throw new Exception("Le montant doit être supérieur à zéro.");
 
             // 1. Vérifier le détail de la facture
             string query = @"
-        SELECT montant
-        FROM detail_facture
-        WHERE id_detail_facture = @detail
-          AND id_facture = @facture
-          AND id_prestation IS NOT NULL
-        FOR UPDATE";
+                SELECT montant
+                FROM detail_facture
+                WHERE id_detail_facture = @detail
+                  AND id_facture = @facture
+                  AND id_prestation IS NOT NULL
+                FOR UPDATE";
 
             decimal montantPrestation;
 
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@detail", idDetailFacture);
                 cmd.Parameters.AddWithValue("@facture", idFacture);
@@ -1438,7 +1500,7 @@ namespace Cepima.MesClasses
 
             decimal dejaPaye;
 
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@facture", idFacture);
                 cmd.Parameters.AddWithValue("@detail", idDetailFacture);
@@ -1461,7 +1523,7 @@ namespace Cepima.MesClasses
 
             decimal totalFacture;
 
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@facture", idFacture);
 
@@ -1480,7 +1542,7 @@ namespace Cepima.MesClasses
 
             decimal dejaPayeFacture;
 
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@facture", idFacture);
 
@@ -1518,7 +1580,7 @@ namespace Cepima.MesClasses
         )";
 
             int idPaiement;
-            using (MySqlCommand cmd = new MySqlCommand(query, con, tr))
+            using (MySqlCommand cmd = new MySqlCommand(query, con))
             {
                 cmd.Parameters.AddWithValue("@facture", idFacture);
                 cmd.Parameters.AddWithValue("@detail", idDetailFacture);
@@ -1527,12 +1589,13 @@ namespace Cepima.MesClasses
                 cmd.Parameters.AddWithValue("@reste", nouveauReste);
                 cmd.Parameters.AddWithValue("@type", typePaiement);
 
-                idPaiement = Convert.ToInt32(cmd.ExecuteScalar());
-                ;
+                cmd.ExecuteNonQuery();
+
+                idPaiement = Convert.ToInt32(cmd.LastInsertedId);
             }
 
             // 5. Actualiser la facture
-            RecalculerFacture(idFacture, con, tr);
+            RecalculerFacture(idFacture, con);
 
             return idPaiement;
         }

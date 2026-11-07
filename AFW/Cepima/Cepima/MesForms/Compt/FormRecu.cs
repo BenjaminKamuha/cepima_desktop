@@ -41,7 +41,8 @@ namespace Cepima.MesForms
 
                     if (!FACTURE)
                     {
-                        query = "SELECT DATE_FORMAT(pa.date_paiement, '%d/%m/%Y') AS date_paiement, pa.montant AS montant_paye,pa.type_paiement, pa.reste FROM paiement pa WHERE pa.id_paiement = @id";                     }
+                        query = "SELECT DATE_FORMAT(pa.date_paiement, '%d/%m/%Y') AS date_paiement, pa.montant AS montant_paye,pa.type_paiement, pa.reste FROM paiement pa WHERE pa.id_paiement = @id";                                        
+                    }
 
 
                     

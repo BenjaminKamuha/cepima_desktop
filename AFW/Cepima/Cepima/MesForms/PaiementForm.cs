@@ -905,18 +905,20 @@ namespace Cepima.MesForms
                     int id_detail = MesClasses.ReceptionManager.AjouterPrestationFacture(id_facture, PRESTATION, 1, nud_prix.Value, con, tr);
 
                     // Paymenet de prestation
-                    int id_paiement = MesClasses.ReceptionManager.PayerPrestation(id_facture, id_detail, nud_montant_payer.Value, DateTime.Now.Date, con, tr);
-
+                    int id_paiement = MesClasses.ReceptionManager.PayerPrestation(id_facture, id_detail, nud_montant_payer.Value, DateTime.Now.Date, con);
+                 
                     // Recalculer la facture après ajout paimenet de la prestation
-                    MesClasses.ReceptionManager.RecalculerFacture(id_facture, con, tr);
+                    MesClasses.ReceptionManager.RecalculerFacture(id_facture, con);
 
                     // Enregistrement de l'opération dans le livre de caisse
-                    MesClasses.ReceptionManager.AjouterLivreCaisse(nud_montant_payer.Value, 0, cbx_service.Text, cbx_prestation.Text);
+                    MesClasses.ReceptionManager.AjouterLivreCaisse(nud_montant_payer.Value, 0,"EEG", cbx_prestation.Text, con, tr);
+
+                    tr.Commit();
 
                     // ImprimerReçus
                     MesForms.FormRecu recu = new MesForms.FormRecu(id_paiement);
+                    recu.ShowDialog();
                     
-                    tr.Commit();
                 }
                 catch (Exception ex)
                 {
