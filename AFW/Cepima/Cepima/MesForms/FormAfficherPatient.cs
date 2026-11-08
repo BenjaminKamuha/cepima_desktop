@@ -413,6 +413,7 @@ MesClasses.ManagerClasse.CustomLabel(
             bt_select.Click += delegate
             {
                 PaiementForm.ID_PATIENT = Convert.ToInt32(idPatient);
+                PaiementForm.PAN_FORM.Enabled = true;
                 PaiementForm.ChargerPatients();
                 this.Close();
             };

@@ -395,7 +395,6 @@ namespace Cepima.MesForms.Prescription
                         UI.Position.CenterControl(lb_quantite, c_pnl, 35);
 
                         FL_PRESCRIPTION.Controls.Add(c_pnl);
-
                     }
 
                     BT_SAVE_PRESC.Enabled = true;

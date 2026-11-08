@@ -396,6 +396,7 @@
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "PaiementForm";
             this.Text = "PaiementForm";
+            this.Load += new System.EventHandler(this.PaiementForm_Load);
             this.bunifuRoundedPanel1.ResumeLayout(false);
             this.bunifuRoundedPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

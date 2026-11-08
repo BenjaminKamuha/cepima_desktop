@@ -929,5 +929,15 @@ namespace Cepima.MesForms
             }
 
         }
+
+        private void PaiementForm_Load(object sender, EventArgs e)
+        {
+            if (ID_PATIENT == 0)
+            {
+                
+                //.Enabled = false;
+                PAN_FORM.Enabled = false; 
+            }
+        }
     }
 }
