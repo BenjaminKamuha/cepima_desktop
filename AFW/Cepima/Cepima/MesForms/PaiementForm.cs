@@ -884,6 +884,7 @@ namespace Cepima.MesForms
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
+            ID_PATIENT = 0;
             this.Close();
         }
 
@@ -917,7 +918,10 @@ namespace Cepima.MesForms
 
                     // ImprimerReçus
                     MesForms.FormRecu recu = new MesForms.FormRecu(id_paiement);
+                    this.Close();
+                    ID_PATIENT = 0;
                     recu.ShowDialog();
+                   
                     
                 }
                 catch (Exception ex)

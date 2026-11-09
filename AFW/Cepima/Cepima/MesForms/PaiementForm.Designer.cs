@@ -395,6 +395,7 @@
             this.Controls.Add(this.bt_choisir_patient);
             this.Controls.Add(this.bunifuRoundedPanel1);
             this.Name = "PaiementForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PaiementForm";
             this.Load += new System.EventHandler(this.PaiementForm_Load);
             this.bunifuRoundedPanel1.ResumeLayout(false);

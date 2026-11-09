@@ -1100,5 +1100,16 @@ namespace Cepima.MesUserCases.EEG
         {
 
         }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ChargerRecus();  
+        }
+
+        private void payement_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MesForms.PaiementForm paie = new MesForms.PaiementForm();
+            paie.ShowDialog();
+        }
     }
 }

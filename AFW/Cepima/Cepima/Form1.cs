@@ -450,29 +450,29 @@ namespace Cepima
                 }),
 
                 
-                //new MenuItem("    Examens",Properties.Resources.finish_flag_30px, async (s,ev) =>
-                //{
-                //     await AfficherUserControlAsync<MesUserCases.EEG.User_examens>();
-
-                //}),
-
-                //new MenuItem("    Prescription", Properties.Resources.edit_property_30px, async(s, ev) => 
-                //{
-                //    CONTEXT = "PRESCRIPTION";
-                //    await AfficherUserControlAsync<MesUserCases.User_display_patients>();
-                //}),
-
-                //new MenuItem("    Caisse",Properties.Resources.add_dollar_black, async (s,ev) =>
-                //{
-                //    await AfficherUserControlAsync < MesUserCases.EEG.User_caisse>();
-
-                //}),
-
-                new MenuItem("    Paiement",Properties.Resources.add_25px, async (s,ev) =>
+                new MenuItem("    Examens",Properties.Resources.finish_flag_30px, async (s,ev) =>
                 {
-                    MesForms.Paiement paiement = new Paiement();
-                    paiement.ShowDialog();
+                     await AfficherUserControlAsync<MesUserCases.EEG.User_examens>();
+
                 }),
+
+                new MenuItem("    Prescription", Properties.Resources.edit_property_30px, async(s, ev) => 
+                {
+                    CONTEXT = "PRESCRIPTION";
+                    await AfficherUserControlAsync<MesUserCases.User_display_patients>();
+                }),
+
+                new MenuItem("    Caisse",Properties.Resources.add_dollar_black, async (s,ev) =>
+                {
+                    await AfficherUserControlAsync < MesUserCases.EEG.User_caisse>();
+
+                }),
+
+                //new MenuItem("    Paiement",Properties.Resources.add_25px, async (s,ev) =>
+                //{
+                //    MesForms.Paiement paiement = new Paiement();
+                //    paiement.ShowDialog();
+                //}),
 
             };
             Create_sous_menu(items);

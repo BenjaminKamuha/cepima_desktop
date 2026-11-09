@@ -35,12 +35,10 @@
             this.rb_recu = new System.Windows.Forms.RadioButton();
             this.rd_prescription = new System.Windows.Forms.RadioButton();
             this.rd_EEG = new System.Windows.Forms.RadioButton();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
+            this.payement = new System.Windows.Forms.LinkLabel();
             this.customRoundedPanel1 = new CustomRoundedPanel();
-            this.tb_search_demande = new MyRoundedTextBox();
             this.pnl_ambulatoire = new System.Windows.Forms.FlowLayoutPanel();
+            this.tb_search_demande = new MyRoundedTextBox();
             this.customRoundedPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,35 +99,33 @@
             // 
             this.rb_recu.AutoSize = true;
             this.rb_recu.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rb_recu.Location = new System.Drawing.Point(624, 20);
+            this.rb_recu.Location = new System.Drawing.Point(221, 27);
             this.rb_recu.Name = "rb_recu";
             this.rb_recu.Size = new System.Drawing.Size(135, 21);
             this.rb_recu.TabIndex = 49;
             this.rb_recu.TabStop = true;
             this.rb_recu.Text = "Afficher les récus";
             this.rb_recu.UseVisualStyleBackColor = true;
-            this.rb_recu.Visible = false;
             this.rb_recu.CheckedChanged += new System.EventHandler(this.rb_recu_CheckedChanged);
             // 
             // rd_prescription
             // 
             this.rd_prescription.AutoSize = true;
             this.rd_prescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_prescription.Location = new System.Drawing.Point(714, 20);
+            this.rd_prescription.Location = new System.Drawing.Point(22, 28);
             this.rd_prescription.Name = "rd_prescription";
-            this.rd_prescription.Size = new System.Drawing.Size(108, 21);
+            this.rd_prescription.Size = new System.Drawing.Size(182, 21);
             this.rd_prescription.TabIndex = 49;
             this.rd_prescription.TabStop = true;
-            this.rd_prescription.Text = "Prescriptions";
+            this.rd_prescription.Text = "Afficher les Prescriptions";
             this.rd_prescription.UseVisualStyleBackColor = true;
-            this.rd_prescription.Visible = false;
             this.rd_prescription.CheckedChanged += new System.EventHandler(this.rd_hospitalisation_CheckedChanged);
             // 
             // rd_EEG
             // 
             this.rd_EEG.AutoSize = true;
             this.rd_EEG.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rd_EEG.Location = new System.Drawing.Point(648, 20);
+            this.rd_EEG.Location = new System.Drawing.Point(592, 8);
             this.rd_EEG.Name = "rd_EEG";
             this.rd_EEG.Size = new System.Drawing.Size(116, 21);
             this.rd_EEG.TabIndex = 50;
@@ -139,45 +135,19 @@
             this.rd_EEG.Visible = false;
             this.rd_EEG.CheckedChanged += new System.EventHandler(this.rd_EEG_CheckedChanged);
             // 
-            // linkLabel1
+            // payement
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(58, 29);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(119, 21);
-            this.linkLabel1.TabIndex = 51;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Livre de caisse";
-            this.linkLabel1.VisitedLinkColor = System.Drawing.Color.White;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.linkLabel2.Location = new System.Drawing.Point(319, 29);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(87, 21);
-            this.linkLabel2.TabIndex = 52;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Payement";
-            this.linkLabel2.VisitedLinkColor = System.Drawing.Color.White;
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel3.LinkColor = System.Drawing.Color.DodgerBlue;
-            this.linkLabel3.Location = new System.Drawing.Point(221, 29);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(54, 21);
-            this.linkLabel3.TabIndex = 53;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Reçus";
-            this.linkLabel3.VisitedLinkColor = System.Drawing.Color.White;
+            this.payement.AutoSize = true;
+            this.payement.Font = new System.Drawing.Font("Microsoft Tai Le", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.payement.LinkColor = System.Drawing.Color.DodgerBlue;
+            this.payement.Location = new System.Drawing.Point(373, 28);
+            this.payement.Name = "payement";
+            this.payement.Size = new System.Drawing.Size(87, 21);
+            this.payement.TabIndex = 52;
+            this.payement.TabStop = true;
+            this.payement.Text = "Payement";
+            this.payement.VisitedLinkColor = System.Drawing.Color.White;
+            this.payement.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.payement_LinkClicked);
             // 
             // customRoundedPanel1
             // 
@@ -204,6 +174,16 @@
             this.customRoundedPanel1.Size = new System.Drawing.Size(1003, 450);
             this.customRoundedPanel1.TabIndex = 43;
             // 
+            // pnl_ambulatoire
+            // 
+            this.pnl_ambulatoire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnl_ambulatoire.Location = new System.Drawing.Point(3, 3);
+            this.pnl_ambulatoire.Name = "pnl_ambulatoire";
+            this.pnl_ambulatoire.Size = new System.Drawing.Size(997, 444);
+            this.pnl_ambulatoire.TabIndex = 2;
+            // 
             // tb_search_demande
             // 
             this.tb_search_demande.BackColor = System.Drawing.Color.White;
@@ -226,25 +206,12 @@
             this.tb_search_demande.TabIndex = 44;
             this.tb_search_demande.Visible = false;
             // 
-            // pnl_ambulatoire
-            // 
-            this.pnl_ambulatoire.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnl_ambulatoire.Location = new System.Drawing.Point(3, 3);
-            this.pnl_ambulatoire.Name = "pnl_ambulatoire";
-            this.pnl_ambulatoire.Size = new System.Drawing.Size(997, 444);
-            this.pnl_ambulatoire.TabIndex = 2;
-            this.pnl_ambulatoire.Visible = false;
-            // 
             // User_caisse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.linkLabel3);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.payement);
             this.Controls.Add(this.rb_recu);
             this.Controls.Add(this.rd_prescription);
             this.Controls.Add(this.rd_EEG);
@@ -273,9 +240,7 @@
         private System.Windows.Forms.RadioButton rd_prescription;
         private System.Windows.Forms.RadioButton rd_EEG;
         private MyRoundedTextBox tb_search_demande;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel3;
+        private System.Windows.Forms.LinkLabel payement;
         private System.Windows.Forms.FlowLayoutPanel pnl_ambulatoire;
     }
 }

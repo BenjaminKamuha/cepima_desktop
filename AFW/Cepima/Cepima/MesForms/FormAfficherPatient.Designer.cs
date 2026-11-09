@@ -63,7 +63,7 @@
             this.tb_search_demande.Image = global::Cepima.Properties.Resources.search_25px;
             this.tb_search_demande.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.tb_search_demande.ImagePadding = 4;
-            this.tb_search_demande.Location = new System.Drawing.Point(-5, 5);
+            this.tb_search_demande.Location = new System.Drawing.Point(9, 5);
             this.tb_search_demande.MaxLength = 32767;
             this.tb_search_demande.Name = "tb_search_demande";
             this.tb_search_demande.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
@@ -71,6 +71,7 @@
             this.tb_search_demande.PlaceholderText = "";
             this.tb_search_demande.Size = new System.Drawing.Size(273, 34);
             this.tb_search_demande.TabIndex = 14;
+            this.tb_search_demande.TextChanged += new System.EventHandler(this.tb_search_demande_TextChanged_1);
             // 
             // pictureBox1
             // 
@@ -86,7 +87,7 @@
             this.lb_nombres.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_nombres.AutoSize = true;
             this.lb_nombres.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_nombres.Location = new System.Drawing.Point(829, 24);
+            this.lb_nombres.Location = new System.Drawing.Point(829, 17);
             this.lb_nombres.Name = "lb_nombres";
             this.lb_nombres.Size = new System.Drawing.Size(52, 15);
             this.lb_nombres.TabIndex = 11;
@@ -132,7 +133,7 @@
             // 
             this.btn_add_patient.BackColor = System.Drawing.Color.Transparent;
             this.btn_add_patient.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btn_add_patient.ButtonText = "Ajouter";
+            this.btn_add_patient.ButtonText = "";
             this.btn_add_patient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_add_patient.DefaultBackColor = System.Drawing.Color.DodgerBlue;
             this.btn_add_patient.FlatAppearance.BorderSize = 0;
@@ -142,14 +143,14 @@
             this.btn_add_patient.HoverBackColor = System.Drawing.Color.SteelBlue;
             this.btn_add_patient.Image = global::Cepima.Properties.Resources.add_25px;
             this.btn_add_patient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_add_patient.Location = new System.Drawing.Point(936, 6);
+            this.btn_add_patient.Location = new System.Drawing.Point(976, 6);
             this.btn_add_patient.Name = "btn_add_patient";
-            this.btn_add_patient.Size = new System.Drawing.Size(90, 33);
+            this.btn_add_patient.Size = new System.Drawing.Size(40, 33);
             this.btn_add_patient.TabIndex = 13;
-            this.btn_add_patient.Text = "Ajouter";
             this.btn_add_patient.TextColor = System.Drawing.Color.White;
             this.btn_add_patient.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_add_patient.UseVisualStyleBackColor = false;
+            this.btn_add_patient.Click += new System.EventHandler(this.btn_add_patient_Click);
             // 
             // FormAfficherPatient
             // 
@@ -163,6 +164,7 @@
             this.Controls.Add(this.pan);
             this.Controls.Add(this.btn_add_patient);
             this.Name = "FormAfficherPatient";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormAfficherPatient";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pan.ResumeLayout(false);

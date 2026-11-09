@@ -591,5 +591,11 @@ MesClasses.ManagerClasse.CustomLabel(
             return carte;
         }
 
+        private void tb_search_demande_TextChanged_1(object sender, EventArgs e)
+        {
+            searchTimer.Stop();
+            searchTimer.Start();
+        }
+
     }
 }

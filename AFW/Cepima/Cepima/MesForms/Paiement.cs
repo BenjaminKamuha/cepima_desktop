@@ -149,8 +149,7 @@ namespace Cepima.MesForms
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            PaiementForm paie = new PaiementForm();
-            paie.ShowDialog();
+
         }
 
 
